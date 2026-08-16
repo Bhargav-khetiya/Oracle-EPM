@@ -1,6 +1,8 @@
-# 🏛️ Oracle EPBCS Mastery — Unified Knowledge Base
+# 🏛️ Oracle EPBCS Mastery — Unified Knowledge Base 2.0
 
-> **Author:** Bhargav Khetiya | **Started:** June 22, 2026 | **Merged:** August 4, 2026
+> **Author:** Bhargav Khetiya | **Started:** June 22, 2026 | **Upgraded to 2.0:** August 16, 2026
+
+Welcome to the **Oracle EPM 2.0 Knowledge Base**. This is a massive, two-pillar study ecosystem designed to take you from a beginner to a job-ready techno-functional Oracle Cloud EPM Consultant within 3-6 months.
 
 ---
 
@@ -8,29 +10,36 @@
 
 | Need | Go Here |
 |------|---------|
-| Resume AI session | [CONTINUITY_PROMPT.md](./CONTINUITY_PROMPT.md) |
-| Find any document | [COURSE_INDEX.md](./COURSE_INDEX.md) |
+| Start studying the official docs | [books/00_START_HERE/](./books/00_START_HERE/) |
+| View the 3-6 month study roadmap | [books/00_START_HERE/3_TO_6_MONTH_ROADMAP.md](./books/00_START_HERE/3_TO_6_MONTH_ROADMAP.md) |
+| Find any consultant-level topic | [COURSE_INDEX.md](./COURSE_INDEX.md) |
 | Look up a term | [GLOSSARY.md](./GLOSSARY.md) |
 | Interview preparation | [21_Interview/](./21_Interview/) |
 | Quick revision | [25_CheatSheets/](./25_CheatSheets/) |
 | Hands-on practice | [22_Labs/](./22_Labs/) |
 | Certification prep | [27_Certification/](./27_Certification/) |
-| Real instance stats | [data_from_instance.txt](./data_from_instance.txt) |
 
 ---
 
-## 📁 Structure
+## 📁 The Two-Pillar Structure
 
 ```
 Oracle_EPM_Merged/
 │
-├── 📄 CONTINUITY_PROMPT.md ........ AI session resume
+├── 📄 Master_Prompt_v2.md ......... The AI prompt that built this 2.0 KB
 ├── 📄 README.md ................... This file
 ├── 📄 COURSE_INDEX.md ............. Every document indexed
 ├── 📄 GLOSSARY.md ................. A-Z terminology (200+ terms)
-├── 🖼️ EPM_Skymap.png .............. Visual overview
 │
-├── 📚 Core Knowledge (33 module folders, 250+ deep-dive files)
+├── 📚 PILLAR 1: The Official Study Library (/books/)
+│   ├── 00_START_HERE/            Roadmap, master index, and matrix
+│   ├── 01_Foundation/            Getting started & best practices
+│   ├── 02_Planning/              Planning administration & workflows
+│   ├── 03_Essbase/               Database engine & calc reference
+│   ├── ... (18 folders covering all EPM Cloud domains)
+│   └── 53 Official Oracle PDFs + 3 HTML references
+│
+├── 📚 PILLAR 2: Consultant Knowledge Base (33 modules, 332+ files)
 │   ├── 00_Study_Path/            Learning roadmap & progress tracking
 │   ├── 01_Foundation/            EPM overview, 7 pillars, architecture, history
 │   ├── 02_Finance/               Financial statements, driver-based planning
@@ -62,15 +71,12 @@ Oracle_EPM_Merged/
 │   ├── 26_Glossary/              Domain terminology encyclopedias
 │   └── 27_Certification/         Exam 1Z0-1086 complete guide
 │
-├── 📖 Reference Encyclopedias
-│   ├── 28_Screen_Encyclopedia/   Every EPM screen documented (10 screens)
-│   ├── 29_Property_Encyclopedia/ Every property documented (7 areas)
-│   ├── 30_Function_Reference/    All functions documented (7 references)
-│   ├── 31_Error_Encyclopedia/    All error codes (4 categories)
-│   └── 32_Member_Formula_Encyclopedia/ Complete formula guide
-│
-├── 📦 Resources/PDFs/            38 Oracle official docs (5 levels)
-└── 📊 data_from_instance.txt     Real EPM instance statistics
+└── 📖 Reference Encyclopedias
+    ├── 28_Screen_Encyclopedia/   Every EPM screen documented (10 screens)
+    ├── 29_Property_Encyclopedia/ Every property documented (7 areas)
+    ├── 30_Function_Reference/    All functions documented (7 references)
+    ├── 31_Error_Encyclopedia/    All error codes (4 categories)
+    └── 32_Member_Formula_Encyclopedia/ Complete formula guide
 ```
 
 ---
@@ -79,6 +85,7 @@ Oracle_EPM_Merged/
 
 | Area | Modules | Files | Status |
 |------|---------|-------|--------|
+| **Official PDF Library** | `/books/` | 56 | ✅ **NEW in 2.0** |
 | Study Path & Foundation | 00-01 | 20 | ✅ |
 | Finance & Essbase | 02-03 | 19 | ✅ |
 | Planning & Metadata | 04-05 | 30 | ✅ |
@@ -92,24 +99,21 @@ Oracle_EPM_Merged/
 | Case Studies & Masterclass | 23-24 | 16 | ✅ |
 | CheatSheets, Glossary, Cert | 25-27 | 17 | ✅ |
 | Encyclopedias (Screen/Property/Function/Error/Formula) | 28-32 | 30 | ✅ |
-| Resources (Oracle PDFs) | — | 38+ | ✅ |
-| **Total** | **33 modules** | **332 .md files** | **All complete** |
+| **Total** | **33 modules + books** | **332 .md files + 56 docs** | **V2 Complete** |
 
 ---
 
-## 🔑 What's Special About This Knowledge Base
+## 🔑 What's Special About Version 2.0
 
 | Feature | Description |
 |---------|-------------|
+| **The /books/ Library** | A perfectly curated, offline-ready folder of 53 official Oracle PDFs, categorized by learning phase. |
+| **Strict Learning Phases** | All documentation is classified into phases (Foundation → Planning → Essbase → Calc Manager...). |
+| **"Hotel Pvt Ltd" Standard** | Consultant knowledge base files now standardize on a ₹26Cr Indian hotel chain for all functional examples. |
 | **Dual-Source Merged** | Best content from both office training and personal study |
 | **Deep Dive Style** | Every topic follows: Official Steps → Architecture → Use Cases → Performance Tips → Interview Q&A |
-| **System Templates Deep Dive** | Complete Oracle wizard documentation with expert-level "Deep Dive" sections |
-| **Real Instance Data** | Actual EPM Cloud instance statistics from `demoepm1668` |
-| **38 Oracle PDFs Covered** | Official Oracle documentation summarized at 5 difficulty levels |
-| **10 Architect Masterclass Volumes** | Elite-level content for senior consultant preparation |
 | **210+ Interview Questions** | Across 9 topic areas with detailed answers |
 | **25+ Hands-on Labs** | Step-by-step practice exercises |
-| **5 Reference Encyclopedias** | Screen, Property, Function, Error, and Member Formula references |
 
 ---
 

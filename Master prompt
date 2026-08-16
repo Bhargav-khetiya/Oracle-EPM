@@ -1,0 +1,1160 @@
+# ROLE
+
+You are an expert Oracle EPM Cloud documentation researcher, curriculum architect, technical documentation organizer, and filesystem automation agent.
+
+You are running inside **Antigravity IDE with Claude Code**.
+
+Your job is to take the Oracle documentation page contents that I provide below, analyze all available books and documentation, determine which documents are relevant to my career goal, and then create a clean, ordered study library on my local machine.
+
+# MY CAREER GOAL
+
+I joined as an **Oracle EPM Associate Consultant** approximately 45 days ago.
+
+My employer expects me to become:
+
+* Strong technically
+* Partially functional
+* Capable of working on real Oracle EPM Cloud projects
+* Capable of troubleshooting common issues
+* Capable of understanding requirements
+* Capable of implementing/configuring common EPM requirements
+* Capable of working with Planning, Essbase, FreeForm, Calculation Manager, Data Integration, Smart View, Security, Groovy, EPM Automate, REST APIs, and Migration
+
+Target timeframe:
+
+**3–6 months**
+
+Therefore, do NOT organize documentation alphabetically.
+
+Organize it according to the most effective **learning dependency sequence** for becoming an Oracle EPM Cloud techno-functional consultant.
+
+# IMPORTANT PRODUCT FOCUS
+
+My primary focus is:
+
+**Oracle Cloud EPM / Planning / FreeForm**
+
+I am NOT primarily trying to become:
+
+* Standalone Essbase infrastructure administrator
+* OCI infrastructure administrator
+* Essbase deployment engineer
+* Essbase Java API developer
+* Oracle licensing specialist
+
+Essbase knowledge is still extremely important because I need to understand the multidimensional database/calculation engine behind EPM.
+
+Therefore:
+
+* Prioritize Oracle Cloud EPM documentation.
+* Use Essbase documentation for the Essbase concepts required by an EPM consultant.
+* Do not fill my study library with unnecessary standalone Essbase infrastructure documentation.
+* Do not prioritize old Essbase 19.3 documentation unless it is specifically useful for compatibility, migration, or real-world client support.
+
+# PRIMARY LEARNING OBJECTIVE
+
+Build a curriculum around this skill chain:
+
+EPM Cloud Fundamentals
+↓
+Planning Fundamentals
+↓
+Essbase Fundamentals
+↓
+Dimensions & Cube Design
+↓
+Planning Administration
+↓
+Forms
+↓
+Calculation Manager
+↓
+Smart View
+↓
+FreeForm
+↓
+Data Integration / Data Management
+↓
+Security
+↓
+Migration
+↓
+EPM Automate
+↓
+Groovy
+↓
+REST API
+↓
+Operations / Troubleshooting
+↓
+Functional Planning Knowledge
+↓
+Real Project Scenarios
+
+# SOURCE MATERIAL
+
+I will paste the text contents of four Oracle documentation pages below.
+
+Treat all four pasted pages as source catalogs.
+
+Do NOT assume that every book listed in those pages must be downloaded.
+
+Your job is to:
+
+1. Parse every book/document listed.
+2. Identify its product.
+3. Identify its purpose.
+4. Classify its importance for my career goal.
+5. Remove duplicates.
+6. Detect overlapping documentation.
+7. Identify dependencies between books.
+8. Determine the best learning sequence.
+9. Download appropriate publicly accessible official Oracle documentation.
+10. Organize the downloaded material into the folder structure defined below.
+11. Generate an index explaining why every selected document belongs where it does.
+12. Generate a "DO NOT STUDY NOW" list for documents that are unnecessary for my 3–6 month target.
+13. Never invent documents, URLs, filenames, or Oracle content.
+
+# THE FOUR SOURCE PAGES
+
+## SOURCE PAGE 1 — ESSBASE 21c
+
+PASTE THE FULL TEXT HERE:
+
+<<<ESSBASE_21C_PAGE>>>
+
+[PASTE PAGE 1 TEXT HERE]
+
+<<<END_ESSBASE_21C_PAGE>>>
+
+## SOURCE PAGE 2 — ESSBASE 26ai
+
+PASTE THE FULL TEXT HERE:
+
+<<<ESSBASE_26AI_PAGE>>>
+
+[PASTE PAGE 2 TEXT HERE]
+
+<<<END_ESSBASE_26AI_PAGE>>>
+
+## SOURCE PAGE 3 — CLOUD EPM FREEFORM
+
+PASTE THE FULL TEXT HERE:
+
+<<<FREEFORM_PAGE>>>
+
+[PASTE PAGE 3 TEXT HERE]
+
+<<<END_FREEFORM_PAGE>>>
+
+## SOURCE PAGE 4 — CLOUD EPM PLANNING
+
+PASTE THE FULL TEXT HERE:
+
+<<<PLANNING_PAGE>>>
+
+[PASTE PAGE 4 TEXT HERE]
+
+<<<END_PLANNING_PAGE>>>
+
+# CRITICAL VERSION RULE
+
+Do NOT automatically assume:
+
+"newest documentation = most important documentation."
+
+For my career goal, determine whether the document is:
+
+A. Current Cloud EPM documentation that I should study now
+
+B. Current Cloud EPM reference documentation that I should study later
+
+C. Essbase knowledge required for Cloud EPM
+
+D. Standalone Essbase administration that I do not need initially
+
+E. Legacy/older-version material useful only for client support
+
+F. Duplicate/overlapping documentation
+
+G. Irrelevant to my current 3–6 month goal
+
+The goal is **job readiness**, not collecting documentation.
+
+# VERSION PRIORITY
+
+Prefer current Oracle Cloud EPM documentation.
+
+For Essbase:
+
+1. Use current/relevant Essbase documentation for concepts needed by Cloud EPM.
+2. Use Essbase 21c where appropriate.
+3. Treat Essbase 26ai documentation as current-version reference material where relevant.
+4. Do not make me study standalone Essbase deployment/configuration unless it directly helps my EPM Cloud role.
+5. Do not prioritize Essbase 19.3 unless the supplied documentation contains it or it is required for migration/client support.
+
+# STUDY PRIORITY SYSTEM
+
+Assign every document one of these priorities:
+
+P0 — MUST STUDY FIRST
+P1 — MUST STUDY
+P2 — IMPORTANT AFTER CORE
+P3 — REFERENCE / LEARN WHEN NEEDED
+P4 — CLIENT-SPECIFIC / LEGACY
+P5 — DO NOT STUDY NOW
+
+Also assign a learning phase:
+
+PHASE_01_FOUNDATION
+PHASE_02_PLANNING
+PHASE_03_ESSBASE
+PHASE_04_CALCULATION
+PHASE_05_SMART_VIEW
+PHASE_06_FREEFORM
+PHASE_07_DATA_INTEGRATION
+PHASE_08_SECURITY
+PHASE_09_MIGRATION
+PHASE_10_AUTOMATION
+PHASE_11_GROOVY
+PHASE_12_REST_API
+PHASE_13_OPERATIONS
+PHASE_14_FUNCTIONAL
+PHASE_15_ADVANCED_REFERENCE
+
+# DESIRED FOLDER
+
+I will provide the root directory.
+
+ROOT:
+
+[PASTE DESIRED LOCAL FOLDER PATH HERE]
+
+Example:
+
+D:\Oracle_EPM_Learning
+
+or
+
+~/Oracle_EPM_Learning
+
+Do not create files outside this root unless absolutely required by the operating system or tooling.
+
+# REQUIRED FOLDER STRUCTURE
+
+Create this structure:
+
+Oracle_EPM_Learning/
+│
+├── 00_START_HERE/
+│
+├── 01_FOUNDATION/
+│
+├── 02_PLANNING/
+│
+├── 03_ESSBASE/
+│
+├── 04_CALCULATION_MANAGER/
+│
+├── 05_SMART_VIEW/
+│
+├── 06_FREEFORM/
+│
+├── 07_DATA_INTEGRATION/
+│
+├── 08_SECURITY/
+│
+├── 09_MIGRATION/
+│
+├── 10_EPM_AUTOMATE/
+│
+├── 11_GROOVY/
+│
+├── 12_REST_API/
+│
+├── 13_OPERATIONS_TROUBLESHOOTING/
+│
+├── 14_FUNCTIONAL_PLANNING/
+│
+├── 15_ADVANCED_REFERENCE/
+│
+├── 90_LEGACY_CLIENT_SUPPORT/
+│
+└── 99_DO_NOT_STUDY_NOW/
+
+# WITHIN EACH FOLDER
+
+Organize documents according to learning sequence.
+
+Do not simply dump PDFs into folders.
+
+For example:
+
+01_FOUNDATION/
+01_Getting_Started_Guide_for_Administrators.pdf
+02_EPM_Platform_Overview.pdf
+README.md
+
+02_PLANNING/
+01_Administering_Planning.pdf
+02_Working_with_Planning.pdf
+03_Planning_Design_Best_Practices.pdf
+README.md
+
+03_ESSBASE/
+01_Essbase_Fundamentals.pdf
+02_Calculation_and_Query_Reference.pdf
+README.md
+
+# FILE NAMING
+
+Use clean filenames.
+
+Example:
+
+"Administering Planning.pdf"
+
+NOT:
+
+"pfusa/index.html"
+
+NOT:
+
+"Oracle Cloud EPM Planning Documentation - Final - New.pdf"
+
+Preserve meaningful official document titles.
+
+If multiple versions exist, include the version:
+
+"Essbase 21c - Getting Started.pdf"
+
+"Essbase 26ai - Getting Started.pdf"
+
+# DO NOT CREATE DUPLICATES
+
+Before downloading anything:
+
+1. Check whether the document already exists.
+2. Check filename.
+3. Check URL.
+4. Check document title.
+5. If possible, compare file hash.
+6. Do not download duplicate copies.
+
+If the same conceptual document appears in multiple source catalogs, select the most appropriate current version and record the duplicate relationship in the index.
+
+# DOWNLOAD RULES
+
+Only download documentation from official Oracle sources.
+
+Preferred domain:
+
+docs.oracle.com
+
+You may download:
+
+* Public PDFs
+* Public HTML documentation where local archiving is technically/legal permitted
+* Public Oracle documentation files directly linked from the supplied documentation pages
+
+DO NOT:
+
+* Bypass authentication
+* Bypass paywalls
+* Circumvent access controls
+* Circumvent robots/security restrictions
+* Download restricted/private documents
+* Scrape content that Oracle does not make publicly accessible
+* Use unofficial mirrors when an official Oracle source exists
+
+If a document cannot legally or technically be downloaded:
+
+1. Do not repeatedly attempt to bypass the restriction.
+2. Create a text file containing the official Oracle URL.
+3. Put it in the appropriate folder.
+4. Name it:
+
+"LINK_ONLY_<Document_Name>.txt"
+
+5. Explain why it was not downloaded.
+
+# OFFICIAL SOURCE PRIORITY
+
+For every document, record:
+
+* Official title
+* Oracle URL
+* Product
+* Version
+* Category
+* Priority
+* Learning phase
+* Recommended study order
+* Download status
+* Local filename
+
+# IMPORTANT: HTML VS PDF
+
+If Oracle provides both:
+
+* HTML documentation
+* PDF/downloadable documentation
+
+Prefer the official downloadable PDF for offline study.
+
+If no PDF exists, preserve the official URL rather than attempting to create a fake PDF.
+
+Do not convert large HTML documentation into a PDF unless explicitly necessary.
+
+# BOOK SELECTION LOGIC
+
+Use these principles.
+
+## HIGH PRIORITY
+
+Prioritize documents covering:
+
+* Planning administration
+* Planning usage
+* Dimensions
+* Applications
+* Cubes
+* Essbase BSO
+* Essbase ASO
+* Hybrid BSO
+* Calculation Manager
+* Business Rules
+* Forms
+* Smart View
+* FreeForm administration
+* FreeForm usage
+* Data Integration
+* Data Management
+* Security
+* Migration
+* EPM Automate
+* Groovy
+* REST API
+* Operations/troubleshooting
+
+## MEDIUM PRIORITY
+
+Include later:
+
+* Reports
+* Planning Modules
+* Advanced Smart View
+* Advanced integration
+* Advanced troubleshooting
+* Advanced Essbase reference
+
+## LOW PRIORITY FOR NOW
+
+Do not prioritize:
+
+* Licensing
+* Essbase Java API
+* OCI infrastructure deployment
+* Essbase independent deployment
+* Essbase stack deployment
+* Deep configuration reference
+* Infrastructure administration
+* Advanced deployment engineering
+
+Move these to:
+
+15_ADVANCED_REFERENCE/
+
+unless there is a strong reason they belong elsewhere.
+
+## LEGACY
+
+Move older-version documentation to:
+
+90_LEGACY_CLIENT_SUPPORT/
+
+if it is useful for supporting existing client environments.
+
+Do not allow legacy documentation to contaminate the main learning sequence.
+
+# ESSBASE-SPECIFIC RULE
+
+I need Essbase knowledge, but I am not training to become a standalone Essbase infrastructure administrator.
+
+Therefore prioritize Essbase material covering:
+
+* Dimensions
+* Members
+* Hierarchies
+* Dense/sparse
+* BSO
+* ASO
+* Hybrid
+* Blocks
+* Aggregation
+* Calculations
+* Member formulas
+* MDX
+* Cube design
+* Performance concepts relevant to Cloud EPM
+
+Do NOT make these part of my initial core sequence unless required:
+
+* Independent deployment
+* OCI stack deployment
+* WebLogic infrastructure administration
+* Java API development
+* Deep server configuration
+* Licensing
+
+# FREEFORM-SPECIFIC RULE
+
+FreeForm is important for my role.
+
+Organize FreeForm material around:
+
+1. FreeForm fundamentals
+2. Application creation
+3. Dimension design
+4. Cube design
+5. BSO
+6. ASO
+7. Hybrid BSO
+8. Multi-cube architecture
+9. Data Maps
+10. Smart Push
+11. Calculations
+12. Forms
+13. Smart View
+14. Security
+15. Integration
+16. Administration
+17. Functional use cases
+
+# PLANNING-SPECIFIC RULE
+
+Planning should be one of the highest-priority areas.
+
+Organize Planning material around:
+
+1. Architecture
+2. Application administration
+3. Dimensions
+4. Members
+5. Hierarchies
+6. Forms
+7. Smart Lists
+8. Variables
+9. Valid Intersections
+10. Business Rules
+11. Calculation Manager
+12. Approvals
+13. Dashboards
+14. Navigation
+15. Security
+16. Data Integration
+17. Migration
+18. Smart View
+19. Planning Modules
+
+# TECHNICAL SKILL SEQUENCE
+
+Ensure the final curriculum follows this dependency:
+
+Planning fundamentals
+→ Essbase fundamentals
+→ Dimension design
+→ Cube design
+→ Planning administration
+→ Forms
+→ Calculation Manager
+→ Business Rules
+→ Smart View
+→ FreeForm
+→ Data Integration
+→ Security
+→ Migration
+→ EPM Automate
+→ Groovy
+→ REST API
+→ Operations
+→ Functional knowledge
+
+# FUNCTIONAL SKILL SEQUENCE
+
+For functional material, prioritize:
+
+1. Planning concepts
+2. Budget
+3. Forecast
+4. Actual
+5. Variance
+6. Scenario
+7. Version
+8. Entity
+9. Account
+10. Workforce
+11. Financials
+12. Capital
+13. Projects
+
+Do not require accounting expertise beyond what is necessary for an EPM consultant to understand requirements and solution design.
+
+# CREATE A MASTER INDEX
+
+Create:
+
+00_START_HERE/MASTER_INDEX.md
+
+The index must contain a table:
+
+| Order | Document | Product | Version | Phase | Priority | Why Study | Prerequisites |
+| ----- | -------- | ------- | ------- | ----- | -------- | --------- | ------------- |
+
+Example:
+
+| 1 | Getting Started Guide for Administrators | EPM Cloud | Current | Foundation | P0 | Establishes EPM architecture | None |
+| 2 | Administering Planning | Planning | Current | Planning | P0 | Core Planning administration | Foundation |
+| 3 | Getting Started with Essbase | Essbase | 21c/current | Essbase | P0 | Understands cube engine | Foundation |
+
+# CREATE A STUDY ROADMAP
+
+Create:
+
+00_START_HERE/3_TO_6_MONTH_ROADMAP.md
+
+Include:
+
+## Month 1
+
+Foundation + Planning + Essbase
+
+## Month 2
+
+Planning administration + Forms + Calculation Manager + Smart View
+
+## Month 3
+
+FreeForm + Data Integration + Security
+
+## Month 4
+
+Migration + EPM Automate + Groovy
+
+## Month 5
+
+REST API + Operations + Troubleshooting
+
+## Month 6
+
+Functional Planning + Advanced topics + project simulations
+
+Adjust the exact sequence based on your analysis of the source documentation.
+
+# CREATE A "WHAT NOT TO STUDY" FILE
+
+Create:
+
+00_START_HERE/DO_NOT_STUDY_NOW.md
+
+For every excluded document, explain:
+
+* Document
+* Why it is not currently needed
+* When it might become useful
+* Whether it belongs to legacy/client support or advanced reference
+
+# CREATE A DOCUMENTATION MATRIX
+
+Create:
+
+00_START_HERE/DOCUMENTATION_MATRIX.csv
+
+Columns:
+
+document_title
+product
+version
+oracle_url
+source_page
+category
+priority
+phase
+study_order
+local_file
+download_status
+reason
+prerequisites
+duplicate_of
+
+# CREATE README FILES
+
+Create README.md inside every major folder.
+
+Each README must explain:
+
+* What this folder teaches
+* Why it matters
+* What prerequisites are required
+* Which documents to read first
+* What practical skills I should have after completing the folder
+
+# CREATE A "CORE VS REFERENCE" SEPARATION
+
+Inside each major folder, if useful, create:
+
+CORE/
+
+and:
+
+REFERENCE/
+
+For example:
+
+03_ESSBASE/
+CORE/
+REFERENCE/
+README.md
+
+The CORE directory should contain only material I actually need for my 3–6 month target.
+
+REFERENCE should contain material that is useful later.
+
+# DO NOT OVER-COLLECT
+
+This is extremely important.
+
+The objective is NOT:
+
+"Download every Oracle document."
+
+The objective is:
+
+"Build the smallest complete study library that can make me job-ready."
+
+If 100 documents exist but only 25 are relevant, select the 25.
+
+# CONTENT OVERLAP ANALYSIS
+
+If two documents cover the same subject:
+
+* Determine whether one is introductory and one is reference.
+* Keep both only if both serve a different purpose.
+* Otherwise prioritize the current authoritative document.
+* Record the duplicate/overlap in DOCUMENTATION_MATRIX.csv.
+
+# SOURCE URL VALIDATION
+
+Before downloading, validate that the URL:
+
+1. Belongs to Oracle.
+2. Corresponds to the document.
+3. Is still accessible.
+4. Is not an unrelated search result.
+
+Do not invent URLs.
+
+# CURRENT VERSION VALIDATION
+
+Where documentation has multiple versions:
+
+Determine:
+
+* Current Cloud EPM version/documentation
+* Essbase 21c relevance
+* Essbase 26ai relevance
+* Legacy relevance
+
+Do not blindly replace Cloud EPM documentation with standalone Essbase documentation simply because the standalone version number is newer.
+
+# FINAL QUALITY CHECK
+
+Before finishing, verify:
+
+[ ] All four source catalogs were parsed.
+
+[ ] Every listed book was classified.
+
+[ ] Duplicates were identified.
+
+[ ] Relevant documents were selected.
+
+[ ] Irrelevant documents were separated.
+
+[ ] Official Oracle URLs were validated.
+
+[ ] Only legally/publicly accessible documents were downloaded.
+
+[ ] No authentication/access-control bypass was attempted.
+
+[ ] Documents are organized by learning sequence.
+
+[ ] Filenames are clean.
+
+[ ] No duplicate files exist.
+
+[ ] MASTER_INDEX.md exists.
+
+[ ] 3_TO_6_MONTH_ROADMAP.md exists.
+
+[ ] DO_NOT_STUDY_NOW.md exists.
+
+[ ] DOCUMENTATION_MATRIX.csv exists.
+
+[ ] Folder README files exist.
+
+[ ] The curriculum starts with prerequisites and progresses toward advanced skills.
+
+[ ] Planning is prioritized.
+
+[ ] Essbase is included at the appropriate depth.
+
+[ ] FreeForm is included.
+
+[ ] Calculation Manager is included.
+
+[ ] Data Integration is included.
+
+[ ] Smart View is included.
+
+[ ] Security is included.
+
+[ ] Migration is included.
+
+[ ] EPM Automate is included.
+
+[ ] Groovy is included.
+
+[ ] REST API is included.
+
+[ ] Operations/troubleshooting is included.
+
+[ ] Functional Planning material is included.
+
+# EXECUTION INSTRUCTIONS
+
+First perform analysis.
+
+Do NOT immediately start downloading.
+
+First produce:
+
+1. A parsed list of all documents.
+2. Classification.
+3. Proposed learning order.
+4. Proposed folder assignment.
+5. Duplicate analysis.
+
+Save this analysis as:
+
+00_START_HERE/INITIAL_ANALYSIS.md
+
+Then proceed with downloads and organization.
+
+If a decision is ambiguous, prefer:
+
+**Current Oracle Cloud EPM + practical consultant relevance + learning dependency.**
+
+Do not ask me unnecessary questions if the source material already provides enough information to make the decision.
+
+# FINAL OUTPUT
+
+When finished, report:
+
+1. Number of source documents discovered.
+2. Number classified.
+3. Number selected for core study.
+4. Number placed in reference.
+5. Number placed in legacy.
+6. Number placed in "do not study now".
+7. Number downloaded.
+8. Number available only as links.
+9. Number of duplicates removed.
+10. Final root directory.
+11. Recommended first document to study.
+12. Recommended first practical exercise.
+13. Any important documents that could not be downloaded.
+
+Then show the final directory tree.
+
+# MOST IMPORTANT PRINCIPLE
+
+Do not optimize for "having all Oracle documentation."
+
+Optimize for:
+
+**"If I follow this folder sequence and practice alongside the documentation for 3–6 months, I should become a strong Oracle EPM Cloud techno-functional associate consultant."**
+
+The final library must teach me to:
+
+**Understand → Configure → Develop → Integrate → Automate → Troubleshoot → Explain → Support a real EPM Cloud project.**
+
+Start by analyzing the four pasted documentation catalogs.
+
+
+
+
+    Skip to Content
+    Skip to Search
+    Home
+
+Help Center
+Planning and Budgeting Cloud
+
+    Cloud Cloud Applications Planning and Budgeting Cloud 
+
+Oracle Cloud EPM Planning
+
+    Get Started
+    Cloud Readiness / What's New
+
+    How Do I...
+    AI Features
+
+    Cloud EPM Platform
+    Books
+        Translated Books
+    Videos
+    Tutorials
+    Training
+
+Books
+View
+Sort by
+Group by Category
+Administer and Use Planning
+Administering Planning
+Working with Planning
+Continuous Innovation
+Creating and Running an EPM Center of Excellence
+Get Started
+Deploying and Administering Oracle Smart View for Office (Mac and Browser)
+Getting Started Guide for Administrators
+Getting Started Guide for Users
+Getting Started with Integration
+Getting Started with Oracle Smart View for Google Workspace
+Getting Started with the Digital Assistant
+Administration
+Administering Access Control
+Administering Data Management
+Administering Migration
+Administering Planning Modules
+Administering Predictive Cash Forecasting
+Administering Sales Planning
+Designing with Reports
+Licensing Guide
+Operations Guide
+Working with EPM Automate
+Design
+Design Best Practices
+Designing with Calculation Manager
+Designing with Financial Reporting Web Studio
+User
+Accessibility Guide
+Administering and Working with Strategic Workforce Planning Cloud
+Working with Financial Reporting
+Working with Oracle Smart View for Google Workspace
+Working with Oracle Smart View for Office (Mac and Browser)
+Working with Oracle Smart View for Office 26.100
+Working with Planning Modules
+Working with Predictive Cash Forecasting
+Working with Predictive Planning in Smart View
+Working with Reports
+Working with Sales Planning
+Working with Strategic Modeling in Smart View
+Development
+Cloud EPM System Reporting Schema Reference Guide
+Developing Applications for Oracle Smart View for Office
+Groovy Rules Java API Reference
+REST APIs
+
+    © Oracle
+    About Oracle
+    Contact Us
+    Products & Services
+    Terms of Use & Privacy
+    Ad Choices
+
+
+
+    Skip to Content
+    Skip to Search
+    Home
+
+Help Center
+FreeForm
+
+    Cloud Cloud Applications FreeForm 
+
+Oracle Cloud EPM FreeForm
+
+    Get Started
+    Cloud Readiness/What's New
+
+    How Do I...
+    FAQs
+    AI Features
+
+    Cloud EPM Platform
+    Books
+        Translated Books
+    Videos
+    Tutorials
+    Training
+
+Books
+View
+Sort by
+Group by Category
+Administer and Use FreeForm
+Administering FreeForm
+Working with FreeForm
+Continuous Innovation
+Creating and Running an EPM Center of Excellence
+Get Started
+Deploying and Administering Oracle Smart View for Office (Mac and Browser)
+Getting Started Guide for Administrators
+Getting Started Guide for Users
+Getting Started with Integration
+Getting Started with Oracle Smart View for Google Workspace
+Design
+Designing with Calculation Manager
+Designing with Financial Reporting Web Studio
+User
+Accessibility Guide
+Working with Financial Reporting
+Working with Oracle Smart View for Google Workspace
+Working with Oracle Smart View for Office (Mac and Browser)
+Working with Oracle Smart View for Office 26.100
+Working with Reports
+Administration
+Administering Access Control
+Administering Data Management
+Administering Migration
+Designing with Reports
+Licensing Guide
+Operations Guide
+Working with EPM Automate
+Development
+Developing Applications for Oracle Smart View for Office
+Enterprise Performance Management Cloud Groovy Rules Java API Reference
+REST APIs
+
+    © Oracle
+    About Oracle
+    Contact Us
+    Products & Services
+    Terms of Use & Privacy
+    Ad Choices
+
+
+
+    Skip to Content
+    Skip to Search
+    Home
+
+Help Center
+Essbase Release 26
+
+    Database Other Databases Essbase Release 26 
+
+Oracle Essbase 26ai
+
+    Get Started
+
+    Tasks
+
+    Books
+    Tutorials
+
+Books
+
+Essbase 26ai documentation tells you everything you need to know about using Oracle Essbase to derive and share data insights.
+View
+Sort by
+Group by Category
+Getting Started
+Getting Started with Oracle Essbase
+Release Notes
+Release Notes for Oracle Essbase 26ai
+User
+Oracle Essbase Cube Designer User's Guide
+Oracle Essbase MCP Server User's Guide
+Using the Essbase Web Interface
+Working with Oracle Smart View for Office
+Working with Oracle Smart View for Office (Mac and Browser)
+Administration
+Database Administrator's Guide for Oracle Essbase
+Deploying and Administering Oracle Smart View for Office (Mac and Browser)
+Essbase Independent Deployment
+Essbase Stack Deployment on Oracle Cloud Infrastructure
+Reference
+Configuration Reference for Oracle Essbase
+Licensing Information User Manual for Oracle Essbase
+REST API for Oracle Essbase
+Scripting Reference for Oracle Essbase
+
+    © Oracle
+    About Oracle
+    Contact Us
+    Products & Services
+    Terms of Use & Privacy
+    Ad Choices
+
+
+
+    Skip to Content
+    Skip to Search
+    Home
+
+Help Center
+Essbase Release 21
+
+    Database Other Databases Essbase Release 21 
+
+Oracle Essbase 21c
+
+    Get Started
+
+    Tasks
+
+    Books
+    Videos
+    Tutorials
+
+Books
+
+Essbase 21c documentation tells you everything you need to know about using Oracle Essbase to derive and share data insights.
+View
+Sort by
+Group by Category
+Getting Started
+Getting Started with Oracle Essbase
+Release Notes
+Release Notes for Oracle Essbase 21c
+User
+Oracle Essbase Cube Designer User's Guide
+Using the Essbase Web Interface
+Working with Oracle Smart View for Office
+Working with Oracle Smart View for Office (Mac and Browser)
+Administration
+Database Administrator's Guide for Oracle Essbase
+Deploying and Administering Oracle Smart View for Office (Mac and Browser)
+Essbase Independent Deployment
+Essbase Stack Deployment on Oracle Cloud Infrastructure
+Reference
+Calculation and Query Reference for Oracle Essbase
+Configuration Reference for Oracle Essbase
+Licensing Information User Manual for Oracle Essbase
+Oracle Essbase Java API Reference
+REST API for Oracle Essbase
+Scripting Reference for Oracle Essbase
+
+    © Oracle
+    About Oracle
+    Contact Us
+    Products & Services
+    Terms of Use & Privacy
+    Ad Choices
+
+provided everthing download and orgnize everthing in books folder in this project and maintain re write master prompy in most precise way and most detailed way 

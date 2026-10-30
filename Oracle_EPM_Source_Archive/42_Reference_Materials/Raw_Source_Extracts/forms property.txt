@@ -1,0 +1,435 @@
+Form	Data Entry Form For FY 25,26,27-1
+	
+Description	
+this form is use for enter data
+	
+Cube	FinPlan
+	
+Use Metric	
+	
+Enter Instructions	
+	
+	
+	 	
+Undo
+	
+Redo
+	
+Clear Styling
+	 	
+Rich Text Editing Mode
+	
+Source Code Editing Mode
+	 	
+		
+No Color
+	
+	
+		
+No Color
+	
+Bold
+	
+Italic
+	
+Underline
+	 	
+Subscript
+	
+Superscript
+	
+Strikethrough
+	 	
+Justify Left
+	
+Justify Center
+	
+Justify Right
+	
+Justify Full
+	 	
+Bulleted List
+	
+Numbered List
+	 	
+Outdent
+	
+Indent
+	 	
+Add Link
+	
+Remove Link
+Precision
+	
+Use Currency member precision setting	
+	Minimum	Maximum
+Currency values	
+	
+	
+	
+Non-currency values	
+	
+	
+	
+Percentage values	
+	
+	
+	
+Context Menus
+	
+Available Menus
+
+    Add_new_employee_Row
+    Calculate Revenue
+    Calculate using @PRIOR
+    Clear_All_New_Employees_R
+    Copy FY26 Actual Catering
+    Enter/Modify Opening Balances For Current year December
+    Menu
+    New Menu
+    TestMenu
+    Visit Google
+
+	
+	
+Selected Menus
+
+	
+	
+Dynamic User Variables
+	
+Enable dynamic user variables	
+	
+Available User Variables
+
+	
+	
+Selected User Variables
+
+Properties
+Layout
+Other Options
+Business Rules
+Smart Push
+ 
+ 
+Cube	
+ 
+ 
+Business Rules
+FinPlan - Rule - FinPlan_01_Aggregation
+FinPlan - Rule - Aggeregate_Income_Expense
+FinPlan - Rule - Aggregate_Income_Bhargav
+FinPlan - Rule - Full_Aggeregate_Account
+FinPlan - Rule - Partial_Aggeregate_Income
+FinPlan - Rule - Partial_Aggeregate_Expense
+FinPlan - Rule - Clear_FY26_Actual_P&L
+FinPlan - Rule - ClearData
+FinPlan - Rule - Task3_Rule_Rudra
+FinPlan - Rule - Aggregate_Full_Account_Bhargav
+FinPlan - Rule - Clear_FY26_Actual_P&L_Bhargav
+FinPlan - Rule - Partial_Aggeregate_Expense_Bhargav
+FinPlan - Rule - Partial_Aggeregate_Income_Bhargav
+FinPlan - Rule - Partial_Aggeregate_Dep_Full_PlnEle_on_Expense_Bhargav
+FinPlan - Rule - FY26_Actual_Revenue_Cleanup_bhargav
+FinPlan - Rule - FY26_Actual_expense_Cleanup_bhargav
+FinPlan - Rule - FY26_Actual_expense_Partial_Dep_Agg_bhargav
+FinPlan - Rule - FY26_Actual_Revenue_Partial_Dep_Agg_bhargav
+FinPlan - Rule - FY26_Actual_expense_FullAgg_PlnEle_bhargav
+FinPlan - Rule - Clear_Dept
+FinPlan - Rule - Task3_Rudra
+FinPlan - Rule - Task3_PA_Dept_Rudra
+FinPlan - Rule - Catering Revenue calculation
+FinPlan - Rule - FY26_Actual_Account_Cleanup_By_PlanElement_bhargav
+FinPlan - Rule - FY26_Actual_P&L_Dept_PlanEle_Full_Agg_bhargav
+ 
+Add
+Add
+Add All
+Add All
+Remove
+Remove
+Remove All
+Remove All
+ 
+Selected Business Rules
+<Calculate Currencies>
+<Calculate Form>
+Move Up
+Move Down
+	
+Business Rules Properties
+							
+	
+Business Rule
+	
+	
+Description
+	
+	
+Run Before Load
+	
+	
+Run After Load
+	
+	
+Run Before Save
+	
+	
+Run After Save
+	
+	
+Use Members on Form
+	
+	
+Hide Prompt
+<Calculate Currencies>	 						
+<Calculate Form>
+ 
+ 
+ 
+ 
+ 
+	Data Entry Form For FY 25,26,27-1
+	
+	Save	Save As...	Previous	Next	Preview
+Properties
+Layout
+Other Options
+Business Rules
+Smart Push
+ 
+ 
+		Run Smart Push In Background				Use Database Suppression
+ 
+	Action	
+	
+	View	
+	
+Add Smart Push
+	
+Detach
+					
+Data Map
+	
+Dimension
+	
+Use Form Context
+	
+Overwrite Selection
+	
+Run After Save
+	
+Delete
+No data to display.
+	
+		
+					
+Grid Properties
+	 
+	
+Rows
+	
+Suppress missing blocks	
+Suppress missing data - Rows	
+Suppress invalid data - Rows	
+Use Database Suppression	
+Default row height	
+	
+	
+Columns
+	
+Suppress missing data - Columns	
+Suppress invalid data - Columns	
+Default column width	
+	
+	
+Other
+	
+Suppress invalid Scenario/Time Periods	
+Global Assumptions Form	
+Enable Autosave	
+Suppress Missing also Suppresses Zero	
+Remove Form Suppressions in Ad Hoc	
+Enable Calc On the Fly	
+Pivot Rows and Columns after load	
+Disable formatting	
+Dimension Properties
+	 
+	
+Department
+	
+Apply to all page dimensions	
+Member name	
+Alias	
+Member Formula	
+Member Formula Description	
+Hide dimension	
+Show consolidation operators
+
+	
+Dimension Properties
+	 
+	
+Version
+	
+Apply to all POV dimensions	
+Member name	
+Alias	
+Member Formula	
+Member Formula Description	
+Hide dimension	
+Show consolidation operators
+
+	
+Dimension Properties
+	 
+	
+Account
+	
+Apply to all row dimensions	
+Member name	
+Alias	
+Member Formula	
+Member Formula Description	
+Hide dimension	
+Show consolidation operators	
+Start expanded	
+Drill on shared members	
+Row Width
+
+	
+Dimension Properties
+	 
+	
+Period
+	
+Apply to all column dimensions	
+Member name	
+Alias	
+Member Formula	
+Member Formula Description	
+Hide dimension	
+Show consolidation operators	
+Start expanded	
+Drill on shared members
+
+	
+Segment Properties
+	 
+	
+Column B
+	
+Apply to all columns	
+Hide	
+Read-only	
+Show separator	
+Suppress hierarchy	
+Suppress missing data	
+Suppress invalid Scenario/Time Periods	
+Column width
+
+Display Properties
+	 
+Make form read-only	
+Hide Form	
+Display missing values as blank	
+Enable Mass Allocate	
+Enable Grid Spread	
+Enable cell-level document	
+Message for forms with no data	
+Hide Save Confirmation Message	
+Display grid lines for empty cells
+
+
+Smart View Options
+	 
+Disable spreading	
+Repeat member labels	
+Disable sheet protection	
+Enable flex form for rows	
+Enable flex form for columns	
+Show invalid members for flex form
+
+
+	
+Prediction Options
+	 
+Include Events	
+	
+Select Calendar	
+Prediction for Dynamic Calc
+
+
+	
+Printing Options
+	 
+Include Supporting Detail	
+	
+Show Comments	
+Format Data	
+Show attribute members	
+Apply Precision	
+Show Currency Codes
+
+
+Format/Validation Rules
+	 
+Rules for location	
+	
+Format/Validation Rules
+No data to display.
+	
+Move to Top
+Move Up
+Move Down
+Move to Bottom
+Add Validation Rule
+Edit Validation Rule
+Delete Selected Validation Rule(s)
+Validate only for users with access to this form	
+Validate only for pages with existing blocks
+
+
+ 
+Oracle Hyperion Planning. Press tab to enter Planning Main Content Area
+ 
+Format/Validation Rule Properties
+	
+Add Rule		Delete		Duplicate		
+View Rule	
+	
+Location	
+Name	
+Description	
+Enable format/validation rule	
+Format Only	
+	
+Custom grouping	
+ 
+	View	
+	
+Add Condition Block		Delete Condition Block				Cut Conditions		Copy Conditions		Paste Conditions				Group Conditions		Un-Group Conditions
+	
+Detach
+								
+	
+Condition
+	
+Source Type
+	
+Source Value
+	
+Operator
+	
+Target Type
+	
+Target Value
+	
+Process
+	
+Actions
+			 					
+Add Condition		Delete Condition
+			
+	Help		Validate		OK		Cancel

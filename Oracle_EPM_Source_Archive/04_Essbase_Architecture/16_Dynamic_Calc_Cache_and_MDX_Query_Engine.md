@@ -1,0 +1,173 @@
+# ⚡ Essbase Kernel — Dynamic Calc Cache & MDX Query Engine Internals
+
+> **Purpose**: This technical manual details the internal C++ kernel architecture of the Essbase Dynamic Calculator, Dynamic Calculation Cache memory structures, MDX query evaluation mechanics, and query optimization pipelines.
+
+---
+
+## 1. Dynamic Calc Architecture: On-the-Fly Memory Evaluation
+
+Members tagged as `Dynamic Calc` or `Dynamic Calc and Store` consume **0 bytes on disk** within `.PAG` data files. When a user requests a dynamic cell (via Web Form, Smart View, or MDX), the Essbase Kernel (`ESSSVR`) constructs the value in volatile RAM at query time:
+
+```
+[Incoming MDX / Grid Query for Dynamic Member]
+                       │
+                       ▼
+          [Dynamic Calc Cache Lookup]
+          ├── Hash key: (Sparse_Block_ID, Dense_Offset)
+          ├── Cache HIT ──► Return value from RAM (0.01ms)
+          └── Cache MISS ──► Execute Dynamic Calc Engine
+                       │
+                       ▼
+          [1. Retrieve Underlying Stored Blocks]
+          ├── Scan .IND B-Tree for required stored sparse tuples
+          └── Load blocks into Data Block Buffer Cache (.PAG -> RAM)
+                       │
+                       ▼
+          [2. Parse Abstract Syntax Tree (AST)]
+          ├── Traverse formula dependency graph (Depth-First Search)
+          └── Compute intermediate stored/dynamic results
+                       │
+                       ▼
+          [3. Populate Dynamic Calc Cache Buffer]
+          ├── Store computed value in temporary RAM hash table
+          └── Return 8-byte IEEE 754 float to user query buffer
+```
+
+---
+
+## 2. Dynamic Calc Cache Memory Architecture
+
+Essbase allocates a specialized in-memory cache exclusively for dynamic member calculations during query execution. This cache prevents the engine from redundantly re-calculating identical dynamic intersections during a single query or session.
+
+### Kernel Configuration Parameters (`essbase.cfg`)
+
+```ini
+# Maximum memory allocated to the dynamic calculation cache
+DYNCALCCACHEMAX 2048M
+
+# Default initial memory allocated per query thread
+DYNCALCCACHEDEFAULT 128M
+
+# Percentage of memory allocated for cache tracking overhead (hash tables)
+DYNCALCCACHEOVERHEADPERCENT 20
+```
+
+### Internal Data Structures
+
+The Dynamic Calc Cache is organized as a **Concurrent Hash Map with LRU (Least Recently Used) Eviction**:
+
+1. **Hash Table Array (`Bucket_Array`)**:
+   - Each bucket points to a linked list of `DynCalcEntry` structs.
+   - Key: 64-bit integer formed by hashing `Sparse_Slot_ID` + `Member_Index`.
+2. **`DynCalcEntry` Struct (32 Bytes in C++)**:
+   ```cpp
+   struct DynCalcEntry {
+       uint64_t coordinateHash;   // 8 bytes: Unique intersection coordinate hash
+       double   computedValue;    // 8 bytes: IEEE 754 double precision result
+       uint32_t lastAccessTick;   // 4 bytes: Timestamp for LRU eviction
+       uint16_t statusFlags;      // 2 bytes: Error status, division by zero flag
+       uint16_t solveOrder;       // 2 bytes: Evaluated solve order priority
+       DynCalcEntry* nextEntry;   // 8 bytes: Pointer to next collided hash node
+   };
+   ```
+
+When `DYNCALCCACHEMAX` is reached, the kernel triggers an **LRU Flush**: entries with the oldest `lastAccessTick` are deallocated from heap memory.
+
+---
+
+## 3. MDX Query Processing Pipeline vs. Calc Script Engine
+
+MDX queries (utilized by EPM Cloud web forms, Dashboards, and Smart View Ad Hoc) follow a fundamentally different execution engine than batch calculation scripts:
+
+```
+┌──────────────────────────────────────┬──────────────────────────────────────┐
+│        CALC SCRIPT ENGINE            │           MDX QUERY ENGINE           │
+├──────────────────────────────────────┼──────────────────────────────────────┤
+│ Iterates physical blocks on disk     │ Evaluates multi-dimensional tuples   │
+│ Modifies .PAG blocks permanently     │ Purely read-only; zero disk writes   │
+│ Executes procedural commands         │ Compiles declarative set algebra     │
+│ Block-driven (Outer sparse loops)    │ Axis-driven (Rows, Columns, Slices)  │
+│ Writes to Write-Ahead Log (WAL)      │ Ephemeral RAM results buffer         │
+└──────────────────────────────────────┴──────────────────────────────────────┘
+```
+
+### The 5 Phases of MDX Compilation
+
+```
+[MDX Query String]
+       │
+       ▼
+ [1. Lexer & Parser] ──► Generates Abstract Syntax Tree (AST)
+       │
+       ▼
+ [2. Semantic Analysis] ──► Validates member existence, types, & solve order
+       │
+       ▼
+ [3. Query Optimizer] ──► Non-Empty Set Pruning, Sub-Cube Slicing
+       │
+       ▼
+ [4. Storage Engine Fetch] ──► Probes .IND B-trees for Sparse blocks
+       │
+       ▼
+ [5. Crossjoin Cartesian Buffer] ──► Assembles result matrix in RAM
+```
+
+---
+
+## 4. `NON EMPTY` Pushdown: The Secret to High-Speed MDX
+
+Consider this standard MDX query generated by a financial report:
+
+```mdx
+SELECT
+  Crossjoin({[FY24]}, {[Jan], [Feb], [Mar]}) ON COLUMNS,
+  NON EMPTY Crossjoin({Descendants([Total_Entity], 10)}, {Descendants([Total_Account], 10)}) ON ROWS
+FROM [FinPlan].[FinPlan]
+WHERE ([Current], [Working], [USD])
+```
+
+If `Total_Entity` has 5,000 members and `Total_Account` has 2,000 members, the potential row Cartesian product is:
+
+$$5,000 \times 2,000 = 10,000,000 \text{ potential rows}$$
+
+### Without `NON EMPTY` Pushdown (Brute-Force Disaster):
+1. Engine loops through all 10,000,000 tuple combinations.
+2. For each tuple, queries the storage engine to check if data exists.
+3. Computes dynamic formulas for millions of empty intersections.
+4. Drops rows that evaluate to `#Missing`.
+- **Query Time**: 45 to 120 seconds.
+
+### With `NON EMPTY` Pushdown (Essbase Kernel Optimization):
+1. **Index Scan First**: The MDX engine inspects the `.IND` B-Tree for the sparse dimensions (`Entity`, `Scenario`, `Version`).
+2. **Block Filter**: It finds that out of 5,000 possible entities, only **140 entities** have physical data blocks stored in `.PAG` for `[Current], [Working]`.
+3. **Set Pruning**: The 4,860 empty entities are pruned **before** evaluating the Account dimension.
+4. **Calculated Crossjoin**: The engine now only evaluates $140 \times 2,000 = 280,000$ combinations (a 97.2% reduction in computation).
+- **Query Time**: **0.32 seconds**.
+
+---
+
+## 5. Dynamic Calc Dependency Trees & Infinite Recursion Protection
+
+When dynamic formulas reference other dynamic members (e.g., `Net Income` references `Operating Income`, which references `Gross Margin`, which references `Revenue`), the kernel constructs an **Evaluation Dependency Directed Acyclic Graph (DAG)**:
+
+```
+           [Net Income] (Solve Order 20)
+                │
+        ┌───────┴───────┐
+        ▼               ▼
+[Operating Income]   [Taxes]
+        │
+   ┌────┴────┐
+   ▼         ▼
+[Gross]    [OpEx]
+```
+
+### Depth-First Search (DFS) & Recursion Guards
+- The kernel uses Depth-First Search with post-order traversal to compute leaf dependencies before parent nodes.
+- **Recursion Guard**: The kernel maintains an in-flight stack bitmask:
+  ```cpp
+  if (visitedMemberStack.contains(memberId)) {
+      throw EssbaseKernelException("Circular reference detected in member formula: " + memberName);
+  }
+  ```
+- If Member A references Member B, and Member B references Member A, Essbase immediately halts execution with `Error 1200497: Circular reference detected`, returning `#Error` to the form cell rather than hanging the server process.

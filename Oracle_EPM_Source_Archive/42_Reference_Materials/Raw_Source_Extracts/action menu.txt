@@ -1,0 +1,633 @@
+ORACLE EPM CLOUD PLANNING — ACTION MENU ITEM CONFIGURATION
+COMPLETE SOURCE EXTRACTION FOR CLAUDE / AI KNOWLEDGE BASE
+
+Source file: new  2(2).txt
+Source type: HTML snapshot of Oracle EPM Planning UI
+Extraction approach: Visible labels, values, dropdown options, controls, and states are transcribed from the supplied HTML. No behavior is assumed unless the HTML itself proves it.
+
+============================================================
+1. IMPORTANT SOURCE LIMITATIONS
+============================================================
+
+This file is an HTML snapshot of the Action Menu Item detail area. It contains multiple repeated renderings of the common “Edit Menu Item : Menu Header” area, each followed by the property panel for a different menu-item type. Treat these as UI states/panels captured in one source file, not proof that one saved menu item simultaneously has all these types.
+
+The shared fields repeatedly show:
+- Menu Item: Menu Header
+- Label: Menu Header
+- Icon: Menu Header
+- Required Parameters: None
+- Members: blank
+
+The Type dropdown appears in separate UI states with each of these selected:
+- URL
+- Form
+- Business Rule
+- Manage Approvals
+- Dashboard
+- Change Status
+- Menu Header
+- Previous Form
+- Copy Version
+
+Therefore, do not interpret the repeated “Menu Header” name/label/icon as evidence that all nine item types are saved with that exact configuration. They may be repeated common fields in the UI snapshot while different type-specific property panels are represented.
+
+This file does NOT clearly show the full Action Menus list/grid, parent menu settings, the full application navigation, or a complete exported configuration. It also does not prove what is currently saved in the live application. It is not an Oracle product specification. Any explanation of runtime behavior must be verified against official Oracle documentation and identified as research rather than source extraction.
+
+============================================================
+2. COMMON MENU ITEM FIELDS
+============================================================
+
+Visible heading:
+- Edit Menu Item : Menu Header
+
+Fields:
+1. Menu Item
+   - Required field (asterisk shown).
+   - Text value in the snapshot: Menu Header.
+   - Maximum length shown in HTML: 80 characters.
+   - Access key: N (the label visually emphasizes the “n” in Menu).
+
+2. Label
+   - Required field (asterisk shown).
+   - Text value: Menu Header.
+
+3. Icon
+   - Optional field.
+   - Text value: Menu Header.
+
+4. Type
+   - Dropdown with nine choices (full list in Section 3).
+
+5. Required Parameters
+   - Dropdown with 23 choices (full list in Section 4).
+   - “None” is selected in the represented states.
+
+6. Members
+   - Text input, blank in the snapshot.
+   - A member-selector icon/link is present.
+   - The Members row is marked as hidden in the supplied HTML (style display:none), so its visible runtime availability depends on UI state.
+
+============================================================
+3. MENU ITEM TYPE DROPDOWN
+============================================================
+
+The Type dropdown contains these nine values:
+1. URL
+2. Form
+3. Business Rule
+4. Manage Approvals
+5. Dashboard
+6. Change Status
+7. Menu Header
+8. Previous Form
+9. Copy Version
+
+The HTML represents each type as selected in a separate occurrence/state. The type-specific panels are extracted below.
+
+============================================================
+4. REQUIRED PARAMETERS DROPDOWN
+============================================================
+
+All 23 visible options, in source order:
+1. None (selected in the represented states)
+2. Account
+3. AssetClass
+4. AssetDetail
+5. Currency
+6. Custom1
+7. Department
+8. Employee
+9. Entity
+10. Future
+11. Grade
+12. HSP_View
+13. Period
+14. PlanElement
+15. Scenario
+16. Version
+17. Years
+18. Point of View
+19. Page
+20. Row
+21. Column
+22. Members only
+23. Cell Only
+
+The source establishes that these labels are present in the dropdown. It does not explain their runtime semantics or when each option should be selected.
+
+============================================================
+5. TYPE-SPECIFIC PANEL: URL
+============================================================
+
+Panel heading: URL
+
+Fields:
+- URL
+  - Required (asterisk shown).
+  - Text field is blank in the snapshot.
+- Use Form Context
+  - Checkbox is present.
+  - The HTML input does not contain a checked attribute in this occurrence; treat it as unchecked in the captured markup, not as a claim about a live saved configuration.
+
+Do not infer supported URL formats, context token syntax, external URL behavior, or security rules from this HTML alone. Research these from Oracle documentation.
+
+============================================================
+6. TYPE-SPECIFIC PANEL: FORM
+============================================================
+
+Panel heading: Form
+
+Field:
+- Form
+  - Required (asterisk shown).
+  - Text field is blank in the snapshot.
+  - An adjacent picker/add control is present, with title “Add Form”.
+  - Access key shown on the link: S.
+
+The file does not specify a selected form or prove what forms are available in the application.
+
+============================================================
+7. TYPE-SPECIFIC PANEL: BUSINESS RULE
+============================================================
+
+Panel heading: Business Rule
+
+Fields and options:
+
+A. Cube
+- Dropdown options:
+  - blank option
+  - FinPlan
+  - EPBCS
+  - Manpower
+  - Capital
+- No nonblank selected value is established by the HTML snapshot.
+
+B. Business Rules
+- Required field (asterisk shown).
+- A blank option appears before the named rules.
+- The 52 named options are listed below in the exact source order:
+  1. Aggeregate_Income_Expense
+  2. Aggregate_Full_Account_Bhargav
+  3. Aggregate_Income_Bhargav
+  4. BR_Task_10_TrendBased_Planning_with_Smart_Sheet
+  5. BR_Task_9_Data_Copy_With_SmartList_Selection_Bhargav
+  6. BR_Task_Data_Allocation_NoDept_To_TotalDept_Members
+  7. CalculateAggeregateCatering_Rudra
+  8. Catering Revenue calculation
+  9. Catering_Revenue_Rudra
+  10. Clear_Dept
+  11. Clear_FY26_Actual_P&L
+  12. Clear_FY26_Actual_P&L_Bhargav
+  13. ClearData
+  14. CYA_NYB_Rudra
+  15. FinPlan_01_Aggregation
+  16. Full_Aggeregate_Account
+  17. FY26_Actual_Account_Cleanup_By_PlanElement_bhargav
+  18. FY26_Actual_Clear&Copy_data_on_E10002
+  19. FY26_Actual_Copy_data_to_Budget_on_E10002
+  20. FY26_Actual_expense_Cleanup_bhargav
+  21. FY26_Actual_expense_FullAgg_PlnEle_bhargav
+  22. FY26_Actual_expense_Partial_Dep_Agg_bhargav
+  23. FY26_Actual_P&L_Dept_PlanEle_Full_Agg_bhargav
+  24. FY26_Actual_P&L_Dept_PlanEle_partial_Agg_bhargav
+  25. FY26_Actual_Revenue_Cleanup_bhargav
+  26. FY26_Actual_Revenue_Partial_Dep_Agg_bhargav
+  27. Partial_Aggeregate_Dep_Full_PlnEle_on_Expense_Bhargav
+  28. Partial_Aggeregate_Expense
+  29. Partial_Aggeregate_Expense_Bhargav
+  30. Partial_Aggeregate_Income
+  31. Partial_Aggeregate_Income_Bhargav
+  32. Remove_some_child_in_Aggregation_of_Dept
+  33. Task 5 Catering Revenue calculation and aggregation
+  34. Task3_FA_PE_DEP
+  35. Task3_FA_PlanElement
+  36. Task3_PA_Dept_Rudra
+  37. Task3_PA_PE_DEP
+  38. Task3_Rudra
+  39. Task3_Rule_Rudra
+  40. Task7
+  41. Task8_Rudra
+  42. Task9_Allocate_Rudra
+  43. Task9_Rudra
+  44. Task_10_Rudra
+  45. Task_6_Account_Balance_Calc
+  46. Task_6_Rudra
+  47. Task_7_FR_2_Product_Quantity_Balance
+  48. Task_7_Product_Quantity_Balance
+  49. Task_8_FR_1_Plan_Expense_&_Revenue_Uplift-1
+  50. Test_Rudra
+  51. Try RTP
+  52. Try_Prior_Rudra
+
+C. View Type
+- Options:
+  - Classic View (selected in the HTML state)
+  - Streamline View
+
+D. Window Title
+- Text field; blank in snapshot.
+- Maximum length shown: 255 characters.
+
+E. OK Button Label
+- Text field; blank in snapshot.
+- Maximum length shown: 80 characters.
+
+F. Cancel Button Label
+- Text field; blank in snapshot.
+- Maximum length shown: 80 characters.
+
+G. Launch Confirmation Message
+- Text field; blank in snapshot.
+- Maximum length shown: 255 characters.
+
+H. Launch in a separate window
+- Checkbox present.
+- No checked attribute shown in this occurrence; appears unchecked in captured markup.
+
+I. Hide Prompt
+- Checkbox present.
+- No checked attribute shown in this occurrence; appears unchecked in captured markup.
+
+Important: The file lists the available business rules but does not include the source code of those rules, their RTP definitions, their security, or proof that any one rule is selected for the menu item.
+
+============================================================
+8. TYPE-SPECIFIC PANEL: MANAGE APPROVALS / WORKFLOW
+============================================================
+
+The Type dropdown is represented with “Manage Approvals” selected in this state. The following panel is titled “Workflow”.
+
+Fields:
+- Scenario (required; asterisk shown)
+- Version (required; asterisk shown)
+
+Scenario dropdown options, in source order:
+1. blank option
+2. Act vs Bud
+3. Actual
+4. Budget
+5. Budget vs Actual
+6. Current
+7. CY_vs_NY
+8. CYActual vs NYActual
+9. Forecast
+10. No Scenerio
+11. Plan
+12. PY_vs_CY
+13. PYActual vs CYActual
+14. Variance
+15. Variance Comments
+
+Version dropdown options, in source order:
+1. blank option
+2. BU Version_1
+3. Final
+4. Sandboxes
+5. What if
+6. Working
+
+No nonblank Scenario or Version choice is selected in the snapshot. The HTML alone does not explain the approval workflow or what each Scenario/Version selection does when launching the menu item.
+
+============================================================
+9. TYPE-SPECIFIC PANEL: DASHBOARD
+============================================================
+
+Panel heading: Dashboard
+
+Field:
+- Dashboard
+  - Required (asterisk shown).
+  - Text field is blank.
+  - Adjacent picker/add control is present.
+  - The control’s HTML title/alt text says “Add Form”, even though the panel field is Dashboard. Preserve this as a UI/HTML detail; do not silently reinterpret it as a Dashboard-specific label.
+
+No dashboard name is selected in the snapshot.
+
+============================================================
+10. TYPE-SPECIFIC PANEL: CHANGE STATUS
+============================================================
+
+Panel heading: Change Status
+
+Fields:
+A. Filter Actions by Template
+- Dropdown options:
+  - All (selected)
+  - Bottom Up
+  - Distribute
+  - Free Form
+
+B. Action
+- Dropdown options:
+  1. Start
+  2. Exclude
+  3. Promote (selected in this HTML occurrence)
+  4. Sign Off
+  5. Reject
+  6. Approve
+  7. Delegate
+  8. Take Ownership
+  9. Originate
+  10. Freeze
+  11. Unfreeze
+  12. Distribute
+  13. Distribute Children
+  14. Distribute Owner
+  15. Need Assistance
+  16. Return
+  17. Submit
+  18. Submit to Top
+  19. Reopen
+  20. Pass
+
+C. Approval Status
+- Checkbox is present and checked in the supplied HTML.
+
+D. Hide Prompt
+- Checkbox is present and not checked in the supplied HTML.
+
+E. Show Annotation History
+- Checkbox is present and checked in the supplied HTML.
+
+These are captured control states, not proof of the currently saved live application settings. The HTML does not define which actions are valid for which approval unit states, templates, roles, or security permissions.
+
+============================================================
+11. TYPE-SPECIFIC PANEL: MENU HEADER
+============================================================
+
+Panel heading: Descriptive
+
+Visible message:
+- “There are no properties for this type of menu item.”
+
+This message is shown in the Descriptive panel state. The common fields (Menu Item, Label, Icon, Type, Required Parameters, Members) still appear in the shared area above it.
+
+============================================================
+12. TYPE-SPECIFIC PANEL: PREVIOUS FORM
+============================================================
+
+Panel heading: Previous Form
+
+Visible message:
+- “There are no properties for this type of menu item.”
+
+No additional type-specific fields are shown for this item type in the supplied HTML.
+
+============================================================
+13. TYPE-SPECIFIC PANEL: COPY VERSION
+============================================================
+
+Panel heading: Copy Version
+
+Fields:
+A. Scenario (required; asterisk shown)
+- Options:
+  1. blank option
+  2. Act vs Bud
+  3. Actual
+  4. Budget
+  5. Budget vs Actual
+  6. Current
+  7. CY_vs_NY
+  8. CYActual vs NYActual
+  9. Forecast
+  10. No Scenerio
+  11. Plan
+  12. PY_vs_CY
+  13. PYActual vs CYActual
+  14. Variance
+  15. Variance Comments
+
+B. Copy From (required; asterisk shown)
+- Options:
+  1. blank option
+  2. Base
+  3. BU Version_1
+  4. Direct Input
+  5. Final
+  6. Sandboxes
+  7. What if
+  8. Working
+
+C. Copy To (required; asterisk shown)
+- Options:
+  1. blank option
+  2. Base
+  3. BU Version_1
+  4. Direct Input
+  5. Final
+  6. Sandboxes
+  7. What if
+  8. Working
+
+No nonblank selections are established in the HTML. The source does not specify whether the copy is scoped by POV, which data is copied, overwrite behavior, or any validation rules.
+
+============================================================
+14. SHARED FIELDS / REPEATED HTML DETAILS
+============================================================
+
+In each repeated shared form, the following labels are present:
+- Menu Item
+- Label
+- Icon
+- Type
+- Required Parameters
+- Members
+
+The repeated input values are:
+- Menu Item = Menu Header
+- Label = Menu Header
+- Icon = Menu Header
+- Members = blank
+- Required Parameters = None
+
+The type dropdown is represented in different states for the nine item types. This is a multi-state/duplicated HTML capture and should not be flattened into one impossible configuration.
+
+Required markers (asterisks) are explicitly shown for:
+- Menu Item
+- Label
+- URL field in URL panel
+- Form field in Form panel
+- Business Rules field in Business Rule panel
+- Scenario and Version in Workflow panel
+- Dashboard field in Dashboard panel
+- Scenario, Copy From, and Copy To in Copy Version panel
+
+============================================================
+15. EXACTLY WHAT THIS FILE SUPPORTS — AND DOES NOT SUPPORT
+============================================================
+
+Supported by the file:
+- Names of common fields and type-specific panels.
+- Dropdown options listed in this document.
+- The visible selected values and checkbox states noted above.
+- The 52 named business rules available in the dropdown.
+- Presence of add/picker controls for Form and Dashboard fields.
+- The two View Type options for Business Rule launch configuration.
+- Visible “no properties” messages for Menu Header and Previous Form.
+
+Not supported by this file alone:
+- A full explanation of what each property means.
+- Official Oracle product behavior or supported combinations.
+- How Action Menus are assigned to forms, dashboards, users, or roles.
+- How menu-item visibility and security are enforced.
+- The actual code of the listed business rules.
+- The RTP prompts or hidden prompts defined inside those business rules.
+- How URL context tokens work.
+- The exact behavior of “Use Form Context”.
+- The meaning of “Required Parameters” choices at runtime.
+- Which approval actions are allowed for each approval status/template.
+- What data is copied by Copy Version and how conflicts are resolved.
+- Whether the UI state is saved or merely an editor state.
+- Any fields, options, or behavior absent from this HTML snapshot.
+
+============================================================
+16. INSTRUCTIONS FOR CLAUDE: RESEARCH AND BUILD CONSULTANT-LEVEL KNOWLEDGE
+============================================================
+
+Use this file as the source inventory for an Oracle EPM Cloud Planning Action Menu Item lesson. Do not replace source labels with guessed labels. Do not claim that an option behaves in a particular way unless verified.
+
+Research rules:
+1. Begin with official Oracle documentation for the relevant Oracle EPM Cloud Planning release.
+2. Cite the Oracle documentation page/title and URL for each material behavior claim.
+3. Separate every answer into:
+   A. Directly visible in supplied HTML
+   B. Verified in Oracle documentation
+   C. Inference / practical recommendation
+   D. Not confirmed
+4. If official documentation does not explain a behavior, say so explicitly.
+5. Do not invent UI fields, option names, navigation paths, restrictions, or runtime behavior.
+6. Preserve exact names such as “No Scenerio”, “Aggeregate_Income_Expense”, and all business rule names as source strings. Do not silently correct spelling.
+7. Explain features in simple English first, then technical detail, examples, limitations, security implications, troubleshooting, and consultant use cases.
+8. Do not assume a business rule is selected merely because it appears in the list.
+9. Do not assume checkbox states in this HTML prove saved live configuration.
+
+For EACH menu item type, research and explain:
+- Purpose and when to use it.
+- What the end user sees and what happens after clicking.
+- Every field in the shared and type-specific panels.
+- Required versus optional fields.
+- How to configure it in the UI, step by step.
+- A realistic EPBCS/Planning business scenario.
+- How it interacts with the current form/POV/context.
+- Security and permissions.
+- Dependencies and restrictions.
+- Common configuration errors and troubleshooting.
+- Testing steps and expected outcomes.
+- Any differences between supported UI variants/releases, only if Oracle docs confirm them.
+
+Cover the nine types:
+- URL
+- Form
+- Business Rule
+- Manage Approvals
+- Dashboard
+- Change Status
+- Menu Header
+- Previous Form
+- Copy Version
+
+For “Required Parameters”, explain each option only after checking Oracle documentation:
+None, Account, AssetClass, AssetDetail, Currency, Custom1, Department, Employee, Entity, Future, Grade, HSP_View, Period, PlanElement, Scenario, Version, Years, Point of View, Page, Row, Column, Members only, Cell Only.
+Clarify whether the option names are dimension names, POV/context selections, or action-specific parameters according to the documentation; do not guess.
+
+For Business Rule configuration, cover:
+- Cube selection (FinPlan, EPBCS, Manpower, Capital in this source).
+- Rule selection and how available rules depend on application/cube/security.
+- Classic View versus Streamline View.
+- Window Title, OK Button Label, Cancel Button Label, Launch Confirmation Message.
+- Launch in a separate window.
+- Hide Prompt.
+- Relationship between menu item configuration, rule RTPs, form context, and launch behavior.
+- What this HTML does and does not reveal about the actual rule code.
+
+For URL configuration, cover:
+- URL field.
+- Use Form Context.
+- Supported URL types and safe configuration practices.
+- Context transfer and security limitations, if documented.
+
+For Form and Dashboard, cover:
+- How to pick an object, object availability, launch context, and access/security checks.
+- Treat the dashboard picker’s “Add Form” title as a source UI detail that needs validation, not proof that a form is selected.
+
+For Manage Approvals / Workflow and Change Status, cover:
+- Scenario and Version fields.
+- Filter Actions by Template options: All, Bottom Up, Distribute, Free Form.
+- All Action choices: Start, Exclude, Promote, Sign Off, Reject, Approve, Delegate, Take Ownership, Originate, Freeze, Unfreeze, Distribute, Distribute Children, Distribute Owner, Need Assistance, Return, Submit, Submit to Top, Reopen, Pass.
+- Approval Status checkbox.
+- Hide Prompt checkbox.
+- Show Annotation History checkbox.
+- Explain approval unit states, template differences, role/security dependencies, and validation only where Oracle sources support the claims.
+
+For Copy Version, cover:
+- Scenario, Copy From, Copy To.
+- Source options: Base, BU Version_1, Direct Input, Final, Sandboxes, What if, Working.
+- Whether source/target version combinations are restricted.
+- Data scope, POV, overwrite/clear behavior, sandbox behavior, and validation, based on documentation.
+- A practical test plan that avoids overwriting production data.
+
+Deliverables:
+1. A full field-by-field reference table.
+2. A step-by-step configuration guide for each item type.
+3. At least one practical Planning/EPBCS scenario for each type.
+4. A troubleshooting matrix: symptom, likely cause, verification, fix.
+5. A security and deployment checklist.
+6. A test plan with safe test cases.
+7. A glossary for beginner learners.
+8. Interview questions and answers.
+9. An “unknowns to verify in the live application” list.
+10. A bibliography of official Oracle sources with URLs and access/release context.
+
+Do not claim to have inspected the live application. This work is based on the supplied HTML plus explicitly cited research.
+
+============================================================
+17. SHORT INVENTORY
+============================================================
+
+- Shared fields: Menu Item, Label, Icon, Type, Required Parameters, Members.
+- Type options: 9.
+- Required Parameters options: 23.
+- Type-specific panels represented: URL, Form, Business Rule, Workflow/Manage Approvals, Dashboard, Change Status, Descriptive/Menu Header, Previous Form, Copy Version.
+- Business Rule cube options: blank, FinPlan, EPBCS, Manpower, Capital.
+- Business Rule names listed: 52.
+- Business Rule View Type: Classic View, Streamline View.
+- Workflow Scenario options: blank + 14 named values.
+- Workflow Version options: blank + 5 named values.
+- Change Status filter options: All, Bottom Up, Distribute, Free Form.
+- Change Status action options: 20.
+- Copy Version Copy From/Copy To options: blank + Base, BU Version_1, Direct Input, Final, Sandboxes, What if, Working.
+- Menu Header and Previous Form panels state: “There are no properties for this type of menu item.”
+
+<div><div id="zhr16000:1:ph7" class="x6v"><div class="xyx"><table class="af_panelHeader_title-table2" cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td class="x213"></td><td id="zhr16000:1:ph7::_afrTtxt"><div title="Edit Menu Item : Menu Header" class="xxd" style="width: 170px; max-width: 170px;"><h2 style="" class="xz9 ">Edit Menu Item : Menu Header</h2></div></td><td id="zhr16000:1:ph7::_afrStr" class="x103" style="width: 100%"></td></tr></tbody></table></div><div class="xzp"><div><div id="zhr16000:1:menuItemPfl" class="x19"><table cellpadding="0" cellspacing="0" border="0" summary="" role="presentation" style="width: 100%"><tbody><tr><td class="x4w" colspan="1"><table cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td style="width: 15.0%"></td><td style="width: 85.0%"></td></tr><tr class="x1u" id="zhr16000:1:nameText"><td class="xu x4z"><span title="Required" class="xf">*</span><label class="af_inputText_label-text" for="zhr16000:1:nameText::content" accesskey="N">Me<span class="xgb">n</span>u Item</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:nameText::content" name="zhr16000:1:nameText" class="x25" size="0" autocomplete="off" maxlength="80" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1u" id="zhr16000:1:labelText"><td class="xu x4z"><span title="Required" class="xf">*</span><label class="af_inputText_label-text" for="zhr16000:1:labelText::content">Label</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:labelText::content" name="zhr16000:1:labelText" class="x25" size="0" autocomplete="off" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1u" id="zhr16000:1:iconText"><td class="xu x4z"><label class="af_inputText_label-text" for="zhr16000:1:iconText::content">Icon</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:iconText::content" name="zhr16000:1:iconText" class="x25" size="0" autocomplete="off" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1z" id="zhr16000:1:menuItemTypeSelect"><td class="x12 x4z"><label class="af_selectOneChoice_label-text" for="zhr16000:1:menuItemTypeSelect::content">Type</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:menuItemTypeSelect::content" name="zhr16000:1:menuItemTypeSelect" style="width: 178px" class="x2h" title="URL" _afov="0"><option value="0" selected="" title="URL">URL</option><option value="1" title="Form">Form</option><option value="2" title="Business Rule">Business Rule</option><option value="3" title="Manage Approvals">Manage Approvals</option><option value="4" title="Dashboard">Dashboard</option><option value="5" title="Change Status">Change Status</option><option value="6" title="Menu Header">Menu Header</option><option value="7" title="Previous Form">Previous Form</option><option value="8" title="Copy Version">Copy Version</option></select></td></tr><tr class="x1z" id="zhr16000:1:dimNameSelect"><td class="x12 x4z"><label class="af_selectOneChoice_label-text" for="zhr16000:1:dimNameSelect::content">Required Parameters</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:dimNameSelect::content" name="zhr16000:1:dimNameSelect" style="width: 178px" class="x2h" title="None" _afov="0"><option value="0" selected="" title="None">None</option><option value="1" title="Account">Account</option><option value="2" title="AssetClass">AssetClass</option><option value="3" title="AssetDetail">AssetDetail</option><option value="4" title="Currency">Currency</option><option value="5" title="Custom1">Custom1</option><option value="6" title="Department">Department</option><option value="7" title="Employee">Employee</option><option value="8" title="Entity">Entity</option><option value="9" title="Future">Future</option><option value="10" title="Grade">Grade</option><option value="11" title="HSP_View">HSP_View</option><option value="12" title="Period">Period</option><option value="13" title="PlanElement">PlanElement</option><option value="14" title="Scenario">Scenario</option><option value="15" title="Version">Version</option><option value="16" title="Years">Years</option><option value="17" title="Point of View">Point of View</option><option value="18" title="Page">Page</option><option value="19" title="Row">Row</option><option value="20" title="Column">Column</option><option value="21" title="Members only">Members only</option><option value="22" title="Cell Only">Cell Only</option></select></td></tr><tr class="xsb" style="display:none" id="zhr16000:1:plam1"><td class="x15 x4z"><label class="af_panelLabelAndMessage_label-text" for="zhr16000:1:memText::content">Members</label></td><td valign="top" class="xuq xsk"><span id="zhr16000:1:memText" class="x1u"><input id="zhr16000:1:memText::content" name="zhr16000:1:memText" class="x25" autocomplete="off" type="text" value="" aria-live="off"></span><img id="zhr16000:1:s1mt" src="/HyperionPlanning/adf/images/t.gif" alt="" width="5" height="10" style="vertical-align:middle;"><a id="zhr16000:1:cil1" class="xfi p_AFIconOnly" onclick="this.focus();return false;" href="#"><img id="zhr16000:1:cil1::icon" src="/HyperionPlanning/Images/member_selector.gif" class="x16v"></a></td></tr></tbody></table></td></tr></tbody></table></div></div></div></div></div><div><div id="zhr16000:1:ph2" class="x6v"><div class="xyx"><table class="af_panelHeader_title-table2" cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td class="x213"></td><td id="zhr16000:1:ph2::_afrTtxt"><div title="URL" class="xxd" style="width: 23px; max-width: 23px;"><h2 style="" class="xz9 ">URL</h2></div></td><td id="zhr16000:1:ph2::_afrStr" class="x103" style="width: 100%"></td></tr></tbody></table></div><div class="xzp"><div><div id="zhr16000:1:pfl3" class="x19"><table cellpadding="0" cellspacing="0" border="0" summary="" role="presentation" style="width: 100%"><tbody><tr><td class="x4w" colspan="1"><table cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td style="width: 15.0%"></td><td style="width: 85.0%"></td></tr><tr class="x1u" id="zhr16000:1:urlText"><td class="xu x4z"><span title="Required" class="xf">*</span><label class="af_inputText_label-text" for="zhr16000:1:urlText::content">URL</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:urlText::content" name="zhr16000:1:urlText" class="x25" size="0" autocomplete="off" type="text" aria-live="off"></td></tr><tr><td></td><td class="x51"><img id="zhr16000:1:s2" src="/HyperionPlanning/adf/images/t.gif" alt="" width="10" height="10" style="vertical-align:middle;"></td></tr><tr class="x1v" id="zhr16000:1:contextChk" _adftrc="zhr16000:1:contextChk::icon-style"><td class="xv x4z"><label class="af_selectBooleanCheckbox_label-text" for="zhr16000:1:contextChk::content" id="zhr16000:1:contextChk::Label0">Use Form Context</label></td><td valign="top" nowrap="" class="xuq"><span class="x2e"><span class="xis"><input id="zhr16000:1:contextChk::content" name="zhr16000:1:contextChk" class="xt4" type="checkbox" value="t" aria-labelledby="zhr16000:1:contextChk::Label0 zhr16000:1:contextChk::Label1"><label for="zhr16000:1:contextChk::content" class="xtd" id="zhr16000:1:contextChk::Label1"><span class="xt7"></span></label></span></span></td></tr></tbody></table></td></tr></tbody></table></div></div></div></div></div>
+
+
+
+<div id="zhr16000:1:mItemDtlPgl" class="x1a" style="position:absolute;width:auto;height:auto;top:0px;left:0px;bottom:0px;right:0px;overflow:auto;"><div><div id="zhr16000:1:ph7" class="x6v"><div class="xyx"><table class="af_panelHeader_title-table2" cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td class="x213"></td><td id="zhr16000:1:ph7::_afrTtxt"><div title="Edit Menu Item : Menu Header" class="xxd" style="width: 170px; max-width: 170px;"><h2 style="" class="xz9 ">Edit Menu Item : Menu Header</h2></div></td><td id="zhr16000:1:ph7::_afrStr" class="x103" style="width: 100%"></td></tr></tbody></table></div><div class="xzp"><div><div id="zhr16000:1:menuItemPfl" class="x19"><table cellpadding="0" cellspacing="0" border="0" summary="" role="presentation" style="width: 100%"><tbody><tr><td class="x4w" colspan="1"><table cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td style="width: 15.0%"></td><td style="width: 85.0%"></td></tr><tr class="x1u" id="zhr16000:1:nameText"><td class="xu x4z"><span title="Required" class="xf">*</span><label class="af_inputText_label-text" for="zhr16000:1:nameText::content" accesskey="N">Me<span class="xgb">n</span>u Item</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:nameText::content" name="zhr16000:1:nameText" class="x25" size="0" autocomplete="off" maxlength="80" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1u" id="zhr16000:1:labelText"><td class="xu x4z"><span title="Required" class="xf">*</span><label class="af_inputText_label-text" for="zhr16000:1:labelText::content">Label</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:labelText::content" name="zhr16000:1:labelText" class="x25" size="0" autocomplete="off" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1u" id="zhr16000:1:iconText"><td class="xu x4z"><label class="af_inputText_label-text" for="zhr16000:1:iconText::content">Icon</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:iconText::content" name="zhr16000:1:iconText" class="x25" size="0" autocomplete="off" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1z" id="zhr16000:1:menuItemTypeSelect"><td class="x12 x4z"><label class="af_selectOneChoice_label-text" for="zhr16000:1:menuItemTypeSelect::content">Type</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:menuItemTypeSelect::content" name="zhr16000:1:menuItemTypeSelect" style="width: 178px" class="x2h" title="Form" _afov="1"><option value="0" title="URL">URL</option><option value="1" selected="" title="Form">Form</option><option value="2" title="Business Rule">Business Rule</option><option value="3" title="Manage Approvals">Manage Approvals</option><option value="4" title="Dashboard">Dashboard</option><option value="5" title="Change Status">Change Status</option><option value="6" title="Menu Header">Menu Header</option><option value="7" title="Previous Form">Previous Form</option><option value="8" title="Copy Version">Copy Version</option></select></td></tr><tr class="x1z" id="zhr16000:1:dimNameSelect"><td class="x12 x4z"><label class="af_selectOneChoice_label-text" for="zhr16000:1:dimNameSelect::content">Required Parameters</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:dimNameSelect::content" name="zhr16000:1:dimNameSelect" style="width: 178px" class="x2h" title="None" _afov="0"><option value="0" selected="">None</option><option value="1">Account</option><option value="2">AssetClass</option><option value="3">AssetDetail</option><option value="4">Currency</option><option value="5">Custom1</option><option value="6">Department</option><option value="7">Employee</option><option value="8">Entity</option><option value="9">Future</option><option value="10">Grade</option><option value="11">HSP_View</option><option value="12">Period</option><option value="13">PlanElement</option><option value="14">Scenario</option><option value="15">Version</option><option value="16">Years</option><option value="17">Point of View</option><option value="18">Page</option><option value="19">Row</option><option value="20">Column</option><option value="21">Members only</option><option value="22">Cell Only</option></select></td></tr><tr class="xsb" style="display:none" id="zhr16000:1:plam1"><td class="x15 x4z"><label class="af_panelLabelAndMessage_label-text" for="zhr16000:1:memText::content">Members</label></td><td valign="top" class="xuq xsk"><span id="zhr16000:1:memText" class="x1u"><input id="zhr16000:1:memText::content" name="zhr16000:1:memText" class="x25" autocomplete="off" type="text" value="" aria-live="off"></span><img id="zhr16000:1:s1mt" src="/HyperionPlanning/adf/images/t.gif" alt="" width="5" height="10" style="vertical-align:middle;"><a id="zhr16000:1:cil1" class="xfi p_AFIconOnly" onclick="this.focus();return false;" href="#"><img id="zhr16000:1:cil1::icon" src="/HyperionPlanning/Images/member_selector.gif" class="x16v"></a></td></tr></tbody></table></td></tr></tbody></table></div></div></div></div></div><div><div id="zhr16000:1:ph1" class="x6v"><div class="xyx"><table class="af_panelHeader_title-table2" cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td class="x213"></td><td id="zhr16000:1:ph1::_afrTtxt"><div title="Form" class="xxd" style="width: 29px; max-width: 29px;"><h2 style="" class="xz9 ">Form</h2></div></td><td id="zhr16000:1:ph1::_afrStr" class="x103" style="width: 100%"></td></tr></tbody></table></div><div class="xzp"><div><div id="zhr16000:1:pfl2" class="x19"><table cellpadding="0" cellspacing="0" border="0" summary="" role="presentation" style="width: 100%"><tbody><tr><td class="x4w" colspan="1"><table cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td style="width: 15.0%"></td><td style="width: 85.0%"></td></tr><tr class="xsb" id="zhr16000:1:panelLabelAndMessage2"><td class="x15 x4z"><span title="Required" class="xf">*</span><label class="af_panelLabelAndMessage_label-text" for="zhr16000:1:formNameText::content">Form</label></td><td valign="top" class="xuq xsk"><span id="zhr16000:1:formNameText" class="x1u"><input id="zhr16000:1:formNameText::content" name="zhr16000:1:formNameText" style="background-color: White;width:200px;" class="x25" autocomplete="off" type="text" aria-live="off" aria-label="Form"></span><img id="zhr16000:1:ss2" src="/HyperionPlanning/adf/images/t.gif" alt="" width="5" height="10" style="vertical-align:middle;"><a accesskey="S" id="zhr16000:1:formSelectLink" title="Add Form" class="xfi p_AFIconOnly" onclick="this.focus();return false;" href="#"><img id="zhr16000:1:formSelectLink::icon" src="/HyperionPlanning/Images/add_ena.png" title="Add Form" alt="Add Form" class="x16v"></a></td></tr></tbody></table></td></tr></tbody></table></div></div></div></div></div></div>
+
+
+<div id="zhr16000:1:mItemDtlPgl" class="x1a" style="position:absolute;width:auto;height:auto;top:0px;left:0px;bottom:0px;right:0px;overflow:auto;"><div><div id="zhr16000:1:ph7" class="x6v"><div class="xyx"><table class="af_panelHeader_title-table2" cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td class="x213"></td><td id="zhr16000:1:ph7::_afrTtxt"><div title="Edit Menu Item : Menu Header" class="xxd" style="width: 170px; max-width: 170px;"><h2 style="" class="xz9 ">Edit Menu Item : Menu Header</h2></div></td><td id="zhr16000:1:ph7::_afrStr" class="x103" style="width: 100%"></td></tr></tbody></table></div><div class="xzp"><div><div id="zhr16000:1:menuItemPfl" class="x19"><table cellpadding="0" cellspacing="0" border="0" summary="" role="presentation" style="width: 100%"><tbody><tr><td class="x4w" colspan="1"><table cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td style="width: 15.0%"></td><td style="width: 85.0%"></td></tr><tr class="x1u" id="zhr16000:1:nameText"><td class="xu x4z"><span title="Required" class="xf">*</span><label class="af_inputText_label-text" for="zhr16000:1:nameText::content" accesskey="N">Me<span class="xgb">n</span>u Item</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:nameText::content" name="zhr16000:1:nameText" class="x25" size="0" autocomplete="off" maxlength="80" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1u" id="zhr16000:1:labelText"><td class="xu x4z"><span title="Required" class="xf">*</span><label class="af_inputText_label-text" for="zhr16000:1:labelText::content">Label</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:labelText::content" name="zhr16000:1:labelText" class="x25" size="0" autocomplete="off" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1u" id="zhr16000:1:iconText"><td class="xu x4z"><label class="af_inputText_label-text" for="zhr16000:1:iconText::content">Icon</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:iconText::content" name="zhr16000:1:iconText" class="x25" size="0" autocomplete="off" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1z" id="zhr16000:1:menuItemTypeSelect"><td class="x12 x4z"><label class="af_selectOneChoice_label-text" for="zhr16000:1:menuItemTypeSelect::content">Type</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:menuItemTypeSelect::content" name="zhr16000:1:menuItemTypeSelect" style="width: 178px" class="x2h" title="Business Rule" _afov="2"><option value="0" title="URL">URL</option><option value="1" title="Form">Form</option><option value="2" selected="" title="Business Rule">Business Rule</option><option value="3" title="Manage Approvals">Manage Approvals</option><option value="4" title="Dashboard">Dashboard</option><option value="5" title="Change Status">Change Status</option><option value="6" title="Menu Header">Menu Header</option><option value="7" title="Previous Form">Previous Form</option><option value="8" title="Copy Version">Copy Version</option></select></td></tr><tr class="x1z" id="zhr16000:1:dimNameSelect"><td class="x12 x4z"><label class="af_selectOneChoice_label-text" for="zhr16000:1:dimNameSelect::content">Required Parameters</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:dimNameSelect::content" name="zhr16000:1:dimNameSelect" style="width: 178px" class="x2h" title="None" _afov="0"><option value="0" selected="">None</option><option value="1">Account</option><option value="2">AssetClass</option><option value="3">AssetDetail</option><option value="4">Currency</option><option value="5">Custom1</option><option value="6">Department</option><option value="7">Employee</option><option value="8">Entity</option><option value="9">Future</option><option value="10">Grade</option><option value="11">HSP_View</option><option value="12">Period</option><option value="13">PlanElement</option><option value="14">Scenario</option><option value="15">Version</option><option value="16">Years</option><option value="17">Point of View</option><option value="18">Page</option><option value="19">Row</option><option value="20">Column</option><option value="21">Members only</option><option value="22">Cell Only</option></select></td></tr><tr class="xsb" style="display:none" id="zhr16000:1:plam1"><td class="x15 x4z"><label class="af_panelLabelAndMessage_label-text" for="zhr16000:1:memText::content">Members</label></td><td valign="top" class="xuq xsk"><span id="zhr16000:1:memText" class="x1u"><input id="zhr16000:1:memText::content" name="zhr16000:1:memText" class="x25" autocomplete="off" type="text" value="" aria-live="off"></span><img id="zhr16000:1:s1mt" src="/HyperionPlanning/adf/images/t.gif" alt="" width="5" height="10" style="vertical-align:middle;"><a id="zhr16000:1:cil1" class="xfi p_AFIconOnly" onclick="this.focus();return false;" href="#"><img id="zhr16000:1:cil1::icon" src="/HyperionPlanning/Images/member_selector.gif" class="x16v"></a></td></tr></tbody></table></td></tr></tbody></table></div></div></div></div></div><div><div id="zhr16000:1:ph3" class="x6v"><div class="xyx"><table class="af_panelHeader_title-table2" cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td class="x213"></td><td id="zhr16000:1:ph3::_afrTtxt"><div title="Business Rule" class="xxd" style="width: 77px; max-width: 77px;"><h2 style="" class="xz9 ">Business Rule</h2></div></td><td id="zhr16000:1:ph3::_afrStr" class="x103" style="width: 100%"></td></tr></tbody></table></div><div class="xzp"><div><div id="zhr16000:1:pfl4" class="x19"><table cellpadding="0" cellspacing="0" border="0" summary="" role="presentation" style="width: 100%"><tbody><tr><td class="x4w" colspan="1"><table cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td style="width: 15.0%"></td><td style="width: 85.0%"></td></tr><tr class="x1z" id="zhr16000:1:plnType"><td class="x12 x4z"><label class="af_selectOneChoice_label-text" for="zhr16000:1:plnType::content">Cube</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:plnType::content" name="zhr16000:1:plnType" class="x2h" _afov=""><option value="" _adftmpopt="t" title=""></option><option value="0" title="FinPlan">FinPlan</option><option value="1" title="EPBCS">EPBCS</option><option value="2" title="Manpower">Manpower</option><option value="3" title="Capital">Capital</option></select></td></tr><tr class="x1z" id="zhr16000:1:ruleSelect"><td class="x12 x4z"><span title="Required" class="xf">*</span><label class="af_selectOneChoice_label-text" for="zhr16000:1:ruleSelect::content">Business Rules</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:ruleSelect::content" name="zhr16000:1:ruleSelect" class="x2h" _afov=""><option value="" _adftmpopt="t" title=""></option><option value="0" title="Aggeregate_Income_Expense">Aggeregate_Income_Expense</option><option value="1" title="Aggregate_Full_Account_Bhargav">Aggregate_Full_Account_Bhargav</option><option value="2" title="Aggregate_Income_Bhargav">Aggregate_Income_Bhargav</option><option value="3" title="BR_Task_10_TrendBased_Planning_with_Smart_Sheet">BR_Task_10_TrendBased_Planning_with_Smart_Sheet</option><option value="4" title="BR_Task_9_Data_Copy_With_SmartList_Selection_Bhargav">BR_Task_9_Data_Copy_With_SmartList_Selection_Bhargav</option><option value="5" title="BR_Task_Data_Allocation_NoDept_To_TotalDept_Members">BR_Task_Data_Allocation_NoDept_To_TotalDept_Members</option><option value="6" title="CalculateAggeregateCatering_Rudra">CalculateAggeregateCatering_Rudra</option><option value="7" title="Catering Revenue calculation">Catering Revenue calculation</option><option value="8" title="Catering_Revenue_Rudra">Catering_Revenue_Rudra</option><option value="9" title="Clear_Dept">Clear_Dept</option><option value="10" title="Clear_FY26_Actual_P&amp;L">Clear_FY26_Actual_P&amp;L</option><option value="11" title="Clear_FY26_Actual_P&amp;L_Bhargav">Clear_FY26_Actual_P&amp;L_Bhargav</option><option value="12" title="ClearData">ClearData</option><option value="13" title="CYA_NYB_Rudra">CYA_NYB_Rudra</option><option value="14" title="FinPlan_01_Aggregation">FinPlan_01_Aggregation</option><option value="15" title="Full_Aggeregate_Account">Full_Aggeregate_Account</option><option value="16" title="FY26_Actual_Account_Cleanup_By_PlanElement_bhargav">FY26_Actual_Account_Cleanup_By_PlanElement_bhargav</option><option value="17" title="FY26_Actual_Clear&amp;Copy_data_on_E10002">FY26_Actual_Clear&amp;Copy_data_on_E10002</option><option value="18" title="FY26_Actual_Copy_data_to_Budget_on_E10002">FY26_Actual_Copy_data_to_Budget_on_E10002</option><option value="19" title="FY26_Actual_expense_Cleanup_bhargav">FY26_Actual_expense_Cleanup_bhargav</option><option value="20" title="FY26_Actual_expense_FullAgg_PlnEle_bhargav">FY26_Actual_expense_FullAgg_PlnEle_bhargav</option><option value="21" title="FY26_Actual_expense_Partial_Dep_Agg_bhargav">FY26_Actual_expense_Partial_Dep_Agg_bhargav</option><option value="22" title="FY26_Actual_P&amp;L_Dept_PlanEle_Full_Agg_bhargav">FY26_Actual_P&amp;L_Dept_PlanEle_Full_Agg_bhargav</option><option value="23" title="FY26_Actual_P&amp;L_Dept_PlanEle_partial_Agg_bhargav">FY26_Actual_P&amp;L_Dept_PlanEle_partial_Agg_bhargav</option><option value="24" title="FY26_Actual_Revenue_Cleanup_bhargav">FY26_Actual_Revenue_Cleanup_bhargav</option><option value="25" title="FY26_Actual_Revenue_Partial_Dep_Agg_bhargav">FY26_Actual_Revenue_Partial_Dep_Agg_bhargav</option><option value="26" title="Partial_Aggeregate_Dep_Full_PlnEle_on_Expense_Bhargav">Partial_Aggeregate_Dep_Full_PlnEle_on_Expense_Bhargav</option><option value="27" title="Partial_Aggeregate_Expense">Partial_Aggeregate_Expense</option><option value="28" title="Partial_Aggeregate_Expense_Bhargav">Partial_Aggeregate_Expense_Bhargav</option><option value="29" title="Partial_Aggeregate_Income">Partial_Aggeregate_Income</option><option value="30" title="Partial_Aggeregate_Income_Bhargav">Partial_Aggeregate_Income_Bhargav</option><option value="31" title="Remove_some_child_in_Aggregation_of_Dept">Remove_some_child_in_Aggregation_of_Dept</option><option value="32" title="Task 5 Catering Revenue calculation and aggregation">Task 5 Catering Revenue calculation and aggregation</option><option value="33" title="Task3_FA_PE_DEP">Task3_FA_PE_DEP</option><option value="34" title="Task3_FA_PlanElement">Task3_FA_PlanElement</option><option value="35" title="Task3_PA_Dept_Rudra">Task3_PA_Dept_Rudra</option><option value="36" title="Task3_PA_PE_DEP">Task3_PA_PE_DEP</option><option value="37" title="Task3_Rudra">Task3_Rudra</option><option value="38" title="Task3_Rule_Rudra">Task3_Rule_Rudra</option><option value="39" title="Task7">Task7</option><option value="40" title="Task8_Rudra">Task8_Rudra</option><option value="41" title="Task9_Allocate_Rudra">Task9_Allocate_Rudra</option><option value="42" title="Task9_Rudra">Task9_Rudra</option><option value="43" title="Task_10_Rudra">Task_10_Rudra</option><option value="44" title="Task_6_Account_Balance_Calc">Task_6_Account_Balance_Calc</option><option value="45" title="Task_6_Rudra">Task_6_Rudra</option><option value="46" title="Task_7_FR_2_Product_Quantity_Balance">Task_7_FR_2_Product_Quantity_Balance</option><option value="47" title="Task_7_Product_Quantity_Balance">Task_7_Product_Quantity_Balance</option><option value="48" title="Task_8_FR_1_Plan_Expense_&amp;_Revenue_Uplift-1">Task_8_FR_1_Plan_Expense_&amp;_Revenue_Uplift-1</option><option value="49" title="Test_Rudra">Test_Rudra</option><option value="50" title="Try RTP">Try RTP</option><option value="51" title="Try_Prior_Rudra">Try_Prior_Rudra</option></select></td></tr><tr class="x1z" id="zhr16000:1:ruleViewTypeSelect"><td class="x12 x4z"><label class="af_selectOneChoice_label-text" for="zhr16000:1:ruleViewTypeSelect::content">View Type</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:ruleViewTypeSelect::content" name="zhr16000:1:ruleViewTypeSelect" class="x2h" title="Classic View" _afov="0"><option value="0" selected="" title="Classic View">Classic View</option><option value="1" title="Streamline View">Streamline View</option></select></td></tr><tr class="x1u" id="zhr16000:1:ruleWindowTitleText"><td class="xu x4z"><label class="af_inputText_label-text" for="zhr16000:1:ruleWindowTitleText::content">Window Title</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:ruleWindowTitleText::content" name="zhr16000:1:ruleWindowTitleText" class="x25" size="0" autocomplete="off" maxlength="255" type="text" aria-live="off"></td></tr><tr class="x1u" id="zhr16000:1:ruleOkText"><td class="xu x4z"><label class="af_inputText_label-text" for="zhr16000:1:ruleOkText::content">OK Button Label</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:ruleOkText::content" name="zhr16000:1:ruleOkText" class="x25" size="0" autocomplete="off" maxlength="80" type="text" aria-live="off"></td></tr><tr class="x1u" id="zhr16000:1:ruleCancelText"><td class="xu x4z"><label class="af_inputText_label-text" for="zhr16000:1:ruleCancelText::content">Cancel Button Label</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:ruleCancelText::content" name="zhr16000:1:ruleCancelText" class="x25" size="0" autocomplete="off" maxlength="80" type="text" aria-live="off"></td></tr><tr class="x1u" id="zhr16000:1:ruleConfirmationText"><td class="xu x4z"><label class="af_inputText_label-text" for="zhr16000:1:ruleConfirmationText::content">Launch Confirmation Message</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:ruleConfirmationText::content" name="zhr16000:1:ruleConfirmationText" class="x25" size="0" autocomplete="off" maxlength="255" type="text" aria-live="off"></td></tr><tr class="x1v" id="zhr16000:1:ruleNewWindowChk" _adftrc="zhr16000:1:ruleNewWindowChk::icon-style"><td class="xv x4z"><label class="af_selectBooleanCheckbox_label-text" for="zhr16000:1:ruleNewWindowChk::content" id="zhr16000:1:ruleNewWindowChk::Label0">Launch in a separate window</label></td><td valign="top" nowrap="" class="xuq"><span class="x2e"><span class="xis"><input id="zhr16000:1:ruleNewWindowChk::content" name="zhr16000:1:ruleNewWindowChk" class="xt4" type="checkbox" value="t" aria-labelledby="zhr16000:1:ruleNewWindowChk::Label0 zhr16000:1:ruleNewWindowChk::Label1"><label for="zhr16000:1:ruleNewWindowChk::content" class="xtd" id="zhr16000:1:ruleNewWindowChk::Label1"><span class="xt7"></span></label></span></span></td></tr><tr class="x1v" id="zhr16000:1:ruleHidePrompt" _adftrc="zhr16000:1:ruleHidePrompt::icon-style"><td class="xv x4z"><label class="af_selectBooleanCheckbox_label-text" for="zhr16000:1:ruleHidePrompt::content" id="zhr16000:1:ruleHidePrompt::Label0">Hide Prompt</label></td><td valign="top" nowrap="" class="xuq"><span class="x2e"><span class="xis"><input id="zhr16000:1:ruleHidePrompt::content" name="zhr16000:1:ruleHidePrompt" class="xt4" type="checkbox" value="t" aria-labelledby="zhr16000:1:ruleHidePrompt::Label0 zhr16000:1:ruleHidePrompt::Label1"><label for="zhr16000:1:ruleHidePrompt::content" class="xtd" id="zhr16000:1:ruleHidePrompt::Label1"><span class="xt7"></span></label></span></span></td></tr></tbody></table></td></tr></tbody></table></div></div></div></div></div></div>
+
+
+<div id="zhr16000:1:mItemDtlPgl" class="x1a" style="position:absolute;width:auto;height:auto;top:0px;left:0px;bottom:0px;right:0px;overflow:auto;"><div><div id="zhr16000:1:ph7" class="x6v"><div class="xyx"><table class="af_panelHeader_title-table2" cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td class="x213"></td><td id="zhr16000:1:ph7::_afrTtxt"><div title="Edit Menu Item : Menu Header" class="xxd" style="width: 170px; max-width: 170px;"><h2 style="" class="xz9 ">Edit Menu Item : Menu Header</h2></div></td><td id="zhr16000:1:ph7::_afrStr" class="x103" style="width: 100%"></td></tr></tbody></table></div><div class="xzp"><div><div id="zhr16000:1:menuItemPfl" class="x19"><table cellpadding="0" cellspacing="0" border="0" summary="" role="presentation" style="width: 100%"><tbody><tr><td class="x4w" colspan="1"><table cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td style="width: 15.0%"></td><td style="width: 85.0%"></td></tr><tr class="x1u" id="zhr16000:1:nameText"><td class="xu x4z"><span title="Required" class="xf">*</span><label class="af_inputText_label-text" for="zhr16000:1:nameText::content" accesskey="N">Me<span class="xgb">n</span>u Item</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:nameText::content" name="zhr16000:1:nameText" class="x25" size="0" autocomplete="off" maxlength="80" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1u" id="zhr16000:1:labelText"><td class="xu x4z"><span title="Required" class="xf">*</span><label class="af_inputText_label-text" for="zhr16000:1:labelText::content">Label</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:labelText::content" name="zhr16000:1:labelText" class="x25" size="0" autocomplete="off" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1u" id="zhr16000:1:iconText"><td class="xu x4z"><label class="af_inputText_label-text" for="zhr16000:1:iconText::content">Icon</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:iconText::content" name="zhr16000:1:iconText" class="x25" size="0" autocomplete="off" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1z" id="zhr16000:1:menuItemTypeSelect"><td class="x12 x4z"><label class="af_selectOneChoice_label-text" for="zhr16000:1:menuItemTypeSelect::content">Type</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:menuItemTypeSelect::content" name="zhr16000:1:menuItemTypeSelect" style="width: 178px" class="x2h" title="Manage Approvals" _afov="3"><option value="0" title="URL">URL</option><option value="1" title="Form">Form</option><option value="2" title="Business Rule">Business Rule</option><option value="3" selected="" title="Manage Approvals">Manage Approvals</option><option value="4" title="Dashboard">Dashboard</option><option value="5" title="Change Status">Change Status</option><option value="6" title="Menu Header">Menu Header</option><option value="7" title="Previous Form">Previous Form</option><option value="8" title="Copy Version">Copy Version</option></select></td></tr><tr class="x1z" id="zhr16000:1:dimNameSelect"><td class="x12 x4z"><label class="af_selectOneChoice_label-text" for="zhr16000:1:dimNameSelect::content">Required Parameters</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:dimNameSelect::content" name="zhr16000:1:dimNameSelect" style="width: 178px" class="x2h" title="None" _afov="0"><option value="0" selected="">None</option><option value="1">Account</option><option value="2">AssetClass</option><option value="3">AssetDetail</option><option value="4">Currency</option><option value="5">Custom1</option><option value="6">Department</option><option value="7">Employee</option><option value="8">Entity</option><option value="9">Future</option><option value="10">Grade</option><option value="11">HSP_View</option><option value="12">Period</option><option value="13">PlanElement</option><option value="14">Scenario</option><option value="15">Version</option><option value="16">Years</option><option value="17">Point of View</option><option value="18">Page</option><option value="19">Row</option><option value="20">Column</option><option value="21">Members only</option><option value="22">Cell Only</option></select></td></tr><tr class="xsb" style="display:none" id="zhr16000:1:plam1"><td class="x15 x4z"><label class="af_panelLabelAndMessage_label-text" for="zhr16000:1:memText::content">Members</label></td><td valign="top" class="xuq xsk"><span id="zhr16000:1:memText" class="x1u"><input id="zhr16000:1:memText::content" name="zhr16000:1:memText" class="x25" autocomplete="off" type="text" value="" aria-live="off"></span><img id="zhr16000:1:s1mt" src="/HyperionPlanning/adf/images/t.gif" alt="" width="5" height="10" style="vertical-align:middle;"><a id="zhr16000:1:cil1" class="xfi p_AFIconOnly" onclick="this.focus();return false;" href="#"><img id="zhr16000:1:cil1::icon" src="/HyperionPlanning/Images/member_selector.gif" class="x16v"></a></td></tr></tbody></table></td></tr></tbody></table></div></div></div></div></div><div><div id="zhr16000:1:ph4" class="x6v"><div class="xyx"><table class="af_panelHeader_title-table2" cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td class="x213"></td><td id="zhr16000:1:ph4::_afrTtxt"><div title="Workflow" class="xxd" style="width: 54px; max-width: 54px;"><h2 style="" class="xz9 ">Workflow</h2></div></td><td id="zhr16000:1:ph4::_afrStr" class="x103" style="width: 100%"></td></tr></tbody></table></div><div class="xzp"><div><div id="zhr16000:1:pfl5" class="x19"><table cellpadding="0" cellspacing="0" border="0" summary="" role="presentation" style="width: 100%"><tbody><tr><td class="x4w" colspan="1"><table cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td style="width: 15.0%"></td><td style="width: 85.0%"></td></tr><tr class="x1z" id="zhr16000:1:scenarioSelect"><td class="x12 x4z"><span title="Required" class="xf">*</span><label class="af_selectOneChoice_label-text" for="zhr16000:1:scenarioSelect::content">Scenario</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:scenarioSelect::content" name="zhr16000:1:scenarioSelect" style="width: 178px" class="x2h" _afov=""><option value="" _adftmpopt="t"></option><option value="0">Act vs Bud</option><option value="1">Actual</option><option value="2">Budget</option><option value="3">Budget vs Actual</option><option value="4">Current</option><option value="5">CY_vs_NY</option><option value="6">CYActual vs NYActual</option><option value="7">Forecast</option><option value="8">No Scenerio</option><option value="9">Plan</option><option value="10">PY_vs_CY</option><option value="11">PYActual vs CYActual</option><option value="12">Variance</option><option value="13">Variance Comments</option></select></td></tr><tr class="x1z" id="zhr16000:1:versionSelect"><td class="x12 x4z"><span title="Required" class="xf">*</span><label class="af_selectOneChoice_label-text" for="zhr16000:1:versionSelect::content">Version</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:versionSelect::content" name="zhr16000:1:versionSelect" style="width: 178px" class="x2h" _afov=""><option value="" _adftmpopt="t" title=""></option><option value="0" title="BU Version_1">BU Version_1</option><option value="1" title="Final">Final</option><option value="2" title="Sandboxes">Sandboxes</option><option value="3" title="What if">What if</option><option value="4" title="Working">Working</option></select></td></tr></tbody></table></td></tr></tbody></table></div></div></div></div></div></div>
+
+<div id="zhr16000:1:mItemDtlPgl" class="x1a" style="position:absolute;width:auto;height:auto;top:0px;left:0px;bottom:0px;right:0px;overflow:auto;"><div><div id="zhr16000:1:ph7" class="x6v"><div class="xyx"><table class="af_panelHeader_title-table2" cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td class="x213"></td><td id="zhr16000:1:ph7::_afrTtxt"><div title="Edit Menu Item : Menu Header" class="xxd" style="width: 170px; max-width: 170px;"><h2 style="" class="xz9 ">Edit Menu Item : Menu Header</h2></div></td><td id="zhr16000:1:ph7::_afrStr" class="x103" style="width: 100%"></td></tr></tbody></table></div><div class="xzp"><div><div id="zhr16000:1:menuItemPfl" class="x19"><table cellpadding="0" cellspacing="0" border="0" summary="" role="presentation" style="width: 100%"><tbody><tr><td class="x4w" colspan="1"><table cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td style="width: 15.0%"></td><td style="width: 85.0%"></td></tr><tr class="x1u" id="zhr16000:1:nameText"><td class="xu x4z"><span title="Required" class="xf">*</span><label class="af_inputText_label-text" for="zhr16000:1:nameText::content" accesskey="N">Me<span class="xgb">n</span>u Item</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:nameText::content" name="zhr16000:1:nameText" class="x25" size="0" autocomplete="off" maxlength="80" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1u" id="zhr16000:1:labelText"><td class="xu x4z"><span title="Required" class="xf">*</span><label class="af_inputText_label-text" for="zhr16000:1:labelText::content">Label</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:labelText::content" name="zhr16000:1:labelText" class="x25" size="0" autocomplete="off" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1u" id="zhr16000:1:iconText"><td class="xu x4z"><label class="af_inputText_label-text" for="zhr16000:1:iconText::content">Icon</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:iconText::content" name="zhr16000:1:iconText" class="x25" size="0" autocomplete="off" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1z" id="zhr16000:1:menuItemTypeSelect"><td class="x12 x4z"><label class="af_selectOneChoice_label-text" for="zhr16000:1:menuItemTypeSelect::content">Type</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:menuItemTypeSelect::content" name="zhr16000:1:menuItemTypeSelect" style="width: 178px" class="x2h" title="Dashboard" _afov="4"><option value="0" title="URL">URL</option><option value="1" title="Form">Form</option><option value="2" title="Business Rule">Business Rule</option><option value="3" title="Manage Approvals">Manage Approvals</option><option value="4" selected="" title="Dashboard">Dashboard</option><option value="5" title="Change Status">Change Status</option><option value="6" title="Menu Header">Menu Header</option><option value="7" title="Previous Form">Previous Form</option><option value="8" title="Copy Version">Copy Version</option></select></td></tr><tr class="x1z" id="zhr16000:1:dimNameSelect"><td class="x12 x4z"><label class="af_selectOneChoice_label-text" for="zhr16000:1:dimNameSelect::content">Required Parameters</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:dimNameSelect::content" name="zhr16000:1:dimNameSelect" style="width: 178px" class="x2h" title="None" _afov="0"><option value="0" selected="">None</option><option value="1">Account</option><option value="2">AssetClass</option><option value="3">AssetDetail</option><option value="4">Currency</option><option value="5">Custom1</option><option value="6">Department</option><option value="7">Employee</option><option value="8">Entity</option><option value="9">Future</option><option value="10">Grade</option><option value="11">HSP_View</option><option value="12">Period</option><option value="13">PlanElement</option><option value="14">Scenario</option><option value="15">Version</option><option value="16">Years</option><option value="17">Point of View</option><option value="18">Page</option><option value="19">Row</option><option value="20">Column</option><option value="21">Members only</option><option value="22">Cell Only</option></select></td></tr><tr class="xsb" style="display:none" id="zhr16000:1:plam1"><td class="x15 x4z"><label class="af_panelLabelAndMessage_label-text" for="zhr16000:1:memText::content">Members</label></td><td valign="top" class="xuq xsk"><span id="zhr16000:1:memText" class="x1u"><input id="zhr16000:1:memText::content" name="zhr16000:1:memText" class="x25" autocomplete="off" type="text" value="" aria-live="off"></span><img id="zhr16000:1:s1mt" src="/HyperionPlanning/adf/images/t.gif" alt="" width="5" height="10" style="vertical-align:middle;"><a id="zhr16000:1:cil1" class="xfi p_AFIconOnly" onclick="this.focus();return false;" href="#"><img id="zhr16000:1:cil1::icon" src="/HyperionPlanning/Images/member_selector.gif" class="x16v"></a></td></tr></tbody></table></td></tr></tbody></table></div></div></div></div></div><div><div id="zhr16000:1:phdb" class="x6v"><div class="xyx"><table class="af_panelHeader_title-table2" cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td class="x213"></td><td id="zhr16000:1:phdb::_afrTtxt"><div title="Dashboard" class="xxd" style="width: 60px; max-width: 60px;"><h2 style="" class="xz9 ">Dashboard</h2></div></td><td id="zhr16000:1:phdb::_afrStr" class="x103" style="width: 100%"></td></tr></tbody></table></div><div class="xzp"><div><div id="zhr16000:1:pfdbl2" class="x19"><table cellpadding="0" cellspacing="0" border="0" summary="" role="presentation" style="width: 100%"><tbody><tr><td class="x4w" colspan="1"><table cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td style="width: 15.0%"></td><td style="width: 85.0%"></td></tr><tr class="xsb" id="zhr16000:1:plmdb"><td class="x15 x4z"><span title="Required" class="xf">*</span><label class="af_panelLabelAndMessage_label-text" for="zhr16000:1:dbNameText::content">Dashboard</label></td><td valign="top" class="xuq xsk"><span id="zhr16000:1:dbNameText" class="x1u"><input id="zhr16000:1:dbNameText::content" name="zhr16000:1:dbNameText" style="background-color: White;width:200px;" class="x25" autocomplete="off" type="text" aria-live="off" aria-label="Dashboard"></span><img id="zhr16000:1:ssdb2" src="/HyperionPlanning/adf/images/t.gif" alt="" width="5" height="10" style="vertical-align:middle;"><a accesskey="S" id="zhr16000:1:dbSelectLink" title="Add Form" class="xfi p_AFIconOnly" onclick="this.focus();return false;" href="#"><img id="zhr16000:1:dbSelectLink::icon" src="/HyperionPlanning/Images/add_ena.png" title="Add Form" alt="Add Form" class="x16v"></a></td></tr></tbody></table></td></tr></tbody></table></div></div></div></div></div></div>
+
+
+<div id="zhr16000:1:mItemDtlPgl" class="x1a" style="position:absolute;width:auto;height:auto;top:0px;left:0px;bottom:0px;right:0px;overflow:auto;"><div><div id="zhr16000:1:ph7" class="x6v"><div class="xyx"><table class="af_panelHeader_title-table2" cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td class="x213"></td><td id="zhr16000:1:ph7::_afrTtxt"><div title="Edit Menu Item : Menu Header" class="xxd" style="width: 170px; max-width: 170px;"><h2 style="" class="xz9 ">Edit Menu Item : Menu Header</h2></div></td><td id="zhr16000:1:ph7::_afrStr" class="x103" style="width: 100%"></td></tr></tbody></table></div><div class="xzp"><div><div id="zhr16000:1:menuItemPfl" class="x19"><table cellpadding="0" cellspacing="0" border="0" summary="" role="presentation" style="width: 100%"><tbody><tr><td class="x4w" colspan="1"><table cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td style="width: 15.0%"></td><td style="width: 85.0%"></td></tr><tr class="x1u" id="zhr16000:1:nameText"><td class="xu x4z"><span title="Required" class="xf">*</span><label class="af_inputText_label-text" for="zhr16000:1:nameText::content" accesskey="N">Me<span class="xgb">n</span>u Item</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:nameText::content" name="zhr16000:1:nameText" class="x25" size="0" autocomplete="off" maxlength="80" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1u" id="zhr16000:1:labelText"><td class="xu x4z"><span title="Required" class="xf">*</span><label class="af_inputText_label-text" for="zhr16000:1:labelText::content">Label</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:labelText::content" name="zhr16000:1:labelText" class="x25" size="0" autocomplete="off" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1u" id="zhr16000:1:iconText"><td class="xu x4z"><label class="af_inputText_label-text" for="zhr16000:1:iconText::content">Icon</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:iconText::content" name="zhr16000:1:iconText" class="x25" size="0" autocomplete="off" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1z" id="zhr16000:1:menuItemTypeSelect"><td class="x12 x4z"><label class="af_selectOneChoice_label-text" for="zhr16000:1:menuItemTypeSelect::content">Type</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:menuItemTypeSelect::content" name="zhr16000:1:menuItemTypeSelect" style="width: 178px" class="x2h" title="Change Status" _afov="5"><option value="0" title="URL">URL</option><option value="1" title="Form">Form</option><option value="2" title="Business Rule">Business Rule</option><option value="3" title="Manage Approvals">Manage Approvals</option><option value="4" title="Dashboard">Dashboard</option><option value="5" selected="" title="Change Status">Change Status</option><option value="6" title="Menu Header">Menu Header</option><option value="7" title="Previous Form">Previous Form</option><option value="8" title="Copy Version">Copy Version</option></select></td></tr><tr class="x1z" id="zhr16000:1:dimNameSelect"><td class="x12 x4z"><label class="af_selectOneChoice_label-text" for="zhr16000:1:dimNameSelect::content">Required Parameters</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:dimNameSelect::content" name="zhr16000:1:dimNameSelect" style="width: 178px" class="x2h" title="None" _afov="0"><option value="0" selected="">None</option><option value="1">Account</option><option value="2">AssetClass</option><option value="3">AssetDetail</option><option value="4">Currency</option><option value="5">Custom1</option><option value="6">Department</option><option value="7">Employee</option><option value="8">Entity</option><option value="9">Future</option><option value="10">Grade</option><option value="11">HSP_View</option><option value="12">Period</option><option value="13">PlanElement</option><option value="14">Scenario</option><option value="15">Version</option><option value="16">Years</option><option value="17">Point of View</option><option value="18">Page</option><option value="19">Row</option><option value="20">Column</option><option value="21">Members only</option><option value="22">Cell Only</option></select></td></tr><tr class="xsb" style="display:none" id="zhr16000:1:plam1"><td class="x15 x4z"><label class="af_panelLabelAndMessage_label-text" for="zhr16000:1:memText::content">Members</label></td><td valign="top" class="xuq xsk"><span id="zhr16000:1:memText" class="x1u"><input id="zhr16000:1:memText::content" name="zhr16000:1:memText" class="x25" autocomplete="off" type="text" value="" aria-live="off"></span><img id="zhr16000:1:s1mt" src="/HyperionPlanning/adf/images/t.gif" alt="" width="5" height="10" style="vertical-align:middle;"><a id="zhr16000:1:cil1" class="xfi p_AFIconOnly" onclick="this.focus();return false;" href="#"><img id="zhr16000:1:cil1::icon" src="/HyperionPlanning/Images/member_selector.gif" class="x16v"></a></td></tr></tbody></table></td></tr></tbody></table></div></div></div></div></div><div><div id="zhr16000:1:ph12" class="x6v"><div class="xyx"><table class="af_panelHeader_title-table2" cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td class="x213"></td><td id="zhr16000:1:ph12::_afrTtxt"><div title="Change Status" class="xxd" style="width: 81px; max-width: 81px;"><h2 style="" class="xz9 ">Change Status</h2></div></td><td id="zhr16000:1:ph12::_afrStr" class="x103" style="width: 100%"></td></tr></tbody></table></div><div class="xzp"><div><div id="zhr16000:1:pfl11" class="x19"><table cellpadding="0" cellspacing="0" border="0" summary="" role="presentation" style="width: 100%"><tbody><tr><td class="x4w" colspan="1"><table cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td style="width: 15.0%"></td><td style="width: 85.0%"></td></tr><tr class="x1z" id="zhr16000:1:cs_filter_actions"><td class="x12 x4z"><label class="af_selectOneChoice_label-text" for="zhr16000:1:cs_filter_actions::content">Filter Actions by Template</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:cs_filter_actions::content" name="zhr16000:1:cs_filter_actions" style="width: 178px" class="x2h" title="All" _afov="0"><option value="0" selected="">All</option><option value="1">Bottom Up</option><option value="2">Distribute</option><option value="3">Free Form</option></select></td></tr><tr class="x1z" id="zhr16000:1:cs_actions"><td class="x12 x4z"><label class="af_selectOneChoice_label-text" for="zhr16000:1:cs_actions::content">Action</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:cs_actions::content" name="zhr16000:1:cs_actions" style="width: 178px" class="x2h" title="Promote" _afov="2"><option value="0">Start</option><option value="1">Exclude</option><option value="2" selected="">Promote</option><option value="3">Sign Off</option><option value="4">Reject</option><option value="5">Approve</option><option value="6">Delegate</option><option value="7">Take Ownership</option><option value="8">Originate</option><option value="9">Freeze</option><option value="10">Unfreeze</option><option value="11">Distribute</option><option value="12">Distribute Children</option><option value="13">Distribute Owner</option><option value="14">Need Assistance</option><option value="15">Return</option><option value="16">Submit</option><option value="17">Submit to Top</option><option value="18">Reopen</option><option value="19">Pass</option></select></td></tr><tr class="x1v" id="zhr16000:1:csUseProcessState" _adftrc="zhr16000:1:csUseProcessState::icon-style"><td class="xv x4z"><label class="af_selectBooleanCheckbox_label-text" for="zhr16000:1:csUseProcessState::content" id="zhr16000:1:csUseProcessState::Label0">Approval Status</label></td><td valign="top" nowrap="" class="xuq"><span class="x2e"><span class="xis"><input id="zhr16000:1:csUseProcessState::content" name="zhr16000:1:csUseProcessState" class="xt4" type="checkbox" value="t" checked="" aria-labelledby="zhr16000:1:csUseProcessState::Label0 zhr16000:1:csUseProcessState::Label1"><label for="zhr16000:1:csUseProcessState::content" class="xtd" id="zhr16000:1:csUseProcessState::Label1"><span class="xt7"></span></label></span></span></td></tr><tr class="x1v" id="zhr16000:1:csHidePrompt" _adftrc="zhr16000:1:csHidePrompt::icon-style"><td class="xv x4z"><label class="af_selectBooleanCheckbox_label-text" for="zhr16000:1:csHidePrompt::content" id="zhr16000:1:csHidePrompt::Label0">Hide Prompt</label></td><td valign="top" nowrap="" class="xuq"><span class="x2e"><span class="xis"><input id="zhr16000:1:csHidePrompt::content" name="zhr16000:1:csHidePrompt" class="xt4" type="checkbox" value="t" aria-labelledby="zhr16000:1:csHidePrompt::Label0 zhr16000:1:csHidePrompt::Label1"><label for="zhr16000:1:csHidePrompt::content" class="xtd" id="zhr16000:1:csHidePrompt::Label1"><span class="xt7"></span></label></span></span></td></tr><tr class="x1v" id="zhr16000:1:csShowAnnotation" _adftrc="zhr16000:1:csShowAnnotation::icon-style"><td class="xv x4z"><label class="af_selectBooleanCheckbox_label-text" for="zhr16000:1:csShowAnnotation::content" id="zhr16000:1:csShowAnnotation::Label0">Show Annotation History</label></td><td valign="top" nowrap="" class="xuq"><span class="x2e"><span class="xis"><input id="zhr16000:1:csShowAnnotation::content" name="zhr16000:1:csShowAnnotation" class="xt4" type="checkbox" value="t" checked="" aria-labelledby="zhr16000:1:csShowAnnotation::Label0 zhr16000:1:csShowAnnotation::Label1"><label for="zhr16000:1:csShowAnnotation::content" class="xtd" id="zhr16000:1:csShowAnnotation::Label1"><span class="xt7"></span></label></span></span></td></tr></tbody></table></td></tr></tbody></table></div></div></div></div></div></div>
+
+
+<div id="zhr16000:1:mItemDtlPgl" class="x1a" style="position:absolute;width:auto;height:auto;top:0px;left:0px;bottom:0px;right:0px;overflow:auto;"><div><div id="zhr16000:1:ph7" class="x6v"><div class="xyx"><table class="af_panelHeader_title-table2" cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td class="x213"></td><td id="zhr16000:1:ph7::_afrTtxt"><div title="Edit Menu Item : Menu Header" class="xxd" style="width: 170px; max-width: 170px;"><h2 style="" class="xz9 ">Edit Menu Item : Menu Header</h2></div></td><td id="zhr16000:1:ph7::_afrStr" class="x103" style="width: 100%"></td></tr></tbody></table></div><div class="xzp"><div><div id="zhr16000:1:menuItemPfl" class="x19"><table cellpadding="0" cellspacing="0" border="0" summary="" role="presentation" style="width: 100%"><tbody><tr><td class="x4w" colspan="1"><table cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td style="width: 15.0%"></td><td style="width: 85.0%"></td></tr><tr class="x1u" id="zhr16000:1:nameText"><td class="xu x4z"><span title="Required" class="xf">*</span><label class="af_inputText_label-text" for="zhr16000:1:nameText::content" accesskey="N">Me<span class="xgb">n</span>u Item</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:nameText::content" name="zhr16000:1:nameText" class="x25" size="0" autocomplete="off" maxlength="80" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1u" id="zhr16000:1:labelText"><td class="xu x4z"><span title="Required" class="xf">*</span><label class="af_inputText_label-text" for="zhr16000:1:labelText::content">Label</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:labelText::content" name="zhr16000:1:labelText" class="x25" size="0" autocomplete="off" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1u" id="zhr16000:1:iconText"><td class="xu x4z"><label class="af_inputText_label-text" for="zhr16000:1:iconText::content">Icon</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:iconText::content" name="zhr16000:1:iconText" class="x25" size="0" autocomplete="off" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1z" id="zhr16000:1:menuItemTypeSelect"><td class="x12 x4z"><label class="af_selectOneChoice_label-text" for="zhr16000:1:menuItemTypeSelect::content">Type</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:menuItemTypeSelect::content" name="zhr16000:1:menuItemTypeSelect" style="width: 178px" class="x2h" title="Menu Header" _afov="6"><option value="0" title="URL">URL</option><option value="1" title="Form">Form</option><option value="2" title="Business Rule">Business Rule</option><option value="3" title="Manage Approvals">Manage Approvals</option><option value="4" title="Dashboard">Dashboard</option><option value="5" title="Change Status">Change Status</option><option value="6" selected="" title="Menu Header">Menu Header</option><option value="7" title="Previous Form">Previous Form</option><option value="8" title="Copy Version">Copy Version</option></select></td></tr><tr class="x1z p_AFDisabled" id="zhr16000:1:dimNameSelect"><td class="x12 x4z"><label class="af_selectOneChoice_label-text" for="zhr16000:1:dimNameSelect::content">Required Parameters</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:dimNameSelect::content" name="zhr16000:1:dimNameSelect" disabled="" style="width: 178px" class="x2h" title="None" _afov="0"><option value="0" selected="">None</option><option value="1">Account</option><option value="2">AssetClass</option><option value="3">AssetDetail</option><option value="4">Currency</option><option value="5">Custom1</option><option value="6">Department</option><option value="7">Employee</option><option value="8">Entity</option><option value="9">Future</option><option value="10">Grade</option><option value="11">HSP_View</option><option value="12">Period</option><option value="13">PlanElement</option><option value="14">Scenario</option><option value="15">Version</option><option value="16">Years</option><option value="17">Point of View</option><option value="18">Page</option><option value="19">Row</option><option value="20">Column</option><option value="21">Members only</option><option value="22">Cell Only</option></select></td></tr><tr class="xsb" style="display:none" id="zhr16000:1:plam1"><td class="x15 x4z"><label class="af_panelLabelAndMessage_label-text" for="zhr16000:1:memText::content">Members</label></td><td valign="top" class="xuq xsk"><span id="zhr16000:1:memText" class="x1u"><input id="zhr16000:1:memText::content" name="zhr16000:1:memText" class="x25" autocomplete="off" type="text" value="" aria-live="off"></span><img id="zhr16000:1:s1mt" src="/HyperionPlanning/adf/images/t.gif" alt="" width="5" height="10" style="vertical-align:middle;"><a id="zhr16000:1:cil1" class="xfi p_AFIconOnly" onclick="this.focus();return false;" href="#"><img id="zhr16000:1:cil1::icon" src="/HyperionPlanning/Images/member_selector.gif" class="x16v"></a></td></tr></tbody></table></td></tr></tbody></table></div></div></div></div></div><div><div id="zhr16000:1:ph5" class="x6v"><div class="xyx"><table class="af_panelHeader_title-table2" cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td class="x213"></td><td id="zhr16000:1:ph5::_afrTtxt"><div title="Descriptive" class="xxd" style="width: 63px; max-width: 63px;"><h2 style="" class="xz9 ">Descriptive</h2></div></td><td id="zhr16000:1:ph5::_afrStr" class="x103" style="width: 100%"></td></tr></tbody></table></div><div class="xzp"><div><div id="zhr16000:1:pfl6" class="x19"><table cellpadding="0" cellspacing="0" border="0" summary="" role="presentation" style="width: 100%"><tbody><tr><td class="x4w" colspan="1"><table cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td style="width: 15.0%"></td><td style="width: 85.0%"></td></tr><tr class="p_AFReadOnly"><td></td><td class="x51"><span id="zhr16000:1:descLbl" class="xq"><label>There are no properties for this type of menu item.</label></span></td></tr></tbody></table></td></tr></tbody></table></div></div></div></div></div></div>
+
+
+<div id="zhr16000:1:mItemDtlPgl" class="x1a" style="position:absolute;width:auto;height:auto;top:0px;left:0px;bottom:0px;right:0px;overflow:auto;"><div><div id="zhr16000:1:ph7" class="x6v"><div class="xyx"><table class="af_panelHeader_title-table2" cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td class="x213"></td><td id="zhr16000:1:ph7::_afrTtxt"><div title="Edit Menu Item : Menu Header" class="xxd" style="width: 170px; max-width: 170px;"><h2 style="" class="xz9 ">Edit Menu Item : Menu Header</h2></div></td><td id="zhr16000:1:ph7::_afrStr" class="x103" style="width: 100%"></td></tr></tbody></table></div><div class="xzp"><div><div id="zhr16000:1:menuItemPfl" class="x19"><table cellpadding="0" cellspacing="0" border="0" summary="" role="presentation" style="width: 100%"><tbody><tr><td class="x4w" colspan="1"><table cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td style="width: 15.0%"></td><td style="width: 85.0%"></td></tr><tr class="x1u" id="zhr16000:1:nameText"><td class="xu x4z"><span title="Required" class="xf">*</span><label class="af_inputText_label-text" for="zhr16000:1:nameText::content" accesskey="N">Me<span class="xgb">n</span>u Item</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:nameText::content" name="zhr16000:1:nameText" class="x25" size="0" autocomplete="off" maxlength="80" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1u" id="zhr16000:1:labelText"><td class="xu x4z"><span title="Required" class="xf">*</span><label class="af_inputText_label-text" for="zhr16000:1:labelText::content">Label</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:labelText::content" name="zhr16000:1:labelText" class="x25" size="0" autocomplete="off" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1u" id="zhr16000:1:iconText"><td class="xu x4z"><label class="af_inputText_label-text" for="zhr16000:1:iconText::content">Icon</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:iconText::content" name="zhr16000:1:iconText" class="x25" size="0" autocomplete="off" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1z" id="zhr16000:1:menuItemTypeSelect"><td class="x12 x4z"><label class="af_selectOneChoice_label-text" for="zhr16000:1:menuItemTypeSelect::content">Type</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:menuItemTypeSelect::content" name="zhr16000:1:menuItemTypeSelect" style="width: 178px" class="x2h" title="Previous Form" _afov="7"><option value="0" title="URL">URL</option><option value="1" title="Form">Form</option><option value="2" title="Business Rule">Business Rule</option><option value="3" title="Manage Approvals">Manage Approvals</option><option value="4" title="Dashboard">Dashboard</option><option value="5" title="Change Status">Change Status</option><option value="6" title="Menu Header">Menu Header</option><option value="7" selected="" title="Previous Form">Previous Form</option><option value="8" title="Copy Version">Copy Version</option></select></td></tr><tr class="x1z" id="zhr16000:1:dimNameSelect"><td class="x12 x4z"><label class="af_selectOneChoice_label-text" for="zhr16000:1:dimNameSelect::content">Required Parameters</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:dimNameSelect::content" name="zhr16000:1:dimNameSelect" style="width: 178px" class="x2h" title="None" _afov="0"><option value="0" selected="">None</option><option value="1">Account</option><option value="2">AssetClass</option><option value="3">AssetDetail</option><option value="4">Currency</option><option value="5">Custom1</option><option value="6">Department</option><option value="7">Employee</option><option value="8">Entity</option><option value="9">Future</option><option value="10">Grade</option><option value="11">HSP_View</option><option value="12">Period</option><option value="13">PlanElement</option><option value="14">Scenario</option><option value="15">Version</option><option value="16">Years</option><option value="17">Point of View</option><option value="18">Page</option><option value="19">Row</option><option value="20">Column</option><option value="21">Members only</option><option value="22">Cell Only</option></select></td></tr><tr class="xsb" style="display:none" id="zhr16000:1:plam1"><td class="x15 x4z"><label class="af_panelLabelAndMessage_label-text" for="zhr16000:1:memText::content">Members</label></td><td valign="top" class="xuq xsk"><span id="zhr16000:1:memText" class="x1u"><input id="zhr16000:1:memText::content" name="zhr16000:1:memText" class="x25" autocomplete="off" type="text" value="" aria-live="off"></span><img id="zhr16000:1:s1mt" src="/HyperionPlanning/adf/images/t.gif" alt="" width="5" height="10" style="vertical-align:middle;"><a id="zhr16000:1:cil1" class="xfi p_AFIconOnly" onclick="this.focus();return false;" href="#"><img id="zhr16000:1:cil1::icon" src="/HyperionPlanning/Images/member_selector.gif" class="x16v"></a></td></tr></tbody></table></td></tr></tbody></table></div></div></div></div></div><div><div id="zhr16000:1:ph6" class="x6v"><div class="xyx"><table class="af_panelHeader_title-table2" cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td class="x213"></td><td id="zhr16000:1:ph6::_afrTtxt"><div title="Previous Form" class="xxd" style="width: 80px; max-width: 80px;"><h2 style="" class="xz9 ">Previous Form</h2></div></td><td id="zhr16000:1:ph6::_afrStr" class="x103" style="width: 100%"></td></tr></tbody></table></div><div class="xzp"><div><div id="zhr16000:1:pfl7" class="x19"><table cellpadding="0" cellspacing="0" border="0" summary="" role="presentation" style="width: 100%"><tbody><tr><td class="x4w" colspan="1"><table cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td style="width: 15.0%"></td><td style="width: 85.0%"></td></tr><tr class="p_AFReadOnly"><td></td><td class="x51"><span id="zhr16000:1:prevFormLbl" class="xq"><label>There are no properties for this type of menu item.</label></span></td></tr></tbody></table></td></tr></tbody></table></div></div></div></div></div></div>
+
+
+<div id="zhr16000:1:mItemDtlPgl" class="x1a" style="position:absolute;width:auto;height:auto;top:0px;left:0px;bottom:0px;right:0px;overflow:auto;"><div><div id="zhr16000:1:ph7" class="x6v"><div class="xyx"><table class="af_panelHeader_title-table2" cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td class="x213"></td><td id="zhr16000:1:ph7::_afrTtxt"><div title="Edit Menu Item : Menu Header" class="xxd" style="width: 170px; max-width: 170px;"><h2 style="" class="xz9 ">Edit Menu Item : Menu Header</h2></div></td><td id="zhr16000:1:ph7::_afrStr" class="x103" style="width: 100%"></td></tr></tbody></table></div><div class="xzp"><div><div id="zhr16000:1:menuItemPfl" class="x19"><table cellpadding="0" cellspacing="0" border="0" summary="" role="presentation" style="width: 100%"><tbody><tr><td class="x4w" colspan="1"><table cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td style="width: 15.0%"></td><td style="width: 85.0%"></td></tr><tr class="x1u" id="zhr16000:1:nameText"><td class="xu x4z"><span title="Required" class="xf">*</span><label class="af_inputText_label-text" for="zhr16000:1:nameText::content" accesskey="N">Me<span class="xgb">n</span>u Item</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:nameText::content" name="zhr16000:1:nameText" class="x25" size="0" autocomplete="off" maxlength="80" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1u" id="zhr16000:1:labelText"><td class="xu x4z"><span title="Required" class="xf">*</span><label class="af_inputText_label-text" for="zhr16000:1:labelText::content">Label</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:labelText::content" name="zhr16000:1:labelText" class="x25" size="0" autocomplete="off" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1u" id="zhr16000:1:iconText"><td class="xu x4z"><label class="af_inputText_label-text" for="zhr16000:1:iconText::content">Icon</label></td><td valign="top" nowrap="" class="xuq"><input id="zhr16000:1:iconText::content" name="zhr16000:1:iconText" class="x25" size="0" autocomplete="off" type="text" value="Menu Header" aria-live="off"></td></tr><tr class="x1z" id="zhr16000:1:menuItemTypeSelect"><td class="x12 x4z"><label class="af_selectOneChoice_label-text" for="zhr16000:1:menuItemTypeSelect::content">Type</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:menuItemTypeSelect::content" name="zhr16000:1:menuItemTypeSelect" style="width: 178px" class="x2h" title="Copy Version" _afov="8"><option value="0" title="URL">URL</option><option value="1" title="Form">Form</option><option value="2" title="Business Rule">Business Rule</option><option value="3" title="Manage Approvals">Manage Approvals</option><option value="4" title="Dashboard">Dashboard</option><option value="5" title="Change Status">Change Status</option><option value="6" title="Menu Header">Menu Header</option><option value="7" title="Previous Form">Previous Form</option><option value="8" selected="" title="Copy Version">Copy Version</option></select></td></tr><tr class="x1z" id="zhr16000:1:dimNameSelect"><td class="x12 x4z"><label class="af_selectOneChoice_label-text" for="zhr16000:1:dimNameSelect::content">Required Parameters</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:dimNameSelect::content" name="zhr16000:1:dimNameSelect" style="width: 178px" class="x2h" title="None" _afov="0"><option value="0" selected="">None</option><option value="1">Account</option><option value="2">AssetClass</option><option value="3">AssetDetail</option><option value="4">Currency</option><option value="5">Custom1</option><option value="6">Department</option><option value="7">Employee</option><option value="8">Entity</option><option value="9">Future</option><option value="10">Grade</option><option value="11">HSP_View</option><option value="12">Period</option><option value="13">PlanElement</option><option value="14">Scenario</option><option value="15">Version</option><option value="16">Years</option><option value="17">Point of View</option><option value="18">Page</option><option value="19">Row</option><option value="20">Column</option><option value="21">Members only</option><option value="22">Cell Only</option></select></td></tr><tr class="xsb" style="display:none" id="zhr16000:1:plam1"><td class="x15 x4z"><label class="af_panelLabelAndMessage_label-text" for="zhr16000:1:memText::content">Members</label></td><td valign="top" class="xuq xsk"><span id="zhr16000:1:memText" class="x1u"><input id="zhr16000:1:memText::content" name="zhr16000:1:memText" class="x25" autocomplete="off" type="text" value="" aria-live="off"></span><img id="zhr16000:1:s1mt" src="/HyperionPlanning/adf/images/t.gif" alt="" width="5" height="10" style="vertical-align:middle;"><a id="zhr16000:1:cil1" class="xfi p_AFIconOnly" onclick="this.focus();return false;" href="#"><img id="zhr16000:1:cil1::icon" src="/HyperionPlanning/Images/member_selector.gif" class="x16v"></a></td></tr></tbody></table></td></tr></tbody></table></div></div></div></div></div><div><div id="zhr16000:1:ph8" class="x6v"><div class="xyx"><table class="af_panelHeader_title-table2" cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td class="x213"></td><td id="zhr16000:1:ph8::_afrTtxt"><div title="Copy Version" class="xxd" style="width: 73px; max-width: 73px;"><h2 style="" class="xz9 ">Copy Version</h2></div></td><td id="zhr16000:1:ph8::_afrStr" class="x103" style="width: 100%"></td></tr></tbody></table></div><div class="xzp"><div><div id="zhr16000:1:pfl1" class="x19"><table cellpadding="0" cellspacing="0" border="0" summary="" role="presentation" style="width: 100%"><tbody><tr><td class="x4w" colspan="1"><table cellpadding="0" cellspacing="0" border="0" width="100%" summary="" role="presentation"><tbody><tr><td style="width: 15.0%"></td><td style="width: 85.0%"></td></tr><tr class="x1z" id="zhr16000:1:copyScenarioSelect"><td class="x12 x4z"><span title="Required" class="xf">*</span><label class="af_selectOneChoice_label-text" for="zhr16000:1:copyScenarioSelect::content">Scenario</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:copyScenarioSelect::content" name="zhr16000:1:copyScenarioSelect" class="x2h" _afov=""><option value="" _adftmpopt="t"></option><option value="0">Act vs Bud</option><option value="1">Actual</option><option value="2">Budget</option><option value="3">Budget vs Actual</option><option value="4">Current</option><option value="5">CY_vs_NY</option><option value="6">CYActual vs NYActual</option><option value="7">Forecast</option><option value="8">No Scenerio</option><option value="9">Plan</option><option value="10">PY_vs_CY</option><option value="11">PYActual vs CYActual</option><option value="12">Variance</option><option value="13">Variance Comments</option></select></td></tr><tr class="x1z" id="zhr16000:1:copyFromVersionSelect"><td class="x12 x4z"><span title="Required" class="xf">*</span><label class="af_selectOneChoice_label-text" for="zhr16000:1:copyFromVersionSelect::content">Copy From</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:copyFromVersionSelect::content" name="zhr16000:1:copyFromVersionSelect" class="x2h" _afov=""><option value="" _adftmpopt="t"></option><option value="0">Base</option><option value="1">BU Version_1</option><option value="2">Direct Input</option><option value="3">Final</option><option value="4">Sandboxes</option><option value="5">What if</option><option value="6">Working</option></select></td></tr><tr class="x1z" id="zhr16000:1:copyToVersionSelect"><td class="x12 x4z"><span title="Required" class="xf">*</span><label class="af_selectOneChoice_label-text" for="zhr16000:1:copyToVersionSelect::content">Copy To</label></td><td valign="top" nowrap="" class="xuq"><select id="zhr16000:1:copyToVersionSelect::content" name="zhr16000:1:copyToVersionSelect" class="x2h" _afov=""><option value="" _adftmpopt="t"></option><option value="0">Base</option><option value="1">BU Version_1</option><option value="2">Direct Input</option><option value="3">Final</option><option value="4">Sandboxes</option><option value="5">What if</option><option value="6">Working</option></select></td></tr></tbody></table></td></tr></tbody></table></div></div></div></div></div></div>
+
+
+
+
+
+
+

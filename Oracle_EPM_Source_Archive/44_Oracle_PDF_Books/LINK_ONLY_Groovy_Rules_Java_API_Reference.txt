@@ -1,0 +1,12 @@
+﻿Document: Groovy Rules Java API Reference
+Product: Oracle Cloud EPM
+URL: https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/groov/index.html
+
+Status: HTML-only — no PDF available from Oracle
+Access: Open URL directly in browser
+
+Why Study: Essential for writing Groovy business rules in EPM Cloud.
+Covers DataGridBuilder, DataGridDefinitionBuilder, SmartPush, REST calls from Groovy.
+
+Priority: P1 — MUST STUDY (Phase 11: Groovy)
+Prerequisites: Calculation Manager, Business Rules

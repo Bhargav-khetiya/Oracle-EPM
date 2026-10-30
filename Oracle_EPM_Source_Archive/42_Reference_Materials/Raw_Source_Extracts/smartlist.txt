@@ -1,0 +1,333 @@
+ORACLE CLOUD EPM PLANNING — SMART LISTS
+COMPLETE UI EXTRACTION + OFFICIAL-DOCUMENTATION RESEARCH PROMPT
+
+Purpose
+=======
+This document extracts the Smart List Properties tab visible in the supplied Oracle EPM Planning HTML snapshot. It preserves the exact UI wording and values in the source. It also identifies what is not shown and supplies a prompt for researching the behavior using official Oracle documentation.
+
+IMPORTANT SOURCE LIMITATION
+===========================
+The supplied HTML is a snapshot of the Smart List configuration screen. It shows the Properties tab and the names of two other tabs, Entries and Preview, but it does not include the content of those two tabs. It does not show a saved-configuration audit trail, runtime form behavior, or official explanations for each property.
+
+Therefore:
+- Treat UI labels, options, selected values, and disabled/checked states below as directly observed in the HTML.
+- Treat any explanation of what a property does, how it behaves at runtime, or how it interacts with forms, cubes, security, dimensions, and data storage as requiring official Oracle documentation or a clearly labeled inference.
+- Do not claim that a disabled control is disabled for a specific reason unless Oracle documentation or additional evidence supports that reason.
+- The HTML includes CSS classes and internal element IDs. These are included only when useful for identifying the captured control; they are not necessarily public Oracle APIs.
+
+1. SCREEN AND TABS OBSERVED
+===========================
+Screen: Smart Lists configuration
+
+Visible tabs:
+1. Properties — selected in the supplied HTML
+   - Access key: P
+2. Entries
+   - Access key: R
+3. Preview
+   - Access key: W
+
+Only Properties-tab content is present in the supplied source. The HTML for the Entries and Preview tab contents is not supplied, so do not invent their controls or values.
+
+2. PROPERTIES TAB — FIELD-BY-FIELD EXTRACTION
+=============================================
+
+2.1 Smart List
+--------------
+- UI label: Smart List
+- Required: Yes (the UI includes a red/required asterisk with title "Required")
+- Current value: Demo_List
+- Maximum input length: 80 characters
+- HTML input type: text
+
+2.2 Label
+---------
+- UI label: Label
+- Required: Yes (the UI includes a red/required asterisk with title "Required")
+- Current value: Demo List 1
+- Maximum input length: 80 characters
+- HTML input type: text
+
+2.3 Display Order
+-----------------
+- UI label: Display Order
+- Current selected value: ID
+- Available options, in displayed order:
+  1. ID (selected)
+  2. Name
+  3. Label
+  4. Hierarchy
+
+2.4 #Missing Drop Down Label
+----------------------------
+- UI label: #Missing Drop Down Label
+- Current value: No Data
+- HTML input type: text
+- No maximum length is specified in the supplied input element.
+
+2.5 #Missing Form Label
+-----------------------
+- UI label: #Missing Form Label
+- Current selected value: Drop Down Setting
+- Available options, in displayed order:
+  1. Drop Down Setting (selected)
+  2. Form Setting
+
+2.6 Automatically generate ID
+-----------------------------
+- UI label: Automatically generate ID
+- Control type: checkbox
+- Current state in HTML: CHECKED
+- HTML value when checked: t
+
+2.7 Create From Members
+-----------------------
+- UI label: Create From Members
+- Control type: checkbox
+- Current state in HTML: UNCHECKED
+- HTML value when checked: t
+
+2.8 Cube
+--------
+- UI label: Cube
+- Control state in HTML: disabled
+- The row has CSS class "p_AFDisabled" and inline style display:none.
+- Current title/selected value reported by the select element: FinPlan
+- Available options present in HTML:
+  1. FinPlan (selected)
+  2. EPBCS
+  3. Manpower
+  4. Capital
+- Important: because the row is hidden and the control is disabled in the snapshot, the HTML shows FinPlan as its selected value but does not establish that the user can currently change it.
+
+2.9 Member Selection
+--------------------
+- UI label: Member Selection
+- Text field current value: blank
+- Text field state: disabled
+- Member selector link title/alt: Select Members
+- Member selector link state: disabled (aria-disabled="true" and CSS class includes "p_AFDisabled")
+- No member selection is shown.
+
+2.10 Minimum Access Required
+---------------------------
+- UI label: Minimum Access Required
+- Current selected value: Read
+- Control state: disabled
+- Available options present in HTML:
+  1. None
+  2. Display
+  3. Read (selected)
+  4. Write
+- The information/help icon is disabled in the supplied HTML.
+- Important: the source shows Read as the selected value of a disabled control. It does not prove why this property is disabled or whether the displayed value is applicable to this current Smart List configuration.
+
+3. EXACT OBSERVED CONFIGURATION SUMMARY
+=======================================
+
+| Property | Observed value/state |
+|----------|----------------------|
+| Smart List | Demo_List |
+| Label | Demo List 1 |
+| Display Order | ID |
+| #Missing Drop Down Label | No Data |
+| #Missing Form Label | Drop Down Setting |
+| Automatically generate ID | Checked |
+| Create From Members | Unchecked |
+| Cube | FinPlan shown; row hidden and control disabled |
+| Member Selection | Blank; disabled |
+| Minimum Access Required | Read shown; disabled |
+
+This is the observed state in the supplied HTML only. Do not infer that these values are recommended defaults or apply to every Smart List.
+
+4. OBSERVED HTML CONTROL IDENTIFIERS (OPTIONAL REFERENCE)
+=========================================================
+The following identifiers help locate the controls in this particular HTML snapshot. They are implementation details, not necessarily stable public interfaces.
+
+- Smart List: zhr16500:1:slName::content
+- Label: zhr16500:1:slLabel::content
+- Display Order: zhr16500:1:displayOrderId::content
+- #Missing Drop Down Label: zhr16500:1:slMissingLabel::content
+- #Missing Form Label: zhr16500:1:slMissingFormLabel::content
+- Automatically generate ID: zhr16500:1:slAutoGenId::content
+- Create From Members: zhr16500:1:slFromMbrCb::content
+- Cube: zhr16500:1:slPlanType::content
+- Member Selection: zhr16500:1:slMember::content
+- Select Members link: zhr16500:1:msLink
+- Minimum Access Required: zhr16500:1:slMinimumAccessReqd::content
+- Help icon: zhr16500:1:infoLink
+
+5. WHAT THE HTML DOES NOT ESTABLISH
+===================================
+The snapshot alone does not establish:
+
+- The full purpose and runtime behavior of a Smart List in Oracle Cloud EPM Planning.
+- The difference between the internal Smart List name and its Label, beyond showing that they are separate fields.
+- The exact sorting behavior of Display Order options ID, Name, Label, and Hierarchy.
+- Whether the #Missing Drop Down Label text appears only for missing values, how it interacts with #Missing Form Label, or what happens when the settings are changed.
+- The exact runtime and maintenance consequences of enabling or disabling Automatically generate ID.
+- What Create From Members does, which member types/dimensions are supported, whether IDs/labels are derived from member metadata, or how subsequent member changes are handled.
+- Why Cube, Member Selection, and Minimum Access Required are disabled/hidden in this screenshot.
+- The exact meanings and enforcement of Minimum Access Required values None, Display, Read, and Write.
+- Whether Smart List values are stored as text, numeric IDs, member names, or another representation in every context, and how that representation is used by forms, calculations, exports, integrations, or reporting.
+- How Smart Lists interact with Account properties, form cells, valid intersections, dynamic members, substitution variables, Groovy, Calc Manager, Smart View, or data maps.
+- The Entries tab's fields, entry IDs, labels, ordering, and editing controls.
+- The Preview tab's layout and preview behavior.
+- Save, validation, uniqueness, deletion, migration, and application-refresh behavior.
+
+Research these points from official Oracle documentation before presenting them as facts.
+
+6. ORACLE SMART LISTS — RESEARCH QUESTIONS FOR A CONSULTANT
+===========================================================
+Use these questions to structure official documentation research. Answer each separately and distinguish directly documented behavior from inference.
+
+A. Fundamentals
+- What is an Oracle Cloud EPM Planning Smart List?
+- Which user problem does it solve?
+- How is it different from typing a value into a cell, a substitution variable, a member selector, a Smart Form, and a Smart View drop-down?
+- Where can a Smart List be defined, assigned, and used?
+- What is the end-to-end path from definition to user selection to data saved or consumed by a calculation?
+
+B. Smart List and Label
+- What is the difference between the Smart List field (internal name) and Label?
+- Which field is referenced by administrators, rules, forms, integrations, or metadata?
+- What are naming constraints, reserved words, uniqueness rules, and rename implications?
+- What happens if the internal name is changed after rules or forms use the Smart List?
+
+C. Display Order
+- Explain ID, Name, Label, and Hierarchy exactly as Oracle defines them.
+- Show a small example where ordering produces different dropdown sequences.
+- What data does each option sort by? What does Name mean in this context?
+- Are there differences when the Smart List is created from members versus manually maintained entries?
+
+D. Missing-value labels
+- Explain #Missing Drop Down Label and #Missing Form Label.
+- Explain the exact difference between Drop Down Setting and Form Setting.
+- Give examples for a cell that has no stored value, a selected Smart List entry, a cleared cell, and a form-level #Missing display setting.
+- Clarify whether these settings change the stored value or only presentation.
+- Identify any limitations or differences among forms, Smart View, dashboards, and other interfaces, using documentation where available.
+
+E. Automatically generate ID
+- Explain what an ID is for Smart List entries and how generated IDs are assigned.
+- What happens when an administrator manually assigns IDs versus enabling automatic generation?
+- Are IDs numeric, sequential, stable, unique, or affected by deletion/reordering? Verify all claims.
+- What happens if an entry is renamed, an entry is removed, or entries are imported/migrated?
+- Explain the risks of changing IDs when rules, historical data, or integrations may depend on them.
+
+F. Create From Members and Cube
+- Explain the purpose and workflow of Create From Members.
+- Which dimensions, member properties, and cube contexts can supply members?
+- Explain the relationship between Create From Members, Cube, and Member Selection.
+- Why might Cube and Member Selection be disabled or hidden in a given UI state? Do not assume the reason from this screenshot alone.
+- What happens when source members are added, renamed, moved, deleted, shared, or refreshed?
+- Is the Smart List a live reflection of members or a generated list that must be refreshed? Verify precisely.
+
+G. Minimum Access Required
+- Explain the None, Display, Read, and Write settings and their effect on which users can access/use the Smart List.
+- Explain any dependency on Planning user roles, dimension/member security, form permissions, and application type.
+- Explain why the control might appear disabled in some configurations, based on official evidence.
+- Distinguish permission to see an entry from permission to write data to a form cell.
+
+H. Entries and Preview tabs
+- Document every Entries-tab control, column, action, validation rule, and field if official documentation supports it.
+- Explain the difference between entry ID and displayed label/value.
+- Explain adding, editing, deleting, ordering, importing, and exporting entries where supported.
+- Document Preview tab behavior and what preview can and cannot prove.
+- Keep UI controls tied to the correct Oracle EPM Cloud version if the UI has changed.
+
+I. Assignment and runtime behavior
+- How is a Smart List assigned to an appropriate Account member or other supported configuration?
+- Which Account data types/properties and form settings are required, if any?
+- What does the user see in a form cell?
+- What gets saved when a user selects an entry?
+- Explain the behavior of existing data when a Smart List is assigned, changed, or removed.
+- Explain how Smart List values are retrieved by Calc Manager/Essbase formulas and any required functions or syntax. Verify function names and restrictions against Oracle docs.
+- Explain what happens if a calculation writes an invalid ID/value or if a list entry is deleted after data was stored.
+
+J. Scenarios and troubleshooting
+- Build realistic EPBCS/Planning examples: Status selection, Employee Type, Approval Flag, Department/Plan selection, and a list generated from dimension members.
+- For each example, state configuration, user action, stored data/visible label, calculation consumption, and limitations.
+- Include troubleshooting cases: blank dropdown, wrong order, duplicate-looking labels, missing display, invalid entry, Smart List not available in a form, disabled configuration controls, and migrated list behaving differently.
+- For each issue, provide symptoms, likely causes (ranked only where evidence supports it), checks, fix, and preventive practice.
+
+K. Lifecycle, migration, and operations
+- Explain supported export/import and migration paths, including what is transported with application snapshots or artifacts.
+- Explain dependencies when moving between dev, test, and production.
+- Explain how to test a Smart List before and after migration.
+- Explain any limits, supported entry counts, performance implications, and application-type differences, citing exact official documentation where available.
+
+L. Security, edge cases, and interview preparation
+- Explain how Smart List visibility and data-entry authorization interact with security and form design.
+- Cover practical edge cases without assuming behavior not documented.
+- Add consultant interview questions with accurate answers, including scenario questions and debugging questions.
+- Finish with a glossary and a checklist for deploying a Smart List safely.
+
+7. REQUIRED RESEARCH METHOD
+===========================
+1. Prefer official Oracle documentation for Oracle Cloud EPM Planning. Use the documentation version applicable to the UI/context and state the version/date where possible.
+2. Search Oracle Help Center pages, Oracle Cloud EPM administration guides, implementation documentation, and official Oracle technical articles where relevant.
+3. Cite a direct source for every nontrivial behavior claim. Include the page title and link, and note the exact section heading where useful.
+4. Separate each statement into one of these categories:
+   - CONFIRMED BY SUPPLIED HTML
+   - CONFIRMED BY OFFICIAL ORACLE DOCUMENTATION
+   - REASONABLE INFERENCE (explain why)
+   - NOT VERIFIED / VERSION-DEPENDENT
+5. If official documents conflict or versions differ, report the difference instead of silently choosing one.
+6. Do not invent menu paths, property meanings, syntax, limits, error messages, or unsupported behaviors.
+7. Do not assume that a selected value on a disabled control is the active/default behavior for every application.
+8. Preserve exact source spellings and labels, including the leading # in the missing-label fields.
+
+8. READY-TO-USE PROMPT FOR CLAUDE
+=================================
+
+Act as a senior Oracle Cloud EPM Planning / EPBCS consultant, administrator, and technical trainer. Use the supplied file “ORACLE CLOUD EPM PLANNING — SMART LISTS: COMPLETE UI EXTRACTION + OFFICIAL-DOCUMENTATION RESEARCH PROMPT” as the source of UI facts.
+
+Your goal is to create a complete, accurate, consultant-level Smart Lists knowledge guide for a beginner who wants to understand the feature from the UI to runtime behavior and production support.
+
+NON-NEGOTIABLE SOURCE RULES
+- Treat the supplied extraction as authoritative only for what the HTML visibly shows.
+- Research behavior and technical claims in official Oracle documentation first.
+- Do not fill gaps with guesses. Clearly label inference and unverified/version-dependent behavior.
+- Preserve exact visible labels and selected values. Do not silently correct the source text.
+- Cite each substantive Oracle behavior claim with an official source link, page title, and relevant section.
+- If an answer cannot be supported, state “Not verified from the available sources.”
+
+DELIVERABLE STRUCTURE
+1. Executive definition: Smart List in one plain-English paragraph.
+2. Where it fits in Oracle EPM Planning: administrator setup, dimension/account configuration, forms, user selection, stored data, calculation/reporting consumption.
+3. UI walkthrough, field by field, for every field in the extraction:
+   - What it is
+   - Why it exists
+   - What each option means
+   - What changes when the option is changed
+   - Concrete example
+   - Runtime impact
+   - Dependencies and limitations
+   - Troubleshooting notes
+4. Deep explanations of Display Order (ID, Name, Label, Hierarchy), #Missing Drop Down Label, #Missing Form Label (Drop Down Setting/Form Setting), Automatically generate ID, Create From Members, Cube, Member Selection, and Minimum Access Required (None/Display/Read/Write).
+5. Entries tab and Preview tab, using official docs or clearly stating what cannot be verified from the given HTML.
+6. At least 8 practical EPBCS/Planning scenarios. For each: business requirement, design, exact setup steps, example entries, form behavior, data/storage implications, rule/calculation implications, and risks.
+7. Detailed end-to-end examples with sample data. Show the distinction between an entry ID, entry label, a form display, and what a calculation reads only if official sources verify that distinction.
+8. Security and access: distinguish Smart List access from form access, member security, and the ability to write data.
+9. Lifecycle and migration: create, edit, test, snapshot/export/import, validate, and deploy across environments.
+10. Troubleshooting matrix: symptom, diagnostic checks, likely cause (when supported), resolution, prevention, and source.
+11. Edge cases and version differences.
+12. Consultant best practices and deployment checklist.
+13. Interview questions: beginner, intermediate, advanced, and scenario-based, with accurate answers.
+14. Glossary.
+15. Official Oracle source bibliography.
+16. Final uncertainty register: every question that official docs did not resolve.
+
+TEACHING STYLE
+- Assume the learner is new to Oracle EPM but wants expert-level understanding.
+- Begin with simple words, then explain the technical mechanics in depth.
+- Explain why the property exists, not merely what its label says.
+- Use tables for options and troubleshooting; use small, concrete examples.
+- Explain consequences, side effects, common misunderstandings, and when not to use a feature.
+- Do not fabricate calculation functions, API behavior, menu paths, supported limits, or error messages.
+- Clearly distinguish Oracle-documented facts from practical recommendations.
+
+Begin with the facts directly observed in the supplied HTML, then research and build the guide. Do not claim that Entries or Preview controls were present in the source HTML; research them separately and mark the evidence source.
+
+END OF DOCUMENT
+================

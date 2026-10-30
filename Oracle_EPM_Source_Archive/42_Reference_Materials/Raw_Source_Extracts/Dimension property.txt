@@ -1,0 +1,1257 @@
+ 
+ 
+Dimensions
+ 
+	
+Edit Member : Net Profit
+	
+Member Properties
+UDA
+Member Formula
+Name	
+Description	
+Alias Table	
+Alias	
+Account Type	
+Variance Reporting	
+Time Balance	
+Skip	
+Exchange Rate Type	
+Source Cube	
+Data Storage	
+Two Pass Calculation	
+Plan Type	
+FinPlan	
+		
+EPBCS	
+		
+Manpower	
+		
+Capital	
+		
+Data Type	
+Smart Lists	
+Enable for Dynamic Children	
+Number of Possible Dynamic Children	
+Access Granted to Member Creator	
+											Reset				Save				Cancel
+ 
+ 
+Dimensions
+ 
+	
+Edit Member : Net Profit
+	
+Member Properties
+UDA
+Member Formula
+	
+Actions
+	
+		Create		Edit		Delete		Clear
+		
+	
+ 
+ 
+UDA
+HSP_NOLINK
+ 
+Add
+Add
+Add All
+Add All
+Remove
+Remove
+Remove All
+Remove All
+ 
+Selected UDA
+Hsp_Currency
+											Reset				Save				Cancel
+ 
+ 
+Dimensions
+ 
+	
+Edit Member : Net Profit
+	
+Member Properties
+UDA
+Member Formula
+ 
+	
+	
+Cube	
+Data Storage	
+Solve Order	
+	
+ 
+	
+	
+									Validate		Reset				Save				Cancel
+Oracle EPM — Member Properties Knowledge Base
+1. General properties
+Property	Screen value / options
+Name	Net Profit
+Description	Blank
+Alias Table	Arabic, Default — selected: Default
+Alias	Net Profit
+
+2. Account properties
+Property	All visible dropdown options	Selected value
+Account Type	Expense, Revenue, Asset, Liability, Equity, Saved Assumption	Revenue
+Variance Reporting	Expense, Non-Expense	Non-Expense
+Time Balance	Flow, First, Balance, Average, Fill, Weighted Average - Actual_Actual, Weighted Average - Actual_365, Custom, Disable	Flow
+Skip	None, Missing, Zeros, Missing And Zeros	None (disabled)
+Exchange Rate Type	No Rate, Average, Ending	Average
+Source Cube	None, FinPlan, EPBCS, Manpower, Capital	FinPlan
+
+3. Data storage and calculation
+Property	All visible options / states	Current state
+Data Storage	Store, Dynamic Calc and Store, Dynamic Calc, Never Share, Label only	Dynamic Calc
+Two Pass Calculation	Checkbox	Unchecked
+
+4. Plan Type settings
+Each plan type has an enable checkbox and a consolidation operator dropdown.
+Plan Type	Enabled?	Consolidation operator options	Selected operator
+FinPlan	Yes	Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never	Addition
+EPBCS	Yes	Addition, Subtraction, Multiplication, Division, Percent, Ignore	Addition
+Manpower	Yes	Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never	Addition
+Capital	Yes	Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never	Addition
+
+Note: The available operators differ slightly by plan type on this screen. The extracted options above preserve those differences.
+5. Data type and Smart Lists
+Property	All visible options	Selected value
+Data Type	Unspecified, Currency, Non Currency, Percentage, SmartList, Date, Text, Transient Text	Currency
+Smart Lists	None, Demo_List_with_Members, Select_Dept, SL_Employee_Nationality, SL_Employee_Grade, Forecast_Trend_List, ConfidenceMeter, Demo_List, Yes_No	None (disabled)
+
+6. Dynamic children properties
+Property	Screen value / options	State
+Enable for Dynamic Children	Checkbox	Unchecked
+Number of Possible Dynamic Children	Numeric field	10 (disabled)
+Access Granted to Member Creator	Inherit, None, Read, Write	Inherit (disabled)
+
+7. Additional tabs visible
+The supplied screen also contains these tabs, but their detailed contents are not included in the extracted screen:
+- UDA
+- Member Formula
+Their properties and options should not be inferred from this screen alone.
+
+8. Instructions to give Claude
+Copy the following instructions along with the extracted property reference so Claude can build knowledge from it.
+Oracle EPM Cloud Member Properties — Knowledge Instructions
+Purpose
+Use this reference as a knowledge base for Oracle EPM Cloud Planning member properties. The reference comes from an actual member-properties screen for the Account member Net Profit.
+Rules for answering questions
+1. Preserve the exact property names and dropdown options recorded in this document.
+2. Distinguish between:
+   - A property's purpose
+   - Its available options
+   - The currently selected value
+   - Its effect on data storage, calculation, consolidation, reporting, or integration
+   - Its dependencies and limitations
+3. Do not assume that every option is available for every plan type, dimension, cube, or application.
+4. Do not treat a disabled property as a universally unavailable feature. Explain that it was disabled in this particular screen and investigate why, if documentation supports an explanation.
+5. When explaining a property, cover:
+   - What it means in simple language
+   - Why Oracle provides it
+   - How the engine processes it
+   - A practical business scenario
+   - What changes when the setting is changed
+   - When to use and avoid it
+   - Performance implications
+   - Dependencies and restrictions
+   - Common mistakes and troubleshooting
+   - Interview questions and hands-on exercises
+6. Clearly separate verified Oracle documentation from logical inference and examples.
+7. Do not invent undocumented behaviors, dropdown values, dependencies, or application restrictions.
+8. When asked about a particular property, compare its alternatives rather than defining only the selected option.
+9. Explain interactions between properties where relevant. For example, investigate how Account Type, Variance Reporting, Time Balance, Data Storage, Two Pass Calculation, Source Cube, and Plan Type settings work together.
+10. Treat this document as a screen extraction, not a complete Oracle EPM specification. Expand it using authoritative Oracle documentation when requested.
+Important learning objective
+Teach these properties from beginner to consultant level. Explain not only what a setting does, but why it exists, what business problem it solves, what happens when it is configured incorrectly, and how a consultant would diagnose the result in a real application.
+
+
+
+
+Recommended next step: Give Claude the extracted properties plus the instructions above, then ask it to research each property against the official Oracle documentation. This will turn the screen extraction into a deeper consultant-level knowledge base without confusing visible facts with assumptions.
+
+
+Oracle EPM — Member Properties Extraction: USD_Reporting
+This screen shows a member named USD_Reporting. Below is the structured extraction you can give to Claude as additional knowledge.
+1. Properties and screen values
+Property	Available options	Current value	Screen status
+Code	Text field	USD_Reporting	Disabled
+Description	Text field	Blank	Disabled
+Alias Table	Arabic, Default	Default	Enabled
+Alias	Text field	Blank	Enabled
+Data Storage	Store, Dynamic Calc and Store, Dynamic Calc, Never Share, Label only	Store	Disabled
+Two Pass Calculation	Checkbox	Unchecked	Disabled
+Data Type	Unspecified, Currency, Non Currency, Percentage, SmartList, Date, Text, Transient Text	Unspecified	Disabled
+Smart Lists	None, Demo_List_with_Members, Select_Dept, SL_Employee_Nationality, SL_Employee_Grade, Forecast_Trend_List, ConfidenceMeter, Demo_List, Yes_No	None	Disabled
+
+2. Additional tabs visible
+- Create Currency — a tab is present, but its contents are not shown.
+- UDA — tab present; details not shown.
+- Member Formula — tab present; details not shown.
+3. Important observations
+- The member code is USD_Reporting, and the Code field is disabled.
+- Most properties are disabled in this screen. The extraction does not establish why they are disabled.
+- Store is the displayed Data Storage value, but it cannot be changed here.
+- Unspecified is the displayed Data Type.
+- The alias table is set to Default, while the alias field is blank.
+- The screen alone does not confirm whether this member is a system-defined currency member or explain its relationship with currency configuration.
+4. Claude knowledge-base instructions
+Oracle EPM Member Properties — USD_Reporting
+Source
+Extracted from the supplied Oracle EPM member-properties screen. Preserve the exact screen values and distinguish observed facts from assumptions.
+Extracted member
+- Code: USD_Reporting (disabled)
+- Description: Blank (disabled)
+- Alias Table: Arabic, Default; current value Default
+- Alias: Blank
+- Data Storage: Store, Dynamic Calc and Store, Dynamic Calc, Never Share, Label only; current value Store (disabled)
+- Two Pass Calculation: Unchecked (disabled)
+- Data Type: Unspecified, Currency, Non Currency, Percentage, SmartList, Date, Text, Transient Text; current value Unspecified (disabled)
+- Smart Lists: None, Demo_List_with_Members, Select_Dept, SL_Employee_Nationality, SL_Employee_Grade, Forecast_Trend_List, ConfidenceMeter, Demo_List, Yes_No; current value None (disabled)
+Additional tabs
+- Create Currency
+- UDA
+- Member Formula
+Their detailed contents are not available in the supplied screen.
+Instructions
+1. Preserve all extracted labels, options, and current values.
+2. Explain each property in beginner-friendly language, then at consultant level.
+3. Explain why the property exists, real-world use cases, engine behavior, limitations, dependencies, performance, and troubleshooting where supported by authoritative documentation.
+4. Investigate why the properties are disabled only when reliable evidence is available. Do not invent a reason.
+5. Investigate the significance of USD_Reporting and the Create Currency tab using the correct Oracle EPM product and application context.
+6. Separate facts visible in the supplied screen from Oracle documentation and any inference.
+7. Do not assume this member is system-defined or that it has a particular currency-conversion behavior solely because of its name.
+8. Do not infer the contents of hidden tabs.
+The objective is to build accurate Oracle EPM Cloud consultant-level knowledge, not merely to describe the screen.
+
+
+
+Add a concise fact-versus-inference tableSeparate observed values from explanations
+Oracle EPM — Member Properties Extraction: No Custom1
+This is the structured extraction of the supplied screen, ready to add to your Claude Oracle EPM knowledge base.
+1. General properties
+Property	Available options	Current value	Screen status
+Name	Text field	No Custom1	Enabled
+Description	Text field	Blank	Enabled
+Alias Table	Arabic, Default	Default	Enabled
+Alias	Text field	Blank	Enabled
+
+2. Data storage and calculation
+Property	Available options	Current value	Screen status
+Data Storage	Store, Dynamic Calc and Store, Dynamic Calc, Never Share, Label only	Store	Enabled
+Two Pass Calculation	Checkbox	Unchecked	Disabled
+
+3. Plan Type settings
+Each plan type has an enable checkbox and a consolidation operator.
+Plan Type	Enabled?	Available operators	Selected operator	Screen status
+FinPlan	Yes	Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never	Addition	Enabled
+EPBCS	No	Addition, Subtraction, Multiplication, Division, Percent, Ignore	Addition	Disabled
+Manpower	Yes	Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never	Addition	Enabled
+Capital	No	Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never	Addition	Disabled
+
+The selected operator is displayed even for disabled plan types. The screen does not establish why EPBCS and Capital are disabled.
+4. Data type and Smart Lists
+Property	Available options	Current value	Screen status
+Data Type	Unspecified, Currency, Non Currency, Percentage, SmartList, Date, Text, Transient Text	Unspecified	Enabled
+Smart Lists	None, Demo_List_with_Members, Select_Dept, SL_Employee_Nationality, SL_Employee_Grade, Forecast_Trend_List, ConfidenceMeter, Demo_List, Yes_No	None	Disabled
+
+5. Dynamic children and creator access
+Property	Available options / value	Current value	Screen status
+Enable for Dynamic Children	Checkbox	Unchecked	Enabled
+Number of Possible Dynamic Children	Numeric field	10	Disabled
+Access Granted to Member Creator	Inherit, None, Read, Write	Inherit	Disabled
+
+6. Claude knowledge-base instructions
+Oracle EPM Cloud Member Properties — No Custom1
+Source and scope
+This document records the visible properties and values from the supplied Oracle EPM member-properties screen for the member No Custom1. It is a screen extraction, not a complete product specification.
+Extracted facts
+- Name: No Custom1 (enabled)
+- Description: Blank (enabled)
+- Alias Table: Arabic, Default; selected Default
+- Alias: Blank
+- Data Storage: Store, Dynamic Calc and Store, Dynamic Calc, Never Share, Label only; selected Store
+- Two Pass Calculation: Unchecked and disabled
+- Data Type: Unspecified, Currency, Non Currency, Percentage, SmartList, Date, Text, Transient Text; selected Unspecified
+- Smart Lists: None, Demo_List_with_Members, Select_Dept, SL_Employee_Nationality, SL_Employee_Grade, Forecast_Trend_List, ConfidenceMeter, Demo_List, Yes_No; selected None and disabled
+- Enable for Dynamic Children: Unchecked
+- Number of Possible Dynamic Children: 10 and disabled
+- Access Granted to Member Creator: Inherit, None, Read, Write; selected Inherit and disabled
+Plan Type settings
+- FinPlan: Enabled; selected operator Addition. Options: Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never.
+- EPBCS: Disabled; displayed operator Addition. Options: Addition, Subtraction, Multiplication, Division, Percent, Ignore.
+- Manpower: Enabled; selected operator Addition. Options: Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never.
+- Capital: Disabled; displayed operator Addition. Options: Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never.
+Instructions for further learning
+1. Explain each property in beginner-friendly language and then at consultant depth.
+2. Explain its purpose, business scenarios, calculation or storage behavior, dependencies, performance impact, and troubleshooting where supported by reliable Oracle documentation.
+3. Investigate the significance of the member name No Custom1 without assuming its behavior solely from its name.
+4. Explain the meaning of plan-type enablement separately from the consolidation operator.
+5. Investigate why specific properties or plan types are disabled only when sufficient evidence exists.
+6. Clearly distinguish the values visible on this screen from documented product behavior and inference.
+7. Do not invent properties, options, or restrictions.
+8. When discussing practical examples, explain what would happen if the setting were changed and what a consultant should verify.
+Goal: build a reliable Oracle EPM Cloud consultant knowledge base from actual screen properties and authoritative documentation.
+
+This screen is for the Oracle EPM member D10010, with the alias D10010:Catering. Below is the exact property extraction from your supplied HTML, followed by a Claude-ready knowledge-base prompt.
+1. General Properties
+Property	Current value	Status
+Name	D10010	Enabled
+Description	Blank	Enabled
+Alias Table	Default	Enabled
+Alias	D10010:Catering	Enabled
+
+2. Data Storage and Calculation
+Property	Current value	Available options	Status
+Data Storage	Store	Store, Dynamic Calc and Store, Dynamic Calc, Never Share, Label only	Enabled
+Two Pass Calculation	Unchecked	Checkbox	Disabled
+
+3. Plan Type Settings
+All four plan types are enabled, and all have the consolidation operator Addition selected.
+Plan Type	Enabled?	Current operator	Available operators
+FinPlan	Yes	Addition	Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never
+EPBCS	Yes	Addition	Addition, Subtraction, Multiplication, Division, Percent, Ignore
+Manpower	Yes	Addition	Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never
+Capital	Yes	Addition	Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never
+
+4. Data Type and Other Properties
+Property	Current value	Available options / details	Status
+Data Type	Unspecified	Unspecified, Currency, Non Currency, Percentage, SmartList, Date, Text, Transient Text	Enabled
+Smart Lists	None	None, Demo_List_with_Members, Select_Dept, SL_Employee_Nationality, SL_Employee_Grade, Forecast_Trend_List, ConfidenceMeter, Demo_List, Yes_No	Disabled
+Enable for Dynamic Children	Unchecked	Checkbox	Enabled
+Number of Possible Dynamic Children	10	Numeric field	Disabled
+Access Granted to Member Creator	Inherit	Inherit, None, Read, Write	Disabled
+
+5. Claude Knowledge-Base Prompt
+Use this prompt with Claude alongside your Oracle EPM course files.
+Oracle EPM Cloud — Member Properties Knowledge Base: D10010
+1. Source Screen Facts
+Analyze the supplied Oracle EPM Cloud member-properties screen for member D10010.
+
+Alias: D10010:Catering
+
+Description: Blank
+
+Alias Table: Default
+Data Storage
+- Current setting: Store
+- Available options: Store, Dynamic Calc and Store, Dynamic Calc, Never Share, Label only
+- Control status: Enabled
+Two Pass Calculation
+- Current state: Unchecked
+- Control status: Disabled
+Plan Types and Consolidation Operators
+All four plan types are enabled. The current operator for every plan type is Addition.
+
+FinPlan
+- Enabled: Yes
+- Selected operator: Addition
+- Options: Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never
+EPBCS
+- Enabled: Yes
+- Selected operator: Addition
+- Options: Addition, Subtraction, Multiplication, Division, Percent, Ignore
+Manpower
+- Enabled: Yes
+- Selected operator: Addition
+- Options: Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never
+Capital
+- Enabled: Yes
+- Selected operator: Addition
+- Options: Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never
+Data Type
+- Selected value: Unspecified
+- Options: Unspecified, Currency, Non Currency, Percentage, SmartList, Date, Text, Transient Text
+- Control status: Enabled
+Smart Lists
+- Selected value: None
+- Available options: None, Demo_List_with_Members, Select_Dept, SL_Employee_Nationality, SL_Employee_Grade, Forecast_Trend_List, ConfidenceMeter, Demo_List, Yes_No
+- Control status: Disabled
+Dynamic Children
+- Enable for Dynamic Children: Unchecked; enabled control
+- Number of Possible Dynamic Children: 10; disabled control
+- Access Granted to Member Creator: Inherit; disabled control
+- Available creator-access options: Inherit, None, Read, Write
+2. Teaching Instructions
+Act as an experienced Oracle EPM Cloud and EPBCS architect teaching a beginner who wants to become a consultant.
+
+Explain each property from fundamentals to practical consultant level. For each property, cover:
+1. What it means in simple language.
+2. Why Oracle provides the property.
+3. What the Essbase engine or Planning application does with it.
+4. What changes when the property is changed.
+5. A practical business scenario using D10010 / D10010:Catering.
+6. When a consultant should use or avoid each option.
+7. Performance, data-storage, calculation, and aggregation implications where applicable.
+8. Common mistakes, troubleshooting scenarios, and interview questions.
+9. Relevant dependencies on member type, dimension settings, cube configuration, and other properties.
+Special teaching requirements
+- Explain Store versus Dynamic Calc and Store, Dynamic Calc, Never Share, and Label only with practical examples.
+- Explain how consolidation operators affect parent-child aggregation, including Addition, Subtraction, Multiplication, Division, Percent, Ignore, and Never. Clearly distinguish operator availability from operator behavior.
+- Explain what enabling a plan type means and how it differs from selecting its consolidation operator.
+- Explain the difference between a property being disabled in the UI and a property being unchecked. Do not assume a disabled setting is false or that its underlying value can be changed.
+- Explain Unspecified data type and Smart List dependencies without assuming a Smart List is assigned.
+- Explain Dynamic Children, the possible-child limit, and creator access. Clearly distinguish the values shown on this screen from settings that may be governed elsewhere.
+- Do not claim that the member is a parent, child, stored data point, or specific dimension type unless supporting metadata establishes that fact.
+3. Evidence and Accuracy Rules
+Separate the response into:
+- Observed screen facts: Values and states explicitly visible in the supplied HTML.
+- Oracle product behavior: Explanations supported by reliable Oracle documentation.
+- Scenario or inference: Examples that are illustrative and must be labelled as such.
+Do not invent missing configuration, dimension membership, security assignments, cube behavior, or business requirements. If a conclusion depends on information not supplied, state exactly what additional information is needed.
+
+Preserve the exact option names and current values. Do not silently change or correct the extracted screen data.
+
+Build a structured, reusable knowledge-base entry for this member that can later be compared with other member-property screens.
+
+
+This Oracle EPM member-properties screen is for Q1, with Data Storage set to Dynamic Calc. It also contains Start Period and End Period properties, which are the key additional settings on this screen.
+1. General Properties
+Property	Current value	Status
+Name	Q1	Enabled
+Description	Blank	Enabled
+Alias Table	Default	Enabled
+Alias	Blank	Enabled
+
+2. Data Storage and Calculation
+Property	Current value	Available options	Status
+Data Storage	Dynamic Calc	Store, Dynamic Calc and Store, Dynamic Calc, Never Share, Label only	Enabled
+Two Pass Calculation	Unchecked	Checkbox	Enabled
+
+3. Plan Type Settings
+All four plan types are enabled, and Addition is selected for each.
+Plan Type	Enabled?	Selected operator	Available operators
+FinPlan	Yes	Addition	Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never
+EPBCS	Yes	Addition	Addition, Subtraction, Multiplication, Division, Percent, Ignore
+Manpower	Yes	Addition	Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never
+Capital	Yes	Addition	Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never
+
+4. Data Type and Smart Lists
+Property	Current value	Available options	Status
+Data Type	Unspecified	Unspecified, Currency, Non Currency, Percentage, SmartList, Date, Text, Transient Text	Enabled
+Smart Lists	None	None, Demo_List_with_Members, Select_Dept, SL_Employee_Nationality, SL_Employee_Grade, Forecast_Trend_List, ConfidenceMeter, Demo_List, Yes_No	Disabled
+
+5. Start Period and End Period
+
+Start Period
+Jan
+Available options in this screen: Jan, Feb, Mar
+
+
+
+
+End Period
+Mar
+Available options in this screen: Jan, Feb, Mar, Apr, May
+
+
+
+Both controls are enabled. The selected range is January through March.
+
+Important: This range is the observed configuration. The HTML does not establish why this range was chosen or how the member is used in the application.
+6. Claude Knowledge-Base Prompt
+Oracle EPM Cloud — Member Properties Knowledge Base: Q1
+Act as a senior Oracle EPM Cloud / EPBCS architect and teach a beginner who wants to become an expert consultant.
+
+Analyze the supplied member-properties screen for member Q1. Preserve every observed value and option exactly.
+A. Observed Screen Facts
+General
+- Name: Q1
+- Description: Blank
+- Alias Table: Default
+- Alias: Blank
+Data Storage
+- Selected: Dynamic Calc
+- Options: Store, Dynamic Calc and Store, Dynamic Calc, Never Share, Label only
+- Control enabled.
+Two Pass Calculation
+- Unchecked
+- Control enabled.
+Plan Types
+All four plan types are enabled, with Addition selected.
+
+FinPlan
+- Options: Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never.
+EPBCS
+- Options: Addition, Subtraction, Multiplication, Division, Percent, Ignore.
+Manpower
+- Options: Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never.
+Capital
+- Options: Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never.
+Data Type
+- Selected: Unspecified
+- Options: Unspecified, Currency, Non Currency, Percentage, SmartList, Date, Text, Transient Text
+- Enabled.
+Smart Lists
+- Selected: None
+- Options: None, Demo_List_with_Members, Select_Dept, SL_Employee_Nationality, SL_Employee_Grade, Forecast_Trend_List, ConfidenceMeter, Demo_List, Yes_No
+- Disabled.
+Period Properties
+Start Period
+- Selected: Jan
+- Visible options: Jan, Feb, Mar
+- Enabled.
+End Period
+- Selected: Mar
+- Visible options: Jan, Feb, Mar, Apr, May
+- Enabled.
+The configured period range shown is January through March.
+B. Required Teaching
+Explain these properties from beginner to consultant level:
+1. Why Oracle provides Start Period and End Period.
+2. How these properties relate to planning periods and member behavior, using Oracle documentation to establish their exact purpose.
+3. Whether and how the period range can affect a planning member, and what depends on the dimension type and application configuration.
+4. What Dynamic Calc means for storage, retrieval, and calculation, including practical examples.
+5. How Two Pass Calculation differs from ordinary calculation and when it may be appropriate.
+6. How consolidation operators affect aggregation.
+7. What enabling a plan type means versus choosing a consolidation operator.
+8. How Data Type and Smart List settings affect data entry and retrieval.
+9. Practical troubleshooting cases, consultant decision-making, performance implications, and interview questions.
+C. Accuracy Rules
+- Separate observed screen facts from documented Oracle behavior and illustrative examples.
+- Do not assume Q1 belongs to the Period dimension solely because its name is Q1.
+- Do not assume the application is configured for a particular fiscal calendar.
+- Do not infer that January through March represents a fiscal quarter without confirming the dimension and calendar setup.
+- The visible options are the options present in this supplied HTML, not necessarily every possible option in every Oracle EPM application.
+- If Oracle documentation is needed to explain the purpose of Start Period and End Period, verify it rather than guessing.
+- Explain any missing dependencies explicitly.
+- Preserve exact property names, values, options, and enabled/disabled states.
+
+This Oracle EPM member-properties screen is for the member Actual. The most important settings are its year and period range, Include BegBal as Time Period, Enabled for Approvals, Hierarchy Type, and Data Storage = Never Share.
+1. General Properties
+Property	Current value	Status
+Name	Actual	Enabled
+Description	Blank	Enabled
+Alias Table	Default	Enabled
+Alias	Blank	Enabled
+
+2. Year and Period Range
+Property	Selected value	Available options	Status
+Start Yr.	FY24	FY24 through FY40	Enabled
+Start Period	Jan	Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec	Enabled
+End Yr.	FY40	FY24 through FY40	Enabled
+End Period	Jul	Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec	Enabled
+
+The configured range begins at FY24 Jan and ends at FY40 Jul.
+3. Additional Time and Workflow Properties
+Property	Current value	Status
+Include BegBal as Time Period	Checked	Enabled
+Enabled for Approvals	Checked	Enabled
+Exchange Rate Table	None	Disabled
+
+What is explicitly visible: BegBal is included as a time period, and the member is enabled for approvals. The screen alone does not establish the application's approval-unit configuration or how BegBal is used in calculations.
+4. Hierarchy Type and Data Storage
+Property	Current value	Available options	Status
+Hierarchy Type	Not Set	Not Set, Stored, Dynamic	Enabled
+Data Storage	Never Share	Store, Dynamic Calc and Store, Dynamic Calc, Never Share, Label only	Enabled
+Two Pass Calculation	Unchecked	Checkbox	Disabled
+
+Hierarchy Type and Data Storage are separate properties. Do not treat Not Set as equivalent to either Stored or Dynamic. Their exact implications should be assessed in the context of the dimension and application configuration.
+5. Plan Type Settings
+All four plan-type checkboxes are checked but disabled. The selected consolidation operators are shown below.
+Plan Type	Checkbox state	Selected operator	Operators visible in the dropdown
+FinPlan	Checked, disabled	Addition	Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never
+EPBCS	Checked, disabled	Addition	Addition, Ignore
+Manpower	Checked, disabled	Ignore	Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never
+Capital	Checked, disabled	Ignore	Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never
+
+Note that the EPBCS dropdown contains only Addition and Ignore in this particular screen. Preserve that observation rather than assuming it has the same options as other plan types.
+6. Data Type and Smart Lists
+Property	Current value	Available options	Status
+Data Type	Unspecified	Unspecified, Currency, Non Currency, Percentage, SmartList, Date, Text, Transient Text	Enabled
+Smart Lists	None	None, Demo_List_with_Members, Select_Dept, SL_Employee_Nationality, SL_Employee_Grade, Forecast_Trend_List, ConfidenceMeter, Demo_List, Yes_No	Disabled
+
+7. Dynamic Children and Member Creator Access
+Property	Current value	Status
+Enable for Dynamic Children	Unchecked	Enabled
+Number of Possible Dynamic Children	10	Disabled
+Access Granted to Member Creator	Inherit	Disabled
+
+8. Other Visible Tabs
+- UDA — tab exists, but its contents are not shown.
+- Member Formula — tab exists, but its contents are not shown.
+No UDA assignments or member formula can be inferred from this HTML.
+
+9. Claude Knowledge-Base Prompt
+Oracle EPM Cloud Member Properties — Actual
+Act as a senior Oracle EPM Cloud / EPBCS architect. Explain the supplied member-properties screen from beginner level through consultant level, preserving the exact source values and options.
+1. Observed Screen Facts
+General Properties
+- Name: Actual
+- Description: Blank
+- Alias Table: Default
+- Alias: Blank
+Year and Period Range
+- Start Yr.: FY24
+- Start Period: Jan
+- End Yr.: FY40
+- End Period: Jul
+- Year options visible: FY24 through FY40
+- Period options visible: Jan through Dec
+Time and Workflow Properties
+- Include BegBal as Time Period: Checked
+- Enabled for Approvals: Checked
+- Exchange Rate Table: None; disabled
+Hierarchy and Storage
+- Hierarchy Type: Not Set
+- Available hierarchy types: Not Set, Stored, Dynamic
+- Data Storage: Never Share
+- Available data-storage options: Store, Dynamic Calc and Store, Dynamic Calc, Never Share, Label only
+- Two Pass Calculation: Unchecked; disabled
+Plan Types
+All plan-type checkboxes are checked but disabled.
+
+FinPlan
+- Selected operator: Addition
+- Options: Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never
+EPBCS
+- Selected operator: Addition
+- Options visible: Addition, Ignore
+Manpower
+- Selected operator: Ignore
+- Options: Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never
+Capital
+- Selected operator: Ignore
+- Options: Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never
+Data Type
+- Selected: Unspecified
+- Options: Unspecified, Currency, Non Currency, Percentage, SmartList, Date, Text, Transient Text
+Smart Lists
+- Selected: None
+- Options: None, Demo_List_with_Members, Select_Dept, SL_Employee_Nationality, SL_Employee_Grade, Forecast_Trend_List, ConfidenceMeter, Demo_List, Yes_No
+- Control disabled
+Dynamic Children and Creator Access
+- Enable for Dynamic Children: Unchecked; enabled
+- Number of Possible Dynamic Children: 10; disabled
+- Access Granted to Member Creator: Inherit; disabled
+- Access options: Inherit, None, Read, Write
+Other Tabs
+- UDA tab visible; contents not provided.
+- Member Formula tab visible; contents not provided.
+2. Required Consultant-Level Explanation
+Explain each property, its purpose, its dependencies, and its practical implications.
+
+Pay particular attention to:
+1. Start Year, Start Period, End Year, End Period: Explain their documented purpose and the exact effect of the FY24 Jan to FY40 Jul range. Verify the purpose from Oracle documentation rather than guessing.
+2. Include BegBal as Time Period: Explain what BegBal represents and how including it as a time period affects the application. Distinguish this from ordinary monthly periods.
+3. Enabled for Approvals: Explain the relationship to approvals and the conditions required for approvals to work. Do not claim that checking this box alone configures an approval process.
+4. Hierarchy Type: Explain Not Set, Stored, and Dynamic, including relevant dimension and cube dependencies.
+5. Data Storage = Never Share: Explain how it differs from Store, Dynamic Calc and Store, Dynamic Calc, and Label only. Distinguish storage behavior from hierarchy type.
+6. Plan Type settings: Explain the difference between a checked plan-type checkbox and its consolidation operator. Account for the fact that these checkboxes are checked but disabled.
+7. EPBCS operator list: Preserve the source's visible options Addition and Ignore. Do not replace them with a generalized list.
+8. Manpower and Capital operators: Explain the selected Ignore setting and its implications, subject to the actual member type and application configuration.
+9. Data Type and Smart Lists: Explain the meaning of Unspecified and why the Smart Lists control is disabled.
+10. Dynamic Children and creator access: Explain these properties without assuming the member is configured to support dynamic children.
+11. Exchange Rate Table: Explain the observed None/disabled state without inferring the reason for it.
+12. UDA and Member Formula: State that the tabs are visible but their contents are unavailable.
+3. Accuracy Rules
+- Separate source facts from Oracle-documented behavior and illustrative examples.
+- Do not assume that the name Actual proves which dimension this member belongs to.
+- Do not assume the application uses a particular fiscal calendar beyond the visible FY24–FY40 labels.
+- Do not assume that Enabled for Approvals means approvals are fully configured.
+- Do not infer the reason a property is disabled unless evidence supports it.
+- Preserve every observed value and dropdown option exactly.
+- Identify missing information whenever a conclusion depends on dimension type, cube configuration, security, or application settings.
+- Use practical examples and troubleshooting scenarios, but label assumptions clearly.
+
+
+
+
+Consultant takeaway: This screen shows a member named Actual with a broad FY24–FY40 date range, BegBal included, approvals enabled, hierarchy type Not Set, and storage set to Never Share. These are observed settings—not enough on their own to establish the member's dimension, full workflow behavior, or actual calculation results.
+
+
+# Oracle EPM Cloud — Working Version Member Properties
+
+## 1. Context
+
+Analyze the Oracle EPM Cloud member properties for the member **Working**, which belongs to the Version dimension.
+
+Explain every property from beginner to Oracle EPM consultant level. Explain what it does, why it exists, how it affects planning and calculations, and when it matters in real projects.
+
+**Important instructions:**
+- First extract the exact settings below.
+- Explain the selected values, not just the dropdown labels.
+- Clearly distinguish facts visible in the HTML from general Oracle EPM behavior and assumptions.
+- Do not invent functionality or claim a setting affects a feature unless that behavior is supported.
+- Explain the differences between Standard Bottom Up and Standard Target using practical examples.
+- Explain Version dimension behavior separately from Scenario dimension behavior.
+- Include practical EPBCS/FinPlan examples, troubleshooting, performance considerations, and interview questions.
+- If Oracle documentation is needed to confirm behavior, use official Oracle documentation and cite it.
+
+## 2. Exact UI Properties Extracted
+
+### General properties
+
+| Property | Current value | UI state |
+|---|---|---|
+| Name | Working | Editable text field |
+| Description | Blank | Text area |
+| Alias Table | Default | Enabled |
+| Alias | Blank | Editable text field |
+| Type | Standard Bottom Up | Dropdown enabled |
+| Type alternatives | Standard Bottom Up, Standard Target | Dropdown options |
+| Enabled for Approvals | Checked | Checkbox enabled |
+| Enable Sandboxes | Unchecked | Checkbox enabled |
+| Hierarchy Type | Not Set | Dropdown enabled |
+| Hierarchy Type alternatives | Not Set, Stored, Dynamic | Dropdown options |
+| Data Storage | Never Share | Dropdown enabled |
+| Data Storage alternatives | Store, Dynamic Calc and Store, Dynamic Calc, Never Share, Label only | Dropdown options |
+| Two Pass Calculation | Unchecked | Disabled checkbox |
+
+### Plan Type settings
+
+All four Plan Type checkboxes are checked but disabled in the captured UI. The associated consolidation/operator dropdowns are enabled.
+
+| Plan Type | Enabled checkbox | Selected operator | Operators shown |
+|---|---|---|---|
+| FinPlan | Checked, disabled | Addition | Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never |
+| EPBCS | Checked, disabled | Addition | Addition, Ignore |
+| Manpower | Checked, disabled | Addition | Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never |
+| Capital | Checked, disabled | Addition | Addition, Subtraction, Multiplication, Division, Percent, Ignore, Never |
+
+### Other properties
+
+| Property | Current value | UI state |
+|---|---|---|
+| Data Type | Unspecified | Dropdown enabled |
+| Data Type alternatives | Unspecified, Currency, Non Currency, Percentage, SmartList, Date, Text, Transient Text | Dropdown options |
+| Smart Lists | None | Dropdown disabled |
+| Smart List alternatives displayed | Demo_List_with_Members, Select_Dept, SL_Employee_Nationality, SL_Employee_Grade, Forecast_Trend_List, ConfidenceMeter, Demo_List, Yes_No | Dropdown options displayed but disabled |
+| Enable for Dynamic Children | Unchecked | Checkbox enabled |
+| Number of Possible Dynamic Children | 10 | Disabled field |
+| Access Granted to Member Creator | Inherit | Disabled dropdown |
+| Access alternatives | Inherit, None, Read, Write | Dropdown options displayed but disabled |
+
+The UDA and Member Formula tabs exist in the HTML, but their contents are hidden or not included. Do not assume that the member has a UDA or formula.
+
+## 3. Required Deep-Dive Structure
+
+For each property, explain:
+
+1. **What it means:** Simple definition.
+2. **Why Oracle provides it:** The business or technical problem it solves.
+3. **How it works:** Explain the underlying behavior, including relevant Essbase or Planning concepts.
+4. **Working-specific example:** Use Actual, Budget, Forecast, Working, and Final versions where relevant.
+5. **When to use it:** Practical implementation scenarios.
+6. **When not to use it:** Risks, limitations, and common mistakes.
+7. **Impact:** Explain effects on data entry, calculations, aggregation, approvals, sandboxes, performance, and reporting as applicable.
+8. **Troubleshooting:** Symptoms, likely causes, and verification steps.
+9. **Interview questions:** Include beginner, intermediate, and advanced questions with answers.
+
+## 4. Priority Topics
+
+### A. Version Type: Standard Bottom Up vs Standard Target
+
+Explain the precise distinction between the two options.
+
+Use a small hierarchy and numerical example to demonstrate what happens when a user changes data at a parent member and when data is calculated at a child member.
+
+Explain the relationship between:
+- Bottom-up calculation
+- Target-based calculation
+- Parent and child members
+- Stored and dynamically calculated values
+- Performance and calculation correctness
+
+Do not assume that the option has the same behavior in every application or calculation context. Identify any relevant restrictions or Oracle-specific details that require documentation.
+
+### B. Enabled for Approvals
+
+Explain:
+- What enabling a Version member for approvals means.
+- How it relates to planning approval units and the approval process.
+- Whether checking this box alone is sufficient to make an approval workflow operational.
+- What other configuration and security requirements may apply.
+- A practical Budget approval example.
+
+### C. Enable Sandboxes
+
+Explain:
+- What sandboxes are in Oracle EPM Planning.
+- How sandbox data differs from base data.
+- What enabling this setting on a Version member changes.
+- How users can work with provisional changes and publish them, where applicable.
+- Relevant restrictions, prerequisites, and supported application behavior.
+- A practical example where a planner tests a salary or revenue change before publishing it.
+
+Do not confuse sandboxes with Scenario, Version, or Planning approval workflows.
+
+### D. Hierarchy Type
+
+Explain the meaning and supported use of Not Set, Stored, and Dynamic for this Version member. Verify the precise Version-dimension behavior in Oracle documentation rather than assuming the same rules apply to every dimension.
+
+### E. Data Storage: Never Share
+
+Explain the exact meaning of Never Share and distinguish it from:
+- Store
+- Dynamic Calc
+- Dynamic Calc and Store
+- Label Only
+
+Use a parent-child example with actual numerical values. Explain when Never Share matters, whether it creates or stores data, and what it does not mean.
+
+### F. Plan Type and Consolidation Operators
+
+Explain why the member is checked for FinPlan, EPBCS, Manpower, and Capital, and why those checkboxes are disabled in the captured UI.
+
+Explain the selected operators:
+- FinPlan: Addition
+- EPBCS: Addition
+- Manpower: Addition
+- Capital: Addition
+
+Describe the practical meaning of Addition and compare it with Ignore and other available operators where supported. Explain why the available operators differ between EPBCS and the other displayed plan types. Verify any interpretation that depends on application configuration.
+
+### G. Remaining Properties
+
+Explain:
+- Alias Table and Alias
+- Two Pass Calculation and why it is disabled here
+- Data Type = Unspecified
+- Smart Lists = None and why the dropdown is disabled
+- Enable for Dynamic Children = unchecked
+- Number of Possible Dynamic Children = 10 and why it is disabled
+- Access Granted to Member Creator = Inherit and why it is disabled
+
+Do not claim that the displayed value `10` means ten children are currently created; distinguish the configured limit from the actual number of members.
+
+## 5. Final Deliverable
+
+Finish with:
+1. A concise summary of the current Working member configuration.
+2. A property-by-property explanation.
+3. Three practical implementation scenarios.
+4. Common mistakes and troubleshooting steps.
+5. A comparison table of Working vs Actual vs Budget vs Forecast, clearly identifying which properties are generally configuration-dependent rather than universally fixed.
+6. Interview questions with answers.
+7. An Oracle documentation reference list for any behavior that required verification.
+
+Keep the explanation technically accurate and consultant-oriented. Do not merely restate the UI labels; explain what they mean in practice.
+
+# Oracle EPM Cloud Deep Dive — HSP_Approval Unit Hierarchy
+
+## 1. Objective
+
+Act as a senior Oracle Cloud EPM Planning architect and analyze the supplied member properties for `HSP_Approval Unit Hierarchy`.
+
+Teach me from beginner to expert level. Explain the purpose of this member, why Oracle provides it, how its properties work, and how it participates in approval-unit processing.
+
+Use official Oracle documentation when verification is needed. Clearly distinguish:
+- Facts directly visible in the supplied HTML
+- Oracle-documented behavior
+- Any inference that requires confirmation
+
+Do not invent undocumented functionality or assume that an ordinary Essbase member behaves like this system member.
+
+## 2. Exact Properties Extracted from the UI
+
+### General properties
+
+| Property | Current value | UI state |
+|---|---|---|
+| Name | HSP_Approval Unit Hierarchy | Disabled; not editable |
+| Description | Blank | Editable |
+| Alias Table | Default | Disabled |
+| Alias | Blank | Disabled |
+| Metric Type | Approval Unit Hierarchy | Enabled |
+| Hierarchy Type | Not Set | Enabled |
+| Data Storage | Store | Enabled |
+| Two Pass Calculation | Unchecked | Disabled |
+
+### Metric Type dropdown
+
+The selected value is **Approval Unit Hierarchy**.
+
+All available options visible in the HTML:
+
+1. None
+2. Data Value
+3. Process State
+4. Approval Unit PM Member
+5. Approval Unit Primary Member
+6. Approval Unit Secondary Member
+7. Approval Unit Owner
+8. Approval Unit Previous Owner
+9. Approval Unit Last Action
+10. Approval Unit Substate
+11. Approval Unit Submission Group
+12. Approval Unit Hierarchy
+13. Entity Process State
+14. Approval Unit Total
+15. Approval Unit Total (Dynamic)
+16. Approval Unit Last Modified
+17. Cell Level Security Access
+
+Explain what these metric types represent, but verify the precise meaning and supported behavior of each option before making definitive claims.
+
+### Hierarchy Type
+
+| Option | Current state |
+|---|---|
+| Not Set | Selected |
+| Stored | Available |
+| Dynamic | Available |
+
+### Data Storage
+
+| Option | Current state |
+|---|---|
+| Store | Selected |
+| Dynamic Calc and Store | Available |
+| Dynamic Calc | Available |
+| Never Share | Available |
+| Label only | Available |
+
+### Plan Type settings
+
+| Plan Type | Checkbox state | Selected operator | Operator dropdown state |
+|---|---|---|---|
+| FinPlan | Checked | Addition | Enabled |
+| EPBCS | Checked | Addition | Enabled |
+| Manpower | Unchecked | Addition | Disabled |
+| Capital | Unchecked | Addition | Disabled |
+
+Operator options displayed for FinPlan, Manpower, and Capital:
+- Addition
+- Subtraction
+- Multiplication
+- Division
+- Percent
+- Ignore
+- Never
+
+Operator options displayed for EPBCS:
+- Addition
+- Ignore
+
+Do not treat an unchecked Plan Type as enabled merely because the associated dropdown displays Addition. Explain the difference between the checkbox state and the dropdown value.
+
+### Other properties
+
+| Property | Current value | UI state |
+|---|---|---|
+| Data Type | Unspecified | Enabled |
+| Smart Lists | None | Disabled |
+| Smart List options displayed | Demo_List_with_Members, Select_Dept, SL_Employee_Nationality, SL_Employee_Grade, Forecast_Trend_List, ConfidenceMeter, Demo_List, Yes_No | Disabled dropdown |
+| Enable for Dynamic Children | Unchecked | Enabled |
+| Number of Possible Dynamic Children | 10 | Disabled |
+| Access Granted to Member Creator | Inherit | Disabled |
+| Access alternatives | Inherit, None, Read, Write | Disabled dropdown |
+
+The UDA and Member Formula tabs are present in the HTML, but their contents are not provided.
+
+## 3. Main Questions to Answer
+
+### A. What is HSP_Approval Unit Hierarchy?
+
+Explain:
+- What the `HSP_` prefix indicates, to the extent documented.
+- Why Oracle Planning has system-related members associated with approval units.
+- What an approval unit is.
+- What an approval unit hierarchy represents.
+- How approval units relate to entities, scenario, version, ownership, promotion, and approval status.
+- Whether this member is a metadata representation, a reporting metric, or something else.
+- Whether users should edit, rename, delete, or repurpose it.
+
+Do not infer its complete purpose from its name alone.
+
+### B. Metric Type = Approval Unit Hierarchy
+
+Explain:
+- What Metric Type controls.
+- Why the selected value matters.
+- How this differs from Data Value, Process State, Approval Unit Owner, Approval Unit Total, and Cell Level Security Access.
+- Whether the member is system-generated or managed by Planning.
+- How a consultant should investigate this property in the application.
+
+Give a realistic approval example involving an entity such as E10001 or E10002, while making clear that these are illustrative examples.
+
+### C. Explain All 17 Metric Types
+
+Create a table with:
+- Metric Type
+- Plain-English meaning
+- What information it represents
+- A realistic planning example
+- Where a consultant might encounter it
+- Documentation or verification notes
+
+If the supplied HTML does not establish a metric type's exact behavior, say so and verify it through Oracle documentation rather than guessing.
+
+### D. Hierarchy Type = Not Set
+
+Explain what Not Set means in this specific context. Compare Not Set, Stored, and Dynamic only to the extent supported for this member and dimension.
+
+Do not automatically apply generic Essbase hierarchy rules without confirming they are relevant to this system member.
+
+### E. Data Storage = Store
+
+Explain what the selected Store setting means and whether it should be interpreted in the same way as an ordinary Essbase data member.
+
+Compare Store with Dynamic Calc, Dynamic Calc and Store, Never Share, and Label only. State any limitations on applying those comparisons to this system member.
+
+### F. Plan Type Settings
+
+Explain the observed configuration precisely:
+- FinPlan checked, Addition
+- EPBCS checked, Addition
+- Manpower unchecked, Addition shown but disabled
+- Capital unchecked, Addition shown but disabled
+
+Explain what the checkboxes and consolidation operators control, why some controls may be disabled, and what a consultant should verify before changing anything.
+
+Do not assume the reason for a disabled control unless Oracle documentation or further application evidence supports it.
+
+### G. Approval-Unit Lifecycle
+
+Explain the approval process at a practical level:
+1. Planning administrators configure approval-related metadata and eligible approval units.
+2. An approval unit is assigned to an owner or reviewer.
+3. The unit is promoted or submitted through the configured process.
+4. Reviewers take action.
+5. The process reaches its final state.
+
+Clarify which steps depend on application configuration, security, validation rules, and the selected approval workflow.
+
+Explain whether and how this system member participates in that lifecycle, using verified facts rather than speculation.
+
+### H. Troubleshooting and Consultant Practice
+
+Explain how to investigate:
+- Approval units not appearing as expected.
+- Incorrect owner or approval status.
+- An approval hierarchy not behaving as expected.
+- An approval-related report showing unexpected values.
+- A system member whose properties are read-only or partly disabled.
+
+For each issue, give diagnostic steps and distinguish metadata issues from approval configuration, security, and workflow issues.
+
+## 4. Final Deliverable
+
+Finish with:
+1. A short summary of the exact configuration.
+2. A beginner-friendly explanation of the member's purpose.
+3. A deep explanation of Metric Type = Approval Unit Hierarchy.
+4. A comparison of the 17 Metric Type options.
+5. A practical approval workflow example.
+6. Common mistakes to avoid.
+7. Consultant-level troubleshooting steps.
+8. Interview questions with answers.
+9. Official Oracle documentation references for claims that require verification.
+
+Teach the concepts in plain language first, then explain the technical details. Preserve the distinction between what the HTML proves and what requires external documentation.
+
+
+1. Extracted properties — HSP_Approval Unit Submission Group
+This is another system member related to Oracle EPM approval workflows. The HTML confirms the selected properties below; it does not, by itself, establish every detail of how the approval engine processes the member.
+Basic properties
+Property	Selected value	Status
+Name	HSP_Approval Unit Submission Group	Disabled / read-only
+Description	Blank	Editable
+Alias Table	Default	Disabled
+Alias	Blank	Disabled
+Metric Type	Approval Unit Submission Group	Enabled
+Hierarchy Type	Not Set	Enabled
+Data Storage	Store	Enabled
+Two Pass Calculation	Unchecked	Disabled
+Data Type	Unspecified	Enabled
+Smart Lists	None	Disabled
+Enable for Dynamic Children	Unchecked	Enabled
+Number of Possible Dynamic Children	10	Disabled
+Access Granted to Member Creator	Inherit	Disabled
+
+Plan type settings
+Plan type	Enabled?	Consolidation operator	Status
+FinPlan	Yes	Addition	Enabled
+EPBCS	Yes	Addition	Enabled
+Manpower	No	Addition displayed	Disabled
+Capital	No	Addition displayed	Disabled
+
+Important: For Manpower and Capital, Addition is only the displayed value. Their controls are disabled, and their plan-type checkboxes are unchecked.
+Metric Type options available
+The dropdown contains these 17 options:
+1. None
+2. Data Value
+3. Process State
+4. Approval Unit PM Member
+5. Approval Unit Primary Member
+6. Approval Unit Secondary Member
+7. Approval Unit Owner
+8. Approval Unit Previous Owner
+9. Approval Unit Last Action
+10. Approval Unit Substate
+11. Approval Unit Submission Group — selected
+12. Approval Unit Hierarchy
+13. Entity Process State
+14. Approval Unit Total
+15. Approval Unit Total (Dynamic)
+16. Approval Unit Last Modified
+17. Cell Level Security Access
+
+2. Claude prompt — copy and use
+Use this prompt to study the member deeply, including what the selected metric means, how it differs from HSP_Approval Unit Hierarchy, and what role it plays in the approval process.
+Oracle EPM Cloud Deep Dive: HSP_Approval Unit Submission Group
+Act as a senior Oracle Cloud EPM Planning / EPBCS architect, Essbase expert, and approval-workflow specialist.
+
+I am a beginner learning Oracle EPM Cloud from the fundamentals. Teach me the system member HSP_Approval Unit Submission Group from beginner level to consultant level. Explain the actual Oracle functionality accurately. Do not invent behavior based only on the member name.
+1. Start with the fundamentals
+Explain in simple language:
+- What an approval unit is in Oracle EPM Planning.
+- What an approval process is and how it differs from normal data entry, form submission, and calculation execution.
+- What an approval unit hierarchy is.
+- What a submission group is in the approval workflow context.
+- Why Oracle may represent approval-related information through special system members.
+- How approval units, owners, reviewers, promotion paths, submission groups, and approval statuses relate to each other, where applicable.
+- Which concepts are standard Oracle functionality and which depend on application configuration.
+Use a realistic EPBCS budgeting example involving an Entity such as E10002, a Budget scenario, and a Working version.
+2. Explain this exact member and its Metric Type
+The selected Metric Type is:
+
+Approval Unit Submission Group
+
+Explain:
+- What this metric type represents according to Oracle documentation.
+- What the term “submission group” means in this exact context.
+- What information Oracle associates with this metric type.
+- Whether it is metadata, workflow information, a numeric metric, a status, or another kind of system-managed value. Verify this rather than guessing.
+- How it is used or consumed by the approval engine, if applicable.
+- Whether administrators normally edit, load, calculate, or maintain its values directly.
+- What an end user, planner, reviewer, or administrator would observe when this property is involved.
+- Whether the metric type has any direct relationship to data submitted from a form.
+- What happens if the member is present but no approval process or submission-group configuration uses the related functionality.
+If the exact behavior is undocumented or unclear, explicitly state that limitation.
+3. Explain every property shown in my HTML
+Use the selected values below as the exact configuration being investigated.
+Property	Selected value
+Name	HSP_Approval Unit Submission Group
+Description	Blank
+Alias Table	Default, disabled
+Alias	Blank, disabled
+Metric Type	Approval Unit Submission Group
+Hierarchy Type	Not Set
+Data Storage	Store
+Two Pass Calculation	Unchecked, disabled
+FinPlan	Enabled; Addition
+EPBCS	Enabled; Addition
+Manpower	Unchecked; Addition displayed but disabled
+Capital	Unchecked; Addition displayed but disabled
+Data Type	Unspecified
+Smart Lists	None, disabled
+Enable for Dynamic Children	Unchecked
+Number of Possible Dynamic Children	10, disabled
+Access Granted to Member Creator	Inherit, disabledFor every property, explain:
+1. What it means.
+2. Why Oracle provides it.
+3. Why it is selected, unchecked, disabled, or read-only in this particular screen, where the reason can be verified.
+4. Whether it is relevant to the selected Metric Type.
+5. What could happen if it were changed, where changing it is supported.
+6. A realistic consultant scenario.
+7. Any important limitations or misconceptions.
+Do not assume every property is meaningful for every system member. Clearly identify properties that are generic dimension-member settings but have limited relevance to this special member.
+4. Deep dive into the Plan Type settings
+Explain why FinPlan and EPBCS are checked while Manpower and Capital are unchecked and disabled.
+
+Explain the difference between:
+- A plan type being enabled for a member.
+- A consolidation operator being selected.
+- A displayed operator value on a disabled control.
+- An operator actually affecting consolidation.
+The HTML shows Addition for all four plan types, but Manpower and Capital are disabled and unchecked. Do not claim that Addition affects those two plan types without evidence.
+
+Explain the available operators where relevant:
+- Addition
+- Subtraction
+- Multiplication
+- Division
+- Percent
+- Ignore
+- Never
+Also explain why the EPBCS operator dropdown offers only Addition and Ignore in this screen, while the other plan types show more choices. Verify whether this is specific to the application type, member, or Oracle interface.
+5. Explain the other Metric Type options
+Explain the purpose and differences between the options visible in the dropdown:
+- None
+- Data Value
+- Process State
+- Approval Unit PM Member
+- Approval Unit Primary Member
+- Approval Unit Secondary Member
+- Approval Unit Owner
+- Approval Unit Previous Owner
+- Approval Unit Last Action
+- Approval Unit Substate
+- Approval Unit Submission Group
+- Approval Unit Hierarchy
+- Entity Process State
+- Approval Unit Total
+- Approval Unit Total (Dynamic)
+- Approval Unit Last Modified
+- Cell Level Security Access
+Use a comparison table. For each type, explain its verified meaning, where the information originates, and how an administrator or end user might encounter it.
+
+Do not invent definitions for obscure internal metrics. Flag any type whose meaning requires additional Oracle documentation.
+6. Compare it with HSP_Approval Unit Hierarchy
+Compare HSP_Approval Unit Submission Group with HSP_Approval Unit Hierarchy.
+
+Explain:
+- Why the names and Metric Type selections differ.
+- Whether they serve distinct purposes.
+- Whether one depends on the other.
+- Whether they are intended to be used in the same dimension or hierarchy.
+- Whether their values are system-managed.
+- What the administrator should inspect before modifying either member.
+Do not assume that similarly named members have identical storage, processing, or lifecycle behavior.
+7. Real-world scenarios
+Give at least five practical EPBCS scenarios, such as:
+1. A department submits its budget for approval.
+2. A manager reviews or promotes an approval unit.
+3. An administrator configures approval-unit hierarchies.
+4. An approval workflow uses submission groups.
+5. An approval unit is stuck or its ownership/status information appears incorrect.
+For each scenario, explain the business requirement, relevant application configuration, role of the metric if verified, what the user sees, and how a consultant investigates the issue.
+
+Clearly distinguish a verified use of this specific Metric Type from a general approval-workflow scenario.
+8. Troubleshooting and safe administration
+Explain how to investigate:
+- A submission group that does not appear to work as expected.
+- Incorrect approval ownership or workflow status.
+- An approval unit that cannot be promoted or submitted.
+- Unexpected behavior after dimension-member changes.
+- A system member whose fields are read-only or disabled.
+Give a safe troubleshooting sequence using the Oracle EPM interface and official documentation. Explain which changes should not be attempted casually in production.
+
+Do not recommend deleting, renaming, or changing a system member without verified Oracle guidance.
+9. Hands-on learning exercise
+Create a small hypothetical EPBCS application with a few entities, one Budget scenario, a Working version, and an approval-unit hierarchy.
+
+Give me:
+- A simple workflow diagram.
+- A step-by-step approval scenario.
+- Questions to investigate in the interface.
+- Expected observations only where they are supported by Oracle documentation.
+- Troubleshooting exercises with answers.
+- Five consultant-level interview questions and answers.
+10. Research and answer quality requirements
+Use official Oracle documentation as the primary source, especially Oracle Cloud EPM Planning documentation on approval units, approval workflows, submission groups, dimension-member properties, and system members.
+
+For each important technical claim:
+- Cite the Oracle documentation or identify the relevant official documentation topic.
+- Separate documented facts from reasonable inferences.
+- State clearly when the HTML only proves a selected setting but not its runtime behavior.
+- Do not confuse Oracle Cloud EPM Planning approval workflows with Essbase data consolidation.
+- Do not assume that a system member's displayed name fully describes its function.
+- Explain the simple version first, then the technical version.
+Finish with a concise summary of what HSP_Approval Unit Submission Group is, what can be confirmed from my screen, what remains to be verified, and what an EPBCS consultant should remember.
+
+
+
+
+3. Key point to investigate
+The screen confirms that the member’s Metric Type is Approval Unit Submission Group, with FinPlan and EPBCS enabled and both operators set to Addition. It does not show the actual approval process configuration or prove how submission groups are used at runtime.
+
+When studying this member, focus first on the difference between the submission group associated with an approval workflow and the approval-unit hierarchy that organizes the units being approved. They are related concepts, but they should not be treated as interchangeable without checking Oracle’s documented behavior.

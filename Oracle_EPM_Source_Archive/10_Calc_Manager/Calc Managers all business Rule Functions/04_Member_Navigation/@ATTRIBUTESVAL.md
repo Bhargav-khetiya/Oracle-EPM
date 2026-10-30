@@ -1,0 +1,157 @@
+# @ATTRIBUTESVAL
+
+## Overview
+
+`@ATTRIBUTESVAL` is a **data retrieval and string function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It retrieves the text string assigned to a Text Attribute dimension for a specified base member. 
+
+### Why Does This Function Exist?
+
+Numeric attributes can be used in math via `@ATTRIBUTEVAL`. Boolean attributes can be used in logic via `@ATTRIBUTEBVAL`. 
+But what if you have a Text Attribute (like "State_Name" or "Manager_Name") and you need to extract that raw text to use in a dynamic cross-reference or logging statement?
+`@ATTRIBUTESVAL` extracts the metadata tag as a pure string, allowing you to concatenate it, parse it, or pass it into `@MEMBER` to dynamically target data.
+
+### When to Use It
+
+- To dynamically construct target member names based on metadata attributes (e.g., dynamically mapping a project to its assigned Cost Center manager).
+- When passing text attributes into `@SUBSTRING` or `@CONCATENATE` for dynamic logic.
+- To check the value of a text attribute in string-comparison `IF` statements.
+
+---
+
+## Category
+
+**Data Retrieval / Metadata Conversion / String**
+
+---
+
+## Syntax
+
+```essbase
+@ATTRIBUTESVAL(attrDimName)
+```
+
+### Formal Syntax
+
+```
+@ATTRIBUTESVAL(attributeDimensionName)
+```
+
+Where:
+- `attributeDimensionName` — The exact name of the Text attribute dimension you want to extract the string from.
+
+---
+
+## Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `attrDimName` | Dimension | ✅ Yes | The name of the Text Attribute Dimension (e.g., `"Primary_Region"`). |
+
+---
+
+## Return Value
+
+**Return Type**: String
+
+Returns the literal text string associated with the current member's attribute (e.g., `"New_York"`). 
+If no attribute is assigned, it returns an empty string (`""`).
+
+---
+
+## How It Works (Behind the Scenes)
+
+1. **Context Context**: Essbase looks at the current base member being calculated.
+2. **Metadata Lookup**: It checks the outline for the Text `attrDimName` assigned to that member.
+3. **Data Casting**: It extracts the text exactly as it is defined in the outline and passes it back to the formula as a manipulatable string.
+
+---
+
+## Syntax Variants & Scenarios
+
+### Variant 1: Simple String Extraction
+
+```essbase
+VAR vStateStr = @ATTRIBUTESVAL("State_Name");
+/* vStateStr now holds "Texas" (or whatever the state is) */
+```
+
+### Variant 2: Conditional String Check
+
+```essbase
+/* Using string comparison operator == */
+IF(@ATTRIBUTESVAL("Packaging_Type") == "Cardboard")
+    /* Execute math */
+ENDIF
+```
+
+---
+
+## Practical Examples
+
+### Example 1: Dynamic Reallocation Based on Attribute Mapping
+
+**Scenario**: You have a list of new projects (e.g., "Proj_01"). The entity dimension holds the cost centers. Instead of hardcoding which cost center owns which project, you added a text attribute called "Owning_CostCenter" to the Project dimension. You need to allocate generic project costs back to the specific owning cost center.
+
+```essbase
+FIX("FY25", "Working", @LEVEL0("Project"))
+    
+    /* 1. Extract the text string of the owning cost center */
+    VAR vTargetEntityStr = @ATTRIBUTESVAL("Owning_CostCenter");
+    
+    /* 2. Check if the project actually has an assigned owner */
+    IF(vTargetEntityStr != "")
+        
+        /* 3. Push the Project's cost into the target Entity using @MEMBER */
+        "Allocated_Proj_Expense" -> @MEMBER(vTargetEntityStr) = "Total_Proj_Expense";
+        
+        /* 4. Zero out the generic bucket */
+        "Total_Proj_Expense" = 0;
+        
+    ENDIF
+    
+ENDFIX
+```
+
+---
+
+### Example 2: Prefix Generation
+
+**Scenario**: Products have an attribute called "Product_Line" (e.g., "Home", "Auto"). You need to push data to a specific revenue account that is named dynamically by combining "Rev_" with the product line (e.g., "Rev_Home").
+
+```essbase
+FIX("FY25", "Working", @LEVEL0("Product"))
+    
+    VAR vProdLineStr = @ATTRIBUTESVAL("Product_Line");
+    VAR vTargetAccount = @CONCATENATE("Rev_", vProdLineStr);
+    
+    /* Assume Volume and Price are calculated */
+    @MEMBER(vTargetAccount) = "Volume" * "Price";
+    
+ENDFIX
+```
+
+---
+
+## Common Mistakes & Gotchas
+
+| Mistake | Explanation | Fix |
+|---------|-------------|-----|
+| Using in Mathematics | `"Value" = @ATTRIBUTESVAL("Color")` will fail | You cannot assign text to a data cell. Text strings must be used for logic, cross-references (`@MEMBER`), or string manipulation |
+| Using on Numeric/Boolean Attributes | `@ATTRIBUTESVAL("Square_Footage")` will fail | Use `@ATTRIBUTEVAL` for numbers and `@ATTRIBUTEBVAL` for booleans |
+| Confusing with `@NAME` | `@NAME` converts a *member pointer* into a string. `@ATTRIBUTESVAL` extracts the *metadata attribute* as a string | Use `@NAME(@CURRMBR("Dim"))` for the member itself, use `@ATTRIBUTESVAL` for its tags |
+
+---
+
+## Related Functions
+
+| Function | Relationship |
+|----------|-------------|
+| [`@MEMBER`](./@MEMBER.md) | Frequently consumes the string generated by `@ATTRIBUTESVAL` to target data |
+| [`@ATTRIBUTEVAL`](./@ATTRIBUTEVAL.md) | The equivalent function for extracting Numeric attributes |
+| [`@CONCATENATE`](./@CONCATENATE.md) | Frequently wraps `@ATTRIBUTESVAL` to build target strings |
+
+---
+
+## Official Oracle Reference
+
+- [Oracle EPM Cloud Calculation Functions — @ATTRIBUTESVAL](https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusc/attributesval.html)

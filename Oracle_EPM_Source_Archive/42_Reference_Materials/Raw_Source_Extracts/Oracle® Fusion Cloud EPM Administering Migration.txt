@@ -1,0 +1,2681 @@
+Oracle® Fusion Cloud EPM
+Administering Migration
+E96251-70
+Oracle Fusion Cloud EPM Administering Migration,
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+Primary Author: EPM Information Development Team
+This software and related documentation are provided under a license agreement containing restrictions on use and
+disclosure and are protected by intellectual property laws. Except as expressly permitted in your license agreement or
+allowed by law, you may not use, copy, reproduce, translate, broadcast, modify, license, transmit, distribute, exhibit,
+perform, publish, or display any part, in any form, or by any means. Reverse engineering, disassembly, or decompilation
+of this software, unless required by law for interoperability, is prohibited.
+The information contained herein is subject to change without notice and is not warranted to be error-free. If you find
+any errors, please report them to us in writing.
+If this is software, software documentation, data (as defined in the Federal Acquisition Regulation), or related
+documentation that is delivered to the U.S. Government or anyone licensing it on behalf of the U.S. Government, then
+the following notice is applicable:
+U.S. GOVERNMENT END USERS: Oracle programs (including any operating system, integrated software, any
+programs embedded, installed, or activated on delivered hardware, and modifications of such programs) and Oracle
+computer documentation or other Oracle data delivered to or accessed by U.S. Government end users are "commercial
+computer software," "commercial computer software documentation," or "limited rights data" pursuant to the applicable
+Federal Acquisition Regulation and agency-specific supplemental regulations. As such, the use, reproduction,
+duplication, release, display, disclosure, modification, preparation of derivative works, and/or adaptation of i) Oracle
+programs (including any operating system, integrated software, any programs embedded, installed, or activated on
+delivered hardware, and modifications of such programs), ii) Oracle computer documentation and/or iii) other Oracle
+data, is subject to the rights and limitations specified in the license contained in the applicable contract. The terms
+governing the U.S. Government's use of Oracle cloud services are defined by the applicable contract for such services.
+No other rights are granted to the U.S. Government.
+This software or hardware is developed for general use in a variety of information management applications. It is not
+developed or intended for use in any inherently dangerous applications, including applications that may create a risk of
+personal injury. If you use this software or hardware in dangerous applications, then you shall be responsible to take all
+appropriate fail-safe, backup, redundancy, and other measures to ensure its safe use. Oracle Corporation and its
+affiliates disclaim any liability for any damages caused by use of this software or hardware in dangerous applications.
+Oracle®, Java, MySQL, and NetSuite are registered trademarks of Oracle and/or its affiliates. Other names may be
+trademarks of their respective owners.
+Intel and Intel Inside are trademarks or registered trademarks of Intel Corporation. All SPARC trademarks are used
+under license and are trademarks or registered trademarks of SPARC International, Inc. AMD, Epyc, and the AMD logo
+are trademarks or registered trademarks of Advanced Micro Devices. UNIX is a registered trademark of The Open
+Group.
+This software or hardware and documentation may provide access to or information about content, products, and
+services from third parties. Oracle Corporation and its affiliates are not responsible for and expressly disclaim all
+warranties of any kind with respect to third-party content, products, and services unless otherwise set forth in an
+applicable agreement between you and Oracle. Oracle Corporation and its affiliates will not be responsible for any loss,
+costs, or damages incurred due to your access to or use of third-party content, products, or services, except as set forth
+in an applicable agreement between you and Oracle.
+For information about Oracle's commitment to accessibility, visit the Oracle Accessibility Program website at http://
+www.oracle.com/pls/topic/lookup?ctx=acc&id=docacc.
+Oracle customer access to and use of Oracle support services will be pursuant to the terms and conditions specified in
+their Oracle order for the applicable services.
+Contents
+Documentation Accessibility
+Documentation Feedback
+1 Using Migration
+About this Guide 1
+Accessing Migration for Lifecycle Management 1
+About Environment Backups and Snapshots 2
+Backing up Artifacts and Application 3
+Backup Application 3
+Export Artifacts 5
+Uploading Snapshots to an Environment 6
+Downloading Files and Snapshots from an Environment 7
+Deleting Snapshots and Archives 7
+Repeating an Export Operation 8
+Renaming Snapshots and Archives 8
+Setting Import Options 9
+Restoring Environment from an Environment Backup 9
+Importing Artifacts and Application from a Snapshot 10
+2 Generating Reports
+Generating the Migration Status Report 1
+Viewing Artifact Modification History 2
+Generating the Artifact Updates Report 2
+3 Cloning Cloud EPM Environments
+Tasks to Perform Before Cloning an Environment 2
+Steps to Clone an Environment 2
+Tasks to Perform After Cloning Environments 6
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page i of iii
+4 Migrating On-Premises Applications to Cloud EPM
+Prerequisites and Notes 1
+General Prerequisites 2
+Default Application Properties 2
+Required Roles 2
+Artifacts Not Supported 2
+Modules and Applications Not Supported 3
+Reserved Words 3
+Process Flow 3
+Step 1: Migrate the Security Model 4
+Identify On-Premises Users and Groups 4
+Create Security Upload Files 6
+Upload Files to the Service 9
+Steps in Cloud EPM 10
+Create Users in the Identity Domain 10
+Assign Users to Application Roles 10
+Import Groups into Access Control 11
+Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM 11
+Migrate Planning to Planning 12
+Supported Migration Paths 12
+Export Planning Artifacts 13
+Zip and Upload the Exported Artifacts to the Cloud EPM Environment 14
+Import Planning Artifacts 14
+Validate and Troubleshoot 15
+Migrate Essbase Artifacts 15
+Migrate Financial Management to Financial Consolidation and Close 17
+Supported Migration Paths 17
+Migrate Financial Management Metadata and Artifacts 17
+Migrate Financial Close Management to Account Reconciliation 18
+Supported Migration Paths 18
+Export Financial Close Management Artifacts 18
+Upload Artifacts to Account Reconciliation 19
+Create Application 19
+Import Artifacts into Account Reconciliation 19
+Validate and Troubleshoot 20
+Migrate On-premises Profitability and Cost Management to Profitability and Cost
+Management 20
+Supported Migration Paths 21
+Export Profitability and Cost Management Artifacts 21
+Upload the Template File to Profitability and Cost Management 23
+Import the Template File into Profitability and Cost Management 23
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page ii of iii
+Migrating On-premises Management Ledger Applications to Enterprise Profitability and
+Cost Management 24
+Migrate Strategic Finance to Strategic Modeling 24
+Supported Migration Path 25
+Prepare Strategic Finance Models and Templates for Migration 25
+Create a Planning ModulesApplication in Cloud EPM and Enable Strategic Modeling 27
+Migrate Offline Models to Strategic Modeling 27
+Importing Strategic FinanceTemplates into Strategic Modeling (Optional) 30
+Enable Migrated Models and Templates in Strategic Modeling 31
+Build Consolidation Hierarchy 31
+Migrate Data Relationship Management to Cloud EDM 32
+Considerations for Migrating FDMEE-Based Applications 32
+A Role Mapping for Migrating to Cloud EPM
+Planning A-1
+Financial Management A-2
+Financial Close Management A-4
+Profitability and Cost Management and Enterprise Profitability and Cost Management A-5
+Data Relationship Management A-6
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page iii of iii
+Documentation Accessibility
+For information about Oracle's commitment to accessibility, visit the Oracle Accessibility
+Program website at http://www.oracle.com/pls/topic/lookup?ctx=acc&id=docacc.
+Access to Oracle Support
+Oracle customers that have purchased support have access to electronic support through My
+Oracle Support. For information, visit http://www.oracle.com/pls/topic/lookup?ctx=acc&id=info
+or visit http://www.oracle.com/pls/topic/lookup?ctx=acc&id=trs if you are hearing impaired.
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page i of i
+Documentation Feedback
+To provide feedback on this documentation, click the feedback button at the bottom of the page
+in any Oracle Help Center topic. You can also send email to epmdoc_ww@oracle.com.
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page i of i
+1
+Using Migration
+Migration enables you to perform lifecycle management activities within Oracle Fusion Cloud
+Enterprise Performance Management services other than Narrative Reporting.
+• Accessing Migration for Lifecycle Management
+• About Environment Backups and Snapshots
+• Backing up Artifacts and Application
+• Uploading Snapshots to an Environment
+• Downloading Files and Snapshots from an Environment
+• Deleting Snapshots and Archives
+• Repeating an Export Operation
+• Renaming Snapshots and Archives
+• Setting Import Options
+• Importing Artifacts and Application from a Snapshot
+• Viewing Artifact Modification History
+• Generating the Migration Status Report
+About this Guide
+Migration applies to these Oracle Fusion Cloud Enterprise Performance Management services:
+• Account Reconciliation
+• Planning
+• Planning Modules
+• FreeForm
+• Financial Consolidation and Close
+• Tax Reporting
+• Profitability and Cost Management
+• Enterprise Profitability and Cost Management
+• Oracle Fusion Cloud Enterprise Data Management
+• Sales Planning
+• Strategic Workforce Planning
+Accessing Migration for Lifecycle Management
+You access Migration from a card on the Home page.
+Migration is available separately for test and production environments.
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 1 of 12
+To access Migration:
+1. Access the service. See Accessing Oracle Fusion Cloud Enterprise Performance
+Management and Oracle Fusion Cloud Enterprise Data Management Environments in
+Getting Started Guide for Administrators.
+2. Complete a step:
+• Click Tools, and then Migration.
+• Profitability and Cost Management only: Click Application and then Migration.
+• Click (Navigator), and then Migration.
+About Environment Backups and Snapshots
+Every day, during the operational maintenance of the environment, Oracle backs up the
+content of the environment to create an Environment Backup and a maintenance snapshot of
+existing artifacts, setup data, and Data Management staging table data.
+These backups then can be used to migrate content to another environment. See these topics
+in the Getting Started Guide for Administrators:
+• Overview of Daily Backups
+• Artifacts Included Only in Environment Backups
+• Managing Daily Backups
+• Version Compatibility
+• Difference Between Environment Backup and Artifact Snapshot
+• Archival, Retention, and Retrieval of Daily Backups
+Additionally, Service Administrators can create full backup snapshots of the environment or
+incremental backup snapshots of artifacts at any time. See Backing up Artifacts and
+Application.
+Environment Backup and Snapshot Version Compatibility
+Environment Backups and Artifact Snapshots can be restored or imported only within
+supported version ranges of the environment. See Version Compatibility in Getting Started
+Guide for Administrators for information on version compatibility.
+Snapshot and File Retention Policy
+Files and snapshots that you create or upload to an environment are deleted after 60 days.
+The daily maintenance process monitors the environment and automatically removes
+snapshots older than 60 days. If the total size of all snapshots exceeds 150 GB, it deletes
+snapshots from the last 60 days, oldest first, until the total size of snapshots is less than 150
+GB. The daily maintenance snapshot, irrespective of its size, is always retained on the
+environment. If your maintenance snapshot is larger than 150 GB, then only the maintenance
+snapshot is retained; all other snapshots are deleted.
+Data Management process log files are retained for seven days only. Oracle recommends that
+you regularly download the files you want to keep to a local machine or copy them to Oracle
+Object Storage.
+Chapter 1
+About Environment Backups and Snapshots
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 2 of 12
+About the XML Files in the Snapshot
+The XML files included in Oracle Fusion Cloud Enterprise Performance Management
+snapshots use an Oracle defined proprietary format. This format may change to accommodate
+changes that occur over Cloud EPM releases. Any custom process or utility that you use
+should not depend on the XML format remaining unchanged across Cloud EPM releases.
+Manually Modifying Snapshots
+Any changes you want to make to a snapshot must be made to the application before
+generating the snapshot. Never change the XML files in snapshots to update artifacts. If you
+update the XML files in the snapshots manually, the import may fail. Even if the import works,
+the application may perform incorrectly.
+Oracle does not support manually changing the XML files in snapshots.
+How do I Find the Modified Date?
+Use the Snapshots tab in Migration to identify the size and the date and time when available
+snapshots were last modified.
+The last modified time is displayed based on the time zone specified in User Preferences. If it
+is not set, the last modified time is displayed based on the browser time zone.
+To view snapshot size and last modified time:
+1. Access Migration (see Accessing Migration for Lifecycle Management).
+2. Click Snapshots.
+Backing up Artifacts and Application
+You can create two types of snapshots: Backup and Export.
+Related Topics
+• Backup Application
+• Export Artifacts
+Backup Application
+Use Backup to create a snapshot that can be used to clone an environment, for example to
+migrate an application from a production instance to a test instance for troubleshooting or
+additional development work.
+Chapter 1
+Backing up Artifacts and Application
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 3 of 12
+When you backup the environment, you create a snapshot of the entire environment, similar to
+the daily maintenance snapshot, by exporting the application with all of its data and artifacts.
+Backups include artifacts belonging to Document Repository, Core (previously labelled
+Planning), Data Management, Calculation Manager, and Groups and Membership. Artifacts in
+Core includes Relational and Essbase data, global and security artifacts, configuration and
+plan type artifacts, etc. required for the current application. Please note that the availability of
+artifacts belonging to these categories is governed by the application in the current
+environment.
+Backup of Essbase Data
+Oracle Essbase data backups are performed with Essbase shut down (cold backup). To
+prevent potential data corruption, before starting the Essbase data backup, shut down all
+processes (consolidation, restructure, and so on) that modify ASO and BSO cubes.
+Backup for Planning Only
+The backup process exports data associated with member driven smart lists, if any, enabled in
+Aggregate Storage (ASO) cubes. Depending on the number of such members enabled for
+ASO, the cube design, and the amount of data the generated MDX query to export data may
+contain deep cross-join sections that may cause the backup process to fail with a memory
+allocation error.
+Always use the daily maintenance snapshot to restore Planning environments.
+Backup for Enterprise Journals
+While migrating from test to production environment, do not include the following:
+• JOURNAL_ID (accessed by selecting Enterprise Journals, then Dimensions and then
+JOURNAL_ID.
+• Collection Interval Data (accessed by selecting Enterprise Journals, and then Collection
+Interval Data.
+However, you should include Teams data if you have defined Teams in the source application
+(accessed by selecting Close Tasks and then Teams.
+Backup for Data Management
+The LCM Mode setting in Data Management gives the Service Administrator the control to
+backup and export of staging table (Workbench) data. The export of data can be a lengthy
+process depending on the LCM Mode setting and at this time the system goes into
+maintenance mode.
+1. Before you migrate staging table data, create a baseline snapshot. The baseline snapshot
+is required to select options to add data to incremental snapshots.
+To create the baseline snapshot, in Data Management, select All as the Snapshot Type
+value.
+2. Incremental snapshots created using the default export settings do not contain staging
+table data. To export and import this data, specify the required export settings in Data
+Management. Specifically, select Single Snapshot – Setup and Data as the value of the
+LCM Mode option.
+For detailed steps, see these sources in Administering Data Management:
+• Using Lifecycle (LCM) Snapshot Modes
+• Executing a Snapshot Export Job
+Chapter 1
+Backing up Artifacts and Application
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 4 of 12
+Backup for Cloud EDM
+The application is placed into maintenance mode when you create a backup snapshot.
+Troubleshooting
+See Resolving Import and Export and Backup Errors in the Operations Guide.
+Export Artifacts
+Use Export to create an incremental backup of specific artifacts in an environment. Generally,
+you use incremental snapshots to create backups that can be used to update another
+environment.
+Examples:
+• Export artifacts that you tested in a test environment to create an interim snapshot, which
+you can import into a production environment. Similarly, you can export the Essbase data
+from one environment and then import it into another.
+• Export groups that you created in an environment to create identical groups in another
+environment. To select groups for export, in Categories, expand Groups and
+Membership and then Native Directory, and select Groups.
+Note
+Migration does not support the export and import of application audit records. If you
+need to export audit records, enable and export audit data using the audit features of
+your business process. See the administration guide for your business process for
+more information.
+To create a snapshot:
+1. Access Migration (see Accessing Migration for Lifecycle Management), and then
+complete one of the following steps. You can sign in as a Service Administrator, or as a
+user with Migrations - Administer granular role.
+2. To back up the application:
+a. Click Backup.
+b. In Backup, enter a destination folder name. By default, full application snapshots are
+exported to Backup Date; for example, Backup 18-05-14, folder, which you can
+change.
+For folder names, do not enter characters that are not supported by the native
+operating system. For example, Windows does not allow colons in a folder name.
+The Migration Status Report, which indicates the progress of the operation, is
+displayed.
+c. Click Refresh to update the Migration Status Report to monitor progress. Click Close
+to close it.
+If the backup fails for any reason, the report displays Failed as the status. Click Failed
+to open the Migration Details screen, which indicates why the backup process failed
+and the corrective action. You can attempt the operation again after correcting the
+error that caused the backup to fail.
+The folder containing the backup is listed in Snapshots.
+Chapter 1
+Backing up Artifacts and Application
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 5 of 12
+3. To export selected application artifacts from an environment:
+a. In Categories, choose the artifacts you want to export.
+• To export all artifacts of a component, select the check box next to the name of the
+component.
+• To export specific artifacts of a component, click the name of the component. In
+Artifact List, open available folders, and then select the artifacts to export.
+Artifacts that are meaningful only during an application backup operation are
+greyed out and cannot be selected during incremental backups.
+b. Optional: Click (Selected Artifacts), and then verify the list of artifacts selected for
+export.
+c. Click Export.
+d. In Export, click OK.
+By default, incremental export snapshots are exported to USER_NAME Date; for
+example, john.doe@oracle.com 18-05-14 folder, which you can change. For folder
+names, do not enter characters that are not supported by the native operating system.
+For example, Windows does not allow colons in a folder name.
+The Migration Status Report, which indicates the progress of the operation, is
+displayed.
+e. Click Refresh to update the Migration Status Report to monitor progress. Click Close
+to close it.
+If the export fails for any reason, the report displays Failed as the status. Click Failed
+to open the Migration Details screen, which indicates why the export failed and the
+corrective action. You can attempt the export operation again after correcting the error
+that caused the export to fail.
+The folder containing exported artifacts is listed in Snapshots.
+Key Considerations
+For Enterprise Profitability and Cost Management:
+During Migration Export executed in full backup mode, besides exporting the latest calculation
+run details for each POV, any calculation runs that failed within the last 7 days are also
+included. This encompasses runs from the past week with statuses other than Completed or
+Completed With Warnings.
+Troubleshooting
+See Resolving Import and Export and Backup Errors in the Operations Guide.
+Uploading Snapshots to an Environment
+The snapshot you want to import into an environment must already be present in the
+environment. If it is not, you must upload it.
+Use the following steps to upload a ZIP file containing a snapshot from the local computer to
+the environment. You cannot upload a ZIP file if a file with an identical name already exists in
+the service.
+Oracle Fusion Cloud Enterprise Performance Management enforces these upload file size
+restrictions if you are using the web interface (for example, Migration):
+• The maximum snapshot upload size is 2 GB
+Chapter 1
+Uploading Snapshots to an Environment
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 6 of 12
+• The maximum file upload size is 500 MB
+Use the following information sources to upload files that exceed these limits or to check and
+restore snapshots that exist on the environment.
+Working with EPM Automate
+• uploadFile
+• List Backups
+• Restore Backups
+REST APIs
+• Upload and Download Files
+• List Backups
+• Restore Backups
+To upload a snapshot to an environment:
+1. Access Migration. See Accessing Migration for Lifecycle Management.
+2. Click Snapshots, and then Upload.
+3. Click Browse, select the ZIP file to upload to the service, and then click Upload.
+4. Click OK.
+Downloading Files and Snapshots from an Environment
+There is no restriction on the size of files you can download from an Oracle Fusion Cloud
+Enterprise Performance Management environment.
+To download files from the service to a local computer:
+1. Access Migration. See Accessing Migration for Lifecycle Management.
+2. Click Snapshots.
+3. Select the snapshot or file that you want to download, click (Actions), and then select
+Download.
+If you attempt to clone an environment that is in the process of generating or archiving the
+current snapshot; for example, during the daily maintenance, you will receive the File not
+found error.
+4. Follow the on-screen instructions to save or open the file.
+Deleting Snapshots and Archives
+Be sure to download the snapshots you created to a local computer before deleting them from
+the environment. You cannot delete Environment Backups.
+Caution
+Do not delete the daily maintenance snapshot.
+To delete a snapshot or archive from the service:
+Chapter 1
+Downloading Files and Snapshots from an Environment
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 7 of 12
+1. Access Migration. See Accessing Migration for Lifecycle Management.
+2. Click Snapshots.
+3. Select the snapshot or archive to delete.
+4. Click (Actions), and then select Delete.
+5. Click OK.
+Repeating an Export Operation
+You can repeat a previous export operation to generate a new snapshot. Repeating an export
+operation reuses the settings you used previously for the export operation.
+To repeat an export operation:
+1. Access Migration. See Accessing Migration for Lifecycle Management.
+2. Click Snapshots.
+3. Select a snapshot that you previously exported from the service.
+The settings that were used for exporting the snapshot are used for the export operation.
+4. Click (Actions), and then select Repeat Export.
+5. In Repeat Export, rename the export folder, and then click OK.
+The Migration Status Report, which indicates the progress of the operation, is displayed.
+6. Click Refresh to update the Migration Status Report to monitor progress. Click Close to
+close it.
+If the export fails for any reason, the report displays Failed as the status. Click Failed to
+open the Migration Details screen, which indicates why the export failed and the corrective
+action. You can attempt the export operation again after correcting the error that caused
+the export to fail.
+The folder containing exported artifacts is listed in Snapshots.
+Renaming Snapshots and Archives
+Rename an archive or snapshot to resolve a name mismatch. For example, you may want to
+rename an archive to match the file name used in a Planning job. You cannot rename
+Environment Backups.
+To rename snapshots and files:
+1. Access Migration. See Accessing Migration for Lifecycle Management.
+2. Click Snapshots.
+3. Select the snapshot or file to rename.
+4. Click (Actions), and then select Rename.
+5. Make the desired changes, and then click OK.
+6. Click OK.
+Chapter 1
+Repeating an Export Operation
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 8 of 12
+Setting Import Options
+Import options specify the conditions for importing data into an environment from uploaded files
+and snapshots.
+Default behavior for importing data:
+• Migration always skips the validation of target dimension members in the destination
+location during import.
+• Migration uses 100 as the maximum error threshold.
+To set import options:
+1. Access Migration. See Accessing Migration for Lifecycle Management.
+2. Click Snapshots, and then (Migration Options).
+3. Specify how you want to import group and membership information. Available options are:
+• Create or Update
+Adds new groups or updates the group membership of existing groups in Access
+Control. Also, assigns or unassigns granular roles to users and groups.
+• Create
+Adds new groups. Changes made to any existing group are not imported. Also,
+assigns granular roles for users and groups.
+• Update
+Modifies existing groups based on the information available in the import file. New
+groups are not added. Also, assigns or unassigns granular roles to users and groups.
+• Delete
+Removes existing groups that are available in the import file. Also, unassigns granular
+roles from users and groups.
+4. Click Save and Close when you are done.
+Restoring Environment from an Environment Backup
+You can restore application artifacts and data from previous Environment Backups. For
+example, you can restore the artifacts and data to the state they were in a few days ago by
+restoring an Environment Backup available in Oracle Object Storage.
+For detailed information on Environment Backup, see these topics in the Getting Started Guide
+for Administrators:
+• Overview of Daily Backups
+• Artifacts Included Only in Environment Backups
+• Managing Daily Backups
+• Version Compatibility
+• Difference Between Environment Backup and Artifact Snapshot
+• Archival, Retention, and Retrieval of Daily Backups
+You can restore environments using these information sources:
+EPM Automate (in Working with EPM Automate )
+Chapter 1
+Setting Import Options
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 9 of 12
+• List available Environment Backups: listBackups command
+• Use an Environment Backup to restore an environment: restoreEnvironment
+REST APIs (in REST APIs for Oracle Fusion Cloud EPM)
+• List Backups
+• Restore Environment
+Importing Artifacts and Application from a Snapshot
+You can import snapshots to create a clone of another environment or to migrate artifacts from
+another environment.
+Before you can initiate such process, you must upload the backup or incremental snapshot that
+you want to import into the target environment. Do not run jobs in an environment while an
+import operation is in progress. Because the underlying data and metadata may be affected by
+an import operation, jobs may result in inaccurate results.
+Methods to Upload Snapshots and Files
+• Use Migration to download the snapshot from the source environment and then upload it to
+the target environment. See Downloading Files and Snapshots from an Environment and
+Uploading Snapshots to an Environment .
+• Use the downloadFile and uploadFile EPM Automate commands.
+• Use the copySnapshotFromInstance EPM Automate command to copy a snapshot from
+another environment.
+Key Considerations
+See Version Compatibility in the Getting Started Guide for Administrators for information on
+snapshots compatibility across monthly updates.
+• The import process displays the following warning if the snapshot used for the process is
+not compatible with the current version of the environment.
+EPMLCM-26000: This snapshot is from Cloud EPM VERSION_NUMBER that is
+incompatible with this update and may result in import errors.
+You can upgrade incompatible snapshots other than Account Reconciliation and Oracle
+Fusion Cloud Enterprise Data Management snapshots to make them compatible with the
+current version of an environment. See "Recreating an Old Cloud EPM Environment for
+Audits" in Working with EPM Automate.
+• After performing an LCM import, it’s recommended to sign off and sign back in after the
+LCM import completes.
+• After you initiate an import operation, Oracle Fusion Cloud Enterprise Performance
+Management displays the Migration Status Report. Click Refresh periodically to update
+the report and monitor progress.
+If an import fails for any reason, the Migration Status Report displays Failed as the status.
+Click the status to open the Migration Details screen, which indicates why the import failed
+and the corrective action to take.
+• See Artifacts Included Only in Environment Backups for detailed information on artifacts
+that cannot be imported from a snapshot.
+• If you are not importing users and a user in the source snapshot does not have an
+application role on the target environment, the following error is displayed:
+Chapter 1
+Importing Artifacts and Application from a Snapshot
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 10 of 12
+EPMIE-00070: Failed to find user during assigned roles import.
+• For Data Management: The import process may take longer if the snapshot contains
+staging data.
+• For Cloud EDM: The system is placed in migration mode when you import artifacts and
+snapshots.
+Considerations for Essbase Data Imports
+Planning and Financial Consolidation and Close applications do not permit the incremental
+loading of Oracle Essbase data using Migration; you must import the full snapshot instead. If
+you try to import only the Essbase data, the Essbase data import is only supported
+during create application warning is generated.
+To import Essbase data, use one of the following methods:
+• Use the Outline Load Utility to load the data from an export file. For instructions, see
+Importing and Exporting Data in Administering Planning
+• Recreate the application and import the snapshot using Migration. For instructions, see the
+recreate command in the Working with EPM Automate guide
+Troubleshooting
+See Resolving Import and Export and Backup Errors in the Operations Guide.
+Importing a Backup to Create a Clone of Another Environment
+You import a backup snapshot (by default, named Backup Date) to create a clone of another
+environment.
+Don't attempt to import a backup snapshot into an environment where an application already
+exists. If you want to import a backup snapshot into an environment with an existing
+application, first run the recreate EPM Automate command to restore your environment to a
+clean state, and then import the backup snapshot.
+To import a backup to create a clone of another environment:
+1. Access Migration. See Accessing Migration for Lifecycle Management. You can sign in as
+a Service Administrator, or as a user with Migrations - Administer granular role.
+2. Click Snapshots.
+3. Click (Actions) next to the backup snapshot that you want to import, and then select
+Import.
+4. In Import, click OK.
+The Migration Status Report, which helps you monitor the import progress opens. Refresh
+the report frequently to verify that the operation completes without errors.
+Importing Artifacts into an Environment
+You import specific artifacts from a backup snapshot or an incremental snapshot to migrate
+artifacts from one environment to another. For example, you can import a snapshot of tested
+artifacts from a test environment into a production environment. Similarly, you can import
+Essbase data and artifacts from an incremental snapshot created by exporting them from
+another environment.
+The import of some artifacts is governed by the import settings specified for the environment.
+See Setting Import Options.
+Chapter 1
+Importing Artifacts and Application from a Snapshot
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 11 of 12
+To import artifacts:
+1. Access Migration. See Accessing Migration for Lifecycle Management.
+You can sign in as a Service Administrator, or as a user with Migrations - Administer
+granular role.
+2. Click Snapshots.
+3. Expand the snapshot containing the artifacts that you want to import.
+4. Select artifacts to import.
+• To import all artifacts of a specific component:
+a. Expand the snapshot, and then click a component name; for example HP–Vision,
+to access a list of artifacts of the Vision sample application included in the
+snapshot.
+b. Click Select All.
+c. Click Import.
+• To import specific artifacts of a component:
+a. Expand the snapshot, and then click a component name; for example HP–Vision
+to access a list of artifacts of the Vision sample application included in the
+snapshot.
+b. In Artifact List, expand the list of available artifacts and then select the artifacts
+that you want to import.
+c. Optional: Click (Selected Artifacts), and then verify the list of artifacts
+selected for import.
+d. Click Import.
+5. Click OK to confirm that you want to initiate the import operation.
+The Migration Status Report opens. Use this report to monitor the progress of the
+operation.
+Chapter 1
+Importing Artifacts and Application from a Snapshot
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 12 of 12
+2
+Generating Reports
+Migration Status report, Modified Artifacts report, and Artifact Updates reports are available
+from Migration.
+These reports helps you manage your operations in Migration:
+• Generating the Migration Status Report
+• Viewing Artifact Modification History
+• Generating the Artifact Updates Report
+Generating the Migration Status Report
+The Migration Status Report contains information on the artifact migrations that were
+performed in the service instance. For each migration, this report presents information such as
+the user who performed the migration, source, destination, start time, completed time, duration,
+and status.
+The start time and completed time indicated in the report reflect the current time based on the
+browser time zone.
+For failed migrations, by clicking the status, you can view the information such as the source
+and destination applications, artifact path, artifact name, and error that caused the migration to
+fail.
+Note
+• Historic Migration Status data is removed after 30 days.
+• The Migration Status Report will not contain information on past migrations if you
+recreate the environment using the recreate EPM Automate command.
+To view Migration Status Report:
+1. Access Migration. See Accessing Migration for Lifecycle Management.
+2. Click Reports, and then Migration Status.
+The report is automatically generated to show all migrations performed in the last 30 days.
+3. To regenerate the report, click Refresh.
+4. To close the report, click Close.
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 1 of 3
+Viewing Artifact Modification History
+You use the Modification History report to identify the artifacts that were modified after you
+created the original snapshot. Identifying changed artifacts helps you create new snapshots to
+back up the changes that were made to artifacts.
+The service automatically generates this report to list all the artifacts modified by all the users.
+You can regenerate the report to list only specific artifacts or only the artifacts that a specific
+user modified.
+To view Modification History report:
+1. Access Migration. See Accessing Migration for Lifecycle Management.
+2. Click Snapshots, and then select a snapshot.
+3. Click (Actions), and then select Modification History.
+The Modification History report is displayed.
+4. Optional: Filter the report if needed:
+• Enter a name in Artifact Name to display the report for a specific artifact.
+• Enter a user name in Modified By to generate the report to list the artifacts that a
+specific user modified.
+5. Optional: Export artifacts.
+a. Select the artifacts to export:
+• To create a snapshot containing all artifacts listed in the report, click Select All.
+• To create a snapshot containing specific artifacts, for each artifact you want to
+include in the snapshot, select the check box next to application name.
+b. Click Export.
+c. Enter a unique snapshot name, and then click OK.
+Review the Migration Status Report to confirm that the export completed without
+errors.
+d. Click Close to close the Migration Status Report.
+Generating the Artifact Updates Report
+Artifact Updates report contains information including the location of the artifact, application to
+which it belongs, and artifact type.
+The Artifact Updates Report contains the following information on the artifacts that have been
+updated:
+• Application to which the artifact belongs
+• Artifact name
+• Artifact type
+• Name of the user who modified the artifact
+• Date when the artifact was modified
+• Location of the artifact
+Chapter 2
+Viewing Artifact Modification History
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 2 of 3
+You can generate this report for all the components of the service or for selected components.
+To generate the Artifact Updates Report:
+1. Access Migration. See Accessing Migration for Lifecycle Management.
+2. Click Reports, and then Artifact Updates.
+3. Specify report settings:
+a. Optional: In Artifact Name, enter the name of the artifact (for example, Currency) for
+which the report is to be generated. Use * (asterisk) to report on all artifacts.
+b. Optional: In Artifact Type, enter artifact type (for example, Currency Dimension) for
+which the report is to be generated. Use * (asterisk) to report on all artifact types.
+c. Optional: In Modified By, enter the name of the user about whom the report is to be
+generated. Use * (asterisk) to report on all users.
+d. Specify the period for which the report is to be generated.
+e. Select the components for which the report is to be generated.
+4. Click Run Report.
+Artifact Updates Reports Details is displayed. If you are not satisfied with the report, click
+Back to modify report parameters and then regenerate the report.
+5. Select what you want to do with the report.
+• Click Actions and then Export to save the report to a file.
+• Click Actions and then Export to CSV to export the report into a Comma Separated
+Value (CSV) file.
+• Click Actions and then Print Preview to preview the report.
+6. Click Close to close the report.
+Chapter 2
+Generating the Artifact Updates Report
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 3 of 3
+3
+Cloning Cloud EPM Environments
+The Clone Environment feature provides a screen-based way to clone a business process
+environment including Narrative Reporting.
+You can clone the following types of records:
+• User and Application Roles (Identity domain artifacts)
+• Data Management (Optional) - For Account Reconciliation, Enterprise Profitability and
+Cost Management, Financial Consolidation and Close, FreeForm, Planning, Profitability
+and Cost Management, and Tax Reporting
+• Application Audit (Optional) - For Enterprise Profitability and Cost Management,
+FreeForm, and Planning
+• Job Console (Optional) -For Enterprise Profitability and Cost Management, Financial
+Consolidation and Close, FreeForm, Planning, and Tax Reporting
+• Stored Snapshot and Files (Content of the inbox, outbox, and stored snapshots)
+• Daily Maintenance Start Time
+• Application Properties (Optional) - For Account Reconciliation only
+Note
+• You use the Clone Environment screen to clone using the latest maintenance
+snapshot only.
+• You can use the cloneEnvironment EPM Automate command, which provides an
+alternative to using the Clone Environment screen. Using this command allows
+you to clone environments using an Environment Backup or an older maintenance
+snapshot.
+Supported Cloning Scenarios
+Cloning of environment is particularly useful in migration scenarios, such as:
+• Cloning from primary environment to standby environment for Disaster Recovery
+• Cloning from production to test environments
+• Cloning from test to production environments
+Unsupported Cloning Scenarios
+• See Version Compatibility in the Getting Started Guide for Administrators to understand
+unsupported cloning scenarios.
+• Cloning may fail if Planning contains a renamed seeded period member that has been
+replaced by a custom period member. For example, renaming the seeded YearTotal
+period member to unused_YearTotal and adding an alternate type period member with
+the original seeded name (for example, YearTotal) can cause cloning to fail.
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 1 of 7
+Which Snapshot Can be Cloned?
+This cloning process uses the current snapshot, called Artifact Snapshot, created during the
+last daily maintenance.
+If you want the changes made to the environment after the last daily maintenance to appear in
+the snapshot being cloned, run the runDailyMaintenance EPM Automate command to
+regenerate the Artifact Snapshot.
+Attempting to clone an environment that is currently generating or archiving the snapshot, such
+as during daily maintenance, will result in a File not found error.
+Troubleshooting
+See Resolving Clone Environment Issues in Oracle Enterprise Performance Management
+Cloud Operations Guide.
+Tasks to Perform Before Cloning an Environment
+When you clone an environment, Oracle Fusion Cloud Enterprise Performance Management
+automatically completes all the actions required to create an exact copy of the current
+application in a target environment. Prepare the target environment before initiating this
+process:
+• Create and archive the latest backup snapshot of the target environment.
+Cloning does not delete the existing snapshots, or the files in the inbox and outbox of the
+target environment. If Artifact Snapshot exists in the target environment, cloning
+renames it as Artifact Snapshot_DATE_TIME; for example, Artifact
+Snapshot_2021_04_30_17:06:06.
+• Initiate cloning after the scheduled daily maintenance of the source and target
+environments. If the daily maintenance of the source environment starts while cloning is
+going on, the cloning process will be terminated. The cloning process on the target
+environment is not affected even if the cloning is going on at the start time of the daily
+maintenance. In this scenario, the daily maintenance will run after the cloning is complete.
+If the cloning of your environment takes a long time, reschedule the daily maintenance
+start time on the source environment to avoid the cloning process from being terminated.
+For information on resetting the daily maintenance start time, see:
+– Setting the Maintenance Start Time for an Environment in the Getting Started Guide
+for Administrators
+– setDailyMaintenanceStartTime in Working with EPM Automate
+– Viewing and Setting the Daily Maintenance Window Time in the REST APIs for Oracle
+Fusion Cloud EPM
+Steps to Clone an Environment
+While cloning an environment, these are your cloning options depending on the application role
+of the user account specified for the target environment:
+Chapter 3
+Tasks to Perform Before Cloning an Environment
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 2 of 7
+Table 3-1 Clone Options for Application Role in Target Environment
+Application Role Available Clone Options
+Service Administrator Clone the application artifacts. Optionally clone Data Management
+records, audit data, Job Console records, contents of the inbox and
+outbox, and stored snapshots. Cannot clone users and application
+role assignments.
+Service Administrator and
+Identity Domain
+Administrator
+Clone the application artifacts. Optionally clone users and their
+application role assignments, Data Management records, audit
+data, Job Console records, contents of the inbox and outbox, and
+stored snapshots.
+Prerequisites
+• Ensure the user is not set up with Multi-Factor Authentication (MFA). Clone Environment
+takes only basic authorization credentials for the target environment.
+• Single Sign-On (SSO) - If you had setup SSO to authenticate the users on the source
+domain and if you are cloning to an environment in a different domain, you must configure
+SSO on the target domain to ensure that your users can log in to target environments
+using SSO. See Configuring Single Sign-On in the Getting Started Guide for
+Administrators
+Compatibility between Source and Target Environments
+See Version Compatibility in the Getting Started Guide for Administrators to understand
+supported cloning scenarios.
+Configuration Steps
+To clone an environment:
+1. Sign in to the environment that you want to clone. You can sign in as a Service
+Administrator, or as a user with Migrations - Administer granular role.
+2. Complete the following steps:
+• Click Tools, and then Clone Environment.
+• Profitability and Cost Management only: Click Application, and then Clone
+Environment.
+Chapter 3
+Steps to Clone an Environment
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 3 of 7
+3. In Target URL, enter the URL of the environment that will become the cloned environment;
+for example, https://testExample-idDomain.pbcs.us1.oraclecloud.com.
+4. In Username, enter the user name of a Service Administrator who may also have the
+Identity Domain Administrator application role, or a user with the Migrations - Administer
+granular role, as this role includes both the necessary permissions.
+5. In Password, enter the identity domain password of the user specified in Username.
+6. Optional: Select the Users and Application Roles check box to clone users and their
+application role assignments.
+Caution
+• Do not change the login names of users (for example, from short name jdoe to
+email ID john.doe@example.com) in the target environment. Doing so will
+invalidate existing access control settings. Select this option to ensure that the
+login names of users are identical in the source and target environments.
+• Import of users and their application roles will fail if a user who is not an
+Identity Domain Administrator clones an environment after selecting this check
+box. The following error is recorded in the Migration Status Report: Failed
+to import External Directory Artifact <artifact_name>.
+User <user_name> is not authorized to perform this
+operation. The user needs to have Identity Domain
+Administrator role to perform this operation.
+Key considerations:
+• If you are not importing users and a user in the source snapshot does not have an
+application role on the target environment, the following error is displayed:
+EPMIE-00070: Failed to find user during assigned roles import.
+• Users with only the Identity Domain Administrator role assignment are not cloned to
+the target environment. Users assigned to a combination of Identity Domain
+Administrator role and application roles in the source environment are cloned, but
+assigned only to the respective application roles in the target environment. These
+users will not have the Identity Domain Administrator role in the target environment.
+• If the users are assigned application roles using IDCS groups instead of direct
+assignment on the source environment, the IDCS groups will not be cloned but the
+cloned users will have these application roles directly assigned to them in the target
+environment.
+• Changes to the application roles of the user will be updated based on the roles
+assigned in the source snapshot. However, role assignments in the target will not be
+removed to match those in the source snapshot. For example, assume that jdoe is
+assigned to the Power User application role in the target environment, but has only the
+User role in the source snapshot. In this situation, this command assigns jdoe to the
+User role and does not remove the Power User role assignment in the target
+environment.
+• This option does not delete existing users from the target environment if they don't
+exist in the source snapshot. For example, jdoe has an account in the target
+environment, but this account is not present in the source snapshot. In this situation,
+the account of jdoe in the target environment is not deleted.
+Chapter 3
+Steps to Clone an Environment
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 4 of 7
+• This option adds users that do not exist in the target environment; it does not update
+current user properties in the target environment even if those are different in the
+source snapshot. For example, if the last name of jdoe in the source snapshot is
+spelled differently in the target environment, the change will not be made in the target
+environment.
+• This command does not change existing users' passwords in the target environment
+even if it is different in the source snapshot.
+• A random password is assigned to new users in the target environment. New users will
+receive account activation emails prompting them to change passwords.
+7. Optional: for environments other than Oracle Fusion Cloud Enterprise Data
+Management and Narrative Reporting only: Deselect the Data Management check box
+if you do not want to clone Data Management records. Cloning of Data Management
+records may take a long time if the staging tables contain a very large number of records.
+Clone Data Management records only if both the source and target environments are on
+the same monthly update, or the target environment is one update newer than the source
+environment. For example, you can clone 22.01 Data Management records to another
+22.01 environment or to a 22.02 environment only.
+8. Optional: for Planning, Planning Modules, FreeForm, Financial Consolidation and
+Close, Tax Reporting, and Enterprise Profitability and Cost Management only:
+Deselect the Job Console check box if you do not want to clone Job Console records.
+9. Optional: for Planning, Planning Modules, FreeForm, and Enterprise Profitability and
+Cost Management only: Deselect the Application Audit check box if you do not want to
+clone Application Audit records.
+Note
+Application Audit data of Financial Consolidation and Close, and Tax Reporting is,
+by default, included in the snapshot.
+10. Optional: Select the Stored Snapshots and Files check box if you want to clone the
+contents of inbox and outbox, and stored snapshots. This process may take a long time
+depending on the number and size of stored snapshots and files in inbox and outbox.
+Note
+Clone Environment only clones the files stored directly in inbox and outbox. The
+files in sub-folders within inbox and outbox are not cloned. For example, if you
+have files file1.csv and myfiles/file2.csv in inbox, only file1.csv will be cloned.
+11. Optional: Deselect the DailyMaintenanceStartTime check box to keep the current
+maintenance start time of the target environment. Otherwise, the maintenance start time
+will be reset to that of the source environment from which the snapshot was cloned.
+12. Optional: for Account Reconciliation only: Clones the application settings (Email
+notification on/off setting, Redwood Experience theme, business process name, logo
+image, and background image). Deselect this check box for the target environment to
+retain its current application settings.
+Note
+For all other applications, this check box is disabled (unchecked).
+Chapter 3
+Steps to Clone an Environment
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 5 of 7
+13. Click Clone to initiate the process.
+Tasks to Perform After Cloning Environments
+If you are no longer going to use the source environment after completing the cloning process,
+you need to perform some steps to ensure that your URLs, scripts, bookmarks, and so on set
+for the source environment work seamlessly for the cloned environment.
+Announce the URL of the Environment to Cloud EPM Users
+Service Administrators should notify Oracle Fusion Cloud Enterprise Performance
+Management users of the new URL of the environment, including the following:
+• URL to access the environment See Sample Cloud EPM URLs in Getting Started Guide for
+Administrators.
+• URLs to establish public and private Oracle Smart View for Office connections to the
+environment
+Modify EPM Automate and REST API Scripts
+Modify the EPM Automate and REST API scripts that you plan to run against the cloned
+environment. These values must be modified:
+• URL of the environment.
+• Password of the user if the password is different in the cloned environment.
+Optionally Update Task Manager, Supplemental Data Manager, and Enterprise Journal
+Custom Report Queries
+If required, update Task Manager, Supplemental Data Manager, and Enterprise Journal custom
+report queries, if any, in the cloned environment. This update may be required because the
+internal IDs of objects such as tasks, Journals, and Attributes may change during the
+migration. This update may be required for cloned Planning, Planning Modules, Tax Reporting,
+and Financial Consolidation and Close environments.
+Note
+Oracle-managed migration does not result in any change to the internal object IDs.
+Update Smart View URLs
+Modify the public and private connection Smart View URLs so that they point to the cloned
+environment. Also, update connection URLS as needed. See these information sources:.
+• URL Syntax for Smart View Connections in Getting Started Guide for Administrators
+• "About Managing Connection URL Mappings" and "Updating Connection URL Mappings"
+in Oracle Smart View for Office User's Guide
+Create New Vanity URLs
+If your users use vanity URL to connect to the environments, create a new vanity URL or
+update the existing one to point to the URL of the cloned environment. See Using Vanity URLs
+in Getting Started Guide for Administrators.
+Chapter 3
+Tasks to Perform After Cloning Environments
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 6 of 7
+Change Bookmarks
+Remind users to modify their bookmarks so that they point to the cloned environment.
+Modify Integrated Business Process
+Modify navigation flows by updating connections defined for integrated business processes to
+integrate the cloned environment into navigation flows.
+Note
+If you are moving multiple instances in an integrated business process to a new
+domain, Single Sign On (SSO) between instances will not work until all instances are
+migrated.
+Setup SSO
+If you had setup SSO to authenticate the users and the migration resulted in a change in the
+identity domain being used, then you must reconfigure SSO. See Configuring Single Sign-On
+in Getting Started Guide for Administrators.
+Note
+You need not reconfigure SSO if you have done that as a prerequisite before cloning.
+Reconfigure Integration Agent
+Update the configuration for the Integration Agent to ensure that the cloned environment is
+properly integrated with it.
+Update Integration with Other Services
+If your source environment was integrated with other services, review the integration settings
+to ensure that the cloned environment is properly integrated with them.
+Update IP Addresses
+Update the configuration with new IP address in these cases:
+• If you are using the IP address of the source Cloud EPM environment anywhere (for
+example, you have added it in your proxy configuration as an allowed outgoing IP
+address).
+Then, find the IP address of the target environment using nslookup or ping and update.
+• If you are migrating from from one region to another region and have added the outbound
+IP address of the source region in the allow list of any other environment (for example, in a
+Fusion ERP environment).
+Then, change the IP address to the outbound IP address of the new region. To get the
+outbound IP address of the OCI region where your environment is, refer to Outbound IP
+Addresses of Cloud EPM Data Centers and Regions in the Operations Guide.
+Chapter 3
+Tasks to Perform After Cloning Environments
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 7 of 7
+4
+Migrating On-Premises Applications to Cloud
+EPM
+Use the information in this section to migrate an on-premises Oracle Enterprise Performance
+Management System application to an Oracle Fusion Cloud Enterprise Performance
+Management environment.
+• Prerequisites and Notes
+• Process Flow
+– Step 1: Migrate the Security Model
+– Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM
+* Migrate Planning to Planning
+* Migrate Financial Management to Financial Consolidation and Close
+* Migrate Financial Close Management to Account Reconciliation
+* Migrate On-premises Profitability and Cost Management to Profitability and Cost
+Management
+* Migrate Strategic Finance to Strategic Modeling
+* Migrate Data Relationship Management to Cloud EDM
+– Considerations for Migrating FDMEE-Based Applications
+For information on the Cloud EPM application snapshots that can be migrated to the current
+environment, see "What Applications Can I Migrate to EPM Standard Cloud Service and EPM
+Enterprise Cloud Service? " in Getting Started Guide for Administrators.
+Prerequisites and Notes
+Lists some factors you must consider before migrating an Oracle Enterprise Performance
+Management System application to an Oracle Fusion Cloud Enterprise Performance
+Management environment.
+• General Prerequisites
+• Default Application Properties
+• Required Roles
+• Artifacts Not Supported
+• Modules and Applications Not Supported
+• Reserved Words
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 1 of 33
+General Prerequisites
+Before migrating to Oracle Fusion Cloud Enterprise Performance Management, ensure that
+your on-premises applications are stable.
+For example, Planning applications should not have invalid rules or cube refresh errors.
+Default Application Properties
+Any changes to default application properties made in the on-premises environment are
+ignored.
+Upon import, all application properties default to preset values. For example, ORACLE_ADF_UI,
+sync_on_logon, JDBC/OLAP min/max connections, and edit_dim_enabled.
+Required Roles
+Only users with administrator access can perform migration tasks.
+• In Oracle Fusion Cloud Enterprise Performance Management, the user performing all
+migration-related operations must have the Service Administrator application role or the
+Migrations - Administer granular role.
+Exception: Only an Identity Domain Administrator can create users in the identity domain
+that supports a Cloud EPM service.
+See Understanding Application Roles in the Getting Started Guide for Administrators.
+• In the on-premises environment, the user performing migration-related operations must
+have these roles:
+– Shared Services Administrator
+– Administrator role of the application that is being migrated
+• The Cloud EPM environment into which you are migrating the application must not already
+contain an application (including sample application) and data.
+Artifacts Not Supported
+Some artifacts cannot be migrated from an on-premises environment to Oracle Fusion Cloud
+Enterprise Performance Management.
+Migration of the following isn't supported:
+• Shared Services custom roles
+• Oracle Hyperion Reporting and Analysis Annotations and Batch Jobs
+Note
+ACLs defined for Financial Reports are lost during migration and must be defined
+manually in Planning.
+• Saved preferences in Reporting and Analysis, including General Preferences
+• Essbase global substitution variables
+Chapter 4
+Prerequisites and Notes
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 2 of 33
+If your application has global substitution variables, convert them into application-specific
+variables before migrating. Perform this task in Oracle Essbase Administration Services by
+opening the Substitution Variables Editor and changing the value in the Applications
+column from All Apps to a specific application.
+• Partition definition for Essbase cubes
+• Custom settings, for example, cache setting for cube, specified in the Essbase
+configuration file
+• Linked Reporting Objects
+• Personal Pages and Workspace Pages, including the Home Page
+• Objects with custom MIME types and objects with MIME types that are no longer
+supported, for example, Interactive Reporting documents and Web Analysis documents
+• Essbase report scripts and rules (RUL) files
+• Calculation scripts
+Modules and Applications Not Supported
+Some on-premises application modules cannot be migrated to Oracle Fusion Cloud Enterprise
+Performance Management.
+The following modules and applications cannot be migrated to Cloud EPM:
+• Horizontal planning modules such as Oracle Workforce Planning, Oracle Hyperion Capital
+Asset Planning, Oracle Project Financial Planning, and Oracle Hyperion Public Sector
+Planning and Budgeting. Migration of these applications to Planning will fail, even if you
+removed Planning modules cubes from them, because business rules and forms span
+cubes.
+• Oracle Hyperion EPM Architect-enabled Planning applications.
+• Enterprise Resource Planning Integrator
+Reserved Words
+Some words are considered reserved words in Oracle Fusion Cloud Enterprise Performance
+Management. Ensure that reserved words (for example, operation, account type, aggregation,
+and description) are not used by your on-premises application.
+Planning
+Before migrating a Planning application, ensure that dimension, attribute, and alias names in
+the application don't conflict with the words reserved for Planning internal usage of dimension
+properties. If alias names conflict with reserved words, the import of the Planning application
+can fail. See Naming Restrictions.
+Process Flow
+Migration of an on-premises application to Oracle Fusion Cloud Enterprise Performance
+Management involves two broad steps: migration of security and migration of application.
+The procedures for migrating the security model are similar for all migrations. The steps for
+migrating application artifacts differ based on the application and are discussed in a separate
+section for each migration scenario.
+• Step 1: Migrate the Security Model
+Chapter 4
+Process Flow
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 3 of 33
+• Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM
+– Migrate Planning to Planning
+– Migrate Financial Management to Financial Consolidation and Close
+– Migrate Financial Close Management to Account Reconciliation
+– Migrate On-premises Profitability and Cost Management to Profitability and Cost
+Management
+– Migrating On-premises Management Ledger Applications to Enterprise Profitability and
+Cost Management
+– Migrate Data Relationship Management to Cloud EDM
+• Considerations for Migrating FDMEE-Based Applications
+Step 1: Migrate the Security Model
+Migrating the security model involves creating identity domain users and assigning them to
+roles. Identity Domain Administrator creates users using Oracle Identity Management Console
+and assign users to application roles. Service Administrators can assign users to application as
+well as granular roles.
+Additionally, using Access Control, you must create groups in the Oracle Fusion Cloud
+Enterprise Performance Management environment if your on-premises application uses groups
+to set grant access control on application artifacts.
+This section details how to identify on-premises users, create user accounts for them in identity
+domain, and assign them to application roles.
+Note
+Information in this section applies to these on-premises to Cloud EPM migrations:
+• Planning to Planning
+• Oracle Hyperion Financial Management to Financial Consolidation and Close
+• Oracle Hyperion Financial Close Management to Account Reconciliation
+• Profitability and Cost Management to Profitability and Cost Management
+• Oracle Data Relationship Management to Oracle Fusion Cloud Enterprise Data
+Management
+Identify On-Premises Users and Groups
+Begin by generating a Provision Report to identify users who are authorized to access the on-
+premises application that you want to migrate and related components including Shared
+Services, Calculation Manager, FDM/Financial Data Quality Management, Enterprise Edition,
+and Oracle Hyperion Reporting and Analysis.
+To identify on-premises Oracle Enterprise Performance Management System users and
+groups:
+1. In the on-premises deployment, log in as an Administrator.
+2. Select Navigate, Administer, and then Shared Services Console.
+Chapter 4
+Step 1: Migrate the Security Model
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 4 of 33
+3. Generate a report that lists provisioned users.
+a. Select Administration, and then View Provisioning Report.
+b. In Find All, select Roles.
+c. In For, select Users.
+d. In Show Effective Roles, select Yes.
+e. In Group By, select Users.
+f. From In Application, select the following:
+Note
+Be sure to select all the Oracle Enterprise Performance Management System
+components that support the application that you are migrating.
+• Foundation: Shared Services
+• Reporting and Analysis: Reporting and Analysis
+• FDM: FDM Enterprise Edition and ERP Integrator (if present)
+• Application to migrate. For example, if you are migrating a planning application,
+expand Planning and then select the application that you want to migrate. Do not
+select multiple applications.
+4. Click Create Report.
+5. Click Export to CSV to create a Comma Separated Value (CSV) file of the report. Save
+the report to a secure directory.
+Chapter 4
+Step 1: Migrate the Security Model
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 5 of 33
+Create Security Upload Files
+Use the Provision Report that you generated as a reference to create user, group , and role
+upload (CSV) files (see Identify On-Premises Users and Groups). Security upload files
+facilitate the bulk loading of users into the identity domain, assigning users to application roles,
+creating groups in Access Control, and assigning access to Oracle Fusion Cloud Enterprise
+Performance Management.
+Create User Upload File
+Create a user upload file; for example, users.csv, to load on-premises users into the identity
+domain to create Oracle Fusion Cloud Enterprise Performance Management users.
+Use the Provision Report that you generated to identify the users who should be allowed
+access to the service. All provisioned users of the on-premises application must be created as
+users in the identity domain.
+Contents of a sample user upload file to load two users:
+First Name,Last Name,Email,User Login
+John,Doe,john.doe@example.com,jdoe
+Jane,Doe,jane.doe@example.com,jndoe@example.com
+Note
+The User Login is optional. You may exclude it if you use the email address as the
+user name.
+To create a user upload file:
+1. Using a text editor, create a CSV file; for example, users.csv, and store it in a convenient
+location. Be sure to save the file as type All Files (*.*).
+2. Edit the user upload file:
+a. Enter the following as the file header:
+First Name,Last Name,Email,User Login
+b. Add user details, one line for each user. Separate each entry using a comma. For
+example:
+John,Doe,john.doe@example.com,jdoe
+Note
+The email address must be unique.
+3. Save and close the user upload file.
+Chapter 4
+Step 1: Migrate the Security Model
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 6 of 33
+Create the Group Upload File
+From the on-premises environment, export group information from Native Directory to create
+the Groups.csv file.
+Groups that are used to grant access to application artifacts are identified in the Inheritance
+Information column of the Provision Report. See Identify On-Premises Users and Groups.
+Using the information in this column as a guide, edit Groups.csv to remove the groups that are
+not used to grant access permissions to artifacts in your on-premises environment.
+The Groups.csv file that you generate doesn't contain information about groups from external
+directories that you used in the on-premises environment to grant access to artifacts. You must
+add information about such groups into Groups.csv.
+The following is a sample Groups.csv file to load two groups: plan_grp1 with child group
+plan_grp9 and user member jdoe:
+#group
+id,provider,name,description,internalid
+plan_grp1,Native Directory,plan_grp1, ,
+plan_grp9,Native Directory,Plan_grp9, ,
+#group_children (user members of group)
+id,group_id,group_provider,user_id,user_provider
+Plan_grp1, , ,jdoe,Native Directory
+#group_children (group members of group)
+id,group_id,group_provider,user_id,user_provider
+plan_grp9,plan_grp1,Native Directory, , ,
+Note
+The Groups.csv file is used to create groups in the cloud environment using Access
+Control. You use these groups to recreate access control, similar to those that exist in
+the on-premises application, on artifacts.
+To create Groups.csv:
+1. In the on-premises deployment, log in as a Shared Service Administrator.
+2. Select Navigate, Administer, and then Shared Services Console.
+3. In the View pane, expand Application Groups, and Foundation, and then select Shared
+Services.
+4. Right-click Groups, and then select Export for Edit.
+Chapter 4
+Step 1: Migrate the Security Model
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 7 of 33
+5. Save Groups.csv.
+6. Edit Groups.csv:
+a. Using a text editor, open Groups.csv from the location where you stored it.
+b. Delete information for groups that are not used to provide access control on artifacts
+belonging to the application you are migrating.
+c. Add information about the external groups (see Inheritance Information column of
+the Provision Report) that are used to provide access control on artifacts belonging to
+the application you are migrating.
+d. Save and close Groups.csv.
+Create Role Upload Files
+Roles in the on-premises environment don't have equivalents in Oracle Fusion Cloud
+Enterprise Performance Management.
+For services other than Oracle Fusion Cloud Enterprise Data Management, you use four role
+upload files, one for each application role, to assign roles to each user type. Please note that
+Cloud EDM needs only two upload files. You must manually create these upload files using the
+Provision Report (see Identify On-Premises Users and Groups) to identify the application roles
+that grant access similar to those that users have in the on-premises application. See these
+topics for on-premises to Cloud EPM role mappings.
+• Planning
+• Financial Management
+• Financial Close Management
+• Profitability and Cost Management and Enterprise Profitability and Cost Management
+Chapter 4
+Step 1: Migrate the Security Model
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 8 of 33
+• Data Relationship Management
+See Assigning One Role to Many Users in Getting Started Guide for Administrators.
+To create a role upload file:
+1. Using a text editor, create a CSV file; for example, power_user_role.csv, and store it in a
+convenient location. Be sure to save the file as type All Files (*.*).
+2. Edit the file:
+a. Type User Login as the file header.
+b. Type the email address of each user who should be granted the application role.
+For example, if the Power User role is to be assigned to users John Doe and Jane
+Doe, the contents of the upload file may be as follows:
+User Login
+jane.doe@example.com
+john.doe@example.com
+3. Save and close the file.
+4. Repeat this process to create upload files for other application roles.
+Upload Files to the Service
+Before you can migrate security, a Service Administrator must upload the following files into the
+Oracle Fusion Cloud Enterprise Performance Management environment to which you are
+migrating the on-premises application.
+• User upload file; see Create User Upload File
+• Role upload files; see Create Role Upload Files
+You use the uploadFile EPM Automate command to upload files.
+The following procedure assumes that these files are stored in the Oracle/EPM Automate/bin
+folder.
+Information on using EPM Automate is available in Working with EPM Automate:
+• About Running EPM Automate Commands
+• Running EPM Automate
+• EPM Automate Commands
+To upload files to a Cloud EPM environment:
+1. Open a command prompt (Windows) or a terminal window (Linux) and navigate to the
+directory where you installed the EPM Automate; generally, C:\Oracle\EPM Automate\bin
+folder on a Windows computer.
+2. Sign in as a Service Administrator using a command similar to the following:
+epmautomate login example_admin example_password/password_file example_url
+3. Upload the user and roles load files, one at a time. Use the following command:
+epmautomate uploadfile FILE_NAME
+4. Using the listFiles command, verify that the uploaded files are available in the Cloud EPM
+environment.
+epmautomate listfiles
+Chapter 4
+Step 1: Migrate the Security Model
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 9 of 33
+5. Sign out.
+epmautomate logout
+Steps in Cloud EPM
+• Create Users in the Identity Domain
+• Assign Users to Application Roles
+• Import Groups into Access Control
+These procedures use the EPM Automate to complete tasks. Information on using the tool is
+available in Working with EPM Automate:
+• About Running EPM Automate Commands
+• Running EPM Automate
+• EPM Automate Commands
+Create Users in the Identity Domain
+In this step, an Identity Domain Administrator uses the user upload file to create users in the
+identity domain.
+To create users in the identity domain:
+1. Open a command prompt (Windows) or a terminal window (Linux) and navigate to the
+directory where you installed the EPM Automate; generally, C:\Oracle\EPM Automate\bin
+folder on a Windows computer.
+2. Sign in as a Identity Domain Administrator using a command similar to the following:
+epmautomate login example_domain_admin example_password/password_file
+example_url
+3. Using the addUserscommand, create identity domain users using the information in the
+user upload file. Command format is similar to the following
+epmautomate addUsers file_name.CSV userPassword=ExamplePwd1 resetPassword=true
+Assign Users to Application Roles
+In this step, an Identity Domain Administrator or a Service Administrator uses the role upload
+files to assign users to application roles. While the users are common across the environments
+that share the identity domain, role assignments are specific to an environment.
+To assign users to application roles:
+1. Open a command prompt (Windows) or a terminal window (Linux) and navigate to the
+directory where you installed the EPM Automate; generally, C:\Oracle\EPM Automate\bin
+folder on a Windows computer.
+2. Sign in as an Identity Domain Administrator or as a Service Administrator of the
+environment for which you are assigning users to application roles. Use a command similar
+to the following:
+epmautomate login example_admin example_password/password_file example_url
+example_identitydomain
+3. Assign identity domain users to application roles using the information in a role upload file.
+Use a command similar to the following:
+Chapter 4
+Step 1: Migrate the Security Model
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 10 of 33
+epmautomate assignRole file_name.CSV role_name
+Acceptable role names are:
+• Service Administrator
+• Power User (does not apply to Oracle Fusion Cloud Enterprise Data Management)
+• User
+• Viewer (does not apply to Cloud EDM)
+4. Repeat the preceding step to assign users to application roles based on the remaining load
+upload files.
+Import Groups into Access Control
+In this step, a Service Administrator imports groups into Access Control using the Groups.CSV
+file that you created earlier. See Create the Group Upload File.
+To import groups:
+1. From a browser, access the service as a Service Administrator.
+2. Click (Navigator), and then Access Control.
+3. Click User Group Report.
+4. Click Import from CSV.
+5. In Import User Group Assignment CSV, use Browse to locate and select Groups.CSV .
+6. Click Import and click Yes to see a confirmation dialog box.
+On completing the import process, a confirmation dialog box, which identifies the total
+number of processed assignments and status, is displayed.
+Step 2: Migrate Artifacts from the On-Premises Deployment to
+Cloud EPM
+Migration of on-premises application artifacts to Oracle Fusion Cloud Enterprise Performance
+Management differ based on the application you are migrating.
+Use the appropriate application-specific topic to export artifacts from the on-premises
+environment and to complete the migration process:
+• Migrate Planning to Planning
+• Migrate Financial Management to Financial Consolidation and Close
+• Migrate Financial Close Management to Account Reconciliation
+• Migrate On-premises Profitability and Cost Management to Profitability and Cost
+Management
+• Migrating On-premises Management Ledger Applications to Enterprise Profitability and
+Cost Management
+• Migrate Data Relationship Management to Cloud EDM
+Chapter 4
+Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 11 of 33
+Caution
+Windows does not permit folder and file names terminating in a period (.). If artifact
+names in your on-premises environment end in a period (for example, a Financial
+Reporting folder named example_Ltd.), the export archive you create by exporting
+artifacts to a Windows computer may cause errors and warnings during import into
+Cloud EPM. This is because Windows operating system automatically strips the
+terminating period from the artifact name there by causing a name mismatch between
+the artifact names in the XML descriptor file and the contents of the archive.
+Workaround: Using a software such as 7-Zip, edit the artifact name in the archive to
+include the terminating period.
+Migrate Planning to Planning
+• Supported Migration Paths
+• Export Planning Artifacts
+• Zip and Upload the Exported Artifacts to the Cloud EPM Environment
+• Import Planning Artifacts
+• Validate and Troubleshoot
+• Migrate Essbase Artifacts
+Supported Migration Paths
+On-premises Planning
+The on-premises instances that you are migrating to cloud must be on the latest available
+patch.
+You can migrate the following releases of on-premises Planning applications to Planning:
+• Releases of 11.1.2.3
+• Releases of 11.1.2.4
+• Releases of 11.2.x
+Information on migrating Release 11.1.2.1 on-premises Planning applications is available in
+Migrating Release 11.1.2.1 On-Premises Planning Applications to Oracle Fusion Cloud
+Enterprise Performance Management Planning. This document is available from Oracle
+Support at https://support.oracle.com.
+Cloud EPM Migration Path
+You can migrate on-premises Planning applications to EPM Enterprise Cloud Service custom
+applications.
+On-premises Planning module applications (Workforce, Strategic Modeling, and so on) cannot
+be migrated to Oracle Fusion Cloud Enterprise Performance Management.
+Chapter 4
+Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 12 of 33
+Export Planning Artifacts
+Before exporting Planning applications, ensure that the plan type name is identical to the cube
+name. If not, the cross application data map creation in the migrated Planning application in
+Oracle Fusion Cloud Enterprise Performance Management will fail.
+To export artifacts from the on-premises deployment:
+1. In the on-premises deployment, log in as a Shared Services Administrator.
+This user must be provisioned with the Administrator role of Calculation Manager,
+Reporting and Analysis, and the application that you want to migrate.
+2. Select Navigate, Administer, and then Shared Services Console.
+3. If the Planning application that is being exported uses Calculation Manager as the rule
+engine:
+a. In the left pane, expand Application Groups and then Foundation, and then select
+the Calculation Manager application.
+b. In the right pane, expand Planning, and then select the Planning application that you
+want to migrate. Ensure that all artifacts of the application (Configuration, Essbase
+Data, Global Artifacts, Plan Type, Relational Data, and Security) are selected.
+4. In the left pane, expand Reporting and Analysis, and then select the Reporting and
+Analysis application.
+5. In the right pane, expand Repository Objects, and then do the following:
+• Select all Financial Reporting objects associated with the Planning application.
+Snapshot Report and Snapshot Book don't need to be associated with an application.
+• Select any third-party content; for example, documents and HTML files.
+• Expand HRInternalFolder, and then:
+– Select DataSources.
+– Expand UserPOV.
+There is a UserPOV for every combination of user and data source. Select the
+UserPOVs for the users that were migrated as part of the security model migration.
+For example, if Henry is an active user in Planning after migrating the security
+model from your on-premises environment to Planning, then select all the
+UserPOVs having Henry in the artifact name.
+6. Select Security.
+7. Select all Planning artifacts.
+a. In the left pane, expand Application Groups and then Planning.
+b. From the right pane, select all the artifacts.
+8. Click Export.
+9. In Export to File System, enter a directory (the default directory is MIDDLEWARE_HOME/
+user_projects/epmsystem1/import_export/admin@native directory) on the computer
+where Oracle Hyperion Foundation Services is installed.
+10. Click Export.
+The Migration Status Report is displayed. Review the report to ensure that all artifacts are
+migrated without errors. If the export fails, correct the reported errors and try again.
+Chapter 4
+Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 13 of 33
+Zip and Upload the Exported Artifacts to the Cloud EPM Environment
+If artifacts in your on-premises environment contain unicode characters, ensure that the
+artifacts are zipped from an environment in which the unicode characters are displayed
+correctly in the file system. If the artifact in the file system appears garbled, the artifact will fail
+to import into Planning.
+Note
+The following steps apply to an on-premises Windows environment. You can perform
+equivalent steps for other platforms as well.
+To zip the artifacts and upload the ZIP file to a service instance:
+1. On the computer where Foundation Services is installed, navigate to the File System folder
+that stores the artifacts that you exported.
+The default export location is MIDDLEWARE_HOME/user_projects/epmsystem1/
+import_export/admin@native directory.
+2. Select all the folders that were exported to the File System folder and zip up the contents
+using a third-party software such as 7-Zip:
+a. Right-click the exported folder, select 7-Zip, and then select Add to Archive.
+b. In Add to Archive, right-click the selected folders and set the following information:
+• In Archive, change the name of the archive to OnPremisesApplication.
+• In Archive Format, select Zip.
+• In Parameters, enter cu=on, which preserves the Unicode paths and file names.
+c. Click OK.
+3. Using the uploadFile EPM Automate command, upload the ZIP file to your Oracle Fusion
+Cloud Enterprise Performance Management environment. You use the following sequence
+of commands to upload the file:
+epmautomate login example_admin example_password/password_file example_url
+epmautomate uploadfile OnPremisesApplication.ZIP
+The upload process may take a few minutes to complete.
+You may also upload using Migration. See Uploading Snapshots to an Environment.
+Import Planning Artifacts
+Note
+A Planning environment supports only one Planning application. Delete any existing
+application from the environment before importing artifacts. For information on deleting
+an application, see Removing an Application in Administering Planning.
+A Service Administrator can use these methods to import artifacts:
+Chapter 4
+Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 14 of 33
+• Use importSnapshot EPM Automate command. You use the following sequence of
+commands to sign in to an environment and import a snapshot:
+epmautomate login example_admin example_password/password_file example_url
+epmautomate importSnapshot OnPremisesApplication
+• Use Migration.
+To import artifacts into a environment using Migration:
+1. From a browser, sign in to the Planning environment as a Service Administrator.
+2. Click (Navigator) and then Migration.
+3. Click Snapshots.
+4. Click (Actions) in the row of the snapshot (for example, OnPremiseApplication) that
+you uploaded, and then select Import.
+5. In Import, click OK.
+The Migration Status Report is displayed. Refresh the report until the migration is
+complete.
+Validate and Troubleshoot
+During imports, check the Migration Status Report to ensure that the import into the Oracle
+Fusion Cloud Enterprise Performance Management environment was error free. If errors are
+reported, take corrective actions and then reimport artifacts.
+To validate that migration of Planning was successful, do these checks in Planning:
+• Validate that Essbase data migrated correctly.
+• Open a Planning data form and compare it with a data form from the source environment.
+• Open a data form that contains driver data and compare it with a data form from the source
+environment.
+• Verify that dimensions and task lists were migrated. Verify that the dimensions exist and
+contain the correct members.
+• Verify that you can view the Financial Reporting reports associated with the application.
+Migrate Essbase Artifacts
+Substitution variables and rules deployed in the on-premises Planning application are migrated
+along with other artifacts.
+If the following artifacts were added directly to Oracle Essbase, you must manually recreate
+them in Planning:
+• Essbase calculation scripts. See Migrating Calculation Scripts
+• Essbase report scripts. See Migrating Report Scripts
+• Essbase data rule files. See Migrating Data Load Rule Files
+These artifacts cannot be migrated to Oracle Fusion Cloud Enterprise Performance
+Management:
+• Partition definition between the Essbase cubes
+• Custom settings specified in the Essbase configuration file; for example, cache setting for
+cube
+Chapter 4
+Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 15 of 33
+• Linked reporting objects
+Migrating Calculation Scripts
+This section applies only if the on-premises application uses Calculation scripts that were
+created directly in Oracle Essbase.
+Export calculation scripts from on-premises Essbase applications and use it as a reference
+while creating business rules in Planning.
+See Creating a Business Rule in Designing with Calculation Manager.
+To recreate on-premises calculation scripts as business rules:
+1. From a browser, sign in to the Planning environment as a Service Administrator.
+2. In the Navigator, click Rules under Create and Manage.
+Calculation Manager opens.
+3. Expand Planning, then the application, and then the cube for which you want to create the
+rule.
+4. Right-click Rules, and then select New.
+5. In New Rule enter the rule name, which should match the name of the script you are
+recreating as rule.
+6. From the on-premises Essbase script, copy script content.
+7. Paste the script content into the Script Editor.
+8. Click Save.
+9. Deploy the new rule to Planning.
+Migrating Report Scripts
+A report script is used to export data from Oracle Essbase. Existing on-premises Essbase
+report scripts can be converted to Oracle Smart View for Office smart queries, which you can
+use for ad hoc reporting and analysis.
+Note
+For detailed procedures, see Creating a Smart Query in Oracle Smart View for Office
+User's Guide
+High-level steps involved in creating smart queries in place of Essbase report scripts :
+• Move the members referenced in <ROW in the report script to the row layout of query
+• Move the member selection under <COLUMN in report script to column layout of query
+• Pick the POV members in query that are in <PAGE in report script
+• Specify any suppress options that are in the report script, for example,
+SUPMISSINGROWS, SUPEMPTYROWS, using Options in the Advanced Options
+menu.
+• Apply data format options in report script using SmartView data format, cell style or
+formatting options available in Microsoft Excel.
+Chapter 4
+Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 16 of 33
+Migrating Data Load Rule Files
+Convert Oracle Essbase rule scripts to data load mappings in Data Management.
+See Creating File-Based Integrations in Administering Data Integration.
+Migrate Financial Management to Financial Consolidation and Close
+• Supported Migration Paths
+• Migrate Financial Management Metadata and Artifacts
+Supported Migration Paths
+You use the Cloud EPM Migration Accelerator to complete the migration process.
+On-premises Financial Management
+The on-premises instances that you are migrating to cloud must be on the latest available
+patch.
+You can migrate the following releases of Oracle Hyperion Financial Management applications
+to Financial Consolidation and Close:
+• Releases of 11.1.2.3
+• Releases of 11.1.2.4
+Cloud EPM
+You can migrate applications from Financial Management to EPM Standard Cloud Service or
+EPM Enterprise Cloud Service environments.
+Migrate Financial Management Metadata and Artifacts
+You use the Cloud EPM Migration Accelerator to migrate Oracle Hyperion Financial
+Management artifacts and data to Financial Consolidation and Close. This tool, and supporting
+documentation, is available from Oracle Support.
+To download the Cloud EPM Migration Accelerator and documentation:
+1. From a browser, go to Oracle Support and sign in.
+2. Download patch 28352563 from https://support.oracle.com/support/?patchId=28352563.
+3. In File Download, click p28352563_111240_Generic.zip and save it to a local directory.
+4. Using a third party utility such as 7-Zip, extract the contents of
+p28352563_111240_Generic.zip.
+5. Open User Documentation within the directory where you extracted
+p28352563_111240_Generic.zip.
+6. Use the instructions in the following documents to migrate Financial Management
+metadata, data, and artifacts.
+• Migrating to Cloud EPM from Hyperion Financial Management (HFM).pptx, which
+presents an overview of the migration process.
+• Whitepaper - HFM to Cloud EPM - 18 08-V5.docx, which contains step-by-step
+migration instructions.
+Chapter 4
+Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 17 of 33
+• EcmaUserGuide.docx, which explains how to use the Cloud EPM Migration
+Accelerator.
+Migrate Financial Close Management to Account Reconciliation
+• Supported Migration Paths
+• Export Financial Close Management Artifacts
+• Upload Artifacts to Account Reconciliation
+• Create Application
+• Import Artifacts into Account Reconciliation
+• Validate and Troubleshoot
+Supported Migration Paths
+The Oracle Hyperion Financial Close Management instances that you are migrating to Account
+Reconciliation must be on Release 11.1.2.4.250 and later.
+Export Financial Close Management Artifacts
+To export Oracle Hyperion Financial Close Management artifacts from the on-premises
+deployment:
+1. In the on-premises deployment, log in as a Shared Services Administrator.
+2. Select Navigate, Administer, and then Shared Services Console.
+3. In the left pane, expand Application Groups, then Financial Close Management, and
+then Financial Close Management.
+4. In the right panel, expand Common and select the following artifacts:
+• Calendars
+• Currencies
+• Holiday Rules
+• Organizational Units
+• Teams
+• Optionally, select the Report Groups, Report Queries, and Reports specific to Account
+Reconciliation Manager.
+Note
+Do not include any report objects if exporting from an on-premises
+environment using MSSQL database. Reports from MSSQL will not work in
+Account Reconciliation since the Cloud environment uses an Oracle database
+only. Report queries are specific to database.
+5. Select the root node, Reconciliation Manager which selects everything underneath it.
+6. Click Export and then specify a name for the export file.
+7. Wait for the export to finish and then check if the export had any errors you need to fix.
+Chapter 4
+Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 18 of 33
+8. Under File System, right-click the exported file and select Download. Then save the file
+locally.
+A ZIP archive containing the exported files is created. You import this snapshot into
+Account Reconciliation in the next step.
+Upload Artifacts to Account Reconciliation
+In the preceding step, you exported Oracle Hyperion Financial Close Management artifacts to
+create a snapshot in a location of your choice. Upload this snapshot to Account Reconciliation.
+Use the uploadFile EPM Automate command to upload the snapshot to your Account
+Reconciliation environment. You use the following sequence of commands to upload the
+snapshot:
+epmautomate login example_admin example_password/password_file example_url
+epmautomate uploadfile SNAPSHOT_NAME
+Be sure to specify the fully-qualified path to the snapshot if it is not in the directory from where
+you are running the EPM Automate. The upload process may take a few minutes to complete.
+You may also upload using Migration. See Uploading Snapshots to an Environment.
+Create Application
+To create an Account Reconciliation application:
+1. From a browser, sign in to the Account Reconciliation environment as a Service
+Administrator.
+2. Click Start.
+3. Click (New).
+Account Reconciliation Home page opens.
+Import Artifacts into Account Reconciliation
+Note
+Your Account Reconciliation environment must not have data or a sample application
+existing when you try to import.
+To import artifacts to an Account Reconciliation environment:
+1. From a browser, sign in to the Account Reconciliation environment as a Service
+Administrator.
+2. Click Tools, and then Migration.
+3. Click Snapshots.
+The snapshot that you previously uploaded (for example, OnPremiseApplication) is listed
+in Snapshots. Since there are interdependencies between the artifacts you import, the
+import must be performed in a series of steps.
+4. Expand the snapshot, then click the application link.
+Chapter 4
+Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 19 of 33
+5. Select the Common node, and then click Import.
+6. In Import, click OK.
+The Migration Status Report is displayed. Refresh and review the report until the migration
+is complete.
+7. From the snapshot, select everything under Reconciliation Manager except the following:
+• Profiles
+• Reconciliations
+8. Click Import.
+9. In Import, click OK.
+The Migration Status Report is displayed. Refresh and review the report until the migration
+is complete.
+10. From the snapshot, select the following under Reconciliation Manager:
+• Profiles
+• Reconciliations
+11. Click Import.
+12. In Import, click OK.
+The Migration Status Report is displayed. Refresh and review the report until the migration
+is complete.
+Validate and Troubleshoot
+During imports, check the Migration Status Report to ensure that the import into the Account
+Reconciliation environment was error free. If errors were reported, take corrective actions and
+then reimport artifacts.
+After imports are complete, sign in to Account Reconciliation and validate that the data
+migrated correctly:
+• Check that the Periods are set up correctly.
+• Use either Worklist or Reconciliations to view the Reconciliations for a specific period.
+• Open a few of the Reconciliations and check that the assignments, work and history are
+correct.
+• Check that Formats, Attributes, Organizations and other objects all appear correctly.
+• Sign in as a user and check that access to the Reconciliations is correct.
+Migrate On-premises Profitability and Cost Management to Profitability and
+Cost Management
+• Supported Migration Paths
+• Export Profitability and Cost Management Artifacts
+• Upload the Template File to Profitability and Cost Management
+• Import the Template File into Profitability and Cost Management
+Chapter 4
+Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 20 of 33
+Supported Migration Paths
+You can migrate only Release 11.1.2.4.x Oracle Hyperion Profitability and Cost Management
+instances to Profitability and Cost Management.
+On-premises Profitability and Cost Management can be migrated to EPM Enterprise Cloud
+Service environments only.
+Export Profitability and Cost Management Artifacts
+Profitability and Cost Management supports only Management Ledger applications.
+In the on-premises environment, use one of the following to create a template file that you can
+upload to Profitability and Cost Management:
+• Use the Standard to Management Ledger Migration Utility to export artifacts of Oracle
+Hyperion Profitability and Cost Management Standard Profitability applications to a
+template file.
+For instructions, see Using the Standard to Management Ledger Migration Utility.
+• Use the Export Template command of Profitability and Cost Management to package
+Management Ledger applications in a form that can be imported into Profitability and Cost
+Management.
+For instructions, see Using the Export Template Command.
+Using the Standard to Management Ledger Migration Utility
+Use the Standard to Management Ledger Migration Utility for preparing a Detailed Profitability
+application for migration to an Profitability and Cost Management environment.
+Note
+This utility is available only for Oracle Hyperion Profitability and Cost Management
+installations that use the Oracle Database.
+The utility creates a template ZIP file that can be imported as a new Management Ledger
+application into Profitability and Cost Management. It contains the dimension metadata, point-
+of-view (POV) definitions, and application preferences from the Standard Profitability
+application. It also contains placeholder Management Ledger rule sets and rules, derived from
+the standard application stages and rules, to provide a framework that must be filled out
+manually to complete the migration process.
+The Standard to Management Ledger Migration Utility uses a PL/SQL procedure to extract the
+information from the Standard Profitability application into files on a server. The PL/SQL
+procedure requires that you first create an Oracle directory object, which is used to access the
+operating system on the database server and write the files. Next, you copy these files to any
+Microsoft Windows-based client computer, where you run a batch (BAT) file to prepare and
+package them into a Management Ledger template ZIP file. Finally, you can import the
+template file into a new Management Ledger application in the Cloud.
+Steps are as follows:
+1. Extract the utility files from the ZIP file that contains them.
+Chapter 4
+Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 21 of 33
+Open the P28048630_111240_Generic.zip patch file and extract these two files:
+sptomlextract.sql, sptomltemplate.bat
+Within the Zip file, they are located in the following folder:
+HPCM_11_1_2_4_128_28048630\files\products\Profitability\database\Common\Oracle
+2. Create an Oracle directory database object to specify the location on the database
+server where the migration files are to be written:
+a. In Oracle SQL Developer or SQL Plus, connect to a user that has the create any
+directory privilege and execute this command:
+create or replace directory EXTRACT_DIR as '<directory path where you want
+the migration files written>';
+For example, to write them to the D:\Migration_Extract directory on a Windows
+server:
+create or replace directory EXTRACT_DIR as 'D:\Migration_Extract';
+b. Grant all privileges on that directory to the Profitability and Cost Management product
+schema owner:
+grant all on directory EXTRACT_DIR to <Profitability and Cost Management
+schema owner>;
+For example, if the Profitability and Cost Management schema owner is HPCM1, you
+would use this command:
+grant all on directory EXTRACT_DIR to HPCM1;
+3. Create the migration utility PL/SQL package:
+From Oracle SQL Developer or SQL Plus, as the Profitability and Cost Management
+product schema owner, run the sptomlextract.sql script. This creates and compiles the
+HPM_SP_TO_ML_PKG PL/SQL package.
+4. Run the migration utility to extract information from the Standard Profitability application
+into files on the database server:
+Run this command from Oracle SQL Developer or SQL Plus:
+exec HPM_SP_TO_ML_PKG.ExtractAll('<appName>');
+For example, for application name "BksSP82", you would use this command:
+exec HPM_SP_TO_ML_PKG.ExtractAll('BksSP82');
+The migration files are created in the directory you specified in step 2.
+5. Copy the migration files to any Microsoft Windows client or server.
+If the Oracle Database instance is not installed on a Microsoft Windows system, copy the
+generated migration files to any Windows system. Also copy the sptomltemplate.bat file
+to that location.
+6. Generate the Management Ledger template ZIP file:
+On the Microsoft Windows computer, run the sptomltemplate.bat script to prepare and
+package the migration files into a Management Ledger template ZIP file, using this
+command:
+sptomltemplate.bat <directory path where you copied the migration files>
+For example, if you copied the migration files to D:\Migration_Template on the Windows
+server, the command is:
+sptomltemplate.bat D:\Migration_Template
+Chapter 4
+Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 22 of 33
+This step generates a template file called SPtoML_Template.zip in the same folder.
+Using the Export Template Command
+The migration of an Oracle Hyperion Profitability and Cost Management application to
+Profitability and Cost Management includes the following:
+• Dimensions, whether file-based or managed in Oracle Hyperion EPM Architect or an
+Oracle Essbase cube
+• Rules and rule sets
+• Queries and model views
+• POV settings
+• Optionally, input values but not calculated values
+No content outside of the Management Ledger application is included. For example, reports
+produced using Financial Reporting are not included.
+To export artifacts using the Export Template Command:
+1. In the on-premises deployment, log into Profitability and Cost Management as an
+Administrator.
+2. Click Actions, and then Export Template.
+3. In Export Template, enter an Export File Name, for example, OnPremises_ML_templates,
+and then indicate whether to Include Input Data.
+4. Click OK to start the export. You can track progress in the Job Library.
+Upload the Template File to Profitability and Cost Management
+Using the uploadFile EPM Automate command, upload the template (SPtoML_Template.zip) to
+the Profitability and Cost Management environment.
+You may also use the File Explorer to upload and import templates. See Transferring Files with
+the File Explorer in Administering Profitability and Cost Management.
+To upload files using the uploadfile command:
+1. sign in to the Profitability and Cost Management environment as a Service Administrator:
+epmautomate login example_admin example_password/password_file example_url
+2. Run the uploadFile command:
+epmautomate uploadfile OnPremises_ML_templates.zip profitinbox
+epmautomate uploadfile "D:\Migration_Template\SPtoML_Template.zip" profitinbox
+See Using the Standard to Management Ledger Migration Utility or Using the Export
+Template Command to identify the location of the template file.
+3. Sign out:
+epmautomate logout
+Import the Template File into Profitability and Cost Management
+Use the Profitability Applications Console to import templates from the archive (for
+example, from OnPremises_ML_templates.zip that you uploaded in the preceding step).
+Chapter 4
+Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 23 of 33
+You may also use the File Explorer to upload and import templates. See Transferring Files with
+the File Explorer in Administering Profitability and Cost Management.
+To import templates:
+1. From a browser, sign in to the Profitability and Cost Management environment as a
+Service Administrator.
+2. Click Application, and then Application again to open the Profitability Application
+Console.
+3. On Application, click (Create), and then select Import Template.
+4. Click Select File, and then select Server as the location of the file.
+Select Client as the location if you want to upload the template archive using the File
+Explorer.
+5. Browse to select the template archive, for example, OnPremises_ML_templates.zip.
+6. Click OK.
+Migrating On-premises Management Ledger Applications to Enterprise
+Profitability and Cost Management
+You can migrate only Release 11.1.2.4.x Management Ledger applications to Enterprise
+Profitability and Cost Management. This migration involves these steps:
+• Package the Management Ledger application in a form that can be imported into
+Profitability and Cost Management using the Export Template command of Oracle
+Hyperion Profitability and Cost Management. For instructions, see Using the Export
+Template Command.
+• Upload the package from the preceding step to Profitability and Cost Management using
+the Cloud Migration template to create a Profitability and Cost Management application.
+• Migrate the application from Profitability and Cost Management to Enterprise Profitability
+and Cost Management using the PCM to Enterprise Profitability and Cost Management
+Migration utility.
+Your Goal Watch This
+Watch a video tutorial on Migrating from
+Profitability and Cost Management to
+Enterprise Profitability and Cost Management Tutorial
+Migrate Strategic Finance to Strategic Modeling
+On-premises Oracle Hyperion Strategic Finance databases and consolidations cannot be
+migrated as is to Oracle Fusion Cloud Enterprise Performance Management; you must migrate
+individual entities and templates. Other Strategic Finance artifacts such as data maps and
+entity change management and assumption change management documents are recreated
+manually in Strategic Modeling.
+• Supported Migration Path
+• Prepare Strategic Finance Models and Templates for Migration
+• Migrate Offline Models to Strategic Modeling
+– Migrating Offline Strategic Finance Models to Strategic Modeling Using a Browser
+Chapter 4
+Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 24 of 33
+– Migrating Offline Strategic Finance Models to Strategic Modeling Using Smart View
+• Importing Strategic FinanceTemplates into Strategic Modeling (Optional)
+• Enable Migrated Models and Templates in Strategic Modeling
+• Build Consolidation Hierarchy
+Supported Migration Path
+You can migrate Oracle Hyperion Strategic Finance entities and templates from Strategic
+Finance Release 11.1.2.4.002 only.
+If you are using an earlier version of Strategic Finance, upgrade your on-premises deployment
+to Release 11.1.2.4.002 to ensure that entities and templates are in a file format that can be
+converted for use with Strategic Modeling.
+Prepare Strategic Finance Models and Templates for Migration
+You migrate each Oracle Hyperion Strategic Finance model and template separately. The Take
+Offline feature of Oracle Smart View for Office enables you to quickly save entities and
+templates as local ALC files that can be migrated to Strategic Modeling.
+It is not required to migrate template files to Strategic Modeling unless you want to maintain a
+copy of the template that was used to create the model in Strategic Finance.
+Use the following procedure to create individual ALC files for each entity that you want to
+migrate. The ALC files are stored in EPM_ORACLE_HOME\products\hsf\Client\offline
+\server_hostname\database_name directory (generally, Oracle\Middleware
+\EPMSystem11R1\products\hsf\Client\offline\server_hostname\database_name) on the
+computer where Strategic Finance is deployed.
+To take models and templates offline using Smart View:
+1. From Smart View, connect to the Strategic Finance instance from which you want to
+migrate entities and templates.
+2. In Smart View, right-click the Strategic Finance database node, and then select Take
+Offline.
+The Take Offline utility is displayed.
+3. Complete these steps in the Take Offline utility:
+a. Select the models to take offline.
+b. Make sure that the Check Out checkbox is not selected.
+c. Click Next.
+Chapter 4
+Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 25 of 33
+d. Verify the list of models that will be taken offline. The models and templates listed in
+this screen will be saved as ALC files.
+e. Click Finish.
+4. Wait a while for the process to finish. Click OK when the process of taking models off line
+is reported as complete.
+Chapter 4
+Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 26 of 33
+Create a Planning ModulesApplication in Cloud EPM and Enable Strategic Modeling
+Use the Oracle Hyperion Strategic Finance models (ALC files) that you took offline to create
+models in Strategic Modeling.
+Before you can create models, you must create a Planning Modules application in Oracle
+Fusion Cloud Enterprise Performance Management and enable Strategic Modeling. See these
+information sources in Administering Planning Modules:
+• Creating an Application
+• Enabling Strategic Modeling
+Migrate Offline Models to Strategic Modeling
+You may use Oracle Fusion Cloud Enterprise Performance Management screens or Oracle
+Smart View for Office to create Strategic Modeling models based on the Oracle Hyperion
+Strategic Finance models that you took offline.
+When you migrate a model, all model artifacts, such as POVs and reports, are migrated to the
+new model in Strategic Modeling.
+• Migrating Offline Strategic Finance Models to Strategic Modeling Using a Browser
+• Migrating Offline Strategic Finance Models to Strategic Modeling Using Smart View
+Migrating Offline Strategic Finance Models to Strategic Modeling Using a Browser
+You migrate an offline Oracle Hyperion Strategic Finance model by using it as the source while
+creating a Strategic Modeling model.
+To migrate an offline Strategic Finance model:
+1. Access Strategic Modeling as a Service Administrator.
+2. Create a model. See Creating a Strategic Modeling Model in Administering Planning
+Modules for detailed instructions.
+Chapter 4
+Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 27 of 33
+Note
+While creating the model, on Create New Model: General, be sure to select the
+following:
+• In Create Model From, select Local File.
+• In Select File, select one of the previously prepared Strategic Finance model
+(ALC) file.
+The default location of the Strategic Finance model files that you take offline is
+EPM_ORACLE_HOME\products\hsf\Client
+\offline\server_hostname\database_name directory (generally, Oracle
+\Middleware\EPMSystem11R1\products\hsf\Client\offline
+\server_hostname\database_name) on the computer where Strategic Finance
+is deployed.
+3. Enter other required settings for the model.
+You may choose to keep the time structure and source model data from the Strategic
+Finance model that is being used as the source. If you opt not to use the source model
+data, you can choose a different currency and currency unit. Similarly, you can place the
+model at root model to build a model hierarchy or deselect the Place At Root checkbox to
+add this model as a child of another model that you select in Parent Model.
+4. Click Next to cycle through the remaining screens and specify additional settings. On
+Review, click Create Model.
+5. Click OK to finish the process.
+6. Repeat steps 3-6 for each model you want to migrate.
+Migrating Offline Strategic Finance Models to Strategic Modeling Using Smart View
+Using Oracle Smart View for Office, you can create Strategic Modeling models using offline
+Oracle Hyperion Strategic Finance models as the source.
+To migrate an offline Strategic Finance model using Smart View Extension for Strategic
+Modeling:
+Chapter 4
+Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 28 of 33
+When you migrate a model, all model artifacts, such as POVs and reports, are migrated to the
+new model in Strategic Modeling.
+1. Using Strategic Finance, connect to the Oracle Fusion Cloud Enterprise Performance
+Management environment in which Strategic Modeling is enabled.
+2. In the Smart View Panel on Strategic Modeling ribbon, expand the Strategic Modeling
+node.
+3. Right-click Model View and then select New Model.
+4. Create a model. See Creating a Model by Copying Another Model in Working with
+Strategic Modeling in Smart View.
+Note
+While creating the model, on Create New Model on Server, be sure to select the
+following:
+In Source, select one of the previously prepared Strategic Finance model (ALC)
+file.
+The default location of the Strategic Finance model files that you take offline is
+EPM_ORACLE_HOME\products\hsf\Client\offline\server_hostname\database_n
+ame directory (generally,
+Oracle\Middleware\EPMSystem11R1\products\hsf\Client\offline\server_hos
+tname\database_name) on the computer where Strategic Finance is deployed.
+You may choose to keep the source model data from the offline Strategic Finance model
+that is being used as the source. If you opt not to use the source model data, you can, later
+on, choose a different currency and currency unit. Similarly, you can place the model at
+root model to build a model hierarchy or deselect the Place At Root checkbox to add this
+model as a child of an existing model that you select in Parent Model.
+Chapter 4
+Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 29 of 33
+5. Click OK.
+6. Repeat steps 3-5 for each model you want to migrate.
+Importing Strategic FinanceTemplates into Strategic Modeling (Optional)
+You use Oracle Smart View for Office to import Oracle Hyperion Strategic Finance templates
+into Strategic Modeling. This step is required only if you want to preserve the templates that
+you used to create the migrated models.
+Note
+When you take a Strategic Finance model offline, the template that was used to create
+the model, if available on the server, is copied to the
+EPM_ORACLE_HOME\products\hsf\Client\offline\server_hostname\database_name
+directory (generally,
+Oracle\Middleware\EPMSystem11R1\products\hsf\Client\offline\server_hostnam
+e\database_name) on the computer where Strategic Finance is deployed. Template
+files are created as ALT files.
+To import templates using Smart View:
+Chapter 4
+Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 30 of 33
+1. Using Strategic Finance, connect to the Oracle Fusion Cloud Enterprise Performance
+Management environment in which Strategic Modeling is enabled.
+2. In the Smart View Panel on Strategic Modeling ribbon, expand the Strategic Modeling
+node
+3. Right-click Templates and then select Import Template.
+4. In Source Template, select the template file you want to import.
+5. In Template Name, enter a unique name for the template in Strategic Modeling.
+6. Click OK.
+7. Repeat this process for each template you want to migrate.
+Enable Migrated Models and Templates in Strategic Modeling
+The process of enabling the migrated models, their reports, and templates in Strategic
+Modeling involves checking out and then checking in the migrated models and templates. You
+use Oracle Smart View for Office Extension for Strategic Modeling to complete this process.
+To check out and check in models:
+1. Using Oracle Hyperion Strategic Finance Extension for Smart View, connect to the Oracle
+Fusion Cloud Enterprise Performance Management environment in which Strategic
+Modeling is enabled
+2. In the Smart View Panel on the Strategic Modeling ribbon, expand the Strategic
+Modeling node.
+3. Complete a step:
+a. To check out models, expand the Model View node.
+b. To check out templates, expand the Templates node.
+4. Right-click the model or template that you want to check out and then select Open-Check
+Out.
+A checked out view of the model or template is displayed.
+5. In the Strategic Modeling ribbon, click Close
+The Close Model screen is displayed.
+6. In Close Model, select Check in as the close option and then click OK.
+7. Repeat steps 3-6 for each model or template that you want to enable.
+Build Consolidation Hierarchy
+Consolidation hierarchies in Strategic Modeling represent the structure of your organization.
+You can include many models in your consolidation so that the data from those models only
+are included in the consolidated model. Consolidation helps determine how changing business
+unit conditions affect the earnings of the company to enable you to make informed decisions
+about business units.
+For detailed instructions, see Creating and Running Consolidations in Working with Planning
+Modules.
+To build a consolidation hierarchy:
+1. Access Strategic Modeling as a Service Administrator.
+2. Click Consolidation View and then Add.
+Chapter 4
+Step 2: Migrate Artifacts from the On-Premises Deployment to Cloud EPM
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 31 of 33
+3. Enter a name for the consolidation and then click (OK).
+4. Click the name of the new consolidation to open it.
+5. Click (Add) to list all existing models that you can add to the consolidation.
+6. Drag and drop models into the consolidation.
+7. Click Close when you are done.
+Migrate Data Relationship Management to Cloud EDM
+You can migrate data hierarchies from Oracle Data Relationship Management to Oracle Fusion
+Cloud Enterprise Data Management and then perform data management to facilitate on-going
+maintenance of enterprise data in the cloud.
+Cloud EDM is a modern, cloud-based solution that takes a unique approach that is agile,
+incremental, and fit-for-purpose to promote the right-grain of data sharing of enterprise data
+across individuals, teams, departments and entities across the enterprise.
+Broad migration steps include:
+• Create an export file for each hierarchy within Data Relationship Management
+• Register an application within Cloud EDM with dimensions from Data Relationship
+Management
+• Use the export file from Data Relationship Management to import a dimension into the
+registered application in Cloud EDM
+• Begin enterprise data maintenance using application views or build maintenance views to
+curate enterprise data by domain
+For detailed instructions, see Migrating Enterprise Data from Data Relationship Management
+to Oracle Enterprise Data Management Cloud in Administering and Working with Oracle
+Fusion Cloud Enterprise Data Management.
+Considerations for Migrating FDMEE-Based Applications
+The following Oracle Hyperion Financial Data Quality Management, Enterprise Edition-based
+applications can be migrated from on-premises to Oracle Fusion Cloud Enterprise
+Performance Management:
+• Planning
+• Oracle Hyperion Profitability and Cost Management
+The following artifacts cannot be migrated because these features are not supported in Cloud
+EPM:
+• Scripts of any type, including event scripts, import scripts and custom scripts
+• Custom reports
+On-premises applications such as Planning, and Profitability and Cost Management support
+the loading of metadata and data using Financial Data Quality Management, Enterprise
+Edition. After migrating your application to Cloud EPM, you have the following two options to
+integrate data:
+• Continue using your on-premises FDMEE deployment by leveraging the Hybrid integration
+and data load to Cloud EPM.
+Chapter 4
+Considerations for Migrating FDMEE-Based Applications
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 32 of 33
+• Convert all integrations that use a direct connection to the source data system to a file-
+based integration using Data Management. To convert the direct integrations to file-based
+integrations you will need to do the following:
+– Develop a custom data extraction process to export the data from the source system
+to a delimited data file
+– Map the delimited data file and load it into the Cloud EPM application using Data
+Management
+See Creating File-Based Integrations in Administering Data Integration.
+You can use the following EPM Automate command sequence to automate the
+process of uploading the data file and executing the integration:
+epmautomate login example_admin example_password/password_file example_url
+epmautomate uploadfile DELIMITED_FILE_NAME.txt inbox/repository
+epmautomate rundatarule AccountActual Mar-15 Jun-15 REPLACE STORE_DATA
+inbox/AccountActual.dat
+epmautomate logout
+See uploadFile EPM Automate Commands in Working with EPM Automate for sample
+command usage and examples.
+Chapter 4
+Considerations for Migrating FDMEE-Based Applications
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Page 33 of 33
+A
+Role Mapping for Migrating to Cloud EPM
+Application roles combine a number of on-premises roles. To ensure that an appropriate level
+of access is maintained after migration, grant the application role that encompasses all the
+access rights granted to the user in the on-premises application.
+About Role Mapping
+For example, assume that user jdoe has the following on-premises roles:
+• Interactive User role of the Planning application that is being migrated
+• LCM Administrator (Shared Services)
+• Report Designer (Reporting and Analysis)
+Of these roles, Interactive User and Report Designer are mapped to the Power User role.
+However, because the LCM Administrator role is mapped to the Service Administrator
+application role, you must assign the Service Administrator application role to jdoe.
+• Planning
+• Financial Management
+• Financial Close Management
+• Profitability and Cost Management and Enterprise Profitability and Cost Management
+• Data Relationship Management
+Planning
+If a user has on-premises Planning roles that differ from those listed in the following table, you
+must assign the user to the Service Administrator application role.
+Note
+Reporting and Analysis was replaced with Document Repository in Release
+11.1.2.4.900.
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Appendix A-1 of A-6
+Table A-1 Planning to Planning Role Mapping
+If user has only these on-premises roles Assign the user to this application role
+Planning
+• Ad Hoc Grid Creator
+• Approvals Ownership Assigner
+• Approvals Supervisor
+• Interactive User
+• Task List Access Manager
+Reporting and Analysis
+• Content Manager
+• Schedule Manager
+Document Repository (Release 11.1.2.4.900
+only)
+• Viewer
+• Report Designer Scheduler
+• Security Administrator
+Financial Data Quality Management
+• Create Integration
+• Drill Through
+• GL Writeback
+• Run Integration
+Essbase Analytic Services Read
+Power User
+Planning
+• Ad Hoc User
+• Planner
+Reporting and Analysis Content Publisher
+Document Repository (Release 11.1.2.4.900
+only)
+• Report Designer Scheduler
+• Viewer
+Financial Data Quality Management Drill
+Through
+User
+Planning View User
+Reporting and Analysis
+• Explorer
+• Viewer
+Document Repository Viewer
+Viewer
+Financial Management
+Users who have the Application Administrator and Load System Oracle Hyperion Financial
+Management roles must be assigned to the Service Administrator application role.
+Appendix A
+Financial Management
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Appendix A-2 of A-6
+Table A-2 Financial Management to Financial Consolidation and Close Role Mapping
+If user has only these on-premises Financial
+Management roles
+Assign the user to this application role
+Inter-Company Transaction Admin
+Rules Administrator
+Rules Designer
+Approve Journals
+Create Journals
+Create Unbalanced Journals
+Default
+Journals Administrator
+Post Journals
+Manage Templates
+Generate Recurring
+Review Supervisor
+Reviewer 1 through Reviewer 10
+Submitter
+Lock Data
+Unlock Data
+Consolidate All
+Consolidate
+Consolidate All with Data
+Run Allocation
+Run EquityPickUp
+Manage Data Entry Forms
+Manage Models
+Save System Report On Server
+Load Excel Data
+Inter-Company Transaction User
+Inter-Company Transaction Match Template
+Inter-Company Transaction Auto Match by
+Account
+Inter-Company Transaction Auto Match by ID
+Inter-Company Transaction Manual Match with
+Tolerance
+Inter-Company Transaction Manual Match
+Inter-Company Transaction Unmatch
+Inter-Company Transaction Post/Unpost
+Enable write back in Web Grid
+Database Management
+Manage Ownership
+Manage Custom Documents
+Extended Analytics
+Data Form Write Back from Excel
+Power User
+Appendix A
+Financial Management
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Appendix A-3 of A-6
+Table A-2 (Cont.) Financial Management to Financial Consolidation and Close Role
+Mapping
+If user has only these on-premises Financial
+Management roles
+Assign the user to this application role
+Consolidate
+Consolidate All
+Consolidate All with Data
+Load Excel Data
+Inter-Company Transaction Auto Match by
+Account
+Enable write back in Web Grid
+User
+Advanced User
+Rules Viewer
+Read Journals
+Receive Email Alerts for Process Control
+Receive Email Alerts for Intercompany
+Reserved
+View Data Audit
+View Task Audit
+Dashboard Viewer
+Viewer
+Financial Close Management
+If a user has on-premises Oracle Hyperion Financial Close Management roles that differ from
+those listed in the following table, you must assign the user to the Service Administrator
+application role.
+Table A-3 Financial Close Management to Account Reconciliation Role Mapping
+If user has only these on-premises roles Assign the user to this application role
+Financial Close Management
+• Reconciliation Power User
+• Reconciliation Preparer
+• Reconciliation Reviewer
+• Reconciliation Commentator
+• Reconciliation Viewer
+Reporting and Analysis
+• Analyst
+• Explorer
+• Report Designer
+• Schedule Manager
+Financial Data Quality Management
+• Drill Through
+• Create Integration
+• Run Integration
+• GL Writeback
+Power User
+Appendix A
+Financial Close Management
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Appendix A-4 of A-6
+Table A-3 (Cont.) Financial Close Management to Account Reconciliation Role
+Mapping
+If user has only these on-premises roles Assign the user to this application role
+Financial Close Management
+• Reconciliation Preparer
+• Reconciliation Reviewer
+• Reconciliation Commentator
+• Reconciliation Viewer
+Financial Data Quality Management Drill
+Through
+User
+Financial Close Management Reconciliation
+Viewer
+Reporting and Analysis
+• Viewer
+• Explorer
+Financial Data Quality Management Drill
+Through
+Viewer
+Profitability and Cost Management and Enterprise Profitability
+and Cost Management
+If a user has on-premises Profitability and Cost Management roles that differ from those listed
+in the following table, you must assign the user to the Service Administrator application role.
+Table A-4 Profitability and Cost Management to Profitability and Cost Management
+Role Mapping
+If user has only these on-premises roles Assign the user to this application role
+Profitability and Cost Management Power
+User
+Reporting and Analysis
+• Analyst
+• Explorer
+• Report Designer
+• Schedule Manager
+Document Repository (Release 11.1.2.4.900
+only)
+• Viewer
+• Report Designer Scheduler
+• Security Administrator
+Financial Data Quality Management
+• Drill Through
+• Create Integration
+• Run Integration
+• GL Writeback
+Essbase Analytic Services Roles
+• Start/Stop Application
+• Database Manager
+Power User
+Appendix A
+Profitability and Cost Management and Enterprise Profitability and Cost Management
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Appendix A-5 of A-6
+Table A-4 (Cont.) Profitability and Cost Management to Profitability and Cost
+Management Role Mapping
+If user has only these on-premises roles Assign the user to this application role
+Profitability and Cost Management
+Interactive User
+Financial Data Quality Management Drill
+Through
+Reporting and Analysis Content Manager
+Document Repository Roles (Release
+11.1.2.4.900 only)
+• Report Designer Scheduler
+• Viewer
+Essbase Analytic Services Filter
+User
+Profitability and Cost Management View User
+Document Repository (Release 11.1.2.4.900
+only): Viewer
+Reporting and Analysis:
+• Viewer
+• Explorer
+Essbase Analytic Services Filter
+Viewer
+Data Relationship Management
+These on-premises roles are not applicable in Oracle Fusion Cloud Enterprise Performance
+Management, and should not be mapped to application roles
+• Analytics User
+• Anonymous User
+• Governance Manager
+• Workflow User
+Table A-5 Data Relationship Management to Cloud EDM Role Mapping
+If user has only these Oracle Data Relationship
+Management roles
+Assign the user to this application role
+• Access Manager
+• Provisioning Manager
+• Application Administrator
+• LCM Administrator
+Service Administrator
+• Data Creator
+• Data Manager
+• Governance User
+• Interactive User
+User
+Appendix A
+Data Relationship Management
+Administering Migration
+E96251-70
+Copyright © 2015, 2026, Oracle and/or its affiliates.
+October 1, 2026
+Appendix A-6 of A-6

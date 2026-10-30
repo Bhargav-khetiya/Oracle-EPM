@@ -1,0 +1,12 @@
+﻿Document: REST API for Oracle Essbase
+Product: Oracle Essbase 26ai / 21c
+URL (26ai): https://docs.oracle.com/en/database/other-databases/essbase/26/essri/index.html
+URL (21c): https://docs.oracle.com/en/database/other-databases/essbase/21/essri/index.html
+
+Status: HTML-only — Swagger/OpenAPI format, no PDF
+Access: Open URL directly in browser
+
+Why Study: Reference for standalone Essbase REST endpoints.
+For Cloud EPM, use the EPM Cloud REST APIs PDF instead (in 12_REST_API/CORE/).
+
+Priority: P3 — REFERENCE (use when needed)

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart View & Dashboards 2.0 Redwood Architecture</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-6 font-sans">
+  <div class="max-w-5xl mx-auto space-y-6">
+    <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 shadow-xl backdrop-blur">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-700/80 pb-4">
+        <div>
+          <span class="text-xs font-bold tracking-widest text-rose-400 uppercase bg-rose-950/60 px-3 py-1 rounded-full border border-rose-800">
+            Interactive Architecture Card 05
+          </span>
+          <h1 class="text-2xl font-black mt-2 text-white">Smart View Client Toolkit &amp; Dashboards 2.0 Redwood</h1>
+        </div>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-rose-950 text-rose-300 border border-rose-800">CFO Interface</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+        
+        <!-- Smart View Providers -->
+        <div class="bg-slate-800/50 border border-rose-500/40 rounded-xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-bold text-rose-400 text-sm">🔌 Smart View Providers</h3>
+              <span class="text-[10px] bg-rose-950 text-rose-300 px-2 py-0.5 rounded border border-rose-800">Connections</span>
+            </div>
+            <p class="text-xs text-slate-400 mb-4">Planning Provider vs Direct Essbase Provider.</p>
+
+            <div class="space-y-3 text-xs">
+              <div class="bg-slate-900 p-2.5 rounded border border-rose-900/50">
+                <span class="font-bold text-rose-300 block mb-1">Planning Provider (/HyperionPlanning)</span>
+                <p class="text-slate-400">Opens structured web forms, executes Run-On-Save Groovy rules, supports Grid Spread on parents.</p>
+              </div>
+              <div class="bg-slate-900 p-2.5 rounded border border-slate-700">
+                <span class="font-bold text-slate-300 block mb-1">Essbase Provider (/essbase)</span>
+                <p class="text-slate-400">Pure ad-hoc multidimensional slicing; bypasses Planning middle tier; parent cells read-only.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-700/60 text-[11px] text-amber-400 font-semibold">
+            ⚠️ Preserve Formulas on Ad-Hoc: MUST BE CHECKED!
+          </div>
+        </div>
+
+        <!-- Dashboards 2.0 Asynchronous Canvas -->
+        <div class="bg-slate-800/50 border border-sky-500/40 rounded-xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-bold text-sky-400 text-sm">⚡ Dashboards 2.0 Redwood</h3>
+              <span class="text-[10px] bg-sky-950 text-sky-300 px-2 py-0.5 rounded border border-sky-800">Asynchronous</span>
+            </div>
+            <p class="text-xs text-slate-400 mb-4">Why Dashboards 2.0 never freezes the browser screen.</p>
+
+            <div class="space-y-2 text-xs">
+              <div class="p-2 rounded bg-slate-900 border border-emerald-900/50 flex justify-between">
+                <span>KPI Tile 1:</span>
+                <span class="text-emerald-400 font-mono font-bold">150 ms (Rendered)</span>
+              </div>
+              <div class="p-2 rounded bg-slate-900 border border-emerald-900/50 flex justify-between">
+                <span>Waterfall Chart:</span>
+                <span class="text-emerald-400 font-mono font-bold">400 ms (Rendered)</span>
+              </div>
+              <div class="p-2 rounded bg-slate-900 border border-amber-900/50 flex justify-between">
+                <span>Complex P&L Form:</span>
+                <span class="text-amber-400 font-mono font-bold">2.8 s (Independent)</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-700/60 text-[11px] text-emerald-400 font-semibold">
+            ✓ Independent REST requests; fast widgets render instantly
+          </div>
+        </div>
+
+        <!-- Infolet 3-Sided Card -->
+        <div class="bg-slate-800/50 border border-purple-500/40 rounded-xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-bold text-purple-400 text-sm">🃏 Infolet 3-Sided Card</h3>
+              <span class="text-[10px] bg-purple-950 text-purple-300 px-2 py-0.5 rounded border border-purple-800">Executive</span>
+            </div>
+            <p class="text-xs text-slate-400 mb-4">Progressive disclosure for high-level executives.</p>
+
+            <div class="space-y-2.5 text-xs">
+              <div class="bg-slate-900 p-2 rounded border border-purple-900/50">
+                <span class="font-bold text-purple-300 block">1. Front Face (Summary KPI)</span>
+                <span class="text-slate-400">Total Revenue: $54.2M (+12% YoY green badge).</span>
+              </div>
+              <div class="bg-slate-900 p-2 rounded border border-slate-700">
+                <span class="font-bold text-slate-300 block">2. Back Face (Trend)</span>
+                <span class="text-slate-400">Sparkline / mini 12-month rolling trend.</span>
+              </div>
+              <div class="bg-slate-900 p-2 rounded border border-slate-700">
+                <span class="font-bold text-slate-300 block">3. Expanded Face (Deep-Dive)</span>
+                <span class="text-slate-400">Full detailed grid or multi-series chart.</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-700/60 text-[11px] text-purple-400 font-semibold">
+            ✓ Embedded on Home Page for C-Suite Users
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

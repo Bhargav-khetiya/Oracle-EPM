@@ -16,6 +16,8 @@ This repository contains the complete, restructured **Technical Consultant Revie
 
 👉 **[75-Question Comprehensive Master Q&A Bank](Oracle_EPM_Master_Documentation/07_Master_Mock_Review_and_Scenario_Exams/7.2_The_Ultimate_Consultant_Interview_Master_QnA.md)**
 
+👉 **[Live Interactive Visual Cards & Dashboards Gallery](Oracle_EPM_Master_Documentation/README.md#-live-interactive-architecture-cards-html-dashboards)**
+
 ---
 
 ## 📁 Repository Directory Structure
@@ -45,3 +47,4 @@ d:\Oracle EPM Cloud\
 - **Twisted Scenarios in Every File:** Real-world traps including the Single-Child Implied Share disaster, Evaluation Order vs Solve Order collisions, Read-Only child Grid Spreads, and Block Explosion recovery.
 - **Over 200 Total Scenario Questions:** 7 dedicated module question banks plus two master exams in Module 7.
 - **100% GitHub-Ready:** Full support for GitHub Flavored Markdown (GFM), native Mermaid diagrams, KaTeX mathematical formulas, and responsive relative navigation.
+

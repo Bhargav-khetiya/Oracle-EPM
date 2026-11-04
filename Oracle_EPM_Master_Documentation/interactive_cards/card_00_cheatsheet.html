@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FTE Review Cheatsheet & Rapid-Fire Q&A Navigator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-6 font-sans">
+  <div class="max-w-5xl mx-auto space-y-6">
+    <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 shadow-xl backdrop-blur">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-700/80 pb-4">
+        <div>
+          <span class="text-xs font-bold tracking-widest text-emerald-400 uppercase bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-800">
+            Master Cheatsheet Card 00
+          </span>
+          <h1 class="text-2xl font-black mt-2 text-white">FTE Conversion Review &amp; Rapid-Fire Cheatsheet</h1>
+        </div>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-emerald-950 text-emerald-300 border border-emerald-800">Top 10 Golden Laws</span>
+      </div>
+
+      <!-- Search & Rapid Fire Interactive Filter -->
+      <div class="mt-6">
+        <label class="text-xs text-slate-400 font-semibold block mb-2">Search Rapid-Fire Interview Questions &amp; Golden Laws:</label>
+        <input id="search-input" type="text" placeholder="Type keyword (e.g. implied share, groovy, solve order, block size)..." oninput="filterQA()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500">
+      </div>
+
+      <!-- Quick Cards Grid -->
+      <div id="qa-list" class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+        
+        <div class="qa-item p-4 rounded-xl bg-slate-900/80 border border-slate-700" data-keywords="implied share single child security leak never share">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-amber-400">Law 1: Implied Sharing Single-Child Trap</span>
+            <span class="text-[10px] bg-amber-950 text-amber-300 px-2 py-0.5 rounded border border-amber-800">Storage</span>
+          </div>
+          <p class="text-xs text-slate-300">Single child parent = memory pointer. Adding child 2 mid-year breaks implied share, causing historical Q1 reports to display #Missing until re-calculated. Fix: Modern Hybrid Dynamic Calc (~).</p>
+        </div>
+
+        <div class="qa-item p-4 rounded-xl bg-slate-900/80 border border-slate-700" data-keywords="evaluation order solve order currency smart list dropdown">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-sky-400">Law 2: Evaluation Order vs Solve Order</span>
+            <span class="text-[10px] bg-sky-950 text-sky-300 px-2 py-0.5 rounded border border-sky-800">Classic Trap</span>
+          </div>
+          <p class="text-xs text-slate-300">Evaluation Order = UI display precedence (fixes Smart List displaying as $1.00). Solve Order = Essbase math priority (0-127; highest calculates LAST and wins).</p>
+        </div>
+
+        <div class="qa-item p-4 rounded-xl bg-slate-900/80 border border-slate-700" data-keywords="block size dense sparse write amplification index cache">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-emerald-400">Law 3: Block Size Formula (8 KB – 100 KB)</span>
+            <span class="text-[10px] bg-emerald-950 text-emerald-300 px-2 py-0.5 rounded border border-emerald-800">Tuning</span>
+          </div>
+          <p class="text-xs text-slate-300">Block Size = &prod;(Stored Dense Members) &times; 8 bytes. Shared dense members add ZERO bytes to block size. Oversized blocks (>100 KB) trigger 25,000x write amplification.</p>
+        </div>
+
+        <div class="qa-item p-4 rounded-xl bg-slate-900/80 border border-slate-700" data-keywords="groovy surgical calculation datacelliterator throwvetoexception">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-purple-400">Law 4: Groovy Surgical Calculation</span>
+            <span class="text-[10px] bg-purple-950 text-purple-300 px-2 py-0.5 rounded border border-purple-800">Next-Gen</span>
+          </div>
+          <p class="text-xs text-slate-300">Inspects cell.edited in HTTP payload; builds dynamic FIX targeting strictly edited blocks. Drops form save calculation from 45s to 0.15s. Validates via throwVetoException.</p>
+        </div>
+
+        <div class="qa-item p-4 rounded-xl bg-slate-900/80 border border-slate-700" data-keywords="aso slice fragmentation merge drop zero cells bitmap">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-teal-400">Law 5: ASO Slice Compaction &amp; Zero Cells</span>
+            <span class="text-[10px] bg-teal-950 text-teal-300 px-2 py-0.5 rounded border border-teal-800">ASO</span>
+          </div>
+          <p class="text-xs text-slate-300">Repeated ERP loads create hundreds of incremental slices, causing query lag. Merge Incremental preserves views. Merge All + Drop Zero Cells compacts and purges deleted rows.</p>
+        </div>
+
+        <div class="qa-item p-4 rounded-xl bg-slate-900/80 border border-slate-700" data-keywords="lock contention block lock timeout shared block corporate">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-rose-400">Law 6: Block-Level Locking Queues</span>
+            <span class="text-[10px] bg-rose-950 text-rose-300 px-2 py-0.5 rounded border border-rose-800">Concurrency</span>
+          </div>
+          <p class="text-xs text-slate-300">Essbase locks ENTIRE BLOCKS, not cells. Editing different accounts in the same sparse entity queues up. Writing to a shared Corporate timestamp inside form save rules locks all users.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function filterQA() {
+      const q = document.getElementById('search-input').value.toLowerCase();
+      document.querySelectorAll('.qa-item').forEach(item => {
+        const text = item.innerText.toLowerCase();
+        const kw = item.getAttribute('data-keywords') || '';
+        if (text.includes(q) || kw.includes(q)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

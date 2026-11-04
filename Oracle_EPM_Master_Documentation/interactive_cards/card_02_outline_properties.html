@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Outline Properties: Block Sizer, Implied Sharing & Solve Order</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-6 font-sans">
+  <div class="max-w-5xl mx-auto space-y-6">
+    <!-- Header -->
+    <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 shadow-xl backdrop-blur">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-700/80 pb-4">
+        <div>
+          <span class="text-xs font-bold tracking-widest text-emerald-400 uppercase bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-800">
+            Interactive Architecture Card 02
+          </span>
+          <h1 class="text-2xl font-black mt-2 text-white">Outline Dimensions, Properties & Sizing Simulator</h1>
+        </div>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-sky-950 text-sky-400 border border-sky-800">Essential Consultant Toolkit</span>
+      </div>
+
+      <!-- 3 Interactive Tools Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+        
+        <!-- Tool 1: Live Dense Block Sizer -->
+        <div class="bg-slate-800/50 border border-sky-500/40 rounded-xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-bold text-sky-400 text-sm">🧮 Live Block Size Calculator</h3>
+              <span class="text-[10px] bg-sky-950 text-sky-300 px-2 py-0.5 rounded border border-sky-800">Formula</span>
+            </div>
+            <p class="text-xs text-slate-400 mb-4">Calculate exact Essbase block size in bytes &amp; KB.</p>
+
+            <div class="space-y-3 text-xs">
+              <div>
+                <label class="text-slate-300 block mb-1">Accounts (Stored Dense Members):</label>
+                <input id="num-accts" type="number" value="300" oninput="calcBlockSize()" class="w-full bg-slate-900 border border-slate-700 rounded px-2.5 py-1.5 text-white">
+              </div>
+              <div>
+                <label class="text-slate-300 block mb-1">Period (Stored Dense Months):</label>
+                <input id="num-periods" type="number" value="12" oninput="calcBlockSize()" class="w-full bg-slate-900 border border-slate-700 rounded px-2.5 py-1.5 text-white">
+              </div>
+              <div>
+                <label class="text-slate-300 block mb-1">View / Secondary Dense (Members):</label>
+                <input id="num-view" type="number" value="3" oninput="calcBlockSize()" class="w-full bg-slate-900 border border-slate-700 rounded px-2.5 py-1.5 text-white">
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-700/60 bg-slate-900/60 p-3 rounded-lg border border-slate-700">
+            <div class="flex justify-between items-center text-xs">
+              <span class="text-slate-400">Total Cells / Block:</span>
+              <span id="res-cells" class="font-mono text-white font-bold">10,800 cells</span>
+            </div>
+            <div class="flex justify-between items-center text-xs mt-1">
+              <span class="text-slate-400">Physical Block Size:</span>
+              <span id="res-size" class="font-mono text-sky-400 font-bold">86.4 KB</span>
+            </div>
+            <div id="res-verdict" class="text-[11px] mt-2 font-semibold text-emerald-400">
+              ✓ Optimal Range (50 KB – 100 KB)
+            </div>
+          </div>
+        </div>
+
+        <!-- Tool 2: Implied Sharing Simulator -->
+        <div class="bg-slate-800/50 border border-amber-500/40 rounded-xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-bold text-amber-400 text-sm">⚠️ Implied Share Trap Visualizer</h3>
+              <span class="text-[10px] bg-amber-950 text-amber-300 px-2 py-0.5 rounded border border-amber-800">Traps</span>
+            </div>
+            <p class="text-xs text-slate-400 mb-4">Toggle child count to see what happens to physical storage.</p>
+
+            <div class="flex gap-2 mb-4">
+              <button id="btn-child-1" onclick="setImplied(1)" class="flex-1 py-1.5 text-xs font-semibold rounded bg-amber-500 text-slate-950">1 Child (Q1)</button>
+              <button id="btn-child-2" onclick="setImplied(2)" class="flex-1 py-1.5 text-xs font-semibold rounded bg-slate-700 text-slate-300">2 Children (Q2)</button>
+            </div>
+
+            <div id="implied-status" class="space-y-2 text-xs">
+              <div class="p-2.5 rounded bg-amber-950/40 border border-amber-800/60 text-amber-300">
+                <span class="font-bold block">⚡ Implied Share Active</span>
+                Parent is an internal alias pointer to Child 1. Zero physical block storage on disk.
+              </div>
+              <div class="p-2.5 rounded bg-slate-900 border border-slate-700 text-slate-300">
+                <span class="font-semibold block text-slate-400">Security Leak Warning:</span>
+                Writing to Child 1 mutates Parent without aggregation. Writing to Parent overwrites Child 1.
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-700/60 text-[11px] text-slate-400">
+            Fix: Use <code class="text-amber-300">Never Share</code> or Modern Hybrid <code class="text-sky-300">Dynamic Calc (~)</code>.
+          </div>
+        </div>
+
+        <!-- Tool 3: Solve Order vs Evaluation Order -->
+        <div class="bg-slate-800/50 border border-purple-500/40 rounded-xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-bold text-purple-400 text-sm">🎯 Solve vs. Evaluation Order</h3>
+              <span class="text-[10px] bg-purple-950 text-purple-300 px-2 py-0.5 rounded border border-purple-800">Classic Trap</span>
+            </div>
+            <p class="text-xs text-slate-400 mb-4">Never confuse UI display precedence with Essbase math priority.</p>
+
+            <div class="space-y-3 text-xs">
+              <div class="bg-slate-900/60 p-2.5 rounded-lg border border-purple-900/50">
+                <span class="font-bold text-purple-400 block mb-1">Evaluation Order (UI Layer)</span>
+                <p class="text-slate-300">Controls <strong>HOW IT LOOKS</strong>. Resolves Smart List vs Currency collisions (fixes <code>$1.00</code> bug).</p>
+              </div>
+              <div class="bg-slate-900/60 p-2.5 rounded-lg border border-sky-900/50">
+                <span class="font-bold text-sky-400 block mb-1">Solve Order (Essbase Kernel)</span>
+                <p class="text-slate-300">Controls <strong>WHAT VALUE IT HAS</strong>. Integer 0–127. Highest calculates LAST and wins at collision.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-700/60 text-[11px] text-emerald-400 font-semibold">
+            ✓ Golden Rule: Accounts (10) &gt; Time (0)
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function calcBlockSize() {
+      const a = parseInt(document.getElementById('num-accts').value) || 0;
+      const p = parseInt(document.getElementById('num-periods').value) || 0;
+      const v = parseInt(document.getElementById('num-view').value) || 0;
+      const cells = a * p * v;
+      const bytes = cells * 8;
+      const kb = (bytes / 1024).toFixed(1);
+
+      document.getElementById('res-cells').innerText = cells.toLocaleString() + ' cells';
+      document.getElementById('res-size').innerText = kb + ' KB';
+
+      const verdict = document.getElementById('res-verdict');
+      if (kb < 8) {
+        verdict.innerText = '⚠️ Undersized (< 8 KB): Risk of index bloat';
+        verdict.className = 'text-[11px] mt-2 font-semibold text-amber-400';
+      } else if (kb <= 100) {
+        verdict.innerText = '✓ Optimal Range (8 KB – 100 KB)';
+        verdict.className = 'text-[11px] mt-2 font-semibold text-emerald-400';
+      } else {
+        verdict.innerText = '❌ Oversized (> 100 KB): Severe write amplification';
+        verdict.className = 'text-[11px] mt-2 font-semibold text-rose-400';
+      }
+    }
+
+    function setImplied(num) {
+      const btn1 = document.getElementById('btn-child-1');
+      const btn2 = document.getElementById('btn-child-2');
+      const box = document.getElementById('implied-status');
+
+      if (num === 1) {
+        btn1.className = 'flex-1 py-1.5 text-xs font-semibold rounded bg-amber-500 text-slate-950';
+        btn2.className = 'flex-1 py-1.5 text-xs font-semibold rounded bg-slate-700 text-slate-300';
+        box.innerHTML = `
+          <div class="p-2.5 rounded bg-amber-950/40 border border-amber-800/60 text-amber-300">
+            <span class="font-bold block">⚡ Implied Share Active (1 Child)</span>
+            Parent is an internal alias pointer to Child 1. Zero physical block storage on disk.
+          </div>
+          <div class="p-2.5 rounded bg-slate-900 border border-slate-700 text-slate-300">
+            <span class="font-semibold block text-slate-400">Security Leak Warning:</span>
+            Writing to Child 1 mutates Parent without aggregation. Writing to Parent overwrites Child 1.
+          </div>
+        `;
+      } else {
+        btn2.className = 'flex-1 py-1.5 text-xs font-semibold rounded bg-amber-500 text-slate-950';
+        btn1.className = 'flex-1 py-1.5 text-xs font-semibold rounded bg-slate-700 text-slate-300';
+        box.innerHTML = `
+          <div class="p-2.5 rounded bg-rose-950/40 border border-rose-800/60 text-rose-300">
+            <span class="font-bold block">❌ Implied Share BROKEN (2 Children)</span>
+            Parent is now an independent physical stored cell. Must be aggregated via CALC AGG.
+          </div>
+          <div class="p-2.5 rounded bg-slate-900 border border-slate-700 text-slate-300">
+            <span class="font-semibold block text-slate-400">Historical Corruption Alert:</span>
+            Jan–May historical parent cells now display <strong>#Missing</strong> until re-calculated!
+          </div>
+        `;
+      }
+    }
+  </script>
+</body>
+</html>

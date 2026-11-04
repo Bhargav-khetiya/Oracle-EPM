@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FTE Review Mock Exam & Master Q&A Interactive Navigator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-6 font-sans">
+  <div class="max-w-5xl mx-auto space-y-6">
+    <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 shadow-xl backdrop-blur">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-700/80 pb-4">
+        <div>
+          <span class="text-xs font-bold tracking-widest text-emerald-400 uppercase bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-800">
+            Exam Navigator Card 07
+          </span>
+          <h1 class="text-2xl font-black mt-2 text-white">FTE Conversion Review Exam Navigator (125 Scenarios)</h1>
+        </div>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-emerald-950 text-emerald-300 border border-emerald-800">100% Mock Ready</span>
+      </div>
+
+      <!-- Filter Controls -->
+      <div class="flex flex-wrap items-center justify-between gap-4 mt-6">
+        <div class="flex gap-2">
+          <button onclick="filterExam('all')" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-sky-500 text-slate-950">All Domains</button>
+          <button onclick="filterExam('storage')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-800 border border-slate-700 text-slate-300 hover:text-white">Storage &amp; Sizing</button>
+          <button onclick="filterExam('outline')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-800 border border-slate-700 text-slate-300 hover:text-white">Outline &amp; Security</button>
+          <button onclick="filterExam('calc')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-800 border border-slate-700 text-slate-300 hover:text-white">Calculations &amp; Groovy</button>
+          <button onclick="filterExam('crises')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-800 border border-slate-700 text-slate-300 hover:text-white">Production Crises</button>
+        </div>
+        <span class="text-xs text-slate-400">Click any card to reveal / hide consultant answer</span>
+      </div>
+
+      <!-- Scenarios List -->
+      <div class="space-y-4 mt-6">
+        
+        <!-- Scenario 1 -->
+        <div class="exam-item bg-slate-900/80 border border-slate-700 rounded-xl p-4 cursor-pointer hover:border-sky-500 transition-colors" data-domain="storage" onclick="toggleAns(1)">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-sky-400">Scenario 1: Oversized 192 MB Dense Block Collapse</span>
+            <span class="text-[10px] bg-sky-950 text-sky-300 px-2 py-0.5 rounded border border-sky-800">Storage</span>
+          </div>
+          <p class="text-xs text-slate-300 font-medium">A BSO cube has Accounts (600), Period (20), and Entity (2,000) set to Dense. Block size is 192 MB. Nightly calc takes 7 hours. Explain the engine bottleneck and exact fix.</p>
+          <div id="ans-1" class="hidden mt-3 pt-3 border-t border-slate-700/80 text-xs text-emerald-300 bg-slate-950/60 p-3 rounded-lg">
+            <strong>Consultant Answer:</strong> The bottleneck is <em>Severe Write Amplification &amp; Cache Starvation</em>. A 1 GB data cache holds only 5 blocks. Changing <code>Entity</code> to SPARSE collapses block size to 96 KB (optimal range). Data cache now holds 10,000+ blocks in RAM; calcs accelerate by 20x.
+          </div>
+        </div>
+
+        <!-- Scenario 2 -->
+        <div class="exam-item bg-slate-900/80 border border-slate-700 rounded-xl p-4 cursor-pointer hover:border-amber-500 transition-colors" data-domain="outline" onclick="toggleAns(2)">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-amber-400">Scenario 11: Single-Child Implied Share Historical Corruption</span>
+            <span class="text-[10px] bg-amber-950 text-amber-300 px-2 py-0.5 rounded border border-amber-800">Outline</span>
+          </div>
+          <p class="text-xs text-slate-300 font-medium">In Q1, Parent_A had 1 child. In Q2, Child_2 was added. Q1 reports now show Parent_A as #Missing. Why did this happen without any calculation run?</p>
+          <div id="ans-2" class="hidden mt-3 pt-3 border-t border-slate-700/80 text-xs text-emerald-300 bg-slate-950/60 p-3 rounded-lg">
+            <strong>Consultant Answer:</strong> Implied sharing automatically broke! Parent converted from an in-memory alias pointer into a physical stored cell. Because historical months were not re-calculated, parent cells remain empty (#Missing). <em>Fix:</em> Change Parent to Modern Hybrid <code>Dynamic Calc (~)</code>.
+          </div>
+        </div>
+
+        <!-- Scenario 3 -->
+        <div class="exam-item bg-slate-900/80 border border-slate-700 rounded-xl p-4 cursor-pointer hover:border-indigo-500 transition-colors" data-domain="calc" onclick="toggleAns(3)">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-indigo-400">Scenario 24: Groovy Surgical Form Save vs Calc Script</span>
+            <span class="text-[10px] bg-indigo-950 text-indigo-300 px-2 py-0.5 rounded border border-indigo-800">Groovy</span>
+          </div>
+          <p class="text-xs text-slate-300 font-medium">A planner edits 2 cells on a 15,000-cell web form. Traditional calc script takes 45s on save. How does Groovy achieve 0.15s execution?</p>
+          <div id="ans-3" class="hidden mt-3 pt-3 border-t border-slate-700/80 text-xs text-emerald-300 bg-slate-950/60 p-3 rounded-lg">
+            <strong>Consultant Answer:</strong> Groovy uses <code>operation.grid.dataCellIterator({DataCell cell -&gt; cell.edited})</code> to inspect in-flight HTTP payloads, extracting coordinates for strictly the 2 modified blocks and generating a surgical dynamic FIX script. Essbase touches only 2 blocks in RAM.
+          </div>
+        </div>
+
+        <!-- Scenario 4 -->
+        <div class="exam-item bg-slate-900/80 border border-slate-700 rounded-xl p-4 cursor-pointer hover:border-rose-500 transition-colors" data-domain="crises" onclick="toggleAns(4)">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-rose-400">Scenario 41: Block Explosion Overnight Crisis (500 MB &rarr; 48 GB)</span>
+            <span class="text-[10px] bg-rose-950 text-rose-300 px-2 py-0.5 rounded border border-rose-800">Crises</span>
+          </div>
+          <p class="text-xs text-slate-300 font-medium">A bad allocation script creates 12M empty blocks overnight. Smart View hangs. Detail your immediate 3-step surgical recovery plan.</p>
+          <div id="ans-4" class="hidden mt-3 pt-3 border-t border-slate-700/80 text-xs text-emerald-300 bg-slate-950/60 p-3 rounded-lg">
+            <strong>Consultant Answer:</strong> 1) Put app in maintenance mode. 2) Execute targeted <code>CLEARBLOCK EMPTY;</code> scoped to affected slice to physically remove empty blocks from .IND index. 3) Execute Database Refresh to compact .PAG files. Remove <code>SET CREATENONMISSINGBLK ON;</code> from the rule.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleAns(id) {
+      const el = document.getElementById('ans-' + id);
+      el.classList.toggle('hidden');
+    }
+
+    function filterExam(domain) {
+      document.querySelectorAll('.exam-item').forEach(item => {
+        if (domain === 'all' || item.getAttribute('data-domain') === domain) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

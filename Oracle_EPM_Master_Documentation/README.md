@@ -22,6 +22,23 @@ flowchart TD
 
 ---
 
+## 🎴 Live Interactive Architecture Cards (HTML Dashboards)
+
+Every module now includes a dedicated **Live Interactive Architecture Card** with clickable simulators, calculators, and filterable Q&A engines:
+
+| Card # | Interactive Dashboard Title | Interactive Simulators & Features Included | Direct Link |
+| :---: | :--- | :--- | :---: |
+| **00** | **Master Review Cheatsheet** | Live Q&A search filter across all 25 rapid-fire traps and 10 Golden Laws | [Open Card 00](interactive_cards/card_00_cheatsheet.html) |
+| **01** | **Storage Engines Matrix** | 3-way toggleable comparison between Classic BSO, ASO, and Modern Hybrid BSO | [Open Card 01](interactive_cards/card_01_storage_engines.html) |
+| **02** | **Outline & Sizing Simulator** | **Live Block Size Calculator** (bytes & KB) + Implied Share 1 vs 2 child toggle | [Open Card 02](interactive_cards/card_02_outline_properties.html) |
+| **03** | **Calculations & Groovy Engine** | Monolithic vs Groovy 99% speedup comparison + Pre-save validation simulator | [Open Card 03](interactive_cards/card_03_calculations_groovy.html) |
+| **04** | **Write-Back & ACID Pipeline** | **Live Grid Spread Simulator** with locked cell exclusion + ASO slice compaction | [Open Card 04](interactive_cards/card_04_writeback_transactions.html) |
+| **05** | **Smart View & Dashboards 2.0** | Provider comparison, Preserve Formulas trap visualizer, 3-sided Infolet guide | [Open Card 05](interactive_cards/card_05_smartview_dashboards.html) |
+| **06** | **Troubleshooting & Tuning** | **Live Block Explosion Deflation Simulator** (`CLEARBLOCK EMPTY`) + lock queues | [Open Card 06](interactive_cards/card_06_troubleshooting_tuning.html) |
+| **07** | **125-Question Exam Navigator** | Interactive domain filter with **Click-to-Reveal Consultant Answers** | [Open Card 07](interactive_cards/card_07_mock_exam_navigator.html) |
+
+---
+
 ### [Module 0: Review & Interview Cheatsheet](00_CRACK_THE_REVIEW_INTERVIEW_CHEATSHEET.md)
 * **[00_CRACK_THE_REVIEW_INTERVIEW_CHEATSHEET.md](00_CRACK_THE_REVIEW_INTERVIEW_CHEATSHEET.md)**
   * *Top 10 Golden Laws of Oracle EPM & Essbase*

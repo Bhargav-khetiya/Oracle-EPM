@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculations & Groovy Engine Architecture</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-6 font-sans">
+  <div class="max-w-5xl mx-auto space-y-6">
+    <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 shadow-xl backdrop-blur">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-700/80 pb-4">
+        <div>
+          <span class="text-xs font-bold tracking-widest text-indigo-400 uppercase bg-indigo-950/60 px-3 py-1 rounded-full border border-indigo-800">
+            Interactive Architecture Card 03
+          </span>
+          <h1 class="text-2xl font-black mt-2 text-white">Calculations, Execution Order &amp; Groovy Guardrails</h1>
+        </div>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-indigo-950 text-indigo-300 border border-indigo-800">Next-Gen EPM Logic</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+        
+        <!-- Execution Order -->
+        <div class="bg-slate-800/50 border border-indigo-500/40 rounded-xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-bold text-indigo-400 text-sm">⚡ Execution Order Flow</h3>
+              <span class="text-[10px] bg-indigo-950 text-indigo-300 px-2 py-0.5 rounded border border-indigo-800">Engine</span>
+            </div>
+            <p class="text-xs text-slate-400 mb-4">Essbase calculates dimensions in strict physical sequence.</p>
+
+            <div class="space-y-2.5 text-xs">
+              <div class="p-2.5 rounded bg-slate-900/80 border border-indigo-900/60 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-indigo-500 text-slate-950 font-bold flex items-center justify-center text-xs">1</span>
+                <div>
+                  <span class="font-bold text-white block">DENSE Dimensions First</span>
+                  <span class="text-slate-400">Intra-block in RAM. CPU bound, zero disk I/O. Outline order.</span>
+                </div>
+              </div>
+              <div class="p-2.5 rounded bg-slate-900/80 border border-sky-900/60 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-sky-500 text-slate-950 font-bold flex items-center justify-center text-xs">2</span>
+                <div>
+                  <span class="font-bold text-white block">SPARSE Dimensions Next</span>
+                  <span class="text-slate-400">Inter-block on disk/cache. Block-by-block traversal via index.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-700/60 text-[11px] text-slate-400">
+            Rule: Accounts (Dense) &rarr; Period (Dense) &rarr; Entity (Sparse).
+          </div>
+        </div>
+
+        <!-- Groovy Surgical Calculation -->
+        <div class="bg-slate-800/50 border border-emerald-500/40 rounded-xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-bold text-emerald-400 text-sm">🚀 Groovy Surgical Calc</h3>
+              <span class="text-[10px] bg-emerald-950 text-emerald-300 px-2 py-0.5 rounded border border-emerald-800">99% Speedup</span>
+            </div>
+            <p class="text-xs text-slate-400 mb-4">Compare traditional monolithic FIX vs Groovy dynamic FIX.</p>
+
+            <div class="space-y-3 text-xs">
+              <div class="bg-slate-900/80 p-2.5 rounded border border-rose-900/50">
+                <span class="text-rose-400 font-bold block mb-1">Traditional Calc Script (45s)</span>
+                <p class="text-slate-400">Calculates entire department (10,000 blocks) even when user only edited 2 cells.</p>
+              </div>
+              <div class="bg-slate-900/80 p-2.5 rounded border border-emerald-900/50">
+                <span class="text-emerald-400 font-bold block mb-1">Groovy DataCellIterator (0.15s)</span>
+                <p class="text-slate-300">Inspects <code>cell.edited</code> in HTTP payload; builds dynamic FIX for <strong>strictly 2 blocks</strong>.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-700/60 text-[11px] text-emerald-400 font-semibold">
+            ✓ Eliminates Form-Save Lag &amp; Block Locks
+          </div>
+        </div>
+
+        <!-- Pre-Save Validation -->
+        <div class="bg-slate-800/50 border border-amber-500/40 rounded-xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-bold text-amber-400 text-sm">🛡️ Pre-Save Validation</h3>
+              <span class="text-[10px] bg-amber-950 text-amber-300 px-2 py-0.5 rounded border border-amber-800">throwVetoException</span>
+            </div>
+            <p class="text-xs text-slate-400 mb-4">Simulate input validation before Essbase is touched.</p>
+
+            <div class="space-y-3 text-xs">
+              <div>
+                <label class="text-slate-300 block mb-1">Test Salary Increase %:</label>
+                <div class="flex gap-2">
+                  <input id="test-pct" type="number" value="35" class="w-full bg-slate-900 border border-slate-700 rounded px-2.5 py-1.5 text-white">
+                  <button onclick="testValidation()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-3 py-1.5 rounded transition-colors">Test</button>
+                </div>
+              </div>
+              <div id="veto-result" class="p-2.5 rounded bg-rose-950/50 border border-rose-800 text-rose-300">
+                ❌ Rejected: 35% exceeds corporate cap of 20%! Save aborted. Essbase untouched.
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-700/60 text-[11px] text-slate-400">
+            Zero dirty blocks generated; zero database corruption.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function testValidation() {
+      const val = parseFloat(document.getElementById('test-pct').value) || 0;
+      const res = document.getElementById('veto-result');
+      if (val > 20) {
+        res.className = 'p-2.5 rounded bg-rose-950/50 border border-rose-800 text-rose-300 text-xs';
+        res.innerHTML = `❌ <strong>throwVetoException:</strong> ${val}% exceeds corporate cap of 20%! Save aborted. Essbase untouched.`;
+      } else {
+        res.className = 'p-2.5 rounded bg-emerald-950/50 border border-emerald-800 text-emerald-300 text-xs';
+        res.innerHTML = `✓ <strong>Valid Input:</strong> ${val}% increase approved. Form saved in 0.18 seconds.`;
+      }
+    }
+  </script>
+</body>
+</html>

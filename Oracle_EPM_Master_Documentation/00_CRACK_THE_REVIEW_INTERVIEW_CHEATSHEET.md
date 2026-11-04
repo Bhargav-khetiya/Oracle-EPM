@@ -3,6 +3,32 @@
 > [!IMPORTANT]
 > **Purpose of this Document**: This is your rapid-recall, zero-fluff interview survival guide. Senior Oracle EPM Architects and Review Panels do not test textbook definitions; they ask **twisted scenario questions, edge-case traps, and operational failure diagnoses** to see if you have true hands-on understanding. Master these 50 core rules, traps, and answers cold.
 
+<!-- ===================================================================== -->
+<!-- 📊 LIVE INTERACTIVE VISUAL CARD: TOP 10 GOLDEN LAWS QUICK NAVIGATOR -->
+<!-- ===================================================================== -->
+<details open>
+<summary><b>📊 Live Interactive Architecture Card: Top 10 Golden Laws & Rapid Recall (Click to Collapse / Expand)</b></summary>
+
+<br/>
+
+> [!TIP]
+> **Interactive Standalone Dashboard:** Open [`card_00_cheatsheet.html`](interactive_cards/card_00_cheatsheet.html) in your browser for a live interactive filterable search card!
+
+| # | Core Concept | Physical Engine Mechanism | Consultant Golden Rule |
+|---|---|---|---|
+| **1** | **Evaluation Order vs Solve Order** | UI Data Type vs Essbase Math (0–127) | Set `Account` to Rank 1 in Evaluation Order; higher Solve Order calculates LAST and wins. |
+| **2** | **Implied Sharing & Security** | Single-child parent = memory alias pointer | Tag single-child parents with `Never Share` or use Hybrid Dynamic Calc (`~`). |
+| **3** | **Single-to-Multi Child Evolution** | 2nd child breaks implied share | Adding a child instantiates stored block; historical reports show `#Missing` without re-calc. |
+| **4** | **Grid Spread with Locked Cells** | Proportional spread excludes locked cells | Parent total = User Input + Locked Historical values. |
+| **5** | **Solve Order Collision** | Multi-dimensional dynamic calc priority | Ratios (`Margin %` = 10) &rarr; Variances (`Variance %` = 20) &rarr; Cross-dim KPIs (30). |
+| **6** | **Two-Pass Calculation Fallacy** | $\sum A/B \neq \sum A / \sum B$ | Ratios cannot be summed. Two-Pass (Accounts & Time only) or Solve Order re-evaluates. |
+| **7** | **Block Explosion (`CREATENONMISSINGBLK`)** | Cartesian product block instantiation | Purge with `CLEARBLOCK EMPTY;`. Always ensure `SET CREATENONMISSINGBLK OFF;`. |
+| **8** | **Source Cube Property** | Multi-cube formula syntax isolation | Wrap formulas in `<PlanType>` blocks to prevent Database Refresh compilation aborts. |
+| **9** | **ASO Slice Merging & Zero Cells** | Immutable append-only columnar slices | `Merge Incremental` preserves views; `Merge All + Drop Zero Cells` compacts disk. |
+| **10** | **Smart View Formula Preservation** | Grid cell overwrite on refresh | Check "Preserve Formulas and Comments in Ad-Hoc Operations" in Member Options. |
+
+</details>
+
 ---
 
 ## The 10 "Golden Laws" Interviewers Test

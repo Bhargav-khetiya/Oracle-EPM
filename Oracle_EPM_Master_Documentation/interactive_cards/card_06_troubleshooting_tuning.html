@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Production Troubleshooting & Performance Tuning</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-6 font-sans">
+  <div class="max-w-5xl mx-auto space-y-6">
+    <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 shadow-xl backdrop-blur">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-700/80 pb-4">
+        <div>
+          <span class="text-xs font-bold tracking-widest text-rose-400 uppercase bg-rose-950/60 px-3 py-1 rounded-full border border-rose-800">
+            Interactive Architecture Card 06
+          </span>
+          <h1 class="text-2xl font-black mt-2 text-white">Production Troubleshooting, Lock Contention &amp; Deflation</h1>
+        </div>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-rose-950 text-rose-300 border border-rose-800">Emergency Runbook</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+        
+        <!-- Block Explosion Deflation Simulator -->
+        <div class="bg-slate-800/50 border border-rose-500/40 rounded-xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-bold text-rose-400 text-sm">💥 Block Explosion Deflation</h3>
+              <span class="text-[10px] bg-rose-950 text-rose-300 px-2 py-0.5 rounded border border-rose-800">CLEARBLOCK</span>
+            </div>
+            <p class="text-xs text-slate-400 mb-4">Simulate deflating a bloated cube created by bad rules.</p>
+
+            <div class="space-y-2.5 text-xs">
+              <div class="p-2 rounded bg-slate-900 border border-rose-900/50 flex justify-between">
+                <span class="text-slate-400">Bloated Blocks:</span>
+                <span id="bloat-blocks" class="text-rose-400 font-mono font-bold">12,500,000</span>
+              </div>
+              <div class="p-2 rounded bg-slate-900 border border-rose-900/50 flex justify-between">
+                <span class="text-slate-400">Database Size:</span>
+                <span id="bloat-size" class="text-rose-400 font-mono font-bold">48.2 GB</span>
+              </div>
+              <button onclick="runDeflateSim()" class="w-full mt-2 py-2 rounded bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition-colors">
+                Execute CLEARBLOCK EMPTY;
+              </button>
+            </div>
+          </div>
+          <div id="deflate-status" class="mt-4 pt-3 border-t border-slate-700/60 text-[11px] text-amber-400 font-semibold">
+            Status: Bloated! 99.8% of blocks contain only #Missing.
+          </div>
+        </div>
+
+        <!-- Lock Contention Queue -->
+        <div class="bg-slate-800/50 border border-amber-500/40 rounded-xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-bold text-amber-400 text-sm">🔒 Lock Contention Bottleneck</h3>
+              <span class="text-[10px] bg-amber-950 text-amber-300 px-2 py-0.5 rounded border border-amber-800">Shared Block</span>
+            </div>
+            <p class="text-xs text-slate-400 mb-4">Why 40 users hang when editing different departments.</p>
+
+            <div class="space-y-2.5 text-xs">
+              <div class="p-2 rounded bg-amber-950/40 border border-amber-800 text-amber-300">
+                <span class="font-bold block mb-0.5">Offending Shared Intersection:</span>
+                <code>Last_Updated_Date -&gt; Corporate_Admin</code>
+              </div>
+              <p class="text-slate-400">Every form save acquires an exclusive lock on that common Corporate block, queueing all 40 users until timeout.</p>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-700/60 text-[11px] text-emerald-400 font-semibold">
+            ✓ Fix: Decouple shared entity writes from user form saves
+          </div>
+        </div>
+
+        <!-- Refresh Crash Runbook -->
+        <div class="bg-slate-800/50 border border-sky-500/40 rounded-xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-bold text-sky-400 text-sm">🛠️ Refresh Failure Triage</h3>
+              <span class="text-[10px] bg-sky-950 text-sky-300 px-2 py-0.5 rounded border border-sky-800">Pre-Flight</span>
+            </div>
+            <p class="text-xs text-slate-400 mb-4">Emergency checklist when database refresh crashes.</p>
+
+            <div class="space-y-2 text-xs">
+              <div class="p-2 rounded bg-slate-900 border border-slate-700">
+                <span class="font-bold text-sky-300 block">1. Run Validate Metadata</span>
+                <span class="text-slate-400">Detects cyclical hierarchies &amp; precedence errors.</span>
+              </div>
+              <div class="p-2 rounded bg-slate-900 border border-slate-700">
+                <span class="font-bold text-sky-300 block">2. Check Disk Space (2.5x)</span>
+                <span class="text-slate-400">Dense restructures require 2.5x database size in free disk.</span>
+              </div>
+              <div class="p-2 rounded bg-slate-900 border border-slate-700">
+                <span class="font-bold text-sky-300 block">3. Log Off All Users</span>
+                <span class="text-slate-400">Mandatory to release exclusive .OTL file handles.</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-700/60 text-[11px] text-sky-400 font-semibold">
+            ✓ Safe Recovery without Data Loss
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function runDeflateSim() {
+      document.getElementById('bloat-blocks').innerText = '45,000 (Purged)';
+      document.getElementById('bloat-blocks').className = 'text-emerald-400 font-mono font-bold';
+      document.getElementById('bloat-size').innerText = '420 MB (Compacted)';
+      document.getElementById('bloat-size').className = 'text-emerald-400 font-mono font-bold';
+      const status = document.getElementById('deflate-status');
+      status.innerText = '✓ Success: 12.45M empty blocks purged from .IND. Database restructured.';
+      status.className = 'mt-4 pt-3 border-t border-slate-700/60 text-[11px] text-emerald-400 font-semibold';
+    }
+  </script>
+</body>
+</html>

@@ -1,10 +1,10 @@
-# @INTERSECT
+﻿# @INTERSECT
 
 ## Overview
 
 `@INTERSECT` is a **native Essbase member array function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a set-theory operator, taking two discrete lists (arrays) of members and returning a new array containing **only the members that exist in BOTH lists**. (This is the mathematical equivalent of a Venn diagram overlap).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In advanced allocations and targeted data pushes, you frequently need to combine multiple selection criteria. 
 For example, you might need to allocate funds to all Cost Centers in the `"North_America"` branch. But you ALSO only want to allocate funds to Cost Centers that are tagged with the `"High_Risk"` UDA. 

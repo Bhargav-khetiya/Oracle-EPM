@@ -1,10 +1,10 @@
-# @ISCHILD
+﻿# @ISCHILD
 
 ## Overview
 
 `@ISCHILD` is a **native Essbase boolean function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates the currently calculating member and returns `TRUE` or `FALSE` based on whether the current member is an **Immediate Child** (exactly one generation below) of a specified target parent member.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building hierarchical conditional logic, administrators often need precise control over which tier of a dimension receives an allocation or mathematical override.
 If you are iterating through all regions and stores in a massive outline, and you want to apply a 5% bonus specifically to the immediate regional managers reporting directly to the `"Global_CEO"`, you need a way to identify them. 
@@ -55,7 +55,7 @@ Returns `TRUE` (1) if the currently calculating member is an immediate, first-ge
 
 1. **Trigger**: The Essbase engine encounters the `IF(@ISCHILD(...))` block during a calculation pass.
 2. **Context Query**: It identifies the specific member it is currently calculating (e.g., `"North_America"`).
-3. **Outline Trace**: It queries the active `.otl` outline. It looks at the current member and immediately asks: "Who is my direct parent?"
+3. **Outline Trace**: It queries the active `.otl` outline. It looks at the current member and immediately asks: "Who is my direct parent—
 4. **Match Evaluation**: It compares the direct parent it found against the `MemberName` provided in the parameter. 
 5. **Return**: If they match perfectly, it returns `TRUE`. If they do not match, it returns `FALSE`.
 
@@ -113,8 +113,8 @@ ENDFIX
 
 | Mistake | Explanation | Fix |
 |---------|-------------|-----|
-| Using it for Base Level Checks | `IF(@ISCHILD("Total"))` | Sometimes developers use `@ISCHILD` thinking it means "Is this a child/leaf node?". That is incorrect. `@ISCHILD` checks if it is a child *of a specific parent*. A child of a high-level parent could still have 50 descendants beneath it. If you want to check if a member is at the absolute bottom of the outline (a leaf node), you MUST use `@ISLEV(Dimension, 0)` or `@ISMBR(@LEVEL0("Dim"))` |
-| Backward Logic | `IF(@ISCHILD("Store"))` | The parameter is the PARENT. The function asks: "Is the current member a child of the parameter?" If you put a Level-0 Store in the parameter, it will always return `FALSE`, because leaf nodes have no children. Ensure you are passing the parent |
+| Using it for Base Level Checks | `IF(@ISCHILD("Total"))` | Sometimes developers use `@ISCHILD` thinking it means "Is this a child/leaf node—. That is incorrect. `@ISCHILD` checks if it is a child *of a specific parent*. A child of a high-level parent could still have 50 descendants beneath it. If you want to check if a member is at the absolute bottom of the outline (a leaf node), you MUST use `@ISLEV(Dimension, 0)` or `@ISMBR(@LEVEL0("Dim"))` |
+| Backward Logic | `IF(@ISCHILD("Store"))` | The parameter is the PARENT. The function asks: "Is the current member a child of the parameter— If you put a Level-0 Store in the parameter, it will always return `FALSE`, because leaf nodes have no children. Ensure you are passing the parent |
 | Confusing with `@ISDESC` | Missing the Grandchildren | If you write an allocation rule using `@ISCHILD("USA")`, it will hit `"New_York"`, but it will COMPLETELY IGNORE `"NYC_Store_01"`. If your intent was to allocate to the entire branch (everyone underneath the parent), you must use `@ISDESC("USA")` (Is Descendant) instead of `ISCHILD` |
 
 ---

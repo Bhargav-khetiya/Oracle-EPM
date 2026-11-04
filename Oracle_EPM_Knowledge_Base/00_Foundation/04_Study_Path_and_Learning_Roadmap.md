@@ -1,188 +1,107 @@
-# Study Path and Learning Roadmap — Your 12-Week Plan
+# 0.4 Technical Consultant Review Mastery Roadmap (FTE Conversion Track)
 
-> **Folder:** 00_Foundation | **Audience:** Complete beginner → Architect
->
-> **Provenance:** Merged from Claude `00.01_Master_Learning_Roadmap.md`, `00.02_Career_Pathways.md`, `00.04_Progress_Tracker.md`; ChatGPT `LEARNING_ROADMAP.md`; Gemini `LEARNING_ROADMAP.md`, `START_HERE.md`
-
----
-
-## Choose Your Learning Track
-
-```
-┌────────────────────────────────────────────────────────────────────┐
-│                    CHOOSE YOUR LEARNING TRACK                      │
-└────────────────────────────────────────────────────────────────────┘
-        │                          │                          │
-        ▼                          ▼                          ▼
- 🟢 COMPLETE BEGINNER        🟡 MID-LEVEL               🔴 SENIOR DEFENSE
- "Never touched EPM"         "Know forms/rules;          "Technical review
-                              need performance            or interview soon"
-                              tuning"
-        │                          │                          │
-        ▼                          ▼                          ▼
-   Track 1: Foundation        Track 2: Engineering      Track 3: War Room
-   (Weeks 1-12 below)        (Start at Week 5)         (15_Professional_Dev)
-```
+## Table of Contents
+1. [Core Consultant Mental Model](#1-core-consultant-mental-model)
+2. [The 4-Stage FTE Review Readiness Framework](#2-the-4-stage-fte-review-readiness-framework)
+3. [Technical Competency Matrix for Freshers](#3-technical-competency-matrix-for-freshers)
+4. [Mastery Checkpoints & Panel Review Drills](#4-mastery-checkpoints--panel-review-drills)
+5. [Tough & Twisted Review Questions with Consultant Model Answers](#5-tough--twisted-review-questions-with-consultant-model-answers)
 
 ---
 
-## The Master Principle: Follow the Data
+<!-- ===================================================================== -->
+<!-- 🎯 LIVE INTERACTIVE VISUAL CARD: FTE REVIEW MASTERY ROADMAP -->
+<!-- ===================================================================== -->
+<details open>
+<summary><b>🎯 Live Interactive Architecture Card: FTE Review Mastery Roadmap (Click to Collapse / Expand)</b></summary>
 
-```
-The secret to mastering Oracle EPM is ONE principle: FOLLOW THE DATA.
+<br/>
 
-  1. Where does data COME FROM?    → Finance/Business (Foundation)
-  2. Where is data STORED?         → Essbase Engine (07_Essbase)
-  3. How is the CONTAINER built?   → Planning App + Dimensions (08_Dimensions)
-  4. How does the USER see it?     → Forms + Smart View (02_UI, 10_Smart_View)
-  5. How is data CALCULATED?       → Business Rules + Calc Mgr (05_Calc_Manager)
-  6. How does data GET IN/OUT?     → Data Integration + REST (06_Data_Integration)
-  7. How is it SECURED?            → Security + Administration (01_Security, 04_Admin)
-  8. How do you EXTEND it?         → Groovy + EPM Automate (03_Groovy, 12_EPM_Automate)
+> [!TIP]
+> **Consultant High-Yield Summary:** To successfully convert from Fresher to Full-Time Employee (FTE) in an Oracle EPM practice, reviewers evaluate whether you understand **how the engine works under the hood** (storage physics, block creation, calculation execution order, and Groovy pipelines) rather than memorizing UI buttons.
+
+| Stage | Focus Domain | Key Mechanics to Master | Panel Review Trap / Verification Test |
+| :--- | :--- | :--- | :--- |
+| **Stage 1: Storage Mechanics** | Essbase Kernel (BSO/ASO/Hybrid) | Dense/Sparse mathematics, Block Sizing (8 KB - 100 KB), Implied Share triggers | "Why did block count jump 10x after changing 1 property?" |
+| **Stage 2: Calculation Engine** | Calc Manager & Groovy Rules | FIX scoping, Top-Down vs Bottom-Up, `@CALCMODE`, `DataGridBuilder` | "Why did a simple assignment statement calculate 0 cells?" |
+| **Stage 3: Integration & Write-Back** | Smart View, Grids & Data Integration | Cell-level security vs Valid Intersections, Smart Push, Form locking | "Why can a Power User edit a cell in Smart View but not on the web form?" |
+| **Stage 4: Tuning & Troubleshooting** | Production Crises & Maintenance | Lock timeouts, Block explosion deflation, LCM cloning, EPM Automate | "A batch rule hung for 3 hours locking all users. Walk me through your debug steps." |
+
+```mermaid
+flowchart TD
+    S1["Stage 1: Storage Mechanics<br/>• BSO / ASO / Hybrid Kernel<br/>• Dense / Sparse Block Math<br/>• Implied Share & Dynamic Rollup"]
+    --> S2["Stage 2: Calculation Engine<br/>• Calc Script FIX Scopes & Modes<br/>• Cross-Dimensional Tuples<br/>• Event-Driven Groovy DataGrids"]
+    --> S3["Stage 3: Integration & Write-Back<br/>• Data Integration Mapping & Agent<br/>• Smart Push / Data Maps<br/>• Security & Valid Intersections"]
+    --> S4["Stage 4: Tuning & Emergency Operations<br/>• Lock Timeouts & ClearBlock Empty<br/>• EPM Automate Orchestration<br/>• LCM Migration & Disaster Recovery"]
 ```
 
----
-
-## Time Commitment
-
-| Your Background | Weekly Hours | Total Duration |
-|-----------------|-------------|----------------|
-| IT professional, no finance | 15–20 hrs/week | 12 weeks |
-| Finance professional, some IT | 12–15 hrs/week | 10 weeks |
-| Fresh graduate | 20–25 hrs/week | 14–16 weeks |
-| Experienced Hyperion consultant | 8–10 hrs/week | 6 weeks (review mode) |
+</details>
 
 ---
 
-## Week-by-Week Plan
+## 1. Core Consultant Mental Model
 
-### Weeks 1–2: The Business Brain
-**Goal:** Understand WHY EPM exists and the business context
-
-| Read | Topic |
-|------|-------|
-| [00_Foundation/01_What_Is_EPM.md](01_What_Is_EPM.md) | What EPM is, EPM vs ERP |
-| [00_Foundation/02_EPM_Architecture.md](02_EPM_Architecture.md) | Cloud architecture, OCI |
-| [00_Foundation/03_EPM_History.md](03_EPM_History.md) | Hyperion → cloud evolution |
-| [02_Finance_Concepts/](../02_Finance_Concepts/00_INDEX.md) | Financial statements, P&L, Balance Sheet |
-
-**Milestone:** Can explain what EPM is, why companies use it, and draw the architecture on a whiteboard.
-
-### Weeks 3–4: The Engine Room
-**Goal:** Understand HOW the database works
-
-| Read | Topic |
-|------|-------|
-| [07_Essbase_Architecture/](../07_Essbase_Architecture/00_INDEX.md) | BSO/ASO, blocks, sparse/dense |
-| [08_Dimensions_and_Metadata/](../08_Dimensions_and_Metadata/00_INDEX.md) | Dimension types, member properties |
-| [11_Smart_Lists/](../11_Smart_Lists/00_INDEX.md) | Text-to-ID dropdowns |
-
-**Milestone:** Can explain sparse vs dense, draw a cube, and describe how data is physically stored.
-
-### Weeks 5–6: Building the Application
-**Goal:** Create forms and data entry screens
-
-| Read | Topic |
-|------|-------|
-| [02_User_Interface_and_Navigation/](../02_User_Interface_and_Navigation/00_INDEX.md) | Navigation flows, forms, dashboards |
-| [09_EPBCS_Modules/](../09_EPBCS_Modules/00_INDEX.md) | Pre-built modules |
-| [13_Action_Menus/](../13_Action_Menus/00_INDEX.md) | Context menus |
-
-**Milestone:** Can design a planning form with proper dimensions, validation, and context menus.
-
-### Weeks 7–8: The User Experience
-**Goal:** Master calculations and security
-
-| Read | Topic |
-|------|-------|
-| [05_Calc_Manager_and_Business_Rules/](../05_Calc_Manager_and_Business_Rules/00_INDEX.md) | Calc scripts, rules, functions |
-| [01_Security_and_Access/](../01_Security_and_Access/00_INDEX.md) | Roles, permissions, data access |
-| [03_Workflow_and_Task_Management/](../03_Workflow_and_Task_Management/00_INDEX.md) | Task lists, approvals |
-
-**Milestone:** Can write a basic business rule and configure role-based security.
-
-### Weeks 9–10: Logic and Automation
-**Goal:** Advanced development and integration
-
-| Read | Topic |
-|------|-------|
-| [03_Groovy_Scripting/](../03_Groovy_Scripting/00_INDEX.md) | Groovy in EPM |
-| [06_Data_Integration_and_Exchange/](../06_Data_Integration_and_Exchange/00_INDEX.md) | Data maps, Smart Push, ETL |
-| [10_Smart_View/](../10_Smart_View/00_INDEX.md) | Excel analytics, VBA |
-
-**Milestone:** Can write Groovy rules, configure data integrations, and automate Smart View.
-
-### Weeks 11–12: Integration and Administration
-**Goal:** Production readiness
-
-| Read | Topic |
-|------|-------|
-| [12_EPM_Automate/](../12_EPM_Automate/00_INDEX.md) | CLI scripting, scheduling |
-| [14_Application_Lifecycle/](../14_Application_Lifecycle/00_INDEX.md) | Migration, LCM, governance |
-| [04_System_Administration/](../04_System_Administration/00_INDEX.md) | Maintenance, monitoring |
-
-**Milestone:** Can manage a production EPM environment end-to-end.
-
-### Beyond Week 12: Architect Level
-
-| Read | Topic |
-|------|-------|
-| [15_Professional_Development/](../15_Professional_Development/00_INDEX.md) | Interview prep, methodology |
-| [16_Performance_Tuning/](../16_Performance_Tuning/00_INDEX.md) | Optimization |
-| [17_Labs_and_Case_Studies/](../17_Labs_and_Case_Studies/00_INDEX.md) | Hands-on practice |
-
-**Milestone:** Can design an entire EPM solution from requirements to production deployment.
+Technical interviewers and review panels evaluate junior consultants on three core criteria:
+1. **Physical Understanding:** Can you explain what physically happens to data files on disk when an action is executed?
+2. **Root Cause Analysis:** When a user reports an error (e.g., `#Error`, form read-only, calculation timeout), do you guess randomly or systematically isolate the failure layer?
+3. **Architectural Best Practices:** Do your design recommendations prevent performance bottlenecks before they hit production?
 
 ---
 
-## Mastery Levels
+## 2. The 4-Stage FTE Review Readiness Framework
 
-| Level | Description |
-|-------|-------------|
-| **Beginner** (Weeks 1–4) | Can explain EPM, Essbase, dimensions, and draw the architecture |
-| **Consultant** (Weeks 5–8) | Can build apps, create forms, write basic rules, configure security |
-| **Senior Consultant** (Weeks 9–12) | Can write Groovy, set up integrations, troubleshoot performance |
-| **Architect** (Beyond) | Can design full solutions, defend architecture, handle production crises |
+### Stage 1: Storage Mechanics & Outline Architecture
+* **Block Size Calculation:** Master the exact formula `(Number of Dense Cells) × 8 bytes`. Keep block sizes strictly between 8 KB and 100 KB.
+* **Dense vs. Sparse Setting:** Understand why changing a dimension from Sparse to Dense forces a full outline restructuring and page file rewrite.
+* **Hybrid BSO Rules:** Know which calculation functions force Hybrid BSO to fall back to slow procedural mode (`@CURRMBRRANGE`, complex cross-dimensional assignments).
 
----
+### Stage 2: Calculation & Business Rule Engineering
+* **FIX Statement Scoping:** Understand how Essbase filters blocks. FIX statements evaluate sparse combinations; dense logic executes inside the block.
+* **Calculation Modes:** Understand the difference between `SET CALCMODE BLOCK;` and `SET CALCMODE CELL;`.
+* **Groovy Automation:** Why Groovy rules that target only edited cells (`operation.grid.dataCellIterator({it.edited})`) outperform legacy calc scripts by 99%.
 
-## Daily Study Routine
+### Stage 3: Write-Back, Data Integration & Security
+* **Data Flow Mechanics:** Map data from ERP General Ledger -> Data Integration -> Planning BSO -> Smart Push -> Reporting ASO.
+* **Security Precedence:** Group Security (None > Write > Read), Cell-Level Security overrides, and Valid Intersection filtering.
 
-```
-Morning (1 hour):
-  📖 Read one module section
-  ✍️  Take notes on key concepts
-
-Afternoon (1 hour):
-  🧠 Answer recall questions WITHOUT notes
-  📝 Write down what you don't understand
-
-Evening (30 min):
-  📖 Re-read weak areas
-  💬 Try to explain today's topic out loud
-```
+### Stage 4: Production Support & Performance Troubleshooting
+* **Block Explosion Remediation:** Using `CLEARBLOCK EMPTY;` to purge zero-cell ghost blocks created by faulty calc formulas.
+* **Lock Management:** Diagnosing block lock contention during budget submission windows.
 
 ---
 
-## Common Study Mistakes
+## 3. Technical Competency Matrix for Freshers
 
-| Mistake | Why It Hurts | Fix |
-|---------|-------------|-----|
-| Reading randomly | You'll learn FIX statements before dimensions | Follow this roadmap |
-| Skipping finance | You'll fail every P&L interview question | Start with Foundation |
-| Only reading, no practice | Reading ≠ mastery | Do the labs in 17_Labs |
-| Memorizing syntax | Interviewers test understanding, not memorization | Understand the "why" |
-| Skipping self-checks | You think you know it, but you don't | Answer every recall question without notes |
+| Competency Area | Beginner / Fresher Level | Consultant Conversion Level (FTE Ready) |
+| :--- | :--- | :--- |
+| **Essbase Architecture** | Knows BSO is for planning and ASO is for reporting. | Calculates exact block size, designs Hybrid BSO outlines, explains vector rollup execution. |
+| **Business Rules** | Creates simple graphical rules in Calc Manager. | Writes optimized script rules, configures `@CALCPARALLEL`, handles dynamic member write-backs via Groovy. |
+| **Security** | Assigns predefined roles in Access Control. | Resolves multi-group permission conflicts, configures Cell-Level Security with slice constraints. |
+| **Integration** | Runs manual Data Management imports via web. | Configures EPM Integration Agent for on-premises SQL extraction; automates pipelines via EPM Automate. |
 
 ---
 
-## 🧠 Self-Check
+## 4. Mastery Checkpoints & Panel Review Drills
 
-After each week, can you answer these without notes?
-1. What did I learn this week?
-2. Can I explain each concept to a non-technical person?
-3. Can I draw the relevant architecture diagram from memory?
-4. Which topics am I least confident about?
+To crack your FTE review, drill the following scenarios until answers are instinctive:
+1. **The Block Sizing Drill:** Given an application with 5 dense dimensions (Accounts: 200, Period: 17, View: 3, HSP_Rates: 4, Scenario: 3), calculate the block size and evaluate if it is within optimal range.
+2. **The Implied Share Trap:** A parent member has only one child member. Why does Essbase mark it as an Implied Share, and what error occurs if a user attempts to write to both?
+3. **The Lock Contention Scenario:** 50 users submit forecasts simultaneously at 4:30 PM. Forms freeze with timeout errors. Walk through the architectural triage steps.
 
-> **Remember:** Every expert was once a beginner. Follow the path, read every file, practice, and you'll be able to answer questions that 10-year EPM veterans struggle with.
+---
 
+## 5. Tough & Twisted Review Questions with Consultant Model Answers
+
+### Question 1: "How do you determine whether an outline restructuring will be an 'Index Restructure', 'Dense Restructure', or 'Sparse Restructure'?"
+**Consultant Model Answer:**
+> "The type of restructure depends on which dimension properties were modified:
+> 1. **Index Restructure:** Occurs when changes affect only the sparse dimension member names or hierarchies without altering dense calculations. Only the `.ind` index files are recreated; `.pag` page files remain untouched. Fast.
+> 2. **Sparse Restructure:** Occurs when sparse members are deleted or moved. Essbase updates index pointers and may reorganize existing blocks on disk.
+> 3. **Dense Restructure (Full Restructure):** Occurs when any Dense dimension is added, deleted, or reordered, or when dense member counts change. Because the dense dimensions define the internal matrix of every physical data block, Essbase must rewrite every single `.pag` block on disk. Slowest and requires maximum temporary disk space."
+
+### Question 2: "What is the single most critical reason to avoid assigning formula logic to sparse dimension members in Essbase?"
+**Consultant Model Answer:**
+> "Assigning formulas to sparse members forces Essbase to locate and bring data blocks into the memory cache simply to evaluate whether the formula needs to run. If an upper-level sparse parent contains a formula, Essbase cannot use its fast vector consolidation and must calculate block-by-block, causing massive I/O thrashing and severe performance degradation. Best practice is to keep sparse members as standard consolidations (`+`, `~`) and place all calculation logic in Dense account formulas or procedural business rules."
+
+---
+*Proceed to [Module 1: Security and Access Control](../01_Security_and_Access/00_INDEX.md).*

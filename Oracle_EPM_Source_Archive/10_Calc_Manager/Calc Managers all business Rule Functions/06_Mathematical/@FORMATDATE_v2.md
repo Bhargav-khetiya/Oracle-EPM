@@ -1,10 +1,10 @@
-# @FORMATDATE
+﻿# @FORMATDATE
 
 ## Overview
 
 `@FORMATDATE` is a **native Essbase string formatting function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a **native Essbase Date Integer** (a Unix epoch timestamp representing seconds since Jan 1, 1970) and converts it into a human-readable **Date String** (like `"12/31/2024"`) based on a specified formatting mask.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Essbase mathematical functions and standard accounts rely heavily on Unix timestamp integers (e.g., `1715731200`) because numbers are computationally efficient and easy to add/subtract. However, when EPM administrators need to export this data to a flat file for a downstream system (like an HRIS or ERP), or when they need to log a date into the Job Console for an audit trail, the Unix integer is completely unreadable to humans.
 `@FORMATDATE` bridges this gap natively. By passing the Unix timestamp and a format mask (e.g., `"mm/dd/yyyy"`), Essbase natively unpacks the seconds, translates them into the Gregorian calendar, and constructs a formatted text string that can be used in `@CalcMgrLogMemberStrings` or exported directly.

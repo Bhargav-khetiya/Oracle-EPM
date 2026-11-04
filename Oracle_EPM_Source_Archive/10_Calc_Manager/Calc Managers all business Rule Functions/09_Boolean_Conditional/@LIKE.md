@@ -1,10 +1,10 @@
-# @LIKE
+﻿# @LIKE
 
 ## Overview
 
 `@LIKE` is a **native Essbase member selection function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a powerful string-pattern matching engine, allowing administrators to dynamically select an array of dimension members based entirely on wildcard text patterns within their member names or aliases, rather than their physical outline hierarchy.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In legacy systems or poorly designed outlines, member names often contain embedded intelligence (e.g., Cost Centers might be named `"CC_100_NY"`, `"CC_200_BOS"`, `"CC_300_NY"`). 
 If an administrator needs to execute a calculation on all "New York" cost centers, but they do NOT share a common parent in the hierarchy (i.e., they are scattered across different divisions), standard hierarchy functions like `@DESCENDANTS` or `@SIBLINGS` are completely useless. 
@@ -37,7 +37,7 @@ You *could* manually list all the NY cost centers, but that breaks the moment a 
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `pattern_string` | String | ✅ Yes | The text pattern you are searching for, enclosed in quotes. Must contain at least one wildcard.<br>- `*` (Asterisk): Matches any number of characters.<br>- `?` (Question Mark): Matches exactly ONE character. |
+| `pattern_string` | String | ✅ Yes | The text pattern you are searching for, enclosed in quotes. Must contain at least one wildcard.<br>- `*` (Asterisk): Matches any number of characters.<br>- `—` (Question Mark): Matches exactly ONE character. |
 | `mbrName` | Member | ❌ No  | A specific parent member to restrict the search. If provided, `@LIKE` will only search the descendants of this member. If omitted, it searches the entire database globally. |
 
 ---

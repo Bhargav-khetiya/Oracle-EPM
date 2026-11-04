@@ -1,44 +1,67 @@
-# Security and Access
+﻿# 06. Security and Access — Predefined Roles, Cell-Level Security & Valid Intersections
 
-## Start with the layers
+> **Consultant High-Yield Summary:**  
+> Security in Cloud EPM is enforced across two complementary layers: Functional Roles (Service Administrator, Power User, User, Viewer) managed via Identity Cloud Service (IDCS/OCI IAM), and Data Security (Cell-Level Security, Dimension Permissions, and Valid Intersections) managed in Planning.
 
-Oracle Planning security has separate questions: can the user authenticate, which application role is assigned, which application elements can the user access, and what process actions are available? A visible form does not by itself prove the user can access every data cell.
+---
 
-~~~mermaid
+## ðŸŽ¯ Live Interactive Visual Architecture Card
+
+<details open>
+<summary><b>ðŸŽ¯ Live Interactive Architecture Card: Cloud EPM Multi-Layer Security Architecture</b></summary>
+
+| Security Layer | Enforcement Point | Technical Precedence & Physics |
+| :--- | :--- | :--- |
+| **Functional Roles** | OCI IAM / IDCS Pod Authentication | Governs application capabilities (e.g. Power User can create forms; User can only enter data). |
+| **Dimension Security** | Planning Relational Security Tables | Grants Read, Write, or None on dimensional branches. **Least Privilege** precedence applies across conflicting groups. |
+| **Cell-Level Security (CLS)** | Essbase Kernel Query Interceptor | Overrides dimension security at multi-dimensional cell coordinates; renders restricted cells read-only. |
+| **Valid Intersections (VI)** | Planning Form & Smart View UI | Validates coordinate combinations; suppresses invalid combinations from forms and blocks data entry. |
+
+```mermaid
 flowchart TD
- I[Identity and sign-in] --> R[Planning application role]
- R --> P[Artifact and member permissions]
- P --> V[Valid intersection and workflow context]
- V --> O[Observed action/result]
-~~~
+    User["End User Request"] --> Auth["OCI IAM / IDCS<br/>Authentication & Predefined Role"]
+    Auth --> DimSec["Dimension Access Security<br/>(Read / Write / None)"]
+    DimSec --> CLS["Cell-Level Security (CLS)<br/>Fine-Grained Cell Overrides"]
+    CLS --> VI["Valid Intersections (VI)<br/>Coordinate Combinations Validation"]
+    VI --> Data["Target Essbase Data Cell"]
+```
 
-Use this as a learning map, not an exhaustive Oracle security architecture.
+</details>
 
-## Guides in this folder
+---
 
-| Guide | Focus |
-|---|---|
-| [Access control](Oracle_EPM_Access_Control_Master_Guide.md) | Application roles, groups, artifact/member permissions, precedence, and testing |
-| [Valid intersections](Oracle_EPM_Valid_Intersections_Master_Guide.md) | Anchor/nonanchor dimensions, valid/invalid combinations, overlap behavior, and form validation |
+## ðŸ›ï¸ Architectural Comparison & Design Patterns
 
-## Read next
+| Security Mechanism | Cell-Level Security (CLS) | Valid Intersections (VI) |
+| :--- | :--- | :--- |
+| Primary Purpose | Restrict read/write permissions on specific data cell intersections | Prevent end users from viewing or entering invalid business combinations |
+| Underlying Effect | Cell shows #NoAccess or grayed-out read-only cell | Cell is cleared/hidden or flagged as 'Invalid Intersection' |
+| Essbase Impact | Data still exists in cube; user is denied access | Prevents creation of empty, useless sparse data blocks |
 
-- [Form behavior and cell-level security](../Form_Properties/07_Cell_Level_Security_and_Valid_Intersections_on_Forms.md) — detailed form context; not yet reviewed.
-- [Calculation Manager security topic](../Calc%20Manager/Calculations_and_Allocations/07_Administration_Troubleshooting_and_Interview_Bible/02_Security_Roles_and_Action_Menu_Form_Attachment.md) — verify against Oracle source before relying on it.
+---
 
-## Important distinctions
+## ðŸ’¼ Tough & Twisted Review Scenarios (Consultant Review Defense)
 
-- Application role is not the same as a form permission.
-- Artifact access is not the same as data-member access.
-- Valid intersections filter dimensional combinations; they do not authorize a person.
-- Cell-level security is distinct and must be assessed using the feature's own documentation.
-- Group-based grants are a maintainable practice; Oracle also supports direct assignments. Follow the actual access design.
+### Question 1: "A user belongs to Group A (Write access to Entity 'East') and Group B (None access to Entity 'East'). Can the user enter data for East?"
+> **Consultant Model Answer:**  
+> No. In Oracle Cloud EPM, when group permissions conflict on the same dimension member, **None** takes precedence over **Read**, and **Read** takes precedence over **Write**. The user receives **None** access and cannot see or write to Entity 'East'.
 
-## Oracle references
+---
 
-- [About User and Role Management](https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/about_user_and_role_management.html)
-- [Types of Access Permissions](https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/types_of_access_permissions.html)
-- [Creating Valid Intersections](https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/creating_valid_intersections.html)
-- [Valid Intersection Examples](https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/valid_intersection_examples.html)
+## ðŸ“‘ Complete Document Catalog
 
-Current coverage and source status are in the [review tracker](../_review/coverage.csv) and [Oracle source register](../_review/oracle_sources.md).
+| # | Document File | Topic Description |
+|---|---------------|-------------------|
+| 01 | [12.01_Security_and_Roles.md](./12.01_Security_and_Roles.md) | 12.01 — Security and Roles: Complete Guide |
+| 02 | [12.02_Dimension_Security_Patterns.md](./12.02_Dimension_Security_Patterns.md) | 12.02 — Dimension Security Patterns: Complete Guide |
+| 03 | [12.03_Security_Audit_and_Compliance.md](./12.03_Security_Audit_and_Compliance.md) | 12.03 — Security Audit and Compliance: Complete Guide |
+| 04 | [12.10_Security_Complete_Guide.md](./12.10_Security_Complete_Guide.md) | Security — Complete Guide |
+| 05 | [12.11_Security_Oracle_Deep_Reference.md](./12.11_Security_Oracle_Deep_Reference.md) | Security & Access Control — Oracle Official Deep Reference |
+| 06 | [Oracle_EPM_Access_Control_Master_Guide.md](./Oracle_EPM_Access_Control_Master_Guide.md) | Oracle EPM Planning Security: Beginner-to-Consultant Guide |
+| 07 | [Oracle_EPM_Access_Control_Master_Guide_v2.md](./Oracle_EPM_Access_Control_Master_Guide_v2.md) | Oracle EPM Cloud: The Ultimate Master Guide to Access Control |
+| 08 | [Oracle_EPM_Valid_Intersections_Master_Guide.md](./Oracle_EPM_Valid_Intersections_Master_Guide.md) | Planning Valid Intersections: Beginner-to-Consultant Guide |
+| 09 | [Oracle_EPM_Valid_Intersections_Master_Guide_v2.md](./Oracle_EPM_Valid_Intersections_Master_Guide_v2.md) | Oracle EPM Cloud: The Ultimate Master Guide to Valid Intersections |
+
+---
+
+> **Consultant Implementation Note:** Master the architectural comparison and review defense questions in this module before presenting designs to client stakeholders or senior review panels.

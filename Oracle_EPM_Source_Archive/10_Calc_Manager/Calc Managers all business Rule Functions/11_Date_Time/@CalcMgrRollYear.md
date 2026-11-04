@@ -1,10 +1,10 @@
-# @CalcMgrRollYear
+﻿# @CalcMgrRollYear
 
 ## Overview
 
 `@CalcMgrRollYear` is a **custom Calc Manager date mathematics function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a **Java Date Object** (or Timestamp) and mathematically rolls the **Year** forward or backward by a specific integer amount, returning an entirely new, modified Java Date Object.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building long-term financial plans, administrators frequently project dates into the future. If a massive piece of capital equipment is purchased on `20240515` (May 15th, 2024), and it has a useful life of 5 years, the retirement date is `20290515`. 
 While you can mathematically calculate this in Essbase by adding `50000` to the integer (`20240515 + 50000 = 20290515`), this basic math method catastrophically breaks during leap years. 

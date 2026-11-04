@@ -1,10 +1,10 @@
-# @LN
+﻿# @LN
 
 ## Overview
 
 `@LN` is a **mathematical function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns the **natural logarithm** (base *e*) of a given numeric expression. The natural logarithm is the inverse of the exponential function (`@EXP`) — if `@EXP(x) = y`, then `@LN(y) = x`.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Natural logarithms are essential in financial mathematics and statistical analysis:
 - Calculating continuous compound growth rates (CAGR using continuous compounding)
@@ -151,7 +151,7 @@ ENDFIX
 
 ### Example 3: Doubling Time Calculation
 
-**Scenario**: How many periods does it take for an investment to double at the current growth rate?
+**Scenario**: How many periods does it take for an investment to double at the current growth rate—
 
 ```essbase
 FIX("FY24", "Analysis")

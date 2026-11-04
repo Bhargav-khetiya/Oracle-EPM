@@ -1,4 +1,4 @@
-# @HspDateToString
+﻿# @HspDateToString
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 *(Important Distinction: Despite having "ToString" in the name, this function returns a numeric **Integer** that looks like `YYYYMMDD`, not a text string. The name is a historical misnomer from early On-Premise Planning versions).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 There are two major date paradigms in Essbase:
 1. **Unix Timestamps**: This is what the native `@TODAY()` function outputs. (e.g., `1715731200`). It is highly efficient for math, but unreadable to humans, and useless in Web Forms.

@@ -1,10 +1,10 @@
-# @SHIFT
+﻿# @SHIFT
 
 ## Overview
 
 `@SHIFT` is a **time series function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that **shifts data** across time periods by a specified offset — both **forward and backward**. Unlike `@PRIOR` which only looks backward, `@SHIFT` can navigate in both directions, making it more flexible for time-based calculations.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Business calculations often need to reference values at different time offsets:
 - **Lead indicators**: Looking at next month's committed pipeline

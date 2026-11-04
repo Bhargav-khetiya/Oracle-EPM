@@ -1,10 +1,10 @@
-# @CalcMgrConvertDateToJavaDate
+﻿# @CalcMgrConvertDateToJavaDate
 
 ## Overview
 
 `@CalcMgrConvertDateToJavaDate` is a **custom Calc Manager date conversion function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a date string (without a time component) and converts it into an internal Java `Date` object, enabling the Calc Manager engine to perform complex calendar math on it.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In modern cloud architectures, data flows into EPM from external systems (ERP, HRIS, CRM) via flat files or APIs. These external systems frequently provide dates as text strings (e.g., `"YYYY-MM-DD"` or `"MM/DD/YYYY"`). 
 Essbase natively cannot perform mathematical operations on a text string like `"2024-12-31"`. If you want to calculate exactly how many days have passed since that date, or if you want to add 6 months to it for a forecasting model, you must first translate that text string into a mathematical object that the engine understands.

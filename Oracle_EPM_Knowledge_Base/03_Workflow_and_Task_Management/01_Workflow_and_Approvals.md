@@ -1,146 +1,125 @@
-# Workflow: Task Lists, Task Manager, and Approvals
+# 3.3 Workflow Architecture: Approval Units, Promotion Paths & Task Manager
 
-> **Prerequisites:** [Forms and Navigation](../02_User_Interface_and_Navigation/01_Forms_and_Navigation.md)  
-> **Sources merged:** ChatGPT 03_Workflow_and_Task_Management (3 files), Claude workflow content, Gemini equivalents  
-> **Evidence Labels:** `[Oracle Documented]` · `[Illustrative]` · `[Recommendation]`
+## Table of Contents
+1. [Core Consultant Mental Model](#1-core-consultant-mental-model)
+2. [Approval Unit Hierarchy (AUH) Architecture](#2-approval-unit-hierarchy-auh-architecture)
+3. [Promotional State Machine & Security Lock Dynamics](#3-promotional-state-machine--security-lock-dynamics)
+4. [Classic Task Lists vs. EPM Task Manager](#4-classic-task-lists-vs-epm-task-manager)
+5. [Tough & Twisted Review Questions with Consultant Model Answers](#5-tough--twisted-review-questions-with-consultant-model-answers)
 
 ---
 
-## Task Lists vs Task Manager
+<!-- ===================================================================== -->
+<!-- 🎯 LIVE INTERACTIVE VISUAL CARD: APPROVAL WORKFLOW STATE MACHINE -->
+<!-- ===================================================================== -->
+<details open>
+<summary><b>🎯 Live Interactive Architecture Card: Approval Units & Promotion State Machine (Click to Collapse / Expand)</b></summary>
 
-Oracle provides two frameworks for coordinating planning work:
+<br/>
 
-| Feature | Classic Task Lists | EPM Task Manager |
-|:---|:---|:---|
-| **Purpose** | Guided checklist | Centralized repeatable task orchestration |
-| **Objects** | Tasks with instructions, dates, linked artifacts | Task types, templates, tasks, schedules, views |
-| **Best for** | Simple sequential workflows | Complex recurring processes with monitoring |
-| **Default for** | Legacy applications | New Planning applications |
-| **Migration** | Cannot migrate lists to Task Manager | Must delete lists before enabling |
+> [!TIP]
+> **Consultant High-Yield Summary:** An **Approval Unit** is a unique multidimensional combination of **Scenario, Version, and Entity**. When an owner promotes an approval unit, the underlying cell intersections become **read-only** for that owner, preventing unapproved edits while the budget is under managerial review.
+
+| State Machine Phase | Current Owner | Actions Allowed | Data Write-Back Status |
+| :--- | :--- | :--- | :--- |
+| **1. Not Started** | Initial Owner (Planner) | Start, Edit, Submit | Editable by Owner (if security allows) |
+| **2. First Pass** | Planner / Analyst | Edit cells, Run rules, Promote | Full Write-Back permitted |
+| **3. Under Review** | Reviewer / Finance Manager | Approve, Reject (with reason), Promote | **Locked for Planner**; Editable by Reviewer |
+| **4. Approved / Freeze** | Service Administrator / CFO | Lock, Unlock, Reopen | **Fully Locked** across all standard users |
+
+```mermaid
+stateDiagram-v2
+    [*] --> NotStarted: Budget Cycle Opened
+    NotStarted --> FirstPass: Planner begins data entry
+    FirstPass --> UnderReview: Planner executes "Promote"
+    note right of UnderReview: Write-Back is immediately LOCKED for Planner!
+    
+    UnderReview --> FirstPass: Reviewer executes "Reject"<br/>(with mandatory comment)
+    UnderReview --> Approved: Reviewer executes "Approve"
+    note right of Approved: Cell coordinates FROZEN for all users
+    
+    Approved --> [*]: Final Budget Locked
+```
+
+</details>
+
+---
+
+## 1. Core Consultant Mental Model
+
+When an enterprise budget cycle begins, organizations cannot allow hundreds of planners to modify numbers concurrently without governance. 
+
+**The Technical Definition:**
+> The **Approval Workflow** is an asynchronous state machine that coordinates budget submission, managerial validation, and audit sign-off. It binds together **Scenario, Version, and Entity** dimensions into an **Approval Unit**.
+
+The most critical technical takeaway:
+* **Promoting an approval unit dynamically modifies cell-level write permissions.**
+* When an entity is promoted from Planner to Manager, the EPM server automatically locks data entry on forms for that planner, even though their native group security on Entity and Account is still `WRITE`.
+
+---
+
+## 2. Approval Unit Hierarchy (AUH) Architecture
+
+An **Approval Unit Hierarchy (AUH)** defines who reviews what, and in what sequence:
+
+| Component | Technical Role | Best Practice Rule |
+| :--- | :--- | :--- |
+| **Scenario & Version** | The operational scope of the workflow | Typically applied to `Budget` and `Forecast` with `Bottom-Up` versions. |
+| **Entity Dimension** | Defines the hierarchical review tree | Entities roll up along standard statutory or operational reporting lines. |
+| **Owner** | The individual or group responsible for data entry | Planners responsible for drafting initial operational budgets. |
+| **Reviewer** | The individual or group authorized to approve/reject | Department managers, regional controllers, corporate FP&A. |
+| **Promotional Path** | Order of operations in the hierarchy | Bottom-up: Leaf entities must be approved before parent entities can be signed off. |
+
+---
+
+## 3. Promotional State Machine & Security Lock Dynamics
+
+1. **Bottom-Up Version Rules:**
+   * In a `Bottom-Up` version, each entity has its own approval state. Child entities can be promoted independently to their parent's reviewer.
+2. **Target Version Rules:**
+   * In a `Target` version, top-down allocation targets are established by corporate executives and pushed down without individual child sign-off.
+3. **Rejection & Audit Log:**
+   * When a reviewer clicks **Reject**, the system requires a mandatory explanation comment. The approval state rolls back down the tree to the planner, restoring their `WRITE` access.
+   * Every promote, approve, and reject action is logged in the Planning audit repository with precise timestamps and user IDs.
+
+---
+
+## 4. Classic Task Lists vs. EPM Task Manager
+
+Oracle Cloud EPM provides two distinct mechanisms for operational guidance:
+
+| Architectural Feature | Classic Task Lists | Modern EPM Task Manager |
+| :--- | :--- | :--- |
+| **Nature** | Simple static checklist | Enterprise-grade orchestration engine |
+| **Dependencies & Predecessors**| None (tasks cannot enforce prerequisite steps) | Native Gantt-style predecessor/successor dependencies |
+| **Automated Actions** | Manual clicks only | Automated execution: triggers EPM Automate jobs, Data Integrations |
+| **Monitoring & Dashboards** | No operational dashboards | Real-time status dashboards, late alerts, aging reports |
+| **Architectural Caution** | Deprecated in new implementations | **Enabling Task Manager permanently disables Classic Task Lists!** |
 
 > [!CAUTION]
-> Switching from Task Lists to Task Manager is **irreversible**. Existing Task Lists/tasks must be deleted before enabling Task Manager. Back up the application first and redesign tasks in Task Manager.
-
-`[Oracle Documented]`
+> Switching an application from Classic Task Lists to Task Manager is **strictly irreversible**. An administrator must back up the entire application via LCM snapshot before enabling Task Manager.
 
 ---
 
-## Classic Task Lists
+## 5. Tough & Twisted Review Questions with Consultant Model Answers
 
-Task Lists guide users through a planning process with ordered tasks, instructions, and end dates.
+### Question 1: "A planner reports that yesterday they were able to enter travel expenses for Entity 'US_Sales', but today the cells are read-only. Group security grants them Write access to all dimensions. What happened?"
+**Consultant Model Answer:**
+> "The most probable root cause is that the **Approval Unit** for Entity 'US_Sales' (in the active Scenario and Version) was **promoted to the next review level** (or marked as Approved). 
+> When an approval unit transitions from 'First Pass' to 'Under Review', the Planning workflow engine dynamically overrides dimensional write grants, locking the cells as read-only for the original owner until the reviewer either rejects the unit back down or the administrator reopens it."
 
-### Typical Design
+### Question 2: "Can an administrator configure an approval workflow on a dynamic parent entity before all of its leaf child entities are submitted?"
+**Consultant Model Answer:**
+> "In a standard **Bottom-Up Approval Unit Hierarchy**, no. A parent entity represents the consolidated sum of its leaf children. Cloud EPM enforces structural promotional integrity: a parent entity cannot be promoted or approved until **all child entities in its branch have been promoted** by their respective owners. Attempting to approve the parent beforehand triggers an error: *'Cannot promote parent approval unit: One or more descendants are still in First Pass state.'*"
 
-1. Identify user goal and order of work
-2. Create a list with concise instructions
-3. Add tasks pointing to relevant artifacts (forms, rules, URLs, approvals)
-4. Set dates, alerts, and dependencies where needed
-5. Assign list access and verify users can also access underlying forms/rules
-6. Test completion, overdue behavior, and reuse/reset procedures
-
-### Task Types (Attachable Actions)
-
-| Type | Action |
-|:---|:---|
-| **Open Form** | Navigates user to a specific data entry form |
-| **Launch Business Rule** | Executes a calculation rule |
-| **Open URL** | Opens an external link or Oracle Cloud page |
-| **Approval Process** | Starts or continues an approval workflow |
-
-> [!NOTE]
-> Task-list access and permissions on linked forms/rules are **separate**. Visibility of a task does not automatically grant permission to use its target artifact.
-
-`[Oracle Documented]`
+### Question 3: "A project manager asks to migrate 20 existing Classic Task Lists into EPM Task Manager. How do you execute this migration?"
+**Consultant Model Answer:**
+> "Classic Task Lists **cannot be automatically converted or migrated** into EPM Task Manager. The two engines have completely different underlying relational schemas. To transition:
+> 1. Export an LCM backup of the application.
+> 2. Document the task definitions, instructions, and target artifacts from the existing task lists.
+> 3. Delete all Classic Task Lists and tasks from the application.
+> 4. Enable Task Manager in application settings (noting that this is an irreversible setting).
+> 5. Recreate the workflow inside Task Manager using Templates, Task Types, and Schedules, adding dependencies and automated alerts."
 
 ---
-
-## Approval Workflows
-
-The approval system enables formal budget review cycles using **Planning Unit Hierarchies (PUH)**.
-
-### Approval Flow
-
-```
-[Planner: jsmith]
-  │
-  ▼ (completes data entry in web form)
-[PROMOTE]
-  │  1. Planning checks validation rules
-  │  2. Updates Process State to "Submitted"
-  │  3. Transfers ownership to reviewer (mchen)
-  │  4. Cell-level security flips planner to READ-ONLY
-  ▼
-[Reviewer: mchen]
-  │
-  ├──[REJECT]──► Returns to jsmith (write access restored)
-  │
-  └──[APPROVE]──► Final Sign-off (locked permanently)
-```
-
-### Key Approval Concepts
-
-| Concept | Description |
-|:---|:---|
-| **Planning Unit** | An entity or budget slice that flows through the approval process |
-| **Promote** | Move the budget forward to the next reviewer |
-| **Approve / Sign Off** | Mark as final — locks data |
-| **Reject** | Send back to the previous owner for revision |
-| **Delegate** | Transfer ownership to another reviewer |
-| **Submission Group** | Partition an entity into independently promotable sections |
-
-### Version and Scenario Interaction
-
-- Only versions with **Enabled for Approvals** checked participate in PUH
-- Approval workflows bind to specific Scenario/Version/Entity intersections
-- When promoted, write permissions dynamically transfer and the promoter's grid becomes read-only
-
-`[Oracle Documented]`
-
----
-
-## EPM Task Manager Building Blocks
-
-| Object | Purpose |
-|:---|:---|
-| **Task Types** | Reusable definitions of common task details, questions, instructions |
-| **Task Templates** | Repeatable task structures that can be instantiated |
-| **Tasks** | Individual activities with properties, assignees, predecessors |
-| **Schedules** | Dated execution structures created from templates |
-| **Integration Tasks** | Tasks that invoke system operations (data loads, rules) |
-
-### Illustrative Monthly Forecast Template
-
-```
-Template: Monthly Forecast Close
-  Task 1: "Prepare Inputs"     → Owner: Finance Analyst → Day 3
-  Task 2: "Review Assumptions" → Owner: Finance Manager → Day 5 (predecessor: Task 1)
-  Task 3: "Submit Forecast"    → Owner: Finance Director → Day 7 (predecessor: Task 2)
-```
-
-`[Illustrative]`
-
----
-
-## Troubleshooting
-
-| Symptom | Check |
-|:---|:---|
-| User sees task but cannot complete it | Task assignment AND permission to the linked form/rule/approval unit |
-| Task Manager not available | Task flow type setting; residual Task List artifacts; re-login after enablement |
-| Old tasks missing after conversion | Oracle does not migrate Task Lists → Task Manager; redesign required |
-| Dates/alerts behaving unexpectedly | Task configuration, calendar/time zone, alert date settings |
-| Approval button grayed out | User doesn't have the budget unit in their ownership; check PUH assignment |
-
----
-
-## Quick Recall
-
-1. **What is irreversible about enabling Task Manager?**
-   → Existing Task Lists/tasks must be deleted before enabling, cannot be migrated, and switching back is unavailable.
-
-2. **What happens to data access when a planner promotes their budget?**
-   → Write access transfers to the reviewer. The planner's grid becomes read-only (cell-level security enforced by PUH).
-
-3. **Can a task list grant permission to a form?**
-   → No. Task list access and form permissions are separate. Visibility of a task doesn't grant access to its target artifact.
-
+*Proceed to [Module 04: REST API & System Administration](../04_REST_API/00_INDEX.md).*

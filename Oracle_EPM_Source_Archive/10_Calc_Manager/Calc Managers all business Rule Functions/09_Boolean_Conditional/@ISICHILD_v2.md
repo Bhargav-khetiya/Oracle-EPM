@@ -1,4 +1,4 @@
-# @ISICHILD
+﻿# @ISICHILD
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 *(The "I" stands for Inclusive).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building hierarchical calculations, administrators often need to execute targeted logic on a parent holding bucket and its immediate sub-components simultaneously.
 If you are allocating a budget from `"Total_Marketing"` down to its direct children (`"Digital"`, `"Print"`, `"Events"`), you might want to apply a specific calculation flag to all of those entities.
@@ -58,7 +58,7 @@ Returns `TRUE` (1) if the currently calculating member is an immediate, first-ge
 1. **Trigger**: The Essbase engine encounters the `IF(@ISICHILD(...))` block during a calculation sweep.
 2. **Context Query**: It identifies the specific member it is currently calculating (e.g., `"Digital_Marketing"`).
 3. **Equality Check**: It first checks if the current member is exactly identical to the `MemberName` parameter. If yes, it immediately returns `TRUE`.
-4. **Outline Trace**: If not identical, it queries the active `.otl` outline. It looks at the current member and asks: "Who is my direct parent?"
+4. **Outline Trace**: If not identical, it queries the active `.otl` outline. It looks at the current member and asks: "Who is my direct parent—
 5. **Match Evaluation**: It compares the direct parent it found against the `MemberName`. If they match perfectly, it returns `TRUE`.
 6. **Fail State**: If the parent does not match, it returns `FALSE`.
 
@@ -118,7 +118,7 @@ ENDFIX
 | Mistake | Explanation | Fix |
 |---------|-------------|-----|
 | Confusing with Descendants | Missing the Grandchildren | This is the most common logic flaw. `@ISICHILD` strictly checks the 1st generation. If your intent is to execute logic on a parent and EVERY SINGLE member beneath it all the way down to the leaf nodes, you MUST use `@ISIDESC` (Inclusive Descendant). Using `@ISICHILD` will completely ignore all grandchildren |
-| Backward Logic | `IF(@ISICHILD("Store"))` | The parameter must be the PARENT. The function asks "Is the current member a child of the parameter?" If you put a Level-0 Store in the parameter, it will only return `TRUE` when it calculates that specific Store (because of inclusivity). It will return `FALSE` for everything else, rendering the child-check useless. Always pass the parent |
+| Backward Logic | `IF(@ISICHILD("Store"))` | The parameter must be the PARENT. The function asks "Is the current member a child of the parameter— If you put a Level-0 Store in the parameter, it will only return `TRUE` when it calculates that specific Store (because of inclusivity). It will return `FALSE` for everything else, rendering the child-check useless. Always pass the parent |
 | Performance in Large Dimensions | Running on every block | If you put `IF(@ISICHILD("Target"))` inside a `FIX` covering 100,000 members, Essbase has to perform 100,000 outline checks. It is almost always exponentially faster to use the member selection equivalent in the `FIX` statement itself: `FIX(@ICHILDREN("Target"))`. Only use the boolean `IF` version when you must branch logic inside an already constrained `FIX` block |
 
 ---

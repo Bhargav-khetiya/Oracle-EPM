@@ -1,346 +1,143 @@
-# Calculation Functions Reference — Complete Guide
+# 5.3 Calculation Functions Reference: @ Functions Deep Dive & Performance Gotchas
 
-> **Section:** 05 — Calc Manager and Business Rules  
-> **File:** 03 — Calculation Functions Reference  
-> **Difficulty:** Intermediate → Advanced  
-> **Prerequisites:** [01_Calc_Manager_Overview](./01_Calc_Manager_Overview.md), [02_Business_Rules_Design](./02_Business_Rules_Design.md)
-
----
-
-## What Are Calculation Functions?
-
-Calculation functions (often called "@functions") are built-in operations available in Essbase calc scripts and Calculation Manager. They perform member navigation, data retrieval, mathematical operations, string manipulation, and more.
-
-EPM Cloud provides **450+ functions** across 20 categories. This reference covers the most important ones organized by purpose.
+## Table of Contents
+1. [Core Consultant Mental Model](#1-core-consultant-mental-model)
+2. [Master Function Matrix: Purpose, Scope & Performance Impact](#2-master-function-matrix-purpose-scope--performance-impact)
+3. [Member Navigation & Range Functions](#3-member-navigation--range-functions)
+4. [Cross-Cube Data Movement: `@XREF` vs. `@XWRITE` vs. Data Maps](#4-cross-cube-data-movement-xref-vs-xwrite-vs-data-maps)
+5. [Functions That Break Hybrid BSO Execution](#5-functions-that-break-hybrid-bso-execution)
+6. [Tough & Twisted Review Questions with Consultant Model Answers](#6-tough--twisted-review-questions-with-consultant-model-answers)
 
 ---
 
-## Function Categories at a Glance
+<!-- ===================================================================== -->
+<!-- 🎯 LIVE INTERACTIVE VISUAL CARD: ESSBASE CALCULATION FUNCTIONS MATRIX -->
+<!-- ===================================================================== -->
+<details open>
+<summary><b>🎯 Live Interactive Architecture Card: Calculation Functions & Performance Traps (Click to Collapse / Expand)</b></summary>
 
-| Category | Count | Key Functions | Use Case |
-|----------|-------|---------------|----------|
-| Flow Control | ~10 | FIX, IF, LOOP, ENDFIX | Structure calculations |
-| SET Commands | ~15 | SET CALCPARALLEL, SET CREATEBLOCKONEQ | Configure engine behavior |
-| Calc Commands | ~10 | AGG, CALC DIM, DATACOPY, CLEARDATA | Bulk operations |
-| Member Navigation | ~30 | @CHILDREN, @DESCENDANTS, @PARENT, @SIBLINGS | Traverse hierarchies |
-| Data Access | ~15 | @PARENTVAL, @ANCESTVAL, @PRIOR, @NEXT | Read related values |
-| Mathematical | ~15 | @SUM, @AVG, @MAX, @MIN, @ROUND | Standard math |
-| Statistical | ~10 | @STDEV, @CORRELATION, @RANK, @MEDIAN | Statistical analysis |
-| Financial | ~10 | @IRR, @NPV, @SLN, @SYD, @INTEREST | Financial calculations |
-| Boolean/Conditional | ~20 | @ISMBR, @ISANCEST, @ISDESC, @ISLEV, @ISGEN | Test member properties |
-| String | ~10 | @CONCATENATE, @SUBSTRING, @NAME, @LIKE | Text operations |
-| Date/Time | ~20 | @DATEDIFF, @DATEROLL, @TODATE, @TODAY | Date calculations |
-| CalcMgr Extended | ~100+ | @CalcMgrExcel*, @CalcMgrDate*, @CalcMgrStr* | Excel-equivalent functions |
-| HSP Functions | ~20 | @HspConcat, @HspMbrList, @HspMessage | Planning-specific |
-| Time Series | ~10 | @MOVAVG, @MOVSUM, @TREND, @SPLINE | Forecasting |
-| Range/Set | ~15 | @RANGE, @XRANGE, @INTERSECT, @MERGE | Member set operations |
-| Cross-Dimensional | ~10 | @XREF, @XWRITE, @MDSHIFT, @MDALLOCATE | Multi-cube operations |
-| Allocation | ~3 | @ALLOCATE, @MDALLOCATE | Top-down distribution |
-| Debugging | ~5 | @JDebug, @CalcMgrLogValues | Development/troubleshooting |
+<br/>
+
+> [!TIP]
+> **Consultant High-Yield Summary:** In Hybrid BSO applications, certain calculation functions trigger a **catastrophic fallback to slow procedural BSO mode**. Avoid `@CURRMBRRANGE`, `@ANCESTVAL`, and complex cross-dimensional `@MDANCESTVAL` inside dynamic parent formulas. Use standard additive rollups and delegate procedural calculations to business rules.
+
+| Function Group | Functions | Execution Performance | Hybrid BSO Compatibility |
+| :--- | :--- | :--- | :--- |
+| **Member Selection** | `@ISMBR`, `@ISANCEST`, `@ISDESC`, `@ISLEV` | Fast boolean evaluation | Fully Supported |
+| **Hierarchy Navigation**| `@DESCENDANTS`, `@RELATIVE`, `@CHILDREN`, `@SIBLINGS` | Fast outline tree traversal | Fully Supported |
+| **Time Series Offset** | `@PRIOR`, `@NEXT`, `@SHIFT`, `@MDSHIFT` | Fast within dense Period dimension | Supported on Dense dimensions |
+| **Range Aggregations** | `@SUMRANGE`, `@AVGRANGE`, `@ACCUM` | Moderate; depends on range size | Supported with limitations |
+| **Cross-Cube Linking** | `@XREF`, `@XWRITE` | **Extremely Slow (TCP network hops)** | Block-level only; never dynamic |
+
+```mermaid
+flowchart TD
+    subgraph FuncChoice ["Function Selection Architecture"]
+        Req["Need to calculate data across dimensions"]
+        Req --> Q1{"Is data in same cube or external cube?"}
+        
+        Q1 -->|External Cube| Q2{"Batch sync or Real-time?"}
+        Q2 -->|Real-Time Point Calculation| XREF["@XREF / @XWRITE<br/>(Slow; generates network queries)"]
+        Q2 -->|Batch Bulk Transfer| DM["Data Maps / Smart Push<br/>(High speed; optimized binary transfer)"]
+        
+        Q1 -->|Same Cube| Q3{"Time Series or Hierarchy?"}
+        Q3 -->|Prior Month Balance| PRIOR["@PRIOR('Ending_Balance', 1, @RELATIVE('Period', 0))"]
+        Q3 -->|Hierarchy Subtree| REL["@RELATIVE('Total_Product', 0)"]
+    end
+```
+
+</details>
 
 ---
 
-## Flow Control
+## 1. Core Consultant Mental Model
 
-### FIX / ENDFIX
-
-Defines the calculation scope (which blocks Essbase loads).
-
-```
-FIX("Budget", "Working", &CurrYear, @LEVMBRS("Entity", 0))
-    /* calculations here */
-ENDFIX
-```
-
-### IF / ELSEIF / ELSE / ENDIF
-
-Conditional execution within a calculation.
-
-```
-IF("Revenue" <> 0)
-    "Profit_Margin" = "Net_Income" / "Revenue" * 100;
-ELSEIF("Revenue" == #MISSING)
-    "Profit_Margin" = #MISSING;
-ELSE
-    "Profit_Margin" = 0;
-ENDIF
-```
-
-### LOOP / ENDLOOP
-
-Repeats a calculation block a fixed number of times.
-
-```
-LOOP(12)       /* Repeat 12 times */
-    "Cumulative" = "Cumulative" + "Monthly_Value";
-ENDLOOP
-```
+When writing member formulas or calc scripts in Oracle Cloud EPM:
+* **Function Placement Dictates Speed:** Running `@ISMBR` inside a dense formula executes thousands of times per block. Moving condition checks outside into a `FIX` statement executes once per block, eliminating 90% of formula evaluation overhead.
+* **Hybrid BSO Awareness:** Classic BSO allowed any function on dynamic members. In Cloud EPM's Hybrid BSO engine, placing an unsupported function on a Dynamic Calc member disables the vector engine and triggers multi-second query delays for all users querying that parent.
 
 ---
 
-## Member Navigation Functions
+## 2. Master Function Matrix: Purpose, Scope & Performance Impact
 
-These functions traverse the dimension hierarchy to select members dynamically.
+| Function | Syntax & Purpose | Consultant Best Practice |
+| :--- | :--- | :--- |
+| **`@RELATIVE`** | `@RELATIVE(member, level)`<br/>Returns members at a specific level (Level 0 = leaf). | Standard best practice for scoping leaf inputs (`@RELATIVE("Total Entity", 0)`). |
+| **`@DESCENDANTS`**| `@DESCENDANTS(member)`<br/>Returns all child and descendant nodes. | Avoid on sparse dimensions unless calculating full tree consolidations. |
+| **`@CURRMBR`** | `@CURRMBR(dimName)`<br/>Returns the current member being calculated. | Use inside dynamic string generation or condition logging; avoid in dense loops. |
+| **`@ISMBR`** | `@ISMBR(mbrList)`<br/>Returns TRUE if current intersection matches member. | Use inside `IF` conditions; keep member list compact. |
+| **`@PRIOR`** | `@PRIOR(mbrName, [n], [range])`<br/>Fetches previous period cell value. | Best for opening balance roll-forwards: `"Opening_Cash" = @PRIOR("Closing_Cash");`. |
+| **`@XREF`** | `@XREF(locationAlias, [mbrList])`<br/>Reads cell from remote Essbase cube. | High network overhead. Replace with **Smart Push** or **Data Maps** in Cloud EPM. |
+| **`@XWRITE`** | `@XWRITE(mbrName, locationAlias, [mbrList])`<br/>Pushes cell into remote cube. | Replaced by Smart Push in modern application design. |
 
-| Function | Returns | Example |
-|----------|---------|---------|
-| `@CHILDREN("Total")` | Immediate children | Revenue, Expense, Net_Income |
-| `@DESCENDANTS("Total")` | All descendants (all levels) | Every member below Total |
-| `@ICHILDREN("Total")` | Children including the parent | Total, Revenue, Expense, Net_Income |
-| `@IDESCENDANTS("Total")` | Descendants including the parent | Total + every member below |
-| `@PARENT("Revenue")` | Immediate parent | Total |
-| `@ANCESTORS("Revenue")` | All ancestors | Total, root member |
-| `@SIBLINGS("Revenue")` | Members at same level under same parent | Expense, Net_Income |
-| `@LEVMBRS("Entity", 0)` | All members at level 0 (leaf) | Individual entities |
-| `@GENMBRS("Entity", 3)` | All members at generation 3 | Region-level entities |
-| `@RELATIVE("Total", 0)` | Leaf descendants of a member | All level-0 below Total |
-| `@UDA("Entity", "Hotel")` | Members with a specific UDA | Entities tagged "Hotel" |
-| `@WITHATTR("Product", "Color", "Red")` | Members with a specific attribute value | Red products |
+---
 
-### Navigation diagram
+## 3. Member Navigation & Range Functions
 
+### 1. Rolling Periods Forward with `@PRIOR`:
+```essbase
+/* Roll-forward formula on Ending_Inventory */
+"Ending_Inventory" = 
+    @PRIOR("Ending_Inventory", 1, @RELATIVE("Period", 0)) 
+    + "Inventory_Additions" 
+    - "Inventory_Depletion";
 ```
-          Total_Entity (Gen 1, Lev 3)
-          /                  \
-    Americas (Gen 2, Lev 2)    EMEA (Gen 2, Lev 2)
-     /        \                  /        \
-  US (Gen3)  Canada (Gen3)   UK (Gen3)  France (Gen3)
-  /    \
-NYC   LA     ← Level 0 (leaf members)
+* **Performance Note:** When using `@PRIOR`, always pass `@RELATIVE("Period", 0)` as the range parameter. If omitted, Essbase evaluates across quarterly summary members, corrupting period boundary math.
 
-@CHILDREN("Americas")     → US, Canada
-@DESCENDANTS("Americas")  → US, Canada, NYC, LA
-@PARENT("US")             → Americas
-@SIBLINGS("US")           → Canada
-@LEVMBRS("Entity", 0)    → NYC, LA, Canada, UK, France
-@RELATIVE("Americas", 0) → NYC, LA, Canada
+### 2. Year-to-Date Accumulation with `@SUMRANGE`:
+```essbase
+/* YTD Calculation on Account */
+"Sales_YTD" = @SUMRANGE("Sales", @CURRMBRRANGE("Period", LEV, 0, , 0));
 ```
 
 ---
 
-## Data Access Functions
+## 4. Cross-Cube Data Movement: `@XREF` vs. `@XWRITE` vs. Data Maps
 
-| Function | Purpose | Example |
-|----------|---------|---------|
-| `@PARENTVAL("Account")` | Value from the parent in Account dimension | Parent's stored value |
-| `@ANCESTVAL("Entity", 2)` | Value from ancestor at generation 2 | Region-level value |
-| `@PRIOR("Period")` | Previous member in the dimension | Feb → Jan |
-| `@NEXT("Period")` | Next member in the dimension | Jan → Feb |
-| `@SHIFT("Period", -3)` | Member N positions away | Apr shifted by -3 → Jan |
-| `@CURRMBR("Entity")` | Current member being processed | Dynamic member reference |
+Review panels frequently ask how to move data between cubes (e.g., from `Workforce` cube to `Financials` cube):
 
-### Cross-Dimensional Reference (`->`)
-
-The `->` operator reads a value from a different intersection:
-
-```
-/* Read Budget Revenue and write to Variance */
-"Variance" = "Revenue" -> "Actual" - "Revenue" -> "Budget";
-
-/* Read prior year */
-"YoY_Growth" = ("Revenue" - "Revenue" -> @PRIOR("Year")) / "Revenue" -> @PRIOR("Year") * 100;
-```
+| Solution | Technology | Performance & Architecture | Recommended? |
+| :--- | :--- | :--- | :---: |
+| **`@XREF`** | Pull cell via TCP socket | Cell-by-cell lookup. High latency. Locks cubes. | ❌ Avoid |
+| **`@XWRITE`** | Push cell via TCP socket | Procedural push. Can cause deadlock if cubes write reciprocally. | ❌ Avoid |
+| **Data Maps** | Planning Server Pipeline | High-speed bulk ETL between cubes. Scheduled batch. | ✅ Recommended |
+| **Smart Push** | On-Save Integration | Pushes only form context / edited cells instantaneously. | 🌟 Best Practice |
 
 ---
 
-## Boolean / Conditional Functions
+## 5. Functions That Break Hybrid BSO Execution
 
-These return TRUE or FALSE and are used inside IF statements:
+In Hybrid BSO cubes, upper-level members calculate dynamically via the ASO vector engine. The following functions force Essbase to **abandon the vector engine and fall back to slow BSO procedural mode**:
 
-| Function | Tests | Example |
-|----------|-------|---------|
-| `@ISMBR("Revenue")` | Is current member "Revenue"? | `IF(@ISMBR("Revenue"))` |
-| `@ISANCEST("Total")` | Is current member an ancestor of Total? | Parent/grandparent test |
-| `@ISDESC("Total")` | Is current member a descendant of Total? | Child/grandchild test |
-| `@ISLEV("Entity", 0)` | Is current member at level 0? | Leaf member test |
-| `@ISGEN("Entity", 2)` | Is current member at generation 2? | Hierarchy level test |
-| `@ISUDA("Entity", "Hotel")` | Does current member have UDA "Hotel"? | UDA-based branching |
-| `@ISACCTYPE("Revenue", "Expense")` | Is account type Expense? | Account type check |
-| `@ISCHILD("Americas")` | Is current member a child of Americas? | Direct parent test |
-| `@ISSIBLING("US")` | Is current member a sibling of US? | Same-parent test |
+1. **`@CURRMBRRANGE` inside a dynamic parent formula.**
+2. **`@MDANCESTVAL` or complex multi-dimensional ancestor lookups.**
+3. **Cross-dimensional formulas that reference dynamic calc members from other dimensions.**
+4. **Member formulas that assign values to other members (`A = B + C; D = E;`).**
 
-### Practical Example: Different Logic by Account Type
-
-```
-FIX("Budget", "Working", &CurrYear, @LEVMBRS("Entity", 0))
-    @LEVMBRS("Account", 0)(
-        IF(@ISUDA("Account", "Revenue"))
-            "Account" = "Account" -> "Actual" -> @PRIOR("Year") * 1.05;
-        ELSEIF(@ISUDA("Account", "Expense"))
-            "Account" = "Account" -> "Actual" -> @PRIOR("Year") * 1.03;
-        ENDIF
-    )
-ENDFIX
-```
+**The Solution:** If an account requires complex procedural arithmetic, model the member as **Stored** and calculate it via an explicit business rule, keeping all dynamic parent rollups as standard arithmetic operators (`+`, `~`).
 
 ---
 
-## Calculation Commands
+## 6. Tough & Twisted Review Questions with Consultant Model Answers
 
-| Command | Purpose | Syntax |
-|---------|---------|--------|
-| `AGG("Dimension")` | Aggregate (roll up) a dimension | `AGG("Entity");` |
-| `CALC DIM` | Calculate a dimension's formulas | `CALC DIM("Account");` |
-| `DATACOPY` | Copy data between members | `DATACOPY "Source" TO "Target";` |
-| `CLEARDATA` | Remove all data from a slice | `CLEARDATA "Budget";` |
-| `CLEARBLOCK` | Remove empty blocks | `CLEARBLOCK ALL;` |
+### Question 1: "Why is using `@XREF` considered an anti-pattern in modern Oracle Cloud EPM applications, and what should be used instead?"
+**Consultant Model Answer:**
+> "`@XREF` is an anti-pattern because it executes cell-by-cell queries over internal TCP connections between Essbase cubes. When evaluated across thousands of blocks, `@XREF` generates massive network latency, monopolizes cube connection threads, and can trigger application timeouts. 
+> In Oracle Cloud EPM, cross-cube data sharing should be architected using:
+> 1. **Smart Push (Run on Save):** For instantaneous synchronization of form inputs from BSO to ASO or between plan types.
+> 2. **Data Maps:** For scheduled, high-volume batch synchronization across entire slices. Both methods leverage optimized memory buffers rather than slow socket queries."
 
----
+### Question 2: "When using `@PRIOR("Closing_Balance")` to calculate January opening balance in a multi-year model, what happens across the fiscal year boundary from December to January?"
+**Consultant Model Answer:**
+> "By default, `@PRIOR("Closing_Balance", 1, @RELATIVE("Period", 0))` operates strictly within the active Period dimension range. When January calculates, it has no prior sibling period in that year, so `@PRIOR` evaluates to `#Missing`. 
+> To correctly handle the fiscal year boundary from December of FY24 to January of FY25, you must either:
+> 1. Use the multi-dimensional shift function: `@MDSHIFT("Closing_Balance", -1, "Year", , -11, "Period", )`.
+> 2. Write an explicit condition: 
+>    `IF(@ISMBR("Jan")) "Opening_Balance" = "Closing_Balance"->@PRIOR("Year", 1)->"Dec"; ELSE "Opening_Balance" = @PRIOR("Closing_Balance"); ENDIF;`"
 
-## Financial Functions
-
-| Function | Purpose | Formula Equivalent |
-|----------|---------|-------------------|
-| `@IRR(memberRange)` | Internal Rate of Return | Discount rate where NPV = 0 |
-| `@NPV(rate, memberRange)` | Net Present Value | Discounted cash flows |
-| `@SLN(cost, salvage, life)` | Straight-line depreciation | (Cost - Salvage) / Life |
-| `@SYD(cost, salvage, life, period)` | Sum-of-years depreciation | Accelerated depreciation |
-| `@INTEREST(principal, rate, periods)` | Interest calculation | Standard interest |
-| `@GROWTH(rate)` | Apply growth rate | Previous × (1 + rate) |
-| `@DECLINE(rate)` | Apply decline rate | Previous × (1 - rate) |
-| `@COMPOUND(rate, periods)` | Compound growth | Value × (1 + rate)^periods |
+### Question 3: "A senior architect notices that querying a dynamic parent member in Smart View takes 18 seconds. Querying leaf cells takes 0.2 seconds. What is the most likely root cause in a Hybrid BSO cube?"
+**Consultant Model Answer:**
+> "The parent member (or one of its ancestors/descendants) has a member formula containing a calculation function that is **incompatible with the Hybrid BSO dynamic vector engine** (e.g., `@CURRMBRRANGE`, procedural loops, or complex cross-dimensional assignments). 
+> When the user queries the parent, the Hybrid engine cannot calculate the node dynamically in memory and is forced to fall back to the slow procedural BSO calculation engine, constructing temporary blocks in memory. Removing the formula from the dynamic parent and calculating the logic via an on-save business rule or simplifying the formula to standard addition restores sub-second query performance."
 
 ---
-
-## CalcMgr Extended Functions
-
-Calculation Manager adds 100+ extended functions. The most useful categories:
-
-### Date/Time (@CalcMgrDate*)
-
-| Function | Purpose |
-|----------|---------|
-| `@CalcMgrGetCurrentDate()` | Today's date |
-| `@CalcMgrDaysBetween(date1, date2)` | Days between two dates |
-| `@CalcMgrAddMonths(date, n)` | Add months to a date |
-| `@CalcMgrGetDay(date)` | Extract day from date |
-| `@CalcMgrGetMonth(date)` | Extract month from date |
-| `@CalcMgrDateToString(date, format)` | Format date as text |
-
-### Excel-Equivalent Financial (@CalcMgrExcel*)
-
-| Function | Excel Equivalent | Purpose |
-|----------|-----------------|---------|
-| `@CalcMgrExcelPMT` | PMT() | Loan payment calculation |
-| `@CalcMgrExcelFV` | FV() | Future value |
-| `@CalcMgrExcelPV` | PV() | Present value |
-| `@CalcMgrExcelNPV` | NPV() | Net present value |
-| `@CalcMgrExcelIRR` | IRR() | Internal rate of return |
-| `@CalcMgrExcelRATE` | RATE() | Interest rate |
-| `@CalcMgrExcelNPER` | NPER() | Number of periods |
-| `@CalcMgrExcelSLN` | SLN() | Straight-line depreciation |
-
-### String Functions (@CalcMgr*)
-
-| Function | Purpose |
-|----------|---------|
-| `@CalcMgrConcat(str1, str2)` | Concatenate strings |
-| `@CalcMgrSubstring(str, start, len)` | Extract substring |
-| `@CalcMgrUppercase(str)` | Convert to uppercase |
-| `@CalcMgrLowercase(str)` | Convert to lowercase |
-| `@CalcMgrTrim(str)` | Remove whitespace |
-| `@CalcMgrReplaceAll(str, find, replace)` | Find and replace |
-| `@CalcMgrMatches(str, regex)` | Regex pattern match |
-
-### Utility Functions
-
-| Function | Purpose |
-|----------|---------|
-| `@CalcMgrSortAndReturn(list, order)` | Sort a list |
-| `@CalcMgrIsValidMember(name)` | Check if member exists |
-| `@CalcMgrLogValues(message, vars)` | Write to calc log |
-
----
-
-## HSP Functions (Planning-Specific)
-
-| Function | Purpose |
-|----------|---------|
-| `@HspConcat(str1, str2)` | Concatenate for Planning |
-| `@HspMbrList(dimension, function)` | Get a member list |
-| `@HspMbrIndex(dimension, member)` | Get member's index |
-| `@HspNthMbr(dimension, n)` | Get nth member |
-| `@HspMessage(message)` | Display message to user |
-| `@HspGetMbrCount(dimension)` | Count members in dimension |
-
----
-
-## Time Series Functions
-
-| Function | Purpose | Use Case |
-|----------|---------|----------|
-| `@MOVAVG(n)` | Moving average over n periods | Smooth trends |
-| `@MOVSUM(n)` | Moving sum over n periods | Rolling totals |
-| `@MOVMAX(n)` | Moving maximum over n periods | Peak detection |
-| `@MOVMIN(n)` | Moving minimum over n periods | Floor detection |
-| `@TREND(method, periods)` | Linear or exponential trend | Forecasting |
-| `@SPLINE` | Cubic spline interpolation | Smooth curve fitting |
-| `@PTD` | Period-to-date | Cumulative totals |
-| `@TODATE` | Year/quarter-to-date | Cumulative with reset |
-
----
-
-## Allocation Functions
-
-### @ALLOCATE
-
-Distributes a parent value to children based on a driver:
-
-```
-@ALLOCATE("Corporate_Overhead" -> "Total_Entity",
-    ACROSS @LEVMBRS("Entity", 0),
-    BASIS "Revenue",
-    SPREAD PROPORTIONAL,
-    ROUNDMETHOD NOROUND,
-    ERRORMETHOD NOOP);
-```
-
-| Parameter | Purpose | Options |
-|-----------|---------|---------|
-| First argument | Source value to distribute | Member intersection |
-| `ACROSS` | Target members to receive allocation | Member function |
-| `BASIS` | Driver for proportional split | Account member |
-| `SPREAD` | Distribution method | PROPORTIONAL, EQUAL, REPLICATE |
-| `ROUNDMETHOD` | How to handle rounding | NOROUND, ROUND, ROUNDALIASED |
-| `ERRORMETHOD` | What to do if basis is zero | NOOP, DIVIDEBYZERO |
-
----
-
-## Complete Function List (458 Functions)
-
-The full list of all 458 functions available in EPM Cloud Calc Manager is organized into these categories in the source files:
-
-| Category | Count | Examples |
-|----------|-------|---------|
-| Core @ functions | ~120 | @ABS, @SUM, @CHILDREN, @ISMBR |
-| @CalcMgr functions | ~120 | @CalcMgrExcel*, @CalcMgrDate* |
-| @CalcMgrExcel functions | ~100 | Financial, Math, Statistical, Lookup |
-| @Hsp functions | ~20 | Planning-specific |
-| Commands | ~30 | FIX, IF, AGG, DATACOPY, SET |
-| Debug functions | ~5 | @JDebug, @JSendDebug |
-
-For the complete alphabetical listing, refer to the [Oracle Calculation Manager Function Reference](https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/).
-
----
-
-## Quick Recall
-
-1. **What does @CHILDREN("Total") return?** → Immediate children of Total (one level down).
-2. **What's the difference between @DESCENDANTS and @RELATIVE?** → @DESCENDANTS returns all levels below; @RELATIVE with level 0 returns only leaf members.
-3. **How do you read a value from a different intersection?** → Cross-dimensional reference with `->`: `"Revenue" -> "Actual"`.
-4. **What does @ALLOCATE do?** → Distributes a parent value to children based on a proportional driver.
-5. **When do you use @ISMBR vs @ISUDA?** → @ISMBR checks for a specific member; @ISUDA checks for a user-defined attribute tag.
-
-**Teach-back prompt:** Explain how you would use @LEVMBRS, @ISUDA, and FIX together to calculate a 5% revenue growth only for entities tagged as "Hotel" at the leaf level.
-
----
-
-## Source Provenance
-
-| Source | Files |
-|--------|-------|
-| ChatGPT | `Calc Manager/Calc Managers all business Rule Functions/` (20 subdirectories, 458 functions listed), function category files 01-20 |
-| Claude | `30_Function_Reference/` |
-| Gemini | `Calc Manager/Calc Managers all business Rule Functions/` (mirrors ChatGPT) |
-| Oracle | [Essbase Technical Reference — Calculation Functions](https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/esscs/) |
-
+*Proceed to [Module 06: Data Integration and Exchange](../06_Data_Integration_and_Exchange/00_INDEX.md).*

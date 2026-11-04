@@ -1,10 +1,10 @@
-# @ALLANCESTORS
+﻿# @ALLANCESTORS
 
 ## Overview
 
 `@ALLANCESTORS` is a **member set (relationship) function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns **all ancestors** of a specified member — from the member's immediate parent all the way up to the root (dimension) member. Unlike `@ANCESTORS` which can be limited by generation, `@ALLANCESTORS` always returns the complete ancestral chain.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In hierarchical planning dimensions (Entity, Account, Product, etc.), you often need to reference every parent, grandparent, and so on up to the dimension root. Common use cases:
 - Rolling up values through the entire hierarchy

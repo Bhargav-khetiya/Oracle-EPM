@@ -1,10 +1,10 @@
-# @INT
+﻿# @INT
 
 ## Overview
 
 `@INT` is a **native Essbase mathematical rounding function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a double-precision floating-point number (a decimal) and explicitly strips away all fractional values, returning only the **integer** (whole number) portion of the value. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When calculating derived metrics, Essbase frequently produces highly precise decimals. For example, if you divide a $\$1,000,000$ pool across 3 departments, the mathematical result is `333333.333333`. 
 In standard financial reporting, decimals are fine. However, in driver-based models, decimals can break business logic. If a script calculates `"Required_Headcount" = "Transactions" / 50`, and the result is `3.4`, you cannot hire `3.4` people. If you pass `3.4` into a looping function (`LOOP("Headcount")`), the C-engine will likely crash or truncate the loop unpredictably because loop boundaries require absolute, whole integers.

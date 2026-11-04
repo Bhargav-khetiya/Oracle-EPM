@@ -1,10 +1,10 @@
-# @CalcMgrYearsBetween
+﻿# @CalcMgrYearsBetween
 
 ## Overview
 
 `@CalcMgrYearsBetween` is a **custom Calc Manager date mathematics function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates the exact **integer number of full years** that exist between two provided **Java Date Objects**.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building long-term models—such as workforce tenure analysis, capital asset depreciation, or 10-year strategic plans—business logic often depends on knowing exactly how many years have passed since an initial event. 
 If an employee was hired on `20180515` (May 15th, 2018), and today is `20240810` (August 10th, 2024), standard Essbase subtraction (`20240810 - 20180515`) yields `60295`, which is a meaningless integer. 

@@ -1,10 +1,10 @@
-# SET CALCTASKDIMS
+﻿# SET CALCTASKDIMS
 
 ## Overview
 
 `SET CALCTASKDIMS` is a **native Essbase system directive** in Oracle EPM Cloud (PBCS/EPBCS). It is the mandatory companion command to `SET CALCPARALLEL`. While `CALCPARALLEL` tells the server *how many* threads to spawn, `SET CALCTASKDIMS` tells the server **how to chop up the database** into discrete "tasks" to feed those threads evenly. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When you turn on `SET CALCPARALLEL 4`, Essbase has to divide the calculation workload into at least 4 chunks (tasks) so it can hand one chunk to each thread.
 By default, Essbase looks at the very last Sparse dimension in your outline (e.g., `"Scenario"`). It creates one task for every member in that dimension. 

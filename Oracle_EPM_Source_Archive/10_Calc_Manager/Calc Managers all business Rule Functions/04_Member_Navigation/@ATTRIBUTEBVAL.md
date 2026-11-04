@@ -1,10 +1,10 @@
-# @ATTRIBUTEBVAL
+﻿# @ATTRIBUTEBVAL
 
 ## Overview
 
 `@ATTRIBUTEBVAL` is a **data retrieval function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It retrieves the Boolean value (`True` or `False`) assigned to a Boolean attribute for a specified base member. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Attributes in Essbase can be configured as **Boolean** types, which inherently hold only a `True` or `False` state. (e.g., "Is_Flagship", "Is_Tax_Exempt").
 While you can use `@ISATTRIBUTE("True")` to check conditions, sometimes you need to retrieve the actual Boolean state dynamically and assign it to a variable or use it to drive a mathematical multiplier (where True = 1, False = 0).

@@ -1,13 +1,13 @@
-# @HspNextAllocIdx
+﻿# @HspNextAllocIdx
 
 ## Overview
 
 `@HspNextAllocIdx` is a **Hyperion Planning (HSP) custom utility function** embedded within Oracle EPM Cloud (PBCS/EPBCS). It acts as an advanced counter or sequence generator, querying the relational repository or maintaining an internal tracker to return the **next sequential integer index** for an allocation or transaction loop.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In specialized EPM applications (like highly detailed CapEx or specialized Workforce models), administrators sometimes need to track independent transactional events within a single dimensional block. 
-For example, if a department purchases 5 laptops in a single month, Essbase naturally aggregates that into a single number: `5` in the `"Laptops"` account. But what if the business logic requires tracking those 5 laptops as 5 distinct, sequential allocations (Allocation 1, Allocation 2... Allocation 5) so that different asset tags or depreciation schedules can be applied to each one?
+For example, if a department purchases 5 laptops in a single month, Essbase naturally aggregates that into a single number: `5` in the `"Laptops"` account. But what if the business logic requires tracking those 5 laptops as 5 distinct, sequential allocations (Allocation 1, Allocation 2... Allocation 5) so that different asset tags or depreciation schedules can be applied to each one—
 `@HspNextAllocIdx` solves this sequencing problem. By calling it within an iterative loop, it generates a unique, ascending integer (an index) for every single cycle of the loop. This integer can then be used to push data to a specific Target dimension member (e.g., pushing the first laptop to `"Asset_001"`, and the second laptop to `"Asset_002"`), allowing Essbase to mimic relational row-based tracking.
 
 ### When to Use It

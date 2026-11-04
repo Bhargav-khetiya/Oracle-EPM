@@ -1,4 +1,4 @@
-# 06 — Form troubleshooting and design patterns
+﻿# 06 — Form troubleshooting and design patterns
 
 ## Core idea
 
@@ -9,7 +9,7 @@ Troubleshoot a form by reproducing the user’s exact context, changing one fact
 ~~~mermaid
 flowchart TD
  A[Record form version, client, user, POV, and time] --> B[Reproduce the same symptom]
- B --> C{Which area?}
+ B --> C{Which area—}
  C -->|Layout or missing data| D[Check axes, members, filters, and suppression]
  C -->|Cannot edit| E[Check cell reason, security, approvals, validity, and form settings]
  C -->|Save or rule| F[Check validation, prompts, rule event, and job outcome]
@@ -58,9 +58,9 @@ For a controlled before/after comparison:
 
 ## Recall check
 
-1. Why record the user and POV during troubleshooting? Access, selected members, and data availability change the result.
-2. Is Database Suppression always faster? No. Oracle documents benefits and caveats; test on the specific form.
-3. What is a useful performance claim? A repeatable measurement with the context and test method stated.
+1. Why record the user and POV during troubleshooting— Access, selected members, and data availability change the result.
+2. Is Database Suppression always faster— No. Oracle documents benefits and caveats; test on the specific form.
+3. What is a useful performance claim— A repeatable measurement with the context and test method stated.
 
 **Teach-back:** Walk a reviewer through diagnosing a form that appears to have missing rows without immediately changing suppression.
 

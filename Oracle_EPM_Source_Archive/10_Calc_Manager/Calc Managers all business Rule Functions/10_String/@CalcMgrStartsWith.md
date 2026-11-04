@@ -1,10 +1,10 @@
-# @CalcMgrStartsWith
+﻿# @CalcMgrStartsWith
 
 ## Overview
 
 `@CalcMgrStartsWith` is a **custom Calc Manager string validation function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a precise prefix scanner. It takes a source text string and returns a Boolean (`true` or `false`) confirming whether the string **begins exactly** with a specified sequence of target characters.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building dynamic logic based on account strings, descriptions, or file names, administrators frequently need to group data by its prefix. 
 For example, a company might use account names like `"Exp_Travel"`, `"Exp_Meals"`, and `"Rev_Software"`. If a script needs to isolate only the Expense accounts, writing an `IF` statement checking every single account name is impossible. 

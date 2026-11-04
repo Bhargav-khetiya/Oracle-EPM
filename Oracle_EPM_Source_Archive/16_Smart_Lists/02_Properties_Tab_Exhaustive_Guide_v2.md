@@ -1,4 +1,4 @@
-# 02 — Properties Tab Exhaustive Reference
+﻿# 02 — Properties Tab Exhaustive Reference
 
 ---
 
@@ -55,7 +55,7 @@ For automated testing and technical diagnostics, the exact underlying ADF client
 
 ## 2.2 Core Identifier Properties
 
-| Property | Required? | Field Constraints | Consultant Best Practice |
+| Property | Required— | Field Constraints | Consultant Best Practice |
 | :--- | :---: | :--- | :--- |
 | **`Smart List`** | **Yes** (`*`) | Max 80 characters. Alphanumeric characters and underscores (`_`) **only**. No spaces or punctuation. | The programmatic name referenced in Calc Manager scripts: `IF ("Employee_Type" == [[Employee_Type.Full_Time]])`. |
 | **`Label`** | **Yes** (`*`) | Max 80 characters. Free-form text. Spaces and special characters **allowed**. | Descriptive title displayed in administrative menus and form designer panels. |
@@ -73,7 +73,7 @@ Sample Entries:
   • ID: 2  | Name: PartTime   | Label: B - Part-Time Employee
 ```
 
-| Display Order Setting | Dropdown Sequence Presented to Planner | Why Use This Option? |
+| Display Order Setting | Dropdown Sequence Presented to Planner | Why Use This Option— |
 | :--- | :--- | :--- |
 | **`By ID`** *(Selected in extract)* | 1. A - Full-Time Employee (ID 1)<br>2. B - Part-Time Employee (ID 2)<br>3. C - Independent Contractor (ID 3) | **Sequential / Process Workflows**: Ideal when IDs represent a progression (e.g., Draft $\rightarrow$ Review $\rightarrow$ Approved). |
 | **`By Name`** | 1. Contract (Name)<br>2. FullTime (Name)<br>3. PartTime (Name) | Alphabetical sorting by back-end programmatic name. |

@@ -1,4 +1,4 @@
-# @NONEMPTYTUPLE
+﻿# @NONEMPTYTUPLE
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 *Note: This is an ASO/MDX specific feature. For BSO cubes, optimization relies on Block calculation logic (Sparse/Dense) and `SET CREATENONMISSINGBLK`.*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 ASO cubes do not have blocks. When a custom calculation formula is written in ASO MDX (e.g., `[Revenue] = [Units] * [Price]`), the engine theoretically has to evaluate that formula for *every single possible intersection* of the database, even if it's completely empty. This causes massive performance degradation or memory errors.
 `@NONEMPTYTUPLE` tells the engine: "Only calculate this formula if there is a number at this specific tuple."

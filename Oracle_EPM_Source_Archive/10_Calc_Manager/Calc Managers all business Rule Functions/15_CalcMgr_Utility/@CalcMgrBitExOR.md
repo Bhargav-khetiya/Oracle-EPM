@@ -1,10 +1,10 @@
-# @CalcMgrBitExOR
+﻿# @CalcMgrBitExOR
 
 ## Overview
 
 `@CalcMgrBitExOR` is a **custom Calc Manager bitwise function** in Oracle EPM Cloud (PBCS/EPBCS). It performs a bitwise Exclusive OR (XOR) operation between two integers. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Bitwise operations are generally used in Essbase when developers implement a **Bitmasking** strategy—condensing multiple Boolean states (True/False flags) into a single integer account to conserve block size. 
 In bitmasking, `@CalcMgrBitOR` turns a specific bit ON, and `@CalcMgrBitAnd` checks if a bit is ON.

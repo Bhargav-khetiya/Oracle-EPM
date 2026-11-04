@@ -1,10 +1,10 @@
-# @TODATE
+﻿# @TODATE
 
 ## Overview
 
 `@TODATE` is a **time series accumulation function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that accumulates values over a specified period. It is the modern, more powerful successor to `@PTD`. It allows you to **explicitly define the boundaries** of accumulation (e.g., Year-to-Date, Quarter-to-Date) by specifying a "boundary member" (like Year or Quarter).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While `@PTD` automatically calculates up to the immediate parent, it fails when hierarchies are complex. If your outline rolls Months into Quarters, and Quarters into Years, `@PTD` at the Month level will only calculate Quarter-To-Date (QTD), not Year-To-Date (YTD). 
 

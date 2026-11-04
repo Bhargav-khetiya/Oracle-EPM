@@ -1,10 +1,10 @@
-# ELSEIF
+﻿# ELSEIF
 
 ## Overview
 
 `ELSEIF` adds **additional conditional branches** to an `IF` block in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It provides a clean way to test multiple conditions sequentially without nesting multiple IF/ENDIF blocks. When the preceding IF (or ELSEIF) condition is FALSE, the next ELSEIF condition is evaluated.
 
-### Why Does This Command Exist?
+### Why Does This Command Exist—
 
 Many business rules require more than two outcomes:
 - Tiered commission rates based on achievement levels

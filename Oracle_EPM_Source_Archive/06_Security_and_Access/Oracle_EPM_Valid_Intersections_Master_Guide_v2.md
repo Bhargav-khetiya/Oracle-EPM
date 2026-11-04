@@ -1,6 +1,6 @@
-# Oracle EPM Cloud: The Ultimate Master Guide to Valid Intersections
+﻿# Oracle EPM Cloud: The Ultimate Master Guide to Valid Intersections
 
-## 1. Introduction: What are Valid Intersections?
+## 1. Introduction: What are Valid Intersections—
 **Valid Intersections** in Oracle EPM Cloud define rules that restrict who can enter or view data in specific combinations of dimensions. By default, EPM assumes all members in all dimensions are valid with one another. Valid Intersections allow you to filter certain cell intersections so users can only enter data, select members, or select runtime prompts in combinations that make business sense (e.g., specific products are only valid for specific departments).
 
 This feature:

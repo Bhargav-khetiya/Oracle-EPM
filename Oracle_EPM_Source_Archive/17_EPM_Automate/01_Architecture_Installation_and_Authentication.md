@@ -1,4 +1,4 @@
-# 01 — Architecture, Installation, & Authentication
+﻿# 01 — Architecture, Installation, & Authentication
 
 ---
 
@@ -146,7 +146,7 @@ if ($LASTEXITCODE -ne 0) {
 ### In Linux / Bash:
 ```bash
 epmautomate login svc_admin password.epw https://epm.oraclecloud.com
-if [ $? -ne 0 ]; then
+if [ $— -ne 0 ]; then
     echo "EPM Automate Login Failed"
     exit 1
 fi

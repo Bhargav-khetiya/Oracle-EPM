@@ -1,10 +1,10 @@
-# @LEV
+﻿# @LEV
 
 ## Overview
 
 `@LEV` is a **hierarchy context function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It returns the integer level number of a specified member within its dimension.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In Essbase, hierarchies are structured with **Levels** (counting from the bottom up, where 0 is a leaf node) and **Generations** (counting from the top down, where 1 is the root).
 Many conditional calculations depend on knowing how deep in the hierarchy a member sits:

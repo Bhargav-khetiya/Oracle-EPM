@@ -1,6 +1,6 @@
-# Oracle EPM Cloud: The Ultimate Master Guide to Jobs
+﻿# Oracle EPM Cloud: The Ultimate Master Guide to Jobs
 
-## 1. Introduction: What are Jobs?
+## 1. Introduction: What are Jobs—
 In Oracle EPM Cloud, **Jobs** automate repetitive tasks and data operations. Instead of manually running rules or moving data, administrators can define jobs to execute complex processes either on-demand or on a predetermined schedule.
 
 ---

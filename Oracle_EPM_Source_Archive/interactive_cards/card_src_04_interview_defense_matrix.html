@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Source Archive Card 04: Architect Masterclass & Review Defense Matrix</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-6 font-sans">
+  <div class="max-w-6xl mx-auto space-y-6">
+    <!-- Header -->
+    <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 shadow-2xl backdrop-blur">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-700 pb-4">
+        <div>
+          <span class="text-xs font-bold tracking-widest text-emerald-400 uppercase bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-800">
+            Source Archive Card 04
+          </span>
+          <h1 class="text-2xl font-black mt-2 text-white">Architect Masterclass & Review Defense Matrix</h1>
+          <p class="text-slate-400 text-sm mt-1">High-stakes review interview simulator contrasting junior traps against senior consultant model answers.</p>
+        </div>
+        <div class="flex gap-2">
+          <span class="text-xs px-2.5 py-1 rounded-md bg-rose-950 text-rose-400 border border-rose-800">5 Tough Scenarios</span>
+          <span class="text-xs px-2.5 py-1 rounded-md bg-emerald-950 text-emerald-400 border border-emerald-800">FTE Conversion Kit</span>
+        </div>
+      </div>
+
+      <div class="mt-4 text-xs text-slate-400 flex items-center justify-between">
+        <span>Select an interview scenario to test your review defense</span>
+        <span class="text-emerald-400">Toggle between Junior Trap and Architect Answer</span>
+      </div>
+    </div>
+
+    <!-- Scenario Buttons -->
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-3">
+      <button onclick="selectScenario(0)" id="sc-btn-0" class="sc-btn p-3 rounded-xl bg-sky-500 text-white font-bold text-xs text-left transition-all">
+        1. 45-Sec Form Save
+      </button>
+      <button onclick="selectScenario(1)" id="sc-btn-1" class="sc-btn p-3 rounded-xl bg-slate-800 text-slate-300 border border-slate-700 text-xs text-left transition-all">
+        2. Block Explosion
+      </button>
+      <button onclick="selectScenario(2)" id="sc-btn-2" class="sc-btn p-3 rounded-xl bg-slate-800 text-slate-300 border border-slate-700 text-xs text-left transition-all">
+        3. Groovy Micro-FIX
+      </button>
+      <button onclick="selectScenario(3)" id="sc-btn-3" class="sc-btn p-3 rounded-xl bg-slate-800 text-slate-300 border border-slate-700 text-xs text-left transition-all">
+        4. Hybrid Fallback
+      </button>
+      <button onclick="selectScenario(4)" id="sc-btn-4" class="sc-btn p-3 rounded-xl bg-slate-800 text-slate-300 border border-slate-700 text-xs text-left transition-all">
+        5. Security Collision
+      </button>
+    </div>
+
+    <!-- Main Scenario Display -->
+    <div id="scenarioContainer" class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 shadow-xl space-y-6">
+      <!-- Populated via JS -->
+    </div>
+  </div>
+
+  <script>
+    const scenarios = [
+      {
+        id: 0,
+        title: "The 45-Second Form Save Crisis",
+        context: "During the annual budget kickoff, 100 departmental planners complain that clicking 'Save' on the Operating Expense form takes 30 to 45 seconds, occasionally timing out with HTTP 504 Gateway Timeout.",
+        juniorTrap: "The junior consultant blames the cloud infrastructure: 'Oracle Cloud must be slow or applying a patch right now. Let us ask users to wait, or log an Oracle Service Request.'",
+        whyJuniorFails: "Fails to inspect attached on-save business rules or Smart Push settings. In EPM Cloud, 99% of form save latency is caused by attached synchronous calc scripts with unconstrained FIX statements.",
+        architectAnswer: "1. Open Form Designer and inspect Business Rules tab: Identify if an attached rule runs on-save synchronously.\n2. Inspect Rule Scoping: Check if the rule uses a dimension-wide static FIX (e.g. FIX(@IDESCENDANTS(\"Total_Entity\"))) instead of scoping to the edited row.\n3. Inspect Smart Push: Check if an attached Smart Push is pushing unconstrained slices without 'Use Form Context'.\n4. Architectural Fix: Replace the static Calc Manager rule with a Groovy rule using `operation.grid.dataCellIterator { it.edited }` to generate a dynamic Micro-FIX strictly on edited cells. Form save latency drops from 45 seconds to 350 milliseconds.",
+        diagnosticRunbook: [
+          "Check Form Properties: 'Run Business Rules on Save' & attached rule names.",
+          "Check Smart Push: Verify 'Use Form Context' checkbox is enabled on data map.",
+          "Check Calc Log: Inspect Essbase log execution time and block write counts.",
+          "Implement Groovy Micro-FIX pattern: Restrict Essbase calculation to edited cells."
+        ]
+      },
+      {
+        id: 1,
+        title: "The 80 MB Block Explosion Outage",
+        context: "A junior consultant adds a new Customer dimension (5,000 members) and configures it as DENSE. Following a Database Refresh, the pod freezes during data loads and Smart View throws 'Out of Memory' errors.",
+        juniorTrap: "The junior consultant attempts to fix it by increasing Essbase cache settings in Calc Manager or asking for more RAM from Oracle.",
+        whyJuniorFails: "Demonstrates total ignorance of block storage physics. If Account (1,000 members) and Period (20 members) were Dense (20,000 cells = 160 KB), making 5,000 Customers Dense multiplies the block size by 5,000: `20,000 * 5,000 * 8 bytes = 800 MB per block`! No cache setting can rescue an 800 MB block.",
+        architectAnswer: "1. Mathematical Proof: In Essbase BSO, block size = `Product of Dense Dimensions * 8 bytes`. Adding a 5,000-member dimension as Dense increases block size from 160 KB to 800 MB, causing catastrophic memory paging and buffer exhaustion.\n2. Root-Cause Isolation: Dense dimensions should ONLY be high-density, heavily correlated dimensions (typically Account and Period).\n3. Corrective Action: Immediately change Customer dimension storage property to SPARSE in Dimension Editor and execute a Database Refresh.\n4. Verification: Check Essbase outline statistics; confirm block size returns to the optimal 8 KB to 100 KB target range.",
+        diagnosticRunbook: [
+          "Calculate Block Size: Product of all dense dimension member counts * 8 bytes.",
+          "Target Optimal Range: 8 KB to 100 KB.",
+          "Modify Dimension Property: Change Customer from DENSE to SPARSE.",
+          "Run Database Refresh: Restructure cube and clear memory paging thrash."
+        ]
+      },
+      {
+        id: 2,
+        title: "The Groovy Dynamic Micro-FIX Pivot",
+        context: "In a 20-dimension Workforce Planning application, executing employee salary calculations across an entire department requires 1 minute per employee. The review panel asks how you would reduce this to under 1 second.",
+        juniorTrap: "The junior consultant answers: 'I will split the calc script into smaller rules or schedule it to run in the background as a batch job every 30 minutes.'",
+        whyJuniorFails: "Proposes batch workarounds that ruin user real-time experience and fails to leverage modern Cloud EPM capabilities.",
+        architectAnswer: "1. Architect Analysis: Workforce models have deep dimensionality (Employee, Job, Union Code, Pay Component, Entity). Static calc scripts cannot know which specific employee was edited, forcing calculation of the entire department slice.\n2. Groovy Event-Driven Solution: Author a Groovy script attached to the form save event.\n3. Dynamic Coordinate Harvest: Use `operation.grid.dataCellIterator { it.edited }` to collect only the exact modified employee and job IDs.\n4. Dynamic Script Assembly: Groovy dynamically generates a micro-FIX string: `FIX(\"Emp_1042\", \"Job_202\", \"FY26\", \"Budget\") ... ENDFIX` and calls `executeEssbaseScript()`.\n5. Result: Evaluates 1 single block instead of 5,000 blocks; execution completes in 180 milliseconds with immediate screen refresh.",
+        diagnosticRunbook: [
+          "Enable Groovy Scripting in Calculation Manager.",
+          "Extract Edited Cells: `Set<String> editedEmps = [] as Set; operation.grid.dataCellIterator { it.edited }.each { editedEmps.add(it.getMemberName('Employee')) }`.",
+          "Construct Dynamic Script: `String script = \"FIX(\"\"\" + editedEmps.join('\", \"') + \"\"\") ... ENDFIX\"`.",
+          "Execute & Confirm: `cube.executeEssbaseScript(script)`."
+        ]
+      },
+      {
+        id: 3,
+        title: "The Hybrid BSO Procedural Fallback Trap",
+        context: "An organization upgrades to Hybrid BSO. Upper-level parent aggregations run in sub-seconds across all dimensions except one specific Account hierarchy, which takes 35 seconds to query in Smart View.",
+        juniorTrap: "The junior consultant says: 'Hybrid BSO is still buggy for that account; let's convert the upper parent members back to Stored and run a batch CALC ALL script.'",
+        whyJuniorFails: "Abandons Hybrid BSO architecture instead of identifying and fixing the specific unsupported function causing procedural fallback.",
+        architectAnswer: "1. Understand Hybrid Kernel Mechanics: Hybrid BSO uses a dual-engine architecture. Level 0 is BSO storage; upper levels are dynamically calculated in RAM by the ASO dynamic vector engine.\n2. Root-Cause Analysis: If an upper-level Dynamic Calc member formula contains unsupported procedural functions (such as `@CURRMBRRANGE`, cross-dimensional assignments `->`, or `@PRIOR`), the ASO vector engine cannot process it and falls back to single-threaded BSO procedural calculation.\n3. Outline Inspection: Inspect the member formulas on that slow account hierarchy; identify the procedural syntax causing fallback.\n4. Architectural Remedy: Simplify the dynamic member formula to standard additive operators (`+`, `-`) or move complex cross-dimensional logic into an on-save Level 0 business rule. The query returns to sub-second vector speed.",
+        diagnosticRunbook: [
+          "Inspect Application Log: Look for Hybrid fallback warning messages.",
+          "Audit Member Formulas: Check for `@CURRMBRRANGE`, `@PRIOR`, or cross-dimensional assignments on Dynamic Calc members.",
+          "Refactor Formula: Remove procedural functions; calculate drivers at Level 0 via rules.",
+          "Verify in Smart View: Query parent account; confirm instant response."
+        ]
+      },
+      {
+        id: 4,
+        title: "The Least-Privilege Security Lockout Collision",
+        context: "A finance manager is assigned to 'Regional_Planners' (Write access to Entity 'US_East') and 'Corporate_Auditors' (None access to Entity 'US_East'). The manager cannot edit or see US_East in forms. The review panel asks you to explain the exact security precedence.",
+        juniorTrap: "The junior consultant says: 'It depends on which group they were added to last, or Write wins because Write is higher than None.'",
+        whyJuniorFails: "Violates enterprise security fundamentals. Assuming Write overrides None is a dangerous security flaw that fails compliance audits.",
+        architectAnswer: "1. Least-Privilege Precedence Law: In Oracle Cloud EPM, when a user inherits conflicting permissions on the same dimension member through multiple groups, the security engine enforces Least Privilege: **None > Read > Write**.\n2. Technical Collision: Because 'Corporate_Auditors' grants **None**, this completely negates the **Write** permission granted by 'Regional_Planners'. The user receives effective **None** access.\n3. Architectural Resolution: Remove the user from the 'Corporate_Auditors' group, or redesign group definitions so auditor read/none restrictions are scoped via dedicated Cell-Level Security (CLS) rules rather than overlapping dimensional group assignments.\n4. Verification: Run the 'Security Audit Report' from Access Control to verify effective permissions across all dimensions.",
+        diagnosticRunbook: [
+          "Evaluate Collision Precedence: None (1st) > Read (2nd) > Write (3rd).",
+          "Open Access Control: Navigate to Tools -> Access Control -> Users.",
+          "Run Security Report: Inspect Effective Permissions for the user.",
+          "Resolve Conflict: Segregate operational planners from corporate audit groups."
+        ]
+      }
+    ];
+
+    let currentScenario = scenarios[0];
+    let showAnswer = false;
+
+    function renderScenario(sc) {
+      const container = document.getElementById("scenarioContainer");
+      container.innerHTML = `
+        <div class="border-b border-slate-700 pb-4 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <span class="text-xs uppercase tracking-widest text-emerald-400 font-bold">SCENARIO ${sc.id + 1} OF 5</span>
+            <h2 class="text-2xl font-black text-white mt-1">${sc.title}</h2>
+          </div>
+          <button onclick="toggleAnswer()" class="px-4 py-2 rounded-xl text-xs font-bold transition-all ${showAnswer ? 'bg-emerald-500 text-slate-950' : 'bg-slate-700 text-white hover:bg-slate-600'}">
+            ${showAnswer ? 'Hide Model Answer' : 'Reveal Architect Defense'}
+          </button>
+        </div>
+
+        <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-4">
+          <h3 class="text-xs uppercase tracking-wider font-bold text-slate-400">Incident Context</h3>
+          <p class="text-slate-200 text-sm mt-1.5 leading-relaxed">${sc.context}</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-rose-950/30 border border-rose-800/60 rounded-xl p-5">
+            <div class="flex items-center gap-2">
+              <span class="text-rose-400 font-bold text-sm">❌ Junior Trainee Answer (Review Failure)</span>
+            </div>
+            <p class="text-rose-200 text-xs mt-3 italic leading-relaxed">"${sc.juniorTrap}"</p>
+            <div class="mt-3 pt-3 border-t border-rose-900/40 text-[11px] text-rose-300">
+              <span class="font-bold">Why Review Panel Fails This:</span> ${sc.whyJuniorFails}
+            </div>
+          </div>
+
+          <div class="${showAnswer ? 'bg-emerald-950/30 border border-emerald-800/60' : 'bg-slate-900/40 border border-slate-800 border-dashed'} rounded-xl p-5 transition-all">
+            <div class="flex items-center justify-between">
+              <span class="text-emerald-400 font-bold text-sm">✓ Senior Architect Model Answer (FTE Pass)</span>
+              ${!showAnswer ? '<span class="text-[10px] text-slate-500 font-mono">CLICK REVEAL</span>' : ''}
+            </div>
+            ${showAnswer ? `
+              <div class="text-slate-200 text-xs mt-3 leading-relaxed whitespace-pre-line">${sc.architectAnswer}</div>
+            ` : `
+              <p class="text-slate-500 text-xs mt-3 italic">Click 'Reveal Architect Defense' above to view the senior consultant model answer and technical proof.</p>
+            `}
+          </div>
+        </div>
+
+        ${showAnswer ? `
+          <div class="bg-slate-900/90 border border-slate-700 rounded-xl p-5">
+            <h4 class="text-xs font-bold text-sky-400 uppercase tracking-wider">Step-by-Step Production Diagnostic Runbook</h4>
+            <div class="mt-3 space-y-2">
+              ${sc.diagnosticRunbook.map((step, idx) => `
+                <div class="flex items-start gap-3 text-xs text-slate-300">
+                  <span class="font-mono font-bold text-sky-400 bg-sky-950 px-2 py-0.5 rounded border border-sky-800 text-[11px]">STEP ${idx + 1}</span>
+                  <span class="mt-0.5">${step}</span>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        ` : ''}
+      `;
+    }
+
+    function selectScenario(idx) {
+      currentScenario = scenarios[idx];
+      showAnswer = false;
+      document.querySelectorAll(".sc-btn").forEach((btn, i) => {
+        if (i === idx) {
+          btn.className = "sc-btn p-3 rounded-xl bg-sky-500 text-white font-bold text-xs text-left transition-all";
+        } else {
+          btn.className = "sc-btn p-3 rounded-xl bg-slate-800 text-slate-300 border border-slate-700 text-xs text-left transition-all";
+        }
+      });
+      renderScenario(currentScenario);
+    }
+
+    function toggleAnswer() {
+      showAnswer = !showAnswer;
+      renderScenario(currentScenario);
+    }
+
+    // Initialize
+    renderScenario(currentScenario);
+  </script>
+</body>
+</html>

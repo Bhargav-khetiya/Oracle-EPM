@@ -1,10 +1,10 @@
-# @JDebug
+﻿# @JDebug
 
 ## Overview
 
 `@JDebug` is a **Hyperion Planning (HSP) custom Java-based diagnostic function** embedded within Oracle EPM Cloud (PBCS/EPBCS). It acts as an advanced, programmatic breakpoint and diagnostic tracer inside an Essbase calculation script. It writes real-time evaluation states, variable contents, and calculation context directly into the server logs during execution.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Debugging Essbase calculation scripts is notoriously difficult. Because Essbase compiles the script and executes it deep inside the C-engine memory block-by-block, administrators cannot natively "pause" the script or see what a variable equals at Line 45 vs Line 80.
 If an allocation is producing the wrong result for `"Store_101"`, the administrator historically had to write temporary data to dummy accounts and run reports to guess what the math engine was doing.

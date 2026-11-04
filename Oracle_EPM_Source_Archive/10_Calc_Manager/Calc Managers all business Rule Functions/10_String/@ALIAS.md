@@ -1,10 +1,10 @@
-# @ALIAS
+﻿# @ALIAS
 
 ## Overview
 
 `@ALIAS` is a **member information function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that **returns the alias (alternate name)** of a specified member. Every member in an Essbase outline has a unique member name, but it can also have one or more alias names stored in alias tables. `@ALIAS` retrieves these alias names.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In EPM applications, member names are often technical codes (like `10100`, `ACCT_REV_001`, `E001`) while aliases are user-friendly labels (like `Cash`, `Total Revenue`, `New York Office`). `@ALIAS` bridges the gap between technical member names and human-readable labels, allowing you to:
 

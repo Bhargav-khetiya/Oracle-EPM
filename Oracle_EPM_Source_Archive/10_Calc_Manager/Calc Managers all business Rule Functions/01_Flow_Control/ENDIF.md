@@ -1,10 +1,10 @@
-# ENDIF
+﻿# ENDIF
 
 ## Overview
 
 `ENDIF` is the **mandatory closing command** for every `IF` block in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. Every `IF` statement — whether it includes `ELSEIF`, `ELSE`, or neither — must terminate with `ENDIF`. It marks the boundary where conditional execution ends and normal execution resumes.
 
-### Why Does This Command Exist?
+### Why Does This Command Exist—
 
 Essbase needs an explicit marker to know where conditional logic ends:
 - Without ENDIF, nested conditions and multi-branch logic would be ambiguous

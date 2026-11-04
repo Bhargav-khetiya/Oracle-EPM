@@ -1,4 +1,4 @@
-﻿# 🗄️ Cube & Storage Management — Master Guide
+﻿﻿# 🗄️ Cube & Storage Management — Master Guide
 ## BSO Hybrid vs ASO Architecture, Data Clearing, Outline Compaction & Slice Optimization
 
 > **Navigation:** `Home → Application → Overview → Cubes`  
@@ -45,7 +45,7 @@ Periodically, administrators must wipe bad loads, test data, or archived history
 │       ⚠️ Wipes 100% of data blocks in the cube. Metadata remains.       │
 │                                                                         │
 │   🔘 Partial Data (Slice Clear via Point of View)                       │
-│       Target specific intersections (e.g., Scenario = "Draft_Budget",   │
+│       Target specific intersections (e.g., Scenario = "Draft_Budgetâ”‚   │
 │       Year = "FY26").                                                   │
 │                                                                         │
 │   🔘 Clear Supporting Detail                                            │
@@ -147,16 +147,16 @@ Key metrics to evaluate application health:
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: How does BSO Hybrid optimize sparse aggregations compared to Classic BSO?
+### Q1: How does BSO Hybrid optimize sparse aggregations compared to Classic BSO—
 **Answer:** In Classic BSO, calculating sparse parents required running batch calculation scripts (`CALC ALL` or `CALC DIM`) that physically created and stored consolidated data blocks on disk. In Hybrid BSO, sparse parents are marked as `Dynamic Calc`; the in-memory aggregation engine computes parent rollups on-the-fly at query time, drastically reducing database size and eliminating nightly batch calculation windows.
 
-### Q2: Why does `clearcube` not reduce physical `.pag` file sizes on disk, and how do you reclaim disk space?
-**Answer:** `clearcube` marks data blocks as empty in the internal allocation table, but does not shrink the operating system page files. To reclaim disk space, you must execute **Compact Outline** (`Application â†’ Overview â†’ Actions â†’ Compact Outline`) or trigger a full database restructure, which rebuilds page files from scratch.
+### Q2: Why does `clearcube` not reduce physical `.pag` file sizes on disk, and how do you reclaim disk space—
+**Answer:** `clearcube` marks data blocks as empty in the internal allocation table, but does not shrink the operating system page files. To reclaim disk space, you must execute **Compact Outline** (`Application → Overview → Actions → Compact Outline`) or trigger a full database restructure, which rebuilds page files from scratch.
 
-### Q3: What is Aggregate Storage (ASO) Slice Merging, and when is it mandatory?
-**Answer:** Every incremental data load into an ASO cube creates an independent physical data slice on disk. When slice count exceeds 20â€“30, query retrieval times degrade significantly because queries must scan across all slices. Running `epmautomate mergeDataSlices CubeName mergeOption=allSlices` consolidates slices into a single main slice, restoring sub-second performance.
+### Q3: What is Aggregate Storage (ASO) Slice Merging, and when is it mandatory—
+**Answer:** Every incremental data load into an ASO cube creates an independent physical data slice on disk. When slice count exceeds 20"30, query retrieval times degrade significantly because queries must scan across all slices. Running `epmautomate mergeDataSlices CubeName mergeOption=allSlices` consolidates slices into a single main slice, restoring sub-second performance.
 
 ---
 

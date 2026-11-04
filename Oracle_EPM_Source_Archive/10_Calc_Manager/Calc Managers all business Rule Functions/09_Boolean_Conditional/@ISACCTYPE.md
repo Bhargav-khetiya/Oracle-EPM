@@ -1,10 +1,10 @@
-# @ISACCTYPE
+﻿# @ISACCTYPE
 
 ## Overview
 
 `@ISACCTYPE` is a **native Essbase boolean function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates the currently calculating member (usually an Account) and returns `TRUE` or `FALSE` based on whether that member is structurally tagged with a specific **Account Type** property in the dimension outline.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In EPM Cloud, the `Account` dimension is fundamentally different from other dimensions because its members have special mathematical behaviors based on their "Account Type" (e.g., Expense, Revenue, Asset, Liability, or Saved Assumption). 
 When an Essbase aggregation runs, it inherently knows to subtract Expenses from Revenue. However, when writing custom allocation scripts or driver-based models, you often need to branch your logic based on these properties. For example, if you are inflating next year's budget, you might want to increase all "Revenue" accounts by 10%, but decrease all "Expense" accounts by 2%. 

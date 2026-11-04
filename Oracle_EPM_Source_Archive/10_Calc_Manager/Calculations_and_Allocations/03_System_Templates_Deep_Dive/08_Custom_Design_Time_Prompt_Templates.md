@@ -1,4 +1,4 @@
-# 08 Custom Design-Time Prompt (DTP) Templates: Building Reusable Wizards
+﻿# 08 Custom Design-Time Prompt (DTP) Templates: Building Reusable Wizards
 
 ## 1. The Architecture of Custom Templates
 
@@ -16,7 +16,7 @@ When another developer drops a Custom Template onto their canvas, Calculation Ma
 |  | 1. Declare Design-Time Prompts (DTP):                                                        |  |
 |  |    - [dtp_Entity]:   Type = Member,   Dim = Entity, Prompt = "Select Entity to Allocate"    |  |
 |  |    - [dtp_Driver]:   Type = Member,   Dim = Account, Prompt = "Select Allocation Driver"    |  |
-|  |    - [dtp_IsCapex]:  Type = Boolean,  Default = False, Prompt = "Include Capex Offset?"     |  |
+|  |    - [dtp_IsCapex]:  Type = Boolean,  Default = False, Prompt = "Include Capex Offset—     |  |
 |  |                                                                                             |  |
 |  | 2. Compose Dynamic Script Logic with DTP Tokens:                                            |  |
 |  |    FIX ("Plan", "Working", [dtp_Entity])                                                    |  |
@@ -33,7 +33,7 @@ When another developer drops a Custom Template onto their canvas, Calculation Ma
 |  | WIZARD DIALOG:                                                                              |  |
 |  | Select Entity to Allocate: [ E101_Sales_East            ]                                    |  |
 |  | Select Allocation Driver:   [ Headcount                  ]                                    |  |
-|  | Include Capex Offset?       [ [X] Yes                    ]                                    |  |
+|  | Include Capex Offset—       [ [X] Yes                    ]                                    |  |
 |  +---------------------------------------------------------------------------------------------+  |
 |                                                  |                                                |
 |                                                  v                                                |

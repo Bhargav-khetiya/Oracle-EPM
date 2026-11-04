@@ -1,171 +1,130 @@
-# Calc Manager Overview — Interface, Views, and Rule Architecture
+# 5.1 Calculation Manager Overview: Views, Visual Palette & Deployment Lifecycle
 
-> **Folder:** 05_Calc_Manager_and_Business_Rules | **Audience:** Beginner → Architect
->
-> **Provenance:** Merged from ChatGPT `Calc Manager/Calculations_and_Allocations/` (30+ files); Claude `07_Business_Rules/`, `08_Calculation_Manager/`; Gemini `Calc Manager/Calculations_and_Allocations/` (30+ files)
-
----
-
-## What Is Calculation Manager?
-
-**Calculation Manager** (Calc Manager) is the tool where you create, manage, and deploy all business calculation logic in Oracle EPM Cloud. Think of it as the workshop where business rules are built.
-
-**Plain language:** When a user saves a form and the system automatically calculates bonuses, currency conversions, or allocations — that's a business rule running. Calc Manager is where you create those rules.
+## Table of Contents
+1. [Core Consultant Mental Model](#1-core-consultant-mental-model)
+2. [Calc Manager Views: System View vs. Database View](#2-calc-manager-views-system-view-vs-database-view)
+3. [Visual Canvas Mode vs. Script Mode vs. Groovy Mode](#3-visual-canvas-mode-vs-script-mode-vs-groovy-mode)
+4. [The 4-Step Rule Lifecycle: Design, Validate, Save, Deploy](#4-the-4-step-rule-lifecycle-design-validate-save-deploy)
+5. [Tough & Twisted Review Questions with Consultant Model Answers](#5-tough--twisted-review-questions-with-consultant-model-answers)
 
 ---
 
-## The Interface — Visual Canvas vs Script Mode
+<!-- ===================================================================== -->
+<!-- 🎯 LIVE INTERACTIVE VISUAL CARD: CALC MANAGER LIFECYCLE -->
+<!-- ===================================================================== -->
+<details open>
+<summary><b>🎯 Live Interactive Architecture Card: Calc Manager Rule Lifecycle (Click to Collapse / Expand)</b></summary>
 
-Calc Manager offers two ways to write rules:
+<br/>
 
-| Mode | How It Works | Best For |
-|------|-------------|----------|
-| **Visual Mode** | Drag-and-drop flowchart canvas with palette objects | Beginners, simple rules, collaboration |
-| **Script Mode** | Raw text editor for Essbase calc script syntax | Complex rules, advanced optimization |
+> [!TIP]
+> **Interactive Standalone Dashboard:** Open [`card_kb_04_calc_business_rules.html`](../interactive_cards/card_kb_04_calc_business_rules.html) in your browser for a live interactive business rule builder & FIX scope visualizer!
 
-> **Warning:** Converting a rule to Script mode is **permanent** if you use non-standard syntax. The rule cannot be converted back to Visual mode.
+| Development Mode | Underlying Engine | Key Capabilities | Irreversible Caution |
+| :--- | :--- | :--- | :--- |
+| **Visual Designer** | Drag-and-drop flowchart palette | Formula components, FIX loops, Condition branches | Easy for functional users |
+| **Script Editor** | Native Essbase calc script text | Full Essbase calc language, `@` functions, `SET` commands | Converting to Script mode with advanced syntax **cannot be converted back** |
+| **Groovy Editor** | JVM Java-based sandbox | Pre-save validation, Micro-FIX, DataGridBuilder, REST | Requires EPM Enterprise Cloud subscription |
+
+```mermaid
+flowchart TD
+    subgraph Step1 ["1. Design & Authoring"]
+        Auth["Author Rule in Calc Manager<br/>(Visual Canvas / Script / Groovy)"]
+    end
+
+    subgraph Step2 ["2. Syntax Validation"]
+        Val["Click 'Validate'<br/>Checks member existence & syntax"]
+    end
+
+    subgraph Step3 ["3. Save to Repository"]
+        Save["Click 'Save'<br/>Stores XML definition in HSP Relational DB"]
+    end
+
+    subgraph Step4 ["4. Deployment to Essbase"]
+        Deploy["Click 'Deploy'<br/>Compiles rule into Essbase cube (.csc)<br/>Makes rule visible in Planning"]
+    end
+
+    Auth --> Val
+    Val --> Save
+    Save --> Deploy
+    Deploy --> Exec["Rule Launchable by Users / Web Forms / Smart View"]
+```
+
+</details>
 
 ---
 
-## System Views
+## 1. Core Consultant Mental Model
 
-| View | What You See |
-|------|-------------|
-| **System View** | All databases, rules, templates, variables across the application |
-| **Database View** | Rules and components for a specific plan type (cube) |
-| **Custom View** | User-created organizational folders |
-| **Deployment View** | Rules and rule sets deployed to the Planning application |
+When developing business rules in Oracle Cloud EPM, consultants must distinguish between **Saving** a rule and **Deploying** a rule:
 
----
-
-## The 8 Palette Objects
-
-In Visual mode, you build rules by dragging palette objects onto the canvas:
-
-| # | Object | Purpose | Essbase Equivalent |
-|---|--------|---------|-------------------|
-| 1 | **Formula** | LHS = RHS assignment | `"Member" = expression;` |
-| 2 | **Script** | Raw Essbase calc script block | Inline script fragment |
-| 3 | **Condition** | IF / ELSEIF / ELSE branching | `IF...ELSEIF...ELSE...ENDIF` |
-| 4 | **Member Block** | Anchor calculation for a specific member | `"Member"(expression);` |
-| 5 | **Member Range** | Loop through member range | `@RANGE / @LOOP` traversal |
-| 6 | **FIX** | Scope limiter — the MOST critical object | `FIX(...) ... ENDFIX` |
-| 7 | **Rule** | A complete calculation unit | Named rule object |
-| 8 | **RuleSet** | Container for sequential/parallel rule execution | Rule sequencing |
+* **Saving a Rule:** Writes the rule definition as an XML/JSON object inside the **Planning Relational Repository (HSP database)**. The Essbase calculation engine does NOT know the rule exists yet, and users cannot run it.
+* **Deploying a Rule:** Compiles the rule, translates graphical components into native Essbase calculation script format, and registers the rule with the Essbase cube and Planning security engine.
+* If a junior consultant modifies a rule and clicks *Save* but forgets to click *Deploy*, **the application will continue running the old version of the rule in production!**
 
 ---
 
-## The FIX Component — Most Critical Object
+## 2. Calc Manager Views: System View vs. Database View
 
-FIX defines the **multidimensional boundary** (data slice) for calculations. It instructs Essbase which physical data blocks to process.
+Calculation Manager provides two structural navigation lenses:
 
-```
-Without FIX: Essbase processes ALL 500,000 blocks → 45 seconds
-With FIX:    Essbase processes only 450 matching blocks → 0.12 seconds
-```
-
-### How FIX Works
-
-```
-FIX ("Plan", "FY25", "Working", "Sales_East", @LEVMBRS("Product", 0))
-  "Revenue" = "Revenue" * 1.10;
-ENDFIX
-
-Step 1: Essbase evaluates the FIX criteria against the Index file (.IND)
-Step 2: Only 450 blocks match the criteria
-Step 3: Only those 450 blocks are loaded into Data Cache
-Step 4: Calculation runs ONLY on those blocks
-Step 5: 499,550 unmatched blocks are NEVER touched
-```
-
-### Sparse vs Dense in FIX
-
-| Dimension Type in FIX | Effect |
-|----------------------|--------|
-| **Sparse dimension** | Reduces which BLOCKS are loaded from disk (major I/O savings) |
-| **Dense dimension** | Reduces which CELLS within blocks are modified (minor savings) |
-
-> **Best Practice:** Always FIX on specific sparse members. Never leave Scenario, Version, or Year unconstrained.
+| View Name | Hierarchy Displayed | Primary Consultant Use Case |
+| :--- | :--- | :--- |
+| **System View** | Global tree organized by object type: Rules, Rule Sets, Formulas, Scripts, Templates, Variables | Managing shared components, global substitution variables, and cross-application rule sets. |
+| **Database View** | Tree organized by Application -> Cube (Plan Type) | Focused cube development: inspecting only the rules and formulas associated with a specific cube (e.g., `Oep_FS`). |
 
 ---
 
-## Variables and Runtime Prompts
+## 3. Visual Canvas Mode vs. Script Mode vs. Groovy Mode
 
-### Variable Scopes
+### 1. Visual Canvas Mode
+* Uses graphical palette blocks:
+  * **Rule:** Container for all logic.
+  * **Formula Component:** Assigns values (`Account = Driver * Rate;`).
+  * **Script Component:** Embeds raw Essbase calc syntax within a flowchart.
+  * **Condition Component:** `IF ... ELSEIF ... ENDIF` branching.
+  * **Member Block:** Scopes calculations to specific sparse combinations (`FIX`).
 
-| Scope | Visibility | Use Case |
-|-------|-----------|----------|
-| **Global** | All applications, all plan types | Company-wide settings |
-| **Application** | All plan types in the application | App-level defaults |
-| **Plan Type** | Specific plan type only | Cube-specific parameters |
-| **Rule** | Single rule only | Local working variables |
+### 2. Script Mode
+* Directly exposes Essbase calculation script language.
+* Best practice for performance tuning, complex `@LOOP` allocations, and large multidimensional blocks.
+* **Gotcha:** If you convert a visual rule to Script mode and introduce advanced scripting constructs, Calculation Manager cannot reverse the script back to graphical flowchart blocks.
 
-### Runtime Prompts (RTPs)
-
-When a rule runs, it can ask the user for input:
-
-```
-/* Runtime Prompt: Ask user which scenario to calculate */
-FIX ({RTP_Scenario}, {RTP_Year})
-  "Revenue" = "Revenue" * 1.10;
-ENDFIX
-```
-
-### Substitution Variables
-
-Global variables that administrators set and all rules can reference:
-
-```
-/* Example: &CurrYear = "FY26", &CurrMonth = "Oct" */
-FIX ("Budget", &CurrYear, @LEVMBRS("Entity", 0))
-  "Revenue" = "Revenue"->prior(Period);
-ENDFIX
-```
+### 3. Groovy Mode
+* Available for Planning and FreeForm applications.
+* Selected by setting the rule type to **Groovy Script**.
+* Enables event-driven micro-calculations, REST calls, and pre-save form validation.
 
 ---
 
-## System Templates — Pre-Built Calculation Patterns
+## 4. The 4-Step Rule Lifecycle: Design, Validate, Save, Deploy
 
-| Template | Purpose |
-|----------|---------|
-| **Allocation** | Distribute amounts from a source to targets using a driver |
-| **Allocate Level-to-Level** | Cascading waterfall allocations between hierarchy levels |
-| **Clear Data** | Physical (`CLEARBLOCK`) or logical (`CLEARDATA`) data clearing |
-| **Copy Data** | Block-level `DATACOPY` vs cell-by-cell assignment |
-| **Amount/Rate** | Driver-based modeling (Volume × Rate) |
-| **Aggregation** | `CALC DIM` vs `AGG` — Hourglass principle compliance |
-| **Currency Conversion** | P&L vs Balance Sheet rates, rate tables, triangulation |
-| **Custom DTP** | Building custom wizards with Design-Time Prompts |
+To migrate a calculation safely into production, follow this strict lifecycle:
+
+1. **Design:** Build logic using variables instead of hardcoded strings (e.g., `&CurYear`, `&CurPeriod`).
+2. **Validate:** Click the checkmark icon. Calc Manager parses the syntax against the active application outline, verifying that all members, variables, and functions are valid.
+3. **Save:** Commits the rule to the relational repository.
+4. **Deploy:** Pushes the compiled calculation to Essbase. Can be deployed individually or as a batch via **Deployment View**.
 
 ---
 
-## Rule Deployment and Lifecycle
+## 5. Tough & Twisted Review Questions with Consultant Model Answers
 
-```
-Create Rule → Validate → Deploy → Attach to Form/Action Menu → Test → Production
+### Question 1: "A developer updates a business rule in Calculation Manager, clicks Save, and sees 'Save Successful'. However, when a planner tests the rule on a web form, the calculation outputs old results. What did the developer forget?"
+**Consultant Model Answer:**
+> "The developer forgot to **Deploy** the rule. 
+> Clicking 'Save' only commits the updated rule XML to the Planning relational database repository (`HSP_*` tables). The Essbase calculation engine and the web application runtime execute the compiled rule registered during deployment. Until the developer clicks **Deploy** (or deploys all rules from the Deployment View), the active Essbase cube continues executing the previously deployed version of the script."
 
-1. VALIDATE: Compiler checks syntax, member names, variable references
-2. DEPLOY: Makes the rule available in Planning application
-3. ATTACH: Link to a form (on save/on load) or action menu
-4. TEST: Run with representative data in non-production environment
-```
+### Question 2: "Can you convert a Groovy business rule into a Visual Canvas flowchart in Calculation Manager?"
+**Consultant Model Answer:**
+> "No. Visual Canvas mode is exclusively designed for standard Essbase calculation script components (Formula, Script, Condition, FIX blocks). Groovy is a general-purpose, object-oriented programming language executing within a JVM sandbox with access to the EPM Java API. Calc Manager does not support visual diagrammatic representation of Groovy code; Groovy rules can only be edited in text Script mode."
 
----
-
-## 🧠 Self-Check Questions
-
-1. **What are the 8 palette objects in Calc Manager?**
-2. **What is the difference between Visual and Script mode?**
-3. **Why is the FIX component the most critical object?**
-4. **What happens if you FIX on a sparse dimension vs a dense dimension?**
-5. **What are the four variable scopes?**
-6. **What is a Runtime Prompt and when would you use one?**
-
-> **Teach-back prompt:** Explain to a new developer why every calculation should start with a FIX statement. Then describe what happens inside Essbase when a FIX statement is evaluated.
+### Question 3: "What is a 'Rule Set' in Calculation Manager, and how does its execution order differ from running individual rules?"
+**Consultant Model Answer:**
+> "A **Rule Set** is an ordered sequence of multiple business rules grouped together into a single execution unit. 
+> * **Execution Order:** Rules inside a Rule Set execute sequentially in the exact top-to-bottom order defined by the administrator.
+> * **Performance Benefit:** Rule Sets can be configured to share common runtime prompts (RTPs) across all contained rules, prompting the user once rather than requiring multiple inputs.
+> * **Parallel Execution:** Administrators can configure rules within a rule set to execute in parallel across different cubes if there are no data dependencies between them."
 
 ---
-
-## What's Next?
-
-→ [02_Business_Rules_Design.md](02_Business_Rules_Design.md) — Creating rules, FIX patterns, variables, deployment
-
+*Proceed to [5.2 Business Rules Design: Scoping, Execution Modes & Calc Math](02_Business_Rules_Design.md).*

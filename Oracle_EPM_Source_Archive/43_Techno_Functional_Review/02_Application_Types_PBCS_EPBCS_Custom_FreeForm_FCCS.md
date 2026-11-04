@@ -1,4 +1,4 @@
-# 02 Oracle EPM Application Types: PBCS, EPBCS, Custom, FreeForm, and FCCS
+﻿# 02 Oracle EPM Application Types: PBCS, EPBCS, Custom, FreeForm, and FCCS
 
 ## 1. The Oracle EPM Cloud Application Landscape
 
@@ -37,7 +37,7 @@ Oracle Enterprise Performance Management Cloud is not a monolithic tool; it is a
 
 ## 2. Exhaustive Comparison Matrix
 
-| Application Type | Mandatory Dimensions | Max Cubes Permitted | Groovy Engine? | Primary Business Purpose |
+| Application Type | Mandatory Dimensions | Max Cubes Permitted | Groovy Engine— | Primary Business Purpose |
 | :--- | :--- | :--- | :--- | :--- |
 | **Custom Planning** | Account, Entity, Scenario, Version, Period, Years | Up to 12 (6 BSO + 6 ASO) | **Yes** (Enterprise SKU) | Tailored corporate budgeting where pre-built modules do not fit business model. |
 | **Module-Based (EPBCS)**| Seeded module dims (`Plan Element`, `Property`, `Asset Class`, `Project`) | Dedicated module cubes (`OEP_FS`, `OEP_WFP`, `OEP_CPX`, `OEP_PFP`, `OEP_REP`) | **Yes** (Enterprise SKU) | Best-practice corporate planning with rapid time-to-value. |
@@ -63,7 +63,7 @@ This is one of the most frequently asked review questions:
 
 ---
 
-## 4. Deep Dive: What Makes FreeForm Planning Revolutionary?
+## 4. Deep Dive: What Makes FreeForm Planning Revolutionary—
 
 In legacy on-premises Essbase, companies had hundreds of standalone cubes that did NOT have traditional Planning dimensions (e.g., a supply chain cube with dimensions: `Warehouse`, `Pallet_Type`, `Truck_Route`, `Metric`, `Day`).
 * Traditional Planning rejected this because Planning **strictly mandated** `Account`, `Entity`, `Scenario`, `Version`, `Period`, and `Years`.

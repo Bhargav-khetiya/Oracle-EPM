@@ -1,10 +1,10 @@
-# @ISSAMELEV
+﻿# @ISSAMELEV
 
 ## Overview
 
 `@ISSAMELEV` is a **native Essbase boolean function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates the currently calculating member and returns `TRUE` or `FALSE` based on whether that member resides at the **exact same Level** (measured from the bottom-up) as a specified target member.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When writing generalized, dynamic scripts that can be applied to massive, ragged hierarchies, hardcoding levels is dangerous. 
 For example, if you want to apply a specific driver rate exclusively to the "Regional Managers", you might assume they are at Level 2. So you write `IF(@ISLEV("Entity", 2))`. But in a ragged hierarchy, some Regional Managers might be at Level 2 (managing stores), while others might be at Level 3 (managing districts which manage stores). 

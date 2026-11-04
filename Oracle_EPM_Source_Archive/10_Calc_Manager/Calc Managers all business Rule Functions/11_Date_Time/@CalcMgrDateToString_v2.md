@@ -1,14 +1,14 @@
-# @CalcMgrDateToString
+﻿# @CalcMgrDateToString
 
 ## Overview
 
 `@CalcMgrDateToString` is a **custom Calc Manager string conversion function** in Oracle EPM Cloud (PBCS/EPBCS). It takes an internal Java `Date` object (often generated dynamically during a calculation) and converts it directly into a human-readable Text String formatted precisely how you want it.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When executing complex date math in Calc Manager (like adding 3 months to a start date using `@CalcMgrAddDatePart`), the result is a massive, unreadable Java Date object. 
 If you want to stamp that result into an Essbase data cell, you use `@CalcMgrConvertJavaDateToDate` to turn it into an integer (e.g., `20241231`).
-However, what if you need to output that date into a log file? Or append it to a string for a dynamic member name (e.g., `"Actuals_As_Of_Dec-2024"`)? Or pass it back to an external API via a Groovy script?
+However, what if you need to output that date into a log file— Or append it to a string for a dynamic member name (e.g., `"Actuals_As_Of_Dec-2024"`)— Or pass it back to an external API via a Groovy script—
 `@CalcMgrDateToString` solves this. It acts as a strict formatter, looking at the Java Date object and rendering it as a highly customizable string based on a formatting mask you provide (like `"MM/dd/yyyy"` or `"yyyy-MMM-dd"`).
 
 ### When to Use It

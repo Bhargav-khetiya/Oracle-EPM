@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KB Interactive Card 04: Calc Rules & FIX Scopes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-6 font-sans">
+  <div class="max-w-4xl mx-auto space-y-6">
+    <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 shadow-2xl backdrop-blur">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-700 pb-4">
+        <div>
+          <span class="text-xs font-bold tracking-widest text-sky-400 uppercase bg-sky-950/60 px-3 py-1 rounded-full border border-sky-800">
+            Knowledge Base Card 04
+          </span>
+          <h1 class="text-2xl font-black mt-2 text-white">Calculation Manager: FIX Scopes & Block Physics</h1>
+        </div>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-amber-950 text-amber-400 border border-amber-800">Essbase Kernel</span>
+      </div>
+
+      <!-- Simulator -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-5 space-y-4">
+          <h2 class="text-base font-bold text-sky-400">1. FIX Statement Scope Evaluator</h2>
+          
+          <div class="space-y-3 text-xs">
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Target Dimension Scoped in FIX:</label>
+              <select id="fixDim" onchange="evalFix()" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-slate-200">
+                <option value="SPARSE_LEAF" selected>Sparse Dimension Leaf: @RELATIVE("Total_Entity", 0)</option>
+                <option value="SPARSE_PARENT">Sparse Parent: "Total_Entity" (Stored Parent)</option>
+                <option value="DENSE_MEMBER">Dense Member: "Jan", "Travel_Expense"</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Calculation Mode:</label>
+              <select id="calcMode" onchange="evalFix()" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-slate-200">
+                <option value="BOTTOM_UP" selected>Bottom-Up (Existing blocks only)</option>
+                <option value="TOP_DOWN">Top-Down (Evaluates non-existing blocks)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Parallel Threads (@CALCPARALLEL):</label>
+              <select id="calcParallel" onchange="evalFix()" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-slate-200">
+                <option value="2" selected>2 Threads (Optimal for Cloud EPM)</option>
+                <option value="4">4 Threads (Max Cloud EPM vCPUs)</option>
+                <option value="8">8 Threads (Over-allocated / Contention risk)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-5 space-y-4">
+          <h2 class="text-base font-bold text-sky-400">2. Engine Physical Evaluation</h2>
+
+          <div class="p-4 rounded-lg bg-slate-900 border border-slate-700 space-y-2 text-xs">
+            <div>
+              <span class="text-slate-400 block font-semibold">Disk Block I/O Impact:</span>
+              <span id="ioImpact" class="text-sm font-bold text-emerald-400">Reads strictly matching sparse blocks from disk</span>
+            </div>
+            <div class="pt-2 border-t border-slate-800">
+              <span class="text-slate-400 block font-semibold">Block Explosion Risk:</span>
+              <span id="explosionRisk" class="text-sm font-bold text-emerald-400">Zero Risk (Bottom-Up calculation)</span>
+            </div>
+            <div class="pt-2 border-t border-slate-800">
+              <span class="text-slate-400 block font-semibold">Thread Concurrency Efficiency:</span>
+              <span id="threadEff" class="text-sm font-bold text-emerald-400">Optimal (Zero CPU context-switching overhead)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function evalFix() {
+      const dim = document.getElementById('fixDim').value;
+      const mode = document.getElementById('calcMode').value;
+      const threads = document.getElementById('calcParallel').value;
+
+      const ioElem = document.getElementById('ioImpact');
+      const expElem = document.getElementById('explosionRisk');
+      const thrElem = document.getElementById('threadEff');
+
+      if (dim === "DENSE_MEMBER") {
+        ioElem.innerText = "CRITICAL TRAP: Fixing on dense dimensions does NOT reduce disk reads! Full block is still loaded.";
+        ioElem.className = "text-sm font-bold text-rose-500";
+      } else if (dim === "SPARSE_PARENT") {
+        ioElem.innerText = "Reads stored upper parent blocks from disk (Avoid in Hybrid BSO).";
+        ioElem.className = "text-sm font-bold text-amber-400";
+      } else {
+        ioElem.innerText = "Reads strictly matching leaf sparse blocks from disk (Optimal I/O).";
+        ioElem.className = "text-sm font-bold text-emerald-400";
+      }
+
+      if (mode === "TOP_DOWN") {
+        expElem.innerText = "HIGH RISK: Can create thousands of empty ghost blocks on disk!";
+        expElem.className = "text-sm font-bold text-rose-500";
+      } else {
+        expElem.innerText = "Zero Risk: Evaluates only on existing populated data blocks.";
+        expElem.className = "text-sm font-bold text-emerald-400";
+      }
+
+      if (threads === "8") {
+        thrElem.innerText = "THREAD CONTENTION: Exceeds Cloud vCPU capacity; causes memory bus queuing.";
+        thrElem.className = "text-sm font-bold text-rose-500";
+      } else {
+        thrElem.innerText = "Optimal throughput across available Cloud EPM virtual cores.";
+        thrElem.className = "text-sm font-bold text-emerald-400";
+      }
+    }
+  </script>
+</body>
+</html>

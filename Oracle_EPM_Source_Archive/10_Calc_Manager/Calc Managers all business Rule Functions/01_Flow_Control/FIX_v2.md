@@ -1,10 +1,10 @@
-# FIX
+﻿# FIX
 
 ## Overview
 
 `FIX` is the **most important and most frequently used command** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager business rules. It defines a **scope of calculation** by restricting which members are included in the calculation block. Every data point not within the FIX scope is completely ignored — making calculations faster, safer, and more targeted.
 
-### Why Does This Command Exist?
+### Why Does This Command Exist—
 
 Without `FIX`, every calculation would run against the **entire database** — every member of every dimension. This would be:
 - **Dangerously slow**: Processing millions of unnecessary intersections

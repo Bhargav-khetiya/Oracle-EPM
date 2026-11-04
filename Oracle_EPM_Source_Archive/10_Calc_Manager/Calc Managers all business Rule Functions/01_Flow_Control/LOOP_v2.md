@@ -1,10 +1,10 @@
-# LOOP
+﻿# LOOP
 
 ## Overview
 
 `LOOP` is a **repetition command** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that executes a block of calculation statements **multiple times**. It creates an iterative loop that runs the enclosed code for a specified number of iterations, enabling scenarios like iterative allocations, convergence calculations, and multi-pass processing.
 
-### Why Does This Command Exist?
+### Why Does This Command Exist—
 
 Some business calculations require multiple passes to converge on a correct answer:
 - **Iterative allocations**: When departments allocate costs to each other (circular references), multiple passes are needed until values stabilize

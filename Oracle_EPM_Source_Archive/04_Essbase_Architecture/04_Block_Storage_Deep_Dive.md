@@ -1,4 +1,4 @@
-# 04 — Block Storage Deep Dive: The Physics of Essbase Data
+﻿# 04 — Block Storage Deep Dive: The Physics of Essbase Data
 
 ---
 
@@ -50,7 +50,7 @@ Every block in Essbase BSO has two parts:
 
 ## 4.2 Block Creation — When and How Blocks Are Born
 
-### When Is a Block Created?
+### When Is a Block Created—
 
 A new block is created when:
 

@@ -1,10 +1,10 @@
-# @CalcMgrEndsWith
+﻿# @CalcMgrEndsWith
 
 ## Overview
 
 `@CalcMgrEndsWith` is a **custom Calc Manager string evaluation function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates a primary text string to determine if it concludes with a specific substring, returning a boolean equivalent (`True` or `False`).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard Essbase syntax is famously rigid regarding text strings. While you can use `@MATCH` or `@LIKE` to search for member names using wildcards (e.g., `"Exp_*"`), those native functions strictly require database member names. You cannot use them to evaluate raw text variables, dynamically extracted Text Attributes, or strings built in memory.
 `@CalcMgrEndsWith` provides Java-level string evaluation directly inside the Calc Script. By determining whether a text string ends with a specific suffix (like `"_US"` or `"Inc."`), you can execute highly specific conditional branching logic without relying on complex string manipulation workarounds.

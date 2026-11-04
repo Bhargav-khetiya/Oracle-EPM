@@ -1,10 +1,10 @@
-# @HspWritePageCombinations
+﻿# @HspWritePageCombinations
 
 ## Overview
 
 `@HspWritePageCombinations` is a **Hyperion Planning (HSP) custom administrative function** embedded within Oracle EPM Cloud (PBCS/EPBCS). It is an advanced relational utility designed to **dynamically register or modify a massive block of valid Page/Form combinations** in the underlying Planning repository via a direct database injection, bypassing the manual UI setup.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In massive Planning implementations (like detailed CapEx or Workforce), Data Forms utilize "Page" drop-downs (e.g., selecting `"Employee_105"` from a list). The UI prevents users from selecting invalid combinations to protect performance. 
 If a calculation script provisions 10,000 new Employees or Assets simultaneously, using `@HspAddPageCombination` 10,000 times inside a loop is wildly inefficient, even with a persistent session. It requires 10,000 separate API payloads.

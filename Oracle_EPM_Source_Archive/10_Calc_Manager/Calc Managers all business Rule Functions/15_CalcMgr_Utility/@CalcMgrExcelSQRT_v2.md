@@ -1,11 +1,11 @@
-# @CalcMgrExcelSQRT
+﻿# @CalcMgrExcelSQRT
 
 ## Overview
 
 `@CalcMgrExcelSQRT` is a **custom Calc Manager mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `SQRT` function directly inside an Essbase calculation script. 
 It calculates the **Square Root** of a positive number.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In statistical modeling, risk management, and physical unit conversions, the square root is a fundamental building block. For example, calculating the Standard Deviation (the square root of the Variance) is mandatory for any supply chain safety stock model. 
 While you can theoretically calculate a square root using exponents (`@CalcMgrExcelPOWER(number, 0.5)`), the `@CalcMgrExcelSQRT` function is specifically optimized for this singular task. By delegating the math directly to `Math.sqrt()` in the Java engine, it executes faster and guarantees perfect parity with legacy Excel models that rely on the `=SQRT(A1)` syntax.

@@ -1,11 +1,11 @@
-# @CalcMgrExcelWORKDAY
+﻿# @CalcMgrExcelWORKDAY
 
 ## Overview
 
 `@CalcMgrExcelWORKDAY` is a **custom Calc Manager date manipulation function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `WORKDAY` function directly inside an Essbase calculation script. 
 It calculates an exact **Future or Past Date**, skipping over all Saturdays, Sundays, and custom defined corporate holidays.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In supply chain logistics and HR planning, standard calendar math is useless. If an HR policy says an employee must be paid "5 days after termination", you cannot just add `+ 5` to the termination date. If the 5th day lands on a Saturday, the employee won't get paid until Monday. If Monday is Memorial Day, they won't get paid until Tuesday. 
 Calculating this manually in Essbase requires massive iterative loops: add 1 day, check if it's a weekend, if yes add another day, check a massive cross-dimensional array of corporate holidays, if yes add another day, repeat. 

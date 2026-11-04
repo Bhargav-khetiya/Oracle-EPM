@@ -1,11 +1,11 @@
-# @CalcMgrExcelNORMSDIST
+﻿# @CalcMgrExcelNORMSDIST
 
 ## Overview
 
 `@CalcMgrExcelNORMSDIST` is a **custom Calc Manager statistical function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `NORMSDIST` (or `NORM.S.DIST`) function directly inside an Essbase calculation script. 
 It calculates the **Standard Normal Cumulative Distribution Function**. In simpler terms, if you provide a standard Z-score (how many standard deviations a value is away from the mean), this function returns the exact probability that a random variable will fall below that Z-score on a standard bell curve.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard normal distribution (the "bell curve") is the foundation of modern risk modeling, quality control, and inventory optimization. A standard normal curve has a Mean of `0` and a Standard Deviation of `1`. 
 If a factory produces widgets with a known defect rate, and a quality engineer calculates a Z-score of `1.96` for today's batch, they need to know what percentage of historical batches were better than this. The math required to calculate the area under the curve of a normal distribution requires integrating the probability density function (`e^(-z^2/2) / sqrt(2*pi)`). 

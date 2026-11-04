@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KB Interactive Card 05: Data Integration & Smart Push Pipeline</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-6 font-sans">
+  <div class="max-w-4xl mx-auto space-y-6">
+    <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 shadow-2xl backdrop-blur">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-700 pb-4">
+        <div>
+          <span class="text-xs font-bold tracking-widest text-sky-400 uppercase bg-sky-950/60 px-3 py-1 rounded-full border border-sky-800">
+            Knowledge Base Card 05
+          </span>
+          <h1 class="text-2xl font-black mt-2 text-white">Data Integration & Smart Push Pipeline Simulator</h1>
+        </div>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-blue-950 text-blue-400 border border-blue-800">TDATASEG ETL</span>
+      </div>
+
+      <!-- Controls -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-5 space-y-4">
+          <h2 class="text-base font-bold text-sky-400">1. Data Movement Parameters</h2>
+          
+          <div class="space-y-3 text-xs">
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Mapping Precedence Rule:</label>
+              <select id="mapRule" onchange="runEtl()" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-slate-200">
+                <option value="EXPLICIT" selected>1. Explicit Rule (Source: 4100 -> Target: Acc_Rev)</option>
+                <option value="BETWEEN">2. Between Rule (4000 to 4999 -> Acc_Rev_Group)</option>
+                <option value="IN">3. In Rule (4100, 4200 -> Acc_Rev_Direct)</option>
+                <option value="LIKE">5. Like Rule (4* -> Acc_Rev_Default)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Export Mode to Essbase:</label>
+              <select id="exportMode" onchange="runEtl()" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-slate-200">
+                <option value="MERGE" selected>Merge (Overwrite matching cells only)</option>
+                <option value="REPLACE">Replace (Clear target slice before load)</option>
+                <option value="ACCUMULATE">Accumulate (Add incoming to existing)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Smart Push Scope on Form Save:</label>
+              <select id="pushScope" onchange="runEtl()" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-slate-200">
+                <option value="CONTEXT" selected>Use Form Context (Pushes 1 active entity: 0.3s)</option>
+                <option value="FULL_MAP">Full Data Map (Pushes all 150 entities: 22.0s)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-5 space-y-4">
+          <h2 class="text-base font-bold text-sky-400">2. Pipeline Status & Diagnostics</h2>
+
+          <div class="p-4 rounded-lg bg-slate-900 border border-slate-700 space-y-3 text-xs">
+            <div class="flex items-center justify-between">
+              <span class="text-slate-400 font-semibold">ETL Pipeline Stage Status:</span>
+              <span id="fishStatus" class="font-bold text-emerald-400">🟢 Green Fish (Validated & Exported)</span>
+            </div>
+            <div class="pt-2 border-t border-slate-800">
+              <span class="text-slate-400 block font-semibold">Target Essbase Storage Impact:</span>
+              <span id="targetImpact" class="text-slate-200">Overwrites matching leaf cells in BSO blocks</span>
+            </div>
+            <div class="pt-2 border-t border-slate-800">
+              <span class="text-slate-400 block font-semibold">Smart Push Execution Speed:</span>
+              <span id="pushSpeed" class="text-emerald-400 font-bold">0.32 seconds (Sub-second real-time sync)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function runEtl() {
+      const mode = document.getElementById('exportMode').value;
+      const push = document.getElementById('pushScope').value;
+
+      const targetElem = document.getElementById('targetImpact');
+      const pushElem = document.getElementById('pushSpeed');
+
+      if (mode === "REPLACE") {
+        targetElem.innerText = "CAUTION: Truncates and clears entire target slice before writing new numbers!";
+      } else if (mode === "ACCUMULATE") {
+        targetElem.innerText = "Adds incoming numeric amounts into existing cell balances.";
+      } else {
+        targetElem.innerText = "Overwrites matching leaf cells in BSO blocks; preserves other data.";
+      }
+
+      if (push === "FULL_MAP") {
+        pushElem.innerText = "22.50 seconds (Causes form save latency and ASO slice bloat!)";
+        pushElem.className = "text-rose-500 font-bold";
+      } else {
+        pushElem.innerText = "0.32 seconds (Sub-second real-time sync)";
+        pushElem.className = "text-emerald-400 font-bold";
+      }
+    }
+  </script>
+</body>
+</html>

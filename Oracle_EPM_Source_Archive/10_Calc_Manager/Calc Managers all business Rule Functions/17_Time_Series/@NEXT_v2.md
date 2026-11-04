@@ -1,10 +1,10 @@
-# @NEXT
+﻿# @NEXT
 
 ## Overview
 
 `@NEXT` is a **member navigation function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns the value of a specified member from the *subsequent* member in the outline (typically the next time period). It is the forward-looking counterpart to `@PRIOR`.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Financial modeling frequently requires looking ahead to pull values from future periods into the current calculation:
 - **Pre-Payments / Accruals**: Recognizing an expense today based on a known payment due tomorrow.

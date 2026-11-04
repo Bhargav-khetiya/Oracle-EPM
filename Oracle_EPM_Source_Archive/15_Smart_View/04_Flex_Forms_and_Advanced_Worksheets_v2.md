@@ -1,4 +1,4 @@
-# 04 — Flex Forms, Supporting Detail, & Advanced Worksheets
+﻿# 04 — Flex Forms, Supporting Detail, & Advanced Worksheets
 
 ---
 
@@ -54,7 +54,7 @@ For years, the biggest complaint from corporate finance teams about Oracle Hyper
 
 ## 4.3 Supporting Detail Schedules
 
-When a planner enters **\$120,000** for Travel Expense, an auditor or CFO will ask: *"What makes up this \$120,000?"*
+When a planner enters **\$120,000** for Travel Expense, an auditor or CFO will ask: *"What makes up this \$120,000—*
 * **Supporting Detail** allows planners to attach a hierarchical micro-calculation schedule directly to a single cell:
 
 ```

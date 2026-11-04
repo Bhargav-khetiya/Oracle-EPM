@@ -1,10 +1,10 @@
-# ELSE
+﻿# ELSE
 
 ## Overview
 
 `ELSE` provides the **alternative execution path** in an `IF` block in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. When the IF condition (and any ELSEIF conditions) evaluate to FALSE, the statements inside the ELSE block execute. It's the "otherwise, do this" branch of conditional logic.
 
-### Why Does This Command Exist?
+### Why Does This Command Exist—
 
 Many calculations need to handle both the "true" and "false" cases:
 - If Revenue > 0, calculate margin; **otherwise**, set margin to zero

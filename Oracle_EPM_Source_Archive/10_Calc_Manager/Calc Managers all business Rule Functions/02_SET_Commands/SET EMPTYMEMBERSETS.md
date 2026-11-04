@@ -1,14 +1,14 @@
-# SET EMPTYMEMBERSETS
+﻿# SET EMPTYMEMBERSETS
 
 ## Overview
 
 `SET EMPTYMEMBERSETS` is a **native Essbase system directive** in Oracle EPM Cloud (PBCS/EPBCS). It controls how the calculation compiler handles `FIX` statements that evaluate to an empty list (zero members). 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In highly dynamic, automated calculation scripts, the `FIX` statement is often populated by variable queries, attributes, or UDAs rather than hardcoded member names. 
 For example, you might write a script that runs every night and fixes on `@UDA("Entity", "Requires_Calculation")`. 
-What happens on a night where *zero* entities have that UDA? 
+What happens on a night where *zero* entities have that UDA— 
 By default, the Essbase compiler sees that the `@UDA` function returned an empty set. Because the `FIX` is technically invalid (you can't fix on nothing), Essbase throws a severe syntax error, halts the entire script, and flags a failure in the Job Console.
 If you have a massive batch process, this failure crashes the entire overnight chain. 
 `SET EMPTYMEMBERSETS ON` solves this. It overrides the compiler's strict validation. It tells the engine: "If a FIX statement returns zero members, do NOT crash. Simply skip the enclosed code, log a warning, and proceed to the next line of the script." It is a vital safety net for dynamic automation.
@@ -116,7 +116,7 @@ ENDFIX
 
 | Mistake | Explanation | Fix |
 |---------|-------------|-----|
-| Masking Real Errors | "Why didn't my script do anything?" | While this command is a great safety net, it can also mask genuine, catastrophic mistakes. If you accidentally misspell the UDA (`@UDA("Employee", "Bnus_Eligible")`), the array will be empty. If `EMPTYMEMBERSETS` is `ON`, the script will skip the math and report "Success". You will have no idea that the bonus failed to calculate until users complain. Always review your Job Console warnings, even on successful scripts |
+| Masking Real Errors | "Why didn't my script do anything— | While this command is a great safety net, it can also mask genuine, catastrophic mistakes. If you accidentally misspell the UDA (`@UDA("Employee", "Bnus_Eligible")`), the array will be empty. If `EMPTYMEMBERSETS` is `ON`, the script will skip the math and report "Success". You will have no idea that the bonus failed to calculate until users complain. Always review your Job Console warnings, even on successful scripts |
 | Using it for Hardcoded Missing Members | Syntax Errors | This command protects against *functions* returning empty arrays (like `@UDA` or `@CHILDREN`). It does NOT protect against hardcoding a member name that doesn't exist. If you write `FIX("Store_999")` and Store 999 does not exist in the outline, the compiler will still crash with an "Unknown Member" error before it even evaluates the `SET` command |
 | Using `@` Prefix | `@SET EMPTYMEMBERSETS` | This is a calculation macro. It is not a function. If you put an `@` symbol in front of it, the compiler will crash immediately |
 

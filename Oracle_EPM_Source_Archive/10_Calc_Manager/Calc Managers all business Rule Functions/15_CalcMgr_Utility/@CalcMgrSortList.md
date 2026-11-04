@@ -1,10 +1,10 @@
-# @CalcMgrSortList
+﻿# @CalcMgrSortList
 
 ## Overview
 
 `@CalcMgrSortList` is a **custom Calc Manager array processing function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a dynamic array of numbers, **sorts them numerically** in memory (Ascending or Descending), and returns the **entire sorted array** back into the calculation script. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While `@CalcMgrSortAndReturn` is excellent for grabbing a single value (like the 3rd highest month), many advanced statistical models require operating on an entire dataset in order of magnitude, rather than chronologically. 
 For example, if you want to calculate the median (the true middle value) of a 12-month array, you cannot just grab Index 6 chronologically. You must first sort the array from lowest to highest, and *then* grab the middle values. 

@@ -1,10 +1,10 @@
-# @NOTEQUAL
+﻿# @NOTEQUAL
 
 ## Overview
 
 `@NOTEQUAL` is a **native Essbase mathematical array function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates a specified range (array) of members and checks their numeric values against a specified target value. It then returns a new array containing **only the members whose values do NOT match the target**.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building array processing logic, you often need to filter a massive list of members based on their data values before handing that list off to another function.
 For example, if you want to calculate the average sales for a region, but you explicitly want to exclude any store that had exactly `$500` in sales (perhaps $500 is a default placeholder value that corrupts the true average). 

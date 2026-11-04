@@ -1,8 +1,8 @@
-# 01 — What Is Essbase: The Complete Foundation
+﻿# 01 — What Is Essbase: The Complete Foundation
 
 ---
 
-## 1.1 What Is Essbase?
+## 1.1 What Is Essbase—
 
 **Essbase** (Extended Spread Sheet dataBASE) is a **multi-dimensional database** (MDDB) server developed originally by Arbor Software in 1992, later acquired by Hyperion Solutions, and then by Oracle Corporation in 2007.
 
@@ -23,7 +23,7 @@ This is the single most important concept to understand:
 
 ### Why Essbase Exists
 
-In the relational world, if you want to answer: *"What were the sales of Product X in Region Y for Month Z in Scenario Budget?"* — you need to:
+In the relational world, if you want to answer: *"What were the sales of Product X in Region Y for Month Z in Scenario Budget—* — you need to:
 
 1. Write a complex SQL JOIN across multiple tables
 2. GROUP BY and aggregate on the fly
@@ -35,7 +35,7 @@ In Essbase, this answer is **pre-computed and stored at a specific cell intersec
 
 ## 1.2 The Multi-Dimensional Concept
 
-### What Is a "Dimension"?
+### What Is a "Dimension"—
 
 A dimension is a **category of analysis**. Think of it as one axis of a multi-dimensional space.
 
@@ -52,7 +52,7 @@ A dimension is a **category of analysis**. Think of it as one axis of a multi-di
 | Product | What is being sold | Product_A, Product_B, All_Products |
 | Currency | In what currency | USD, EUR, GBP, LC (Local Currency) |
 
-### What Is a "Cube"?
+### What Is a "Cube"—
 
 A cube is a **multi-dimensional data space** defined by its dimensions. If you have 5 dimensions, you have a 5-dimensional cube (a "hypercube").
 
@@ -77,7 +77,7 @@ Imagine a 3D cube:
 
 Now extend this to 8+ dimensions — that's Essbase.
 
-### What Is a "Cell"?
+### What Is a "Cell"—
 
 A cell is a **single intersection** of all dimensions. For example:
 
@@ -365,11 +365,11 @@ In enterprise financial planning, executives and planners cannot wait 45 seconds
 
 ### 12. Remember and Explain It (Active Recall & Teach-Back)
 * **Quick Recap**: Essbase is an OLAP multidimensional engine that stores numbers in `.PAG` data files indexed by `.IND` files. It turns multi-table SQL joins into single array lookups.
-* **Recall Question 1**: What are the two primary physical files that store data in a BSO Essbase cube?
+* **Recall Question 1**: What are the two primary physical files that store data in a BSO Essbase cube—
   * *Answer*: The Index file (`.IND`) which maps coordinates to blocks, and the Page file (`.PAG`) which stores the actual data blocks.
-* **Recall Question 2**: Why is retrieving a parent total in Essbase significantly faster than in a relational database?
+* **Recall Question 2**: Why is retrieving a parent total in Essbase significantly faster than in a relational database—
   * *Answer*: Because Essbase either pre-calculates and stores the aggregated result or computes it dynamically via optimized memory caches, eliminating the need to scan and join millions of raw relational rows.
-* **Teach-Back Prompt**: *Imagine explaining Essbase to a business analyst who only knows Excel. How would you explain why their company invested in Oracle EPM Cloud instead of simply sharing Excel workbooks on SharePoint?*
+* **Teach-Back Prompt**: *Imagine explaining Essbase to a business analyst who only knows Excel. How would you explain why their company invested in Oracle EPM Cloud instead of simply sharing Excel workbooks on SharePoint—*
 
 ---
 

@@ -1,11 +1,11 @@
-# @CalcMgrExcelDATEDIF
+﻿# @CalcMgrExcelDATEDIF
 
 ## Overview
 
 `@CalcMgrExcelDATEDIF` is a **custom Calc Manager date function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `DATEDIF` function directly inside an Essbase calculation script. 
 It calculates the exact mathematical difference between two Excel Serial Dates (or `YYYYMMDD` integers, depending on how they are cast) and returns the result in a specified unit of measurement (Years, Months, or Days), including advanced options for ignoring the year or month boundaries.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Essbase already has `@CalcMgrDateDiff` for standard integer date subtraction. However, the legacy Excel `DATEDIF` function has highly specific, somewhat idiosyncratic behavior—especially regarding its string parameters (like `"ym"`, which calculates the difference in months while completely ignoring the years, or `"md"`, which calculates the difference in days while ignoring both years and months).
 When migrating a complex HR model from Excel (e.g., calculating an employee's exact age as "34 Years, 5 Months, and 12 Days"), trying to recreate Excel's `"ym"` and `"md"` logic manually using Essbase math is incredibly tedious. 

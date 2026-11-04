@@ -1,11 +1,11 @@
-# @CalcMgrExcelROUNDUP
+﻿# @CalcMgrExcelROUNDUP
 
 ## Overview
 
 `@CalcMgrExcelROUNDUP` is a **custom Calc Manager mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `ROUNDUP` function directly inside an Essbase calculation script. 
 It strictly rounds a number **away from zero** to a specified number of decimal digits, entirely ignoring the standard mathematical rules of nearest-neighbor rounding.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard rounding (`@ROUND`) evaluates the next digit to decide whether to round up or down. E.g., `10.2` rounds down to `10`.
 However, in procurement, capacity planning, and logistics models, you often must strictly round *up* to ensure you have enough resources. If a project requires `10.2` hours of specialized labor, and contractors can only be hired in full 1-hour increments, standard rounding says you only need 10 hours. If you only hire 10 hours, the project fails because it is 0.2 hours short. You must forcefully round UP to `11`.

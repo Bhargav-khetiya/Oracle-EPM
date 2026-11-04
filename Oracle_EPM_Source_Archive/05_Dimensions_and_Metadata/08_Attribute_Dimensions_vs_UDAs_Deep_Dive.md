@@ -1,4 +1,4 @@
-# 08 — Attribute Dimensions vs. UDAs: Deep Architecture
+﻿# 08 — Attribute Dimensions vs. UDAs: Deep Architecture
 
 ---
 
@@ -73,9 +73,9 @@ ENDFIX
 ## 8.5 Decision Framework: UDA vs. Attribute Dimension
 
 ```
-Do users need to slice, pivot, or display this property as a column in Web Forms or Smart View?
+Do users need to slice, pivot, or display this property as a column in Web Forms or Smart View—
 ├── YES ──► ✅ ATTRIBUTE DIMENSION (Allows dynamic ad-hoc slicing & aggregation)
-└── NO  ──► Is it needed ONLY inside calculation scripts (e.g. @ISUDA in business rules)?
+└── NO  ──► Is it needed ONLY inside calculation scripts (e.g. @ISUDA in business rules)—
             ├── YES ──► ✅ USER-DEFINED ATTRIBUTE (UDA) (Lightweight, zero cache overhead)
             └── NO  ──► Use a standard Member Alias or Member Description.
 ```

@@ -1,10 +1,10 @@
-# @PARENTVAL
+﻿# @PARENTVAL
 
 ## Overview
 
 `@PARENTVAL` is a **data access function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns the **data value stored at the parent member** of the current member. Unlike `@PARENT` which returns the member itself, `@PARENTVAL` returns the **numeric value** — making it directly usable in calculations.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Many financial calculations need to reference the parent's aggregated value:
 - Calculating percentage contribution to parent total

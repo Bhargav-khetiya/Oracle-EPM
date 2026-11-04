@@ -1,13 +1,13 @@
-# @CalcMgrIsListItem
+﻿# @CalcMgrIsListItem
 
 ## Overview
 
 `@CalcMgrIsListItem` is a **custom Calc Manager array processing function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as an exact positional interrogation tool. You pass it a numeric array, a specific **index number**, and a **target value**, and it checks if that exact target value resides at that exact index position in the array.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While `@CalcMgrIsInList` scans the entire array to see if a value exists *anywhere*, it cannot tell you *where* it is. Conversely, while `@CalcMgrGetListItem` pulls whatever value is sitting at a specific index, it requires you to write a separate `IF` statement to evaluate it.
-Sometimes, business logic requires checking a specific spatial condition in a single line of code. For example, "Is the very first month of this forecast exactly zero?" or "Did the 3rd product in this category trigger an error?"
+Sometimes, business logic requires checking a specific spatial condition in a single line of code. For example, "Is the very first month of this forecast exactly zero— or "Did the 3rd product in this category trigger an error—
 `@CalcMgrIsListItem` bridges this gap. It goes directly to the specified index in the Java array memory space and performs a strict Boolean equality check against your target value. It returns `true` if they match perfectly, and `false` if they don't (or if the index doesn't exist), allowing you to write highly compressed, readable IF statements.
 
 ### When to Use It

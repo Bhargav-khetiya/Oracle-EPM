@@ -1,11 +1,11 @@
-# @CalcMgrExcelTBILLYIELD
+﻿# @CalcMgrExcelTBILLYIELD
 
 ## Overview
 
 `@CalcMgrExcelTBILLYIELD` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `TBILLYIELD` function directly inside an Essbase calculation script. 
 It calculates the **Yield** of a Treasury Bill (T-Bill) based on its current market purchase price.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When a corporate treasury buys a T-Bill in the secondary market, they rarely buy it at the exact quoted discount rate. Market fluctuations mean the price goes up and down. If a company buys a T-Bill for $97.50 (per $100 face value) that matures in 90 days, the CFO wants to know the *true* Yield they are earning on that specific investment. 
 To reverse-engineer the true yield from the purchase price requires calculating the exact days remaining until maturity, assuming a 360-day banking year, and running an inverse pricing algebra equation.

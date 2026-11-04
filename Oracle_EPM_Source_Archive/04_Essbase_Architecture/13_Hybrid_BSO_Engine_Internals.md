@@ -1,8 +1,8 @@
-# 13 — Hybrid BSO Engine: Architecture, Mechanics, & Tuning
+﻿# 13 — Hybrid BSO Engine: Architecture, Mechanics, & Tuning
 
 ---
 
-## 13.1 What is the Hybrid BSO Engine?
+## 13.1 What is the Hybrid BSO Engine—
 
 Historically, Oracle Essbase forced architects to make a painful architectural compromise:
 * **Block Storage Option (BSO)**: Supported complex procedural calculations, member formulas, allocations, and cross-dimensional math, but suffered from **slow aggregation times** and **block explosion** when sparse dimensions had high member counts.

@@ -1,10 +1,10 @@
-# @CalcMgrCounterIncrement
+﻿# @CalcMgrCounterIncrement
 
 ## Overview
 
 `@CalcMgrCounterIncrement` is a **custom Calc Manager state-tracking function** in Oracle EPM Cloud (PBCS/EPBCS). It specifically adds a value of exactly `1` to an existing, named memory counter running in the background Java heap during the execution of a Business Rule.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When developers track states or occurrences (e.g., keeping a running tally of active projects, or counting validation errors), they typically use `@CalcMgrCounterAddNumber("Count", 1)` to increment the counter.
 However, incrementing a counter by exactly 1 is the single most common programmatic operation in all of computer science (equivalent to the `i++` operator in Java/C++). Because of its ubiquity, Calc Manager provides `@CalcMgrCounterIncrement` as a semantic shortcut. 

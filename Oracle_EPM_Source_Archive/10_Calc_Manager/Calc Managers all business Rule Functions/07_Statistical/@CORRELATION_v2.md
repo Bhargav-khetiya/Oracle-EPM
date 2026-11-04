@@ -1,13 +1,13 @@
-# @CORRELATION
+﻿# @CORRELATION
 
 ## Overview
 
 `@CORRELATION` is a **native Essbase statistical function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates the **Pearson correlation coefficient (r)** between two sets of data across a specified range. It returns a statistical value between `-1.0` and `1.0` that defines exactly how strongly the two data sets are related to one another.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building predictive forecasting models or analyzing driver-based planning, financial analysts must understand the relationship between variables. 
-Does an increase in `"Marketing_Spend"` actually lead to an increase in `"Sales_Volume"`? If so, how strong is that relationship? 
+Does an increase in `"Marketing_Spend"` actually lead to an increase in `"Sales_Volume"`— If so, how strong is that relationship— 
 You cannot determine this using basic addition or variance analysis. You must use statistical correlation. A correlation of `1.0` means they move in perfect unison. A correlation of `-1.0` means they move in exact opposite directions. A correlation near `0.0` means they have absolutely nothing to do with each other.
 `@CORRELATION` automates this complex statistical math. By passing the two data series (e.g., Marketing and Sales) and the time horizon, Essbase dynamically calculates the covariance and standard deviations, outputting the exact `r` value. This allows FP&A teams to programmatically validate their planning drivers (e.g., automatically dropping drivers with a correlation below `0.5`).
 
@@ -120,7 +120,7 @@ ENDFIX
 |---------|-------------|-----|
 | Misinterpreting `#MISSING` | Correlation returns `#MISSING` unexpectedly | Pearson correlation mathematically requires variance (movement) to calculate. If `Marketing_Spend` was exactly `$10,000` every single month (it never changed), the variance is 0. Dividing by a variance of 0 creates a divide-by-zero error, and Essbase will safely return `#MISSING` instead of crashing. Ensure your datasets actually have fluctuation |
 | Not Understanding the Output Block | Writing to Monthly accounts | Correlation evaluates a set of numbers (e.g., 12 months) and produces ONE statistical result. If you do not isolate your target (like fixing on `"YearTotal"`), Essbase will write the exact same correlation score (`0.85`) into Jan, Feb, Mar, etc. It is usually best practice to store correlation scores in a specific summary time period |
-| Directionality (X vs Y) | Does order matter? | Mathematically, Pearson correlation is symmetric. `@CORRELATION(X, Y)` returns the exact same number as `@CORRELATION(Y, X)`. The order of the first two parameters does not matter for this specific function |
+| Directionality (X vs Y) | Does order matter— | Mathematically, Pearson correlation is symmetric. `@CORRELATION(X, Y)` returns the exact same number as `@CORRELATION(Y, X)`. The order of the first two parameters does not matter for this specific function |
 
 ---
 

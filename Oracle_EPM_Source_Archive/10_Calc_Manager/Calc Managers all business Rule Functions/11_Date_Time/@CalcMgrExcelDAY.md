@@ -1,11 +1,11 @@
-# @CalcMgrExcelDAY
+﻿# @CalcMgrExcelDAY
 
 ## Overview
 
 `@CalcMgrExcelDAY` is a **custom Calc Manager date extraction function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `DAY` function directly inside an Essbase calculation script. 
 It analyzes an Excel Serial Date (or a standard Essbase `YYYYMMDD` integer) and extracts solely the **Day of the Month**, returning it as an integer between 1 and 31.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When migrating logic from an Excel spreadsheet, you often encounter formulas like `=DAY(A1)` used to trigger conditional logic (e.g., "If the invoice date is past the 15th of the month, assign it to the late payment bucket").
 While you can extract the day from a standard Essbase `YYYYMMDD` integer manually using mathematical modulus logic (e.g., `Date - (@TRUNC(Date / 100) * 100)`), this is tedious and completely breaks down if the data was loaded as an Excel Serial Date (e.g., `45657`).

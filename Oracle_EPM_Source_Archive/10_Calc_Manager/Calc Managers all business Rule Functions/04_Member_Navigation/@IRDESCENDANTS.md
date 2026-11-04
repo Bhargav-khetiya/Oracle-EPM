@@ -1,10 +1,10 @@
-# @IRDESCENDANTS
+﻿# @IRDESCENDANTS
 
 ## Overview
 
 `@IRDESCENDANTS` is a **member set function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns the **right descendants** of a specified member, **inclusive** — meaning the member itself is included in the returned set along with its right-branch descendants. "Right descendants" follow the rightmost (last child) path downward through the hierarchy.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In hierarchies where the right branch represents a specific category (e.g., "Other" categories, adjustment members, or the last-reported entity):
 - Target calculations to the right branch including the parent

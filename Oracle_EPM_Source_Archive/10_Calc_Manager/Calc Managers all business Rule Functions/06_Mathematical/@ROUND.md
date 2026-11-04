@@ -1,10 +1,10 @@
-# @ROUND
+﻿# @ROUND
 
 ## Overview
 
 `@ROUND` is a **mathematical function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that **rounds a number** to a specified number of decimal places. It uses standard rounding rules (round half up) — values at exactly .5 round away from zero.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Financial calculations frequently produce values with many decimal places that need rounding for:
 - **Currency precision**: Financial reports typically show 2 decimal places

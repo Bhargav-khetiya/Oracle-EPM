@@ -1,4 +1,4 @@
-# 08 — Groovy rules and form context
+﻿# 08 — Groovy rules and form context
 
 ## Core idea
 
@@ -61,9 +61,9 @@ Oracle provides a tutorial for moving modified form data with Groovy and Smart P
 
 ## Recall check
 
-1. Where should method names be verified? The Oracle Groovy API for the applicable product and release.
-2. Does a form-context rule bypass security? No.
-3. What must be approved before encoding a validation threshold? The business requirement and exception behavior.
+1. Where should method names be verified— The Oracle Groovy API for the applicable product and release.
+2. Does a form-context rule bypass security— No.
+3. What must be approved before encoding a validation threshold— The business requirement and exception behavior.
 
 **Teach-back:** Describe a safe process for checking whether a Groovy method is supported before putting it into a production rule.
 

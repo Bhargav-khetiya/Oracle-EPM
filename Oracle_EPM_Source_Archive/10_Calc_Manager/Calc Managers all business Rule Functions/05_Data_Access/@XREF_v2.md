@@ -1,4 +1,4 @@
-# @XREF
+﻿# @XREF
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 `@XREF` is the **read counterpart** of `@XWRITE` — while @XWRITE pushes data to another plan type, @XREF pulls data from one. Like @XWRITE, it does **not impose strict dimension mapping restrictions**, meaning the source and target outlines can be different.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 EPM applications typically have multiple plan types (cubes) that store different categories of data:
 - **FinStmt** (Financial Statements): Revenue, expenses, P&L
@@ -183,7 +183,7 @@ ENDFIX
 
 **How the source intersection is built (where to READ from):**
 
-| Source Dimension | In Local? | In mbrList? | Resolved From | Resolved Value |
+| Source Dimension | In Local— | In mbrList— | Resolved From | Resolved Value |
 |------------------|-----------|-------------|---------------|----------------|
 | Account | ✅ Yes | ✅ Yes (`"Total_Compensation"`) | **mbrList** (Priority 1) | `Total_Compensation` |
 | Entity | ✅ Yes | ❌ No | **POV** (Priority 2) | `East` |
@@ -216,7 +216,7 @@ ENDFIX
 
 **How the source intersection is built:**
 
-| Source Dimension | In Local? | In mbrList? | Resolved From | Resolved Value |
+| Source Dimension | In Local— | In mbrList— | Resolved From | Resolved Value |
 |------------------|-----------|-------------|---------------|----------------|
 | Account | ✅ Yes | ✅ Yes (`"Net_Revenue"`) | **mbrList** (Priority 1) | `Net_Revenue` |
 | Entity | ✅ Yes | ❌ No | **POV** (Priority 2) | `East` |
@@ -225,7 +225,7 @@ ENDFIX
 | Customer | ❌ No | ✅ Yes (`"Total_Customer"`) | **mbrList** (Priority 1) | `Total_Customer` |
 | Channel | ❌ No | ✅ Yes (`"All_Channels"`) | **mbrList** (Priority 1) | `All_Channels` |
 
-**What about Scenario, Product, Currency?** They exist **only in the local cube** — the source has no such dimensions. They are **completely irrelevant** to the source read. They are part of the local FIX (they scope which local cells get calculated), but the source has no corresponding dimension.
+**What about Scenario, Product, Currency—** They exist **only in the local cube** — the source has no such dimensions. They are **completely irrelevant** to the source read. They are part of the local FIX (they scope which local cells get calculated), but the source has no corresponding dimension.
 
 ### Critical Insight: Local-Only Dimensions Are Irrelevant, Source-Only Dimensions Default to Top Member
 
@@ -279,10 +279,10 @@ ENDFIX
 - `"FY25"`, `"Actual"`, `"East"`, `"Jan"` → shared dims that flow to the source as POV
 - `"All_Products"`, `"USD"` → local-only dims — scope the local cube, invisible to source
 
-**What value does @XREF return?**
+**What value does @XREF return—**
 → It reads `Net_Revenue` at `East, Jan, FY25, Total_Customer, All_Channels` from the Revenue Detail cube — the total revenue across all customers and channels.
 
-**Where does the result land?**
+**Where does the result land—**
 → Into the local cell `FinStmt → Total_Revenue, East, Jan, FY25, Actual, All_Products, USD`.
 
 ---
@@ -302,7 +302,7 @@ ENDFIX
 
 ---
 
-#### Case C: What If You DON'T Specify Source-Only Dims? (Top Member Fallback)
+#### Case C: What If You DON'T Specify Source-Only Dims— (Top Member Fallback)
 
 ```essbase
 FIX("FY25", "Actual", "East", "Jan", "All_Products", "USD")
@@ -311,7 +311,7 @@ FIX("FY25", "Actual", "East", "Jan", "All_Products", "USD")
 ENDFIX
 ```
 
-**Source read**: `Revenue → Net_Revenue, East, Jan, FY25, ???Customer???, ???Channel???`
+**Source read**: `Revenue → Net_Revenue, East, Jan, FY25, ———Customer———, ———Channel———`
 
 | Source Dimension | Resolved From | Value |
 |------------------|---------------|-------|
@@ -390,7 +390,7 @@ They are **mirror images** of each other:
 
 ---
 
-## ⚠️ Deep Dive: Does @XREF Aggregate Automatically?
+## ⚠️ Deep Dive: Does @XREF Aggregate Automatically—
 
 **Same answer as @XWRITE and Data Maps: NO.**
 
@@ -398,7 +398,7 @@ They are **mirror images** of each other:
 
 ### The Behavior Depends on Source Member Storage Type
 
-| Source Member Type | What @XREF Reads | Correct? |
+| Source Member Type | What @XREF Reads | Correct— |
 |--------------------|------------------|---------| 
 | **Dynamic Calc parent** | ✅ Calculates on-the-fly → correct aggregated value | ✅ Yes — always current |
 | **Stored parent, freshly aggregated** | ✅ Reads the stored aggregated value | ✅ Yes — if nothing changed |
@@ -406,7 +406,7 @@ They are **mirror images** of each other:
 | **Stored parent, never aggregated** | ❌ Returns #MISSING | ❌ No — your formula gets #MISSING |
 | **Level-0 stored member** | ✅ Reads the direct input value | ✅ Yes — always correct |
 
-### What Happens When @XREF Returns #MISSING?
+### What Happens When @XREF Returns #MISSING—
 
 If the source intersection has no data, @XREF returns `#MISSING`. This can cascade:
 
@@ -466,7 +466,7 @@ If `Total Entity` has children `East, West, Central` and `All Periods` has child
 
 ### Allowed in `mbrList` (Same Rules as @XWRITE)
 
-| Construct | Allowed? | Notes |
+| Construct | Allowed— | Notes |
 |-----------|----------|-------|
 | Individual member names | ✅ Yes | `"Headcount"`, `"East"`, `"FY24"` |
 | Multiple members (different dims) | ✅ Yes | `"Headcount", "East", "FY24"` |
@@ -474,7 +474,7 @@ If `Total Entity` has children `East, West, Central` and `All Periods` has child
 
 ### NOT Allowed in `mbrList`
 
-| Construct | Allowed? | Why Not |
+| Construct | Allowed— | Why Not |
 |-----------|----------|---------|
 | Functions returning multiple members | ❌ No | e.g., `@LEVMBRS(Market, 0)` — returns a list |
 | Member ranges | ❌ No | e.g., `"Jan":"Dec"` |
@@ -706,7 +706,7 @@ If you control the source cube's business rule, consider pushing data with @XWRI
 | Aspect | @XREF | @XWRITE |
 |--------|-------|---------|
 | **Direction** | READ from another cube | WRITE to another cube |
-| **Returns a value?** | ✅ Yes — numeric | ❌ No — performs a write |
+| **Returns a value—** | ✅ Yes — numeric | ❌ No — performs a write |
 | **FIX controls** | LOCAL cube (where result goes) | SOURCE cube (what value to read) |
 | **mbrList targets** | SOURCE cube (where to read from) | TARGET cube (where to write to) |
 | **Unmatched dims default to** | Top member of SOURCE | Top member of TARGET |
@@ -767,5 +767,5 @@ If you control the source cube's business rule, consider pushing data with @XWRI
 ## Official Oracle Reference
 
 - [Oracle Essbase 21 — @XREF](https://docs.oracle.com/en/database/other-databases/essbase/21/esscq/xref.html)
-- [Understand XREF/XWRITE](https://docs.oracle.com/pls/topic/lookup?ctx=en/database/other-databases/essbase/21/esscq&id=UGESS-GUID-F8BB3012-42C8-4A96-B18C-B8D68EC8A056)
-- [Create a Location Alias](https://docs.oracle.com/pls/topic/lookup?ctx=en/database/other-databases/essbase/21/esscq&id=UGESS-GUID-6CF2B0AB-9E8D-47B1-92F5-112D7A31D841)
+- [Understand XREF/XWRITE](https://docs.oracle.com/pls/topic/lookup—ctx=en/database/other-databases/essbase/21/esscq&id=UGESS-GUID-F8BB3012-42C8-4A96-B18C-B8D68EC8A056)
+- [Create a Location Alias](https://docs.oracle.com/pls/topic/lookup—ctx=en/database/other-databases/essbase/21/esscq&id=UGESS-GUID-6CF2B0AB-9E8D-47B1-92F5-112D7A31D841)

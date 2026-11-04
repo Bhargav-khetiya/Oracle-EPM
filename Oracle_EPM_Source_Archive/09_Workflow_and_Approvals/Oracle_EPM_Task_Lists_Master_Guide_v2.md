@@ -1,6 +1,6 @@
-# Oracle EPM Cloud: The Ultimate Master Guide to Task Lists
+﻿# Oracle EPM Cloud: The Ultimate Master Guide to Task Lists
 
-## 1. Introduction: What are Task Lists?
+## 1. Introduction: What are Task Lists—
 **Task Lists** in Oracle EPM Cloud (EPBCS/PBCS) organize groups of tasks for users, providing a structured, step-by-step way to guide planners and administrators through business processes (like budgeting and forecasting). By providing a clear list of tasks, instructions, dependencies, and due dates, Service Administrators can ensure that users complete their workflows in the correct order.
 
 ### Task Lists vs. EPM Task Manager

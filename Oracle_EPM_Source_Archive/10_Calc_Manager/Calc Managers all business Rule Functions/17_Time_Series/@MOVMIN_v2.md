@@ -1,10 +1,10 @@
-# @MOVMIN
+﻿# @MOVMIN
 
 ## Overview
 
 `@MOVMIN` is a **native Essbase time-series array function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates a **Moving Minimum** (or rolling minimum) across a specified time series. For every member in the time range, it looks backward a defined number of periods, sweeps that isolated data window, identifies the absolute lowest numeric value, and writes that minimum value into the current block.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In liquidity tracking, risk analysis, and contract enforcement, businesses often need to track the "lowest point" of a metric over a specific historical window. 
 For example, a bank might enforce a debt covenant stating that a company's cash balance must never drop below a certain threshold on a "Rolling 3-Month" basis. To monitor this, the company needs to evaluate the trailing 3 months for every single month of the forecast and isolate the worst-case scenario (the lowest cash point).

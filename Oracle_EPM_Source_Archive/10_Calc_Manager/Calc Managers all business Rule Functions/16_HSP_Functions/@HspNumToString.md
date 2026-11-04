@@ -1,10 +1,10 @@
-# @HspNumToString
+﻿# @HspNumToString
 
 ## Overview
 
 `@HspNumToString` is a **Hyperion Planning (HSP) custom type-conversion function** embedded within Oracle EPM Cloud (PBCS/EPBCS). It takes a standard numeric value (like an integer or a floating-point decimal) and explicitly casts it into a **Text String**. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Essbase calculation engines are natively mathematical. Almost all data blocks hold double-precision numbers. However, when an administrator needs to construct a dynamic member name (e.g., dynamically pointing a calculation to `"Asset_105"`), or when they need to log a specific numeric variance to the Job Console (e.g., `"Warning: Variance is 5000"`), they cannot easily mash a number into a string.
 If you try to concatenate the string `"Asset_"` with the integer `105`, the Essbase compiler will throw a severe Type Mismatch error because it does not know how to add text to math.

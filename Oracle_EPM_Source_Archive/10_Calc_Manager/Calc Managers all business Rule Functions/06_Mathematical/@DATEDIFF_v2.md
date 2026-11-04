@@ -1,10 +1,10 @@
-# @DATEDIFF
+﻿# @DATEDIFF
 
 ## Overview
 
 `@DATEDIFF` is a **native Essbase date mathematics function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates the mathematical difference (in days) between two **native Essbase Date Integers** (which represent the number of seconds elapsed since January 1, 1970). 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When EPM Cloud introduced Calc Manager, they introduced the powerful Java-based `@CalcMgrDaysBetween` and `@CalcMgrMonthsBetween` functions. However, before those existed, Essbase still needed a way to calculate date differences. 
 Essbase does not natively understand `YYYYMMDD` integers (like `20240515`). It only natively understands Unix epoch timestamps (the total number of seconds since 1970). If you have two timestamps, you cannot simply subtract them, because subtracting two massive second-counts leaves you with a massive second-count, not a readable number of days.

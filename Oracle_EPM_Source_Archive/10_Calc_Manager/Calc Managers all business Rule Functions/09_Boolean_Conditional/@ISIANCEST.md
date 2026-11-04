@@ -1,4 +1,4 @@
-# @ISIANCEST
+﻿# @ISIANCEST
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 *(The "I" stands for Inclusive).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building hierarchical algorithms, you often need to execute identical logic on an entire vertical branch of a tree, starting from a base input node and working all the way up to the top.
 If a user inputs data at `"Store_101"`, you might need to trigger a custom scaling factor on the Store, the District, the Region, and the Total Company. 
@@ -117,7 +117,7 @@ ENDFIX
 | Mistake | Explanation | Fix |
 |---------|-------------|-----|
 | Using `IF` inside a massive `FIX` | Performance Bottleneck | If you put `IF(@ISIANCEST("Target"))` inside a `FIX` covering 100,000 members, Essbase has to perform 100,000 outline traces. It is almost always exponentially faster to use the member selection equivalent in the `FIX` statement itself: `FIX(@IALLANCESTORS("Target"))`. Only use the boolean `IF` version when you are forced to branch logic inside an already constrained `FIX` block |
-| Backward Logic | `IF(@ISIANCEST("Parent"))` | The parameter must be the member at the BOTTOM of the desired lineage. The function asks "Am I an ancestor of the target?" If you put the Parent in the parameter, and the engine calculates the Child, it asks "Am I an ancestor of my Parent?", returning `FALSE`. If you want to check if the current member rolls up to a parent, use `@ISIDESC` |
+| Backward Logic | `IF(@ISIANCEST("Parent"))` | The parameter must be the member at the BOTTOM of the desired lineage. The function asks "Am I an ancestor of the target— If you put the Parent in the parameter, and the engine calculates the Child, it asks "Am I an ancestor of my Parent—, returning `FALSE`. If you want to check if the current member rolls up to a parent, use `@ISIDESC` |
 | Confusing with Siblings | "Give me the uncles" | Ancestor checks strictly trace the direct vertical bloodline. They do not trace horizontally. If you are calculating `"Store_102"` (a sibling of `"Store_101"`), `@ISIANCEST("Store_101")` will return `FALSE`. It only returns `TRUE` for the shared parent |
 
 ---

@@ -1,4 +1,4 @@
-# Smart Lists: Illustrative Scenarios and Review Questions
+﻿# Smart Lists: Illustrative Scenarios and Review Questions
 
 The scenarios below are **teaching examples**, not a claim about this project's configuration or a list of universally common implementations. Use them to practice selecting the right data model and designing tests.
 
@@ -28,28 +28,28 @@ The scenarios below are **teaching examples**, not a claim about this project's 
 
 ## Review questions and answers
 
-**1. What problem does a Smart List solve?**  
+**1. What problem does a Smart List solve—**  
 It gives users a predefined drop-down choice in supported Planning form cells.
 
-**2. What is the difference between ID, Name, and Label?**  
+**2. What is the difference between ID, Name, and Label—**  
 ID is the unique numeric identifier/order; Name is the programmatic key; Label is user-facing text.
 
-**3. Which dimension must be first in evaluation order?**  
+**3. Which dimension must be first in evaluation order—**  
 The dimension associated with the Smart List-type member, not universally Account.
 
-**4. Does a Smart List provide approval workflow?**  
+**4. Does a Smart List provide approval workflow—**  
 No. It captures a value. Approval units/templates govern planning approvals.
 
-**5. What does Create from Members do?**  
+**5. What does Create from Members do—**  
 It builds list choices from a dimension hierarchy and can honor dimension member security. Check minimum-access behavior and target users.
 
-**6. Can a user type arbitrary text into a Smart List cell?**  
+**6. Can a user type arbitrary text into a Smart List cell—**  
 Oracle describes selecting from the drop-down rather than typing. Confirm interface and client behavior for the applicable product.
 
-**7. How should Calculation Manager reference a choice?**  
+**7. How should Calculation Manager reference a choice—**  
 Use the supported Smart List insertion and expression, for example [[SLName.entryname]], and test the generated rule.
 
-**8. What should be reviewed before deleting or changing an entry?**  
+**8. What should be reviewed before deleting or changing an entry—**  
 Rule/formula use, data maps, downstream reports, history, and controlled recovery. Do not assume impact without reproducing it.
 
 ## Troubleshooting checklist
@@ -62,7 +62,7 @@ Rule/formula use, data maps, downstream reports, history, and controlled recover
 
 ## Oral review drill
 
-Explain the feature in one minute, then answer: Why not use a dimension? How are missing values shown? What proves a selected value produced the correct calculation? Which project facts are still unknown?
+Explain the feature in one minute, then answer: Why not use a dimension— How are missing values shown— What proves a selected value produced the correct calculation— Which project facts are still unknown—
 
 ## Oracle sources checked 2026-10-30
 

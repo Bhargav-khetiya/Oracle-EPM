@@ -1,4 +1,4 @@
-# @ILANCESTORS
+﻿# @ILANCESTORS
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 *(The "I" stands for Inclusive, and the "L" stands for Level-bound).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 The standard `@IALLANCESTORS` function blindly traces a lineage all the way to the absolute root of the dimension (Generation 1). However, in massive EPM applications, tracing all the way to the root is often unnecessary or mathematically dangerous. 
 For example, if you are allocating regional overhead to a store (`"Store_101"`), you might need to find its Parent (`"New_York"`) and its Grandparent (`"East_Region"`). But you explicitly DO NOT want to pull `"Total_Global_Company"` (the root) into the calculation, because that would pull global data into a localized regional script. 

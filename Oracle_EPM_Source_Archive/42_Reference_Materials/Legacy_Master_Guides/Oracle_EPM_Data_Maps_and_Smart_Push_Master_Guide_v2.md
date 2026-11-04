@@ -1,4 +1,4 @@
-# Oracle EPM Cloud — Data Maps & Smart Push Master Guide
+﻿# Oracle EPM Cloud — Data Maps & Smart Push Master Guide
 
 ## Overview
 
@@ -9,7 +9,7 @@ They share the same underlying mapping definition but serve different operationa
 - **Data Maps** = Batch-oriented, full-scope data push (scheduled or manual)
 - **Smart Push** = Delta-oriented, real-time data push (triggered on form save)
 
-### Why Do These Exist?
+### Why Do These Exist—
 
 EPM applications typically have multiple plan types:
 
@@ -44,7 +44,7 @@ Users input data into BSO cubes. But reporting cubes (ASO) need that data too. A
 
 ## 🔗 Core Concept: Data Maps
 
-### What Is a Data Map?
+### What Is a Data Map—
 
 A Data Map is a **reusable mapping definition** that specifies:
 1. **Source cube** — where data comes from
@@ -85,8 +85,8 @@ SOURCE CUBE (FinStmt BSO):               TARGET CUBE (Reporting ASO):
 ├── Scenario ──── AUTO-MAPPED ──────────► Scenario
 ├── Version  ──── AUTO-MAPPED ──────────► Version
 ├── Currency ──── AUTO-MAPPED ──────────► Currency
-├── Product  ← UNMAPPED (not in target?)  
-                                          ├── Department ← UNMAPPED (not in source?)
+├── Product  ← UNMAPPED (not in target—)  
+                                          ├── Department ← UNMAPPED (not in source—)
 ```
 
 ### Three Types of Dimension Relationships
@@ -246,7 +246,7 @@ For large-scale mappings, Oracle recommends **Target Expressions** over member m
 
 ---
 
-## ⚠️ Deep Dive: Does Data Map Aggregate Automatically?
+## ⚠️ Deep Dive: Does Data Map Aggregate Automatically—
 
 **This is the same question we answered for @XWRITE — and the answer is the same: NO.**
 
@@ -254,7 +254,7 @@ Data Maps read whatever value exists at the source intersection. They do NOT tri
 
 ### The Behavior Depends on Source Member Storage Type
 
-| Source Member Type | What Data Map Reads | Correct? |
+| Source Member Type | What Data Map Reads | Correct— |
 |--------------------|--------------------|---------| 
 | **Dynamic Calc (parent)** | ✅ Calculates on-the-fly → correct aggregated value | ✅ Yes — always current |
 | **Stored (parent, freshly aggregated)** | ✅ Reads the stored aggregated value | ✅ Yes — if nothing changed |
@@ -273,7 +273,7 @@ Total Entity (Stored) → 1000 (stale)   Total Entity → receives 1000 (wrong!)
                                         Sum = 1100, but parent shows 1000!
 ```
 
-**What happened?**: A user changed East from 300 to 400 after the last `AGG`. The children are correct (they're level-0 input), but `Total Entity` still holds the old sum (1000). The Data Map pushed 1000, not 1100.
+**What happened—**: A user changed East from 300 to 400 after the last `AGG`. The children are correct (they're level-0 input), but `Total Entity` still holds the old sum (1000). The Data Map pushed 1000, not 1100.
 
 **Fix**: Always aggregate before pushing if your source parents are Stored:
 
@@ -294,7 +294,7 @@ Total Entity (Dynamic Calc) → 1100     Total Entity → receives 1100 ✅
 
 Dynamic Calc parents always compute on-the-fly, so the Data Map always reads the correct value. This is why EPM Cloud applications typically use Dynamic Calc for parents.
 
-### What About Writing TO Parents in the Target?
+### What About Writing TO Parents in the Target—
 
 Same rules as @XWRITE:
 
@@ -429,7 +429,7 @@ Smart Push runs under the **saving user's security profile**:
 
 ## 📋 Data Map Options
 
-### What Else Can Be Copied?
+### What Else Can Be Copied—
 
 | Option | Description | Requirement |
 |--------|-------------|-------------|
@@ -683,22 +683,22 @@ println("Data Map executed successfully — data pushed to Reporting cube.")
 ### When to Use What — Decision Guide
 
 ```
-Do you need real-time transformation logic (IF, formulas)?
+Do you need real-time transformation logic (IF, formulas)—
   └── YES → @XWRITE
 
-Is the data movement BSO → ASO?
+Is the data movement BSO → ASO—
   └── YES → Data Map or Smart Push (not @XWRITE or DATACOPY)
 
-Is it triggered by a user saving a form?
+Is it triggered by a user saving a form—
   └── YES → Smart Push (on form save)
 
-Is it a large-scale nightly/scheduled sync?
+Is it a large-scale nightly/scheduled sync—
   └── YES → Data Map (batch job)
 
-Is it within the same cube, same structure?
+Is it within the same cube, same structure—
   └── YES → DATACOPY (fastest)
 
-Do you need to copy Comments/Attachments?
+Do you need to copy Comments/Attachments—
   └── YES → Data Map or Smart Push
 ```
 
@@ -750,7 +750,7 @@ When the outline (metadata) of your source or target cube changes — new member
 
 ### When to Synchronize
 
-| Event | Need Sync? |
+| Event | Need Sync— |
 |-------|-----------|
 | New member added to source or target | ✅ Yes |
 | Member renamed | ✅ Yes |

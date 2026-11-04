@@ -1,10 +1,10 @@
-# @CalcMgrAddYears
+﻿# @CalcMgrAddYears
 
 ## Overview
 
 `@CalcMgrAddYears` is a **custom Calc Manager date function** in Oracle EPM Cloud (PBCS/EPBCS). It adds or subtracts a specified number of calendar years to a starting date formatted as a `YYYYMMDD` integer.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In corporate finance, strategic planning often spans multiple years (e.g., 3-Year, 5-Year, or 10-Year Long Range Plans). While you could technically multiply a year by 365 and use `@CalcMgrAddDays`, or multiply by 12 and use `@CalcMgrAddMonths`, leap years and varying month lengths introduce significant drift and rounding errors when calculating exact anniversary dates over long periods.
 `@CalcMgrAddYears` specifically isolates the "Year" component of the `YYYYMMDD` integer, increments it, and correctly handles edge cases like leap years (e.g., adding 1 year to Feb 29, 2024 automatically adjusts to Feb 28, 2025). This ensures exact calendar accuracy for long-term forecasting.

@@ -1,14 +1,14 @@
-# @CalcMgrExcelSUMPRODUCT
+﻿# @CalcMgrExcelSUMPRODUCT
 
 ## Overview
 
 `@CalcMgrExcelSUMPRODUCT` is a **custom Calc Manager mathematical array function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `SUMPRODUCT` function directly inside an Essbase calculation script. 
 It takes two (or more) identically sized arrays of data, multiplies the corresponding components in the arrays together, and then **sums all the resulting products** into a single master value.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In FP&A modeling, you frequently have a Volume array (e.g., Units Sold) and a Rate array (e.g., Price). To calculate total revenue for a year, you must multiply `Jan_Units * Jan_Price`, then `Feb_Units * Feb_Price`, and so on, and then sum all 12 results together. 
-Normally, in Essbase, this happens automatically at intersections (e.g., `"Revenue" = "Units" * "Price";`). However, if you are attempting to calculate a *Weighted Average* (e.g., "What was the true weighted average price of our products across all 50 regions?"), you have to calculate `Sum(Units * Price)` and then divide by `Sum(Units)`. 
+Normally, in Essbase, this happens automatically at intersections (e.g., `"Revenue" = "Units" * "Price";`). However, if you are attempting to calculate a *Weighted Average* (e.g., "What was the true weighted average price of our products across all 50 regions—), you have to calculate `Sum(Units * Price)` and then divide by `Sum(Units)`. 
 Doing this cleanly in an Essbase calculation script often requires creating temporary dummy accounts to hold the intermediate `Units * Price` products. `@CalcMgrExcelSUMPRODUCT` eliminates the need for temporary accounts. It allows you to pass the Unit array and the Price array simultaneously. It instantly processes the multiplication and summing entirely in Java memory, returning the final numerator required for weighted averages.
 
 ### When to Use It

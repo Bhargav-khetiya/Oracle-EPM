@@ -1,11 +1,11 @@
-# @CalcMgrExcelSECOND
+﻿# @CalcMgrExcelSECOND
 
 ## Overview
 
 `@CalcMgrExcelSECOND` is a **custom Calc Manager time extraction function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `SECOND` function directly inside an Essbase calculation script. 
 It analyzes an Excel Serial Date/Time decimal (or a Java Timestamp object) and extracts solely the **Second of the Minute**, returning it as an integer between `0` and `59`.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In high-frequency operational planning models (like automated manufacturing, high-frequency trading logs, or telecom bandwidth monitoring), events are logged down to the exact second. In EPM Cloud, this data is usually passed as an Excel Serial Time format, where time is represented as a massive decimal fraction of a day (e.g., `0.5104166667` is exactly 12:15:00 PM).
 Extracting the specific "Second" component manually in an Essbase script requires taking that fraction, multiplying by 24 (hours), stripping the remainder, multiplying by 60 (minutes), stripping the remainder, and multiplying by 60 again (seconds), followed by aggressive rounding to account for floating-point drift. This is highly tedious and error-prone.

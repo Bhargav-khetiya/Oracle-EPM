@@ -1,13 +1,13 @@
-# SET CALCPARALLEL
+﻿# SET CALCPARALLEL
 
 ## Overview
 
 `SET CALCPARALLEL` is a **native Essbase system directive** in Oracle EPM Cloud (PBCS/EPBCS). It controls the multi-threading capabilities of the Essbase C-engine. By default, Essbase calculation scripts execute on a single thread (sequentially processing one block at a time). `SET CALCPARALLEL` allows you to override this and command the server to spawn multiple concurrent threads, drastically reducing calculation times for massive data sweeps.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 If a company has 10,000 Level-0 stores, and the script must execute a heavy allocation formula on every single one, a single-threaded server will calculate Store 1, finish, calculate Store 2, finish, etc. This might take 30 minutes.
-Modern EPM Cloud servers possess massive multi-core CPUs. If the server has 8 cores sitting idle, why use only one?
+Modern EPM Cloud servers possess massive multi-core CPUs. If the server has 8 cores sitting idle, why use only one—
 `SET CALCPARALLEL 8;` commands the engine to split the 10,000 stores into 8 distinct chunks (tasks). It assigns one chunk to each CPU core. The cores calculate the stores simultaneously. The 30-minute calculation finishes in 4 minutes. This is the single most powerful performance optimization command available to an administrator.
 
 ### When to Use It

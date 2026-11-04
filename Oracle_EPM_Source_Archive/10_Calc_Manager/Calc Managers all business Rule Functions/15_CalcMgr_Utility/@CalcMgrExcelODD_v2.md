@@ -1,11 +1,11 @@
-# @CalcMgrExcelODD
+﻿# @CalcMgrExcelODD
 
 ## Overview
 
 `@CalcMgrExcelODD` is a **custom Calc Manager mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `ODD` function directly inside an Essbase calculation script. 
 It analyzes a number, and if that number is not an odd integer, it forces the number **away from zero** to the nearest odd integer.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard rounding (`@ROUND` or `@TRUNC`) typically rounds to the nearest whole integer. However, in physical logistics, manufacturing, and staffing models, requirements must sometimes be forced into highly specific numerical patterns. 
 While rounding to *even* numbers is common for balancing (e.g., pallets on a truck), rounding to *odd* numbers is used in scenarios that require a definitive center point or tie-breaker (e.g., scheduling a committee of judges, or configuring machinery with a center-drive gear flanked by symmetrical support gears).

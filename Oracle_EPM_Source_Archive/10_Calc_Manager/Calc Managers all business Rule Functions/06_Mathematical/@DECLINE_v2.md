@@ -1,10 +1,10 @@
-# @DECLINE
+﻿# @DECLINE
 
 ## Overview
 
 `@DECLINE` is a **native Essbase financial function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates the **Declining Balance Depreciation** for a capital asset across a specified range of time. It computes exactly how much value an asset loses in each specific period, allowing the expense to be mapped directly to the Income Statement.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In corporate accounting, straight-line depreciation (where an asset loses the exact same amount of value every year) is easy to calculate (`Cost / Useful_Life`). However, for tax optimization and rapid-obsolescence assets (like computers or fleet vehicles), companies use Declining Balance Depreciation. This method heavily front-loads the depreciation expense, charging massive amounts in Year 1 and Year 2, and very little in Year 4 and Year 5.
 Calculating this manually across an array requires complex recursive loops, because the depreciation in Year 2 is based on the *remaining book value* after Year 1 (`(Cost - Y1_Depreciation) * Rate`).

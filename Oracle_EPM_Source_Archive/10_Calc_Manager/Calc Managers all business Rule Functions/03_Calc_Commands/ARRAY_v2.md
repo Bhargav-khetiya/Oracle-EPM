@@ -1,10 +1,10 @@
-# ARRAY
+﻿# ARRAY
 
 ## Overview
 
 `ARRAY` declares an **array variable** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager, allowing you to store **multiple indexed values** in a single variable. Arrays are useful for lookup tables, coefficient storage, and multi-value operations within calc scripts.
 
-### Why Does This Command Exist?
+### Why Does This Command Exist—
 
 Some calculations require storing and accessing multiple related values:
 - Monthly growth rates that vary by period

@@ -1,4 +1,4 @@
-﻿# 🏗️ Capital Module — Complete Master Setup Guide
+﻿﻿# 🏗️ Capital Module — Complete Master Setup Guide
 ## Capital Asset Planning, Depreciation, Lease Accounting (ASC 842 / IFRS 16) & Lifecycle Governance
 
 > **Module:** Capital  
@@ -177,18 +177,18 @@ Capital calculates at the physical asset level. To reflect these figures in the 
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: How does the Capital module support ASC 842 and IFRS 16 Right-of-Use (ROU) lease accounting?
+### Q1: How does the Capital module support ASC 842 and IFRS 16 Right-of-Use (ROU) lease accounting—
 **Answer:** When **Lease Assets** is enabled in Capital features, the module provisions lease calculation logic:
 1. It calculates the initial **Lease Liability** and **Right-of-Use (ROU) Asset** as the present value of future lease payments using the contract discount rate.
 2. It generates monthly amortization schedules separating **Interest Expense** from **Principal Payment**.
 3. It calculates straight-line ROU Asset amortization and synchronizes these entries directly into the Financials P&L and Balance Sheet cubes.
 
-### Q2: What happens to depreciation expense when an asset is retired or transferred between departments mid-year?
+### Q2: What happens to depreciation expense when an asset is retired or transferred between departments mid-year—
 **Answer:** When an asset transfer action is executed via the Capital action menu, the system sets the transfer date, clears future depreciation from the source entity, and initializes asset valuation and remaining useful life in the target entity. If retired, the system calculates the **Gain/Loss on Disposal** based on salvage value minus Net Book Value (NBV).
 
-### Q3: Can an enterprise configure custom depreciation methods beyond Straight Line and Declining Balance?
+### Q3: Can an enterprise configure custom depreciation methods beyond Straight Line and Declining Balance—
 **Answer:** Yes. Capital supports **Named Depreciation Methods** and custom monthly schedules. You can configure custom percentage tables (e.g. MACRS 5-year, 7-year accelerated schedules) where specific percentages are applied across each year of the asset's useful life.
 
 ---

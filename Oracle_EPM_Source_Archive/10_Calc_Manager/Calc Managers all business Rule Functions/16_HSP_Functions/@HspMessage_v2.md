@@ -1,13 +1,13 @@
-# @HspMessage
+﻿# @HspMessage
 
 ## Overview
 
 `@HspMessage` is a **Hyperion Planning (HSP) custom messaging function** embedded within Oracle EPM Cloud (PBCS/EPBCS). It provides a mechanism for an Essbase calculation script to trigger a custom, localized alert or error message directly back to the Planning user interface (or log it to the Job Console) if specific validation logic fails during the execution of a business rule.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When users launch Business Rules from a Web Form, Essbase typically runs the calculation silently in the background. If a user enters an impossible scenario (e.g., forecasting a Gross Margin of 150%) and hits "Save", a standard calculation script will mathematically process that 150%, saving bad data to the database.
-If an administrator writes validation logic (e.g., `IF("Margin" > 1.0)`), they can prevent the data from saving. But how does the user know *why* their data was rejected? Standard Essbase functions cannot easily send pop-up messages to the Web UI.
+If an administrator writes validation logic (e.g., `IF("Margin" > 1.0)`), they can prevent the data from saving. But how does the user know *why* their data was rejected— Standard Essbase functions cannot easily send pop-up messages to the Web UI.
 `@HspMessage` bridges this gap. It allows the script to intercept the bad data, halt the calculation, and trigger a relational payload that surfaces a predefined, localized error message (stored in the Planning repository) directly back to the end user, explaining exactly what they did wrong.
 
 *Note: In modern EPM Cloud, this function is frequently superseded by Calc Manager's graphical "Return" components and Groovy rules, which offer far richer UI messaging capabilities. However, `@HspMessage` remains a critical legacy tool for purely `.csc` driven architectures.*

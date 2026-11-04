@@ -1,10 +1,10 @@
-# @DATEPART
+﻿# @DATEPART
 
 ## Overview
 
 `@DATEPART` is a **native Essbase date extraction function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates a **native Essbase Date Integer** (a Unix epoch timestamp representing seconds since Jan 1, 1970) and mathematically extracts a specific calendar component from it, such as the exact Year, Month, Day of the Month, or Day of the Week.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard Essbase block storage is incredibly efficient, but it does not natively understand complex calendar concepts. If an HR system loads a `Hire_Date` into Essbase as a Unix timestamp (`1715731200`), the database just sees a massive 10-digit number. 
 If an administrator needs to write a rule that says "Give all employees hired in the month of May a 5% bonus," they cannot execute that logic against the number `1715731200`. 

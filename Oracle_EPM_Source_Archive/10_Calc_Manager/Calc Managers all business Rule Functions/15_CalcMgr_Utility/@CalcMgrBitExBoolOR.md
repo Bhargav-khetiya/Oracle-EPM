@@ -1,10 +1,10 @@
-# @CalcMgrBitExBoolOR
+﻿# @CalcMgrBitExBoolOR
 
 ## Overview
 
 `@CalcMgrBitExBoolOR` is a **custom Calc Manager bitwise logical function** in Oracle EPM Cloud (PBCS/EPBCS). It performs a Boolean Exclusive OR (XOR) operation. It evaluates two boolean conditions and returns `True` (1) if *exactly one* of the conditions is true, but returns `False` (0) if both are true or if both are false.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In standard Essbase logical statements, the `OR` operator is *inclusive*. 
 If you write `IF(Condition_A OR Condition_B)`, the block executes if A is true, if B is true, AND if both A and B are true.

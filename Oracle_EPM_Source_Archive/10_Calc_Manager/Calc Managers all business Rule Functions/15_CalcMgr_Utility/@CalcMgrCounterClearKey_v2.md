@@ -1,10 +1,10 @@
-# @CalcMgrCounterClearKey
+﻿# @CalcMgrCounterClearKey
 
 ## Overview
 
 `@CalcMgrCounterClearKey` is a **custom Calc Manager memory management function** in Oracle EPM Cloud (PBCS/EPBCS). It targets and deletes a specific "key" (a named sub-bucket) from within a specific named counter (a hash map) in the background Java memory heap.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard Calc Manager counters (`@CalcMgrCounterAddNumber`) are simple buckets: you put a number in, you take the total out.
 However, advanced Calc Manager logic allows you to track complex **Hash Maps** (dictionaries of key-value pairs). Instead of having just one global "Error_Count" bucket, you might have a master bucket called "Entity_Errors", and inside that bucket, you have specific "Keys" for each entity (e.g., Key: `New_York`, Value: `5`).

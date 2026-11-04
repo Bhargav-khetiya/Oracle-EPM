@@ -1,11 +1,11 @@
-# @CalcMgrExcelYIELDMAT
+﻿# @CalcMgrExcelYIELDMAT
 
 ## Overview
 
 `@CalcMgrExcelYIELDMAT` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `YIELDMAT` function directly inside an Essbase calculation script. 
 It calculates the **Annual Yield** of a security that pays interest *solely at maturity* (such as certain types of CDs, savings bonds, or custom fixed-income instruments).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Unlike standard corporate bonds (`YIELD`) which pay out periodic coupons (e.g., every 6 months), and unlike zero-coupon bonds (`YIELDDISC`) which pay no interest but are sold at a deep discount, "Yield-at-Maturity" securities are unique. They are often issued at $100, accrue interest silently over their lifespan, and then pay out a single massive lump sum of the Principal + All Accrued Interest on the exact maturity date. 
 If a corporate treasury buys one of these securities on the secondary market mid-way through its lifespan, they need to know their true annualized yield. 

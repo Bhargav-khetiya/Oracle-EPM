@@ -1,10 +1,10 @@
-# @GENMBRS
+﻿# @GENMBRS
 
 ## Overview
 
 `@GENMBRS` is a **native Essbase member selection function** in Oracle EPM Cloud (PBCS/EPBCS). It queries the database outline and generates a comprehensive array of all members within a specified dimension that exist exactly at a specified **Generation number**. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building calculation scripts, it is highly inefficient to loop through every single member in a massive dimension just to apply logic to a small subset. 
 If an administrator needs to execute a Top-Down allocation rule specifically on all Regional Managers (who all sit at Generation 3 in the `Entity` dimension), they could technically write `FIX(@DESCENDANTS("Total_Entity"))` and then put `IF(@CURGEN("Entity") == 3)` inside the formula. However, this forces the engine to visit every single Base store and every single Country parent, only to skip them. 

@@ -1,10 +1,10 @@
-# @ISDESC
+﻿# @ISDESC
 
 ## Overview
 
 `@ISDESC` is a **Boolean logical function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It checks whether the member currently being calculated is a descendant (child, grandchild, etc.) of a specified parent member. It returns `TRUE` or `FALSE`.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While `FIX(@DESCENDANTS("Parent"))` isolates a calculation block to a specific branch of the hierarchy, there are times when you need branching logic *within* a broader calculation.
 - You have a global `FIX` on "Total Entity", but you want to apply a 10% uplift to Europe and a 5% uplift to North America.
@@ -14,7 +14,7 @@ While `FIX(@DESCENDANTS("Parent"))` isolates a calculation block to a specific b
 
 ### When to Use It
 
-- Inside `IF` statements to route logic based on hierarchy branch (e.g., "Is this entity anywhere under 'Total_Europe'?").
+- Inside `IF` statements to route logic based on hierarchy branch (e.g., "Is this entity anywhere under 'Total_Europe'—).
 - To protect parent members from being overwritten by base-level logic by ensuring the calculation only targets descendants.
 - As a faster, natively optimized alternative to `IF(@ISMBR(@DESCENDANTS("Parent")))`.
 
@@ -47,7 +47,7 @@ Where:
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `mbrName` | Member | ✅ Yes | The target parent. The function asks: "Is the current member a descendant of this `mbrName`?" |
+| `mbrName` | Member | ✅ Yes | The target parent. The function asks: "Is the current member a descendant of this `mbrName`— |
 
 ---
 
@@ -152,7 +152,7 @@ ENDFIX
 |----------|-------------|
 | [`@ISIDESC`](./@ISIDESC.md) | The *Inclusive* version. Returns TRUE for the parent member as well as the descendants |
 | [`@DESCENDANTS`](./@DESCENDANTS.md) | Returns the *list* of descendants (used in FIX blocks) |
-| [`@ISANC`](./@ISANC.md) | The reverse check (Is the current member an ancestor of X?) |
+| [`@ISANC`](./@ISANC.md) | The reverse check (Is the current member an ancestor of X—) |
 
 ---
 

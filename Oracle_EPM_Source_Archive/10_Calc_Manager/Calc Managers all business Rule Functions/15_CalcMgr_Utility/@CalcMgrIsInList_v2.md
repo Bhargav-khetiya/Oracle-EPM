@@ -1,12 +1,12 @@
-# @CalcMgrIsInList
+﻿# @CalcMgrIsInList
 
 ## Overview
 
 `@CalcMgrIsInList` is a **custom Calc Manager boolean search function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a dynamic array interrogation tool. It scans a provided array of numbers and checks if a **specific target value** exists *anywhere* within that array, returning a Boolean (`true` or `false`).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
-When building dynamic logic, administrators often need to check if a specific condition has occurred historically. For example, "Did this product *ever* have negative sales in the last 12 months?" 
+When building dynamic logic, administrators often need to check if a specific condition has occurred historically. For example, "Did this product *ever* have negative sales in the last 12 months— 
 In standard Essbase, you would have to write a massive, chained IF statement: `IF("Jan" < 0 OR "Feb" < 0 OR "Mar" < 0...)`. This is rigid, hard to read, and breaks if the number of periods changes.
 `@CalcMgrIsInList` entirely eliminates this clunky logic. You can pass it an entire dynamic array (e.g., `@CHILDREN("YearTotal")`) and a target value (or use it in conjunction with other functions to detect specific triggers). It scans the entire array in memory and instantly returns `true` if the condition is met, drastically simplifying your code.
 

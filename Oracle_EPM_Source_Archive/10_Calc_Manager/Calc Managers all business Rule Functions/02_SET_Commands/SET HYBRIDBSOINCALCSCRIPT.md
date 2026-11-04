@@ -1,10 +1,10 @@
-# SET HYBRIDBSOINCALCSCRIPT
+﻿# SET HYBRIDBSOINCALCSCRIPT
 
 ## Overview
 
 `SET HYBRIDBSOINCALCSCRIPT` is a **native Essbase system directive** in modern Oracle EPM Cloud (PBCS/EPBCS). It acts as the master toggle switch to determine whether a Calculation Script is allowed to leverage the **Hybrid Aggregation Engine** (which processes sparse Dynamic Calc parent members lightning-fast in memory) or if it must revert to the legacy Block Storage (BSO) engine protocols.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Historically, Essbase databases were either pure BSO (Block Storage, where data is physically calculated and stored on disk) or pure ASO (Aggregate Storage, where data is calculated dynamically in memory on-the-fly). 
 Modern Oracle EPM introduced **Hybrid Essbase**, combining both. You load data into Level-0 BSO blocks, but you tag the Sparse parent members (like `"Total_Region"`) as `Dynamic Calc`. When a user runs a report, Hybrid Essbase aggregates the entire region in RAM instantly, completely eliminating the need for 3-hour nightly batch aggregations.

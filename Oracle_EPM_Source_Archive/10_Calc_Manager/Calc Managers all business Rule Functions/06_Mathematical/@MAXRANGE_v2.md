@@ -1,10 +1,10 @@
-# @MAXRANGE
+﻿# @MAXRANGE
 
 ## Overview
 
 `@MAXRANGE` is a **statistical/mathematical function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns the **maximum value** across a specified range of members. It scans a contiguous range within a single dimension and returns the highest value found.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Finding peak values across time periods, entities, or products is fundamental in planning:
 - Identifying the month with the highest revenue for capacity planning

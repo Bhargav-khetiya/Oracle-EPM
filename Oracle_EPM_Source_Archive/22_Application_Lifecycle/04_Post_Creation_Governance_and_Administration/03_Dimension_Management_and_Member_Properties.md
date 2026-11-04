@@ -1,4 +1,4 @@
-﻿# 📐 Dimension Management Post-Creation — Master Guide
+﻿﻿# 📐 Dimension Management Post-Creation — Master Guide
 ## Architecture, Custom Dimension Creation, Member Properties & Outline Governance
 
 > **Navigation:** `Home → Application → Overview → Dimensions`  
@@ -197,19 +197,19 @@ For enterprise applications containing tens of thousands of members, maintaining
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: What is the fundamental architectural difference between Dense and Sparse dimensions in Essbase BSO?
+### Q1: What is the fundamental architectural difference between Dense and Sparse dimensions in Essbase BSO—
 **Answer:**
 - **Dense Dimensions:** Define the internal cell matrix inside a physical data block on disk (typically `Account` and `Period`).
 - **Sparse Dimensions:** Define the multidimensional index pointers that identify where blocks live on disk (e.g. `Entity`, `CostCenter`, `Product`).
 A block only exists on disk if at least one data point exists for that sparse intersection.
 
-### Q2: What happens to historical data if a member's Data Storage is changed from `Store` to `Dynamic Calc`?
+### Q2: What happens to historical data if a member's Data Storage is changed from `Store` to `Dynamic Calc`—
 **Answer:** Historical data is **permanently destroyed**. When you change a member to Dynamic Calc and refresh the database, Essbase purges the physical data cells from disk. If you later revert the member back to Store, the data returns as `#MISSING`. Always export Level 0 data before changing storage properties!
 
-### Q3: How do you perform bulk dimension updates without clicking through the web UI?
-**Answer:** Export the dimension to CSV (`Application â†’ Overview â†’ Dimensions â†’ Export`), edit member properties in Excel or via script, and re-import via `Application â†’ Overview â†’ Dimensions â†’ Import` or EPM Automate:
+### Q3: How do you perform bulk dimension updates without clicking through the web UI—
+**Answer:** Export the dimension to CSV (`Application → Overview → Dimensions → Export`), edit member properties in Excel or via script, and re-import via `Application → Overview → Dimensions → Import` or EPM Automate:
 ```cmd
 epmautomate importMetadata "Account.csv"
 ```

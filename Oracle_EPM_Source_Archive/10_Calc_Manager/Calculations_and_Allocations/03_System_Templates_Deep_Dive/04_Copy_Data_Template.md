@@ -1,4 +1,4 @@
-# 04 Copy Data Template: Cross-Scenario Replication and DATACOPY Internals
+﻿# 04 Copy Data Template: Cross-Scenario Replication and DATACOPY Internals
 
 ## 1. Architectural Essence of Data Copying
 
@@ -13,7 +13,7 @@ The Calculation Manager **Copy Data Template** generates optimized replication l
 |                                      COPY DATA ENGINE SELECTION                                   |
 +---------------------------------------------------------------------------------------------------+
 |                                                                                                   |
-|  Are Source and Target identical in structure across all other dimensions?                        |
+|  Are Source and Target identical in structure across all other dimensions—                        |
 |                                 |                                                                 |
 |         +-----------------------+-----------------------+                                         |
 |         | YES                                           | NO (Requires Member Mapping / Math)     |

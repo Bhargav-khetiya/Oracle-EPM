@@ -1,10 +1,10 @@
-# @CalcMgrBitCompliment
+﻿# @CalcMgrBitCompliment
 
 ## Overview
 
 `@CalcMgrBitCompliment` is a **custom Calc Manager bitwise function** in Oracle EPM Cloud (PBCS/EPBCS). It performs a bitwise logical `NOT` operation (also known as a bitwise complement or inversion) on a single integer.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Bitwise operations are primarily used in EPM when a developer employs a **Bitmasking** strategy—storing multiple Boolean states (True/False flags) within a single integer account to save block space. 
 For example, a "Status" account might hold the value `7` (Binary `0111`), representing that three different flags are currently turned "ON".

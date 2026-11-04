@@ -1,11 +1,11 @@
-# @CalcMgrExcelRECEIVED
+﻿# @CalcMgrExcelRECEIVED
 
 ## Overview
 
 `@CalcMgrExcelRECEIVED` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `RECEIVED` function directly inside an Essbase calculation script. 
 It calculates the **Total Amount Received at Maturity** for a fully invested security, typically a discount bond or short-term promissory note.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When a corporate treasury department buys a short-term discount note, they pay a flat initial investment amount today. They are guaranteed a specific discount yield (interest rate). However, they need to calculate exactly how much physical cash will be deposited back into their bank account on the maturity date. 
 To calculate this manually in Essbase, a developer must calculate the exact number of days between the settlement date and the maturity date based on specific banking calendars (e.g., Actual/360), and then apply the inverse discount formula: `Investment / (1 - (Discount * Days / YearBase))`. 

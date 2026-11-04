@@ -1,10 +1,10 @@
-# @CalcMgrDiffDate
+﻿# @CalcMgrDiffDate
 
 ## Overview
 
 `@CalcMgrDiffDate` is a **custom Calc Manager date function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates the mathematical difference between two dates, returning the result in a specified unit (days, months, weeks, or years).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 This function is functionally identical to [`@CalcMgrDateDiff`](./@CalcMgrDateDiff.md). The existence of both `@CalcMgrDiffDate` and `@CalcMgrDateDiff` in the Calc Manager library is an artifact of the library's historical evolution. Over time, as Oracle merged different custom function libraries (such as CDFs from classic Essbase and Groovy-based functions), duplicate naming conventions emerged. 
 `@CalcMgrDateDiff` is generally the more modern and widely documented standard, but `@CalcMgrDiffDate` remains fully supported to ensure backward compatibility with older calculation scripts that rely on it.

@@ -1,7 +1,7 @@
-# Oracle EPM Cloud: The Ultimate Master Guide to Auditing
+﻿# Oracle EPM Cloud: The Ultimate Master Guide to Auditing
 
-## 1. Introduction: What is Auditing?
-Auditing in Oracle EPM Cloud allows administrators to track changes made to the application. It answers the critical questions of "Who changed what, and when?" This is essential for SOX compliance, internal controls, and troubleshooting unexpected application behavior.
+## 1. Introduction: What is Auditing—
+Auditing in Oracle EPM Cloud allows administrators to track changes made to the application. It answers the critical questions of "Who changed what, and when— This is essential for SOX compliance, internal controls, and troubleshooting unexpected application behavior.
 
 ---
 

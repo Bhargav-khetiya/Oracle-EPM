@@ -1,13 +1,13 @@
-# @ATTRIBUTE
+﻿# @ATTRIBUTE
 
 ## Overview
 
 `@ATTRIBUTE` is a **member selection function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It returns a list of all base (Level 0) members in a dimension that are associated with a specific Attribute member.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Attribute dimensions (like "Size", "Color", "Region_Type") categorize base members of standard dimensions (like "Store" or "Product") without exploding the size of the database. 
-When you need to run a calculation on all "Large" stores, you could try to group them all under a single "Total Large Stores" parent. But what if you also need to group them by "East Coast vs West Coast"? You can't build hierarchies for every possible combination without making a mess.
+When you need to run a calculation on all "Large" stores, you could try to group them all under a single "Total Large Stores" parent. But what if you also need to group them by "East Coast vs West Coast"— You can't build hierarchies for every possible combination without making a mess.
 Attributes solve this by tagging members. `@ATTRIBUTE` is the function that reads those tags and translates them into a list of target members for your calculation.
 
 ### When to Use It

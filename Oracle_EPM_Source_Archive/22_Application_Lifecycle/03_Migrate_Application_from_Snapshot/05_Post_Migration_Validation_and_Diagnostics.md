@@ -1,4 +1,4 @@
-﻿# 🔍 Post-Migration Validation & Troubleshooting Guide
+﻿﻿# 🔍 Post-Migration Validation & Troubleshooting Guide
 ## Comprehensive Verification, Reports, and System Readiness Checklist
 
 > **Purpose:** Validate application integrity, troubleshoot migration failures, and verify functional readiness after restoring or creating an application from snapshot  
@@ -234,15 +234,15 @@ Use this checklist to sign off on an application migration:
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: Why is executing a manual Database Refresh mandatory immediately after snapshot import?
-**Answer:** Snapshot imports write dimension records and formulas into the relational repository. While the import engine triggers an initial sync, a manual **Refresh Database** (Application â†’ Overview â†’ Actions â†’ Refresh Database) is required to ensure that all Essbase security filters, calculated member formulas, and index restructuring are fully compiled into physical cube storage.
+### Q1: Why is executing a manual Database Refresh mandatory immediately after snapshot import—
+**Answer:** Snapshot imports write dimension records and formulas into the relational repository. While the import engine triggers an initial sync, a manual **Refresh Database** (Application → Overview → Actions → Refresh Database) is required to ensure that all Essbase security filters, calculated member formulas, and index restructuring are fully compiled into physical cube storage.
 
-### Q2: How do you verify that Calc Manager business rules deployed successfully and are not in draft mode?
-**Answer:** Navigate to Navigator (â˜°) â†’ Rules (Calculation Manager). Switch to the **Deployment** view. Check that all rules display a green checkmark indicating **Deployed**. If any rules show as modified or undeployed, select the application node and click **Deploy Application** to compile scripts into Essbase.
+### Q2: How do you verify that Calc Manager business rules deployed successfully and are not in draft mode—
+**Answer:** Navigate to Navigator (â˜°) → Rules (Calculation Manager). Switch to the **Deployment** view. Check that all rules display a green checkmark indicating **Deployed**. If any rules show as modified or undeployed, select the application node and click **Deploy Application** to compile scripts into Essbase.
 
-### Q3: What diagnostics checks should be run on Substitution Variables and Valid Intersections post-migration?
+### Q3: What diagnostics checks should be run on Substitution Variables and Valid Intersections post-migration—
 **Answer:**
 1. **Substitution Variables:** Verify that environment-specific variables (e.g. &CurYear, &CurMonth, server endpoints) reflect target values rather than source environment values.
 2. **Valid Intersections:** Test a sample data form across restricted dimensions to confirm that target valid intersection rules properly block unauthorized cell combinations.

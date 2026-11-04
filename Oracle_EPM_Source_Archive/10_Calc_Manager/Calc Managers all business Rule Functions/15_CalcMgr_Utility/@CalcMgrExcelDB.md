@@ -1,11 +1,11 @@
-# @CalcMgrExcelDB
+﻿# @CalcMgrExcelDB
 
 ## Overview
 
 `@CalcMgrExcelDB` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `DB` function directly inside an Essbase calculation script. 
 It calculates the depreciation of an asset for a specific period using the **Fixed-Declining Balance Method**.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard straight-line depreciation divides the cost of an asset evenly over its lifespan. The Declining Balance method accelerates depreciation, taking a larger expense in the early years and less in the later years. 
 The mathematical calculation for fixed-declining balance is highly complex because it requires determining a specific depreciation rate based on the asset's cost, salvage value, and lifespan: `Rate = 1 - ((Salvage / Cost) ^ (1 / Life))`, which is then rounded to three decimal places. Furthermore, if the asset is purchased mid-year, the first period must be prorated mathematically, which alters the balance for every subsequent year.

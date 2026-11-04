@@ -1,10 +1,10 @@
-# @COMPOUND
+﻿# @COMPOUND
 
 ## Overview
 
 `@COMPOUND` is a **native Essbase financial function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates the **Compound Interest** (or compounded value) of a principal amount over a specified period of time, based on a defined interest rate. It returns the total accumulated value (Principal + Interest) across a range of periods.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Calculating simple interest (`Principal * Rate`) is easy. Calculating compound interest (where the interest earned in Period 1 earns its own interest in Period 2) is mathematically complex to write in a standard calculation script. 
 If a company deposits `$1,000,000` into a treasury account earning `5%` annually, the balance at the end of Year 5 requires an exponential formula: $A = P(1 + r)^t$. 

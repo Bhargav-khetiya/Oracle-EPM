@@ -1,4 +1,4 @@
-# 05 — Format rules and data validation
+﻿# 05 — Format rules and data validation
 
 ## Core idea
 
@@ -48,9 +48,9 @@ Keep a small scenario table containing: input condition, expected format/message
 
 ## Recall check
 
-1. What is the difference between a format rule and a validation rule? One changes presentation; the other evaluates a defined condition and may message or affect approval behavior.
-2. Does preview save rule edits? No. Save the form after preview.
-3. Why validate as the intended user? Access-dependent validation must reflect that user’s security and accessible intersections.
+1. What is the difference between a format rule and a validation rule— One changes presentation; the other evaluates a defined condition and may message or affect approval behavior.
+2. Does preview save rule edits— No. Save the form after preview.
+3. Why validate as the intended user— Access-dependent validation must reflect that user’s security and accessible intersections.
 
 **Teach-back:** Explain how you would turn an approved planning policy into a testable form rule without inventing a threshold.
 

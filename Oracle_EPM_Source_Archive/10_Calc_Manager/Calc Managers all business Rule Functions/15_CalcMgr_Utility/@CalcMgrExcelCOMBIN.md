@@ -1,13 +1,13 @@
-# @CalcMgrExcelCOMBIN
+﻿# @CalcMgrExcelCOMBIN
 
 ## Overview
 
 `@CalcMgrExcelCOMBIN` is a **custom Calc Manager mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `COMBIN` function directly inside an Essbase calculation script. 
 It calculates the number of possible **Combinations** for a given number of items, where order does not matter. Mathematically, it evaluates the classic binomial coefficient formula: `n! / (k! * (n - k)!)`.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
-Combinatorics are heavily used in probability, risk analysis, and operations research. For example, if you have a team of 10 people, and you need to select a committee of 3, how many unique 3-person committees can you form? (The answer is 120).
+Combinatorics are heavily used in probability, risk analysis, and operations research. For example, if you have a team of 10 people, and you need to select a committee of 3, how many unique 3-person committees can you form— (The answer is 120).
 In standard Essbase math, there is no native factorial function (`!`). To calculate combinations manually, a developer would have to write a custom looping script that multiplies variables incrementally (`10 * 9 * 8 ...`) just to evaluate the numerator, which is horribly inefficient and prone to integer overflow.
 `@CalcMgrExcelCOMBIN` handles the complex factorial math entirely in the background Java layer, instantly returning the precise number of combinations, ensuring perfect parity with legacy Excel models that rely on the `=COMBIN()` function.
 
@@ -69,7 +69,7 @@ Returns the total number of possible combinations.
 ```essbase
 /* 
    We have 10 products. We want to bundle them in groups of 3. 
-   How many unique bundles can we make? (Returns 120)
+   How many unique bundles can we make— (Returns 120)
 */
 "Total_Possible_Bundles" = @CalcMgrExcelCOMBIN(10, 3);
 ```

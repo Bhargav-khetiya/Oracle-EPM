@@ -1,4 +1,4 @@
-# Oracle EPM: The Ultimate Master Guide to Smart Lists (EPBCS / PBCS)
+﻿# Oracle EPM: The Ultimate Master Guide to Smart Lists (EPBCS / PBCS)
 
 
 ---
@@ -86,7 +86,7 @@ Shows exactly how your configuration looks in a live form cell. It renders the d
 **Goal:** Require users to explain high travel expenses.
 - **Setup:** Create Smart List `SL_TravelJustif`. Entries: `1=Client_Visit`, `2=Conference`, `3=Training`.
 - **Application:** Assign this to a new Account member `Travel_Justification` (Data Type: Smart List). Add to a data entry form next to `Travel_Expenses`.
-- **Edge Case:** If the user leaves it blank, what happens? Configure `#MISSING Drop-Down Label` to "Select Reason" and `#MISSING Form Label` to `Drop-Down Setting` so it forces a visual prompt instead of an empty cell.
+- **Edge Case:** If the user leaves it blank, what happens— Configure `#MISSING Drop-Down Label` to "Select Reason" and `#MISSING Form Label` to `Drop-Down Setting` so it forces a visual prompt instead of an empty cell.
 
 ### Hands-On 2: The Boolean Calculation Driver (Yes/No)
 **Goal:** A flag to determine if an employee gets a bonus.
@@ -178,41 +178,41 @@ Shows exactly how your configuration looks in a live form cell. It renders the d
 
 ## 5. Advanced Technical Questions
 
-**Q1: A user claims they selected "High Risk" on a form and saved it. Another user opens a report and sees "Low Risk". Assuming both users have correct security, what happened?**
+**Q1: A user claims they selected "High Risk" on a form and saved it. Another user opens a report and sees "Low Risk". Assuming both users have correct security, what happened—**
 > **A:** There are a few possibilities.
 > 1. Form intersection conflicts: The users might be looking at different intersections (e.g., different Scenarios/Versions).
 > 2. Data Push: If the report is pointing to the ASO cube, the Smart Push or Data Map might not have run, so the ASO cube is showing stale data.
 > 3. Smart List ID changes: The Smart List IDs might have been altered.
 
-**Q2: How do you migrate a Smart List from Test to Prod without changing the internal IDs?**
+**Q2: How do you migrate a Smart List from Test to Prod without changing the internal IDs—**
 > **A:** You must use **Migration (LCM)**. Do not manually recreate Smart Lists in Prod. LCM preserves the internal IDs. If you manually create them, the IDs will mismatch, and moving Essbase data between environments will result in incorrect drop-down selections.
 
-**Q3: Can a single cell have multiple Smart Lists?**
+**Q3: Can a single cell have multiple Smart Lists—**
 > **A:** No. If multiple dimensions in a cell intersection have different Smart Lists assigned, the Evaluation Order dictates which one wins. Only one drop-down will appear.
 
-**Q4: I set my Evaluation Order perfectly, but my cell is still Read-Only and won't show the Smart List. Why?**
+**Q4: I set my Evaluation Order perfectly, but my cell is still Read-Only and won't show the Smart List. Why—**
 > **A:** Check standard Essbase properties:
-> - Is the intersection at Level-0 for all sparse dimensions?
-> - Is the Scenario/Version open for input?
-> - Does the Account have a Member Formula? (Members with formulas are read-only).
-> - Is the Account consolidation operator set to dynamic calc?
+> - Is the intersection at Level-0 for all sparse dimensions—
+> - Is the Scenario/Version open for input—
+> - Does the Account have a Member Formula— (Members with formulas are read-only).
+> - Is the Account consolidation operator set to dynamic calc—
 
-**Q5: What is the maximum number of entries a Smart List can have?**
+**Q5: What is the maximum number of entries a Smart List can have—**
 > **A:** Technically, thousands, but practically, performance degrades on web forms if you exceed a few hundred. If you need 1,000+ entries, you should use a Dimension (Create from Members) or re-evaluate the architecture, as drop-downs become unmanageable for users.
 
-**Q6: We use "Create from Members" for our Employee Smart List. An employee left the company, so we deleted the member from the dimension. What happens to the historical data?**
+**Q6: We use "Create from Members" for our Employee Smart List. An employee left the company, so we deleted the member from the dimension. What happens to the historical data—**
 > **A:** The historical Essbase data (the ID) remains, but it loses its textual translation. It will show up as a raw number or an invalid selection on historical forms. To handle this, instead of deleting the member, move it to an "Inactive Employees" hierarchy and restrict security to "Display" so history is maintained.
 
-**Q7: Can I use Smart Lists in a Data Validation Rule within a Web Form?**
+**Q7: Can I use Smart Lists in a Data Validation Rule within a Web Form—**
 > **A:** Yes! You can write a validation rule: `If Current Cell Value == 3 (Approved)`, turn the cell background green. You reference the integer ID or the Smart List name depending on the validation builder context.
 
-**Q8: If I have a Smart List with Automatically Generate IDs, and I import entries via a metadata flat file, what IDs get assigned?**
+**Q8: If I have a Smart List with Automatically Generate IDs, and I import entries via a metadata flat file, what IDs get assigned—**
 > **A:** EPM will assign the next available sequential IDs. It is best practice for highly controlled environments to *uncheck* "Automatically Generate IDs" and explicitly define the IDs in your metadata load file to ensure consistency across environments.
 
-**Q9: How do Smart Lists impact Essbase cache and performance?**
+**Q9: How do Smart Lists impact Essbase cache and performance—**
 > **A:** Smart Lists themselves have almost zero impact on Essbase calculation performance because Essbase only processes the integers. However, excessive use of IF statements checking those integers across massive sparse combinations can cause performance overhead.
 
-**Q10: Why do Smart Lists cause issues in multi-currency applications when attached to Currency data types?**
+**Q10: Why do Smart Lists cause issues in multi-currency applications when attached to Currency data types—**
 > **A:** They shouldn't be! If an Account is meant to hold a Smart List, its Data Type should be set to `Smart List`, not `Currency`. If it is `Currency`, currency conversion scripts (HSP_Rates) will attempt to multiply the Smart List ID (e.g., `3`) by the FX rate (e.g., `1.5`), altering the ID to `4.5` and destroying the Smart List selection.
 
 ---
@@ -385,13 +385,13 @@ When you push data to an ASO reporting cube, ASO does not natively understand "S
 ### 7.5. The "Detach" Option
 In the Smart Lists management screen (**Navigator > Smart Lists**), there is an explicit **"Detach"** button located on the top right toolbar. When you select a Smart List that was originally created dynamically from a dimension, clicking this button permanently separates the Smart List from its source dimension.
 
-**What happens when you Detach?**
+**What happens when you Detach—**
 1. The Smart List breaks its dynamic link to the dimension hierarchy.
 2. The "Entries" tab (which is hidden while dynamic) reappears.
 3. The current list of dynamically generated members is frozen and converted into standard, static, manually-managed entries.
 4. Future dimension updates (adding/removing members) will no longer sync to this Smart List.
 
-**Why would you use the Detach technique?**
+**Why would you use the Detach technique—**
 *   **Bulk Loading Hack:** If you need to create a Smart List with 500 entries (e.g., US States and Counties), typing them manually is tedious. Instead, you check "Create from Members", point it to a dimension containing those 500 members, hit save, and then immediately uncheck it (detach). You just auto-generated 500 entries in seconds!
 *   **Custom Labels:** When a Smart List is dynamic, its Label *must* match the member Alias. If you detach it, you can edit the labels on the Entries tab to say anything you want, completely independent of the dimension aliases.
 *   **Selective Deletion:** If you linked to the `Vendor` dimension, but you want to hide 3 specific vendors from the drop-down (and security filtering is too broad), you can detach the list and manually delete those 3 entries.

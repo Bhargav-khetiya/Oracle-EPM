@@ -1,10 +1,10 @@
-# @CalcMgrAddWeeks
+﻿# @CalcMgrAddWeeks
 
 ## Overview
 
 `@CalcMgrAddWeeks` is a **custom Calc Manager date function** in Oracle EPM Cloud (PBCS/EPBCS). It adds or subtracts a specified number of calendar weeks to a starting date formatted as a `YYYYMMDD` integer.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While most corporate finance models operate on monthly or quarterly cycles, certain industries (like Retail, Logistics, Manufacturing, and CPG) plan heavily on weekly cadences (e.g., the 4-4-5 retail calendar, weekly production runs, or bi-weekly payrolls). 
 While you *could* achieve the exact same mathematical result by multiplying the number of weeks by 7 and using the `@CalcMgrAddDays` function, `@CalcMgrAddWeeks` provides a cleaner, more semantic function specifically designed to communicate intent in weekly planning models. It makes calculation scripts significantly easier to read and audit.

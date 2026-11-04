@@ -1,6 +1,6 @@
-# 05 Strategic Modeling (HSF): Long-Range Planning, M&A, and Balance Sheet Optimization
+﻿# 05 Strategic Modeling (HSF): Long-Range Planning, M&A, and Balance Sheet Optimization
 
-## 1. What is Strategic Modeling?
+## 1. What is Strategic Modeling—
 
 While operational planning modules (Financials, Workforce, Capital, Projects) focus on detailed 1-to-3-year monthly budgets, **Strategic Modeling** (historically known as **Hyperion Strategic Finance / HSF**) serves the C-suite: Chief Executive Officers, Chief Financial Officers, Corporate Treasurers, and Head of M&A / Corporate Development.
 
@@ -29,7 +29,7 @@ Strategic Modeling provides sophisticated **5-to-10-to-20-year corporate simulat
 ### Fresher Metaphor: The CFO's Long-Term Flight Simulator
 Think of operational budgeting as driving a car down the road (checking fuel, steering, engine speed). Strategic Modeling is a **full-motion flight simulator**: 
 The CFO asks: 
-> *"What if we borrow \$600 million at 7.5% interest, acquire our primary European competitor for cash and stock, and a severe global recession hits in Year 3? Will our operating cash flow cover debt service, or will we violate our Net Debt-to-EBITDA covenant of 3.5x?"*
+> *"What if we borrow \$600 million at 7.5% interest, acquire our primary European competitor for cash and stock, and a severe global recession hits in Year 3— Will our operating cash flow cover debt service, or will we violate our Net Debt-to-EBITDA covenant of 3.5x—*
 
 Strategic Modeling evaluates the entire simultaneous financial equation and delivers the answer within 2 seconds.
 
@@ -186,41 +186,41 @@ Strategic Modeling connects seamlessly with the operational Financials cube thro
 
 ## 7. Top 10 Twisted Review & Interview Questions on Strategic Modeling
 
-### Q1: Is Strategic Modeling an Essbase BSO or ASO cube?
+### Q1: Is Strategic Modeling an Essbase BSO or ASO cube—
 **Answer**: **NEITHER**. Strategic Modeling is built upon the acquired **Hyperion Strategic Finance (HSF)** engine. It uses an encapsulated financial statement model file architecture rather than multidimensional Essbase storage (`.pag`/`.ind` or `.dat` slices). It runs in the EPM Cloud environment, but calculations are executed by its own internal financial statement solver.
 
-### Q2: What is the primary difference between a SubModel and a Rollup in Strategic Modeling?
+### Q2: What is the primary difference between a SubModel and a Rollup in Strategic Modeling—
 **Answer**:
 * **`SubModel`**: An autonomous, self-contained business entity, legal division, or acquisition target model containing a complete, dedicated P&L, balance sheet, debt schedule, and cash flow statement.
 * **`Rollup`**: A parent consolidation container that aggregates multiple SubModels into a combined corporate entity, applying currency translation, ownership percentages, and intercompany eliminations.
 
-### Q3: How does Strategic Modeling eliminate circular reference errors when calculating debt interest?
+### Q3: How does Strategic Modeling eliminate circular reference errors when calculating debt interest—
 **Answer**: Standard spreadsheets fail or loop endlessly when Interest depends on Cash, Cash depends on Net Income, and Net Income depends on Interest. Strategic Modeling eliminates this using an internal **simultaneous equation solver** (matrix convergence) that evaluates all balance sheet and cash flow equations simultaneously to an exact tolerance (e.g., $10^{-6}$) in memory.
 
-### Q4: Can an end user execute Monte Carlo simulations on a standard Planning form?
+### Q4: Can an end user execute Monte Carlo simulations on a standard Planning form—
 **Answer**: **No**. Standard Planning forms and Essbase cubes do not have native Monte Carlo stochastic engines. Monte Carlo simulations are exclusively supported within the **Strategic Modeling** module.
 
-### Q5: How is Goodwill calculated during an M&A transaction in Strategic Modeling?
+### Q5: How is Goodwill calculated during an M&A transaction in Strategic Modeling—
 **Answer**: Goodwill is calculated following IFRS 3 / ASC 805:
 $$\text{Goodwill} = \text{Purchase Consideration} - \text{Fair Market Value of Net Identifiable Assets}$$
 The engine allows users to input fair value adjustments (step-ups for PP&E and intangible assets, plus deferred tax liabilities) before computing the residual goodwill balance.
 
-### Q6: What is a "Cash Sweep" in Strategic Modeling debt modeling?
+### Q6: What is a "Cash Sweep" in Strategic Modeling debt modeling—
 **Answer**: A Cash Sweep is an automated treasury logic rule that monitors cash flow. If cash exceeds a defined operational liquidity reserve (e.g., $\$25\text{M}$ minimum cash), the engine automatically applies the excess cash to pay down outstanding high-interest debt tranches according to a user-defined debt repayment priority order.
 
-### Q7: What are "Funding Options" in Strategic Modeling?
+### Q7: What are "Funding Options" in Strategic Modeling—
 **Answer**: Funding Options govern how the model handles cash deficits or cash surpluses. Planners can configure automated rules:
 * If cash is negative: Draw from Revolving Credit Line first, issue Long-Term Debt second, issue Equity third.
 * If cash is positive: Pay down Revolver first, invest in Marketable Securities second, execute Share Buybacks third.
 
-### Q8: How does Strategic Modeling handle different time periodicities?
+### Q8: How does Strategic Modeling handle different time periodicities—
 **Answer**: Unlike Essbase cubes where time periodicity is uniform across the entire cube, Strategic Modeling allows **Time Structure Flexibility**:
 * Historical years can be stored annually (e.g., FY21 - FY23).
 * Immediate budget years can be modeled monthly or quarterly (e.g., FY24 Q1 - Q4).
 * Long-range strategic projection years can be modeled annually (e.g., FY25 - FY35).
 
-### Q9: Can Strategic Modeling models be accessed in Microsoft Excel?
+### Q9: Can Strategic Modeling models be accessed in Microsoft Excel—
 **Answer**: **Yes**. Strategic Modeling provides a dedicated extension for **Smart View**. Financial analysts and C-suite executives can open, modify, calculate, and run scenario simulations on Strategic Modeling models directly inside Microsoft Excel with full ribbon integration.
 
-### Q10: How does data transfer between Strategic Modeling and Financials (`OEP_FS`)?
+### Q10: How does data transfer between Strategic Modeling and Financials (`OEP_FS`)—
 **Answer**: Through the **Data Maps** framework or Strategic Modeling Data Integration. Account lines in Strategic Modeling (e.g., `v100: Total Revenue`, `v1000: Operating Income`) are mapped to corresponding `Account` dimension members in `OEP_FS`, defining the target Scenario (e.g., `Strategic Targets`) and Year. Transfers can be triggered on demand or scheduled via EPM Automate.

@@ -1,11 +1,11 @@
-# @CalcMgrExcelRANK
+﻿# @CalcMgrExcelRANK
 
 ## Overview
 
 `@CalcMgrExcelRANK` is a **custom Calc Manager statistical array function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `RANK` function directly inside an Essbase calculation script. 
 It analyzes an array of data, evaluates a specific numerical value, and returns the **absolute integer rank** of that value within the dataset (e.g., "Out of 50 stores, this store is #4").
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Performance ranking is a cornerstone of corporate reporting. Sales Directors want to see their "Top 10" reps. Supply Chain VPs want a list of their "Bottom 5" worst-performing vendors. 
 To calculate an absolute integer rank manually in an Essbase calc script, you would have to write a highly inefficient looping mechanism: taking the current store's sales, looping through every other store in the dimension, checking if their sales are higher, and iterating a counter. This is violently destructive to system performance.

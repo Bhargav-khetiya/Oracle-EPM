@@ -1,11 +1,11 @@
-# @CalcMgrExcelFVSCHEDULE
+﻿# @CalcMgrExcelFVSCHEDULE
 
 ## Overview
 
 `@CalcMgrExcelFVSCHEDULE` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `FVSCHEDULE` function directly inside an Essbase calculation script. 
 It calculates the **Future Value** of an initial principal sum after applying a series of **variable (changing) interest rates**.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard Future Value (`FV`) assumes that the interest rate stays perfectly flat for the entire life of the investment. However, in reality, many investments (like adjustable-rate CDs, staggered corporate bonds, or dynamic inflation-adjusted funds) have interest rates that change every single year.
 To project the future value of a $10,000 seed that grows at 3% in Year 1, 4% in Year 2, and 5% in Year 3, you would normally have to write an iterative loop in Essbase: `((Seed * 1.03) * 1.04) * 1.05`. If the investment spans 30 years, this loop becomes cumbersome and slow.

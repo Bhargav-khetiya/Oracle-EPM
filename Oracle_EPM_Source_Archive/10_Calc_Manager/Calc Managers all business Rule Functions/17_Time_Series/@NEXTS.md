@@ -1,10 +1,10 @@
-# @NEXTS
+﻿# @NEXTS
 
 ## Overview
 
 `@NEXTS` is a **time-series / navigation function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns the data value from a member that is a specified number of positions **ahead** (forward) in the outline order within the same level, while **skipping `#MISSING` values**. The "S" suffix stands for "Skip Missing."
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In financial forecasting and planning, you often need to look ahead in time periods to find the next available (non-missing) data point:
 - Finding the next non-empty forecast period for interpolation

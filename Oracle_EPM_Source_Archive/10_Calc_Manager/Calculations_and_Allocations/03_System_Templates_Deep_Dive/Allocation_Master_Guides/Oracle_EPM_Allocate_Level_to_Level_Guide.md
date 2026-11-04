@@ -1,8 +1,8 @@
-# Oracle EPM: Complete Guide to the Allocate - Level to Level Template (EPBCS / PBCS)
+﻿# Oracle EPM: Complete Guide to the Allocate - Level to Level Template (EPBCS / PBCS)
 
 ---
 
-## 1. What Is the Allocate - Level to Level Template?
+## 1. What Is the Allocate - Level to Level Template—
 
 The **Allocate - Level to Level** template is a specialized system template in Oracle EPM Cloud's **Calculation Manager** designed for a specific use case: **allocating data from one hierarchy level to another within the same dimension**. Unlike the standard Allocation template (which allocates from a source member to all level 0 descendants of a parent), this template lets you define a **start level** and an **end level**, distributing data from members at the start level down to members at the end level.
 
@@ -19,7 +19,7 @@ The **Allocate - Level to Level** template is a specialized system template in O
 
 ### When to Use This Template
 
-| Situation | Use Level to Level? |
+| Situation | Use Level to Level— |
 |---|---|
 | Data is loaded at parent level and needs to be pushed to children (one level down) | ✅ Yes |
 | Multi-level cascade: allocate from level 3 parents to level 0 in one pass | ✅ Yes |
@@ -381,7 +381,7 @@ Setting the offset member to a **level 0 member** when it should be the parent. 
 | Field | Description |
 |---|---|
 | **Driver members** | Select one member per dimension for dimensions that vary from the POV |
-| **Update driver's aggregations?** | Yes / No |
+| **Update driver's aggregations—** | Yes / No |
 
 #### How to Select Driver Members
 
@@ -419,10 +419,10 @@ Setting this to **Yes** adds processing time because Essbase must first aggregat
 
 | Question | Default | Options |
 |---|---|---|
-| **Clear the Allocation Range before allocation?** | No | Yes / No |
-| **Reaggregate the allocation range after allocation?** | No | Yes / No |
+| **Clear the Allocation Range before allocation—** | No | Yes / No |
+| **Reaggregate the allocation range after allocation—** | No | Yes / No |
 | **Number of decimal places** | 0 | Any integer (0, 2, 4, etc.) |
-| **Create missing blocks automatically?** | No | Yes / No |
+| **Create missing blocks automatically—** | No | Yes / No |
 
 #### Each Option Explained
 

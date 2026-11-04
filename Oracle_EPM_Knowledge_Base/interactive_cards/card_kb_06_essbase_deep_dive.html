@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KB Interactive Card 06: Essbase Block Math & Implied Share Simulator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-6 font-sans">
+  <div class="max-w-4xl mx-auto space-y-6">
+    <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 shadow-2xl backdrop-blur">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-700 pb-4">
+        <div>
+          <span class="text-xs font-bold tracking-widest text-sky-400 uppercase bg-sky-950/60 px-3 py-1 rounded-full border border-sky-800">
+            Knowledge Base Card 06
+          </span>
+          <h1 class="text-2xl font-black mt-2 text-white">Live Block Size Calculator & Implied Share Inspector</h1>
+        </div>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-purple-950 text-purple-400 border border-purple-800">Storage Physics</span>
+      </div>
+
+      <!-- Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <!-- Block Sizing Calculator -->
+        <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-5 space-y-4">
+          <h2 class="text-base font-bold text-sky-400">1. Physical Block Size Calculator</h2>
+          <p class="text-xs text-slate-400">Enter stored member counts for Dense dimensions:</p>
+          
+          <div class="space-y-3 text-xs">
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Account Members (Dense):</label>
+              <input type="number" id="denseAcct" value="250" oninput="calcBlock()" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-slate-200">
+            </div>
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Period Members (Dense):</label>
+              <input type="number" id="densePeriod" value="17" oninput="calcBlock()" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-slate-200">
+            </div>
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">HSP_Rates / View Members (Dense):</label>
+              <input type="number" id="denseView" value="3" oninput="calcBlock()" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-slate-200">
+            </div>
+          </div>
+
+          <div class="p-4 rounded-lg bg-slate-900 border border-slate-700 mt-4 text-xs">
+            <span class="text-slate-400 block uppercase font-semibold">Calculated Block Size:</span>
+            <div id="blockSizeResult" class="text-2xl font-black mt-1 text-emerald-400">99.61 KB</div>
+            <p id="blockSizeStatus" class="text-xs text-slate-300 mt-2 font-medium">✅ Optimal Block Size (within 8 KB - 100 KB target range).</p>
+          </div>
+        </div>
+
+        <!-- Implied Share Inspector -->
+        <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-5 space-y-4">
+          <h2 class="text-base font-bold text-sky-400">2. Implied Share Collision Inspector</h2>
+          <p class="text-xs text-slate-400">Simulate parent-child memory sharing:</p>
+
+          <div class="space-y-3 text-xs">
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Parent Hierarchy Structure:</label>
+              <select id="childCount" onchange="calcImplied()" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-slate-200">
+                <option value="1_CHILD" selected>Parent with ONLY 1 Child</option>
+                <option value="2_CHILD">Parent with 2 Children (Both consolidate +)</option>
+                <option value="1_CONSOL">Parent with 2 Children (Only 1 consolidates +)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Parent Member Storage Property:</label>
+              <select id="parentStorage" onchange="calcImplied()" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-slate-200">
+                <option value="STORE" selected>Store (+)</option>
+                <option value="NEVER_SHARE">Never Share</option>
+                <option value="DYNAMIC_CALC">Dynamic Calc (~)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-lg bg-slate-900 border border-slate-700 mt-4 text-xs">
+            <span class="text-slate-400 block uppercase font-semibold">Implied Share Status:</span>
+            <div id="impliedResult" class="text-lg font-black mt-1 text-rose-500">TRIGGERED: Implied Share Active</div>
+            <p id="impliedAdvice" class="text-xs text-slate-300 mt-2">Parent and child share the same memory cell! Writing to parent overwrites child.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function calcBlock() {
+      const a = parseInt(document.getElementById('denseAcct').value) || 0;
+      const p = parseInt(document.getElementById('densePeriod').value) || 0;
+      const v = parseInt(document.getElementById('denseView').value) || 0;
+
+      const bytes = a * p * v * 8;
+      const kb = (bytes / 1024).toFixed(2);
+
+      const resElem = document.getElementById('blockSizeResult');
+      const statElem = document.getElementById('blockSizeStatus');
+
+      resElem.innerText = kb + " KB (" + bytes.toLocaleString() + " bytes)";
+
+      if (kb < 8) {
+        statElem.innerText = "⚠️ Under-sized block (< 8 KB). High index B-tree overhead.";
+        statElem.className = "text-xs text-amber-400 mt-2 font-medium";
+      } else if (kb > 200) {
+        statElem.innerText = "❌ Over-sized block (> 200 KB). High I/O latency and memory bloat.";
+        statElem.className = "text-xs text-rose-500 mt-2 font-medium";
+      } else {
+        statElem.innerText = "✅ Optimal Block Size (within 8 KB - 100 KB target range).";
+        statElem.className = "text-xs text-emerald-400 mt-2 font-medium";
+      }
+    }
+
+    function calcImplied() {
+      const c = document.getElementById('childCount').value;
+      const s = document.getElementById('parentStorage').value;
+
+      const res = document.getElementById('impliedResult');
+      const adv = document.getElementById('impliedAdvice');
+
+      if (s === "NEVER_SHARE") {
+        res.innerText = "SAFE: Never Share Configured";
+        res.className = "text-lg font-black mt-1 text-emerald-400";
+        adv.innerText = "Independent physical cell allocated for parent; child will not overwrite parent.";
+        return;
+      }
+      if (s === "DYNAMIC_CALC") {
+        res.innerText = "SAFE: Dynamic Calc (Hybrid Standard)";
+        res.className = "text-lg font-black mt-1 text-emerald-400";
+        adv.innerText = "Parent has zero disk blocks; calculated in memory on the fly.";
+        return;
+      }
+
+      if (c === "1_CHILD" || c === "1_CONSOL") {
+        res.innerText = "TRIGGERED: Implied Share Active";
+        res.className = "text-lg font-black mt-1 text-rose-500";
+        adv.innerText = "Parent and child share the same memory cell! Writing to parent overwrites child.";
+      } else {
+        res.innerText = "NO IMPLIED SHARE: Standard Rollup";
+        res.className = "text-lg font-black mt-1 text-emerald-400";
+        adv.innerText = "Multiple children consolidate; parent sums child values normally.";
+      }
+    }
+  </script>
+</body>
+</html>

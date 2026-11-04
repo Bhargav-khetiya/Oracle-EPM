@@ -1,13 +1,13 @@
-# @CalcMgrIsLeapYear
+﻿# @CalcMgrIsLeapYear
 
 ## Overview
 
 `@CalcMgrIsLeapYear` is a **custom Calc Manager boolean calendar utility** in Oracle EPM Cloud (PBCS/EPBCS). It analyzes a **Java Date Object** (or Java Timestamp Object) and returns a simple Boolean (`true` or `false`) indicating whether the year contained within that date is a leap year (having 366 days instead of 365).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In robust financial models, daily proration is critical. If a software company charges `$10,000` a year for a license, and a customer starts on July 1st, they must calculate the daily rate and multiply it by the remaining days. 
-However, what is the daily rate? Is it `$10,000 / 365`? Or is it `$10,000 / 366`? If you hardcode `365` as the denominator in your Essbase scripts, your daily accrual math will break every 4 years, creating massive reconciliation imbalances in global ledgers. 
+However, what is the daily rate— Is it `$10,000 / 365`— Or is it `$10,000 / 366`— If you hardcode `365` as the denominator in your Essbase scripts, your daily accrual math will break every 4 years, creating massive reconciliation imbalances in global ledgers. 
 Calculating leap years mathematically inside an Essbase script is highly complex (the year must be divisible by 4, but NOT divisible by 100, UNLESS it is also divisible by 400). 
 `@CalcMgrIsLeapYear` completely bypasses this logic. It taps directly into the Java Calendar engine, natively evaluates the year against standard Gregorian leap rules, and instantly returns `true` if it is a leap year. This allows your scripts to dynamically toggle between a 365 and 366 denominator effortlessly.
 

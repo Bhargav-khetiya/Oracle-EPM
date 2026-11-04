@@ -1,10 +1,10 @@
-# @CalcMgrSQuote
+﻿# @CalcMgrSQuote
 
 ## Overview
 
 `@CalcMgrSQuote` is a **custom Calc Manager string manipulation function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a plain text string and forcefully **wraps it in single quotation marks (apostrophes)** (`'`). 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building dynamic calculation scripts that export data to relational SQL databases, string syntax is incredibly strict. In SQL, if you write `INSERT INTO table VALUES (Approved)`, the database will look for a column or function named `Approved` and crash. You must write `INSERT INTO table VALUES ('Approved')` so the database knows it is a literal text string. 
 While you could technically achieve this in Essbase using massive concatenation chains (e.g., `@CONCATENATE("'", @CONCATENATE("Approved", "'"))`), this is messy, hard to read, and highly prone to syntax errors. 

@@ -1,10 +1,10 @@
-# @CalcMgrRemoveDQuotes
+﻿# @CalcMgrRemoveDQuotes
 
 ## Overview
 
 `@CalcMgrRemoveDQuotes` is a **custom Calc Manager string cleansing function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a text string and systematically searches for and **removes all double-quotation marks** (`"`), returning a clean, unquoted text string.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When EPM applications interface with external systems (like Oracle GL, Workday, or flat-file data loads), text fields such as user comments or descriptions are frequently wrapped in double quotes to protect internal commas (e.g., `"Department of Revenue, North America"`).
 If an automated load rule imports that string exactly as it appears into a Text Account, the literal quote marks (`"`) are saved into the database. 

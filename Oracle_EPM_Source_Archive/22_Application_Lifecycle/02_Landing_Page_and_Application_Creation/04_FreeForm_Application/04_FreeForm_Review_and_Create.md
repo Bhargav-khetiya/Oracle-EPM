@@ -1,4 +1,4 @@
-﻿# 🎨 FreeForm — Review & Create
+﻿﻿# 🎨 FreeForm — Review & Create
 ## Final Review and Application Creation
 
 > **Wizard Step:** 4 of 4 (Final Step — FreeForm path)  
@@ -48,13 +48,13 @@
 
 | # | Check | Question |
 |---|-------|----------|
-| 1 | ☐ | Application Name is correct and follows naming rules? |
-| 2 | ☐ | Correct number of cubes configured? |
-| 3 | ☐ | Each cube has correct type (BSO vs ASO)? |
-| 4 | ☐ | Cube names are under 8 characters and descriptive? |
-| 5 | ☐ | At least one BSO cube for data entry (if needed)? |
-| 6 | ☐ | Default dimensions enabled/disabled as intended? |
-| 7 | ☐ | Dimension names match your model design? |
+| 1 | ☐ | Application Name is correct and follows naming rules— |
+| 2 | ☐ | Correct number of cubes configured— |
+| 3 | ☐ | Each cube has correct type (BSO vs ASO)— |
+| 4 | ☐ | Cube names are under 8 characters and descriptive— |
+| 5 | ☐ | At least one BSO cube for data entry (if needed)— |
+| 6 | ☐ | Default dimensions enabled/disabled as intended— |
+| 7 | ☐ | Dimension names match your model design— |
 
 ---
 
@@ -102,20 +102,20 @@ Since FreeForm creates a nearly empty application, you have significant setup wo
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: Why does FreeForm application creation take only 3â€“5 minutes compared to 15 minutes for Planning?
+### Q1: Why does FreeForm application creation take only 3"5 minutes compared to 15 minutes for Planning—
 **Answer:** Planning applications must generate hundreds of relational metadata tables, pre-packaged forms, task lists, and seeded business rules. FreeForm creates a clean, lightweight Essbase database container without pre-built module overhead, completing database initialization in a fraction of the time.
 
-### Q2: What mandatory configuration steps must occur immediately after FreeForm creation finishes?
+### Q2: What mandatory configuration steps must occur immediately after FreeForm creation finishes—
 **Answer:** Because FreeForm creates an empty canvas:
 1. Build custom dimension hierarchies via Dimension Management or CSV import.
 2. Define member data storage properties (Store, Dynamic Calc).
 3. Execute **Refresh Database** to restructure the Essbase cubes.
 4. Assign security access permissions before users can connect.
 
-### Q3: How do you add additional custom dimensions to a FreeForm cube post-creation?
-**Answer:** Navigate to Application â†’ Overview â†’ Dimensions, select the target cube from the dropdown, click the **+** (Create) icon, enter the dimension name, set dimension properties, and run a Database Refresh.
+### Q3: How do you add additional custom dimensions to a FreeForm cube post-creation—
+**Answer:** Navigate to Application → Overview → Dimensions, select the target cube from the dropdown, click the **+** (Create) icon, enter the dimension name, set dimension properties, and run a Database Refresh.
 
 ---
 

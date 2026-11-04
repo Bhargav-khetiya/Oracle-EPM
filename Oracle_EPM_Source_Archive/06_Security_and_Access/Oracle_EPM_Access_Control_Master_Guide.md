@@ -1,4 +1,4 @@
-# Oracle EPM Planning Security: Beginner-to-Consultant Guide
+﻿# Oracle EPM Planning Security: Beginner-to-Consultant Guide
 
 ## Core idea
 Oracle EPM security is layered: an application role grants access to the service, while application permissions control which data and artifacts a person can use.
@@ -11,10 +11,10 @@ Oracle EPM security is layered: an application role grants access to the service
 
 | Layer | Question it answers | Examples |
 |---|---|---|
-| Identity and sign-in | Can this identity authenticate to the environment? | SSO and identity-domain provisioning |
-| Application role | Can the identity access the business process, and with what broad capabilities? | Service Administrator, Power User, User, Viewer |
-| Application permissions | Which application elements can the identity see or use? | Member, form, rule, dashboard permissions |
-| Workflow/process access | Can the identity act in a configured workflow? | Approval ownership/review actions; depends on setup |
+| Identity and sign-in | Can this identity authenticate to the environment— | SSO and identity-domain provisioning |
+| Application role | Can the identity access the business process, and with what broad capabilities— | Service Administrator, Power User, User, Viewer |
+| Application permissions | Which application elements can the identity see or use— | Member, form, rule, dashboard permissions |
+| Workflow/process access | Can the identity act in a configured workflow— | Approval ownership/review actions; depends on setup |
 
 Oracle describes global roles and application permissions separately. Do not treat “OCI IAM roles,” artifact permissions, and dimensional security as one interchangeable layer. See [About User and Role Management](https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/about_user_and_role_management.html) and [Understanding Application Roles](https://docs.oracle.com/en/cloud/saas/enterprise-performance-management-common/cgsad/4_managing_epm_cloud_users_roles_predefined_roles.html).
 
@@ -73,7 +73,7 @@ Do not “fix” a security issue by granting broad administrator access. Identi
 
 ## Remember and explain
 
-**Recall:** What does the application role control? What controls access to a particular form or member? Can permissions be assigned to individuals? Why can a valid intersection not replace security?
+**Recall:** What does the application role control— What controls access to a particular form or member— Can permissions be assigned to individuals— Why can a valid intersection not replace security—
 
 **Answer key:** The role grants broad business-process capabilities; application permissions further scope access. Oracle supports individual and group assignments, while groups are often easier to maintain. A valid intersection filters dimensional combinations, not identity authorization.
 

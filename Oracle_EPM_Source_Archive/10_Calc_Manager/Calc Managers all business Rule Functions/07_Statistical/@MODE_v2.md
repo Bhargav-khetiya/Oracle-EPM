@@ -1,10 +1,10 @@
-# @MODE
+﻿# @MODE
 
 ## Overview
 
 `@MODE` is a **native Essbase mathematical array function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates a specified range (array) of members, analyzes the numeric data within them, and returns the **most frequently occurring value** in that dataset. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In operational planning and retail analytics, standard averages (`@AVG`) and medians (`@MEDIAN`) don't always tell the whole story. 
 For example, if a store sells shoes, and over 7 days the daily "Units Sold" were `[2, 2, 2, 8, 10, 15, 20]`, the Average is `8.4`. The Median is `8`. But if you look at the raw data, the most common reality on any given day is that they sell exactly `2` shoes. 

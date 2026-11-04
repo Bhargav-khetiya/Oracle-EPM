@@ -1,10 +1,10 @@
-# @STDEVRANGE
+﻿# @STDEVRANGE
 
 ## Overview
 
 `@STDEVRANGE` is a **statistical function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that calculates the **sample standard deviation** of a specific member across a defined range of members from another dimension. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While `@STDEV` is flexible, `@STDEVRANGE` enforces a strict two-parameter signature: the measure you want to evaluate, and the range over which you want to evaluate it. It explicitly ties the standard deviation calculation to a cross-dimensional range, such as tracking the volatility of an account over a specific window of time.
 

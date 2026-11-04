@@ -1,114 +1,152 @@
-# Finance Concepts for EPM — Financial Statements and Planning
+# 2.1 Financial Statements, Driver-Based Planning & Modeling Mechanics
 
-> **Folder:** 02_Finance_Concepts | **Audience:** Beginner → Consultant
->
-> **Provenance:** Merged from Claude `02_Finance/02.01_Financial_Statements_and_Accounting.md`, `02.02_Driver_Based_Planning_and_KPIs.md`, `02.03_Rolling_Forecast_Architecture.md`; Claude `01_Foundation/01.02_Business_Concepts.md`
-
----
-
-## Why Finance Matters for EPM Consultants
-
-EPM software exists to serve the **CFO's office**. If you don't understand financial statements, you can't design a meaningful planning application. Every dimension, form, rule, and report connects back to financial concepts.
+## Table of Contents
+1. [Core Consultant Mental Model](#1-core-consultant-mental-model)
+2. [The Three Financial Statements & Integrated Financial Modeling](#2-the-three-financial-statements--integrated-financial-modeling)
+3. [Driver-Based Planning & Rolling Forecast Architecture](#3-driver-based-planning--rolling-forecast-architecture)
+4. [Balance Sheet & Cash Flow Integration Mechanics](#4-balance-sheet--cash-flow-integration-mechanics)
+5. [Tough & Twisted Review Questions with Consultant Model Answers](#5-tough--twisted-review-questions-with-consultant-model-answers)
 
 ---
 
-## The Three Financial Statements
+<!-- ===================================================================== -->
+<!-- 🎯 LIVE INTERACTIVE VISUAL CARD: INTEGRATED FINANCIAL STATEMENTS -->
+<!-- ===================================================================== -->
+<details open>
+<summary><b>🎯 Live Interactive Architecture Card: Integrated Financial Statements & Drivers (Click to Collapse / Expand)</b></summary>
 
-### 1. Income Statement (P&L — Profit and Loss)
+<br/>
 
-Shows how much money a company **made and spent** over a period.
+> [!TIP]
+> **Consultant High-Yield Summary:** An EPM technical consultant must understand how the three financial statements interconnect in Essbase cubes: **Net Income** from the Income Statement rolls into **Retained Earnings** on the Balance Sheet; **Non-Cash Depreciation** and **Working Capital deltas** drive the **Cash Flow Statement**.
 
+| Financial Statement | Key Account Types | Time Balance Behavior | Essbase Aggregation / Storage |
+| :--- | :--- | :--- | :--- |
+| **Income Statement (P&L)** | Revenue, Expense, COGS, Tax | `Flow` (Sum across periods) | Consolidated via standard addition/subtraction |
+| **Balance Sheet** | Asset, Liability, Equity | `Balance` (`Last` or `Average`) | Year-to-Date (YTD) cumulative balance; not summed |
+| **Cash Flow Statement** | Operating, Investing, Financing | `Flow` (Net cash movement) | Calculated dynamically from P&L net income & BS deltas |
+
+```mermaid
+flowchart TD
+    subgraph PL ["1. Income Statement (P&L - Flow)"]
+        Rev["Gross Revenue"] --> GP["Gross Profit"]
+        COGS["Cost of Goods Sold"] --> GP
+        GP --> EBITDA["EBITDA"]
+        OPEX["Operating Expenses (Opex)"] --> EBITDA
+        EBITDA --> NI["Net Income"]
+    end
+
+    subgraph BS ["2. Balance Sheet (Balance - Last)"]
+        Assets["Total Assets (Cash + AR + Inventory + Fixed Assets)"]
+        Liab["Total Liabilities (AP + Debt)"]
+        Equity["Total Equity (Common Stock + Retained Earnings)"]
+        RetEarn["Retained Earnings = Prior Retained Earnings + Net Income - Dividends"]
+    end
+
+    subgraph CF ["3. Cash Flow Statement (Flow)"]
+        CFO["Cash from Operations<br/>(Net Income + Non-Cash D&A - Δ Working Capital)"]
+        CFI["Cash from Investing<br/>(Capital Expenditures / Asset Purchases)"]
+        CFF["Cash from Financing<br/>(Debt Issuance / Repayment / Dividends)"]
+        NetCash["Net Change in Cash = CFO + CFI + CFF"]
+    end
+
+    NI -->|"Closes into"| RetEarn
+    NI -->|"Starting Point"| CFO
+    NetCash -->|"Updates Closing Cash"| Assets
 ```
-Revenue                    ₹100 Cr
- - Cost of Goods Sold       ₹40 Cr
- = Gross Profit              ₹60 Cr
- - Operating Expenses        ₹30 Cr
-   (Salaries, Rent, Marketing)
- = EBITDA                     ₹30 Cr
- - Depreciation & Amortization ₹5 Cr
- = EBIT (Operating Income)    ₹25 Cr
- - Interest Expense            ₹3 Cr
- = EBT (Earnings Before Tax)  ₹22 Cr
- - Income Tax                  ₹7 Cr
- = Net Income                 ₹15 Cr
-```
 
-**EPM Relevance:** P&L accounts are **Flow** type — values accumulate over time (Jan + Feb + Mar = Q1).
+</details>
+
+---
+
+## 1. Core Consultant Mental Model
+
+Technical consultants frequently fail client interviews because they treat EPM accounts as arbitrary text strings. In Oracle Cloud EPM:
+* **Account Type Matters Mechanically:** If you configure an Asset account as `Expense`, Essbase consolidates it correctly in addition, but financial variance reporting will calculate upside-down.
+* **Variance Reporting Property:**
+  * For **Expense accounts:** Variance = Budget - Actual (favorable when actual spending is less than budget).
+  * For **Revenue accounts:** Variance = Actual - Budget (favorable when actual revenue exceeds budget).
+* **Time Balance Property:**
+  * P&L accounts use `Time Balance: None / Flow` (Q1 = Jan + Feb + Mar).
+  * Balance Sheet accounts use `Time Balance: Balance` with `Skip: None` and `First / Last` (Ending Cash for Q1 is March ending cash, NOT the sum of Jan + Feb + Mar!).
+
+---
+
+## 2. The Three Financial Statements & Integrated Financial Modeling
+
+### 1. Income Statement (Profit & Loss)
+Measures economic performance over a specified time horizon:
+$$\text{Gross Profit} = \text{Revenue} - \text{COGS}$$
+$$\text{EBITDA} = \text{Gross Profit} - \text{Operating Expenses (Opex)}$$
+$$\text{Operating Income (EBIT)} = \text{EBITDA} - \text{Depreciation \& Amortization}$$
+$$\text{Net Income} = \text{EBIT} - \text{Interest Expense} - \text{Income Taxes}$$
 
 ### 2. Balance Sheet
+A snapshot of financial position at a single point in time, governed by the fundamental accounting equation:
+$$\text{Assets} = \text{Liabilities} + \text{Shareholders' Equity}$$
 
-Shows what a company **owns and owes** at a point in time.
-
-```
-ASSETS                          LIABILITIES + EQUITY
-Cash               ₹20 Cr     Accounts Payable    ₹10 Cr
-Accounts Receivable ₹15 Cr     Bank Loans          ₹30 Cr
-Inventory           ₹10 Cr     Total Liabilities   ₹40 Cr
-Fixed Assets        ₹55 Cr     
-                                Shareholder Equity  ₹60 Cr
-Total Assets       ₹100 Cr     Total L + E        ₹100 Cr
-```
-
-**EPM Relevance:** Balance Sheet accounts are **Balance** type — the value at any point is the current position, not a sum of periods.
-
-### 3. Cash Flow Statement
-
-Shows how cash **moves in and out** of the company.
-
-| Section | What It Covers |
-|---------|---------------|
-| **Operating** | Cash from business operations (collections, payments) |
-| **Investing** | Cash from buying/selling assets |
-| **Financing** | Cash from loans, equity, dividends |
+### 3. Cash Flow Statement (Indirect Method)
+Derives net cash generated during the period:
+* **Operating Cash Flow (CFO):** Net Income + Depreciation (non-cash add-back) - $\Delta$ Accounts Receivable - $\Delta$ Inventory + $\Delta$ Accounts Payable.
+* **Investing Cash Flow (CFI):** - Capital Expenditures (CapEx purchases).
+* **Financing Cash Flow (CFF):** New Debt - Debt Repayments - Dividends Paid.
 
 ---
 
-## Key Financial Concepts for EPM
+## 3. Driver-Based Planning & Rolling Forecast Architecture
 
-### Time Balance Types
+### Why Driver-Based Planning?
+Enterprise planners do not forecast line-item dollar amounts directly. They forecast **operational business drivers**, and Calculation Manager / Groovy rules compute the financial impact:
 
-| Type | Meaning | EPM Aggregation | Example |
-|------|---------|-----------------|---------|
-| **Flow** | Accumulates over time | Jan + Feb + Mar = Q1 | Revenue, Expense |
-| **Balance** | Point-in-time snapshot | Q1 = Mar value (last period) | Cash, Receivables |
-| **First** | Uses first period value | Q1 = Jan value | Opening balance |
-| **Average** | Average across periods | Q1 = (Jan + Feb + Mar) / 3 | Average headcount |
-
-### Driver-Based Planning
-
-Instead of entering every number manually, define **drivers** and let the system calculate:
-
-```
-Revenue = Rooms Available × Occupancy Rate × Average Room Rate
-
-Driver Inputs:
-  Rooms Available    = 100
-  Occupancy Rate     = 75%
-  Average Room Rate  = ₹5,000
-
-Calculated:
-  Room Nights Sold = 100 × 75% = 75
-  Revenue = 75 × ₹5,000 = ₹3,75,000 per day
+```mermaid
+graph LR
+    Vol["Driver: Units Sold"] --> RevCalc["Revenue = Units Sold × Average Selling Price (ASP)"]
+    Price["Driver: Average Price"] --> RevCalc
+    HC["Driver: Headcount"] --> CompCalc["Salary Expense = Headcount × Avg Salary × (1 + Benefits %)"]
+    Rate["Driver: Benefit Rate"] --> CompCalc
 ```
 
-### Rolling Forecasts
-
-Instead of a fixed annual budget, continuously update predictions:
-
-| Pattern | What It Means |
-|---------|--------------|
-| **3+9** | 3 months actual + 9 months forecast = 12 months |
-| **6+6** | 6 months actual + 6 months forecast = 12 months |
-| **Rolling 18** | Always forecast the next 18 months |
+### Rolling Forecast Architecture
+* **Traditional Budgeting:** Fixed 12-month fiscal year view (Jan to Dec). Once June arrives, the company only forecasts 6 months into the future.
+* **Rolling Forecast:** Continuously projects 4 to 8 quarters (12 to 24 months) ahead, regardless of fiscal year boundaries. When Q1 Actuals close, Q1 drops from input and a new future quarter (e.g., Q1 of next fiscal year) is opened for forecasting.
+* **Essbase Implication:** The `Scenario` dimension is paired with dynamic `Version` and `Period` substitution variables (e.g., `&CurPeriod`, `&CurYear`) to determine whether a cell is editable (Forecast months) or read-only (Actuals months).
 
 ---
 
-## 🧠 Self-Check Questions
+## 4. Balance Sheet & Cash Flow Integration Mechanics
 
-1. **What is the difference between a P&L and a Balance Sheet?**
-2. **What Time Balance type would you use for Revenue? For Cash?**
-3. **What is driver-based planning and why is it better than direct entry?**
-4. **Explain a 3+9 rolling forecast.**
+In an integrated planning model (e.g., EPBCS Financials), modules share data via automated **Data Maps** or **Smart Push**:
 
-> **Teach-back prompt:** Explain to a new EPM developer why they need to understand the difference between Flow and Balance accounts before designing an application's Account dimension.
+1. **Capital Expenditure (Capex) Integration:**
+   * User adds a new manufacturing machine in the Capital module (\$100,000 cost, 5-year straight-line depreciation).
+   * Capital module calculates monthly depreciation (\$1,666.67/month) and asset net book value.
+   * Smart Push pushes \$1,666.67 to the Financials cube under P&L `Depreciation Expense`, while pushing \$100,000 to Balance Sheet `Fixed Assets`.
+2. **Working Capital Drivers:**
+   * **Days Sales Outstanding (DSO):** Calculates Accounts Receivable from Revenue:
+     $$\text{Accounts Receivable} = \frac{\text{Revenue}}{365} \times \text{DSO}$$
+   * **Days Payable Outstanding (DPO):** Calculates Accounts Payable from Cost of Goods Sold:
+     $$\text{Accounts Payable} = \frac{\text{COGS}}{365} \times \text{DPO}$$
 
+---
+
+## 5. Tough & Twisted Review Questions with Consultant Model Answers
+
+### Question 1: "Why does summing monthly Balance Sheet accounts across quarters result in financial catastrophe, and which Essbase member property prevents this?"
+**Consultant Model Answer:**
+> "Balance Sheet accounts represent point-in-time cumulative balances, not cumulative flows. For example, if a company has \$10M in its bank account at the end of January, \$12M in February, and \$11M in March, its Q1 ending cash balance is \$11M (March end), NOT \$33M (the sum of the three months). 
+> In Essbase, this is controlled by the **Time Balance** property on the Account dimension. Balance Sheet accounts must be set to `Time Balance: Balance` with `Time Balance Skip: None` (or `Skip: Missing`) and `First / Last: Last`. This instructs Essbase to populate upper-level time periods (Q1, FY24) with the value of the last open child period rather than adding them together."
+
+### Question 2: "In a P&L planning form, why is Net Income modeled as a Dynamic Calc member rather than a stored member?"
+**Consultant Model Answer:**
+> "Net Income is a calculated summary node representing Gross Profit minus Operating Expenses, Depreciation, Interest, and Taxes. If Net Income were configured as 'Stored', every time a planner updated an operational expense cell, Net Income would become stale and display incorrect figures until a batch calculation rule was executed. 
+> By setting Net Income to **Dynamic Calc (`~`)**, Essbase computes the formula in memory on the fly whenever the cell is retrieved, ensuring that users in Web Forms and Smart View instantly see their updated bottom line upon saving."
+
+### Question 3: "A client reports that when Actual revenue is \$120M and Budget was \$100M, Smart View shows a negative variance (-\$20M). What is the root cause?"
+**Consultant Model Answer:**
+> "The root cause is an incorrect **Variance Reporting** property on the Account dimension member. In Essbase, Account members have a `Variance Reporting` attribute configured as either `Non-Expense` or `Expense`. 
+> * For `Non-Expense` (Revenue) accounts: Variance = Actual - Budget (\$120M - \$100M = +\$20M, favorable).
+> * For `Expense` accounts: Variance = Budget - Actual.
+> If the Revenue account was accidentally configured with the `Expense` property, Essbase evaluated Budget - Actual (\$100M - \$120M = -\$20M), displaying a negative variance for higher revenue. Changing the member property to `Non-Expense` and refreshing the database resolves the issue."
+
+---
+*Proceed to [2.2 Forms, Navigation Flows & User Interface Architecture](../02_User_Interface_and_Navigation/01_Forms_and_Navigation.md).*

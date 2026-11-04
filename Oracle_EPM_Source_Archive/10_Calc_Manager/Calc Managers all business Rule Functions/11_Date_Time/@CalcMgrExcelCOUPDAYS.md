@@ -1,11 +1,11 @@
-# @CalcMgrExcelCOUPDAYS
+﻿# @CalcMgrExcelCOUPDAYS
 
 ## Overview
 
 `@CalcMgrExcelCOUPDAYS` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `COUPDAYS` function directly inside an Essbase calculation script. 
 It calculates the **total number of days** in the coupon period that contains the settlement date. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When migrating Corporate Treasury or Investment Banking models from Excel into EPM Cloud, accurate accrued interest calculations require calculating pro-rata fractions. To calculate a fraction (e.g., how much of the interest period has elapsed), you need two numbers: the numerator (days elapsed so far) and the denominator (total days in the period).
 `@CalcMgrExcelCOUPDAYS` provides the denominator. If a bond pays interest semi-annually (e.g., Jan 1 and July 1), the total number of days in that period depends entirely on whether it's a leap year, and what specific day-count basis the bond uses (e.g., US 30/360 treats every month as 30 days, meaning a semi-annual period is exactly 180 days, whereas Actual/Actual would be 181 or 182 days).

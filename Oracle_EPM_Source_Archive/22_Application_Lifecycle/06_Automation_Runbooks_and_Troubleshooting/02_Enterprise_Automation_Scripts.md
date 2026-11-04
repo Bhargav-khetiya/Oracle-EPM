@@ -1,4 +1,4 @@
-﻿# Oracle EPM Cloud: Automation Scripts
+﻿﻿# Oracle EPM Cloud: Automation Scripts
 
 ## 1. Overview
 
@@ -430,12 +430,12 @@ To automate the daily backup script:
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: Why should enterprise automation scripts use PowerShell with try/catch rather than legacy Windows Batch (`.bat`)?
+### Q1: Why should enterprise automation scripts use PowerShell with try/catch rather than legacy Windows Batch (`.bat`)—
 **Answer:** Legacy Windows Batch scripts have primitive error handling. Batch commands often fail silently, `%ERRORLEVEL%` can be overwritten by intermediate commands, and batch lacks native JSON parsing, structured logging, and email alerting. PowerShell provides robust structured exceptions (`try/catch/finally`), regex parsing of EPM Automate logs, native SMTP alerting, and secure credential vaults.
 
-### Q2: How do you implement automated email failure notifications in unattended EPM Automate scripts?
+### Q2: How do you implement automated email failure notifications in unattended EPM Automate scripts—
 **Answer:** Use PowerShell's `Send-MailMessage` cmdlet inside the `catch` block:
 ```powershell
 try {
@@ -449,7 +449,7 @@ try {
 }
 ```
 
-### Q3: How do you configure PowerShell scripts to execute unattended under Windows Task Scheduler?
+### Q3: How do you configure PowerShell scripts to execute unattended under Windows Task Scheduler—
 **Answer:** In Task Scheduler:
 1. General Tab: Check **"Run whether user is logged on or not"** and **"Run with highest privileges"**.
 2. Actions Tab: Action: **Start a program**.

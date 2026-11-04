@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KB Interactive Card 02: Security & Valid Intersections Simulator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-6 font-sans">
+  <div class="max-w-4xl mx-auto space-y-6">
+    <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 shadow-2xl backdrop-blur">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-700 pb-4">
+        <div>
+          <span class="text-xs font-bold tracking-widest text-sky-400 uppercase bg-sky-950/60 px-3 py-1 rounded-full border border-sky-800">
+            Knowledge Base Card 02
+          </span>
+          <h1 class="text-2xl font-black mt-2 text-white">Security Collision & Valid Intersections Simulator</h1>
+        </div>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-purple-950 text-purple-400 border border-purple-800">Precedence Engine</span>
+      </div>
+
+      <!-- Simulator Controls -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <!-- Security Group Precedence -->
+        <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-5 space-y-4">
+          <h2 class="text-base font-bold text-sky-400">1. Multi-Group Security Collision Tester</h2>
+          <p class="text-xs text-slate-400">Select user permissions across three inherited groups:</p>
+          
+          <div class="space-y-3 text-xs">
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Group A Permission (e.g., Regional Planners):</label>
+              <select id="grpA" onchange="calcSecurity()" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-slate-200">
+                <option value="WRITE" selected>WRITE</option>
+                <option value="READ">READ</option>
+                <option value="NONE">NONE</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Group B Permission (e.g., Global Viewers):</label>
+              <select id="grpB" onchange="calcSecurity()" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-slate-200">
+                <option value="READ" selected>READ</option>
+                <option value="WRITE">WRITE</option>
+                <option value="NONE">NONE</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Group C Permission (e.g., Restricted Compliance):</label>
+              <select id="grpC" onchange="calcSecurity()" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-slate-200">
+                <option value="NONE_ASSIGNED" selected>No Assignment</option>
+                <option value="NONE">NONE (Explicit Revocation)</option>
+                <option value="READ">READ</option>
+                <option value="WRITE">WRITE</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Result Display -->
+          <div class="mt-4 p-4 rounded-lg bg-slate-900 border border-slate-700">
+            <span class="text-xs text-slate-400 uppercase tracking-wider block">Effective Member Permission:</span>
+            <div id="secResult" class="text-xl font-black mt-1 text-emerald-400">WRITE</div>
+            <p id="secRationale" class="text-xs text-slate-400 mt-2">WRITE trumps READ across inherited groups.</p>
+          </div>
+        </div>
+
+        <!-- Valid Intersections vs CLS -->
+        <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-5 space-y-4">
+          <h2 class="text-base font-bold text-sky-400">2. Cell-Level Execution Pipeline</h2>
+          <p class="text-xs text-slate-400">Test how Valid Intersections and CLS affect final cell state:</p>
+
+          <div class="space-y-3 text-xs">
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Valid Intersection Status:</label>
+              <select id="viStatus" onchange="calcCell()" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-slate-200">
+                <option value="VALID" selected>Valid Combination</option>
+                <option value="INVALID">Invalid Combination (Rule Match)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Cell-Level Security (CLS) Rule:</label>
+              <select id="clsStatus" onchange="calcCell()" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-slate-200">
+                <option value="NONE" selected>No CLS Restriction</option>
+                <option value="READ_ONLY">CLS: Read-Only Slice</option>
+                <option value="NO_ACCESS">CLS: No-Access Slice</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Approval Unit State:</label>
+              <select id="auhStatus" onchange="calcCell()" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-slate-200">
+                <option value="FIRST_PASS" selected>First Pass (Owner Editing)</option>
+                <option value="UNDER_REVIEW">Under Review (Promoted to Manager)</option>
+                <option value="APPROVED">Approved (Locked)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Cell Display -->
+          <div class="mt-4 p-4 rounded-lg bg-slate-900 border border-slate-700">
+            <span class="text-xs text-slate-400 uppercase tracking-wider block">Rendered Form Cell Behavior:</span>
+            <div id="cellResult" class="text-xl font-black mt-1 text-emerald-400">EDITABLE (Green)</div>
+            <p id="cellRationale" class="text-xs text-slate-400 mt-2">All security and validation checks pass.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentSecurity = "WRITE";
+
+    function calcSecurity() {
+      const a = document.getElementById('grpA').value;
+      const b = document.getElementById('grpB').value;
+      const c = document.getElementById('grpC').value;
+      const list = [a, b, c];
+
+      const resElem = document.getElementById('secResult');
+      const ratElem = document.getElementById('secRationale');
+
+      if (list.includes("NONE")) {
+        currentSecurity = "NONE";
+        resElem.innerText = "NONE (Access Denied)";
+        resElem.className = "text-xl font-black mt-1 text-rose-500";
+        ratElem.innerText = "NONE always wins! Least-privilege override revokes access across all groups.";
+      } else if (list.includes("WRITE")) {
+        currentSecurity = "WRITE";
+        resElem.innerText = "WRITE (Full Edit)";
+        resElem.className = "text-xl font-black mt-1 text-emerald-400";
+        ratElem.innerText = "WRITE trumps READ when combining permissions across groups.";
+      } else {
+        currentSecurity = "READ";
+        resElem.innerText = "READ (View Only)";
+        resElem.className = "text-xl font-black mt-1 text-amber-400";
+        ratElem.innerText = "All assigned groups grant Read access; cell is read-only.";
+      }
+      calcCell();
+    }
+
+    function calcCell() {
+      const vi = document.getElementById('viStatus').value;
+      const cls = document.getElementById('clsStatus').value;
+      const auh = document.getElementById('auhStatus').value;
+
+      const cellElem = document.getElementById('cellResult');
+      const ratElem = document.getElementById('cellRationale');
+
+      if (currentSecurity === "NONE") {
+        cellElem.innerText = "#NoAccess (Cell Suppressed)";
+        cellElem.className = "text-xl font-black mt-1 text-rose-500";
+        ratElem.innerText = "User has no dimensional permission to view this cell.";
+        return;
+      }
+
+      if (vi === "INVALID") {
+        cellElem.innerText = "GRAYED OUT / READ-ONLY (Invalid Intersection)";
+        cellElem.className = "text-xl font-black mt-1 text-slate-500";
+        ratElem.innerText = "Valid Intersection rule marks combination as invalid; cell is locked.";
+        return;
+      }
+
+      if (cls === "NO_ACCESS") {
+        cellElem.innerText = "#NoAccess (CLS Restrictive Override)";
+        cellElem.className = "text-xl font-black mt-1 text-rose-500";
+        ratElem.innerText = "Cell-Level Security explicitly denies access to this multidimensional slice.";
+        return;
+      }
+
+      if (cls === "READ_ONLY") {
+        cellElem.innerText = "READ-ONLY (CLS Restriction)";
+        cellElem.className = "text-xl font-black mt-1 text-amber-400";
+        ratElem.innerText = "Cell-Level Security restricts cell write-back.";
+        return;
+      }
+
+      if (auh === "UNDER_REVIEW" || auh === "APPROVED") {
+        cellElem.innerText = "READ-ONLY (Approval Unit Promoted)";
+        cellElem.className = "text-xl font-black mt-1 text-amber-400";
+        ratElem.innerText = "Approval Unit was promoted to reviewer; write-back is locked for planner.";
+        return;
+      }
+
+      if (currentSecurity === "WRITE") {
+        cellElem.innerText = "EDITABLE (Write-Back Enabled)";
+        cellElem.className = "text-xl font-black mt-1 text-emerald-400";
+        ratElem.innerText = "All security layers, Valid Intersections, and workflow checks pass.";
+      } else {
+        cellElem.innerText = "READ-ONLY (Read Permission)";
+        cellElem.className = "text-xl font-black mt-1 text-amber-400";
+        ratElem.innerText = "User only has Read access to one or more coordinate dimensions.";
+      }
+    }
+  </script>
+</body>
+</html>

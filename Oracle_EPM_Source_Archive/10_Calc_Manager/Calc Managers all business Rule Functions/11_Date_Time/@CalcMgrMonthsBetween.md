@@ -1,10 +1,10 @@
-# @CalcMgrMonthsBetween
+﻿# @CalcMgrMonthsBetween
 
 ## Overview
 
 `@CalcMgrMonthsBetween` is a **custom Calc Manager date mathematics function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates the exact **integer number of full months** that exist between two provided **Java Date Objects**.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building amortization schedules, depreciation models, or employee vesting periods, administrators must calculate how many months a contract has been active. 
 If an asset was purchased on `20230515` (May 15th, 2023) and today is `20240810` (August 10th, 2024), standard Essbase subtraction (`20240810 - 20230515`) yields `10295`, which is mathematically useless. You cannot divide a balance by `10295` to get a monthly rate. 

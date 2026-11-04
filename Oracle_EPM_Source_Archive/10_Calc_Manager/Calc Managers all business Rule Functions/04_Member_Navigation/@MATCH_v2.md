@@ -1,12 +1,12 @@
-# @MATCH
+﻿# @MATCH
 
 ## Overview
 
 `@MATCH` is a **member selection and string searching function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It searches the database outline for members whose names or aliases match a specified wildcard pattern. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
-Standard member selections (`@CHILDREN("Parent")`) rely strictly on the outline hierarchy. But what if you need to select members based on their naming convention, regardless of where they live in the outline?
+Standard member selections (`@CHILDREN("Parent")`) rely strictly on the outline hierarchy. But what if you need to select members based on their naming convention, regardless of where they live in the outline—
 - Select all accounts ending in `_Elim` for an intercompany script.
 - Select all entities starting with `UK_` across multiple regions.
 - Search for a specific pattern dynamically generated at runtime.
@@ -41,7 +41,7 @@ Standard member selections (`@CHILDREN("Parent")`) rely strictly on the outline 
 
 Where:
 - `dimensionName` — The dimension to search within (e.g., `"Entity"`, `"Account"`).
-- `"wildcardPattern"` — A string enclosed in quotes containing wildcard characters (`?` or `*`).
+- `"wildcardPattern"` — A string enclosed in quotes containing wildcard characters (`—` or `*`).
 
 ---
 
@@ -50,7 +50,7 @@ Where:
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `dimName` | Dimension | ✅ Yes | The name of the dimension to search. Must be provided as a string or member reference. |
-| `patternString` | String | ✅ Yes | The pattern to match against member names or aliases. Uses standard wildcards: `*` (matches zero or more characters) and `?` (matches exactly one character). Case-sensitive in some Essbase configurations, but generally safer to assume exact case matches. |
+| `patternString` | String | ✅ Yes | The pattern to match against member names or aliases. Uses standard wildcards: `*` (matches zero or more characters) and `—` (matches exactly one character). Case-sensitive in some Essbase configurations, but generally safer to assume exact case matches. |
 
 ---
 
@@ -65,7 +65,7 @@ Where:
 1. **Outline Scan**: Essbase performs a scan of all members (and their aliases, depending on alias table settings) within the specified dimension.
 2. **Pattern Matching**: 
    - `*` replaces any string of characters.
-   - `?` replaces any single character.
+   - `—` replaces any single character.
 3. **Performance**: Because `@MATCH` scans the entire dimension, it can be slower to evaluate during script compilation than a direct hierarchy reference (like `@CHILDREN`). However, in a `FIX` statement, this evaluation happens once at the start of the block, so the runtime impact is usually negligible.
 
 ---
@@ -96,7 +96,7 @@ FIX(@MATCH("Product", "*Phone*"))
 ### Variant 4: Single Character Wildcard
 
 ```essbase
-FIX(@MATCH("Entity", "Store_??"))
+FIX(@MATCH("Entity", "Store_——))
 /* Matches Store_01, Store_99. Does NOT match Store_100 */
 ```
 

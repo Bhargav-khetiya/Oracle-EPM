@@ -1,10 +1,10 @@
-# @MDALLOCATE
+﻿# @MDALLOCATE
 
 ## Overview
 
 `@MDALLOCATE` is a **multi-dimensional data distribution function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It extends the functionality of `@ALLOCATE` by allowing you to spread a data value across a specified range of members in **multiple dimensions simultaneously**, rather than being restricted to a single dimension.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard allocations (`@ALLOCATE`) handle pushing data down a single hierarchy (e.g., allocating Corporate IT costs down to Departments). However, complex business models often require multi-dimensional cascading:
 - **Shared Services**: Allocating a central HR pool down to both *Departments* AND *Regions* at the same time based on a driver (like Headcount) that exists at the Dept/Region intersection.
@@ -86,7 +86,7 @@ Returns the allocated portion of the amount for the current multi-dimensional in
     2,                               /* 2 Dimensions */
     @CHILDREN("Total Entity"),       /* Dim 1 Range */
     @CHILDREN("Total Product"),      /* Dim 2 Range */
-    "Headcount",                     /* Driver */
+    "Headcountâ”‚                     /* Driver */
     share
 );
 ```
@@ -119,7 +119,7 @@ FIX("FY25", "Working", @CHILDREN("Total Product"), @CHILDREN("Total Customer"))
         2,                                                  /* 2 Dimensions */
         @CHILDREN("Total Product"),                         /* Dim 1: Products */
         @CHILDREN("Total Customer"),                        /* Dim 2: Customers */
-        "Units_Shipped",                                    /* Driver */
+        "Units_Shippedâ”‚                                    /* Driver */
         share,
         roundAmt(2),                                        /* Round to cents */
         roundErrTo("Product_Other", "Customer_Other")       /* Dump penny here */

@@ -1,10 +1,10 @@
-# @CalcMgrGetMonth
+﻿# @CalcMgrGetMonth
 
 ## Overview
 
 `@CalcMgrGetMonth` is a **custom Calc Manager date extraction wrapper function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a unified **Java Date Object** (or Java Timestamp Object) and precisely extracts the **Month**, returning it as a human-readable, 1-indexed integer (e.g., `1` through `12`).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When you use dynamic functions like `@CalcMgrGetCurrentDate()` to find out what today's date is, the engine returns a unified Java Object. While Java Objects are perfect for executing advanced calendar math, they are completely unreadable to standard Essbase arithmetic. 
 If an allocation script needs to route current-month Actuals into the correct Time member (e.g., `"Jan"`, `"Feb"`), it must crack open the Java Date Object and isolate just the Month integer.

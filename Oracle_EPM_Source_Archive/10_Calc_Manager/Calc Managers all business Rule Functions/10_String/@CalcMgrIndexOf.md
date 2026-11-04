@@ -1,11 +1,11 @@
-# @CalcMgrIndexOf
+﻿# @CalcMgrIndexOf
 
 ## Overview
 
 `@CalcMgrIndexOf` is a **custom Calc Manager string manipulation function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a precise search engine, scanning a source text string and returning the **starting index position** of the *very first* occurrence of a specific target substring. 
 *(Note: This function is functionally identical to `@CalcMgrFindFirst`. It exists as an alias to directly map to the standard Java/JavaScript `indexOf()` naming convention).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When dealing with dynamically loaded text data (like `"DataLoad_Error_Row_5"` or `"Account_10045_Active"`), administrators often need to slice the string apart to extract IDs or statuses using `@CalcMgrSubstring`. 
 Because the length of the prefix can change dynamically, you cannot hardcode the slice integer (e.g., "Slice at character 8"). You must first locate the delimiter (e.g., the underscore `_`). 

@@ -1,12 +1,12 @@
-# @MDSHIFT
+﻿# @MDSHIFT
 
 ## Overview
 
 `@MDSHIFT` is a **native Essbase multi-dimensional array function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as an advanced data-pointer. It retrieves a data value from a completely different block in the database by physically "shifting" the calculation focus across **multiple dimensions simultaneously**, based on defined offset integers.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
-Standard shift functions like `@PRIOR`, `@NEXT`, or `@SHIFT` are inherently one-dimensional. They allow you to shift across Time (`@PRIOR("Revenue")` gets last month). But what if you need to shift across Time AND across Products?
+Standard shift functions like `@PRIOR`, `@NEXT`, or `@SHIFT` are inherently one-dimensional. They allow you to shift across Time (`@PRIOR("Revenue")` gets last month). But what if you need to shift across Time AND across Products—
 For example, if you are calculating the forecast for `"Product_v2"` in `"FY25"`, and the logic dictates that the forecast must be based on the actuals of the older `"Product_v1"` from `"FY24"`. 
 You cannot use standard `@PRIOR` because the data is sitting in a completely different Product block. You *could* write complex cross-dimensional pointers (`"Product_v1"->"FY24"`), but if you have 50 products all replacing older versions, hardcoding them is impossible.
 `@MDSHIFT` solves this natively. You give it a target account, and then provide a series of dimensional offsets. You can tell Essbase: "Get the data for this metric, but step backward 1 Year, AND step backward 1 Product in the outline." Essbase handles the multi-dimensional triangulation and returns the single data value.

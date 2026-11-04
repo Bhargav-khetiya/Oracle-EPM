@@ -1,10 +1,10 @@
-# @CalcMgrMessageFormat
+﻿# @CalcMgrMessageFormat
 
 ## Overview
 
 `@CalcMgrMessageFormat` is a **custom Calc Manager advanced string templating function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a dynamic text constructor. You provide it a **Base String Template** containing numbered placeholders (e.g., `"Error on {0} during phase {1}"`), followed by an array of values. The function intelligently injects the array values into their corresponding placeholders, returning a perfectly constructed final text string.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building dynamic error messages, audit logs, or email alerts in Essbase, administrators heavily rely on `@CONCATENATE`. However, `CONCATENATE` can only join two strings at a time. If you want to build a complex sentence containing 4 variables, you have to write a deeply nested, unreadable nightmare: 
 `@CONCATENATE("Error in ", @CONCATENATE(vDept, @CONCATENATE(" during ", vPhase)))`. This is prone to syntax errors and is almost impossible to maintain.

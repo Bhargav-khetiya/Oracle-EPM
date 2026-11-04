@@ -1,4 +1,4 @@
-# Planning Task Lists and Task Manager: Learning Guide
+﻿# Planning Task Lists and Task Manager: Learning Guide
 
 ## Core idea
 Task Lists guide users through Planning work; Task Manager provides a broader system for defining, scheduling, assigning, tracking, and monitoring repeatable tasks.
@@ -70,7 +70,7 @@ For each task, define: trigger/input, owner, due date, expected evidence, predec
 
 ## Remember and explain
 
-**Recall:** How does a classic Task List differ from Task Manager? What is irreversible about enabling Task Manager? Which objects should be checked when a task cannot be completed?
+**Recall:** How does a classic Task List differ from Task Manager— What is irreversible about enabling Task Manager— Which objects should be checked when a task cannot be completed—
 
 **Answer key:** Task Lists are classic guided lists; Task Manager provides centralized repeatable task monitoring and scheduling. Existing Task Lists/tasks must be deleted before enabling, cannot be migrated, and the switch back is unavailable. Check task flow, assignment/access, target artifact permissions, and workflow state.
 

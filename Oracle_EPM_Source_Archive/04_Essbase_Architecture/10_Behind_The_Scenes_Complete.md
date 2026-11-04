@@ -1,4 +1,4 @@
-# 10 — Behind the Scenes: Complete End-to-End Walkthroughs
+﻿# 10 — Behind the Scenes: Complete End-to-End Walkthroughs
 
 ---
 
@@ -167,7 +167,7 @@ Step 13: 📊 Essbase processes the write
          │   h. Return SUCCESS to Planning
          │
 Step 14: ☕ Planning checks for "On Save" business rule
-         │   a. Query 🗄️: Is there a rule configured to run on save for this form?
+         │   a. Query 🗄️: Is there a rule configured to run on save for this form—
          │   b. YES → Rule "CalcRevenueForm" is configured
          │
 Step 15: ☕ Planning tells 📊 Essbase to run "CalcRevenueForm"

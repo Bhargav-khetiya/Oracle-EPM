@@ -1,6 +1,6 @@
-# 03 Capital Module (`OEP_CPX`): Complete Techno-Functional Engineering Guide
+﻿# 03 Capital Module (`OEP_CPX`): Complete Techno-Functional Engineering Guide
 
-## 1. What is the Capital Module?
+## 1. What is the Capital Module—
 
 Corporate capital expenditures (Capex)—investments in machinery, IT server infrastructure, facilities, commercial real estate, corporate aircraft, and intangible software licenses—represent massive multi-year financial commitments that dictate a firm's long-term balance sheet health.
 
@@ -237,31 +237,31 @@ A single Capex action in `OEP_CPX` synchronously ripples through all three prima
 
 ## 8. Top 10 Twisted Review & Interview Questions on Capital
 
-### Q1: What is the fundamental difference between an Asset Class and an Asset Detail?
+### Q1: What is the fundamental difference between an Asset Class and an Asset Detail—
 **Answer**: 
 * **`Asset Class`**: Parent dimension member governing global corporate accounting assumptions (e.g., `Machinery`, `Buildings`, `Vehicles`, `Intangibles`). Standard useful lives (e.g., 60 months) and depreciation conventions (e.g., Straight-Line, half-month convention) are maintained at the Asset Class level.
 * **`Asset Detail`**: Specific physical or requested asset instance (`Forklift_01`, `Dell_PowerEdge_Cluster`). Individual assets inherit defaults from their parent Asset Class, but users with proper security permissions can override useful life or depreciation method for specific assets.
 
-### Q2: Why does EBITDA increase under IFRS 16 / ASC 842 lease accounting compared to legacy operating lease accounting?
+### Q2: Why does EBITDA increase under IFRS 16 / ASC 842 lease accounting compared to legacy operating lease accounting—
 **Answer**: Under legacy lease accounting, monthly lease payments were treated as **Operating Rent Expense** within SG&A, directly reducing EBITDA. Under IFRS 16, the operating lease is capitalized onto the balance sheet. The cash payment is decomposed into **ROU Asset Depreciation** and **Lease Liability Interest Expense**. Because EBITDA stands for Earnings *Before* Interest, Taxes, Depreciation, and Amortization, removing rent from operating expenses and reclassifying it as Interest and Depreciation automatically inflates reported EBITDA!
 
-### Q3: Why does IFRS 16 lease accounting front-load total P&L expenses in Year 1?
+### Q3: Why does IFRS 16 lease accounting front-load total P&L expenses in Year 1—
 **Answer**: ROU Asset depreciation is straight-line (constant every month), but lease liability interest is computed using the **effective interest method** on the remaining unpaid liability balance. Because the principal liability is highest in Month 1, the monthly interest expense is also highest in Month 1 ($\$821.78$ vs $\$24.88$ in Month 36). Adding flat depreciation plus declining interest produces a downward-sloping total monthly expense curve, front-loading P&L costs in early periods.
 
-### Q4: How does Capital handle Construction in Progress (CIP) assets from a depreciation perspective?
+### Q4: How does Capital handle Construction in Progress (CIP) assets from a depreciation perspective—
 **Answer**: CIP assets have their depreciation method set to **No Depreciation / None**. Costs accumulate across periods in CIP accounts without affecting P&L depreciation. When the asset is placed in service, the user triggers the seeded `Capitalize Asset` rule, which credits CIP, debits the target depreciable Asset Class, and activates the depreciation calculation beginning in the in-service month.
 
-### Q5: What happens in Essbase when an asset is retired before its useful life is complete?
+### Q5: What happens in Essbase when an asset is retired before its useful life is complete—
 **Answer**: The `Retire Asset` rule executes an atomic accounting write-off:
 1. Calculates ending Net Book Value ($\text{Cost} - \text{Accumulated Depreciation}$).
 2. Calculates $\text{Gain / Loss} = \text{Cash Proceeds} - \text{NBV}$.
 3. Sets the asset's active status flag to 0.
 4. Flushes the asset's gross cost and accumulated depreciation from the balance sheet in all subsequent periods, stopping future depreciation calculations immediately.
 
-### Q6: Can you plan Intangible Assets in the Capital module, and how does the accounting differ?
+### Q6: Can you plan Intangible Assets in the Capital module, and how does the accounting differ—
 **Answer**: **Yes**. In the Capital feature enablement wizard, the administrator enables **Intangibles**. Intangible assets (capitalized software, patents, copyrights) calculate **Amortization** rather than depreciation, following IAS 38 / ASC 350. They are segregated on the Balance Sheet under Intangible Assets rather than Tangible PP&E.
 
-### Q7: If a company buys a $50,000 asset with a $5,000 salvage value over 5 years, why does DDB depreciation in Year 5 calculate as $1,776 instead of 40% of remaining book value?
+### Q7: If a company buys a $50,000 asset with a $5,000 salvage value over 5 years, why does DDB depreciation in Year 5 calculate as $1,776 instead of 40% of remaining book value—
 **Answer**: The **Salvage Value Floor Rule**. In Year 4, ending book value was $\$7,776.00$. If DDB applied its normal $40\%$ rate in Year 5:
 $$\$7,776.00 \times 40\% = \$3,110.40$$
 Subtracting $\$3,110.40$ from $\$7,776.00$ would leave an ending book value of:
@@ -269,16 +269,16 @@ $$\$7,776.00 - \$3,110.40 = \$4,665.60$$
 which violates the accounting law that an asset cannot be depreciated below its salvage value ($\$6,000.00$)! Therefore, the Capital engine caps Year 5 depreciation strictly at:
 $$\$7,776.00 - \$6,000.00 = \mathbf{\$1,776.00}$$.
 
-### Q8: How does Capital integrate with the Projects module (`OEP_PFP`)?
+### Q8: How does Capital integrate with the Projects module (`OEP_PFP`)—
 **Answer**: In organizations executing capital projects (e.g., developing proprietary software or constructing manufacturing plants), labor hours and contractor materials are budgeted inside Projects (`OEP_PFP`) under a Capital Project. Once the project finishes, the **"Push to Capital"** business rule capitalizes the project's total cumulative cost into a new Asset Detail inside `OEP_CPX`, initiating monthly depreciation.
 
-### Q9: What is the Half-Month / Mid-Quarter Convention in Capital?
+### Q9: What is the Half-Month / Mid-Quarter Convention in Capital—
 **Answer**: Tax and corporate accounting policies often stipulate that assets purchased mid-period do not receive a full month of depreciation:
 * **Half-Month**: Assets placed in service on or before the 15th receive a full month of depreciation; assets placed after the 15th receive a half-month or begin next month.
 * **Full Month**: Full month depreciation regardless of purchase day.
 Capital provides configurable depreciation convention settings during module setup.
 
-### Q10: How does Capital data flow into Financials (`OEP_FS`) without manual re-keying?
+### Q10: How does Capital data flow into Financials (`OEP_FS`) without manual re-keying—
 **Answer**: Through the seeded **`Capital to Financials`** Data Map and Smart Push. When an asset is created or updated, Smart Push transfers:
 1. New asset additions to Financials Balance Sheet account: `Property, Plant and Equipment - Additions`.
 2. Calculated monthly depreciation to Financials P&L account: `Depreciation Expense`.

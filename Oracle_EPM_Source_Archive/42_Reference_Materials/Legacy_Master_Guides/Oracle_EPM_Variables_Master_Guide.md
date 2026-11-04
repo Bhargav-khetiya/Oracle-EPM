@@ -1,6 +1,6 @@
-# Oracle EPM Cloud: The Ultimate Master Guide to Variables
+﻿# Oracle EPM Cloud: The Ultimate Master Guide to Variables
 
-## 1. Introduction: What are Variables?
+## 1. Introduction: What are Variables—
 Variables in Oracle EPM Cloud act as dynamic placeholders for members, numbers, or text. Instead of hardcoding specific members (like "FY24" or "January") into hundreds of Forms, Business Rules, and Reports, administrators use variables. When the month changes, you update the variable in one central location, and the entire application updates instantly.
 
 ---

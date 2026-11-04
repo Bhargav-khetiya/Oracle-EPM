@@ -1,67 +1,59 @@
-# Calculation Manager and Business Rules — Index
+# Module 05: Calculation Manager, Business Rules & Function Reference
 
-> Calculation Manager is the tool where you create, manage, and deploy all calculation logic in Oracle EPM Cloud. This section covers the Calc Manager interface, rule types, calc scripts, 400+ functions, allocation patterns, Groovy rules, system templates, and performance optimization.
+## Navigation & Module Overview
 
----
-
-## Reading Order
-
-| # | Document | What You'll Learn | Time |
-|---|----------|------------------|------|
-| 1 | [01_Calc_Manager_Overview.md](01_Calc_Manager_Overview.md) | Interface, views, rule types, palette components, visual vs script mode | 45 min |
-| 2 | [02_Business_Rules_Design.md](02_Business_Rules_Design.md) | Creating rules, FIX statements, variables, runtime prompts, deployment | 60 min |
-| 3 | [03_Calculation_Functions_Reference.md](03_Calculation_Functions_Reference.md) | All function categories with syntax and examples | 45 min |
-| 4 | [04_Calculations_and_Allocations.md](04_Calculations_and_Allocations.md) | Allocation templates, top-down vs bottom-up, driver-based calcs | 45 min |
-| 5 | [05_Groovy_Rules.md](05_Groovy_Rules.md) | Groovy in Calc Manager, DataGridBuilder, dynamic FIX, throwVetoException | 60 min |
-| 6 | [06_Troubleshooting_and_Performance.md](06_Troubleshooting_and_Performance.md) | Debugging, SET commands, bottom-up vs top-down execution, block creation | 30 min |
-
-## Key Architecture at a Glance
-
-```
-Calc Manager UI (Visual Flowchart Canvas)
-├── 8 Palette Objects:
-│   ├── Formula Component (LHS = RHS assignment)
-│   ├── Script Component (raw Essbase calc script)
-│   ├── Condition Component (IF/ELSEIF/ELSE branching)
-│   ├── Member Block Component (anchor calculations)
-│   ├── Member Range Component (LOOP traversal)
-│   ├── FIX Component (multidimensional slicing)
-│   ├── Rule Object (sequencing unit)
-│   └── RuleSet Object (parallel execution container)
-│
-├── 8 System Templates:
-│   ├── Allocation, Allocate Level-to-Level
-│   ├── Clear Data, Copy Data
-│   ├── Amount/Rate, Aggregation
-│   ├── Currency Conversion
-│   └── Custom Design-Time Prompt
-│
-├── 4 Variable Scopes:
-│   ├── Application, Plan Type, Rule, Global
-│   └── + Substitution Variables + Runtime Prompts
-│
-└── 2 Rule Modes:
-    ├── Visual (flowchart canvas — reversible)
-    └── Script (raw text — permanent conversion if non-standard syntax)
-```
-
-## Critical Performance Facts
-
-| Concept | Key Takeaway |
-|---------|-------------|
-| **Bottom-Up vs Top-Down** | Bottom-Up is 300x faster than Top-Down. Avoid sparse IF statements |
-| **Block Creation Bloat** | `SET CREATEBLOCKONEQ ON` without strict FIX causes gigabyte database bloat |
-| **Groovy Micro-FIX** | Slicing calc to `cell.isEdited()` cuts form save latency from 45s to 200ms |
-| **Pre-Save Validation** | `throwVetoException()` rolls back dirty blocks atomically with custom HTML alerts |
-| **Hybrid BSO** | Dynamic sparse calc eliminates batch `AGG` and `CALC DIM` scripts |
-| **SET Commands** | Always: `CACHE HIGH`, `LOCKBLOCK HIGH`, `UPDATECALC OFF`, `AGGSPARSESEL ON` |
-
-## Prerequisites
-
-Before studying Calc Manager, you should understand:
-- Essbase architecture (blocks, sparse/dense) → [07_Essbase_Architecture](../07_Essbase_Architecture/00_INDEX.md)
-- Dimension properties → [08_Dimensions_and_Metadata](../08_Dimensions_and_Metadata/00_INDEX.md)
+This module covers Calculation Manager development modes, rule deployment lifecycles, calculation physics (FIX scoping, Top-Down vs Bottom-Up), multithreading (`@CALCPARALLEL`), and essential calculation functions.
 
 ---
 
-> **Provenance:** Content merged from ChatGPT (`Calc Manager/` — 30+ files), Claude (`07_Business_Rules/`, `08_Calculation_Manager/`), Gemini (`Calc Manager/` — 30+ files)
+<!-- ===================================================================== -->
+<!-- 🎯 LIVE INTERACTIVE VISUAL CARD: MODULE 05 CALC MANAGER -->
+<!-- ===================================================================== -->
+<details open>
+<summary><b>🎯 Live Interactive Architecture Card: Calculation Engine Suite (Click to Collapse / Expand)</b></summary>
+
+<br/>
+
+> [!TIP]
+> **Interactive Standalone Dashboard:** Open [`card_kb_04_calc_business_rules.html`](../interactive_cards/card_kb_04_calc_business_rules.html) in your browser for a live interactive business rule builder & FIX scope visualizer!
+
+| Document | Primary Domain | Core Focus | Direct Link |
+| :--- | :--- | :--- | :--- |
+| **5.1 Calc Manager Overview** | Rule Development Lifecycle | Visual Mode vs Script Mode, Validate vs Save vs Deploy | [01_Calc_Manager_Overview.md](01_Calc_Manager_Overview.md) |
+| **5.2 Business Rules Design** | Calculation Physics | FIX Statement Scopes, Top-Down vs Bottom-Up, `@CALCPARALLEL` | [02_Business_Rules_Design.md](02_Business_Rules_Design.md) |
+| **5.3 Function Reference** | Function Engineering | `@RELATIVE`, `@PRIOR`, `@XREF` anti-pattern, Hybrid BSO fallback traps | [03_Calculation_Functions_Reference.md](03_Calculation_Functions_Reference.md) |
+
+```mermaid
+flowchart TD
+    M5["Module 05: Calc Manager & Rules"] --> D1["5.1 Calc Manager Overview<br/>(Validate > Save > Deploy)"]
+    M5 --> D2["5.2 Business Rules Design<br/>(FIX Scopes & Bottom-Up Physics)"]
+    M5 --> D3["5.3 Function Reference<br/>(@RELATIVE, @PRIOR, Hybrid Fallback)"]
+```
+
+</details>
+
+---
+
+## Module Documents
+
+1. **[5.1 Calculation Manager Overview: Views, Visual Palette & Deployment Lifecycle](01_Calc_Manager_Overview.md)**
+   * System View vs. Database View.
+   * Visual Canvas vs. Script Editor vs. Groovy Editor.
+   * 4-Step Rule Lifecycle (Design, Validate, Save, Deploy).
+   * Tough & twisted review questions with consultant model answers.
+
+2. **[5.2 Business Rules Design: Scoping, Execution Modes & Calc Math](02_Business_Rules_Design.md)**
+   * FIX statement physics: Filtering sparse blocks vs. evaluating dense cells.
+   * Top-Down vs. Bottom-Up execution mechanics.
+   * Calculation modes: `SET CALCMODE BLOCK;`, `CELL;`, `HYBRID;`.
+   * Parallel multithreading with `@CALCPARALLEL`.
+   * Tough & twisted review questions with consultant model answers.
+
+3. **[5.3 Calculation Functions Reference: @ Functions Deep Dive & Performance Gotchas](03_Calculation_Functions_Reference.md)**
+   * Function evaluation matrix: `@RELATIVE`, `@DESCENDANTS`, `@ISMBR`, `@PRIOR`.
+   * Cross-cube linking: Why `@XREF` is an anti-pattern and how Smart Push replaces it.
+   * Functions that break Hybrid BSO execution and force procedural fallback.
+   * Tough & twisted review questions with consultant model answers.
+
+---
+*Return to [Knowledge Base Master Index](../README.md) or advance to [Module 06: Data Integration and Exchange](../06_Data_Integration_and_Exchange/00_INDEX.md).*

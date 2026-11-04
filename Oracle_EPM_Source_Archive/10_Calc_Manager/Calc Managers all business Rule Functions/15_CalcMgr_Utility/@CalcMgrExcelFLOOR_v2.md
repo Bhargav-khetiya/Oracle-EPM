@@ -1,11 +1,11 @@
-# @CalcMgrExcelFLOOR
+﻿# @CalcMgrExcelFLOOR
 
 ## Overview
 
 `@CalcMgrExcelFLOOR` is a **custom Calc Manager mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `FLOOR` function directly inside an Essbase calculation script. 
 It forcefully rounds a number **DOWN** toward zero, to the nearest multiple of a specified significance. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard rounding (`@ROUND` or `@TRUNC`) typically rounds to the nearest whole integer or strips away decimals completely. However, operational models often require rounding down to highly specific, arbitrary multiples based on packaging, labor shifts, or pricing floors.
 For example, if you mathematically determine that you can afford to buy `4.8` pallets of material, but you are only allowed to buy full pallets, standard rounding might push you to `5` (putting you over budget). You must forcefully round `4.8` DOWN to the nearest multiple of `1` (which is `4`). If you have a budget of $124.99 and you can only buy items in $10 increments, you must round down to the nearest multiple of `10` (which is `120`).

@@ -1,13 +1,13 @@
-# @CalcMgrExcelMULTINOMIAL
+﻿# @CalcMgrExcelMULTINOMIAL
 
 ## Overview
 
 `@CalcMgrExcelMULTINOMIAL` is a **custom Calc Manager statistical function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `MULTINOMIAL` function directly inside an Essbase calculation script. 
 It calculates the ratio of the factorial of a sum of values to the product of factorials. Mathematically, it calculates: `(a + b + c)! / (a! * b! * c!)`.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
-The multinomial theorem is a core concept in combinatorics and probability distribution. It answers questions like: "If I have 10 total slots, how many different ways can I arrange 3 red balls, 2 blue balls, and 5 green balls?" 
+The multinomial theorem is a core concept in combinatorics and probability distribution. It answers questions like: "If I have 10 total slots, how many different ways can I arrange 3 red balls, 2 blue balls, and 5 green balls— 
 The math required is `(3+2+5)! / (3! * 2! * 5!)`. 
 To calculate this manually in Essbase, you would need to use the `@CalcMgrExcelFACT` function 4 separate times and manually write the division block. More importantly, factorials grow exponentially. `10!` is 3.6 million. If you try to do this manually with larger numbers (e.g., `(20+30+50)!`), the numerator will instantly exceed the 64-bit storage limit and crash the calculation with an `Infinity` error, even though the final *ratio* is a completely manageable number. 
 `@CalcMgrExcelMULTINOMIAL` offloads this entirely to the Java engine. The underlying algorithm reduces the fractions mathematically *before* multiplying them out, entirely bypassing the risk of integer overflow and returning the exact permutation count safely.

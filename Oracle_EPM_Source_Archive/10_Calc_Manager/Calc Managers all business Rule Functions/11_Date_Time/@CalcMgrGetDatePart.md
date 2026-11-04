@@ -1,10 +1,10 @@
-# @CalcMgrGetDatePart
+﻿# @CalcMgrGetDatePart
 
 ## Overview
 
 `@CalcMgrGetDatePart` is a **custom Calc Manager date extraction function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a scalpel, dissecting a unified **Java Date Object** and extracting one specific calendar component (such as the Year, the Month, the Day, or even the Last Day of the Month), returning it as a usable integer.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Calc Manager's advanced functions (like `GetCurrentDate` or `GetCustomDate`) deal entirely in Java Date Objects. While these objects are incredibly powerful for calculating exact day differences or validating leap years, they are completely unreadable to standard Essbase arithmetic and cannot be saved into a database cell.
 If you use `@CalcMgrGetCurrentDate()` to find today's date, but you only want to know what the *Month* is so you can route data into the `"Jan"` or `"Feb"` member, you must crack the Java Object open. 

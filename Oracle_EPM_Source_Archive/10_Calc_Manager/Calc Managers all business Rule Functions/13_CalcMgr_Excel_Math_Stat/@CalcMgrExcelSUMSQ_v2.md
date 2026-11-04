@@ -1,11 +1,11 @@
-# @CalcMgrExcelSUMSQ
+﻿# @CalcMgrExcelSUMSQ
 
 ## Overview
 
 `@CalcMgrExcelSUMSQ` is a **custom Calc Manager mathematical array function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `SUMSQ` function directly inside an Essbase calculation script. 
 It takes an array of data points, mathematically **squares** each individual number, and then **sums** all of those squared values together into a single total.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 The "Sum of Squares" is a foundational calculation in advanced statistics, regression analysis, and machine learning models (like Ordinary Least Squares). When measuring the error or deviation of a dataset from a trendline, you must square the deviations before summing them so that negative errors (e.g., `-5`) and positive errors (`+5`) do not artificially cancel each other out to `0`. 
 Doing this manually in an Essbase calc script requires creating a temporary variable array, looping through the data to square each number, and then summing the temporary array. `@CalcMgrExcelSUMSQ` eliminates the need for looping and temporary variables. It streams the data into the Java engine, squares every element on the fly, and returns the final aggregate sum, guaranteeing parity with legacy Excel statistical modeling.

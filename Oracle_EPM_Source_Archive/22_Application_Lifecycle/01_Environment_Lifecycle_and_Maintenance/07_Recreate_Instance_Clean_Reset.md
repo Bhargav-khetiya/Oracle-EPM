@@ -1,12 +1,12 @@
-﻿# Oracle EPM Cloud: Recreate Instance (Remove & Clean Reset)
+﻿﻿# Oracle EPM Cloud: Recreate Instance (Remove & Clean Reset)
 
-## 1. What Does `recreate` Do?
+## 1. What Does `recreate` Do—
 
 The `recreate` command **completely wipes** an EPM Cloud environment and restores it to a clean, empty state — as if it were freshly provisioned.
 
 ### What Gets Deleted
 
-| Component | Deleted? | Details |
+| Component | Deleted— | Details |
 |-----------|----------|---------|
 | **Application** | ✅ Yes | The entire application (all cubes, plans, modules) is destroyed |
 | **Database** | ✅ Yes | Essbase databases are dropped and recreated empty |
@@ -172,12 +172,12 @@ epmautomate recreate
 Output:
 ```
 WARNING: This operation will delete the existing application and re-create the database.
-Do you want to continue? (y/n): y
+Do you want to continue— (y/n): y
 ```
 
 ---
 
-## 6. What Happens After Recreate?
+## 6. What Happens After Recreate—
 
 After `recreate` completes, the environment is in a **clean, empty state**:
 
@@ -242,15 +242,15 @@ You now have two options:
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: What is the catastrophic risk of running ecreate -f removeAll=true?
+### Q1: What is the catastrophic risk of running ecreate -f removeAll=true—
 **Answer:** Running ecreate -f wipes the application and inbox, but **preserves the 60-day historical backups in OCI Object Storage**. Running ecreate -f removeAll=true permanently expunges **ALL 60-day Object Storage backups**. It performs a cryptographically unrecoverable purge of all tenant archives. Even Oracle Support cannot restore data after emoveAll=true.
 
-### Q2: Does ecreate delete user accounts from the Identity Domain (OCI IAM / IDCS)?
+### Q2: Does ecreate delete user accounts from the Identity Domain (OCI IAM / IDCS)—
 **Answer:** No. User accounts and identity groups exist in the Identity Domain layer, outside the application container. ecreate destroys application definitions, Essbase data, and role assignments within the app, but user identities remain in IDCS and can log into a newly created application once roles are reassigned.
 
-### Q3: How do you use TempServiceType during ecreate to switch an instance to FCCS or ARCS?
+### Q3: How do you use TempServiceType during ecreate to switch an instance to FCCS or ARCS—
 **Answer:** If you have an Enterprise Cloud EPM license, you can switch business processes on a clean instance using:
 `cmd
 epmautomate recreate -f TempServiceType=FCCS

@@ -1,10 +1,10 @@
-# @XRANGE
+﻿# @XRANGE
 
 ## Overview
 
 `@XRANGE` is a **cross-dimensional member selection function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that generates a continuous list of members between a specified start and end point **across two dimensions** (almost always Year and Period). It overcomes the limitation of `@RANGE`, which cannot cross dimension boundaries.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Financial time-series data naturally spans across months and years. 
 - Calculating a rolling 12-month average in March FY25 requires looking back through Feb FY25, Jan FY25, and into Dec FY24, Nov FY24, etc.

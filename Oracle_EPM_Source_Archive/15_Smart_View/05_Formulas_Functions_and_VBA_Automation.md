@@ -1,4 +1,4 @@
-# 05 — Smart View worksheet functions and VBA
+﻿# 05 — Smart View worksheet functions and VBA
 
 ## Core idea
 
@@ -39,9 +39,9 @@ This guide intentionally does not provide a runnable production macro. VBA code 
 
 ## Recall check
 
-1. What is the delimiter in the POV syntax? A hash between dimension and member, such as Account#Sales.
-2. Which API should be consulted for Cloud connection through VBA? Oracle documents HypUIConnect for Cloud; check the current Developer’s Guide.
-3. Why avoid embedding credentials? Workbooks and macros can be shared or inspected.
+1. What is the delimiter in the POV syntax— A hash between dimension and member, such as Account#Sales.
+2. Which API should be consulted for Cloud connection through VBA— Oracle documents HypUIConnect for Cloud; check the current Developer’s Guide.
+3. Why avoid embedding credentials— Workbooks and macros can be shared or inspected.
 
 **Teach-back:** Describe what you would verify before distributing an HsSetValue workbook or a VBA macro.
 

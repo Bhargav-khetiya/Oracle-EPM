@@ -1,10 +1,10 @@
-# @ISSIBLING
+﻿# @ISSIBLING
 
 ## Overview
 
 `@ISSIBLING` is a **Boolean logical function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It checks whether the member currently being calculated is a sibling of a specified member. It returns `TRUE` or `FALSE`.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Siblings are members that share the exact same immediate parent in the outline. 
 - You may want to execute logic on a peer group (e.g., all states under "USA") without having to explicitly name the parent.
@@ -47,7 +47,7 @@ Where:
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `mbrName` | Member | ✅ Yes | The target member. The function asks: "Is the current member a sibling of this `mbrName`?" |
+| `mbrName` | Member | ✅ Yes | The target member. The function asks: "Is the current member a sibling of this `mbrName`— |
 
 ---
 

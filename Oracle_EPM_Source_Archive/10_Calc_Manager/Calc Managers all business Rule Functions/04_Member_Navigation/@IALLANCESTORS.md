@@ -1,4 +1,4 @@
-# @IALLANCESTORS
+﻿# @IALLANCESTORS
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 *(The "I" stands for Inclusive).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In complex allocations, administrators frequently need to trace a data point upward through its hierarchy. For example, if `"Store_101"` fails a profitability threshold, the script might need to log an error not just for the store, but for the `"District"`, `"Region"`, and `"Total_Company"` that own it. 
 Native `@ANCESTORS` would return the District, Region, and Company, but it would *exclude* `"Store_101"`. To include the store, you would have to write `"Store_101", @ANCESTORS("Store_101")`. 
@@ -56,7 +56,7 @@ Returns a comma-separated array of members representing the direct lineage.
 ## How It Works (Behind the Scenes)
 
 1. **Member Resolution**: Essbase evaluates the target `MemberName`.
-2. **Outline Query**: It queries the active `.otl` outline. It looks at the target member and asks: "Who is your parent?" It stores that parent. Then it asks the parent: "Who is your parent?"
+2. **Outline Query**: It queries the active `.otl` outline. It looks at the target member and asks: "Who is your parent— It stores that parent. Then it asks the parent: "Who is your parent—
 3. **Root Detection**: It continues climbing the tree until it hits a member that has no parent (the Generation 1 root of the dimension).
 4. **Array Assembly**: It reverses the trace, assembling the members in a Top-Down order.
 5. **Inclusion**: It appends the original `MemberName` to the bottom of the list.

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KB Interactive Card 08: Application Lifecycle & Snapshot Migration</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-6 font-sans">
+  <div class="max-w-4xl mx-auto space-y-6">
+    <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 shadow-2xl backdrop-blur">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-700 pb-4">
+        <div>
+          <span class="text-xs font-bold tracking-widest text-sky-400 uppercase bg-sky-950/60 px-3 py-1 rounded-full border border-sky-800">
+            Knowledge Base Card 08
+          </span>
+          <h1 class="text-2xl font-black mt-2 text-white">Application Lifecycle & Snapshot Migration Simulator</h1>
+        </div>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-purple-950 text-purple-400 border border-purple-800">Dev-Test-Prod</span>
+      </div>
+
+      <!-- Controls -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-5 space-y-4">
+          <h2 class="text-base font-bold text-sky-400">1. Migration Scope & Artifacts</h2>
+          
+          <div class="space-y-3 text-xs">
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Target Environment Deployment:</label>
+              <select id="envStage" onchange="evalMigrate()" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-slate-200">
+                <option value="DEV_TO_TEST" selected>Dev to Test (UAT Validation)</option>
+                <option value="TEST_TO_PROD">Test to Production (Live Deployment)</option>
+                <option value="PROD_TO_TEST">Production to Test (cloneenvironment)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Artifact Migration Type:</label>
+              <select id="artType" onchange="evalMigrate()" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-slate-200">
+                <option value="SELECTIVE" selected>Selective Patch (Only modified rules & forms)</option>
+                <option value="FULL_SNAPSHOT">Full Snapshot (All metadata, data, security)</option>
+                <option value="DATA_ONLY">Data Only (Native Essbase export)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Pre-Migration Safety Protocol:</label>
+              <select id="safetyCheck" onchange="evalMigrate()" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-slate-200">
+                <option value="BACKUP_TAKEN" selected>On-Demand Pre-Migration Snapshot Captured ✅</option>
+                <option value="NO_BACKUP">No Pre-Migration Snapshot (Direct Import) ⚠️</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-5 space-y-4">
+          <h2 class="text-base font-bold text-sky-400">2. Migration Safety & Blast Radius</h2>
+
+          <div class="p-4 rounded-lg bg-slate-900 border border-slate-700 space-y-3 text-xs">
+            <div>
+              <span class="text-slate-400 block font-semibold">Deployment Risk Level:</span>
+              <span id="riskLevel" class="text-sm font-bold text-emerald-400">LOW (Selective Patch + Full Rollback Point)</span>
+            </div>
+            <div class="pt-2 border-t border-slate-800">
+              <span class="text-slate-400 block font-semibold">User Impact & Lock Status:</span>
+              <span id="lockImpact" class="text-slate-200">Overwrites selected rules; zero impact on existing data blocks</span>
+            </div>
+            <div class="pt-2 border-t border-slate-800">
+              <span class="text-slate-400 block font-semibold">Recovery Time Objective (RTO):</span>
+              <span id="rtoTime" class="text-emerald-400 font-bold">< 15 minutes rollback via pre-migration snapshot</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function evalMigrate() {
+      const stage = document.getElementById('envStage').value;
+      const art = document.getElementById('artType').value;
+      const safe = document.getElementById('safetyCheck').value;
+
+      const risk = document.getElementById('riskLevel');
+      const lock = document.getElementById('lockImpact');
+      const rto = document.getElementById('rtoTime');
+
+      if (safe === "NO_BACKUP" && stage === "TEST_TO_PROD") {
+        risk.innerText = "CRITICAL AUDIT VIOLATION: No Rollback Point in Production!";
+        risk.className = "text-sm font-bold text-rose-500";
+        rto.innerText = "24 Hours (Requires restoring yesterday's maintenance backup)";
+        rto.className = "text-rose-500 font-bold";
+      } else if (stage === "PROD_TO_TEST") {
+        risk.innerText = "MEDIUM: Overwrites entire Test pod via cloneenvironment stream";
+        risk.className = "text-sm font-bold text-amber-400";
+        lock.innerText = "Wipes Test application; restores 100% real Production data for UAT.";
+        rto.innerText = "30 - 45 minutes automated cloud stream";
+        rto.className = "text-amber-400 font-bold";
+      } else {
+        risk.innerText = "LOW: Best-Practice Selective Deployment with Pre-Migration Baseline";
+        risk.className = "text-sm font-bold text-emerald-400";
+        lock.innerText = "Overwrites targeted artifacts; existing data blocks remain 100% safe.";
+        rto.innerText = "< 15 minutes rollback via pre-migration snapshot";
+        rto.className = "text-emerald-400 font-bold";
+      }
+    }
+  </script>
+</body>
+</html>

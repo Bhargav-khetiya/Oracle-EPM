@@ -1,11 +1,11 @@
-# @CalcMgrExcelEDATE
+﻿# @CalcMgrExcelEDATE
 
 ## Overview
 
 `@CalcMgrExcelEDATE` is a **custom Calc Manager date function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `EDATE` function directly inside an Essbase calculation script. 
 It takes a starting date and calculates a new date that is exactly a specified number of months in the **future** (or in the **past**), while preserving the exact day of the month. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When forecasting contract renewals, warranty expirations, or employee vesting schedules, you often need to shift a date exactly *X* months forward. If an employee is hired on January 15th, and they have a 6-month probationary period, their probation ends exactly on July 15th. 
 Attempting to shift dates mathematically in Essbase by adding days (e.g., `Start_Date + 180`) is highly inaccurate because months have different numbers of days. Adding exactly 6 months means you must manipulate the month component directly and handle the year rollover (e.g., if you add 3 months to November, it becomes February of the next year). 

@@ -1,10 +1,10 @@
-# @SHIFTMINUS
+﻿# @SHIFTMINUS
 
 ## Overview
 
 `@SHIFTMINUS` is a **time series function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that **shifts data backward** across time periods by a specified offset. It is functionally similar to `@SHIFT` but is explicitly designed to only move backward (into the past) along the time dimension.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Referencing historical data is a core requirement in financial planning:
 - **Lag indicators**: Analyzing prior period actuals to drive current forecasts

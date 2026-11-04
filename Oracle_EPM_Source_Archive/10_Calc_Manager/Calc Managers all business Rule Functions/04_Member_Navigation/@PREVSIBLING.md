@@ -1,10 +1,10 @@
-# @PREVSIBLING
+﻿# @PREVSIBLING
 
 ## Overview
 
 `@PREVSIBLING` is a **member navigation function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns the **previous sibling** of a member — the member that appears immediately before it in outline order under the same parent.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Sequential navigation within a hierarchy level enables:
 - Period-over-period comparisons (Feb vs. Jan, Mar vs. Feb)

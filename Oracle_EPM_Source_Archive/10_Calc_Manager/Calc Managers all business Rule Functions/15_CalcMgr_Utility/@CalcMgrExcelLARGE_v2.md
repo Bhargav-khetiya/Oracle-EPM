@@ -1,11 +1,11 @@
-# @CalcMgrExcelLARGE
+﻿# @CalcMgrExcelLARGE
 
 ## Overview
 
 `@CalcMgrExcelLARGE` is a **custom Calc Manager statistical array function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `LARGE` function directly inside an Essbase calculation script. 
 It analyzes a list or array of data points and returns the **k-th largest value**. For example, it can find the 1st largest (the maximum), the 2nd largest, or the 3rd largest number in a dataset.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While Essbase has native functions like `@MAX` (to find the absolute largest number), it has absolutely no native way to find the *second* largest or *third* largest number in a range. 
 In sales forecasting and operations, you frequently need to identify the "Top 3" performing regions, or the "Top 5" highest-selling products, to calculate specific bonus payouts or allocate specialized marketing budgets. 

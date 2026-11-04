@@ -1,10 +1,10 @@
-# @RELATIVE
+﻿# @RELATIVE
 
 ## Overview
 
 `@RELATIVE` is a **member selection function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns all members of a specified hierarchy that are at a **specific generation or level** relative to a starting member. It is extremely versatile for grabbing all "leaf" members under a parent or all members at a specific tier (e.g., all Regions, all Departments).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard hierarchical functions like `@CHILDREN` (one level down) or `@DESCENDANTS` (all levels down) lack precision when you need members from exactly one specific tier of the hierarchy:
 - You want all base-level (level 0) entities under "Total Company" for data entry validations.

@@ -1,10 +1,10 @@
-# @CalcMgrMonthsDiff
+﻿# @CalcMgrMonthsDiff
 
 ## Overview
 
 `@CalcMgrMonthsDiff` is a **custom Calc Manager date mathematics function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates the mathematical **difference in months** between two provided **Java Date Objects**, returning the result as a precise floating-point decimal (a Double).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While `@CalcMgrMonthsBetween` is perfect for calculating integer-based amortization schedules (e.g., a contract lasts exactly `36` months), it fails entirely when dealing with fractional accounting. 
 If an employee starts on January 15th, and you run a report on March 1st, they haven't worked 2 full months. They have worked exactly `1.5` months. If you use `MonthsBetween`, the engine rounds down and tells you they worked `1` month, causing your HR accrual models to under-allocate payroll taxes.

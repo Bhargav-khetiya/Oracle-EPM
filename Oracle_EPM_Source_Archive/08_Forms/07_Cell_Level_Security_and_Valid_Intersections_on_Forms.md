@@ -1,4 +1,4 @@
-# 07 — Cell-level security and valid intersections on forms
+﻿# 07 — Cell-level security and valid intersections on forms
 
 ## Core idea
 
@@ -8,11 +8,11 @@ Cell-level security controls who may read or write data at member intersections;
 
 | Control | Question it answers | Scope and effect |
 |---|---|---|
-| Member security | Which dimension members can this user access? | Baseline data access throughout the application |
-| Cell-level security (CLS) | At which intersections should this user/group have read or write access denied? | An exception to regular member security, applying where cells are shown, including forms and Smart View |
-| Valid intersections (VI) | Which combinations of dimension members are valid for data entry? | Marks combinations valid or invalid; invalid cells are read-only and may be suppressed on forms |
-| Form/segment read-only | Can users edit through this form layout? | Form interaction only; it is not general data security |
-| Artifact access | Can a user open a form or folder? | Access to the artifact itself, separate from cell data rights |
+| Member security | Which dimension members can this user access— | Baseline data access throughout the application |
+| Cell-level security (CLS) | At which intersections should this user/group have read or write access denied— | An exception to regular member security, applying where cells are shown, including forms and Smart View |
+| Valid intersections (VI) | Which combinations of dimension members are valid for data entry— | Marks combinations valid or invalid; invalid cells are read-only and may be suppressed on forms |
+| Form/segment read-only | Can users edit through this form layout— | Form interaction only; it is not general data security |
+| Artifact access | Can a user open a form or folder— | Access to the artifact itself, separate from cell data rights |
 
 Oracle describes cell-level security restrictions as Deny Read or Deny Write. A user with read access can view data but cannot edit it; a user denied read access sees #NoAccess. Service Administrators are not affected by cell-level security. Test rules with the actual user/group and the test facility or an equivalent non-admin account.
 
@@ -53,10 +53,10 @@ A read-only cell can result from several controls. Review the user-facing reason
 
 ## Recall check
 
-1. Which control governs allowed member combinations? Valid intersections.
-2. Which control can deny reading a value at a specific intersection? Cell-level security.
-3. Does valid intersection make a value confidential? No.
-4. Does a form read-only setting replace data security? No.
+1. Which control governs allowed member combinations— Valid intersections.
+2. Which control can deny reading a value at a specific intersection— Cell-level security.
+3. Does valid intersection make a value confidential— No.
+4. Does a form read-only setting replace data security— No.
 
 **Teach-back:** Explain to a reviewer why “this combination is not valid” and “this user must not see this value” need different controls.
 

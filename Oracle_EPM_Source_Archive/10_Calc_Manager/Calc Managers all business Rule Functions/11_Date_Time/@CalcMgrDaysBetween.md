@@ -1,10 +1,10 @@
-# @CalcMgrDaysBetween
+﻿# @CalcMgrDaysBetween
 
 ## Overview
 
 `@CalcMgrDaysBetween` is a **custom Calc Manager date function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates the mathematical difference, strictly in days, between two internal Java `Date` objects.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 There are two dominant date paradigms in Calc Manager:
 1. **The Integer Paradigm**: Dates stored as `20241231`. To find the difference between two integers, you use `@CalcMgrDateDiff` or `@CalcMgrDaysDiff`.

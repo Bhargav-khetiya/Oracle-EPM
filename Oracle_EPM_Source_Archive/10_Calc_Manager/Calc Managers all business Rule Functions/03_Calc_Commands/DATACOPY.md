@@ -1,10 +1,10 @@
-# DATACOPY
+﻿# DATACOPY
 
 ## Overview
 
 `DATACOPY` is a **data movement command** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that **copies data** from one member intersection to another within the same database. It is one of the most commonly used commands for scenario seeding, version management, and data staging.
 
-### Why Does This Command Exist?
+### Why Does This Command Exist—
 
 Data frequently needs to be duplicated between members:
 - **Forecast seeding**: Copy Actuals to Forecast as a starting point

@@ -1,10 +1,10 @@
-# @CalcMgrCounterDecrementKey
+﻿# @CalcMgrCounterDecrementKey
 
 ## Overview
 
 `@CalcMgrCounterDecrementKey` is a **custom Calc Manager state-tracking function** in Oracle EPM Cloud (PBCS/EPBCS). It subtracts a value of exactly `1` from a specific "key" (a named sub-bucket) located inside a master hash map running in the background Java heap.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While `@CalcMgrCounterDecrement` works on simple, single-value global counters (e.g., a total counter named "Global_Errors"), advanced Calc Manager logic often relies on **Hash Maps** to track multiple different totals simultaneously. 
 For example, instead of having 50 separate counters for 50 different states, you have a single master map called `"State_Error_Counts"`. Inside this map, you have keys like `"Texas"`, `"California"`, and `"New_York"`. 

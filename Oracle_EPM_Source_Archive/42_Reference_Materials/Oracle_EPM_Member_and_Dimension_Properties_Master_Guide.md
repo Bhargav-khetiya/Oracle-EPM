@@ -1,4 +1,4 @@
-# Oracle EPM Cloud — Member and Dimension Properties Master Architecture Guide
+﻿# Oracle EPM Cloud — Member and Dimension Properties Master Architecture Guide
 
 > **Authoritative Technical Reference**: This guide provides exhaustive, consultant-grade analysis of Oracle EPM Cloud Planning member properties, Essbase block storage impacts, calculation behaviors, and multi-cube design patterns based on verified production UI extractions and official Oracle Enterprise Performance Management documentation.
 
@@ -96,7 +96,7 @@ The **Data Storage** setting is the single most critical property governing whet
 
 #### Detailed Breakdown of Storage Options
 
-| Storage Type | Physical Disk Footprint (.PAG) | Exists in Index (.IND)? | User Data Entry Allowed? | Calculation Mechanics | Best Used When... |
+| Storage Type | Physical Disk Footprint (.PAG) | Exists in Index (.IND)— | User Data Entry Allowed— | Calculation Mechanics | Best Used When... |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **`Store`** | Yes (8 bytes per dense cell) | Yes (if Sparse) | Yes (at Level 0) | Values are permanently written to disk during data entry, data load, or batch aggregation (`CALC ALL`, `AGG`). | Base level input members, stored aggregations, and members requiring historical persistence. |
 | **`Dynamic Calc`** | **Zero bytes** on disk | No | **No** (Derived only) | Evaluated dynamically at the moment a user opens a form or runs a Smart View query. Uses the **Dynamic Calc Cache**. | Summary parents with few children, simple member formulas, ratios, variance calculations, and currency conversions. |
@@ -480,22 +480,22 @@ To allow cross-cube calculations, data maps, and Smart Push to function without 
 
 ## 10. Consultant Technical Interview Mastery
 
-### Q1: What is the exact physical difference between `Store` and `Dynamic Calc` in Essbase?
+### Q1: What is the exact physical difference between `Store` and `Dynamic Calc` in Essbase—
 > **Answer**: A `Store` member allocates an 8-byte IEEE double-precision floating-point slot within each dense data block stored in the physical `.PAG` files on disk (and creates an entry in `.IND` if sparse). A `Dynamic Calc` member consumes **0 bytes of disk space**; its value is computed dynamically in RAM during query execution using the Dynamic Calc Cache and discarded after the query completes.
 
-### Q2: When MUST you use `Never Share` instead of `Store`?
+### Q2: When MUST you use `Never Share` instead of `Store`—
 > **Answer**: `Never Share` is required when a parent member has only one child. Under default Essbase optimization, Essbase marks single-child parents as "Auto-Shared" with the child to save space. In Planning, this shared pointer causes security evaluation errors, data input locks, and unexpected formula overwrites. Setting `Never Share` forces Essbase to generate distinct blocks.
 
-### Q3: Why is the Two Pass Calculation checkbox disabled on stored members?
+### Q3: Why is the Two Pass Calculation checkbox disabled on stored members—
 > **Answer**: Essbase executes Two-Pass calculations exclusively in RAM during runtime query evaluation. Stored members are calculated during pre-compiled batch calculation runs (`CALC ALL`, `AGG`). Therefore, Oracle EPM Cloud restricts Two-Pass calculations to dense `Dynamic Calc` members.
 
-### Q4: What happens if an Account member has Data Type = `SmartList` but you change its Data Type to `Currency`?
+### Q4: What happens if an Account member has Data Type = `SmartList` but you change its Data Type to `Currency`—
 > **Answer**: Essbase still holds the underlying numeric entry IDs (e.g., `1.0`, `2.0`) in the data blocks, but the Planning form will no longer display the text string from the Smart List. Instead, the form will render the raw number formatted as currency (e.g., `$1.00`, `$2.00`).
 
 ---
 
 **Related Architecture Documents:**
-* [03 — Sparse vs Dense Complete Guide](file:///d:/OneDrive%20-%20Orbrick/Oracle%20EPM/Oracle%20EPM%20Docs%20with%20Examples/Essbase_Internal_Architecture/03_Sparse_vs_Dense_Complete_Guide.md)
-* [04 — Block Storage Deep Dive](file:///d:/OneDrive%20-%20Orbrick/Oracle%20EPM/Oracle%20EPM%20Docs%20with%20Examples/Essbase_Internal_Architecture/04_Block_Storage_Deep_Dive.md)
-* [09 — EPM Forms, Rules, and Data Storage](file:///d:/OneDrive%20-%20Orbrick/Oracle%20EPM/Oracle%20EPM%20Docs%20with%20Examples/Essbase_Internal_Architecture/09_EPM_Forms_Rules_Data_Storage.md)
-* [Shared Members Master Guide](file:///d:/OneDrive%20-%20Orbrick/Oracle%20EPM/Oracle%20EPM%20Docs%20with%20Examples/Reference_Materials/Oracle_EPM_Shared_Members_Master_Guide.md)
+* [03 — Sparse vs Dense Complete Guide](Essbase_Internal_Architecture/03_Sparse_vs_Dense_Complete_Guide.md)
+* [04 — Block Storage Deep Dive](Essbase_Internal_Architecture/04_Block_Storage_Deep_Dive.md)
+* [09 — EPM Forms, Rules, and Data Storage](Essbase_Internal_Architecture/09_EPM_Forms_Rules_Data_Storage.md)
+* [Shared Members Master Guide](Reference_Materials/Oracle_EPM_Shared_Members_Master_Guide.md)

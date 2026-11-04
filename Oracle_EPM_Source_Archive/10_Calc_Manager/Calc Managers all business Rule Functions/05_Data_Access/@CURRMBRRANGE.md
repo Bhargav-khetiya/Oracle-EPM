@@ -1,10 +1,10 @@
-# @CURRMBRRANGE
+﻿# @CURRMBRRANGE
 
 ## Overview
 
 `@CURRMBRRANGE` is a **range generation function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It generates a dynamic list of members from a specified dimension, starting at a defined point and ending at the member currently being calculated.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Many financial calculations require a "rolling" or "to-date" window that expands dynamically depending on which period is being calculated.
 - **Year-To-Date (YTD)**: If calculating March, you need the range `Jan, Feb, Mar`.

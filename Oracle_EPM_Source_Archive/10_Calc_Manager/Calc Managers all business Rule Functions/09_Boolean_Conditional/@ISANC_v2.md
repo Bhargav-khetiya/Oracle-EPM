@@ -1,12 +1,12 @@
-# @ISANC
+﻿# @ISANC
 
 ## Overview
 
 `@ISANC` (Is Ancestor) is a **Boolean logical function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It checks whether the member currently being calculated is an ancestor (parent, grandparent, etc.) of a specified target member. It returns `TRUE` or `FALSE`.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
-Usually, calculations flow top-down (e.g., `@ISDESC` asks "Am I under this parent?"). `@ISANC` reverses the perspective. It asks: "Am I *above* this child?"
+Usually, calculations flow top-down (e.g., `@ISDESC` asks "Am I under this parent—). `@ISANC` reverses the perspective. It asks: "Am I *above* this child—
 - You might be looping through a list of parent entities and want to skip calculations on any parent that does not roll up a specific flagship store.
 - You want to apply specific logic only to the direct lineage of a specific node.
 
@@ -45,7 +45,7 @@ Where:
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `mbrName` | Member | ✅ Yes | The target descendant. The function asks: "Is the current member an ancestor of this `mbrName`?" |
+| `mbrName` | Member | ✅ Yes | The target descendant. The function asks: "Is the current member an ancestor of this `mbrName`— |
 
 ---
 
@@ -138,7 +138,7 @@ ENDFIX
 |----------|-------------|
 | [`@ISIANC`](./@ISIANC.md) | The *Inclusive* version. Returns TRUE for the base member as well as its ancestors |
 | [`@ANCESTORS`](../04_Member_Navigation/@ANCESTORS.md) | Returns the *list* of ancestors (used in FIX blocks) |
-| [`@ISDESC`](./@ISDESC.md) | The reverse check (Is the current member a descendant of X?) |
+| [`@ISDESC`](./@ISDESC.md) | The reverse check (Is the current member a descendant of X—) |
 
 ---
 

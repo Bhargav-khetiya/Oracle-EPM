@@ -1,36 +1,47 @@
-# EPBCS Modules and Business Processes — Index
+# Module 09: EPBCS Out-of-the-Box Modules & Business Processes
 
-> EPBCS (Enterprise Planning and Budgeting Cloud Service) includes pre-built planning modules that accelerate implementation. This section covers all module types, their cubes, dimensions, forms, and cross-module integration.
+## Navigation & Module Overview
 
----
-
-## Reading Order
-
-| # | Document | What You'll Learn | Time |
-|---|----------|------------------|------|
-| 1 | [01_EPBCS_Overview.md](01_EPBCS_Overview.md) | PBCS vs EPBCS, Custom vs Modules, application types | 30 min |
-| 2 | [02_Financial_Planning_Modules.md](02_Financial_Planning_Modules.md) | Financials (OEP_FS), Workforce (OEP_WFP), Capital (OEP_CPX), Projects, Strategic Modeling | 60 min |
-| 3 | [03_Cross_Module_Integration.md](03_Cross_Module_Integration.md) | Data flow between modules, cross-module Smart Push, unified reporting | 30 min |
-
-## The 5 Pre-Built EPBCS Modules
-
-| Module | Cube Prefix | Purpose | Key Features |
-|--------|-------------|---------|-------------|
-| **Financials** | OEP_FS | P&L, Balance Sheet, Cash Flow planning | Revenue drivers, expense categories, financial statements |
-| **Workforce** | OEP_WFP | Headcount and compensation planning | FTEs, salary, benefits, merit increases, new hires |
-| **Capital** | OEP_CPX | Capital expenditure planning | Asset lifecycle, depreciation, capitalization |
-| **Projects** | OEP_PFP | Project financial planning | Project costs, timelines, resource allocation |
-| **Strategic Modeling** | N/A | Long-range financial modeling | DCF, M&A, debt restructuring, simultaneous solver |
-
-## Application Types Comparison
-
-| Type | Modules Available | Custom Dimensions | Best For |
-|------|------------------|------------------|---------|
-| **Custom** | None (build from scratch) | Unlimited | Unique requirements, full control |
-| **Modules (EPBCS)** | All 5 above | Limited additions | Fast implementation, standard planning |
-| **FreeForm** | None | Unlimited, no Planning metadata | Pure Essbase, advanced modeling |
-| **FCCS** | Consolidation-specific | Consolidation dimensions | Financial consolidation & close |
+This module covers pre-built EPBCS applications, the 5 core business processes (Financials, Workforce, Capital, Projects, Strategic Modeling), cross-module data flow pipelines, and FreeForm Planning.
 
 ---
 
-> **Provenance:** Content merged from ChatGPT (`EPBCS_Modules_and_Business_Processes/` — 8+ files), Claude (`04_Planning/`), Gemini (`EPBCS_Modules_and_Business_Processes/` — 8+ files)
+<!-- ===================================================================== -->
+<!-- 🎯 LIVE INTERACTIVE VISUAL CARD: MODULE 09 EPBCS MODULES -->
+<!-- ===================================================================== -->
+<details open>
+<summary><b>🎯 Live Interactive Architecture Card: EPBCS Modules Suite (Click to Collapse / Expand)</b></summary>
+
+<br/>
+
+> [!TIP]
+> **Consultant High-Yield Summary:** Master the cube naming convention (`OEP_FS`, `OEP_WFP`, `OEP_CPX`, `OEP_PJT`, `OEP_REP`), the pre-seeded Data Map flow, and the distinction between Custom, Modular, and FreeForm applications.
+
+| Document | Primary Domain | Core Focus | Direct Link |
+| :--- | :--- | :--- | :--- |
+| **9.1 EPBCS Overview** | Pre-Built Business Processes | Financials, Workforce, Capital, Projects, Data Maps, Custom vs FreeForm | [01_EPBCS_Overview.md](01_EPBCS_Overview.md) |
+
+```mermaid
+flowchart TD
+    M9["Module 09: EPBCS Modules"] --> D1["9.1 EPBCS Overview<br/>(OEP Cubes & Integration)"]
+    D1 --> WFP["Workforce (OEP_WFP) -> Financials"]
+    D1 --> CPX["Capital (OEP_CPX) -> Financials"]
+    D1 --> PJT["Projects (OEP_PJT) -> Financials"]
+    D1 --> REP["Financials (OEP_FS) -> Reporting (OEP_REP)"]
+```
+
+</details>
+
+---
+
+## Module Documents
+
+1. **[9.1 EPBCS Pre-Built Business Processes: Financials, Workforce, Capital & Projects](01_EPBCS_Overview.md)**
+   * Custom Planning vs. Modular EPBCS vs. FreeForm Planning.
+   * The 5 Core Modules: Financials (`OEP_FS`), Workforce (`OEP_WFP`), Capital (`OEP_CPX`), Projects (`OEP_PJT`), Strategic Modeling.
+   * Cross-module data integration architecture (Data Maps & Smart Push).
+   * Preservation rules for pre-seeded `OEP_*` metadata.
+   * Tough & twisted review questions with consultant model answers.
+
+---
+*Return to [Knowledge Base Master Index](../README.md) or advance to [Module 10: Smart View Architecture](../10_Smart_View/00_INDEX.md).*

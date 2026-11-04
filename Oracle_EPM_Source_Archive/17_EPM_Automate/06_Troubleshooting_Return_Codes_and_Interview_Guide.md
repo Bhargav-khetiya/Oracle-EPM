@@ -1,4 +1,4 @@
-# 06 — EPM Automate: Troubleshooting, Error Codes, & Interview Bible
+﻿# 06 — EPM Automate: Troubleshooting, Error Codes, & Interview Bible
 
 ---
 
@@ -33,7 +33,7 @@ EPM Automate returns an operating system exit code of **`0` (Success)** or **`1`
 ## 6.3 Golden Do's and Don'ts of EPM Automate
 
 ### ✅ The DO's:
-1. **DO always check `$LASTEXITCODE` (PowerShell) or `$?` (Bash)** after every single EPM Automate command.
+1. **DO always check `$LASTEXITCODE` (PowerShell) or `$—` (Bash)** after every single EPM Automate command.
 2. **DO use `.epw` password encryption with a private key file** or OAuth 2.0 tokens for zero-trust security.
 3. **DO call `epmautomate logout` in a `finally` block** to guarantee session cleanup on script abort.
 4. **DO delete temporary ZIP snapshots from cloud staging** after downloading them to local SAN archives.
@@ -49,19 +49,19 @@ EPM Automate returns an operating system exit code of **`0` (Success)** or **`1`
 
 ## 6.4 Top 10 Consultant Interview Questions & Answers
 
-### Q1: What underlying protocol does EPM Automate use to communicate with Oracle Cloud?
+### Q1: What underlying protocol does EPM Automate use to communicate with Oracle Cloud—
 > **Answer**: EPM Automate communicates exclusively via **HTTPS REST API requests (JSON over TLS 1.2/1.3 on port 443)**. It is a client CLI wrapper that formats REST payloads and polls asynchronous job status endpoints on the Oracle Cloud gateway.
 
-### Q2: How do you bypass corporate SSO and MFA when running automated batch scripts?
+### Q2: How do you bypass corporate SSO and MFA when running automated batch scripts—
 > **Answer**: By creating a **Native Non-Federated Service Account** directly in Oracle Identity Cloud Service (OCI IAM) assigned the Service Administrator role, and authenticating via an encrypted password file (`.epw`) or OAuth 2.0 Client Credentials token.
 
-### Q3: What is the difference between `runBusinessRule` and `runJob`?
+### Q3: What is the difference between `runBusinessRule` and `runJob`—
 > **Answer**: `runBusinessRule` specifically executes Calc Manager rules and accepts command-line Runtime Prompts (RTPs). `runJob` is a universal dispatcher that launches any pre-configured job in the Planning Job Console (including metadata imports, data exports, cube refreshes, and rule sets).
 
-### Q4: How do you migrate an LCM snapshot directly between Production and Test without downloading it?
+### Q4: How do you migrate an LCM snapshot directly between Production and Test without downloading it—
 > **Answer**: Using the command:
 > `epmautomate copySnapshotFromInstance <Source_URL> <Source_User> <Source_Password_File> <Source_Snapshot> <Target_Snapshot_Name>`
 > This transfers the archive across Oracle's internal cloud data center network backbone.
 
-### Q5: What happens if an EPM Automate script fails midway through a nightly run?
+### Q5: What happens if an EPM Automate script fails midway through a nightly run—
 > **Answer**: The operating system process terminates with an exit code of `1`. A well-architected script catches this error, logs the exact `EPMAT-XXXXX` error code, sends an automated alert to the EPM administrator, and executes a `finally` block to run `epmautomate logout`.

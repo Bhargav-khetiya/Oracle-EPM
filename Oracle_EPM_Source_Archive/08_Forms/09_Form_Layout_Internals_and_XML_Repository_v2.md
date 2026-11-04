@@ -1,4 +1,4 @@
-# 🏛️ Form Properties — Form Layout Internals, XML Repository & LCM Structure
+﻿# 🏛️ Form Properties — Form Layout Internals, XML Repository & LCM Structure
 
 > **Purpose**: This technical document explores the internal physical persistence of Oracle EPM Cloud web forms in the relational repository, the structural schema of exported **Lifecycle Management (LCM) XML files**, the behind-the-scenes query compilation from form layouts into Essbase MDX/GridAPI queries, and programmatic mass-maintenance automation.
 
@@ -53,7 +53,7 @@ When an administrator exports a form using **Lifecycle Management (LCM)** or EPM
 ### Annotated Real-World Form XML Definition
 
 ```xml
-<?xml version="1.0" encoding="UTF-8"?>
+<—xml version="1.0" encoding="UTF-8"—>
 <form xmlns="http://xmlns.oracle.com/epm/planning/form">
     <name>OEP_FS_Revenue_and_Expense</name>
     <description>Driver-based Revenue and Operating Expense Plan</description>

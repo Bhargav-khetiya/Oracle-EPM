@@ -1,4 +1,4 @@
-﻿# Oracle EPM Cloud: Restore Backup and Restore Environment
+﻿﻿# Oracle EPM Cloud: Restore Backup and Restore Environment
 
 ## 1. Overview — Two Restore Commands
 
@@ -191,7 +191,7 @@ epmautomate restoreEnvironment "2026-10-05T02:00:00/Environment_Backup" DailyMai
 |---|---|---|
 | **Input** | Artifact Snapshot from Object Storage | Environment Backup from Object Storage |
 | **Action** | Copies snapshot to inbox (staging) | Directly restores the environment |
-| **Requires import step?** | ✅ Yes — `importSnapshot` needed after | ❌ No — one-step complete restore |
+| **Requires import step—** | ✅ Yes — `importSnapshot` needed after | ❌ No — one-step complete restore |
 | **Application content** | ✅ (after import) | ✅ |
 | **Users & roles** | ⚙️ Optional (via `importUsers` in import) | ⚙️ Optional |
 | **Inbox/Outbox** | ❌ | ⚙️ Optional |
@@ -229,8 +229,8 @@ Sample output:
 
 ### Step 3: Choose Your Restore Method
 
-- **Want selective import?** → Use `restoreBackup` with the `Artifact_Snapshot.zip` entry
-- **Want complete restore?** → Use `restoreEnvironment` with the `Environment_Backup` entry
+- **Want selective import—** → Use `restoreBackup` with the `Artifact_Snapshot.zip` entry
+- **Want complete restore—** → Use `restoreEnvironment` with the `Environment_Backup` entry
 
 > [!NOTE]
 > **Timestamps are UTC.** If your maintenance runs at 2:00 AM UTC and you're in IST (UTC+5:30), the backup timestamp `2026-10-09T02:00:00` corresponds to 7:30 AM IST on October 9th.
@@ -250,20 +250,20 @@ Sample output:
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: What is the critical operational difference between estoreBackup and estoreEnvironment?
+### Q1: What is the critical operational difference between estoreBackup and estoreEnvironment—
 **Answer:**
 - estoreBackup: Retrieves an archived snapshot from Object Storage and places the .zip file into the **Inbox**. It does **NOT** touch the active application. Planners can continue working uninterrupted.
 - estoreEnvironment: Performs a **full bare-metal disaster recovery**. It wipes the current environment clean and restores the entire system image from Object Storage, destroying all changes made since that backup was taken.
 
-### Q2: How can an administrator recover an individual business rule from a 30-day-old backup without overwriting the live database?
+### Q2: How can an administrator recover an individual business rule from a 30-day-old backup without overwriting the live database—
 **Answer:**
 1. Run epmautomate restoreBackup "2026-09-12_Backup.zip" to place the archive in the Inbox.
 2. Download it locally and upload it to a Test or Sandbox environment.
-3. In the Test Migration UI, expand Planning â†’ Artifacts â†’ Business Rules.
+3. In the Test Migration UI, expand Planning → Artifacts → Business Rules.
 4. Select ONLY the required rule and click Import.
 5. Export that single rule as a small patch snapshot and import it cleanly into Production.
 
-### Q3: What is the maximum retention period for backups in Oracle Object Storage, and what happens on Day 61?
+### Q3: What is the maximum retention period for backups in Oracle Object Storage, and what happens on Day 61—
 **Answer:** Oracle retains automated backups for approximately **60 days** on a rolling basis. On Day 61, the oldest backup is automatically and irreversibly purged by lifecycle policies. To maintain compliance for 7-year audit requirements, organizations must automate nightly downloads of the Artifact Snapshot to offsite enterprise storage (AWS S3, Azure Blob, or internal NAS).

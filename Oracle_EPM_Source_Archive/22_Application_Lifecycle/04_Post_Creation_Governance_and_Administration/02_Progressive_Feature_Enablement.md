@@ -1,4 +1,4 @@
-﻿# 🧩 Enable Features Post-Creation — Master Guide
+﻿﻿# 🧩 Enable Features Post-Creation — Master Guide
 ## Progressively Unlocking Planning Modules, Advanced Platform Capabilities & AI Tools
 
 > **Navigation:** `Home → Application → Configure` OR `Home → Application → Overview → Actions (▼) → Enable Features`  
@@ -181,15 +181,15 @@ When rolling out any new feature in a live environment, follow this strict 6-ste
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: Can an enabled module ever be disabled or rolled back?
+### Q1: Can an enabled module ever be disabled or rolled back—
 **Answer:** No. Enabling a module is strictly irreversible. The physical Essbase cubes, dimension hierarchies, forms, and business rules are permanently stamped into the application schema. If a module is no longer needed, you must hide its cards in Navigation Flows, revoke security access, and clear cube data.
 
-### Q2: What happens to existing custom dimensions and data when a new module is enabled?
+### Q2: What happens to existing custom dimensions and data when a new module is enabled—
 **Answer:** Progressive feature enablement is non-destructive to existing data. The system provisions new cubes and dimensions alongside existing ones. If a new module introduces an overlapping dimension (e.g. `Entity`), the module integrates with the existing shared hierarchy.
 
-### Q3: What is the recommended deployment order when rolling out modules over a multi-phase implementation?
+### Q3: What is the recommended deployment order when rolling out modules over a multi-phase implementation—
 **Answer:**
 1. **Phase 1: Financials** (establishes corporate P&L, balance sheet, and chart of accounts).
 2. **Phase 2: Workforce & Capital** (provides detailed operational drivers for payroll and fixed asset depreciation).

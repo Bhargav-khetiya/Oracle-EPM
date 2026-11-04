@@ -1,11 +1,11 @@
-# @CURLEV
+﻿# @CURLEV
 
 ## Overview
 
 `@CURLEV` is a **native Essbase hierarchical function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates the database outline and returns the **exact Level number (integer)** of the member that is currently being processed by the calculation engine. 
 *(Note: `@CURLEV` and `@CURRLEV` are exact aliases of one another. Both execute identical underlying C-code in the Essbase kernel).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When constructing robust financial scripts, you frequently need to execute logic that behaves differently for parent members versus child members. 
 In Essbase, a **Level** counts Bottom-Up. The absolute lowest "leaf" nodes (members that have absolutely no children below them) are ALWAYS Level 0. Their immediate parents are Level 1. Their grandparents are Level 2. 

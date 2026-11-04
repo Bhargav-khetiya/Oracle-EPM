@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Source Archive Card 03: Outline Property & Redwood Screen Encyclopedia</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-6 font-sans">
+  <div class="max-w-6xl mx-auto space-y-6">
+    <!-- Header -->
+    <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 shadow-2xl backdrop-blur">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-700 pb-4">
+        <div>
+          <span class="text-xs font-bold tracking-widest text-purple-400 uppercase bg-purple-950/60 px-3 py-1 rounded-full border border-purple-800">
+            Source Archive Card 03
+          </span>
+          <h1 class="text-2xl font-black mt-2 text-white">Property & Redwood Screen Encyclopedia</h1>
+          <p class="text-slate-400 text-sm mt-1">Interactive architectural matrix covering Essbase outline member properties and Redwood administrative consoles.</p>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="setViewMode('properties')" id="mode-prop" class="px-3 py-1.5 rounded-lg bg-sky-500 text-white font-bold text-xs transition-colors">Member Properties</button>
+          <button onclick="setViewMode('screens')" id="mode-screen" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700 text-xs transition-colors">Redwood Screens</button>
+        </div>
+      </div>
+
+      <div class="mt-4 text-xs text-slate-400 flex items-center justify-between">
+        <span id="itemCount">Inspecting member properties</span>
+        <span class="text-purple-400">Click any card to inspect architectural mechanics & review defense</span>
+      </div>
+    </div>
+
+    <!-- Layout Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Item Selector List -->
+      <div id="itemList" class="lg:col-span-1 space-y-2 max-h-[650px] overflow-y-auto pr-1">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Detail Card -->
+      <div id="itemDetail" class="lg:col-span-2 bg-slate-800/80 border border-slate-700 rounded-2xl p-6 shadow-xl">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const propertiesData = [
+      {
+        id: "p1",
+        name: "Two-Pass Calculation",
+        sub: "Account Dimension Only",
+        physics: "Forces Essbase to execute a second dynamic calculation pass AFTER all other dimensions have aggregated.",
+        defense: "Mandatory on dynamic ratio accounts (e.g. Margin %, Markup %, Markup Rate). Prevents parent rollups from adding percentages together.",
+        trap: "Checking Two-Pass on an Entity or Department member. Two-Pass is strictly an Account dimension compiler directive; Essbase completely ignores it on non-Account dimensions.",
+        rule: "Always pair with Dynamic Calc storage on Account ratios."
+      },
+      {
+        id: "p2",
+        name: "Implied Share",
+        sub: "Outline Storage Optimization",
+        physics: "When a parent has only 1 child or 1 consolidatable child, Essbase treats parent and child as sharing the exact same physical cell coordinate.",
+        defense: "Saves disk and memory by eliminating duplicate stored blocks. Essbase automatically converts the parent to a shared pointer.",
+        trap: "Attempting to enter independent data on the parent while child data exists, or adding a second child and wondering why numbers rolled up unexpectedly. Explicitly set parent to 'Never Share' if direct data entry is required.",
+        rule: "Set to 'Never Share' if parent requires distinct storage from single child."
+      },
+      {
+        id: "p3",
+        name: "Time Balance: Flow vs Balance",
+        sub: "Period Summarization Physics",
+        physics: "Flow sums across periods (Jan + Feb + Mar = Q1). Balance takes ending or beginning period (Q1 = March for Balance-Last).",
+        defense: "Revenue and Expenses are Flow. Cash, Debt, Headcount, and Inventory are Balance-Last. Skip Missing/Zeros instructs how periods without data are handled.",
+        trap: "Setting an Asset account to Flow. At the end of Q1, cash would sum 3 months of bank balances instead of reporting the closing March position.",
+        rule: "P&L = Flow; Balance Sheet = Balance (Last)."
+      },
+      {
+        id: "p4",
+        name: "Data Storage: Dynamic Calc (~)",
+        sub: "Memory Vector Computation",
+        physics: "Allocates ZERO physical cells in .PAG files. Evaluated on retrieval in RAM by the ASO dynamic vector engine in Hybrid BSO.",
+        defense: "Mandatory for upper sparse parent members in Hybrid BSO outlines. Completely eliminates batch CALC ALL requirements.",
+        trap: "Users attempting to enter data in Smart View on dynamic parents. Essbase silently drops write-backs to dynamic cells without error.",
+        rule: "Level 0 = Stored; Upper Sparse Parents = Dynamic Calc (~)."
+      },
+      {
+        id: "p5",
+        name: "Consolidation Operator: Ignore (~)",
+        sub: "Non-Aggregating Metrics",
+        physics: "Suppresses member from rolling up into its parent sum during standard hierarchical consolidation.",
+        defense: "Mandatory on Smart List drivers, currency exchange rates, operational drivers (Headcount, SQFT), and tax rates.",
+        trap: "Leaving an exchange rate or Smart List status account as `+`. Parent summary account consolidates rates into meaningless sums (e.g. EUR/USD + JPY/USD).",
+        rule: "All driver and status accounts must have operator set to `~`."
+      }
+    ];
+
+    const screensData = [
+      {
+        id: "s1",
+        name: "Valid Intersections Designer",
+        sub: "Application Cluster -> Valid Intersections",
+        physics: "Relational rule engine that enforces allowed combinations of dimensions (e.g. Entity vs Product, Scenario vs Version).",
+        defense: "Suppresses invalid Cartesian intersections from web forms, preventing users from entering data and stopping empty block creation.",
+        trap: "Confusing Valid Intersections with Security. Valid Intersections enforces business validity (e.g. US cannot sell EMEA products), NOT user permissions.",
+        rule: "Always set Anchor Dimension to the most constrained business dimension."
+      },
+      {
+        id: "s2",
+        name: "Data Maps Console",
+        sub: "Data Exchange Cluster -> Data Maps",
+        physics: "Point-to-point inter-cube data bridge. Extracts source slices and streams them in-memory to target cubes via Smart Push.",
+        defense: "Eliminates batch export/import routines. Pushes financial slices from BSO calculation cubes directly into ASO reporting cubes.",
+        trap: "Attaching unconstrained Data Map to form save. If the map does not use form context, it attempts to push the entire cube on every save.",
+        rule: "Always check 'Use Form Context' when attaching Smart Push to web forms."
+      },
+      {
+        id: "s3",
+        name: "Jobs Console",
+        sub: "Application Cluster -> Jobs",
+        physics: "Asynchronous job scheduler managing business rules, data loads, cube refreshes, and LCM exports.",
+        defense: "Central monitoring hub for job status (`-1` = In Progress, `0` = Success, `>0` = Error). Provides downloadable error logs.",
+        trap: "Assuming HTTP 201 Created from REST API means the job completed. REST triggers job asynchronously; must poll Jobs Console via GET.",
+        rule: "Download error logs immediately; historical logs are purged by daily maintenance."
+      },
+      {
+        id: "s4",
+        name: "Navigation Flows Designer",
+        sub: "Tools Cluster -> Navigation Flows",
+        physics: "Role-based UX configuration framework tailoring Redwood Springboards, Cards, and Clusters.",
+        defense: "Delivers distinct workflows for Finance Planners, HR Users, and Approvers; hides administrative clutter from business users.",
+        trap: "Migrating a custom navigation flow from DEV to PROD and forgetting to set status to 'Active'. Users continue seeing default flow.",
+        rule: "Clone default flow before editing; always mark custom flow 'Active'."
+      },
+      {
+        id: "s5",
+        name: "Access Control Console",
+        sub: "Tools Cluster -> Access Control",
+        physics: "Manages Native Directory groups, user role assignments, and artifact permissions within Planning.",
+        defense: "Enforces Least-Privilege Precedence across group conflicts: None > Read > Write. Synchronizes with OCI IAM / IDCS.",
+        trap: "Granting Write access in Group 1 and None access in Group 2, then wondering why user cannot see the form. None always wins.",
+        rule: "Use Native Groups for artifact security; use OCI IAM for pod roles."
+      }
+    ];
+
+    let currentMode = "properties";
+    let activeItem = propertiesData[0];
+
+    function renderList() {
+      const data = currentMode === "properties" ? propertiesData : screensData;
+      const container = document.getElementById("itemList");
+      container.innerHTML = data.map(item => `
+        <div onclick="selectItem('${item.id}')"
+             class="p-4 rounded-xl border transition-all cursor-pointer ${item.id === activeItem.id ? 'bg-purple-950/70 border-purple-500 shadow-md' : 'bg-slate-800/60 border-slate-700/70 hover:border-slate-500'}">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-sm text-white">${item.name}</span>
+            <span class="text-[10px] px-2 py-0.5 rounded font-mono text-slate-400 bg-slate-900 border border-slate-800">
+              ${currentMode === 'properties' ? 'PROPERTY' : 'SCREEN'}
+            </span>
+          </div>
+          <p class="text-xs text-slate-400 mt-1">${item.sub}</p>
+        </div>
+      `).join("");
+      document.getElementById("itemCount").innerText = `Inspecting ${data.length} ${currentMode}`;
+    }
+
+    function renderDetail(item) {
+      const detail = document.getElementById("itemDetail");
+      detail.innerHTML = `
+        <div class="space-y-6">
+          <div class="border-b border-slate-700 pb-4">
+            <span class="text-xs uppercase tracking-wider text-purple-400 font-bold">${currentMode.toUpperCase()} SPECIFICATION</span>
+            <h2 class="text-2xl font-black text-white mt-1">${item.name}</h2>
+            <p class="text-slate-400 text-xs font-mono mt-1">${item.sub}</p>
+          </div>
+
+          <div>
+            <h3 class="text-xs uppercase tracking-wider font-bold text-slate-400">Technical Engine & Physics</h3>
+            <p class="text-slate-200 text-sm mt-1 leading-relaxed bg-slate-950/60 p-3.5 rounded-xl border border-slate-800">${item.physics}</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-slate-900/80 border border-slate-700 rounded-xl p-4">
+              <h4 class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Consultant Review Defense</h4>
+              <p class="text-xs text-slate-300 mt-2 leading-relaxed">${item.defense}</p>
+            </div>
+            <div class="bg-slate-900/80 border border-slate-700 rounded-xl p-4">
+              <h4 class="text-xs font-bold text-rose-400 uppercase tracking-wider">Junior Review Trap</h4>
+              <p class="text-xs text-slate-300 mt-2 leading-relaxed">${item.trap}</p>
+            </div>
+          </div>
+
+          <div class="bg-purple-950/40 border border-purple-800/80 rounded-xl p-4">
+            <h4 class="text-xs font-bold text-purple-300 uppercase tracking-wider">Production Architectural Law</h4>
+            <p class="text-xs text-slate-200 mt-1.5 font-medium">${item.rule}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    function selectItem(id) {
+      const data = currentMode === "properties" ? propertiesData : screensData;
+      activeItem = data.find(i => i.id === id) || data[0];
+      renderList();
+      renderDetail(activeItem);
+    }
+
+    function setViewMode(mode) {
+      currentMode = mode;
+      const propBtn = document.getElementById("mode-prop");
+      const screenBtn = document.getElementById("mode-screen");
+      if (mode === "properties") {
+        propBtn.className = "px-3 py-1.5 rounded-lg bg-sky-500 text-white font-bold text-xs transition-colors";
+        screenBtn.className = "px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700 text-xs transition-colors";
+        activeItem = propertiesData[0];
+      } else {
+        screenBtn.className = "px-3 py-1.5 rounded-lg bg-purple-500 text-white font-bold text-xs transition-colors";
+        propBtn.className = "px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700 text-xs transition-colors";
+        activeItem = screensData[0];
+      }
+      renderList();
+      renderDetail(activeItem);
+    }
+
+    // Initialize
+    renderList();
+    renderDetail(activeItem);
+  </script>
+</body>
+</html>

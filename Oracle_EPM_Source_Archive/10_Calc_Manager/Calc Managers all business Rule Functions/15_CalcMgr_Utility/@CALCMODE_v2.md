@@ -1,10 +1,10 @@
-# @CALCMODE
+﻿# @CALCMODE
 
 ## Overview
 
 `@CALCMODE` is a **native Essbase calculation engine directive** in Oracle EPM Cloud (PBCS/EPBCS). Unlike mathematical or logical functions that return data, `@CALCMODE` is a structural command that dictates **how the Essbase engine processes blocks of data in memory**. It explicitly overrides default block calculation behaviors (such as Top-Down vs. Bottom-Up processing, or Block vs. Cell mode), allowing administrators to forcibly optimize script performance or resolve complex order-of-operations data dependencies.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 By default, Essbase uses a highly optimized "Bottom-Up" calculation algorithm. When it sees an equation like `"Total_Sales" = "Units" * "Price";`, it scans the database for existing blocks of `Units` and `Price`, loads those blocks, calculates them, and saves `Total_Sales`. 
 However, if `Total_Sales` relies on complex cross-dimensional logic or sparse `IF` statements (where the engine cannot easily predict which blocks need calculating), the Bottom-Up engine may fail to create the target blocks, resulting in `#MISSING` data. In these scenarios, the script must be forced into "Top-Down" mode, where the engine comprehensively loops through every possible combination of members, guaranteeing the calculation fires, but at the cost of massive performance degradation.

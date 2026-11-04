@@ -1,10 +1,10 @@
-# @CalcMgrTextLength
+﻿# @CalcMgrTextLength
 
 ## Overview
 
 `@CalcMgrTextLength` is a **custom Calc Manager string evaluation function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a character counter. It takes a source text string and returns the **exact integer number of characters** contained within that string, including letters, numbers, symbols, and spaces.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building dynamic EPM logic based on text variables, administrators must often ensure that a string conforms to specific formatting rules before executing database operations. 
 For example, if your Essbase outline requires all Project IDs to be exactly 6 digits long (e.g., `"P10050"`), and a user submits `"P150"`, attempting to push data to `@MEMBER("P150")` will cause a fatal calculation error because the member does not exist. 

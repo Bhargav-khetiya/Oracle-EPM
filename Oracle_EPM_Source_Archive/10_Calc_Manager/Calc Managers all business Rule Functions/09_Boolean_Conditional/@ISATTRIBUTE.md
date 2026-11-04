@@ -1,15 +1,15 @@
-# @ISATTRIBUTE
+﻿# @ISATTRIBUTE
 
 ## Overview
 
 `@ISATTRIBUTE` is a **Boolean logical function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It checks whether the member currently being calculated is associated with a specific Attribute member from a designated Attribute Dimension. It returns `TRUE` or `FALSE`.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard dimensions (like "Entity" or "Product") determine the primary structure of the database. **Attribute Dimensions** (like "Store_Size" or "Product_Color") are dynamically linked to base dimensions to provide rich, metadata-driven groupings without increasing the physical size (sparsity) of the cube.
 While you can use `FIX(@ATTRIBUTE("Large"))` to isolate a calculation to Large stores, you often need to branch logic *within* a larger calculation block based on the attribute of the current member.
 
-`@ISATTRIBUTE` allows you to ask: *"Does the Product I'm currently calculating have the 'Red' attribute?"*
+`@ISATTRIBUTE` allows you to ask: *"Does the Product I'm currently calculating have the 'Red' attribute—*
 
 ### When to Use It
 

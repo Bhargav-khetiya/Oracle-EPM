@@ -1,6 +1,6 @@
-# 02 Workforce Module (`OEP_WFP`): Complete Techno-Functional Engineering Guide
+﻿# 02 Workforce Module (`OEP_WFP`): Complete Techno-Functional Engineering Guide
 
-## 1. What is the Workforce Module?
+## 1. What is the Workforce Module—
 
 Payroll, bonuses, and employee benefits represent the single largest operating expense line for most global enterprises, typically accounting for **$50\% \text{ to } 70\%$ of total corporate operating expenditures (SG&A)**. 
 
@@ -295,51 +295,51 @@ When metadata is refreshed (**Application -> Overview -> Actions -> Refresh Data
 
 ## 7. Top 10 Twisted Review & Interview Questions on Workforce
 
-### Q1: Why is the `Property` dimension frequently configured as Dense, and what is the trade-off?
+### Q1: Why is the `Property` dimension frequently configured as Dense, and what is the trade-off—
 **Answer**: In Workforce, calculations require simultaneous evaluation of multiple non-financial attributes (`Start Date`, `End Date`, `FTE`, `Pay Basis`, `Salary`, `Bonus %`, `Medical Plan`). Configuring `Property` as **Dense** places all these attributes into the same contiguous 64KB–512KB memory block. The CPU computes compensation, taxes, and benefits entirely in register cache without issuing secondary block lookups. 
 **Trade-off**: It increases the size of every physical data block. If hundreds of unnecessary properties are added, block size can exceed the optimal 256KB threshold, increasing memory consumption.
 
-### Q2: A client selects "Job Only" planning, but 6 months later demands named employee tracking. Can you change this in Application Settings?
+### Q2: A client selects "Job Only" planning, but 6 months later demands named employee tracking. Can you change this in Application Settings—
 **Answer**: **NO**. Workforce granularity is an **irrevocable configuration**. Once enabled, you cannot convert "Job Only" to "Employee and Job". You must either:
 1. Rebuild the application from scratch (export all data, delete application, recreate, re-import).
 2. Or, build an ugly, high-maintenance custom dimension structure that circumvents seeded module logic.
 *Consultant Rule*: Always recommend **Employee and Job** during initial workshops unless the client strictly enforces anonymous retail/manufacturing shift budgeting.
 
-### Q3: How does Workforce calculate Partial FTE, and why is the annual total an average rather than a sum?
+### Q3: How does Workforce calculate Partial FTE, and why is the annual total an average rather than a sum—
 **Answer**: If an employee is hired on **October 1st** in a calendar year (Q4):
 * Jan – Sep (9 months): $\text{FTE} = 0.0$
 * Oct – Dec (3 months): $\text{FTE} = 1.0$
 * **Annual Summary FTE**: $\frac{0 + 0 + ... + 1.0 + 1.0 + 1.0}{12} = \frac{3.0}{12} = \mathbf{0.25 \text{ FTE}}$.
 The `FTE` account has a Time Balance property of **Average** (or custom formula), preventing corporate rollup reports from showing $3.0$ FTEs for a single person who worked for 3 months!
 
-### Q4: An HR analyst inputs a merit increase of 5% in July, but the annual salary report shows an unexpected dollar amount. What happened?
+### Q4: An HR analyst inputs a merit increase of 5% in July, but the annual salary report shows an unexpected dollar amount. What happened—
 **Answer**: Common culprits:
 1. **Proration Setting**: The module may be configured to evaluate merit timing based on exact hire dates rather than the first day of the merit month.
 2. **Salary Basis Mismatch**: If the employee is tagged as "Hourly" instead of "Annual", the merit % is applied to the hourly rate and multiplied by monthly working hours (which vary between 160, 168, and 176 hours depending on the calendar month).
 3. **Double Application**: If a user runs `Synchronize Defaults` after manually overriding an employee's salary on a form, the default grade table may overwrite their manual entry.
 
-### Q5: What happens behind the scenes during a mid-year Employee Transfer between two entities?
+### Q5: What happens behind the scenes during a mid-year Employee Transfer between two entities—
 **Answer**: 
 1. The source department block (`Entity_A`) has its `End Date` property updated to the day prior to transfer, zeroing out salary/FTE in subsequent months. Historical expenses remain untouched.
 2. A new block is instantiated in the target department (`Entity_B`) with `Start Date` set to the transfer date.
 3. Groovy script copies the employee's salary rate, job code, and benefit selections to the new block.
 4. Both blocks are calculated, ensuring zero gap and zero double-counting in corporate totals.
 
-### Q6: How does Workforce synchronize with the Financials core cube (`OEP_FS`) without crashing performance?
+### Q6: How does Workforce synchronize with the Financials core cube (`OEP_FS`) without crashing performance—
 **Answer**: Workforce does **not** push individual named employees to Financials! Detailed employee records stay inside `OEP_WFP`. The pre-built Data Map (`Compensation to Financials`) aggregates data across Level 0 employees and jobs, drops those dimensions, and maps the summarized dollar totals to Financials Level 0 SG&A accounts (`Base Salaries`, `Fringe Benefits`, `Payroll Taxes`) by Department. Only summary financial numbers cross into `OEP_FS`.
 
-### Q7: If an employee earns $250,000, why does the FICA tax line become zero in the final months of the year?
+### Q7: If an employee earns $250,000, why does the FICA tax line become zero in the final months of the year—
 **Answer**: Statutory payroll tax ceilings. The US federal government caps Social Security taxation at $\$168,600$ of annual gross earnings. Workforce tracks cumulative year-to-date wages in memory. Once cumulative wages exceed $\$168,600$, the calculation rule evaluates taxable wages as $\$0.00$, resulting in zero tax for the remaining periods.
 
-### Q8: Can an end user edit salary amounts directly on a read-only Workforce form?
+### Q8: Can an end user edit salary amounts directly on a read-only Workforce form—
 **Answer**: No. However, on writable forms, if salary is governed by **Job Salary Defaults**, the cell may be dynamically locked by a validation rule. To override the standard grade rate, the user must check the **"Override Salary"** property flag, which triggers cell-level security or dynamic form logic to unlock the `Salary` input cell.
 
-### Q9: What is the difference between `TBH` members and existing employees?
+### Q9: What is the difference between `TBH` members and existing employees—
 **Answer**:
 * **Existing Employees**: Named individuals mapped from HRIS systems with fixed employee IDs and historical tenure.
 * **`TBH` (To Be Hired)**: Seeded placeholder members (`TBH1`, `TBH2`, `TBH3`...) used to model open requisitions and future headcount growth. They inherit salary and benefit assumptions directly from their assigned `Job` and `Salary Grade`.
 
-### Q10: How do you handle non-standard compensation like Commissions, Relocation Allowances, and Severance?
+### Q10: How do you handle non-standard compensation like Commissions, Relocation Allowances, and Severance—
 **Answer**: Through **Additional Earnings** properties configured in the Workforce setup wizard:
 1. **Commission**: Driven by an entered percentage multiplied by projected sales revenue pulled from Financials or Sales planning.
 2. **One-Time Lump Sums**: Relocation bonuses or signing bonuses entered in specific individual calendar periods (`BegBalance` or specific month) with calculation type set to **Flat Amount**.

@@ -1,324 +1,140 @@
-# Advanced Dimensions Topics
+# 8.5 Advanced Metadata Topics: Attributes, Smart Lists & HSP Relational Schema
 
-> **Prerequisites:** [Account Dimension](03_Account_Dimension.md), [Period/Scenario/Version](04_Period_Scenario_Version.md)  
-> **Sources merged:** ChatGPT 06/09/10/11, Claude 05.30 §15-21, Gemini 06/09/10/11  
-> **Evidence Labels:** `[Oracle Documented]` · `[Illustrative]` · `[Recommendation]`
-
----
-
-## HSP System Members and the 17 Metric Types
-
-### The HSP_ Prefix
-
-Members beginning with `HSP_` are **internal system members** generated and maintained by Oracle Planning's kernel. They bind the relational workflow engine (Planning Unit Hierarchies) to Essbase storage blocks.
-
-> [!CAUTION]
-> Never rename, delete, add custom children to, or repurpose any `HSP_` member. Doing so corrupts the relational-to-Essbase mapping and can require a full application rebuild.
-
-### The 17 Metric Types
-
-The Metric Type dropdown defines how a system member interacts with workflow, promotions, and dynamic cell-level security:
-
-| # | Metric Type | Purpose |
-|:-:|:---|:---|
-| 1 | **None** | Standard operational member — no workflow binding |
-| 2 | **Data Value** | Financial data submission point (budget dollars) |
-| 3 | **Process State** | Workflow status code (0=Under Review, 1=Submitted, 2=Approved) |
-| 4 | **Approval Unit PM Member** | Base member bound to approval unit |
-| 5 | **Approval Unit Primary Member** | Resolves secondary trees to primary Entity |
-| 6 | **Approval Unit Secondary Member** | Tracks secondary dimension coordinates |
-| 7 | **Approval Unit Owner** | Current user holding write access |
-| 8 | **Approval Unit Previous Owner** | User who promoted/delegated/rejected |
-| 9 | **Approval Unit Last Action** | Audit trail: Promote, Reject, Sign Off |
-| 10 | **Approval Unit Substate** | Granular workflow condition (e.g., Validation Failed) |
-| 11 | **Approval Unit Submission Group** | Enables split submission of entity sections |
-| 12 | **Approval Unit Hierarchy** | Binds member to Planning Unit Hierarchy tree |
-| 13 | **Entity Process State** | Rollup entity workflow status (all children approved?) |
-| 14 | **Approval Unit Total** | Checksum dollar value at promotion time |
-| 15 | **Approval Unit Total (Dynamic)** | Dynamic threshold for routing rules |
-| 16 | **Approval Unit Last Modified** | Epoch timestamp of last promotion |
-| 17 | **Cell Level Security Access** | Toggles read/write based on workflow state |
-
-### Submission Groups in Practice
-
-Traditional budgeting required an entire Entity to be submitted at once. Submission Groups allow partitioned promotion:
-
-```
-Entity: E10002
-  Group 1: Personnel Costs    → Promoted by HR on Day 5
-  Group 2: Operating Expenses → Promoted by Cost Center Manager on Day 10
-  Group 3: Capital Outlays    → Promoted by Facilities on Day 15
-```
-
-Each group follows independent promotion, rejection, and approval cycles.
-
-`[Oracle Documented]`
+## Table of Contents
+1. [Core Consultant Mental Model](#1-core-consultant-mental-model)
+2. [Attribute Dimensions: Cross-Dimensional Filtering without Block Expansion](#2-attribute-dimensions-cross-dimensional-filtering-without-block-expansion)
+3. [Smart Lists as Pseudo-Dimensions](#3-smart-lists-as-pseudo-dimensions)
+4. [The Planning Relational Repository (`HSP_*` Schema)](#4-the-planning-relational-repository-hsp_-schema)
+5. [Tough & Twisted Review Questions with Consultant Model Answers](#5-tough--twisted-review-questions-with-consultant-model-answers)
 
 ---
 
-## Relational Schema Internals (HSP_ Tables)
+<!-- ===================================================================== -->
+<!-- 🎯 LIVE INTERACTIVE VISUAL CARD: ATTRIBUTES & HSP RELATIONAL SCHEMA -->
+<!-- ===================================================================== -->
+<details open>
+<summary><b>🎯 Live Interactive Architecture Card: Attributes & Relational HSP Schema (Click to Collapse / Expand)</b></summary>
 
-All dimensions and member properties are stored as normalized relational rows before being compiled into the Essbase outline.
+<br/>
 
-```
-METADATA PERSISTENCE FLOW:
-  1. Admin saves member in Web UI
-     → SQL INSERT/UPDATE into HSP_ tables
-  2. Application Refresh (Cube Refresh)
-     → Planning queries relational tables via JDBC
-     → Constructs multidimensional tree in memory
-     → Compiles binary outline (.OTL) via Essbase API
-     → Triggers Essbase restructure (.PAG / .IND)
-```
+> [!TIP]
+> **Consultant High-Yield Summary:** Do NOT create a full physical dimension if an **Attribute Dimension** or a **Smart List** solves the business requirement. Adding physical sparse dimensions detonates the Cartesian block space; Attribute Dimensions provide dynamic aggregation filtering with **zero block explosion**.
 
-### Core HSP_ Tables
+| Metadata Mechanism | Storage Footprint | Calculation Behavior | When to Use |
+| :--- | :--- | :--- | :--- |
+| **Physical Dimension** | Creates Cartesian index entries & blocks | Participates in full Essbase block array | Core organizational axes (Entity, CostCenter, Account) |
+| **Attribute Dimension** | **Zero physical data blocks** | Dynamically aggregates base members at query time | Secondary traits (Product Size, SKU Color, Entity Country) |
+| **Smart List** | Stores positive integer ID in single cell | Non-aggregating; referenced by Calc Manager/Groovy | Drop-down choices (Job Grades, Project Status, Ratings) |
+| **HSP Relational Tables** | Oracle Autonomous RDBMS tables | Defines metadata properties, aliases, and security | Core repository compiled into Essbase via Cube Refresh |
 
-| Table | Stores |
-|-------|--------|
-| **HSP_OBJECT** | Global catalog: unique OBJECT_ID for every dimension, member, form, menu, user |
-| **HSP_MEMBER** | Hierarchy: MEMBER_ID → PARENT_ID, DIM_ID, sibling sort position |
-| **HSP_ACCOUNT** | Account properties: ACCOUNT_TYPE, TIME_BALANCE, SKIP, VARIANCE_REPORTING |
-| **HSP_MEMBER_TO_PLAN_TYPE** | Multi-cube deployment: enablement flags and consolidation operators per cube |
-| **HSP_ALIAS** | Display labels mapped to ALIAS_TABLE_ID |
-| **HSP_MEMBER_FORMULA** | Calc formulas stored as text strings per cube |
-| **HSP_UDA_ASSIGNMENT** | Many-to-many mapping between MEMBER_ID and UDA_ID |
+```mermaid
+flowchart TD
+    subgraph BaseDim ["Base Sparse Dimension: Product (Physical Blocks)"]
+        P1["Prod_101 (Laptop 15-inch, Black)"]
+        P2["Prod_102 (Laptop 13-inch, Silver)"]
+        P3["Prod_103 (Phone 6-inch, Black)"]
+    end
 
-### Data Storage Codes in HSP_MEMBER
+    subgraph AttrDims ["Attribute Dimensions (Zero Blocks - Dynamic Query Axes)"]
+        Color["Color Attribute Dimension<br/>• Black (Prod_101, Prod_103)<br/>• Silver (Prod_102)"]
+        Size["Size Attribute Dimension<br/>• Small (Phone)<br/>• Medium (13-inch)<br/>• Large (15-inch)"]
+    end
 
-| Code | Data Storage |
-|:---:|:---|
-| 0 | Store |
-| 1 | Never Share |
-| 2 | Label Only |
-| 3 | Shared |
-| 4 | Dynamic Calc |
+    subgraph QueryExecution ["Dynamic Attribute Query in Smart View"]
+        Query["Query: Total Sales WHERE Color = 'Black'"]
+        Engine["Essbase dynamically sums Prod_101 + Prod_103 in memory!"]
+        Query --> Engine
+    end
 
-### Account Type Codes in HSP_ACCOUNT
-
-| Code | Account Type |
-|:---:|:---|
-| 1 | Expense |
-| 2 | Revenue |
-| 3 | Asset |
-| 4 | Liability |
-| 5 | Equity |
-| 6 | Saved Assumption |
-
-### Why Renaming Never Breaks Forms
-
-```sql
--- Renaming member D10010 to Dept_Catering:
-UPDATE HSP_OBJECT 
-SET OBJECT_NAME = 'Dept_Catering' 
-WHERE OBJECT_ID = 10542;
+    P1 -.-> Color
+    P2 -.-> Color
+    P3 -.-> Color
+    P1 -.-> Size
+    P2 -.-> Size
+    P3 -.-> Size
 ```
 
-Forms, task lists, and security groups store `OBJECT_ID = 10542` — the internal numeric ID. Since the ID never changes, renaming a member **never breaks** any references.
-
-`[Oracle Documented]`
+</details>
 
 ---
 
-## Implied Sharing
+## 1. Core Consultant Mental Model
 
-When a parent has exactly **one child**, Essbase automatically creates an implied sharing relationship — both members point to the same physical cell. This saves storage but can cause unexpected behavior.
-
-```
-Implied Sharing Scenarios:
-
-Scenario 1: Single child
-  Revenue (parent)
-    └── Rooms Revenue (only child)
-  Result: Revenue and Rooms Revenue share the SAME cell
-  Risk: Changing one changes the other; locking conflicts
-
-Scenario 2: One stored child among dynamic siblings
-  Total Expense (Dynamic Calc)
-    ├── Operating Expense (Dynamic Calc)
-    └── Salaries (Store) ← only stored child
-  Result: Total Expense and Salaries may share
-
-Prevention: Set the child to "Never Share" data storage
-```
-
-`[Oracle Documented]`
+When a client requests tracking 25 different characteristics (e.g., *Product Color, Package Size, Voltage, Warehouse Region, Tax Tier*), a novice consultant creates 25 physical dimensions. 
+* **The Result:** The Essbase sparse Cartesian product explodes by $10^{15}$, the database crashes, and calculations freeze indefinitely.
+* **The Architect Rule:**
+  1. Use **Physical Dimensions** strictly for primary analytical axes that require independent budgets and write-back.
+  2. Use **Attribute Dimensions** for secondary rollups and ad-hoc slicing.
+  3. Use **Smart Lists** for categorical dropdown tags.
 
 ---
 
-## Shared Members and Alternate Hierarchies
+## 2. Attribute Dimensions: Cross-Dimensional Filtering without Block Expansion
 
-Shared members allow a single member to appear in **multiple locations** within a dimension without duplicating data:
-
-```
-Primary Hierarchy:
-  Revenue
-    └── Rooms Revenue
-        ├── 100110: Standard Room (base member, Store)
-        ├── 100120: Deluxe Room (base member, Store)
-        └── 100130: Suite (base member, Store)
-
-Alternate Hierarchy (by Geography):
-  Revenue by Region
-    ├── India Revenue
-    │   └── 100110: Standard Room (SHARED — points to base)
-    └── US Revenue
-        ├── 100120: Deluxe Room (SHARED)
-        └── 100130: Suite (SHARED)
-```
-
-**Rules for shared members:**
-- The **base member** (Store) must appear before any shared references in outline order
-- Shared members consume **zero additional storage**
-- Editing a shared member edits the base member's data
-- Shared members cannot have member formulas — they inherit from the base
-
-`[Oracle Documented]`
+### What Is an Attribute Dimension?
+An **Attribute Dimension** is a special type of dimension linked to a base sparse dimension (most commonly `Product` or `Entity`):
+* **Data Types Supported:** Text, Numeric, Date, Boolean.
+* **Storage Footprint:** **Zero physical blocks.** Essbase does not allocate data blocks for attribute intersections.
+* **Query Mechanics:** When a user queries `Color: Black` in Smart View, Essbase identifies all base products associated with the attribute 'Black' and aggregates them dynamically in memory.
+* **Limitation:** Attributes can be associated **strictly with Sparse dimensions**, and only with **Level 0 leaf members**.
 
 ---
 
-## Solve Order
+## 3. Smart Lists as Pseudo-Dimensions
 
-When multiple Dynamic Calc members from different dimensions intersect, **Solve Order** determines which formula evaluates first.
-
-### The Problem
-
-```
-Account dimension: Variance = Actual - Budget (Dynamic Calc formula)
-Scenario dimension: Variance scenario (Dynamic Calc formula)
-
-At intersection [Variance account, Variance scenario]:
-  Which formula runs? Account's or Scenario's?
-```
-
-### How Solve Order Works
-
-- Range: **0 to 127** (default is 0)
-- **Higher Solve Order wins** — it calculates last, overriding earlier results
-- Set on the dimension, not on individual members
-
-```
-Example:
-  Account dimension Solve Order = 0 (lower)
-  Scenario dimension Solve Order = 10 (higher)
-  
-  At the Variance intersection:
-  → Account formula runs first (lower solve order)
-  → Scenario formula runs last and overrides (higher solve order)
-```
-
-> [!IMPORTANT]
-> In most Planning applications, you rarely need to change Solve Order unless you have Dynamic Calc members on multiple dimensions that intersect. The default (0) works for single-dimension formulas.
-
-`[Oracle Documented]`
+Instead of creating dimensions for categorical labels, use **Smart Lists**:
+* Planners select values from a drop-down list on web forms (e.g., `Employee Status`: *Full-Time*, *Part-Time*, *Contractor*).
+* **Physical Storage Mechanics:**
+  * Essbase stores a single **positive integer ID** (e.g., `1`, `2`, `3`) inside the standard 8-byte numeric cell.
+  * The Planning web interface queries the relational repository to display the text label (*"Full-Time"*) to the user.
+* **Calc Manager Integration:** Business rules evaluate Smart Lists using the `@HSPMBR` function or integer comparisons:
+  ```essbase
+  IF("Employee_Status" == [[SmartList.Employee_Status.Full_Time]])
+      "Benefits" = "Salary" * 0.20;
+  ENDIF
+  ```
 
 ---
 
-## Member Formula Compilation
+## 4. The Planning Relational Repository (`HSP_*` Schema)
 
-Member formulas are stored as text in `HSP_MEMBER_FORMULA` and compiled during Cube Refresh:
+Junior consultants often forget that Cloud EPM is built on a **relational RDBMS** synchronized with the Essbase analytical engine:
 
-```
-Human-readable formula:
-  "Revenue" - "COGS"
+| Relational Table | Core Contents & Metadata Stored |
+| :--- | :--- |
+| **`HSP_OBJECT`** | Every artifact in the application (members, forms, rules, folders) has a unique `OBJECT_ID`. |
+| **`HSP_MEMBER`** | Maps member names, parent IDs, dimension IDs, and member order. |
+| **`HSP_ACCOUNT`** | Stores Account Type, Time Balance, Variance Reporting, and Data Type properties. |
+| **`HSP_ALIAS`** | Stores multi-language alias tables and member aliases. |
+| **`HSP_ACCESS_CONTROL`** | Stores security group assignments and artifact permissions. |
 
-After Essbase compilation:
-  → Validated against outline member names
-  → Converted to internal byte-code references
-  → Stored in .OTL binary format
-  → Executed in Dynamic Calc Cache at query time
-```
-
-### Common Formula Patterns
-
-```essbase
-/* Simple subtraction */
-"Revenue" - "COGS";
-
-/* Cross-dimensional reference */
-"Revenue" -> "Budget" / "Revenue" -> "Actual";
-
-/* Conditional logic */
-IF("Revenue" != 0)
-  "COGS" / "Revenue" * 100;
-ELSE
-  #MISSING;
-ENDIF;
-
-/* Using @functions */
-@PARENTVAL("Account");     /* Parent's value in Account dimension */
-@PRIOR("Revenue", 1);     /* Prior period value */
-```
-
-`[Oracle Documented]`
+* **Why Direct SQL Is Impossible:** In OCI Gen 2 Cloud EPM, Oracle shields the relational schema inside an encrypted managed boundary. Administrators manage metadata via LCM snapshots, Dimension Editor, or REST APIs.
 
 ---
 
-## Design Patterns
+## 5. Tough & Twisted Review Questions with Consultant Model Answers
 
-### Pattern 1: Driver-Based Planning
+### Question 1: "A client wants to add 5 new dimensions for reporting: 'Product Color', 'Voltage', 'Manufacturing Plant', 'Warranty Tier', and 'Package Type'. How do you evaluate whether to make them Physical Dimensions or Attribute Dimensions?"
+**Consultant Model Answer:**
+> "I evaluate based on three architectural criteria:
+> 1. **Do users need to enter and save budget data directly at these intersections?** If planners need to input budgets by 'Voltage' regardless of Product, it requires a physical dimension. If it is only used to slice and aggregate existing Product actuals/budgets, use an **Attribute Dimension**.
+> 2. **Are the characteristics 1-to-1 attributes of an existing sparse dimension?** Each base product has one specific Color, Voltage, and Package Type. These are perfect candidates for Attribute Dimensions.
+> 3. **Block Explosion Risk:** Adding 5 physical sparse dimensions would detonate block count and degrade performance. Implementing them as Attribute Dimensions adds **zero physical blocks**, preserves cube sizing, and provides instant Smart View ad-hoc aggregation."
 
-```
-Statistical Accounts (Saved Assumption, ~):
-  Rooms Available (Store)
-  Average Room Rate (Store)
-  Occupancy % (Store)
+### Question 2: "Can you assign an Attribute Dimension to a Dense dimension like Account or Period?"
+**Consultant Model Answer:**
+> "No. Essbase architecture strictly forbids associating Attribute Dimensions with Dense dimensions. Attribute Dimensions can be associated **strictly with Sparse dimensions** (e.g., Product, Entity, Customer), and can be assigned **only to Level 0 leaf members**. Dense dimensions reside inside the internal Cartesian block array and cannot support external attribute B-tree indexing."
 
-Calculated Revenue (Dynamic Calc):
-  Room Revenue = Rooms Available × Occupancy % × Average Room Rate
-```
-
-### Pattern 2: Multi-Cube Dimension Strategy
-
-```
-FinPlan cube:     Account × Entity × Period × Year × Scenario × Version × Department
-Manpower cube:    Account × Entity × Period × Year × Scenario × Version × Employee
-Capital cube:     Account × Entity × Period × Year × Scenario × Version × Asset Class
-
-Shared dimensions: Account, Entity, Period, Year, Scenario, Version
-Cube-specific:     Department (FinPlan), Employee (Manpower), Asset Class (Capital)
-```
-
-### Pattern 3: Alternate Rollup for Matrix Reporting
-
-```
-Entity Primary:    By Geography (US → Northeast → NYC)
-Entity Alternate:  By Product Line (Hotels → Luxury → NYC [Shared])
-Entity Alternate:  By Legal Entity (Corp → US Hotels Inc → NYC [Shared])
-```
-
-`[Recommendation]`
+### Question 3: "A business rule checks: `IF("Project_Status" == "Active")`. The rule fails to compile in Calculation Manager. Why did it fail and how do you write it correctly?"
+**Consultant Model Answer:**
+> "Calculation Manager rules evaluate against the Essbase engine, which only understands numbers and member names; it does not understand string literals like `\"Active\"`. 
+> Because 'Project_Status' is a Smart List account, Essbase stores an integer ID on disk. 
+> To write the condition correctly in Calc Manager:
+> 1. Use the Smart List reference syntax: 
+>    `IF("Project_Status" == [[SmartList.Project_Status.Active]])`
+> 2. Alternatively, if the integer ID of 'Active' is 1:
+>    `IF("Project_Status" == 1)`
+> Both formats allow Essbase to execute valid numerical comparisons."
 
 ---
-
-## Troubleshooting Common Dimension Issues
-
-| Symptom | Likely Cause | Fix |
-|---------|-------------|-----|
-| Variance shows favorable when it should be unfavorable | Wrong Variance Reporting setting (Expense vs Non-Expense) | Correct the Account Type or Variance Reporting property |
-| Q1 shows sum of months for a Balance Sheet account | Time Balance set to Flow instead of Balance | Change Time Balance to Balance |
-| Parent and child show identical values unexpectedly | Implied sharing (single child) | Set child to Never Share |
-| New member doesn't appear in forms | Member not enabled for the relevant Plan Type | Check Plan Type checkboxes in Dimension Editor |
-| Currency values not translating | Exchange Rate Type set to "No Rate" | Set appropriate rate type (Average/Ending/Historical) |
-| Two-Pass checkbox is grayed out | Member is not Dynamic Calc, or it's on a Sparse dimension | Verify Data Storage = Dynamic Calc on a Dense dimension |
-| Member formula causes #ERROR | Syntax error or reference to non-existent member | Check formula in Calc Manager; verify all referenced members exist in the cube |
-| Block explosion after adding members | Too many Sparse dimension combinations | Review custom dimension cardinality; disable members in unused cubes |
-
----
-
-## Quick Recall
-
-1. **What are HSP_ tables and why should you never modify them directly?**
-   → They are internal Planning relational tables that store all metadata. Direct modification bypasses validation and can corrupt the Essbase-to-Planning mapping.
-
-2. **When does implied sharing occur and how do you prevent it?**
-   → When a parent has exactly one child. Prevent it by setting the child to Never Share.
-
-3. **Explain Solve Order in one sentence:**
-   → "When Dynamic Calc formulas from different dimensions intersect, the formula on the dimension with the higher Solve Order number wins."
-
----
-
-**See also:**
-- [Essbase Architecture](../07_Essbase_Architecture/01_Essbase_Overview.md) — for block storage, index, and calculation details
-- [Calc Manager Overview](../05_Calc_Manager_and_Business_Rules/01_Calc_Manager_Overview.md) — for business rules that manipulate dimension members
-
+*Proceed to [Module 09: EPBCS Out-of-the-Box Business Processes](../09_EPBCS_Modules/00_INDEX.md).*

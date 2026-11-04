@@ -1,11 +1,11 @@
-# @CalcMgrExcelPRICEMAT
+﻿# @CalcMgrExcelPRICEMAT
 
 ## Overview
 
 `@CalcMgrExcelPRICEMAT` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `PRICEMAT` function directly inside an Essbase calculation script. 
 It calculates the **Price** of a security that pays interest *solely at maturity* (per $100 of face value).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 There are three primary types of fixed-income securities:
 1. **Standard Bonds**: Pay interest periodically (e.g., every 6 months). (Use `PRICE`).

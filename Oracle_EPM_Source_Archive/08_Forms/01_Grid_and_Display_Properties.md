@@ -1,4 +1,4 @@
-# 01 — Form properties, precision, suppression, and display
+﻿# 01 — Form properties, precision, suppression, and display
 
 ## Core idea
 
@@ -69,9 +69,9 @@ A practical test matrix includes: a populated form, an empty form, a sparse form
 
 ## Recall check
 
-1. What is the difference between minimum and maximum precision? Minimum pads; maximum limits and rounds displayed decimals.
-2. Does a blank display prove the underlying value is zero? No. It may be missing, suppressed, filtered, or outside the selected POV.
-3. Why test suppression with formula rows and zeros? Because those options can change which intersections are displayed or evaluated.
+1. What is the difference between minimum and maximum precision— Minimum pads; maximum limits and rounds displayed decimals.
+2. Does a blank display prove the underlying value is zero— No. It may be missing, suppressed, filtered, or outside the selected POV.
+3. Why test suppression with formula rows and zeros— Because those options can change which intersections are displayed or evaluated.
 
 **Teach-back:** Explain why a data-entry form should be tested with both missing and zero values before enabling suppression.
 

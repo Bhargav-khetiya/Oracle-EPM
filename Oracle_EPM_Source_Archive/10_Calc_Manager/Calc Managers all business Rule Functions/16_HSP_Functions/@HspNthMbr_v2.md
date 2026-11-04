@@ -1,10 +1,10 @@
-# @HspNthMbr
+﻿# @HspNthMbr
 
 ## Overview
 
 `@HspNthMbr` is a **Hyperion Planning (HSP) custom array extraction function** embedded within Oracle EPM Cloud (PBCS/EPBCS). It takes a list of members (or a relational list definition) and an integer index, and returns the **exact text string name of the member sitting at that specific position** in the list.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When executing advanced cross-dimensional modeling or dynamic tiering, a script often generates or retrieves an array of data, such as a list of 10 priority products (`"Prod_A, Prod_B, Prod_C..."`). 
 If the administrator needs to explicitly target the *first* product on that list to receive an allocation, they cannot use standard math. They need to extract the member name sitting at Index 1. 

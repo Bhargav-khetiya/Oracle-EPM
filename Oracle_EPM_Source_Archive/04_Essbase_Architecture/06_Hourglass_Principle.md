@@ -1,8 +1,8 @@
-# 06 — The Hourglass Principle: Optimal Outline Design
+﻿# 06 — The Hourglass Principle: Optimal Outline Design
 
 ---
 
-## 6.1 What Is the Hourglass Principle?
+## 6.1 What Is the Hourglass Principle—
 
 The **Hourglass Principle** (also called the **Hourglass Design** or **Hourglass Shape**) is a best-practice guideline for designing Essbase BSO database outlines. It states:
 
@@ -25,7 +25,7 @@ OUTLINE ORDER (top to bottom):        SIZE VISUALIZATION:
        ↕ Forms the HOURGLASS shape ↕
 ```
 
-### Why Is It Called "Hourglass"?
+### Why Is It Called "Hourglass"—
 
 When you list dimensions by their stored member count, and arrange them with the largest sparse dimensions at top, dense dimensions in the middle, and remaining sparse dimensions at the bottom, the profile looks like an **hourglass** — wide at top, narrow in the middle, wide at bottom.
 

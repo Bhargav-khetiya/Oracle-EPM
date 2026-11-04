@@ -1,10 +1,10 @@
-# CLEARDATA
+﻿# CLEARDATA
 
 ## Overview
 
 `CLEARDATA` is a **data management command** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that **removes data values** from specified member intersections, setting them to `#MISSING`. It is one of the most frequently used commands in data lifecycle management — essential for resetting forecasts, clearing staging areas, and preparing data for reload.
 
-### Why Does This Command Exist?
+### Why Does This Command Exist—
 
 Before loading new data or running calculations, you often need a clean slate:
 - **Forecast reset**: Clear last year's forecast before building a new one

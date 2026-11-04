@@ -1,4 +1,4 @@
-# @BETWEEN
+﻿# @BETWEEN
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 *(Note: While commonly referenced in Business Rules graphical UI validation, pure Essbase Calc Script logic typically handles this natively via `AND` logic: `IF(Value >= X AND Value <= Y)`. However, modern Calc Manager provides `@BETWEEN` as an explicit macro/function to streamline code readability and GUI-based rule building.)*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building data validation rules, tiered pricing models, or threshold-based logic, you frequently need to check if a number sits inside a specific bracket.
 Instead of writing verbose compound statements:

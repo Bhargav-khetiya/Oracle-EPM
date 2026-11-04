@@ -1,10 +1,10 @@
-# @MERGE
+﻿# @MERGE
 
 ## Overview
 
 `@MERGE` is a **member set function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that **combines (unions) two or more member sets** into a single member set, removing duplicates. It performs a set union operation — the resulting set contains all unique members from all input sets.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In planning applications, you frequently need to combine members from different branches or categories:
 - Merging members from different hierarchy branches into a single calculation scope

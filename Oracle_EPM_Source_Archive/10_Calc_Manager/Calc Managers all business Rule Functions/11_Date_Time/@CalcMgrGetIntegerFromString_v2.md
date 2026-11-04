@@ -1,10 +1,10 @@
-# @CalcMgrGetIntegerFromString
+﻿# @CalcMgrGetIntegerFromString
 
 ## Overview
 
 `@CalcMgrGetIntegerFromString` is a **custom Calc Manager string conversion function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a **Text String** that contains numeric digits (e.g., `"2024"`) and forcefully converts it into a pure mathematical **Integer** (e.g., `2024`) that can be used in standard Essbase calculations.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When parsing external text data loaded into Essbase (like `"VendorID_12345"` or `"FY2024"`), administrators often use substring functions to extract the numeric portion. For example, they might extract `"2024"`. 
 However, the result of a substring extraction is still fundamentally a *Text String*. You cannot perform math on a string. You cannot add `+1` to `"2024"` to forecast the next year, because Essbase will either throw a Type Mismatch error or literally concatenate the string into `"20241"`. 

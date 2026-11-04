@@ -1,11 +1,11 @@
-# @CalcMgrLowercase
+﻿# @CalcMgrLowercase
 
 ## Overview
 
 `@CalcMgrLowercase` is a **custom Calc Manager string manipulation function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a text string and systematically converts every alphabetical character within it to **lowercase**. 
 *(Note: This function is functionally identical to `@CalcMgrToLowerCase`. It exists as a direct alias for administrators who prefer simpler naming conventions).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When Essbase calculations interact with external text data—such as user commentary, runtime prompts, or data loaded from third-party HR systems—data consistency is non-existent. A user might type `"Approved"`, `"APPROVED"`, or `"aPpRoVeD"`. 
 If a calculation script uses an `IF` statement to check `IF("Status" == "approved")`, it performs a strict, case-sensitive comparison. The script will reject `"Approved"` and `"APPROVED"` because the capitalization does not match perfectly.

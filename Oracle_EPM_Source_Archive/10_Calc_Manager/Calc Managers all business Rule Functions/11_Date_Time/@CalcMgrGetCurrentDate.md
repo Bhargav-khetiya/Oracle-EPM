@@ -1,10 +1,10 @@
-# @CalcMgrGetCurrentDate
+﻿# @CalcMgrGetCurrentDate
 
 ## Overview
 
 `@CalcMgrGetCurrentDate` is a **custom Calc Manager date function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a dynamic system clock query, pinging the underlying EPM Java application server and returning the **Current Date** (strictly the year, month, and day) exactly at the moment the calculation script is executed.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In robust EPM applications, calculations must frequently evaluate the "Current Date" without requiring the administrator to manually update a substitute variable every single morning. For example, if a script needs to calculate "Days Sales Outstanding" (DSO) based on today's date, or verify if an employee's hire date is in the past, the script must pull the live date automatically.
 While Essbase has native functions like `@TODAY`, the native Essbase functions often return values in legacy formats that cannot be seamlessly passed into Calc Manager's advanced Java date-math functions (like `@CalcMgrDaysBetween`). 

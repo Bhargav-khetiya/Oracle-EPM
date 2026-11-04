@@ -1,4 +1,4 @@
-# @VAR
+﻿# @VAR
 
 ## Overview
 
@@ -8,7 +8,7 @@ Variance is a foundational statistical measurement that quantifies how far a set
 
 *(Note: `@VAR` calculates the **Sample** variance, dividing by $N-1$. If you need the **Population** variance, dividing by $N$, you must use `@VARP`).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In FP&A, knowing the average of a metric is rarely enough to understand the true risk profile of the business. 
 For example, two stores might both have an Average Monthly Sales of `$10,000`. But Store A hits exactly `$10,000` every single month (Zero Variance). Store B hits `$20,000` one month, and `$0` the next month (Massive Variance). Store B is incredibly risky from a cash-flow perspective.
@@ -114,7 +114,7 @@ ENDFIX
 | Mistake | Explanation | Fix |
 |---------|-------------|-----|
 | Sample vs Population | Dividing by $N-1$ vs $N$ | `@VAR` calculates the *Sample* variance (it assumes the 12 months you gave it are just a sample of a much larger infinite dataset, so it divides by $N-1$ to be conservative). If your dataset is the ENTIRE universe of data (e.g., there are only 12 months in a year, and you have all 12), you should mathematically use Population Variance (`@VARP`), which divides by exactly $N$ |
-| Misinterpreting the Result | "Why is the number so huge?" | As stated, variance squares the differences. If your sales average `$10,000`, your variance might be `2,000,000`. You cannot plot Variance on the same chart as Sales. If you need a volatility metric that is scaled to the original data (e.g., "$10,000 plus or minus $1,400"), you MUST use Standard Deviation (`@STDEV`), which is literally just the square root of Variance |
+| Misinterpreting the Result | "Why is the number so huge— | As stated, variance squares the differences. If your sales average `$10,000`, your variance might be `2,000,000`. You cannot plot Variance on the same chart as Sales. If you need a volatility metric that is scaled to the original data (e.g., "$10,000 plus or minus $1,400"), you MUST use Standard Deviation (`@STDEV`), which is literally just the square root of Variance |
 | Not using `SKIPMISSING` | Zero Corruption | If a store closed for 3 months, and you use `@VAR("Jan":"Dec")`, the engine evaluates those 3 `#MISSING` months as `$0`. This creates a massive artificial gap between the `$0` months and the `$10,000` active months, skyrocketing the variance. Always use `SKIPMISSING` to evaluate only active periods |
 
 ---

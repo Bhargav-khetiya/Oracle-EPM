@@ -1,11 +1,11 @@
-# @CalcMgrExcelACCRINTM
+﻿# @CalcMgrExcelACCRINTM
 
 ## Overview
 
 `@CalcMgrExcelACCRINTM` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `ACCRINTM` function directly inside an Essbase calculation script. 
 It calculates the accrued interest for a security (like a zero-coupon bond, short-term commercial paper, or certificate of deposit) that pays interest entirely **at maturity**, rather than in periodic coupon payments.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When migrating treasury models from Excel into EPM Cloud, developers often need to model short-term debt instruments that do not pay semi-annual coupons. Instead, the interest accrues over the lifespan of the instrument and is paid out in a single lump sum when the instrument matures.
 Recreating the precise Excel day-count logic (especially adjusting for leap years or specific European vs. US day-count bases) using raw algebraic Essbase equations is tedious and prone to fractional rounding errors. `@CalcMgrExcelACCRINTM` utilizes the underlying Java math engine to execute the exact same logic as Excel, ensuring 100% parity with legacy spreadsheets down to the penny.

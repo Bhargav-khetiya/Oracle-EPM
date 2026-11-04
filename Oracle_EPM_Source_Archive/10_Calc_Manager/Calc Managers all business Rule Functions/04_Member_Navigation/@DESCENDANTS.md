@@ -1,10 +1,10 @@
-# @DESCENDANTS
+﻿# @DESCENDANTS
 
 ## Overview
 
 `@DESCENDANTS` is one of the **most critical member set functions** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It returns **all descendants** of a specified member — children, grandchildren, great-grandchildren, and so on down to the leaf level. Unlike `@CHILDREN` which returns only immediate children, `@DESCENDANTS` traverses the entire subtree.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 You very frequently need to process every member below a parent at all levels:
 - Calculate formulas for all accounts under a total

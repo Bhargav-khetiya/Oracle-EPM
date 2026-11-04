@@ -1,4 +1,4 @@
-# 01 — Universal Member Properties: The Complete Foundation
+﻿# 01 — Universal Member Properties: The Complete Foundation
 
 ---
 
@@ -63,7 +63,7 @@ The **Data Storage** setting is the single most critical property governing whet
 
 ### Physical Comparison Matrix
 
-| Storage Option | Storage Location | In Index (.IND)? | User Data Input? | Essbase Internal Behavior | Best Consultant Use Case |
+| Storage Option | Storage Location | In Index (.IND)— | User Data Input— | Essbase Internal Behavior | Best Consultant Use Case |
 | :--- | :---: | :---: | :---: | :--- | :--- |
 | **`Store`** | `.PAG` disk files | Yes (if Sparse) | Yes (at Level 0) | Values are written to 8-byte cells during data entry, data load, or batch calculations (`CALC ALL`, `AGG`). | Base level input accounts, stored parent summaries. |
 | **`Dynamic Calc`** | **0 Bytes on disk** (RAM only) | No | **No** (Calculated) | Computed dynamically when a query requests it using the **Dynamic Calc Cache**. Discarded after query finishes. | Summary rollups with few children, variance accounts, ratios, currency views. |

@@ -1,11 +1,11 @@
-# @CalcMgrExcelAMORDEGRC
+﻿# @CalcMgrExcelAMORDEGRC
 
 ## Overview
 
 `@CalcMgrExcelAMORDEGRC` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `AMORDEGRC` function directly inside an Essbase calculation script. 
 It calculates the depreciation (or amortization) for an asset for a specific accounting period using a **French Accounting System depreciation convention**. Specifically, it applies a declining balance (degressive) method, where a depreciation coefficient is applied based on the useful life of the asset.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 French tax and accounting laws mandate highly specific rules for accelerated depreciation. The depreciation rate is multiplied by a legal "coefficient" (e.g., 1.25, 1.75, or 2.25) depending on whether the asset's lifespan is 3-4 years, 5-6 years, or >6 years. 
 Recreating this highly localized, tiered coefficient logic manually using `IF` statements in Essbase is incredibly tedious and prone to fractional calculation errors. 

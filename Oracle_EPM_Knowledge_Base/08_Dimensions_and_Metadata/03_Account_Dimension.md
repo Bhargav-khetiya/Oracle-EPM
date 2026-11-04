@@ -1,213 +1,143 @@
-# Account Dimension Deep Dive
+# 8.3 Account Dimension Architecture: Types, Time Balance & Variance
 
-> **Prerequisites:** [Universal Member Properties](02_Universal_Member_Properties.md), [Financial Concepts](../02_Finance_Concepts/01_Financial_Concepts.md)  
-> **Sources merged:** ChatGPT 02, Claude 05.08/05.21/05.30 §2/§13/§14, Gemini 02  
-> **Evidence Labels:** `[Oracle Documented]` · `[Illustrative]` · `[Recommendation]`
-
----
-
-## Purpose
-
-The **Account** dimension is the mathematical backbone of any Planning application. Unlike generic dimensions, it incorporates native accounting intelligence:
-
-1. **Normal debit/credit signs** (Assets vs Liabilities, Revenue vs Expense)
-2. **Time-series aggregation behaviors** (Flow vs Balance accounts)
-3. **Variance calculation intelligence** (Favorable vs Unfavorable)
-4. **Currency translation rules** (Historical, Average, or Ending FX rates)
-
-`[Oracle Documented]`
+## Table of Contents
+1. [Core Consultant Mental Model](#1-core-consultant-mental-model)
+2. [Account Types Matrix & Financial Sign Rules](#2-account-types-matrix--financial-sign-rules)
+3. [Time Balance Mechanics: Flow vs. Balance (First, Last, Average)](#3-time-balance-mechanics-flow-vs-balance-first-last-average)
+4. [Variance Reporting: Expense vs. Non-Expense](#4-variance-reporting-expense-vs-non-expense)
+5. [Data Types: Currency, Non-Currency, Smart List & Text](#5-data-types-currency-non-currency-smart-list--text)
+6. [Tough & Twisted Review Questions with Consultant Model Answers](#6-tough--twisted-review-questions-with-consultant-model-answers)
 
 ---
 
-## Standard Account Hierarchy Pattern
+<!-- ===================================================================== -->
+<!-- 🎯 LIVE INTERACTIVE VISUAL CARD: ACCOUNT DIMENSION ARCHITECTURE -->
+<!-- ===================================================================== -->
+<details open>
+<summary><b>🎯 Live Interactive Architecture Card: Account Dimension Mechanics (Click to Collapse / Expand)</b></summary>
 
-```
-Account (Dimension Root)
-  ├── Income Statement
-  │   ├── Revenue
-  │   │   ├── Operating Revenue
-  │   │   │   ├── 100110: Rooms Revenue (Store, +)
-  │   │   │   ├── 100120: Banquet Revenue (Store, +)
-  │   │   │   └── 100130: F&B Revenue (Store, +)
-  │   │   └── Non-Operating Revenue
-  │   │       └── 110000: Interest Income (Store, +)
-  │   │
-  │   ├── COGS (Cost of Goods Sold)
-  │   │   ├── 200000: Raw Materials (Store, +)
-  │   │   └── 200010: Direct Labor (Store, +)
-  │   │
-  │   ├── Gross Margin (Dynamic Calc, formula: Revenue - COGS)
-  │   │
-  │   ├── Operating Expense
-  │   │   ├── 300000: Salaries (Store, +)
-  │   │   ├── 300010: Benefits (Store, +)
-  │   │   ├── 300020: Rent (Store, +)
-  │   │   └── 300030: Travel (Store, +)
-  │   │
-  │   └── Net Income (Dynamic Calc, formula: Gross Margin - OpEx)
-  │
-  ├── Balance Sheet
-  │   ├── Assets
-  │   │   ├── Current Assets
-  │   │   │   ├── 400000: Cash (Store, Time Balance: Balance)
-  │   │   │   └── 400010: Accounts Receivable (Store, Time Balance: Balance)
-  │   │   └── Fixed Assets
-  │   │       └── 410000: Property (Store, Time Balance: Balance)
-  │   └── Liabilities & Equity
-  │       ├── 500000: Accounts Payable (Store, Time Balance: Balance)
-  │       └── 600000: Retained Earnings (Store, Time Balance: Balance)
-  │
-  └── Statistical / Driver Accounts
-      ├── Rooms Available (Store, ~, Saved Assumption)
-      ├── Occupancy Rate (Dynamic Calc, ~, formula: Sold / Available)
-      └── RevPAR (Dynamic Calc, ~, formula: Revenue / Available)
+<br/>
+
+> [!TIP]
+> **Consultant High-Yield Summary:** The Account dimension is the mathematical core of Oracle Cloud EPM. Three properties drive calculation and reporting behavior: **Account Type** (governs consolidation sign), **Time Balance** (governs time aggregation: Flow vs Balance), and **Variance Reporting** (governs variance sign: Budget vs Actual).
+
+| Account Type | Standard Financial Statement | Time Balance Default | Variance Reporting |
+| :--- | :--- | :--- | :--- |
+| **Revenue** | Income Statement (P&L) | `Flow` (Sum across months) | `Non-Expense` (Actual - Budget) |
+| **Expense** | Income Statement (P&L) | `Flow` (Sum across months) | `Expense` (Budget - Actual) |
+| **Asset** | Balance Sheet | `Balance` (`Last`) | `Non-Expense` (Actual - Budget) |
+| **Liability** | Balance Sheet | `Balance` (`Last`) | `Expense` / `Non-Expense` |
+| **Equity** | Balance Sheet | `Balance` (`Last`) | `Non-Expense` |
+| **Saved Assumption**| Driver / Rate / Headcount tables | `None` / `Flow` / `Average` | `Non-Expense` |
+
+```mermaid
+flowchart TD
+    subgraph TimeBalanceEngine ["Time Balance Aggregation Mechanics (Jan = 10, Feb = 20, Mar = 30)"]
+        Flow["Time Balance: Flow<br/>Q1 = Jan + Feb + Mar = 60<br/>(Used for P&L Revenue / Expense)"]
+        BalLast["Time Balance: Balance (Last)<br/>Q1 = March Balance = 30<br/>(Used for Ending Cash / Balance Sheet)"]
+        BalFirst["Time Balance: Balance (First)<br/>Q1 = January Balance = 10<br/>(Used for Opening Inventory)"]
+        BalAvg["Time Balance: Average<br/>Q1 = (10 + 20 + 30) / 3 = 20<br/>(Used for Average Headcount / FX Rates)"]
+    end
 ```
 
-`[Illustrative]` — Actual hierarchies vary by organization
+</details>
 
 ---
 
-## The 6 Account Types
+## 1. Core Consultant Mental Model
 
-Every Account member must be assigned one of these types. The choice controls sign behavior, variance direction, and time aggregation defaults.
-
-| Account Type | Normal Sign | Financial Statement | Default Time Balance | Typical Members |
-|:---|:---:|:---|:---:|:---|
-| **Revenue** | Credit | Income Statement | Flow | Sales, service revenue, interest income |
-| **Expense** | Debit | Income Statement | Flow | Salaries, rent, utilities, travel |
-| **Asset** | Debit | Balance Sheet | Balance | Cash, AR, inventory, property |
-| **Liability** | Credit | Balance Sheet | Balance | AP, loans, bonds |
-| **Equity** | Credit | Balance Sheet | Balance | Retained earnings, common stock |
-| **Saved Assumption** | Neutral | Non-financial | Flow | Tax rates, headcount, occupancy %, price/unit |
-
-### Saved Assumption Details
-
-Saved Assumptions are for **driver accounts** — non-financial values that power calculations but don't appear directly on financial statements:
-- Consolidation operator is typically set to `~` (Ignore) so drivers don't add into currency rollups
-- Time Balance is Flow by default but can be overridden
-- Variance Reporting is Non-Expense (more is usually neutral/good)
-
-`[Oracle Documented]`
+In Essbase, the **Account Dimension** is the only dimension that possesses native financial intelligence. 
+* Unlike custom dimensions, Account properties instruct the Essbase kernel how to interpret debit/credit signs, how to roll up through time periods, and how to compute budget variances.
+* If a junior consultant sets an Asset account to `Flow`, quarterly cash balances will be inflated by summing all three months.
+* If an Expense account is configured as `Non-Expense`, budget variance reports will flag spending *under* budget as negative/unfavorable.
 
 ---
 
-## Variance Reporting: Expense vs Non-Expense
+## 2. Account Types Matrix & Financial Sign Rules
 
-This property ensures that **good performance shows as positive variance** and **poor performance shows as negative variance** on reports.
-
-| Setting | Formula Applied |
-|---------|----------------|
-| **Non-Expense** (Revenue, Asset, Equity) | Variance = Actual − Budget |
-| **Expense** (Expense, Liability) | Variance = Budget − Actual |
-
-### Numerical Proof
-
-| Scenario | Account Type | Setting | Budget | Actual | Formula | Variance | Status |
-|:---|:---|:---|:---:|:---:|:---|:---:|:---:|
-| Sales growth | Revenue | Non-Expense | \$100K | \$120K | 120K − 100K | **+\$20K** | ✅ Favorable |
-| Sales drop | Revenue | Non-Expense | \$100K | \$80K | 80K − 100K | **−\$20K** | ❌ Unfavorable |
-| Cost overrun | Expense | Expense | \$50K | \$65K | 50K − 65K | **−\$15K** | ❌ Unfavorable |
-| Cost savings | Expense | Expense | \$50K | \$40K | 50K − 40K | **+\$10K** | ✅ Favorable |
-
-> [!CAUTION]
-> If you accidentally set an Expense account to Non-Expense, a \$15K overspend calculates as 65K − 50K = +\$15K — showing as **favorable** on board reports. This is a catastrophic reporting defect that may go unnoticed for weeks.
-
-`[Oracle Documented]`
+| Account Type | Normal Financial Balance | Consolidation Behavior | Typical Member Examples |
+| :--- | :--- | :--- | :--- |
+| **Revenue** | Credit | Adds positively into Gross Margin / Operating Income | Product Sales, Service Revenue, Intercompany Sales |
+| **Expense** | Debit | Subtracts from Gross Margin or adds to Total Opex | Salaries, Travel, Rent, Depreciation, Advertising |
+| **Asset** | Debit | Adds positively into Total Assets | Cash, Accounts Receivable, Inventory, Fixed Assets |
+| **Liability** | Credit | Adds positively into Total Liabilities | Accounts Payable, Short-Term Debt, Accrued Expenses |
+| **Equity** | Credit | Adds into Total Shareholders' Equity | Common Stock, Retained Earnings, Additional Paid-in Capital |
+| **Saved Assumption** | Neutral | Configurable consolidation | Tax Rates, Inflation %, Headcount, Days Sales Outstanding |
 
 ---
 
-## Time Balance Properties
+## 3. Time Balance Mechanics: Flow vs. Balance (First, Last, Average)
 
-The **Time Balance** property defines how account values aggregate across the Period dimension (months → quarters → years):
+The **Time Balance** property defines how an account consolidates across the **Period (Time)** dimension:
 
-```
-Period:        Jan     Feb     Mar      Q1 Rollup
-────────────────────────────────────────────────────
-FLOW (Revenue): 100  +  150  +  200  =   450  (Sum of months)
-BALANCE (Cash):  50      75      90  →    90  (Ending month)
-FIRST (Opening): 30      40      45  →    30  (First month)
-AVERAGE (Count): 500    510     520  →   510  (Mean of months)
-```
+### 1. `Flow` (Default for P&L)
+* Sums child periods into parent periods:
+  $$\text{Q1 Total} = \text{Jan} + \text{Feb} + \text{Mar}$$
+* Used for revenues, expenses, cash flows, and volume shipments.
 
-### Complete Time Balance Reference
+### 2. `Balance` with `Last` (Default for Balance Sheet)
+* Takes the balance of the **last open child period**:
+  $$\text{Q1 Ending Balance} = \text{Mar Balance}$$
+* If March is `#Missing`, skip settings govern behavior:
+  * **`Skip: None`:** Q1 returns `#Missing`.
+  * **`Skip: Missing`:** Q1 falls back to February balance.
 
-| Setting | Q1 Calculation | Use For |
-|:---|:---|:---|
-| **Flow** | Jan + Feb + Mar | P&L accounts: Revenue, COGS, expenses (activity during period) |
-| **Balance** | = Mar (last period) | Balance Sheet: Cash, AR, Fixed Assets (point-in-time snapshot) |
-| **First** | = Jan (first period) | Opening balances: Beginning Inventory, Opening Headcount |
-| **Average** | (Jan + Feb + Mar) ÷ 3 | KPI averages: Average Daily Headcount |
-| **Fill** | Propagates entered value to empty future months | Fixed assumptions: Monthly rent entered once and filled forward |
-| **Weighted Avg (Actual_Actual)** | Weighted by calendar days per month (31, 28, 31) | Treasury yields, bond interest |
-| **Weighted Avg (Actual_365)** | Weighted by 365-day annual basis | Commercial paper interest |
+### 3. `Balance` with `First`
+* Takes the balance of the **first open child period**:
+  $$\text{Q1 Opening Balance} = \text{Jan Balance}$$
 
-`[Oracle Documented]`
-
-### The Skip Setting
-
-When calculating Balance or Average across periods, some months may contain `#MISSING` or zero:
-
-| Skip Setting | Behavior |
-|:---|:---|
-| **None** | Strict — if March is `#MISSING`, Q1 = `#MISSING` |
-| **Missing** | Skips `#MISSING` months — takes last real value |
-| **Zeros** | Skips zero months |
-| **Missing and Zeros** | Skips both to find the last real operational value |
-
-> [!NOTE]
-> Skip is only meaningful when Time Balance is Balance, First, or Average. For Flow accounts (where values are simply summed), Skip is locked to None and appears disabled in the UI.
+### 4. `Average`
+* Calculates the mathematical average across open periods:
+  $$\text{Q1 Average} = \frac{\text{Jan} + \text{Feb} + \text{Mar}}{3}$$
+* Standard for Average Headcount, Average Inventory, and Effective Tax Rates.
 
 ---
 
-## Exchange Rate Types
+## 4. Variance Reporting: Expense vs. Non-Expense
 
-| Type | Description | Use For |
-|:---|:---|:---|
-| **No Rate** | Exempt from currency translation | Ratios, percentages, statistical counts |
-| **Average** | Multiplies by periodic average exchange rate | Income Statement accounts (revenue earned evenly) |
-| **Ending** | Multiplies by period-end spot rate | Balance Sheet accounts (point-in-time balance) |
-| **Historical** | Uses original investment exchange rate | Equity items (original investment value) |
+When comparing **Actual vs. Budget** scenarios:
 
-The exchange rate tables are stored in Planning's `Hsp_Rates` system, and the currency conversion business rule applies these rates to translate local currency values into reporting currency.
-
-`[Oracle Documented]`
+* **`Non-Expense` (Revenue Accounts):**
+  $$\text{Variance} = \text{Actual} - \text{Budget}$$
+  *(If Actual Revenue is \$120 and Budget was \$100, Variance is +\$20 Favorable).*
+* **`Expense` (Expense Accounts):**
+  $$\text{Variance} = \text{Budget} - \text{Actual}$$
+  *(If Budget Opex was \$100 and Actual Spending was \$85, Variance is +\$15 Favorable because spending was below budget).*
 
 ---
 
-## Account Properties Summary
+## 5. Data Types: Currency, Non-Currency, Smart List & Text
 
-Every Account member carries these properties:
-
-| Property | Values | What It Controls |
-|----------|--------|-----------------|
-| **Account Type** | Revenue, Expense, Asset, Liability, Equity, Saved Assumption | Financial sign and variance direction |
-| **Variance Reporting** | Expense, Non-Expense | Favorable/unfavorable interpretation |
-| **Time Balance** | Flow, First, Balance, Average, Fill, Weighted Average | Period-to-quarter aggregation method |
-| **Skip Value** | None, Missing, Zeros, Missing and Zeros | Skip behavior during time aggregation |
-| **Exchange Rate Type** | None, Average, Ending, Historical | Currency translation rate selection |
-| **Data Storage** | Store, Dynamic Calc, etc. | Storage behavior (see [Universal Properties](02_Universal_Member_Properties.md)) |
-| **Source Plan Type** | Plan1, Plan2, etc. | Which cube is the "source of truth" for this account |
-| **Smart List** | (linked Smart List name) | Associates a dropdown list for data entry |
-| **Data Type** | Currency, Non-Currency, Percentage, Date, Text, Smart List | Formatting and conversion behavior |
-| **UDA** | Free text tags | User-defined attribute tags (e.g., HSP_NOLINK) |
-| **Member Formula** | Essbase formula | Calculation expression for Dynamic Calc members |
+| Data Type | Description | Internal Essbase Storage |
+| :--- | :--- | :--- |
+| **Currency** | Monetary financial amounts | 8-byte floating point |
+| **Non-Currency** | Quantities, units, hours, index numbers | 8-byte floating point |
+| **Percentage** | Decimal ratios (0.15 for 15%) | 8-byte floating point |
+| **Smart List** | Drop-down selections (e.g., "Full-Time", "Contractor") | Stores positive integer ID pointing to HSP table |
+| **Date** | Calendar dates (YYYYMMDD) | Stores 8-byte integer: `20261105` |
+| **Text** | Free-form alpha-numeric text comments | Stored in relational repository table |
 
 ---
 
-## Quick Recall
+## 6. Tough & Twisted Review Questions with Consultant Model Answers
 
-1. **Why does Cash use Time Balance: Balance instead of Flow?**
-   → Cash is a point-in-time snapshot. The Q1 cash balance IS the March balance, not the sum of three monthly balances.
+### Question 1: "A balance sheet account 'Cash' is configured with `Time Balance: Balance (Last)`. If January has \$10,000, February has \$15,000, and March is `#Missing`, what does Q1 display under `Skip: None` vs. `Skip: Missing`?"
+**Consultant Model Answer:**
+> "* Under **`Skip: None`**: Essbase evaluates strictly the last physical child period (March). Because March is `#Missing`, Q1 returns **`#Missing`**.
+> * Under **`Skip: Missing`**: Essbase skips any missing trailing periods and retrieves the last child period containing valid numeric data (February). Therefore, Q1 displays **\$15,000**.
+> In financial planning applications where future forecast months may not be populated yet, `Skip: Missing` is the standard best practice."
 
-2. **When should you set Variance Reporting to "Expense"?**
-   → For any account where spending MORE than budget is unfavorable (Expense and Liability accounts). This reverses the variance formula to Budget − Actual.
+### Question 2: "Why must Smart List accounts and Date accounts be configured as 'Saved Assumption' rather than 'Revenue' or 'Expense'?"
+**Consultant Model Answer:**
+> "Smart List accounts store numeric integer IDs (e.g., ID 1 = 'Engineering', ID 2 = 'Sales'), and Date accounts store integer date representations (e.g., `20261105`). 
+> If configured as `Expense` or `Revenue`, Essbase attempts to apply currency formatting, applies variance reporting logic, and consolidates the IDs up the hierarchy, resulting in nonsensical sums of Smart List IDs. Setting the Account Type to **Saved Assumption** treats the value as neutral driver data, preventing currency symbol application and disabling unwanted consolidation rollups."
 
-3. **What is a Saved Assumption and why use Ignore (~)?**
-   → A non-financial driver account (headcount, tax rate, price). Using ~ prevents driver values from adding into financial currency rollups.
-
-4. **Teach-back prompt:** Explain to a colleague why setting the wrong Account Type can cause incorrect financial reports.
+### Question 3: "A financial analyst notices that 'Gross Margin' (Revenue minus COGS) is calculated via member formula `[Revenue] - [COGS]`, but parent entities display incorrect values in variance reports. How should the account properties be configured?"
+**Consultant Model Answer:**
+> "To calculate correctly:
+> 1. Set 'Gross Margin' Data Storage to **Dynamic Calc**.
+> 2. Enable **Two-Pass Calculation** so the formula re-evaluates at parent entities rather than summing child margins.
+> 3. Set Account Type to **Revenue** (or Non-Expense) and Variance Reporting to **Non-Expense**. This ensures that when consolidated Actual Gross Margin exceeds Budget, the variance displays as a positive favorable number."
 
 ---
-
-**Next:** [Period, Scenario, and Version Dimensions](04_Period_Scenario_Version.md) — time bounding, active ranges, and workflow stages
-
+*Proceed to [8.4 Period, Scenario & Version Dimensions Architecture](04_Period_Scenario_Version.md).*

@@ -1,10 +1,10 @@
-# @CalcMgrFindLast
+﻿# @CalcMgrFindLast
 
 ## Overview
 
 `@CalcMgrFindLast` is a **custom Calc Manager string manipulation function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a powerful search tool that scans a source string and returns the **starting index position** of the *very last* occurrence of a specified target substring.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When parsing external text data loaded into Essbase (like `"USA_NY_NewYorkCity"` or `"/Finance/US/OperatingEx"`), administrators often need to extract the final suffix (like the City name, or the specific account name). 
 If the string contains multiple identical delimiters (like multiple underscores or slashes), using `@CalcMgrFindFirst` will only find the first one, breaking the extraction logic. 

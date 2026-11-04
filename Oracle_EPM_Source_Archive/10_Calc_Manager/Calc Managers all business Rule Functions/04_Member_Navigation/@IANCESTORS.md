@@ -1,10 +1,10 @@
-# @IANCESTORS
+﻿# @IANCESTORS
 
 ## Overview
 
 `@IANCESTORS` (Inclusive Ancestors) is a **member selection function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It returns a specified member *and* all of its ancestors (parents, grandparents, up to the top of the dimension).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When a calculation alters a data value at a base level (Level 0), the parent totals above it are now mathematically incorrect until an aggregation (`AGG` or `CALC DIM`) is run.
 Running a full `AGG` on a massive dimension just to fix one branch is highly inefficient.

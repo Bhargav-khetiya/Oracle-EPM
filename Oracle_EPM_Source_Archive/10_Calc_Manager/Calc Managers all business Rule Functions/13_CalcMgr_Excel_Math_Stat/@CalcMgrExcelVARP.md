@@ -1,11 +1,11 @@
-# @CalcMgrExcelVARP
+﻿# @CalcMgrExcelVARP
 
 ## Overview
 
 `@CalcMgrExcelVARP` is a **custom Calc Manager statistical array function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `VARP` (or `VAR.P`) function directly inside an Essbase calculation script. 
 It analyzes a list or array of data points and calculates the **Population Variance**, which measures how far a set of numbers is spread out from their average value.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 There is a subtle but critical mathematical difference between Sample Variance (`VAR`) and Population Variance (`VARP`). 
 If you are evaluating 50 stores, but you only have data for 10 of them, you are evaluating a *Sample*. To account for the statistical uncertainty of the missing 40 stores, Sample Variance divides the sum of squares by `(N - 1)`, artificially inflating the variance to be conservative. 

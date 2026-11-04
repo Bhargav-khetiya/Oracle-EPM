@@ -1,13 +1,13 @@
-# @MINSRANGE
+﻿# @MINSRANGE
 
 ## Overview
 
 `@MINSRANGE` is a **native Essbase mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates a distinct, explicitly provided list of numeric values or cross-dimensional intersections and returns the absolute **lowest numeric value** found within that specific list. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 The standard `@MIN` function is incredibly powerful, but it requires a structural *Member Range* (e.g., `"Jan":"Dec"` or `@CHILDREN("Vendors")`). If the data points you need to compare are entirely un-related and do not share a parent, `@MIN` cannot be used.
-For example, what if you need to calculate an `"Approved_Price"` that must be the absolute *lowest* value among three completely different, disconnected sources: The `"Historical_Average"`, the `"Current_Vendor_Quote"`, and a hardcoded maximum cap of `$500`? 
+For example, what if you need to calculate an `"Approved_Price"` that must be the absolute *lowest* value among three completely different, disconnected sources: The `"Historical_Average"`, the `"Current_Vendor_Quote"`, and a hardcoded maximum cap of `$500`— 
 You cannot use `@MIN` because `$500` is not an outline member, and the accounts are not siblings. You would have to write complex `IF` statements: `IF(A < B AND A < C) Then A`.
 `@MINSRANGE` solves this. It accepts a raw, comma-separated list of individual numeric values, hardcoded numbers, formulas, or distinct account intersections. It sweeps through this arbitrary list, compares the math, and returns the lowest number. This completely breaks the requirement that array functions must operate on structural dimension ranges.
 

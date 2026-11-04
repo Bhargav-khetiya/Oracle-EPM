@@ -1,276 +1,135 @@
-# Data Maps, Smart Push, and Cross-Cube Data Movement
+# 6.2 Data Maps, Smart Push & Cross-Cube Architecture
 
-> **Prerequisites:** [Data Integration Overview](01_Data_Integration_Overview.md)  
-> **Sources merged:** ChatGPT Data_Maps_and_Exchange (17 files across 6 subdirectories), Claude 11.11, Gemini Data_Maps_and_Exchange  
-> **Evidence Labels:** `[Oracle Documented]` · `[Illustrative]` · `[Recommendation]`
-
----
-
-## What Are Data Maps?
-
-Data Maps are Oracle EPM Cloud's **declarative data movement engine** between cubes within an application or across applications. Unlike `@XREF`/`@XWRITE` (which execute cell-by-cell inside the Essbase kernel), Data Maps operate at the **platform metadata and buffer layer**, enabling bulk extraction, transformation, and parallel loading.
-
-```
-SOURCE CUBE (BSO/ASO)                    TARGET CUBE (ASO/BSO)
-┌──────────────────────┐                 ┌──────────────────────┐
-│ Dense/Sparse Blocks  │                 │ ASO Data Slices      │
-│ (.pag/.ind files)    │                 │ or BSO Block Storage  │
-└──────────┬───────────┘                 └──────────▲───────────┘
-           │ 1. MDX Slice Extract                   │ 4. Load Buffer Commit
-           ▼                                        │
-┌──────────────────────┐                 ┌──────────────────────┐
-│ SOURCE DATA STREAM   │                 │ TARGET LOAD BUFFER   │
-│ [Tuple: Dims | Value]│  2. Transform   │ [EssWriteLoadBuffer] │
-└──────────┬───────────┘ ──────────────► └──────────────────────┘
-           │                    ▲
-           └────────────────────┘
-                 3. HSP_MAP_* Relational Metadata
-                    (dimension mappings, exclusions)
-```
-
-`[Oracle Documented]`
+## Table of Contents
+1. [Core Consultant Mental Model](#1-core-consultant-mental-model)
+2. [Data Maps vs. Smart Push: Mechanical Architecture](#2-data-maps-vs-smart-push-mechanical-architecture)
+3. [The BSO-to-ASO Push Pipeline](#3-the-bso-to-aso-push-pipeline)
+4. [ASO Slice Fragmentation & Compaction Management](#4-aso-slice-fragmentation--compaction-management)
+5. [Tough & Twisted Review Questions with Consultant Model Answers](#5-tough--twisted-review-questions-with-consultant-model-answers)
 
 ---
 
-## Data Maps vs @XREF/@XWRITE
+<!-- ===================================================================== -->
+<!-- 🎯 LIVE INTERACTIVE VISUAL CARD: SMART PUSH & DATA MAPS PIPELINE -->
+<!-- ===================================================================== -->
+<details open>
+<summary><b>🎯 Live Interactive Architecture Card: Data Maps & Smart Push Architecture (Click to Collapse / Expand)</b></summary>
 
-| Parameter | Data Maps | @XREF / @XWRITE (Calc Scripts) |
-|:---|:---|:---|
-| **Execution** | Application server + bulk buffer API | Essbase C++ calculation kernel |
-| **Extraction** | MDX bulk query / Grid Slicer | Point-by-point network socket call |
-| **Load Method** | ASO Load Buffer / bulk BSO writer | Individual cell injection |
-| **Throughput** | **100,000–500,000 cells/second** | **500–2,500 cells/second** |
-| **Lock Impact** | Single clean slice; minimal contention | Serial block locks; high overhead |
-| **UI Integration** | Visual configuration, Smart Push | Custom calc script coding |
-| **Maintenance** | Auto-updates when metadata changes | Hardcoded member names need manual audits |
+<br/>
 
 > [!TIP]
-> Use Data Maps for any regular inter-cube data movement. Reserve @XREF for point-reference lookups within formulas, and @XWRITE for targeted cell writes from business rules.
+> **Consultant High-Yield Summary:** **Data Maps** are designed for scheduled batch synchronization across entire plan slices; **Smart Push** is designed for real-time form save events. In an ASO target, every push creates a new **incremental data slice**. If not merged regularly via `Merge Slices`, ASO query performance degrades dramatically.
 
-`[Recommendation]`
+| Architectural Dimension | Data Maps (Batch Sync) | Smart Push (Form Event) | Legacy `@XWRITE` |
+| :--- | :--- | :--- | :--- |
+| **Execution Trigger** | Admin job, EPM Automate, Scheduled pipeline | Form Save, Groovy event, Right-click action | Inside calc script during rule run |
+| **Data Scope** | Broad dimensional slice (e.g., All Entities, All Periods) | **Contextual:** Scoped strictly to active form POV / edited cells | Cell-by-cell coordinate evaluation |
+| **Target Storage Impact** | Appends large ASO slice or BSO blocks | Appends tiny micro-slice to target ASO | Overwrites blocks via TCP socket |
+| **Execution Speed** | 10 to 60 seconds (bulk ETL) | **0.2 to 0.8 seconds (real-time)** | Slow; locks cubes during transaction |
+
+```mermaid
+flowchart TD
+    subgraph SourceBSO ["Source Cube: Hybrid BSO (Plan1)"]
+        FormSave["User saves web form grid"]
+        LeafExtract["Extracts modified Level 0 cells<br/>(MDX slice query)"]
+    end
+
+    subgraph DataMapEngine ["Data Map / Smart Push Engine"]
+        DimMap["Maps dimensions & unmapped members<br/>(e.g., BSO Plan_Element -> ASO Total_Amount)"]
+        BufferCreate["Generates Essbase Load Buffer in memory"]
+    end
+
+    subgraph TargetASO ["Target Cube: Aggregate Storage (Reporting)"]
+        SliceCommit["Appends New ASO Data Slice (.dat)<br/>Options: Drop Zero Cells"]
+        SliceAccum["Slice Count Increases (1, 2, 3 ... 25)<br/>Query latency increases if unmerged!"]
+        MergeJob["Automated Merge Slices (Drop Zero Cells)<br/>Compacts slices into 1 main slice"]
+    end
+
+    FormSave --> LeafExtract
+    LeafExtract --> DimMap
+    DimMap --> BufferCreate
+    BufferCreate --> SliceCommit
+    SliceCommit --> SliceAccum
+    SliceAccum -.->|"Nightly Maintenance"| MergeJob
+```
+
+</details>
 
 ---
 
-## Configuring a Data Map
+## 1. Core Consultant Mental Model
 
-A Data Map defines:
-1. **Source Cube** and **Target Cube**
-2. **Dimension Mappings** — how each dimension in the source maps to the target
-3. **Member Selections** — which members to extract (with exclusions)
-4. **Options** — clear target data, copy comments, aggregate on target
+Enterprise planning solutions frequently employ a **Dual-Cube Architecture**:
+1. **Input / Calculation Cube (Hybrid BSO):** Planners enter detailed forecasts, run Groovy business rules, and execute driver allocations across dense accounts and periods.
+2. **Reporting Cube (ASO):** Thousands of executive users run complex, high-cardinality ad-hoc reports in Smart View across 20+ dimensions.
 
-### Dimension Mapping Types
-
-| Type | Description | Example |
-|:---|:---|:---|
-| **Identity (Exact Match)** | Same member names in source and target | Account → Account (same hierarchy) |
-| **Fixed** | All source data maps to one target member | Source "Entity" → Target "Periodic" view |
-| **One-to-Many** | One source member maps to multiple target members | Source "Total_Rev" → Target sub-accounts |
-| **Many-to-One** | Multiple source members map to one target member | Source sub-entities → Target "Total_US" |
-
-### Member Selection Syntax
-
-```
-Descendants(Total_Entity)       — All descendants of Total_Entity
-ILvl0Descendants(Total_Entity)  — Only leaf-level (Level 0) descendants
-Children(Revenue)               — Direct children only
-Member(E10001)                  — Specific individual member
-```
-
-`[Oracle Documented]`
+**The Golden Law:**
+> Never run heavy reporting on the calculation cube, and never run procedural allocations on the reporting cube.
+> **Smart Push** is the real-time bridge that keeps the reporting cube synchronized the instant a planner clicks Save.
 
 ---
 
-## Smart Push: Real-Time Form Integration
+## 2. Data Maps vs. Smart Push: Mechanical Architecture
 
-**Smart Push** binds a Data Map to a Web Form, enabling automatic data movement when users click **Save**. It's the presentation-layer operational manifestation of Data Maps.
-
-### Smart Push Configuration
-
-| Setting | Options | Purpose |
-|:---|:---|:---|
-| **Data Map Selection** | Dropdown of active maps | Which routing rules to use |
-| **Run On Save** | Yes / No | Execute automatically on form save |
-| **Use Form Context** | Yes / No | **Critical** — limits push to form's visible members |
-| **Run in Background** | Yes / No | Release UI immediately (async) |
-| **Overwrite Data** | Yes / No | Whether to overwrite existing target values |
-
-### Context-Aware Micro-Slice (Critical Concept)
-
-When **Use Form Context** is checked, the engine extracts only the intersection of the form's active layout and the Data Map scope:
-
-```
-Form Context:
-  Page:  Entity = "E101_Sales_East"
-  POV:   Scenario = "Plan", Version = "Working", Year = "FY26"
-  Rows:  Accounts = "Advertising", "Travel", "Meals" (3 members)
-  Cols:  Periods = "Jan", "Feb", "Mar" (3 members)
-
-Total cells pushed: 1 × 1 × 1 × 1 × 3 × 3 = 9 cells
-Execution time: < 400 milliseconds
-```
-
-> [!CAUTION]
-> If **Use Form Context** is NOT checked, saving a form with a single cell change triggers a **full macro-slice push** — potentially extracting millions of cells, locking server threads for 30–60 seconds, and causing browser timeouts (HTTP 504).
-
-### Execution Flow on Form Save
-
-```
-1. User clicks Save
-2. Client-side validation (formula syntax, read-only locks)
-3. Dirty cells written to Source BSO cube
-4. Before-Save business rules execute (if attached)
-5. Source blocks committed to disk
-6. Smart Push builds micro-slice MDX
-7. Micro-slice streamed to target via load buffer
-8. After-Save business rules execute (if attached)
-9. UI acknowledgement: "Data saved. Smart Push completed."
-```
-
-### Synchronous vs Asynchronous
-
-| Mode | Behavior | Use When |
-|:---|:---|:---|
-| **Synchronous** (Background = No) | Browser waits until push completes | Interactive planning; user needs immediate target results; < 5,000 cells |
-| **Asynchronous** (Background = Yes) | Source save returns immediately; push runs in background | Large forms; hundreds of rows; heavy target aggregations |
-
-`[Oracle Documented]`
+* **Data Maps:** A declarative metadata mapping defined in the Planning web interface. It specifies which dimensions in Cube A map to dimensions in Cube B, handling member exclusions, default member selections, and rollups.
+* **Smart Push:** The runtime invocation engine of a Data Map. Smart Push is attached directly to a **Data Form** with the option **"Run After Save"**. 
+* When the planner saves the form, Smart Push dynamically filters the Data Map's source scope to the **exact POV and row members on that specific form**, avoiding the overhead of a full database extract.
 
 ---
 
-## Cross-Cube Functions: @XREF and @XWRITE
+## 3. The BSO-to-ASO Push Pipeline
 
-### @XREF — Pull Data from Another Cube
-
-Reads a single cell value from another cube at calculation time:
-
-```essbase
-/* In FinPlan cube: pull headcount from Manpower cube */
-"Salary_Per_Head" = @XREF("Manpower", "Headcount");
-
-/* With overrides: specify different members in the target cube */
-"Revenue_Target" = @XREF("TargetCube", "Revenue", "Budget", "Final");
-```
-
-**How it works:** Essbase opens a network socket to the target cube, reads the cell, and returns the value. This happens **per cell intersection** — making it slow for large data volumes.
-
-### @XWRITE — Push Data to Another Cube
-
-Writes a value to a cell in another cube during calculation:
-
-```essbase
-/* Push consolidated revenue from FinPlan to Reporting cube */
-@XWRITE("Revenue", "ReportingCube", "Revenue", "Actual");
-```
-
-### Performance Considerations
-
-| Factor | @XREF/@XWRITE | Data Maps |
-|:---|:---|:---|
-| 100 cells | ≈ 0.1 sec | Overkill |
-| 10,000 cells | ≈ 4–10 sec | ≈ 0.1 sec |
-| 1,000,000 cells | ≈ 7–30 **minutes** | ≈ 2–10 sec |
-
-`[Oracle Documented]`
+When Smart Push executes, it follows an optimized memory pipeline:
+1. **Source Slice Extraction:** The Planning server issues an in-memory MDX query to the BSO cube, extracting only modified Level 0 leaf cells.
+2. **Transformation:** Source dimension members are mapped to target members based on Data Map definitions. Any dimensions missing in the source are populated using target default members.
+3. **Load Buffer Creation:** The data stream is loaded into an Essbase **Write Load Buffer** (`EssWriteLoadBuffer`) in memory.
+4. **ASO Commit:** The buffer commits to the ASO cube as an **Incremental Data Slice**, making the new numbers immediately queryable in executive reports.
 
 ---
 
-## Data Map Execution Lifecycle
+## 4. ASO Slice Fragmentation & Compaction Management
 
-When triggered (via UI, Job Console, Smart Push, EPM Automate, or REST API):
+### The ASO Micro-Slice Problem:
+Every time Smart Push runs, the ASO cube creates a new physical **data slice** (a small delta file on disk):
+* If 100 planners save forms 20 times a day, the ASO cube accumulates **2,000 data slices**.
+* When an executive queries the ASO cube, Essbase must read and aggregate numbers across all 2,000 slices in real time.
+* **Result:** Ad-hoc query response times degrade from 0.2 seconds to 15 seconds!
 
+### The Solution: Slice Merging Operations
+To maintain peak performance, administrators must automate **Slice Merging** via EPM Automate:
+
+```mermaid
+graph LR
+    Slices["Multiple Slices (1 to 50)<br/>Contains overrides & zero cells"] --> MergeOp["Merge Slices Job"]
+    MergeOp --> SingleSlice["Single Compacted Main Slice<br/>• Zeros dropped<br/>• Sub-second query speed restored"]
 ```
-Phase 1: Validation & Security Check
-  → Verify user access to source and target data slices
-  → Validate dimension hierarchies
 
-Phase 2: Source Extraction
-  → Parse member selections and exclusions
-  → Generate optimized MDX extraction query
-
-Phase 3: Target Preparation (Optional)
-  → If "Clear Target Data" enabled:
-    ASO: MDX Clear Slice or negative compensation slice
-    BSO: Targeted CLEARBLOCK/CLEARDATA on target slice
-
-Phase 4: Stream Transformation
-  → Source tuples streamed in chunks (10,000–50,000 cells)
-  → Apply dimension mappings, fixed assignments, data conversion
-
-Phase 5: Target Ingestion
-  → ASO: Open load buffer → stream rows → commit slice
-  → BSO: Block writer buffer → direct to .pag/.ind files
-
-Phase 6: Target Rollup (Optional)
-  → ASO: Incremental aggregate view update
-  → BSO: Internal CALC DIM aggregation
-```
+1. **Incremental Merge (Merge All Slices):** Merges all accumulated small slices into a single secondary slice. Fast; can run during business hours.
+2. **Full Merge (Merge All Slices into Main Slice with Drop Zero Cells):** Compacts all slices into the primary baseline slice and physically purges zero-value cells (`Drop Zero Cells`). Run nightly during maintenance windows.
 
 ---
 
-## Common Data Movement Patterns
+## 5. Tough & Twisted Review Questions with Consultant Model Answers
 
-### Pattern 1: BSO → ASO Reporting Push
+### Question 1: "A client configures Smart Push on an Expense form. Planners report that saving the form takes 18 seconds, but the business rule calculation only took 0.5 seconds. What is causing the delay?"
+**Consultant Model Answer:**
+> "The delay is caused by an **unconstrained Data Map attached to Smart Push**. 
+> If the Data Map definition does not have 'Use Form Context' enabled, Smart Push ignores the active form POV and attempts to extract and push the entire multi-year, multi-entity slice from BSO to ASO every time a single cell is saved. 
+> To resolve:
+> 1. In the Form Designer, ensure **'Use Form Context'** is checked for the attached Smart Push.
+> 2. Alternatively, use a Groovy business rule to dynamically override the Smart Push dimensional slice, passing strictly `operation.grid.dataCellIterator({it.edited})`. This drops the push time from 18 seconds to under 0.4 seconds."
 
-```
-Source: FinPlan (BSO) — where planners enter data
-Target: OEP_REP (ASO) — reporting/dashboard cube
-Trigger: Smart Push on form save OR nightly scheduled job
-Why: ASO provides fast ad-hoc retrieval across large dimensions
-```
+### Question 2: "What is the physical architectural consequence of running Smart Push 5,000 times a week without performing an ASO slice merge?"
+**Consultant Model Answer:**
+> "Every Smart Push execution writes an independent **incremental data slice** to the ASO database. Accumulating 5,000 slices causes severe **slice fragmentation**. 
+> When an executive runs an ad-hoc query or opens an ASO dashboard, Essbase must resolve the cell coordinates across all 5,000 slice layers to calculate the net value, causing high disk I/O, heavy memory cache utilization, and severe query latency. 
+> To remediate, the administrator must schedule an automated EPM Automate job:
+> `epm-automate mergeslices AppName AsoCubeName dropzeros` during the nightly batch window."
 
-### Pattern 2: Cross-Module Data Sharing
-
-```
-Workforce Module → FinPlan:
-  Headcount, Salary costs pushed from Manpower to financial P&L
-
-Capital Module → FinPlan:
-  Depreciation expense pushed from Capital to financial statements
-
-FinPlan → Projects:
-  Revenue allocations distributed to project-level tracking
-```
-
-### Pattern 3: Actuals Integration
-
-```
-ERP (Oracle Fusion) → Data Integration → FinPlan (BSO)
-  Monthly GL balances loaded via flat file or direct connector
-
-FinPlan (BSO) → Smart Push → OEP_REP (ASO)
-  Actuals available for ad-hoc reporting within seconds of load
-```
-
-`[Illustrative]`
+### Question 3: "Can Smart Push move data from an ASO cube back into a BSO cube?"
+**Consultant Model Answer:**
+> "Yes. Data Maps and Smart Push support bidirectional data movement: BSO to ASO, ASO to BSO, BSO to BSO, and ASO to ASO. 
+> However, when pushing from ASO to BSO, data must be pushed **strictly to Level 0 leaf members** in the target BSO cube. If the target BSO member is a dynamic parent or a stored parent without a spreading rule, the push will fail with a data validation error."
 
 ---
-
-## Troubleshooting
-
-| Symptom | Likely Cause | Fix |
-|---------|-------------|-----|
-| Smart Push takes 30+ seconds | Use Form Context not checked → macro-slice | Check "Use Form Context" in form designer |
-| Target data shows stale values | Smart Push not triggered on save | Enable "Run On Save" in form Smart Push settings |
-| "Insufficient privileges" error | User lacks write access to target cube | Grant appropriate access to target cube/members |
-| Data appears doubled in target | Clear Target Data not enabled | Enable "Clear Target Data" or use Replace mode |
-| @XREF returns #MISSING | Target member name mismatch or cube not refreshed | Verify member exists in target; refresh target cube |
-| Timeout during large push | Too many cells in single push | Break into smaller Data Map scopes; use background mode |
-
----
-
-## Quick Recall
-
-1. **Why are Data Maps faster than @XREF/@XWRITE?**
-   → Data Maps use bulk MDX extraction and load buffer streaming (100K+ cells/sec) vs @XREF's point-by-point network calls (500–2,500 cells/sec).
-
-2. **What does "Use Form Context" do in Smart Push?**
-   → Limits the data push to only the members visible on the current form, reducing millions of potential cells down to just what the user is working with.
-
-3. **When would you still use @XREF instead of a Data Map?**
-   → For point-reference lookups within a member formula or calculation script where you need one value from another cube, not bulk movement.
-
----
-
-**Next:** [EPM Automate](../12_EPM_Automate/01_EPM_Automate_Complete_Guide.md) — automating data loads, refreshes, and administrative tasks
-
+*Proceed to [Module 07: Essbase Architecture & Storage Engines](../07_Essbase_Architecture/00_INDEX.md).*

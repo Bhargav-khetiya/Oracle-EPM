@@ -1,10 +1,10 @@
-# @MOVMAX
+﻿# @MOVMAX
 
 ## Overview
 
 `@MOVMAX` is a **time-series statistical function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that calculates the **moving (rolling) maximum** over a specified number of consecutive time periods. For each period, it returns the highest value seen in the current period and the preceding N-1 periods.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Rolling maximum is essential for:
 - **Peak detection** — identifying the highest revenue, cost, or demand within a rolling window

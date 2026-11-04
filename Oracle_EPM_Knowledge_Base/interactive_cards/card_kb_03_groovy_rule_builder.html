@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KB Interactive Card 03: Groovy Rule Builder & Benchmark</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-6 font-sans">
+  <div class="max-w-4xl mx-auto space-y-6">
+    <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 shadow-2xl backdrop-blur">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-700 pb-4">
+        <div>
+          <span class="text-xs font-bold tracking-widest text-sky-400 uppercase bg-sky-950/60 px-3 py-1 rounded-full border border-sky-800">
+            Knowledge Base Card 03
+          </span>
+          <h1 class="text-2xl font-black mt-2 text-white">Groovy Micro-FIX Engine & Performance Simulator</h1>
+        </div>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-emerald-950 text-emerald-400 border border-emerald-800">99% Speedup</span>
+      </div>
+
+      <!-- Controls -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-5 space-y-4">
+          <h2 class="text-base font-bold text-sky-400">1. Grid Save Simulation Parameters</h2>
+          
+          <div class="space-y-3 text-xs">
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Total Form Grid Cells:</label>
+              <select id="totalCells" onchange="runSim()" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-slate-200">
+                <option value="1200">1,200 cells (100 rows × 12 months)</option>
+                <option value="6000" selected>6,000 cells (500 rows × 12 months)</option>
+                <option value="24000">24,000 cells (2,000 rows × 12 months)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Cells Actually Edited by Planner:</label>
+              <select id="editedCells" onchange="runSim()" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-slate-200">
+                <option value="2" selected>2 cells (Single department adjustment)</option>
+                <option value="10">10 cells (Driver adjustments)</option>
+                <option value="50">50 cells (Full team update)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Validation Veto Condition:</label>
+              <select id="vetoCondition" onchange="runSim()" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-slate-200">
+                <option value="VALID" selected>Values Valid (Positive numbers)</option>
+                <option value="INVALID">Invalid: Negative Travel Expense Entered</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="vetoBanner" class="hidden p-3 rounded bg-rose-950/80 border border-rose-700 text-rose-300 text-xs">
+            <strong>❌ Pre-Save Veto Intercepted:</strong> <code>throwVetoException("Travel expense cannot be negative!")</code>. Save canceled; 0 blocks touched!
+          </div>
+        </div>
+
+        <!-- Performance Comparison -->
+        <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-5 space-y-4">
+          <h2 class="text-base font-bold text-sky-400">2. Execution Speed Benchmark</h2>
+          
+          <div class="space-y-4">
+            <!-- Monolithic Calc -->
+            <div class="p-3 bg-slate-900 rounded border border-amber-500/30">
+              <div class="flex justify-between text-xs font-semibold">
+                <span class="text-amber-400">Traditional Monolithic Calc Script:</span>
+                <span id="monoTime" class="text-amber-300 font-mono">18.50 s</span>
+              </div>
+              <p class="text-[11px] text-slate-400 mt-1">Scans entire dimension hierarchy on disk; queues locks for all users.</p>
+            </div>
+
+            <!-- Groovy Micro-FIX -->
+            <div class="p-3 bg-slate-900 rounded border border-emerald-500/30">
+              <div class="flex justify-between text-xs font-semibold">
+                <span class="text-emerald-400">Event-Driven Groovy Micro-FIX:</span>
+                <span id="groovyTime" class="text-emerald-300 font-mono">0.18 s</span>
+              </div>
+              <p class="text-[11px] text-slate-400 mt-1">Iterates strictly over edited cells; targets 1 block only!</p>
+            </div>
+
+            <!-- Speedup Ratio -->
+            <div class="p-3 bg-emerald-950/50 rounded border border-emerald-700 text-center">
+              <span class="text-xs uppercase tracking-wider text-emerald-400 font-bold block">Performance Improvement</span>
+              <div id="speedupRatio" class="text-2xl font-black text-white mt-1">99.0% FASTER</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function runSim() {
+      const total = parseInt(document.getElementById('totalCells').value);
+      const edited = parseInt(document.getElementById('editedCells').value);
+      const veto = document.getElementById('vetoCondition').value;
+
+      const vetoBanner = document.getElementById('vetoBanner');
+      if (veto === "INVALID") {
+        vetoBanner.classList.remove('hidden');
+        document.getElementById('monoTime').innerText = "0.00 s (Blocked)";
+        document.getElementById('groovyTime').innerText = "0.02 s (Vetoed)";
+        document.getElementById('speedupRatio').innerText = "PRE-SAVE BLOCKED";
+        return;
+      } else {
+        vetoBanner.classList.add('hidden');
+      }
+
+      // Compute estimated runtimes
+      const monoSec = (total / 300).toFixed(2);
+      const groovySec = (0.10 + (edited * 0.04)).toFixed(2);
+      const speedup = (((monoSec - groovySec) / monoSec) * 100).toFixed(1);
+
+      document.getElementById('monoTime').innerText = monoSec + " s";
+      document.getElementById('groovyTime').innerText = groovySec + " s";
+      document.getElementById('speedupRatio').innerText = speedup + "% FASTER";
+    }
+    runSim();
+  </script>
+</body>
+</html>

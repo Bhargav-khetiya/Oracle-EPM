@@ -1,158 +1,136 @@
-# Oracle EPM Glossary — Complete Terminology Reference
+# 18.5 Master Terminology Glossary: 200+ Architectural & Functional Concepts
 
-> **Folder:** 18_Reference | **Audience:** All levels
->
-> **Provenance:** Merged from ChatGPT `GLOSSARY.md`; Claude `26_Glossary/`, `GLOSSARY.md` (200+ terms); Gemini `GLOSSARY_AND_TERMINOLOGY.md`
+## Table of Contents
+1. [Core Consultant Mental Model](#1-core-consultant-mental-model)
+2. [A-Z Architectural Terminology Matrix](#2-a-z-architectural-terminology-matrix)
+3. [Tough & Twisted Review Questions with Consultant Model Answers](#3-tough--twisted-review-questions-with-consultant-model-answers)
 
 ---
 
-## A
+<!-- ===================================================================== -->
+<!-- 🎯 LIVE INTERACTIVE VISUAL CARD: MASTER GLOSSARY MATRIX -->
+<!-- ===================================================================== -->
+<details open>
+<summary><b>🎯 Live Interactive Architecture Card: EPM Terminology & Conceptual Index (Click to Collapse / Expand)</b></summary>
 
-| Term | Definition |
-|------|-----------|
-| **Account** | A dimension that represents what is being measured (Revenue, Expense, Net Income, Headcount). Usually Dense. |
-| **Account Type** | Property of Account members: Expense, Revenue, Asset, Liability, Equity, Saved Assumption. Controls variance reporting and time balance. |
-| **AGG** | Essbase command to aggregate a sparse dimension. See also `CALC DIM`. |
-| **Aggregate Storage (ASO)** | Essbase storage type optimized for read-heavy, aggregate-heavy queries. Data is loaded, not entered. Limited calculation capability. |
-| **Allocation** | Distributing a total amount across target members using a driver or formula. |
-| **Application** | A configured EPM workspace containing cubes, forms, rules, and other artifacts. |
-| **Approval Unit** | A data unit that moves through a configured approval workflow (Not Started → Under Review → Approved). |
-| **Artifact** | A managed application object: form, rule, report, task list, dashboard, etc. |
-| **ASO** | See Aggregate Storage. |
-| **Attribute Dimension** | A dimension that classifies base dimension members without consuming storage. Zero-byte footprint. |
+<br/>
 
-## B
+> [!TIP]
+> **Consultant High-Yield Summary:** Precision in vocabulary separates freshers from experienced consultants. Always use exact technical terms (*"Physical Block"*, *"Dense Cartesian Array"*, *"Dynamic Vector Aggregation"*, *"Least-Privilege Precedence"*) when communicating with clients and review panels.
 
-| Term | Definition |
-|------|-----------|
-| **Block** | The fundamental unit of data storage in BSO Essbase. Contains all Dense dimension intersections for a unique Sparse coordinate combination. |
-| **Block Storage (BSO)** | The classic Essbase storage architecture. Data stored in multidimensional blocks in .PAG files. Supports both input and calculation. |
-| **Bottom-Up Calculation** | Essbase calculation mode that processes Level-0 members first, then aggregates upward. ~300x faster than Top-Down for most use cases. |
-| **BSO** | See Block Storage. |
-| **Business Rule** | A calculation script created in Calc Manager that runs on Essbase data. |
+| Domain | Key Technical Terms | Primary Mechanical Significance |
+| :--- | :--- | :--- |
+| **Essbase Storage** | Block, Cell, Sparse, Dense, Page Cache, Index Cache, Implied Share | Governs memory allocation, disk I/O, and retrieval speed |
+| **Calculations** | FIX, Bottom-Up, Top-Down, Two-Pass, `@CALCPARALLEL`, Groovy Micro-FIX | Governs mathematical execution order and thread allocation |
+| **Security & Governance** | OCI IAM, Precedence (`None>Write>Read`), CLS, Valid Intersections | Governs authorization, segregation of duties, and cell locks |
+| **Data Movement** | TDATASEG, Mapping Precedence, EPM Integration Agent, Smart Push, ASO Slices | Governs enterprise ETL and cross-cube synchronization |
 
-## C
+```mermaid
+flowchart TD
+    Glossary["Master EPM Architecture Glossary"]
+    Glossary --> Storage["Storage: Block, Sparse, Dense, Hybrid, PAG, IND"]
+    Glossary --> Calc["Calculations: FIX, Bottom-Up, Top-Down, Two-Pass, Groovy"]
+    Glossary --> Sec["Security: None>Write>Read, CLS, Valid Intersections"]
+    Glossary --> Data["Integration: TDATASEG, Smart Push, Slices, EPM Agent"]
+```
 
-| Term | Definition |
-|------|-----------|
-| **Calc Manager** | Calculation Manager — the tool for creating, managing, and deploying business rules in EPM Cloud. |
-| **Calc Script** | Essbase's native scripting language for calculations. |
-| **Cell** | A single data value at the intersection of all dimensional members. |
-| **Cell-Level Security** | Fine-grained access restriction for individual data cells. Separate from member permissions. |
-| **CLEARBLOCK** | Physical clear — removes entire data blocks from storage. |
-| **CLEARDATA** | Logical clear — sets cell values to #Missing without removing blocks. |
-| **Consolidation Operator** | Determines how a child member rolls up to its parent: `+` (add), `-` (subtract), `*` (multiply), `/` (divide), `%` (percent), `~` (ignore), `^` (never consolidate). |
-| **Cube** | A multidimensional database defined by its dimensions. In EPM Cloud, cubes are called "Plan Types." |
-| **Currency** | A dimension representing reporting currencies (USD, EUR, Local Currency). |
+</details>
 
-## D
+---
 
-| Term | Definition |
-|------|-----------|
-| **Data Map** | A configuration for moving/mapping data between EPM cubes or between EPM and external sources. |
-| **Data Storage Type** | Member property: Store, Dynamic Calc, Dynamic Calc and Store, Never Share, Label Only, Shared. |
-| **DataGridBuilder** | Groovy API class for reading/writing Essbase data programmatically. |
-| **Dense** | A dimension stored inside data blocks. Defines block shape. Typical: Account, Period. |
-| **Dimension** | A category of analysis (Account, Period, Entity, Scenario) forming one axis of the multidimensional space. |
-| **Dynamic Calc** | Member computed on demand when retrieved. Uses zero disk storage. |
+## 1. Core Consultant Mental Model
 
-## E
+When speaking with client stakeholders, avoid vague terminology. Using precise architectural definitions demonstrates expertise and instills confidence in design decisions.
 
-| Term | Definition |
-|------|-----------|
-| **Entity** | A dimension representing organizational units (business units, departments, locations). Usually Sparse. |
-| **EPBCS** | Enterprise Planning and Budgeting Cloud Service — EPM Cloud with pre-built planning modules. |
-| **EPM** | Enterprise Performance Management — software for planning, budgeting, forecasting, and reporting. |
-| **EPM Automate** | Command-line utility for automating EPM Cloud operations via REST API. |
-| **EPM Cloud** | Oracle's unified cloud platform for enterprise performance management. |
-| **Essbase** | Extended Spread Sheet dataBASE — Oracle's multidimensional OLAP database engine. |
-| **Evaluation Order** | The sequence in which dimensions are processed. Critical for Smart Lists. |
+---
 
-## F
+## 2. A-Z Architectural Terminology Matrix
 
-| Term | Definition |
-|------|-----------|
-| **FCCS** | Financial Consolidation and Close Cloud Service. |
-| **FDMEE** | Financial Data Management, Enterprise Edition — legacy name for Data Integration. |
-| **FIX** | Calc script statement that limits calculation scope to specific members. The most critical performance tool. |
-| **Flex Form** | Smart View form type combining ad hoc flexibility with form-like behavior. |
-| **Form** | Web-based data entry and viewing interface in Planning. |
-| **FreeForm** | EPM Cloud application type without pre-built modules — pure Essbase. |
+### A
+* **Account:** Dense dimension representing what is measured (Revenue, Expense, Assets, Headcount). Drives Time Balance and Variance Reporting.
+* **Account Type:** Property of Account members: `Expense`, `Revenue`, `Asset`, `Liability`, `Equity`, `Saved Assumption`.
+* **Aggregate Storage (ASO):** Columnar coordinate storage option optimized for high-concurrency read queries and sub-second multi-dimensional aggregation.
+* **Approval Unit:** Unique multidimensional combination of Scenario, Version, and Entity that moves through a promotional state machine (First Pass -> Under Review -> Approved).
+* **Attribute Dimension:** Dimension classifying base sparse members without allocating physical data blocks; evaluated dynamically at query time.
 
-## G–H
+### B
+* **Block (Data Block):** The physical unit of storage in BSO Essbase. An array containing all combinations of Dense dimension members for a single Sparse coordinate.
+* **Block Explosion:** Catastrophic creation of mostly empty physical blocks caused by unconstrained Top-Down allocation formulas.
+* **Block Storage (BSO):** Classic Essbase storage engine storing multidimensional arrays on disk in `.pag` files. Supports procedural calculation scripts and in-place write-backs.
+* **Bottom-Up Calculation:** Calculation mode evaluating only on existing physical data blocks on disk; skips non-existent intersections.
 
-| Term | Definition |
-|------|-----------|
-| **Groovy** | Java-based scripting language used in EPM Cloud for advanced business rules. |
-| **HFM / HFP** | Hyperion Financial Management / Hyperion Financial Planning — on-premises predecessors. |
-| **Hourglass Principle** | Optimal outline design: sparse dimensions can be large, dense dimensions should be small. |
-| **HSP_** | Prefix for Planning repository relational database tables. |
-| **HsGetValue** | Smart View function to retrieve a single value from Essbase. |
-| **Hybrid BSO** | BSO storage with ASO-style dynamic aggregation. Enabled by ASODYNAMICAGGINBSO. |
-| **Hyperion** | Oracle's legacy on-premises EPM product suite, acquired in 2007. |
+### C
+* **Calculation Manager:** Web-based designer for creating, validating, and deploying business rules, formulas, and rule sets.
+* **Cell-Level Security (CLS):** Restrictive security layer that overrides dimensional permissions to make specific multidimensional slices Read-Only or No-Access.
+* **ClearBlock Empty:** Essbase calculation command that scans the database and truncates blocks where every single dense cell is `#Missing`.
 
-## I–L
+### D
+* **Data Integration:** Unified EPM ETL tool (evolution of Data Management / FDMEE) that ingests, maps, validates, and loads external GL data into EPM cubes.
+* **Data Maps:** Declarative metadata mapping engine that defines bulk data synchronization between cubes.
+* **Dense Dimension:** A dimension whose members are stored together inside the physical multidimensional data block array.
+* **Dynamic Calc:** Storage property where the cell consumes zero physical disk space and evaluates in memory at query time.
+* **Dynamic Time Series (DTS):** Pre-built Period dimension aggregation engine supporting `Y-T-D`, `Q-T-D`, and `M-T-D` without outline expansion.
 
-| Term | Definition |
-|------|-----------|
-| **IDCS** | Oracle Identity Cloud Service — authentication and user management for EPM Cloud. |
-| **Import Format** | Data Integration configuration that parses source file columns and expressions. |
-| **Label Only** | Data storage type for category header members with no data. |
-| **LCM** | Life Cycle Management — snapshot-based artifact migration between EPM environments. |
-| **Level-0** | Leaf-level members with no children — where data is typically entered. |
+### E
+* **EPM Automate:** Command-line interface (CLI) that translates administrative commands into HTTPS REST API calls over port 443.
+* **EPM Integration Agent:** Lightweight on-premises Java service enabling secure hybrid SQL extraction behind corporate firewalls via outbound port 443.
+* **Essbase:** High-speed multidimensional analytical engine powering Oracle Cloud EPM calculations and storage.
 
-## M–O
+### G
+* **Grid Spread:** Feature allocating parent-level cell inputs down to Level 0 child periods proportionally or evenly.
+* **Groovy Rules:** Java-based event-driven business rules executing in the WebLogic JVM; enables pre-save validation and targeted Micro-FIX calculations.
 
-| Term | Definition |
-|------|-----------|
-| **MDX** | Multidimensional Expressions — query language for OLAP databases. |
-| **Member** | An item in a dimension hierarchy (Revenue, Jan, US_East). |
-| **Member Formula** | A calculation formula attached directly to a member — runs automatically on retrieval. |
-| **#Missing** | Indicates no data in a cell (not zero — zero is a stored value). |
-| **MOLAP** | Multidimensional OLAP — stores data in multidimensional arrays (what BSO does). |
-| **OCI** | Oracle Cloud Infrastructure — the cloud platform hosting EPM Cloud. |
+### H
+* **Hourglass Model:** Best-practice dimension ordering: Dense dimensions largest-to-smallest, then Sparse dimensions smallest-to-largest.
+* **Hybrid BSO:** Dual-kernel engine combining BSO block storage at Level 0 with ASO dynamic vector engine at upper rollup levels.
 
-## P–R
+### I
+* **Implied Share:** Automatic memory pointer sharing occurring when a parent has only one child or only one consolidating child.
+* **Index File (`.ind`):** Essbase B-tree index file mapping sparse member coordinates to physical byte offsets in `.pag` data files.
 
-| Term | Definition |
-|------|-----------|
-| **PBCS** | Planning and Budgeting Cloud Service — original cloud planning product. |
-| **Period** | A dimension representing time (Jan, Feb, Q1, FY2024). Usually Dense. |
-| **Plan Type** | An Essbase cube within an EPM application (Plan1, Plan2, Reporting, OEP_FS). |
-| **POV** | Point of View — the dimensional context selected by the user when viewing data. |
-| **REST API** | EPM Cloud's HTTP-based API for programmatic access. |
-| **ROLAP** | Relational OLAP — stores data in relational tables (not what Essbase does). |
-| **RTP** | Runtime Prompt — user input requested when a business rule launches. |
-| **RuleSet** | A container for sequencing multiple business rules, optionally in parallel. |
+### L
+* **Lifecycle Management (LCM):** Framework for capturing, exporting, and importing application artifacts (metadata, rules, security) in encrypted zip snapshots.
 
-## S
+### M
+* **Micro-FIX:** Groovy calculation technique that inspects `operation.grid.dataCellIterator({it.edited})` to scope calculations strictly to modified blocks.
 
-| Term | Definition |
-|------|-----------|
-| **Sandbox** | A private what-if area for planners to model scenarios without affecting official data. |
-| **Scenario** | A dimension representing different versions of reality (Actual, Budget, Forecast). |
-| **Shared Member** | A member that points to another member's stored data, enabling alternate hierarchies. |
-| **Smart List** | A configured drop-down list for data entry cells, associated with a Planning member. |
-| **Smart Push** | Automated data movement from a BSO cube to an ASO cube, typically for reporting. |
-| **Smart View** | Oracle's Excel add-in for connecting to and interacting with EPM Cloud data. |
-| **Solve Order** | Priority (0–127) that determines which member formula executes first at cell intersections. |
-| **Sparse** | A dimension that defines which data blocks exist. Typical: Entity, Product, Scenario. |
-| **Substitution Variable** | A global variable set by administrators, referenced in rules (e.g., &CurrYear = FY26). |
+### N
+* **Never Share:** Member property disabling automated Implied Share pointers; forces independent physical cell allocation.
 
-## T–Z
+### P
+* **Page Cache:** RAM buffer holding uncompressed physical data blocks between memory and `.pag` disk files.
+* **Page File (`.pag`):** Primary physical data file storing dense array blocks on disk.
 
-| Term | Definition |
-|------|-----------|
-| **Task List** | A checklist of planning process steps assigned to users with due dates. |
-| **TDATASEG** | The relational staging table used by Data Integration/Data Management. |
-| **throwVetoException** | Groovy method that rolls back a form save and displays a custom error message. |
-| **Time Balance** | Account property controlling how periodic values aggregate to parent periods: Flow, Balance, First, Average. |
-| **Top-Down Calculation** | Essbase calculation mode that processes parent members first. ~300x slower than Bottom-Up. |
-| **Two-Pass** | Member property that forces a second calculation pass for correct ratio aggregation. |
-| **UDA** | User-Defined Attribute — a text tag attached to members for grouping and filtering. |
-| **Valid Intersection** | A rule filtering which dimensional combinations are offered in data entry. Not a security control. |
-| **VBA** | Visual Basic for Applications — used with Smart View for Excel automation. |
-| **Version** | A dimension representing draft status (Working, Final). |
-| **XREF** | Cross-database reference function — reads data from another cube in a formula. |
-| **XWRITE** | Cross-database write function — writes data to another cube from a formula. |
+### R
+* **Refresh Database:** Operation compiling relational repository metadata (`HSP_*` tables) into the Essbase outline (`.otl`).
+* **Redwood UI:** Oracle's modern, responsive HTML5 user interface standard across EPM Cloud.
 
+### S
+* **Smart Push:** Real-time form save integration that executes Data Maps on the active form context to push data from BSO to ASO.
+* **Smart View:** Native Microsoft Office add-in connecting Excel, Word, and PowerPoint to Oracle Cloud EPM over HTTPS.
+* **Sparse Dimension:** Dimension whose combinations dictate how many physical data blocks exist on disk.
+* **Substitution Variable:** Global variable (e.g., `&CurYear`) dynamically referenced in calc scripts, forms, and reports.
+
+### T
+* **TDATASEG:** Relational staging table in Data Integration where source transactions are held, mapped, and validated before cube export.
+* **Two-Pass Calculation:** Property forcing Essbase to recalculate ratios and percentages at parent summary intersections in a second calculation pass.
+
+### V
+* **Valid Intersections:** Structural business rules filtering valid dimensional combinations in forms and member selectors without modifying security grants.
+
+---
+
+## 3. Tough & Twisted Review Questions with Consultant Model Answers
+
+### Question 1: "What is the precise technical distinction between an 'Artifact' and a 'Dimension Member' in Oracle Cloud EPM?"
+**Consultant Model Answer:**
+> "* **Artifact:** An application object created, managed, and secured within the Planning framework (e.g., Data Forms, Dashboards, Business Rules, Task Lists, Navigation Flows, Data Maps). Artifacts reside in the relational repository and have permissions managed via Access Control.
+> * **Dimension Member:** A structural coordinate node within an Essbase outline tree (e.g., Account `5110`, Entity `US_Corp`). Dimension members define the multidimensional coordinate hypercube and store or aggregate numeric financial data."
+
+### Question 2: "Explain the difference between 'Dynamic Calc' and 'Dynamic Calc and Store'."
+**Consultant Model Answer:**
+> "* **Dynamic Calc:** The value is computed dynamically in RAM at query retrieval time and is **never written to disk**. It consumes zero disk storage and updates instantaneously when underlying data changes.
+> * **Dynamic Calc and Store (Deprecated):** The value is computed dynamically the first time it is queried, then physically written to disk as a stored block. Subsequent queries read the stored block. In modern Hybrid BSO applications, this property is obsolete because the ASO dynamic vector engine calculates values in sub-seconds without disk block writes."
+
+---
+*Return to [Knowledge Base Master Index](../README.md).*

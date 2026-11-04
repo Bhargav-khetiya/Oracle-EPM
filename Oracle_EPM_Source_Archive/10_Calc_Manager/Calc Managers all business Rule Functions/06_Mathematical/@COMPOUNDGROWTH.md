@@ -1,10 +1,10 @@
-# @COMPOUNDGROWTH
+﻿# @COMPOUNDGROWTH
 
 ## Overview
 
 `@COMPOUNDGROWTH` is a **native Essbase financial function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates the pure **Compound Interest (Growth Amount)** generated from a principal amount over a specified period of time. Unlike `@COMPOUND` (which returns the Total Value: Principal + Interest), `@COMPOUNDGROWTH` strictly isolates and returns ONLY the mathematical growth/interest generated in that specific period.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building financial statements, Balance Sheets and Income Statements require different data. 
 If you deposit `$100,000` into a treasury account at a `10%` annual rate:

@@ -1,4 +1,4 @@
-# 03 — Sparse vs Dense Dimensions: The Complete Guide
+﻿# 03 — Sparse vs Dense Dimensions: The Complete Guide
 
 ---
 
@@ -121,7 +121,7 @@ A dimension should be **dense** when:
 
 ### Classic Dense Dimensions:
 
-| Dimension | Why Dense? |
+| Dimension | Why Dense— |
 |-----------|-----------|
 | **Account** | Small (50-500 members), nearly all intersections populated, heavy calculation target |
 | **Period** | Small (12-17 members), all entities have monthly data, time aggregation |
@@ -149,7 +149,7 @@ A dimension should be **sparse** when:
 
 ### Classic Sparse Dimensions:
 
-| Dimension | Why Sparse? |
+| Dimension | Why Sparse— |
 |-----------|-------------|
 | **Entity** | Large (100-10000 members), entities are independent, not all combos exist |
 | **Product** | Large (50-5000 members), not sold everywhere |
@@ -168,7 +168,7 @@ A dimension should be **sparse** when:
               ┌───────────────┐
               │ How many       │
               │ stored members │
-              │ (incl. upper)? │
+              │ (incl. upper)— │
               └───────┬───────┘
                       │
               ┌───────┴───────┐
@@ -179,7 +179,7 @@ A dimension should be **sparse** when:
               │       ┌───────────────┐
               │       │ What % of      │
               │       │ intersections  │
-              │       │ will have data?│
+              │       │ will have data—│
               │       └───────┬───────┘
               │               │
               │       ┌───────┴───────┐
@@ -196,7 +196,7 @@ A dimension should be **sparse** when:
       ┌───────────────┐
       │ Will it cause  │
       │ block size     │
-      │ > 200 KB?      │
+      │ > 200 KB—      │
       └───────┬───────┘
               │
         ┌─────┴─────┐
@@ -464,26 +464,26 @@ DISASTER! Each block is 34 MB!
 
 The best way to decide sparse vs. dense is to analyze your **data population pattern**:
 
-### Question: "For this dimension, what percentage of its members will have data for a typical combination of other dimensions?"
+### Question: "For this dimension, what percentage of its members will have data for a typical combination of other dimensions—
 
 ```
 For Account:
-  Q: "For a given Entity + Product + Period + Year, how many Accounts have data?"
+  Q: "For a given Entity + Product + Period + Year, how many Accounts have data—
   A: "Almost all — Revenue, COGS, Headcount, etc. all exist"
   → 80%+ coverage → DENSE ✅
 
 For Period:
-  Q: "For a given Entity + Product + Account + Year, how many Periods have data?"
+  Q: "For a given Entity + Product + Account + Year, how many Periods have data—
   A: "All months — Jan through Dec"
   → 100% coverage → DENSE ✅
 
 For Entity:
-  Q: "For a given Account + Period + Product + Year, how many Entities have data?"
+  Q: "For a given Account + Period + Product + Year, how many Entities have data—
   A: "Only 30% of entities sell this specific product"
   → 30% coverage → SPARSE ✅
 
 For Product:
-  Q: "For a given Entity + Account + Period + Year, how many Products have data?"
+  Q: "For a given Entity + Account + Period + Year, how many Products have data—
   A: "Only 5-10% of products are sold in each entity"
   → 5-10% coverage → SPARSE ✅
 ```
@@ -495,7 +495,7 @@ For Product:
 ### Stored vs. Dynamic Calc Members
 
 ```
-Member Property          Stored in Block?    Impacts Block Size?
+Member Property          Stored in Block—    Impacts Block Size—
 ───────────────────────────────────────────────────────────────
 Store Data               ✅ Yes              ✅ Yes
 Dynamic Calc             ❌ No               ❌ No (calculated on retrieval)
@@ -632,9 +632,9 @@ $$\text{Block Size (Bytes)} = (\text{Stored Dense Member Count}_1 \times \text{S
 
 ### 12. Remember and Explain It (Active Recall & Teach-Back)
 * **Quick Recap**: Dense dimensions create the internal cells of each block; Sparse dimensions create the address coordinates. Keep block size between 50KB and 250KB.
-* **Recall Question 1**: How many bytes does a single Essbase numeric cell consume in a data block?
+* **Recall Question 1**: How many bytes does a single Essbase numeric cell consume in a data block—
   * *Answer*: Exactly 8 bytes (double-precision floating point number).
-* **Recall Question 2**: Do Dynamic Calc members contribute to the physical block size of a dense dimension?
+* **Recall Question 2**: Do Dynamic Calc members contribute to the physical block size of a dense dimension—
   * *Answer*: No! Only stored members consume physical space in the block array.
 * **Teach-Back Prompt**: *Explain to a colleague why setting all 8 dimensions in an EPM application to "Dense" would destroy system performance rather than make it faster.*
 

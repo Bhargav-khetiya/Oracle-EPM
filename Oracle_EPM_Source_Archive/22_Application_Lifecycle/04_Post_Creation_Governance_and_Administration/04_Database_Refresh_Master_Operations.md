@@ -1,4 +1,4 @@
-﻿# 🔄 Database Refresh — The Complete Operations Guide
+﻿﻿# 🔄 Database Refresh — The Complete Operations Guide
 ## Essbase Cube Synchronization, Outline Restructuring, Security Filters & Job Automation
 
 > **Navigation:** `Home → Application → Overview → Actions (▼) → Refresh Database`  
@@ -131,7 +131,7 @@ epmautomate login admin@company.com "Password123" https://epm-target.oraclecloud
 epmautomate refreshcube validateMetadata=true stopAllUsers=false
 
 # Check command status code
-if [ $? -eq 0 ]; then
+if [ $— -eq 0 ]; then
     echo "Database refresh succeeded!"
 else
     echo "Database refresh failed. Inspecting jobs console..."
@@ -181,20 +181,20 @@ Content-Type: application/json
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: What are the 3 distinct phases executed during a Database Refresh?
+### Q1: What are the 3 distinct phases executed during a Database Refresh—
 **Answer:**
 1. **Phase 1: Validation & Outline Synchronization:** Validates metadata formulas and updates physical Essbase outline files (`.otl`).
 2. **Phase 2: Database Restructure:** Restructures data blocks on disk if dense dimensions were modified.
 3. **Phase 3: Security & Filter Deployment:** Compiles user security filters, valid intersection matrices, and cell-level security rules into Essbase memory.
 
-### Q2: What is the difference between an Outline Restructure (Sparse) and a Full Restructure (Dense)?
+### Q2: What is the difference between an Outline Restructure (Sparse) and a Full Restructure (Dense)—
 **Answer:**
 - **Sparse Restructure:** Occurs when adding/moving sparse members. Modifies only the outline header file; takes seconds.
 - **Dense Restructure:** Occurs when adding/moving dense members or toggling dense/sparse properties. Essbase must physically read and rewrite every single data block on disk (`.pag` files); takes hours on large databases and requires 2x disk space for temporary shadow files.
 
-### Q3: How do you automate Database Refreshes in nightly unattended DevOps pipelines?
+### Q3: How do you automate Database Refreshes in nightly unattended DevOps pipelines—
 **Answer:** Execute in your automation batch pipeline:
 ```cmd
 epmautomate refreshCube

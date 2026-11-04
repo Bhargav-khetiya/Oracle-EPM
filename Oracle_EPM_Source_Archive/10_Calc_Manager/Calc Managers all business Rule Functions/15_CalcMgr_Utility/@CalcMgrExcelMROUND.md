@@ -1,11 +1,11 @@
-# @CalcMgrExcelMROUND
+﻿# @CalcMgrExcelMROUND
 
 ## Overview
 
 `@CalcMgrExcelMROUND` is a **custom Calc Manager mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `MROUND` function directly inside an Essbase calculation script. 
 It rounds a number to the **nearest specified multiple** (e.g., rounding to the nearest 5, nearest 10, or nearest 0.25). 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard rounding (`@ROUND`) in Essbase allows you to round to a specific decimal place (e.g., rounding `10.512` to `10.51`). However, it does not easily allow you to round to a specific *multiple*. 
 In retail pricing models, companies often enforce a rule that all prices must end in a multiple of `$0.05` (nickels). In manufacturing, raw materials must be ordered in multiples of `12` (dozens). 

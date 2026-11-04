@@ -1,4 +1,4 @@
-# @EQUAL
+﻿# @EQUAL
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 *(Note: While Calc Manager allows string equality comparisons via `==` in IF statements, `@EQUAL` is specifically designed for generating arrays/lists of members to be used inside FIX statements or cross-dimensional allocations).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building calculation scripts, you rarely want to run a rule on the entire database. You need to target specific subsets of data. 
 If an administrator adds a custom Attribute Dimension called `Store_Size` (with members like `"Large"`, `"Medium"`, `"Small"`), they might need to apply a 5% overhead allocation ONLY to the `"Large"` stores. 

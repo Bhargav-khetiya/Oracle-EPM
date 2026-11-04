@@ -1,12 +1,12 @@
-# @CalcMgrYearsDiff
+﻿# @CalcMgrYearsDiff
 
 ## Overview
 
 `@CalcMgrYearsDiff` is a **custom Calc Manager date mathematics function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates the mathematical **difference in years** between two provided **Java Date Objects**, returning the result as a precise floating-point decimal (a Double).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
-While `@CalcMgrYearsBetween` is perfect for strict integer thresholds (e.g., did they hit their exact 5-year anniversary?), it is useless for continuous financial mathematics. 
+While `@CalcMgrYearsBetween` is perfect for strict integer thresholds (e.g., did they hit their exact 5-year anniversary—), it is useless for continuous financial mathematics. 
 If an enterprise software contract costs $100,000 annually, and a customer terminates the contract after exactly 1 year and 6 months, using `YearsBetween` will tell you they were active for `1` year, causing you to under-bill them for 6 months. 
 `@CalcMgrYearsDiff` solves this by calculating the exact calendar delta and preserving the fractional remainder. It divides the total elapsed days by the exact length of the year, returning a highly precise decimal (e.g., `1.503`). This enables FP&A teams to execute exact, fractional proration logic (e.g., multiplying the annual rate by `1.503`) natively within Essbase.
 

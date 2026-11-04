@@ -1,4 +1,4 @@
-# Planning Valid Intersections: Beginner-to-Consultant Guide
+﻿# Planning Valid Intersections: Beginner-to-Consultant Guide
 
 ## Core idea
 A valid intersection group filters which dimensional combinations are offered or accepted in relevant Planning data-entry and member-selection contexts.
@@ -36,8 +36,8 @@ These are consequential design settings. See Oracle's [Anchor and Nonanchor Dime
 
 | Definition | Use when | Design question |
 |---|---|---|
-| Valid Intersection | The rule describes combinations to allow. | What happens to anchor members not listed? |
-| Invalid Intersection | The rule describes combinations to reject. | Which other combinations remain valid? |
+| Valid Intersection | The rule describes combinations to allow. | What happens to anchor members not listed— |
+| Invalid Intersection | The rule describes combinations to reject. | Which other combinations remain valid— |
 
 Choose based on the real rule and tested outcomes, not an unverified claim that one type is always faster. Oracle documents both types and their precedence behavior. Start with the [rule examples](https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/valid_intersection_examples.html).
 
@@ -87,7 +87,7 @@ Before implementation, make a truth table of expected valid/invalid cases, inclu
 
 ## Remember and explain
 
-**Recall:** What does the feature filter? What does the anchor dimension control? What is the difference between same-group and cross-group overlap? Does a valid intersection authorize a user?
+**Recall:** What does the feature filter— What does the anchor dimension control— What is the difference between same-group and cross-group overlap— Does a valid intersection authorize a user—
 
 **Answer key:** It filters dimensional combinations in relevant entry/selection contexts. The anchor is required and controls how unselected members are treated. Same-group overlaps use the documented either-rule behavior; groups combine requirements, with invalid results overriding valid. Authorization remains a separate security concern.
 

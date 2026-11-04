@@ -1,4 +1,4 @@
-﻿# 📦 Planning Modules — Complete Overview
+﻿﻿# 📦 Planning Modules — Complete Overview
 ## All Available Modules and Their Architecture
 
 > **Context:** When creating a Planning application (not FreeForm), you can enable pre-built modules  
@@ -150,13 +150,13 @@
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: How does the shared reporting cube (OEP_REP) bridge data across Financials, Workforce, Capital, and Projects?
+### Q1: How does the shared reporting cube (OEP_REP) bridge data across Financials, Workforce, Capital, and Projects—
 **Answer:** Each module has its own dedicated BSO Hybrid calculation cube (OEP_FS for Financials, OEP_WFP for Workforce, OEP_CPX for Capital, OEP_PJC for Projects). Detailed calculations occur in these specialized cubes. To provide unified executive dashboards and cross-functional P&L reporting, pre-built **Data Maps** and **Smart Push** pipelines push aggregated summary data from each BSO cube into OEP_REP, an Aggregate Storage (ASO) cube optimized for fast multi-dimensional reporting.
 
-### Q2: Can an organization enable modules in separate phases over a multi-year implementation roadmap?
+### Q2: Can an organization enable modules in separate phases over a multi-year implementation roadmap—
 **Answer:** Yes. This is called **Progressive Feature Enablement**. You can create the application with Financials in Phase 1, deploy Workforce in Phase 2, and add Capital and Projects in Phase 3. When you enable a new module later, the system provisions the new cube and dimensions without disrupting existing operational data in already-enabled modules.
 
-### Q3: What happens if an administrator deletes or renames a seeded module dimension like Plan Element?
+### Q3: What happens if an administrator deletes or renames a seeded module dimension like Plan Element—
 **Answer:** Seeded dimensions (Plan Element, Line Item, Component) are hardcoded into the business rule templates and data forms. Renaming or deleting them causes Calc Manager rule compilation to crash with missing member errors and permanently breaks out-of-the-box data maps. Always use **Aliases** to alter user-facing labels.

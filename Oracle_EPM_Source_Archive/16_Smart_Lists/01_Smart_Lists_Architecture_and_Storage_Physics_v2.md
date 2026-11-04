@@ -1,4 +1,4 @@
-# 01 — Smart Lists Architecture & Storage Physics
+﻿# 01 — Smart Lists Architecture & Storage Physics
 
 ---
 
@@ -46,7 +46,7 @@ A **Smart List** is a metadata bridge that translates between user-facing text s
 
 Every Smart List entry contains three distinct properties:
 
-| Identifier | Technical Nature | Where Used | Can It Change? |
+| Identifier | Technical Nature | Where Used | Can It Change— |
 | :--- | :--- | :--- | :--- |
 | **`ID`** | Integer (stored as 8-byte float in Essbase) | Physical `.PAG` disk storage, calculation comparisons | **NEVER change an ID** once historical data exists! |
 | **`Name`** | Programmatic string (alphanumeric, no spaces) | Calc Manager business rules, Groovy scripts, Data Maps | Stable programmatic reference. |

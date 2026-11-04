@@ -1,13 +1,13 @@
-# @CalcMgrExcelNPER
+﻿# @CalcMgrExcelNPER
 
 ## Overview
 
 `@CalcMgrExcelNPER` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `NPER` function directly inside an Essbase calculation script. 
 It calculates the **Number of Periods** required to pay off a loan (or reach an investment target) based on constant, periodic payments and a constant interest rate.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
-In debt modeling, a company might say: "We have a $10,000,000 loan at 6% interest. We can afford to pay exactly $250,000 every month. How long will it take to pay off this debt?" 
+In debt modeling, a company might say: "We have a $10,000,000 loan at 6% interest. We can afford to pay exactly $250,000 every month. How long will it take to pay off this debt— 
 To answer that question manually, you would have to calculate the logarithm of the amortizing balance: `LOG(PMT / (PMT - PV * Rate)) / LOG(1 + Rate)`. Writing complex logarithmic math inside an Essbase script is highly inefficient and prone to syntax or precision errors.
 `@CalcMgrExcelNPER` wraps this entire logarithmic formula into a single Java function. It instantly solves for the exact time horizon, guaranteeing parity with legacy treasury models built in Excel.
 

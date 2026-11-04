@@ -1,4 +1,4 @@
-# 08 — Sparse-Dense Interchange Impact: What Happens When You Swap
+﻿# 08 — Sparse-Dense Interchange Impact: What Happens When You Swap
 
 ---
 
@@ -239,7 +239,7 @@ Problems:
 
 ---
 
-## 8.6 Decision Framework: When Is Interchange Acceptable?
+## 8.6 Decision Framework: When Is Interchange Acceptable—
 
 ### Acceptable: Sparse → Dense
 
@@ -418,43 +418,43 @@ Before making any sparse↔dense change, answer these questions:
 ```
 CHECKLIST:
 
-□ What is the CURRENT block size?
+□ What is the CURRENT block size—
   Current: ________ bytes
 
-□ What will the NEW block size be?
+□ What will the NEW block size be—
   New: ________ bytes
-  Is it between 8 KB and 200 KB? □ Yes □ No
+  Is it between 8 KB and 200 KB— □ Yes □ No
 
-□ What is the CURRENT block count?
+□ What is the CURRENT block count—
   Current: ________ blocks
 
-□ What will the ESTIMATED NEW block count be?
+□ What will the ESTIMATED NEW block count be—
   New: ________ blocks
-  Is this reasonable? □ Yes □ No
+  Is this reasonable— □ Yes □ No
 
-□ What is the CURRENT total database size?
+□ What is the CURRENT total database size—
   Current: ________ MB
 
-□ What will the ESTIMATED NEW database size be?
+□ What will the ESTIMATED NEW database size be—
   New: ________ MB
-  Is there enough disk space (need 2× during restructure)? □ Yes □ No
+  Is there enough disk space (need 2× during restructure)— □ Yes □ No
 
-□ How will calculations be affected?
+□ How will calculations be affected—
   Dimension being changed: ________
-  Will calculations on this dimension be intra-block or inter-block?
+  Will calculations on this dimension be intra-block or inter-block—
   □ Intra-block (dense) → faster calc on this dimension
   □ Inter-block (sparse) → slower calc on this dimension
 
-□ Have you backed up the database?
+□ Have you backed up the database—
   □ Outline exported
   □ Data exported
   □ Full backup taken
 
-□ Is there a maintenance window available?
+□ Is there a maintenance window available—
   Estimated restructure time: ________ hours
   Window available: ________ hours
 
-□ Have you tested on a non-production copy?
+□ Have you tested on a non-production copy—
   □ Yes, results: ________
   □ No → DO NOT PROCEED ON PRODUCTION
 ```

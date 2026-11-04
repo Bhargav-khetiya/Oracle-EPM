@@ -1,10 +1,10 @@
-# @LANCESTORS
+﻿# @LANCESTORS
 
 ## Overview
 
 `@LANCESTORS` is a **member set function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns the **left ancestors** of a specified member. "Left ancestors" are the ancestors of the member that appear to the **left** (or before) the member's direct ancestry path in the outline, following the left-branch lineage. More precisely, it returns all ancestors of a member, navigating up the hierarchy through the **leftmost** (first child) path.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In complex multi-level hierarchies, you may need to navigate or reference specific branches of the ancestor chain:
 - Building roll-up calculations that follow a specific branch path

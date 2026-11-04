@@ -1,4 +1,4 @@
-﻿# 📥 Path 3: Migrate Application — Master Overview
+﻿﻿# 📥 Path 3: Migrate Application — Master Overview
 ## Concepts, Architecture, Snapshot Payloads, Version Governance & Migration Methods
 
 > **Entry Point (Landing Page):** `Planning Landing Page → MIGRATE button`  
@@ -51,11 +51,11 @@ When you log into a newly provisioned or reset Oracle Cloud EPM instance, the th
 
 ---
 
-## 📦 What is Inside an Application Snapshot?
+## 📦 What is Inside an Application Snapshot—
 
 An Oracle LCM Snapshot is a structured `.zip` archive containing relational metadata, dimensional schemas, XML configuration definitions, and compressed Essbase data:
 
-| Component Category | Included in Snapshot? | Detailed Contents |
+| Component Category | Included in Snapshot— | Detailed Contents |
 |:---|:---:|:---|
 | **Application & Dimensions** | ✅ **YES** | Dimensions, members, aliases, attributes, UDAs, Smart Lists, evaluation orders |
 | **Essbase Cubes & Data** | ✅ **YES** | Outlines (`.otl`), stored data blocks, and calculation scripts |
@@ -107,7 +107,7 @@ Understanding the architectural distinction prevents recovery blunders:
 
 ## 🔄 The 4 Primary Migration Methods Compared
 
-| Method | Interface | Best For | Local Download Required? |
+| Method | Interface | Best For | Local Download Required— |
 |:---|:---:|:---|:---:|
 | **1. Landing Page [MIGRATE]** | Web GUI | First-time application creation on a fresh pod | Yes (browser upload) |
 | **2. Migration Console (`Tools → Migration`)** | Web GUI | Granular, selective updates into an existing app | Optional |
@@ -128,15 +128,15 @@ Understanding the architectural distinction prevents recovery blunders:
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: What is the role of the root manifest PackageInfo.xml inside an LCM snapshot archive?
+### Q1: What is the role of the root manifest PackageInfo.xml inside an LCM snapshot archive—
 **Answer:** PackageInfo.xml is the master manifest read by the Lifecycle Management (LCM) engine. It specifies the source application name, application type (Planning, FreeForm, FCCS), product version, character set encoding, and the complete index of artifact categories included in the export. If this file is corrupted or missing, the snapshot cannot be parsed.
 
-### Q2: What happens if an LCM snapshot from Cloud EPM 26.11 is imported into an environment running 26.10?
+### Q2: What happens if an LCM snapshot from Cloud EPM 26.11 is imported into an environment running 26.10—
 **Answer:** The import fails with a version incompatibility error (EPMLCM-14000). Oracle Cloud EPM prohibits importing snapshots from higher release versions into lower release versions to prevent relational database schema desynchronization and corruption.
 
-### Q3: How are relational repository artifacts separated from Essbase data in the snapshot directory?
+### Q3: How are relational repository artifacts separated from Essbase data in the snapshot directory—
 **Answer:** Inside the snapshot .zip:
 - Relational metadata (forms, task lists, security, navigation flows) is stored as XML definitions under /resource/Planning/.
 - Essbase metadata (outlines, dimensions, members, formulas) is stored under /resource/HP/.

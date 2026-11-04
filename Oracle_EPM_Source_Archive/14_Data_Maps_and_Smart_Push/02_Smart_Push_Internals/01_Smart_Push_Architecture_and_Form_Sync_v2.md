@@ -1,4 +1,4 @@
-# 01 Smart Push Architecture, Form Integration, and Real-Time Sync
+﻿# 01 Smart Push Architecture, Form Integration, and Real-Time Sync
 
 ## 1. Architectural Essence of Smart Push
 
@@ -260,9 +260,9 @@ In enterprise planning, executives want to see real-time corporate dashboard upd
 
 ### 12. Remember and Explain It (Active Recall & Teach-Back)
 * **Quick Recap**: Smart Push connects Data Maps to Web Forms, automatically streaming micro-slices into ASO reporting cubes upon clicking Save. Always check "Use Form Context."
-* **Recall Question 1**: What happens if "Use Form Context" is disabled on a form's Smart Push configuration?
+* **Recall Question 1**: What happens if "Use Form Context" is disabled on a form's Smart Push configuration—
   * *Answer*: Smart Push will push the entire global scope of the Data Map rather than just the visible form members, causing severe save latency.
-* **Recall Question 2**: Why is pushing data to an ASO reporting cube preferable to having all users report directly out of the BSO planning cube?
+* **Recall Question 2**: Why is pushing data to an ASO reporting cube preferable to having all users report directly out of the BSO planning cube—
   * *Answer*: BSO cubes must lock blocks during calculations and input, causing user contention. ASO reporting cubes aggregate millions of cells dynamically in-memory without locks or batch calculation scripts.
 * **Teach-Back Prompt**: *Explain the difference between a scheduled batch Data Map and a real-time Smart Push to a financial analyst who wants to know why their executive dashboard updates immediately after they hit Save.*
 

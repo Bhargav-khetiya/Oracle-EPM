@@ -1,10 +1,10 @@
-# AGG
+﻿# AGG
 
 ## Overview
 
 `AGG` is an **aggregation command** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that **rolls up data** from child members to parent members along one or more dimensions. It calculates parent values by summing (or applying the configured consolidation operator to) their children's values. It is a core command used in almost every business rule that modifies data.
 
-### Why Does This Command Exist?
+### Why Does This Command Exist—
 
 In Essbase BSO, data is stored at the **leaf level** (lowest-level members). Parent members don't automatically recalculate when leaf data changes during a calc script. After modifying leaf-level data through formulas, you must explicitly aggregate to update parents:
 - Revenue → Total Revenue → Total P&L

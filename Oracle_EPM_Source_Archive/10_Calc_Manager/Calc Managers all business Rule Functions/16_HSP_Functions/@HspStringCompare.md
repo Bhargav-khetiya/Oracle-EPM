@@ -1,10 +1,10 @@
-# @HspStringCompare
+﻿# @HspStringCompare
 
 ## Overview
 
 `@HspStringCompare` is a **Hyperion Planning (HSP) custom string function** embedded within Oracle EPM Cloud (PBCS/EPBCS). It takes two text strings and compares them character-by-character to determine if they are **exactly identical**. It returns a mathematical integer representing the result of the comparison.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Essbase calculation engines are built to perform high-speed math (`IF("Revenue" == 100)`). They are historically terrible at handling text. If you try to write `IF("StringA" == "StringB")` natively in Essbase, the compiler will often crash with a Type Mismatch error, because it does not know how to apply numeric equality operators (`==`) to alphabetical characters.
 When extracting dynamic member names (e.g., `@NAME(@CURRMBR("Entity"))`) or reading attributes, administrators often need to execute string-based conditional logic. 

@@ -1,11 +1,11 @@
-# @CalcMgrExcelNETWORKDAYS
+﻿# @CalcMgrExcelNETWORKDAYS
 
 ## Overview
 
 `@CalcMgrExcelNETWORKDAYS` is a **custom Calc Manager date function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `NETWORKDAYS` function directly inside an Essbase calculation script. 
 It calculates the exact number of **working days** between two dates, automatically excluding all weekends (Saturdays and Sundays), and optionally excluding a custom list of corporate holidays.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard date subtraction (`Date2 - Date1` or `@CalcMgrDaysDiff`) calculates pure calendar days. If a project starts on Jan 1st and ends on Jan 31st, it took 31 days. However, in corporate finance, employees don't work on weekends. To accurately forecast labor costs, you must know that there were exactly 22 *working days* in January (excluding 8 weekend days and 1 New Year's Day holiday).
 Writing a custom Essbase script to figure out exactly how many weekends fell between two dynamic dates is nightmarish, requiring modulus math on Julian day indices. `@CalcMgrExcelNETWORKDAYS` completely offloads this to the Java engine. It rapidly maps the calendar between the two dates, strips out the weekends, strips out any holidays you pass to it, and returns the exact number of billable days.

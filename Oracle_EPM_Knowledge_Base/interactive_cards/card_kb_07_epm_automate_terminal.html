@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KB Interactive Card 07: EPM Automate Terminal & Script Runner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-6 font-sans">
+  <div class="max-w-4xl mx-auto space-y-6">
+    <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 shadow-2xl backdrop-blur">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-700 pb-4">
+        <div>
+          <span class="text-xs font-bold tracking-widest text-sky-400 uppercase bg-sky-950/60 px-3 py-1 rounded-full border border-sky-800">
+            Knowledge Base Card 07
+          </span>
+          <h1 class="text-2xl font-black mt-2 text-white">EPM Automate Interactive Command Simulator</h1>
+        </div>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-emerald-950 text-emerald-400 border border-emerald-800">CLI & REST Wrapper</span>
+      </div>
+
+      <!-- Terminal Simulator -->
+      <div class="mt-6 space-y-4">
+        <div class="flex flex-wrap gap-2 text-xs">
+          <button onclick="runCmd('login')" class="px-3 py-1.5 rounded bg-slate-700 hover:bg-slate-600 text-sky-300 font-mono">1. epmautomate login</button>
+          <button onclick="runCmd('upload')" class="px-3 py-1.5 rounded bg-slate-700 hover:bg-slate-600 text-sky-300 font-mono">2. epmautomate uploadfile</button>
+          <button onclick="runCmd('rule')" class="px-3 py-1.5 rounded bg-slate-700 hover:bg-slate-600 text-sky-300 font-mono">3. epmautomate rundatarule</button>
+          <button onclick="runCmd('refresh')" class="px-3 py-1.5 rounded bg-slate-700 hover:bg-slate-600 text-sky-300 font-mono">4. epmautomate refreshcube</button>
+          <button onclick="runCmd('merge')" class="px-3 py-1.5 rounded bg-slate-700 hover:bg-slate-600 text-sky-300 font-mono">5. epmautomate mergeslices</button>
+          <button onclick="runCmd('logout')" class="px-3 py-1.5 rounded bg-slate-700 hover:bg-slate-600 text-sky-300 font-mono">6. epmautomate logout</button>
+        </div>
+
+        <!-- Simulated Terminal Screen -->
+        <div class="bg-black/90 border border-slate-800 rounded-xl p-5 font-mono text-xs text-slate-300 h-64 overflow-y-auto space-y-2 shadow-inner" id="termScreen">
+          <div class="text-slate-500">// Oracle EPM Automate v24.11 Interactive CLI Terminal Emulator</div>
+          <div class="text-emerald-400 font-bold">$ Ready. Click any command button above to execute workflow.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function runCmd(type) {
+      const term = document.getElementById('termScreen');
+      let lines = [];
+
+      switch(type) {
+        case 'login':
+          lines = [
+            '<span class="text-sky-400">$ epmautomate login admin@company.com C:\\epm\\pass.epw https://epm-prod.oraclecloud.com MyKey</span>',
+            '<span class="text-slate-400">Connecting to Oracle Cloud EPM service gateway...</span>',
+            '<span class="text-emerald-400">The user was authenticated successfully. Session cached. (Exit Code: 0)</span>'
+          ];
+          break;
+        case 'upload':
+          lines = [
+            '<span class="text-sky-400">$ epmautomate uploadfile C:\\Data\\GL_Actuals_Oct26.csv inbox</span>',
+            '<span class="text-slate-400">Uploading file [GL_Actuals_Oct26.csv] to repository staging [inbox]...</span>',
+            '<span class="text-emerald-400">File uploaded successfully. (24.5 MB, Exit Code: 0)</span>'
+          ];
+          break;
+        case 'rule':
+          lines = [
+            '<span class="text-sky-400">$ epmautomate rundatarule Load_Actuals Oct FY26 MERGE</span>',
+            '<span class="text-slate-400">Triggering Data Integration rule [Load_Actuals]...</span>',
+            '<span class="text-slate-400">Job ID: 41291. Polling status: [In Progress - Import Stage]...</span>',
+            '<span class="text-slate-400">Job ID: 41291. Polling status: [In Progress - Validate Stage]...</span>',
+            '<span class="text-emerald-400">The data rule executed successfully. 15,200 records loaded. (Exit Code: 0)</span>'
+          ];
+          break;
+        case 'refresh':
+          lines = [
+            '<span class="text-sky-400">$ epmautomate refreshcube</span>',
+            '<span class="text-slate-400">Locking application and compiling relational metadata into Essbase outlines...</span>',
+            '<span class="text-slate-400">Rebuilding index B-trees for [Plan1]...</span>',
+            '<span class="text-emerald-400">The cube was refreshed successfully. (Exit Code: 0)</span>'
+          ];
+          break;
+        case 'merge':
+          lines = [
+            '<span class="text-sky-400">$ epmautomate mergeslices Plan1 OEP_REP dropzeros</span>',
+            '<span class="text-slate-400">Scanning ASO incremental slices for [OEP_REP]...</span>',
+            '<span class="text-slate-400">Compacting 42 micro-slices into Main Baseline Slice and purging zero cells...</span>',
+            '<span class="text-emerald-400">Slices merged successfully. Sub-second query performance restored. (Exit Code: 0)</span>'
+          ];
+          break;
+        case 'logout':
+          lines = [
+            '<span class="text-sky-400">$ epmautomate logout</span>',
+            '<span class="text-emerald-400">Session terminated. Logged out of Oracle Cloud EPM. (Exit Code: 0)</span>'
+          ];
+          break;
+      }
+
+      lines.forEach(l => {
+        const div = document.createElement('div');
+        div.innerHTML = l;
+        term.appendChild(div);
+      });
+      term.scrollTop = term.scrollHeight;
+    }
+  </script>
+</body>
+</html>

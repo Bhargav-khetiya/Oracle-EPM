@@ -1,10 +1,10 @@
-# @PRIOR
+﻿# @PRIOR
 
 ## Overview
 
 `@PRIOR` is a **time series function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns the data value from a **previous time period**. It navigates backward in the time dimension by a specified number of periods, enabling period-over-period comparisons, growth calculations, and trend analysis.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Time-based comparisons are fundamental to financial analysis:
 - **YoY comparisons**: Comparing this year's Q1 to last year's Q1

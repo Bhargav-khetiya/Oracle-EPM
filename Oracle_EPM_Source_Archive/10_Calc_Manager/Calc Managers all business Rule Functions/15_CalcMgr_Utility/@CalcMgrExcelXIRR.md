@@ -1,11 +1,11 @@
-# @CalcMgrExcelXIRR
+﻿# @CalcMgrExcelXIRR
 
 ## Overview
 
 `@CalcMgrExcelXIRR` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `XIRR` function directly inside an Essbase calculation script. 
 It calculates the **Internal Rate of Return (IRR)** for a schedule of cash flows that occur on **irregular, specific dates**.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 The standard `@CalcMgrExcelIRR` function assumes that all cash flows happen exactly one period apart (e.g., exactly 1 month, or exactly 1 year). In real-world Private Equity, Venture Capital, and complex CapEx modeling, this is never true. A company might invest $5M on January 1st, inject another $2M on March 15th, and receive a payout on November 2nd. 
 Standard `IRR` cannot handle these random dates. To calculate the true Internal Rate of Return (the discount rate that makes the NPV of these chaotic cash flows equal zero), you must use `XIRR`. 

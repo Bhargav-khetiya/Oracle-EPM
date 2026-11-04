@@ -1,4 +1,4 @@
-# 04 Performance Bottlenecks, Benchmark Analysis, and Migration Roadmap
+﻿# 04 Performance Bottlenecks, Benchmark Analysis, and Migration Roadmap
 
 ## 1. The Mathematical $N \times M$ Bottleneck of Cross-Cube Functions
 
@@ -71,25 +71,25 @@ For organizations upgrading legacy Hyperion Planning applications or modernizing
 
 ---
 
-## 4. Architectural Decision Tree: Which Tool to Choose?
+## 4. Architectural Decision Tree: Which Tool to Choose—
 
 ```
-Is the data movement within the same application?
+Is the data movement within the same application—
    |
-   +---> NO: Cross-Pod or External System?
+   +---> NO: Cross-Pod or External System—
    |           |--> Use DATA INTEGRATION PIPELINES (EPM Integration Agent / REST).
    |
    +---> YES: Same Application
            |
-           +---> Is it triggered by an End-User editing a Form?
+           +---> Is it triggered by an End-User editing a Form—
            |       |--> YES: Use SMART PUSH (with 'Use Form Context' enabled).
            |       |         If dynamic cell logic is required, wrap in GROOVY DATA MAP.
            |
-           +---> Is it a Scheduled Nightly Mass Bulk Sync?
+           +---> Is it a Scheduled Nightly Mass Bulk Sync—
            |       |--> YES: Use DATA MAP (executed via EPM Automate / Job Console).
            |
            +---> Is it a complex algorithmic allocation requiring mathematical formulas 
-                 applied across cubes in a single calculation step?
+                 applied across cubes in a single calculation step—
                    |--> YES: Use GROOVY DATA MOVER (In-Memory Grid Builder).
                    |--> NO (Legacy only): Never use @XREF / @XWRITE in new builds.
 ```

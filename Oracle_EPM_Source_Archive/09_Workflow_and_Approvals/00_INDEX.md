@@ -1,39 +1,63 @@
-# Workflow, Task Management, and Planning Approvals
+﻿# 09. Workflow and Approvals — Approval Units, Promotional Paths & Lock Governance
 
-This folder covers two related but distinct ways to coordinate Planning work: Task Lists/Task Manager for activity tracking, and approval units for routing planning data through review.
+> **Consultant High-Yield Summary:**  
+> Approval Workflow manages the formal review, submission, approval, and locking of budgets and forecasts across organizational hierarchies. Configuring Approval Unit Hierarchies (AUH), promotional paths, and validation rules enforces corporate budget governance.
 
-## Read in this order
+---
 
-1. [Task Lists and Task Manager](Oracle_EPM_Task_Lists_Master_Guide.md) — understand the two task-flow options and the non-reversible conversion considerations.
-2. [Planning approvals](Oracle_EPM_Approval_Flow_Master_Guide.md) — learn approval units, ownership, templates, actions, and validation.
+## ðŸŽ¯ Live Interactive Visual Architecture Card
 
-## Mental model
+<details open>
+<summary><b>ðŸŽ¯ Live Interactive Architecture Card: Approval Unit Lifecycle & State Machine Architecture</b></summary>
 
-~~~mermaid
-flowchart LR
- T[Task coordination] -->|points user to work| A[Form, rule, report, or process]
- P[Approval unit] -->|routes plan data| O[Owner/reviewer action]
- A --> R[Result and evidence]
- O --> R
-~~~
+| Workflow State | User Permissions | State Transition Action |
+| :--- | :--- | :--- |
+| **Not Started (First Pass)** | Owner has Write access; Reviewer has Read access | Owner prepares budget; clicks **Promote** or **Submit**. |
+| **Under Review** | Owner becomes Read-Only; Reviewer has Write access | Reviewer reviews numbers; can **Approve**, **Reject**, or **Promote** higher. |
+| **Approved / Locked** | All users (except Service Admin) are **Read-Only** | Final approver locks the Approval Unit; data becomes immutable for audit compliance. |
 
-Tasks coordinate activities; approvals route a defined unit of planning data. One may link a person to an approval-related task, but the mechanisms do not replace each other.
+```mermaid
+stateDiagram-v2
+    [*] --> NotStarted: Budget Cycle Opens
+    NotStarted --> UnderReview: Owner Promotes / Submits
+    UnderReview --> UnderReview: Reviewer Promotes to Higher Level
+    UnderReview --> NotStarted: Reviewer Rejects (with Comment)
+    UnderReview --> Approved: Final Approver Approves
+    Approved --> Locked: Service Admin Locks for Audit
+    Locked --> [*]
+```
 
-## Terms and review cautions
+</details>
 
-- Use **approval unit** as the current term; older notes may say Planning Unit.
-- Approval actions and statuses depend on the hierarchy template, current state, and permissions; they are not one universal linear sequence.
-- Owner changes can affect who may edit, subject to data write permission.
-- Task Lists are the classic task-flow feature. EPM Task Manager is a separate task flow; conversion is consequential and existing lists/tasks are not migrated.
-- A visible task does not guarantee permission to use its linked artifact or data.
-- Treat all examples as illustrative unless a project artifact confirms them.
+---
 
-## Oracle references
+## ðŸ›ï¸ Architectural Comparison & Design Patterns
 
-- [Administering Task Lists](https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/administering_tasks.html)
-- [Administering Tasks with Task Manager](https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/cm_administering_tasks_with_task_manager.html)
-- [Approval Unit Actions](https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusu/approval_unit_actions.html)
-- [Approval Unit States](https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusu/approval_unit_states.html)
-- [Approvals Process](https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/approvals_process.html)
+| Workflow Aspect | Bottom-Up Approval Unit Hierarchy | Distributed / Freeform Hierarchy |
+| :--- | :--- | :--- |
+| Rollup Flow | Level 0 entities roll up strictly through parent tree to top executive | Selected entity groups approve independently without strict parent dependency |
+| Data Locking | Promoting child entity locks child data while parent remains editable | Locking can be configured per individual cost center or business unit |
+| Ideal Use Case | Traditional corporate budgeting with strict hierarchical sign-off | Decentralized divisions with autonomous review cycles |
 
-Related study topic: [approval dimensions and metrics](../Dimension_Properties/06_System_Approval_Dimensions_and_17_Metric_Types.md). Check its claims against current Oracle guidance before relying on them. See [review coverage](../_review/coverage.csv).
+---
+
+## ðŸ’¼ Tough & Twisted Review Scenarios (Consultant Review Defense)
+
+### Question 1: "A planner complains they cannot edit numbers on a form even though they have 'Write' access to all dimension members. What is the first thing to check?"
+> **Consultant Model Answer:**  
+> Check the **Approval Unit Status** for that entity, scenario, and version combination. If the Approval Unit has been promoted to 'Under Review', 'Approved', or 'Locked', the Planning workflow engine places an absolute lock on the intersection, overriding dimensional write permissions for that owner.
+
+---
+
+## ðŸ“‘ Complete Document Catalog
+
+| # | Document File | Topic Description |
+|---|---------------|-------------------|
+| 01 | [Oracle_EPM_Approval_Flow_Master_Guide.md](./Oracle_EPM_Approval_Flow_Master_Guide.md) | Planning Approvals: Beginner-to-Consultant Guide |
+| 02 | [Oracle_EPM_Approval_Flow_Master_Guide_v2.md](./Oracle_EPM_Approval_Flow_Master_Guide_v2.md) | Oracle EPM Cloud: The Ultimate Master Guide to Approval Flows |
+| 03 | [Oracle_EPM_Task_Lists_Master_Guide.md](./Oracle_EPM_Task_Lists_Master_Guide.md) | Planning Task Lists and Task Manager: Learning Guide |
+| 04 | [Oracle_EPM_Task_Lists_Master_Guide_v2.md](./Oracle_EPM_Task_Lists_Master_Guide_v2.md) | Oracle EPM Cloud: The Ultimate Master Guide to Task Lists |
+
+---
+
+> **Consultant Implementation Note:** Master the architectural comparison and review defense questions in this module before presenting designs to client stakeholders or senior review panels.

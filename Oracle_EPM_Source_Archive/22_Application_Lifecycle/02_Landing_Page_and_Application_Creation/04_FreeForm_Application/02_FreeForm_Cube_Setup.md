@@ -1,4 +1,4 @@
-﻿# 🎨 FreeForm — Cube Setup
+﻿﻿# 🎨 FreeForm — Cube Setup
 ## Creating and Configuring Cubes (BSO, ASO, Hybrid)
 
 > **Wizard Step:** 2 (FreeForm path)  
@@ -86,7 +86,7 @@
 | **Editable Later** | ❌ No — cannot rename cubes after creation |
 
 #### Valid Cube Names:
-| Name | Valid? | Notes |
+| Name | Valid— | Notes |
 |------|--------|-------|
 | `Plan1` | ✅ | Good — short, descriptive |
 | `Rpt` | ✅ | Good — abbreviation for Reporting |
@@ -95,7 +95,7 @@
 | `FinPlan` | ✅ | Good — Financial Planning |
 
 #### Invalid Cube Names:
-| Name | Valid? | Reason |
+| Name | Valid— | Reason |
 |------|--------|--------|
 | `Financial` | ❌ | Exceeds 8 characters |
 | `Plan 1` | ❌ | Contains space |
@@ -143,17 +143,17 @@
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: What is the maximum number of cubes in FreeForm, and what are their naming constraints?
+### Q1: What is the maximum number of cubes in FreeForm, and what are their naming constraints—
 **Answer:** FreeForm supports up to **12 cubes** per application. Cube names must be **1 to 8 characters**, alphanumeric only, starting with a letter. Spaces and special characters are prohibited. Once created, cube names cannot be renamed.
 
-### Q2: When should a FreeForm cube be configured as BSO Hybrid versus Aggregate Storage (ASO)?
+### Q2: When should a FreeForm cube be configured as BSO Hybrid versus Aggregate Storage (ASO)—
 **Answer:**
 - **BSO Hybrid:** Best for planning, what-if modeling, write-back forms, complex business rules, and financial calculations.
 - **ASO (Aggregate Storage):** Best for massive analytical reporting cubes, large dimension rollups (millions of members), and multi-year data marts where calculation logic is simple summation.
 
-### Q3: Can an administrator convert a BSO cube to an ASO cube post-creation in FreeForm?
+### Q3: Can an administrator convert a BSO cube to an ASO cube post-creation in FreeForm—
 **Answer:** No. Cube storage engine architecture (BSO vs ASO) is locked at creation. To change a cube from BSO to ASO, you must delete the cube (if permitted) or recreate the application and define the new cube as ASO.
 
 ---

@@ -1,10 +1,10 @@
-# @CalcMgrIsValidMember
+﻿# @CalcMgrIsValidMember
 
 ## Overview
 
 `@CalcMgrIsValidMember` is a **custom Calc Manager database validation function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a dynamic text string (e.g., `"FY24"` or `"Dept_100"`) and securely queries the underlying Essbase outline to verify if that exact string **exists as a valid, physical member** in the dimension hierarchy, returning a Boolean (`true` or `false`).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building highly dynamic calculation scripts, administrators frequently construct target member names using string concatenation macros. For example, a script might take the current year (`"FY24"`), extract the `"24"`, add `1`, and concatenate `"FY25"`. The script then attempts to copy data into `@MEMBER("FY25")`.
 However, if the database outline has not been updated yet, and `"FY25"` doesn't actually exist in the Year dimension, the `@MEMBER` macro will instantly trigger an "Invalid Member Name" exception, immediately aborting the entire calculation script and failing the job.
@@ -87,7 +87,7 @@ FIX("Working", @LEVEL0("Accounts"))
     
     /* 
        2. Validate the String. 
-       Does "FY28" actually exist in the Essbase Outline?
+       Does "FY28" actually exist in the Essbase Outline—
     */
     VAR vIsValid = @CalcMgrIsValidMember(vTargetYearStr);
     
@@ -122,7 +122,7 @@ ENDFIX
 |---------|-------------|-----|
 | Not Passing a String | `@CalcMgrIsValidMember(FY24)` | This function strictly requires a **Text String**. If you pass a bare member name without quotes, Essbase will try to evaluate the data inside `FY24` (which resolves to a number, or `#MISSING`) before passing it to the function. The Java engine will crash because it expects a string. You must use quotes: `"FY24"` |
 | Alias Evaluation | Passing `"New York"` instead of `"NY_01"` | This function primarily checks the physical **Member Name**, not necessarily all Alias tables. If your outline is built on cryptic IDs (`NY_01`), passing the alias `"New York"` may return `false` depending on exact application configuration. Always validate against the true member name where possible |
-| Using as a Data Filter | Checking if data exists | This function checks METADATA (does the member exist in the outline structure?). It does NOT check if data exists in a specific intersection. If you want to know if a member has data, use `@ISMBR` and check if the value `!= #MISSING` |
+| Using as a Data Filter | Checking if data exists | This function checks METADATA (does the member exist in the outline structure—). It does NOT check if data exists in a specific intersection. If you want to know if a member has data, use `@ISMBR` and check if the value `!= #MISSING` |
 
 ---
 

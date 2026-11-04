@@ -1,11 +1,11 @@
-# @CURRGEN
+﻿# @CURRGEN
 
 ## Overview
 
 `@CURRGEN` is a **native Essbase hierarchical function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates the database outline and returns the **exact Generation number (integer)** of the member that is currently being processed by the calculation engine. 
 *(Note: `@CURRGEN` and `@CURGEN` are exact aliases of one another. Both execute identical underlying C-code in the Essbase kernel).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When executing Top-Down allocations or dynamic currency translations, business logic often changes depending on how high up in the hierarchy a member sits. 
 In Essbase, a **Generation** counts Top-Down. The absolute highest root member of a dimension (e.g., `Total_Geography`) is always Generation 1. Its children (`North_America`, `Europe`) are Generation 2. Its grandchildren (`USA`, `Canada`) are Generation 3. 

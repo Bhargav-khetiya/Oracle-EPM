@@ -1,10 +1,10 @@
-# @CHILDREN
+﻿# @CHILDREN
 
 ## Overview
 
 `@CHILDREN` is one of the most **fundamental and frequently used member set functions** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It returns the **immediate children** (one level below) of a specified member. It does NOT return grandchildren or further descendants — only the direct children.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Hierarchies are the backbone of EPM applications. Almost every calculation needs to reference "the members directly under" a parent. `@CHILDREN` is the primary way to get this set of members:
 - Loop through departments under a division
@@ -207,7 +207,7 @@ ENDFIX
 
 ## @CHILDREN vs @DESCENDANTS vs @ICHILDREN Comparison
 
-| Function | Returns | Includes Parent? |
+| Function | Returns | Includes Parent— |
 |----------|---------|-------------------|
 | `@CHILDREN(X)` | Immediate children only | ❌ No |
 | `@ICHILDREN(X)` | X + immediate children | ✅ Yes |

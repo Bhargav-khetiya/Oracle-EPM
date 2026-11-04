@@ -1,10 +1,10 @@
-# @SUM
+﻿# @SUM
 
 ## Overview
 
 `@SUM` is a **fundamental aggregation function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns the **sum of values** across a specified member range or set. It is one of the most frequently used functions in Essbase calculations — essential for totaling values across children, siblings, or any member set.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Summing values across members is the most basic operation in financial planning:
 - Totaling monthly revenue to get quarterly or annual figures

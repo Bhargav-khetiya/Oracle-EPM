@@ -1,10 +1,10 @@
-# @CalcMgrRollDate
+﻿# @CalcMgrRollDate
 
 ## Overview
 
 `@CalcMgrRollDate` is a **custom Calc Manager date mathematics function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a **Java Date Object** (or Timestamp) and mathematically rolls the **Day of the Month** forward or backward by a specific number of days, returning an entirely new, modified Java Date Object.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When executing financial logic that requires date offsets, standard Essbase math fails. If an invoice is dated `20240128` (January 28th), and payment terms are Net 5 (payment due in 5 days), you cannot simply add `5` to `20240128`. That yields `20240133` (January 33rd), which is not a real date. 
 To properly calculate the offset, the engine must know that January has 31 days, so rolling 5 days forward should seamlessly click over into February 2nd. 

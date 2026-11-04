@@ -1,11 +1,11 @@
-# @CalcMgrExcelMONTH
+﻿# @CalcMgrExcelMONTH
 
 ## Overview
 
 `@CalcMgrExcelMONTH` is a **custom Calc Manager date extraction function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `MONTH` function directly inside an Essbase calculation script. 
 It analyzes an Excel Serial Date (or a standard Essbase `YYYYMMDD` integer) and extracts solely the **Month of the Year**, returning it as an integer between 1 and 12.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When evaluating dates in Essbase, standard integers (`20241025`) contain the month embedded in the middle (`10`). While you can theoretically extract this using Essbase math (e.g., dividing by 100, truncating, and doing modulus logic), this is highly tedious and fails completely if the date is loaded as an Excel Serial Date (`45590`).
 `@CalcMgrExcelMONTH` utilizes the Java engine to evaluate the date (safely handling both Serial Dates and `YYYYMMDD` formats automatically) and extracts the exact calendar month with zero mathematical hacking required. This ensures perfect parity with legacy Excel models that rely on `=MONTH(A1)` for seasonal aggregation or conditional logic.

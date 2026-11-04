@@ -1,11 +1,11 @@
-# @CalcMgrExcelPRICE
+﻿# @CalcMgrExcelPRICE
 
 ## Overview
 
 `@CalcMgrExcelPRICE` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `PRICE` function directly inside an Essbase calculation script. 
 It calculates the **Clean Price** of a standard coupon-bearing bond (per $100 of face value) that pays periodic interest. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In corporate treasury and investment portfolios, bonds are constantly traded on the secondary market. If a company bought a 10-year bond 3 years ago that pays a 5% coupon, but current market interest rates (the Yield to Maturity) have risen to 7%, the bond is now worth less than what they paid for it. 
 Calculating the exact current market price of that bond requires discounting all future coupon payments back to today's settlement date, adjusting for fractional days (accrued interest), and summing the discounted face value. This requires a massive iterative calculus loop and complex calendar math (e.g., NASD 30/360). 

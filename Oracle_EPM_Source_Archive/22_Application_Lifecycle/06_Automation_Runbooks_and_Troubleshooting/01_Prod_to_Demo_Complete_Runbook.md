@@ -1,4 +1,4 @@
-﻿# Oracle EPM Cloud: Complete Walkthrough — Copy Production to Demo
+﻿﻿# Oracle EPM Cloud: Complete Walkthrough — Copy Production to Demo
 
 ## Overview
 
@@ -322,10 +322,10 @@ epmautomate logout
 | Recreate Demo | Automatic | Manual | Manual |
 | Transfer snapshot | Server-to-server (auto) | Server-to-server (manual) | Download → Upload |
 | Import | Automatic | Manual | Manual |
-| Local copy? | ❌ No | ❌ No | ✅ Yes |
-| DM staging data? | ✅ Optional | ❌ No | ❌ No |
-| Audit data? | ✅ Optional | ❌ No | ❌ No |
-| Works during blackout? | ❌ No | ✅ Yes | ✅ Yes |
+| Local copy— | ❌ No | ❌ No | ✅ Yes |
+| DM staging data— | ✅ Optional | ❌ No | ❌ No |
+| Audit data— | ✅ Optional | ❌ No | ❌ No |
+| Works during blackout— | ❌ No | ✅ Yes | ✅ Yes |
 | Total commands | ~4 | ~6 | ~8 |
 | Complexity | Low | Medium | High |
 | Speed | Fastest | Medium | Slowest |
@@ -369,9 +369,9 @@ epmautomate logout
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: How do you verify that the target Demo environment is completely safe to overwrite before cloning?
+### Q1: How do you verify that the target Demo environment is completely safe to overwrite before cloning—
 **Answer:**
 1. Check the target environment URL to confirm you are connected to `test` or `demo`, **never** `prod`.
 2. Take an on-demand baseline backup of Demo before starting:
@@ -381,13 +381,13 @@ epmautomate logout
    ```
 3. Check Job Console to verify no users are currently running tests.
 
-### Q2: What post-clone steps are mandatory before releasing Demo to testing teams?
+### Q2: What post-clone steps are mandatory before releasing Demo to testing teams—
 **Answer:**
 1. **Data Management URLs:** Re-point target connection URLs from Production to Demo endpoints.
 2. **Substitution Variables:** Update `&CurYear` or environment tags to reflect test parameters.
 3. **Email Notifications:** Disable automated email alerts in Application Settings to prevent test workflows from sending emails to corporate executives.
 
-### Q3: How do you roll back Demo if the production clone encounters errors?
+### Q3: How do you roll back Demo if the production clone encounters errors—
 **Answer:** Recreate the instance clean and restore the baseline snapshot saved in Step 1:
 ```cmd
 epmautomate recreate -f

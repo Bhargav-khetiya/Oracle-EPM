@@ -1,11 +1,11 @@
-# @CalcMgrExcelSMALL
+﻿# @CalcMgrExcelSMALL
 
 ## Overview
 
 `@CalcMgrExcelSMALL` is a **custom Calc Manager statistical array function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `SMALL` function directly inside an Essbase calculation script. 
 It analyzes a list or array of data points and returns the **k-th smallest value**. For example, it can find the 1st smallest (the absolute minimum), the 2nd smallest, or the 3rd smallest number in a dataset.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While Essbase has native functions like `@MIN` (to find the absolute smallest number), it has absolutely no native way to find the *second* smallest or *third* smallest number in a cross-dimensional range. 
 In operations and supply chain modeling, you frequently need to identify the "Bottom 3" performing vendors based on defect rates, or the 2nd lowest sales month of the year to establish a conservative baseline. 

@@ -1,9 +1,9 @@
-﻿# ðŸ“– COURSE INDEX â€” Complete Document Registry
+﻿﻿# ðŸŽ¯ COURSE INDEX — Complete Document Registry
 
 > **Last Updated:** August 4, 2026
 > **Total Documents:** 332 markdown files
 > **Source:** Merged from Office Laptop + Personal Laptop knowledge bases
-> **Legend:** ðŸ¢ Office Origin | ðŸ“± Personal Origin | ðŸ”„ Both Sources | ðŸ”¶ Oracle Deep Ref
+> **Legend:** ðŸ¢ Office Origin | ðŸŽ¯ Personal Origin | ðŸŽ¯ Both Sources | ðŸŽ¯ Oracle Deep Ref
 
 ---
 
@@ -34,13 +34,13 @@
 | 01.07 | Implementation Lifecycle | ðŸ¢ | [01.07_Implementation_Lifecycle.md](./01_Foundation/01.07_Implementation_Lifecycle.md) |
 | 01.08 | CoE and Governance | ðŸ¢ | [01.08_CoE_and_Governance.md](./01_Foundation/01.08_CoE_and_Governance.md) |
 | 01.09 | Design Principles and Best Practices | ðŸ¢ | [01.09_Design_Principles_and_Best_Practices.md](./01_Foundation/01.09_Design_Principles_and_Best_Practices.md) |
-| 01.10 | EPM Foundations (Complete Guide) | ðŸ“± | [01.10_EPM_Foundations.md](./01_Foundation/01.10_EPM_Foundations.md) |
-| 01.11 | The 7 Pillars of EPM | ðŸ“± | [01.11_Seven_Pillars.md](./01_Foundation/01.11_Seven_Pillars.md) |
-| 01.12 | Hyperion Evolution | ðŸ“± | [01.12_Hyperion_Evolution.md](./01_Foundation/01.12_Hyperion_Evolution.md) |
-| 01.13 | EPM Cloud Architecture | ðŸ“± | [01.13_EPM_Cloud_Architecture.md](./01_Foundation/01.13_EPM_Cloud_Architecture.md) |
-| 01.14 | ðŸ”¶ Design Best Practices (Oracle Ref) | ðŸ“± | [01.14_Design_Best_Practices_Oracle_Reference.md](./01_Foundation/01.14_Design_Best_Practices_Oracle_Reference.md) |
-| 01.15 | ðŸ”¶ CoE and Governance Deep Reference | ðŸ“± | [01.15_CoE_and_Governance_Deep_Reference.md](./01_Foundation/01.15_CoE_and_Governance_Deep_Reference.md) |
-| 01.16 | Roles and Careers | ðŸ“± | [01.16_Roles_and_Careers.md](./01_Foundation/01.16_Roles_and_Careers.md) |
+| 01.10 | EPM Foundations (Complete Guide) | ðŸŽ¯ | [01.10_EPM_Foundations.md](./01_Foundation/01.10_EPM_Foundations.md) |
+| 01.11 | The 7 Pillars of EPM | ðŸŽ¯ | [01.11_Seven_Pillars.md](./01_Foundation/01.11_Seven_Pillars.md) |
+| 01.12 | Hyperion Evolution | ðŸŽ¯ | [01.12_Hyperion_Evolution.md](./01_Foundation/01.12_Hyperion_Evolution.md) |
+| 01.13 | EPM Cloud Architecture | ðŸŽ¯ | [01.13_EPM_Cloud_Architecture.md](./01_Foundation/01.13_EPM_Cloud_Architecture.md) |
+| 01.14 | ðŸŽ¯ Design Best Practices (Oracle Ref) | ðŸŽ¯ | [01.14_Design_Best_Practices_Oracle_Reference.md](./01_Foundation/01.14_Design_Best_Practices_Oracle_Reference.md) |
+| 01.15 | ðŸŽ¯ CoE and Governance Deep Reference | ðŸŽ¯ | [01.15_CoE_and_Governance_Deep_Reference.md](./01_Foundation/01.15_CoE_and_Governance_Deep_Reference.md) |
+| 01.16 | Roles and Careers | ðŸŽ¯ | [01.16_Roles_and_Careers.md](./01_Foundation/01.16_Roles_and_Careers.md) |
 
 ---
 
@@ -52,7 +52,7 @@
 | 02.01 | Financial Statements and Accounting | ðŸ¢ | [02.01_Financial_Statements_and_Accounting.md](./02_Finance/02.01_Financial_Statements_and_Accounting.md) |
 | 02.02 | Driver Based Planning and KPIs | ðŸ¢ | [02.02_Driver_Based_Planning_and_KPIs.md](./02_Finance/02.02_Driver_Based_Planning_and_KPIs.md) |
 | 02.03 | Rolling Forecast Architecture | ðŸ¢ | [02.03_Rolling_Forecast_Architecture.md](./02_Finance/02.03_Rolling_Forecast_Architecture.md) |
-| 02.04 | Finance Basics (Complete Guide) | ðŸ“± | [02.04_Finance_Basics.md](./02_Finance/02.04_Finance_Basics.md) |
+| 02.04 | Finance Basics (Complete Guide) | ðŸŽ¯ | [02.04_Finance_Basics.md](./02_Finance/02.04_Finance_Basics.md) |
 
 ---
 
@@ -69,12 +69,12 @@
 | 03.06 | Hybrid BSO | ðŸ¢ | [03.06_Hybrid_BSO.md](./03_Essbase/03.06_Hybrid_BSO.md) |
 | 03.07 | Application Statistics Screen | ðŸ¢ | [03.07_Application_Statistics_Screen.md](./03_Essbase/03.07_Application_Statistics_Screen.md) |
 | 03.08 | MDX Query Engine | ðŸ¢ | [03.08_MDX_Query_Engine.md](./03_Essbase/03.08_MDX_Query_Engine.md) |
-| 03.10 | Essbase Complete Guide | ðŸ“± | [03.10_Essbase_Complete_Guide.md](./03_Essbase/03.10_Essbase_Complete_Guide.md) |
-| 03.11 | Dense vs Sparse (Original) | ðŸ“± | [03.11_Dense_vs_Sparse.md](./03_Essbase/03.11_Dense_vs_Sparse.md) |
-| 03.12 | Data Blocks and Index | ðŸ“± | [03.12_Data_Blocks_and_Index.md](./03_Essbase/03.12_Data_Blocks_and_Index.md) |
-| 03.13 | BSO vs ASO | ðŸ“± | [03.13_BSO_vs_ASO.md](./03_Essbase/03.13_BSO_vs_ASO.md) |
-| 03.14 | Cell Addressing | ðŸ“± | [03.14_Cell_Addressing.md](./03_Essbase/03.14_Cell_Addressing.md) |
-| 03.15 | ðŸ”¶ Essbase Oracle Deep Reference | ðŸ“± | [03.15_Essbase_Oracle_Deep_Reference.md](./03_Essbase/03.15_Essbase_Oracle_Deep_Reference.md) |
+| 03.10 | Essbase Complete Guide | ðŸŽ¯ | [03.10_Essbase_Complete_Guide.md](./03_Essbase/03.10_Essbase_Complete_Guide.md) |
+| 03.11 | Dense vs Sparse (Original) | ðŸŽ¯ | [03.11_Dense_vs_Sparse.md](./03_Essbase/03.11_Dense_vs_Sparse.md) |
+| 03.12 | Data Blocks and Index | ðŸŽ¯ | [03.12_Data_Blocks_and_Index.md](./03_Essbase/03.12_Data_Blocks_and_Index.md) |
+| 03.13 | BSO vs ASO | ðŸŽ¯ | [03.13_BSO_vs_ASO.md](./03_Essbase/03.13_BSO_vs_ASO.md) |
+| 03.14 | Cell Addressing | ðŸŽ¯ | [03.14_Cell_Addressing.md](./03_Essbase/03.14_Cell_Addressing.md) |
+| 03.15 | ðŸŽ¯ Essbase Oracle Deep Reference | ðŸŽ¯ | [03.15_Essbase_Oracle_Deep_Reference.md](./03_Essbase/03.15_Essbase_Oracle_Deep_Reference.md) |
 
 ---
 
@@ -96,11 +96,11 @@
 | 04.10 | Navigation Flows Architecture | ðŸ¢ | [04.10_Navigation_Flows_Architecture.md](./04_Planning/04.10_Navigation_Flows_Architecture.md) |
 | 04.11 | Approval Flows and Budgets | ðŸ¢ | [04.11_Approval_Flows_and_Budgets.md](./04_Planning/04.11_Approval_Flows_and_Budgets.md) |
 | 04.12 | EPM Modules Differences | ðŸ¢ | [04.12_EPM_Modules_Differences.md](./04_Planning/04.12_EPM_Modules_Differences.md) |
-| 04.20 | Applications and Cubes | ðŸ“± | [04.20_Applications_and_Cubes.md](./04_Planning/04.20_Applications_and_Cubes.md) |
-| 04.21 | Planning Concepts | ðŸ“± | [04.21_Planning_Concepts.md](./04_Planning/04.21_Planning_Concepts.md) |
-| 04.22 | ðŸ”¶ Planning Administration Oracle Ref | ðŸ“± | [04.22_Planning_Administration_Oracle_Reference.md](./04_Planning/04.22_Planning_Administration_Oracle_Reference.md) |
-| 04.23 | ðŸ”¶ OOTB Modules Oracle Deep Reference | ðŸ“± | [04.23_OOTB_Modules_Oracle_Deep_Reference.md](./04_Planning/04.23_OOTB_Modules_Oracle_Deep_Reference.md) |
-| 04.24 | ðŸ”¶ Advanced Planning Modules Deep Ref | ðŸ“± | [04.24_Advanced_Planning_Modules_Deep_Reference.md](./04_Planning/04.24_Advanced_Planning_Modules_Deep_Reference.md) |
+| 04.20 | Applications and Cubes | ðŸŽ¯ | [04.20_Applications_and_Cubes.md](./04_Planning/04.20_Applications_and_Cubes.md) |
+| 04.21 | Planning Concepts | ðŸŽ¯ | [04.21_Planning_Concepts.md](./04_Planning/04.21_Planning_Concepts.md) |
+| 04.22 | ðŸŽ¯ Planning Administration Oracle Ref | ðŸŽ¯ | [04.22_Planning_Administration_Oracle_Reference.md](./04_Planning/04.22_Planning_Administration_Oracle_Reference.md) |
+| 04.23 | ðŸŽ¯ OOTB Modules Oracle Deep Reference | ðŸŽ¯ | [04.23_OOTB_Modules_Oracle_Deep_Reference.md](./04_Planning/04.23_OOTB_Modules_Oracle_Deep_Reference.md) |
+| 04.24 | ðŸŽ¯ Advanced Planning Modules Deep Ref | ðŸŽ¯ | [04.24_Advanced_Planning_Modules_Deep_Reference.md](./04_Planning/04.24_Advanced_Planning_Modules_Deep_Reference.md) |
 
 ---
 
@@ -122,15 +122,15 @@
 | 05.09 | Entity Dimension Exhaustive | ðŸ¢ | [05.09_Entity_Dimension_Exhaustive.md](./05_Metadata/05.09_Entity_Dimension_Exhaustive.md) |
 | 05.10 | Period Scenario Version Year Dimensions | ðŸ¢ | [05.10_Period_Scenario_Version_Year_Dimensions.md](./05_Metadata/05.10_Period_Scenario_Version_Year_Dimensions.md) |
 | 05.12 | Custom Dimensions Design Patterns | ðŸ¢ | [05.12_Custom_Dimensions_Design_Patterns.md](./05_Metadata/05.12_Custom_Dimensions_Design_Patterns.md) |
-| 05.20 | Dimensions Complete Reference | ðŸ“± | [05.20_Dimensions_Reference.md](./05_Metadata/05.20_Dimensions_Reference.md) |
-| 05.21 | Account Dimension Deep Dive | ðŸ“± | [05.21_Account_Dimension.md](./05_Metadata/05.21_Account_Dimension.md) |
-| 05.22 | Member Properties | ðŸ“± | [05.22_Member_Properties.md](./05_Metadata/05.22_Member_Properties.md) |
-| 05.23 | Data Storage Properties | ðŸ“± | [05.23_Data_Storage_Properties.md](./05_Metadata/05.23_Data_Storage_Properties.md) |
-| 05.24 | Consolidation Operators | ðŸ“± | [05.24_Consolidation_Operators.md](./05_Metadata/05.24_Consolidation_Operators.md) |
-| 05.25 | Time Balance | ðŸ“± | [05.25_Time_Balance.md](./05_Metadata/05.25_Time_Balance.md) |
-| 05.26 | Implied Sharing | ðŸ“± | [05.26_Implied_Sharing.md](./05_Metadata/05.26_Implied_Sharing.md) |
-| 05.27 | Smart Lists | ðŸ“± | [05.27_Smart_Lists.md](./05_Metadata/05.27_Smart_Lists.md) |
-| 05.28 | Member Formulas Intro | ðŸ“± | [05.28_Member_Formulas_Intro.md](./05_Metadata/05.28_Member_Formulas_Intro.md) |
+| 05.20 | Dimensions Complete Reference | ðŸŽ¯ | [05.20_Dimensions_Reference.md](./05_Metadata/05.20_Dimensions_Reference.md) |
+| 05.21 | Account Dimension Deep Dive | ðŸŽ¯ | [05.21_Account_Dimension.md](./05_Metadata/05.21_Account_Dimension.md) |
+| 05.22 | Member Properties | ðŸŽ¯ | [05.22_Member_Properties.md](./05_Metadata/05.22_Member_Properties.md) |
+| 05.23 | Data Storage Properties | ðŸŽ¯ | [05.23_Data_Storage_Properties.md](./05_Metadata/05.23_Data_Storage_Properties.md) |
+| 05.24 | Consolidation Operators | ðŸŽ¯ | [05.24_Consolidation_Operators.md](./05_Metadata/05.24_Consolidation_Operators.md) |
+| 05.25 | Time Balance | ðŸŽ¯ | [05.25_Time_Balance.md](./05_Metadata/05.25_Time_Balance.md) |
+| 05.26 | Implied Sharing | ðŸŽ¯ | [05.26_Implied_Sharing.md](./05_Metadata/05.26_Implied_Sharing.md) |
+| 05.27 | Smart Lists | ðŸŽ¯ | [05.27_Smart_Lists.md](./05_Metadata/05.27_Smart_Lists.md) |
+| 05.28 | Member Formulas Intro | ðŸŽ¯ | [05.28_Member_Formulas_Intro.md](./05_Metadata/05.28_Member_Formulas_Intro.md) |
 
 ---
 
@@ -156,16 +156,16 @@
 | 06.15 | Form Layout Tab Exhaustive | ðŸ¢ | [06.15_Form_Layout_Tab_Exhaustive.md](./06_Forms/06.15_Form_Layout_Tab_Exhaustive.md) |
 | 06.17 | Form Business Rules Tab Exhaustive | ðŸ¢ | [06.17_Form_Business_Rules_Tab_Exhaustive.md](./06_Forms/06.17_Form_Business_Rules_Tab_Exhaustive.md) |
 | 06.18 | Form Types Complete Comparison | ðŸ¢ | [06.18_Form_Types_Complete_Comparison.md](./06_Forms/06.18_Form_Types_Complete_Comparison.md) |
-| 06.20 | Forms Design and Properties Guide | ðŸ“± | [06.20_Forms_Design_and_Properties_Guide.md](./06_Forms/06.20_Forms_Design_and_Properties_Guide.md) |
-| 06.21 | Forms Advanced | ðŸ“± | [06.21_Forms_Advanced.md](./06_Forms/06.21_Forms_Advanced.md) |
-| 06.22 | Runtime Prompts Guide | ðŸ“± | [06.22_Runtime_Prompts_Guide.md](./06_Forms/06.22_Runtime_Prompts_Guide.md) |
-| 06.23 | Flex Forms Guide | ðŸ“± | [06.23_Flex_Forms_Guide.md](./06_Forms/06.23_Flex_Forms_Guide.md) |
-| 06.24 | Form Performance | ðŸ“± | [06.24_Form_Performance.md](./06_Forms/06.24_Form_Performance.md) |
-| 06.25 | Form Best Practices | ðŸ“± | [06.25_Form_Best_Practices.md](./06_Forms/06.25_Form_Best_Practices.md) |
-| 06.26 | ðŸ”¶ Forms Oracle Deep Reference | ðŸ“± | [06.26_Forms_Oracle_Deep_Reference.md](./06_Forms/06.26_Forms_Oracle_Deep_Reference.md) |
-| 06.27 | ðŸ”¶ Reports Oracle Deep Reference | ðŸ“± | [06.27_Reports_Oracle_Deep_Reference.md](./06_Forms/06.27_Reports_Oracle_Deep_Reference.md) |
-| 06.28 | ðŸ”¶ Reports and Dashboard Tiles Deep Dive | ðŸ“± | [06.28_Reports_and_Dashboard_Tiles_Deep_Dive.md](./06_Forms/06.28_Reports_and_Dashboard_Tiles_Deep_Dive.md) |
-| 06.29 | ðŸ”¶ Reports Official Complete Reference | ðŸ“± | [06.29_Reports_Official_Complete_Reference.md](./06_Forms/06.29_Reports_Official_Complete_Reference.md) |
+| 06.20 | Forms Design and Properties Guide | ðŸŽ¯ | [06.20_Forms_Design_and_Properties_Guide.md](./06_Forms/06.20_Forms_Design_and_Properties_Guide.md) |
+| 06.21 | Forms Advanced | ðŸŽ¯ | [06.21_Forms_Advanced.md](./06_Forms/06.21_Forms_Advanced.md) |
+| 06.22 | Runtime Prompts Guide | ðŸŽ¯ | [06.22_Runtime_Prompts_Guide.md](./06_Forms/06.22_Runtime_Prompts_Guide.md) |
+| 06.23 | Flex Forms Guide | ðŸŽ¯ | [06.23_Flex_Forms_Guide.md](./06_Forms/06.23_Flex_Forms_Guide.md) |
+| 06.24 | Form Performance | ðŸŽ¯ | [06.24_Form_Performance.md](./06_Forms/06.24_Form_Performance.md) |
+| 06.25 | Form Best Practices | ðŸŽ¯ | [06.25_Form_Best_Practices.md](./06_Forms/06.25_Form_Best_Practices.md) |
+| 06.26 | ðŸŽ¯ Forms Oracle Deep Reference | ðŸŽ¯ | [06.26_Forms_Oracle_Deep_Reference.md](./06_Forms/06.26_Forms_Oracle_Deep_Reference.md) |
+| 06.27 | ðŸŽ¯ Reports Oracle Deep Reference | ðŸŽ¯ | [06.27_Reports_Oracle_Deep_Reference.md](./06_Forms/06.27_Reports_Oracle_Deep_Reference.md) |
+| 06.28 | ðŸŽ¯ Reports and Dashboard Tiles Deep Dive | ðŸŽ¯ | [06.28_Reports_and_Dashboard_Tiles_Deep_Dive.md](./06_Forms/06.28_Reports_and_Dashboard_Tiles_Deep_Dive.md) |
+| 06.29 | ðŸŽ¯ Reports Official Complete Reference | ðŸŽ¯ | [06.29_Reports_Official_Complete_Reference.md](./06_Forms/06.29_Reports_Official_Complete_Reference.md) |
 
 ---
 
@@ -181,11 +181,11 @@
 | 07.06 | Cross Dimensional Math and Block Creation | ðŸ¢ | [07.06_Cross_Dimensional_Math_and_Block_Creation.md](./07_Business_Rules/07.06_Cross_Dimensional_Math_and_Block_Creation.md) |
 | 07.07 | Essbase Calc Script Syntax Bible | ðŸ¢ | [07.07_Essbase_Calc_Script_Syntax_Bible.md](./07_Business_Rules/07.07_Essbase_Calc_Script_Syntax_Bible.md) |
 | 07.08 | Advanced Script Patterns Cookbook | ðŸ¢ | [07.08_Advanced_Script_Patterns_Cookbook.md](./07_Business_Rules/07.08_Advanced_Script_Patterns_Cookbook.md) |
-| 07.10 | Business Rules Complete Guide | ðŸ“± | [07.10_Business_Rules_Complete_Guide.md](./07_Business_Rules/07.10_Business_Rules_Complete_Guide.md) |
+| 07.10 | Business Rules Complete Guide | ðŸŽ¯ | [07.10_Business_Rules_Complete_Guide.md](./07_Business_Rules/07.10_Business_Rules_Complete_Guide.md) |
 
 ---
 
-## Module 08: Calculation Manager âœ… (Largest Module â€” 21 Files)
+## Module 08: Calculation Manager âœ… (Largest Module — 21 Files)
 
 | # | Document | Origin | Link |
 |---|----------|--------|------|
@@ -211,8 +211,8 @@
 | 08.17 | Graphical Designer Complete Palette | ðŸ¢ | [08.17_Graphical_Designer_Complete_Palette.md](./08_Calculation_Manager/08.17_Graphical_Designer_Complete_Palette.md) |
 | 08.18 | Rule Writing Best Practices Bible | ðŸ¢ | [08.18_Rule_Writing_Best_Practices_Bible.md](./08_Calculation_Manager/08.18_Rule_Writing_Best_Practices_Bible.md) |
 | 08.19 | Variables RTP DTP Complete Reference | ðŸ¢ | [08.19_Variables_RTP_DTP_Complete_Reference.md](./08_Calculation_Manager/08.19_Variables_RTP_DTP_Complete_Reference.md) |
-| 08.20 | Calc Manager Overview | ðŸ“± | [08.20_Calc_Manager_Overview.md](./08_Calculation_Manager/08.20_Calc_Manager_Overview.md) |
-| 08.21 | ðŸ”¶ Calc Manager Oracle Deep Reference | ðŸ“± | [08.21_Calc_Manager_Oracle_Deep_Reference.md](./08_Calculation_Manager/08.21_Calc_Manager_Oracle_Deep_Reference.md) |
+| 08.20 | Calc Manager Overview | ðŸŽ¯ | [08.20_Calc_Manager_Overview.md](./08_Calculation_Manager/08.20_Calc_Manager_Overview.md) |
+| 08.21 | ðŸŽ¯ Calc Manager Oracle Deep Reference | ðŸŽ¯ | [08.21_Calc_Manager_Oracle_Deep_Reference.md](./08_Calculation_Manager/08.21_Calc_Manager_Oracle_Deep_Reference.md) |
 
 ---
 
@@ -227,8 +227,8 @@
 | 09.05 | Groovy Complete API Reference | ðŸ¢ | [09.05_Groovy_Complete_API_Reference.md](./09_Groovy/09.05_Groovy_Complete_API_Reference.md) |
 | 09.06 | Groovy DataGrid Builder Deep Dive | ðŸ¢ | [09.06_Groovy_DataGrid_Builder_Deep_Dive.md](./09_Groovy/09.06_Groovy_DataGrid_Builder_Deep_Dive.md) |
 | 09.07 | Groovy REST API Callout Script | ðŸ¢ | [09.07_Groovy_REST_API_Callout_Script.md](./09_Groovy/09.07_Groovy_REST_API_Callout_Script.md) |
-| 09.10 | Groovy Complete Guide | ðŸ“± | [09.10_Groovy_Complete_Guide.md](./09_Groovy/09.10_Groovy_Complete_Guide.md) |
-| 09.11 | ðŸ”¶ Groovy Oracle Deep Reference | ðŸ“± | [09.11_Groovy_Oracle_Deep_Reference.md](./09_Groovy/09.11_Groovy_Oracle_Deep_Reference.md) |
+| 09.10 | Groovy Complete Guide | ðŸŽ¯ | [09.10_Groovy_Complete_Guide.md](./09_Groovy/09.10_Groovy_Complete_Guide.md) |
+| 09.11 | ðŸŽ¯ Groovy Oracle Deep Reference | ðŸŽ¯ | [09.11_Groovy_Oracle_Deep_Reference.md](./09_Groovy/09.11_Groovy_Oracle_Deep_Reference.md) |
 
 ---
 
@@ -241,9 +241,9 @@
 | 10.02 | Ad Hoc Analysis vs Forms | ðŸ¢ | [10.02_Ad_Hoc_Analysis_vs_Forms.md](./10_Smart_View/10.02_Ad_Hoc_Analysis_vs_Forms.md) |
 | 10.03 | Smart View Functions HsGetValue | ðŸ¢ | [10.03_Smart_View_Functions_HsGetValue.md](./10_Smart_View/10.03_Smart_View_Functions_HsGetValue.md) |
 | 10.04 | Smart View VBA Automation | ðŸ¢ | [10.04_Smart_View_VBA_Automation.md](./10_Smart_View/10.04_Smart_View_VBA_Automation.md) |
-| 10.10 | Smart View Overview | ðŸ“± | [10.10_Smart_View_Overview.md](./10_Smart_View/10.10_Smart_View_Overview.md) |
-| 10.11 | ðŸ”¶ Smart View Oracle Deep Reference | ðŸ“± | [10.11_Smart_View_Oracle_Deep_Reference.md](./10_Smart_View/10.11_Smart_View_Oracle_Deep_Reference.md) |
-| 10.12 | ðŸ”¶ Smart View Specialized Deep Reference | ðŸ“± | [10.12_Smart_View_Specialized_Deep_Reference.md](./10_Smart_View/10.12_Smart_View_Specialized_Deep_Reference.md) |
+| 10.10 | Smart View Overview | ðŸŽ¯ | [10.10_Smart_View_Overview.md](./10_Smart_View/10.10_Smart_View_Overview.md) |
+| 10.11 | ðŸŽ¯ Smart View Oracle Deep Reference | ðŸŽ¯ | [10.11_Smart_View_Oracle_Deep_Reference.md](./10_Smart_View/10.11_Smart_View_Oracle_Deep_Reference.md) |
+| 10.12 | ðŸŽ¯ Smart View Specialized Deep Reference | ðŸŽ¯ | [10.12_Smart_View_Specialized_Deep_Reference.md](./10_Smart_View/10.12_Smart_View_Specialized_Deep_Reference.md) |
 
 ---
 
@@ -253,9 +253,9 @@
 |---|----------|--------|------|
 | 11.01 | Data Management vs Data Integration | ðŸ¢ | [11.01_Data_Management_vs_Data_Integration.md](./11_Data_Integration/11.01_Data_Management_vs_Data_Integration.md) |
 | 11.02 | EPM Integration Agent Setup | ðŸ¢ | [11.02_EPM_Integration_Agent_Setup.md](./11_Data_Integration/11.02_EPM_Integration_Agent_Setup.md) |
-| 11.10 | ERP Integration | ðŸ“± | [11.10_ERP_Integration.md](./11_Data_Integration/11.10_ERP_Integration.md) |
-| 11.11 | Data Maps | ðŸ“± | [11.11_Data_Maps.md](./11_Data_Integration/11.11_Data_Maps.md) |
-| 11.12 | ðŸ”¶ Data Integration Oracle Deep Reference | ðŸ“± | [11.12_Data_Integration_Oracle_Deep_Reference.md](./11_Data_Integration/11.12_Data_Integration_Oracle_Deep_Reference.md) |
+| 11.10 | ERP Integration | ðŸŽ¯ | [11.10_ERP_Integration.md](./11_Data_Integration/11.10_ERP_Integration.md) |
+| 11.11 | Data Maps | ðŸŽ¯ | [11.11_Data_Maps.md](./11_Data_Integration/11.11_Data_Maps.md) |
+| 11.12 | ðŸŽ¯ Data Integration Oracle Deep Reference | ðŸŽ¯ | [11.12_Data_Integration_Oracle_Deep_Reference.md](./11_Data_Integration/11.12_Data_Integration_Oracle_Deep_Reference.md) |
 
 ---
 
@@ -267,8 +267,8 @@
 | 12.01 | Security and Roles | ðŸ¢ | [12.01_Security_and_Roles.md](./12_Security/12.01_Security_and_Roles.md) |
 | 12.02 | Access Control User and Group | ðŸ¢ | [12.02_Access_Control_User_and_Group.md](./12_Security/12.02_Access_Control_User_and_Group.md) |
 | 12.02 | Valid Intersections Exhaustive | ðŸ¢ | [12.02_Valid_Intersections_Exhaustive.md](./12_Security/12.02_Valid_Intersections_Exhaustive.md) |
-| 12.10 | Security Complete Guide | ðŸ“± | [12.10_Security_Complete_Guide.md](./12_Security/12.10_Security_Complete_Guide.md) |
-| 12.11 | ðŸ”¶ Security Oracle Deep Reference | ðŸ“± | [12.11_Security_Oracle_Deep_Reference.md](./12_Security/12.11_Security_Oracle_Deep_Reference.md) |
+| 12.10 | Security Complete Guide | ðŸŽ¯ | [12.10_Security_Complete_Guide.md](./12_Security/12.10_Security_Complete_Guide.md) |
+| 12.11 | ðŸŽ¯ Security Oracle Deep Reference | ðŸŽ¯ | [12.11_Security_Oracle_Deep_Reference.md](./12_Security/12.11_Security_Oracle_Deep_Reference.md) |
 
 ---
 
@@ -277,8 +277,8 @@
 | # | Document | Origin | Link |
 |---|----------|--------|------|
 | 13.02 | REST API Integration | ðŸ¢ | [13.02_REST_API_Integration.md](./13_REST_API/13.02_REST_API_Integration.md) |
-| 13.10 | REST API Complete Guide | ðŸ“± | [13.10_REST_API_Complete_Guide.md](./13_REST_API/13.10_REST_API_Complete_Guide.md) |
-| 13.11 | ðŸ”¶ REST API Oracle Deep Reference | ðŸ“± | [13.11_REST_API_Oracle_Deep_Reference.md](./13_REST_API/13.11_REST_API_Oracle_Deep_Reference.md) |
+| 13.10 | REST API Complete Guide | ðŸŽ¯ | [13.10_REST_API_Complete_Guide.md](./13_REST_API/13.10_REST_API_Complete_Guide.md) |
+| 13.11 | ðŸŽ¯ REST API Oracle Deep Reference | ðŸŽ¯ | [13.11_REST_API_Oracle_Deep_Reference.md](./13_REST_API/13.11_REST_API_Oracle_Deep_Reference.md) |
 
 ---
 
@@ -288,8 +288,8 @@
 |---|----------|--------|------|
 | 14.01 | EPM Automate and REST API | ðŸ¢ | [14.01_EPM_Automate_and_REST_API.md](./14_EPM_Automate/14.01_EPM_Automate_and_REST_API.md) |
 | 14.01 | EPM Automate Best Practices | ðŸ¢ | [14.01_EPM_Automate_Best_Practices.md](./14_EPM_Automate/14.01_EPM_Automate_Best_Practices.md) |
-| 14.10 | EPM Automate Complete Guide | ðŸ“± | [14.10_EPM_Automate_Complete_Guide.md](./14_EPM_Automate/14.10_EPM_Automate_Complete_Guide.md) |
-| 14.11 | ðŸ”¶ EPM Automate Oracle Deep Reference | ðŸ“± | [14.11_EPM_Automate_Oracle_Deep_Reference.md](./14_EPM_Automate/14.11_EPM_Automate_Oracle_Deep_Reference.md) |
+| 14.10 | EPM Automate Complete Guide | ðŸŽ¯ | [14.10_EPM_Automate_Complete_Guide.md](./14_EPM_Automate/14.10_EPM_Automate_Complete_Guide.md) |
+| 14.11 | ðŸŽ¯ EPM Automate Oracle Deep Reference | ðŸŽ¯ | [14.11_EPM_Automate_Oracle_Deep_Reference.md](./14_EPM_Automate/14.11_EPM_Automate_Oracle_Deep_Reference.md) |
 
 ---
 
@@ -305,9 +305,9 @@
 | 15.04 | Dynamic Smart Lists and Action Context | ðŸ¢ | [15.04_Dynamic_Smart_Lists_and_Action_Context.md](./15_Administration/15.04_Dynamic_Smart_Lists_and_Action_Context.md) |
 | 15.05 | Conditional Action Menus | ðŸ¢ | [15.05_Conditional_Action_Menus.md](./15_Administration/15.05_Conditional_Action_Menus.md) |
 | 15.06 | Smart List Missing Labels | ðŸ¢ | [15.06_Smart_List_Missing_Labels.md](./15_Administration/15.06_Smart_List_Missing_Labels.md) |
-| 15.10 | Admin Tools | ðŸ“± | [15.10_Admin_Tools.md](./15_Administration/15.10_Admin_Tools.md) |
-| 15.11 | ðŸ”¶ Administration Oracle Deep Reference | ðŸ“± | [15.11_Administration_Oracle_Deep_Reference.md](./15_Administration/15.11_Administration_Oracle_Deep_Reference.md) |
-| 15.12 | ðŸ”¶ Admin Specialized Deep Reference | ðŸ“± | [15.12_Admin_Specialized_Deep_Reference.md](./15_Administration/15.12_Admin_Specialized_Deep_Reference.md) |
+| 15.10 | Admin Tools | ðŸŽ¯ | [15.10_Admin_Tools.md](./15_Administration/15.10_Admin_Tools.md) |
+| 15.11 | ðŸŽ¯ Administration Oracle Deep Reference | ðŸŽ¯ | [15.11_Administration_Oracle_Deep_Reference.md](./15_Administration/15.11_Administration_Oracle_Deep_Reference.md) |
+| 15.12 | ðŸŽ¯ Admin Specialized Deep Reference | ðŸŽ¯ | [15.12_Admin_Specialized_Deep_Reference.md](./15_Administration/15.12_Admin_Specialized_Deep_Reference.md) |
 
 ---
 
@@ -318,8 +318,8 @@
 | 16.01 | Essbase Caching and Memory | ðŸ¢ | [16.01_Essbase_Caching_and_Memory.md](./16_Performance/16.01_Essbase_Caching_and_Memory.md) |
 | 16.01 | Performance Optimization Guide | ðŸ¢ | [16.01_Performance_Optimization_Guide.md](./16_Performance/16.01_Performance_Optimization_Guide.md) |
 | 16.02 | Block Size and Density Optimization | ðŸ¢ | [16.02_Block_Size_and_Density_Optimization.md](./16_Performance/16.02_Block_Size_and_Density_Optimization.md) |
-| 16.10 | Performance Complete Guide | ðŸ“± | [16.10_Performance_Complete_Guide.md](./16_Performance/16.10_Performance_Complete_Guide.md) |
-| 16.11 | ðŸ”¶ Performance Oracle Deep Reference | ðŸ“± | [16.11_Performance_Oracle_Deep_Reference.md](./16_Performance/16.11_Performance_Oracle_Deep_Reference.md) |
+| 16.10 | Performance Complete Guide | ðŸŽ¯ | [16.10_Performance_Complete_Guide.md](./16_Performance/16.10_Performance_Complete_Guide.md) |
+| 16.11 | ðŸŽ¯ Performance Oracle Deep Reference | ðŸŽ¯ | [16.11_Performance_Oracle_Deep_Reference.md](./16_Performance/16.11_Performance_Oracle_Deep_Reference.md) |
 
 ---
 
@@ -331,8 +331,8 @@
 | 17.01 | Reading the Essbase Log | ðŸ¢ | [17.01_Reading_the_Essbase_Log.md](./17_Debugging/17.01_Reading_the_Essbase_Log.md) |
 | 17.02 | Job Console Screen Deep Dive | ðŸ¢ | [17.02_Job_Console_Screen_Deep_Dive.md](./17_Debugging/17.02_Job_Console_Screen_Deep_Dive.md) |
 | 17.02 | Resolving Network Timeouts | ðŸ¢ | [17.02_Resolving_Network_Timeouts.md](./17_Debugging/17.02_Resolving_Network_Timeouts.md) |
-| 17.10 | Debugging Complete Guide | ðŸ“± | [17.10_Debugging_Complete_Guide.md](./17_Debugging/17.10_Debugging_Complete_Guide.md) |
-| 17.11 | ðŸ”¶ Debugging Oracle Deep Reference | ðŸ“± | [17.11_Debugging_Oracle_Deep_Reference.md](./17_Debugging/17.11_Debugging_Oracle_Deep_Reference.md) |
+| 17.10 | Debugging Complete Guide | ðŸŽ¯ | [17.10_Debugging_Complete_Guide.md](./17_Debugging/17.10_Debugging_Complete_Guide.md) |
+| 17.11 | ðŸŽ¯ Debugging Oracle Deep Reference | ðŸŽ¯ | [17.11_Debugging_Oracle_Deep_Reference.md](./17_Debugging/17.11_Debugging_Oracle_Deep_Reference.md) |
 
 ---
 
@@ -342,8 +342,8 @@
 |---|----------|--------|------|
 | 18.01 | Common Support Tickets | ðŸ¢ | [18.01_Common_Support_Tickets.md](./18_Production_Support/18.01_Common_Support_Tickets.md) |
 | 18.01 | Incident Management and L3 Support | ðŸ¢ | [18.01_Incident_Management_and_L3_Support.md](./18_Production_Support/18.01_Incident_Management_and_L3_Support.md) |
-| 18.10 | Production Support Guide | ðŸ“± | [18.10_Production_Support_Guide.md](./18_Production_Support/18.10_Production_Support_Guide.md) |
-| 18.11 | ðŸ”¶ Production Support Oracle Deep Reference | ðŸ“± | [18.11_Production_Support_Oracle_Deep_Reference.md](./18_Production_Support/18.11_Production_Support_Oracle_Deep_Reference.md) |
+| 18.10 | Production Support Guide | ðŸŽ¯ | [18.10_Production_Support_Guide.md](./18_Production_Support/18.10_Production_Support_Guide.md) |
+| 18.11 | ðŸŽ¯ Production Support Oracle Deep Reference | ðŸŽ¯ | [18.11_Production_Support_Oracle_Deep_Reference.md](./18_Production_Support/18.11_Production_Support_Oracle_Deep_Reference.md) |
 
 ---
 
@@ -353,7 +353,7 @@
 |---|----------|--------|------|
 | 19.01 | EPM Implementation Lifecycle | ðŸ¢ | [19.01_EPM_Implementation_Lifecycle.md](./19_Implementation/19.01_EPM_Implementation_Lifecycle.md) |
 | 19.01 | Requirement Gathering and Workshops | ðŸ¢ | [19.01_Requirement_Gathering_and_Workshops.md](./19_Implementation/19.01_Requirement_Gathering_and_Workshops.md) |
-| 19.10 | Implementation Methodology | ðŸ“± | [19.10_Implementation_Methodology.md](./19_Implementation/19.10_Implementation_Methodology.md) |
+| 19.10 | Implementation Methodology | ðŸŽ¯ | [19.10_Implementation_Methodology.md](./19_Implementation/19.10_Implementation_Methodology.md) |
 
 ---
 
@@ -369,18 +369,18 @@
 
 | # | Document | Origin | Link |
 |---|----------|--------|------|
-| 21.00 | Interview README | ðŸ“± | [21.00_README.md](./21_Interview/21.00_README.md) |
+| 21.00 | Interview README | ðŸŽ¯ | [21.00_README.md](./21_Interview/21.00_README.md) |
 | 21.01 | Architect Interview Questions | ðŸ¢ | [21.01_Architect_Interview_Questions.md](./21_Interview/21.01_Architect_Interview_Questions.md) |
-| 21.01 | Foundation Questions (20) | ðŸ“± | [21.01_Foundation_Questions.md](./21_Interview/21.01_Foundation_Questions.md) |
+| 21.01 | Foundation Questions (20) | ðŸŽ¯ | [21.01_Foundation_Questions.md](./21_Interview/21.01_Foundation_Questions.md) |
 | 21.01 | Top 50 Architect Interview Questions | ðŸ¢ | [21.01_Top_50_Architect_Interview_Questions.md](./21_Interview/21.01_Top_50_Architect_Interview_Questions.md) |
-| 21.02 | Essbase Questions (25) | ðŸ“± | [21.02_Essbase_Questions.md](./21_Interview/21.02_Essbase_Questions.md) |
-| 21.03 | Forms Questions (20) | ðŸ“± | [21.03_Forms_Questions.md](./21_Interview/21.03_Forms_Questions.md) |
-| 21.04 | Metadata Questions (25) | ðŸ“± | [21.04_Metadata_Questions.md](./21_Interview/21.04_Metadata_Questions.md) |
-| 21.05 | Planning Questions (20) | ðŸ“± | [21.05_Planning_Questions.md](./21_Interview/21.05_Planning_Questions.md) |
-| 21.06 | Business Rules Questions (20) | ðŸ“± | [21.06_Business_Rules_Questions.md](./21_Interview/21.06_Business_Rules_Questions.md) |
-| 21.08 | Groovy Questions (15) | ðŸ“± | [21.08_Groovy_Questions.md](./21_Interview/21.08_Groovy_Questions.md) |
-| 21.09 | SmartView Integration Security Admin (40) | ðŸ“± | [21.09_SmartView_Integration_Security_Admin_Questions.md](./21_Interview/21.09_SmartView_Integration_Security_Admin_Questions.md) |
-| 21.13 | Scenario Questions (25) | ðŸ“± | [21.13_Scenario_Questions.md](./21_Interview/21.13_Scenario_Questions.md) |
+| 21.02 | Essbase Questions (25) | ðŸŽ¯ | [21.02_Essbase_Questions.md](./21_Interview/21.02_Essbase_Questions.md) |
+| 21.03 | Forms Questions (20) | ðŸŽ¯ | [21.03_Forms_Questions.md](./21_Interview/21.03_Forms_Questions.md) |
+| 21.04 | Metadata Questions (25) | ðŸŽ¯ | [21.04_Metadata_Questions.md](./21_Interview/21.04_Metadata_Questions.md) |
+| 21.05 | Planning Questions (20) | ðŸŽ¯ | [21.05_Planning_Questions.md](./21_Interview/21.05_Planning_Questions.md) |
+| 21.06 | Business Rules Questions (20) | ðŸŽ¯ | [21.06_Business_Rules_Questions.md](./21_Interview/21.06_Business_Rules_Questions.md) |
+| 21.08 | Groovy Questions (15) | ðŸŽ¯ | [21.08_Groovy_Questions.md](./21_Interview/21.08_Groovy_Questions.md) |
+| 21.09 | SmartView Integration Security Admin (40) | ðŸŽ¯ | [21.09_SmartView_Integration_Security_Admin_Questions.md](./21_Interview/21.09_SmartView_Integration_Security_Admin_Questions.md) |
+| 21.13 | Scenario Questions (25) | ðŸŽ¯ | [21.13_Scenario_Questions.md](./21_Interview/21.13_Scenario_Questions.md) |
 
 ---
 
@@ -390,7 +390,7 @@
 |---|----------|--------|------|
 | 22.01 | Lab Build a Capex Cube | ðŸ¢ | [22.01_Lab_Build_a_Capex_Cube.md](./22_Labs/22.01_Lab_Build_a_Capex_Cube.md) |
 | 22.01 | Lab Build Your First BSO Cube | ðŸ¢ | [22.01_Lab_Build_Your_First_BSO_Cube.md](./22_Labs/22.01_Lab_Build_Your_First_BSO_Cube.md) |
-| 22.01 | 25 Hands-On Labs | ðŸ“± | [22.01_Hands_On_Labs.md](./22_Labs/22.01_Hands_On_Labs.md) |
+| 22.01 | 25 Hands-On Labs | ðŸŽ¯ | [22.01_Hands_On_Labs.md](./22_Labs/22.01_Hands_On_Labs.md) |
 
 ---
 
@@ -400,27 +400,27 @@
 |---|----------|--------|------|
 | 23.01 | Case Study Global Consolidation | ðŸ¢ | [23.01_Case_Study_Global_Consolidation.md](./23_Case_Studies/23.01_Case_Study_Global_Consolidation.md) |
 | 23.01 | Case Study The Global Retail Rollout | ðŸ¢ | [23.01_Case_Study_The_Global_Retail_Rollout.md](./23_Case_Studies/23.01_Case_Study_The_Global_Retail_Rollout.md) |
-| 23.01 | Hotel Business | ðŸ“± | [23.01_Hotel_Business.md](./23_Case_Studies/23.01_Hotel_Business.md) |
-| 23.02 | Manufacturing Company | ðŸ“± | [23.02_Manufacturing_Company.md](./23_Case_Studies/23.02_Manufacturing_Company.md) |
+| 23.01 | Hotel Business | ðŸŽ¯ | [23.01_Hotel_Business.md](./23_Case_Studies/23.01_Hotel_Business.md) |
+| 23.02 | Manufacturing Company | ðŸŽ¯ | [23.02_Manufacturing_Company.md](./23_Case_Studies/23.02_Manufacturing_Company.md) |
 
 ---
 
-## Module 24: Architect Masterclass ðŸš€ (Elite Level â€” 12 Files)
+## Module 24: Architect Masterclass ðŸŽ¯€ (Elite Level — 12 Files)
 
 | # | Document | Origin | Link |
 |---|----------|--------|------|
 | 24.01 | Masterclass Performance Tuning | ðŸ¢ | [24.01_Masterclass_Performance_Tuning.md](./24_Architect_Masterclass/24.01_Masterclass_Performance_Tuning.md) |
 | 24.01 | The Perfect EPM Architecture | ðŸ¢ | [24.01_The_Perfect_EPM_Architecture.md](./24_Architect_Masterclass/24.01_The_Perfect_EPM_Architecture.md) |
-| 24.01 | ðŸš€ The Springboard and Settings Map | ðŸ“± | [24.01_The_Springboard_and_Settings_Map.md](./24_Architect_Masterclass/24.01_The_Springboard_and_Settings_Map.md) |
-| 24.02 | ðŸš€ Essbase Under The Hood | ðŸ“± | [24.02_Essbase_Under_The_Hood.md](./24_Architect_Masterclass/24.02_Essbase_Under_The_Hood.md) |
-| 24.03 | ðŸš€ Elite Groovy Architecture | ðŸ“± | [24.03_Elite_Groovy_Architecture.md](./24_Architect_Masterclass/24.03_Elite_Groovy_Architecture.md) |
-| 24.04 | ðŸš€ The Dark Arts of Performance | ðŸ“± | [24.04_The_Dark_Arts_of_Performance.md](./24_Architect_Masterclass/24.04_The_Dark_Arts_of_Performance.md) |
-| 24.05 | ðŸš€ The Crack Guy Interviews (30 Scenarios) | ðŸ“± | [24.05_The_Crack_Guy_Interviews.md](./24_Architect_Masterclass/24.05_The_Crack_Guy_Interviews.md) |
-| 24.06 | ðŸš€ EDMCS and Metadata Governance Deep Dive | ðŸ“± | [24.06_EDMCS_and_Metadata_Governance_Deep_Dive.md](./24_Architect_Masterclass/24.06_EDMCS_and_Metadata_Governance_Deep_Dive.md) |
-| 24.07 | ðŸš€ IPM Insights and Auto-Predict AI Engine | ðŸ“± | [24.07_IPM_Insights_and_Auto_Predict_AI_Engine.md](./24_Architect_Masterclass/24.07_IPM_Insights_and_Auto_Predict_AI_Engine.md) |
-| 24.08 | ðŸš€ Complete Error Code Encyclopedia | ðŸ“± | [24.08_The_Complete_Error_Code_Encyclopedia.md](./24_Architect_Masterclass/24.08_The_Complete_Error_Code_Encyclopedia.md) |
-| 24.09 | ðŸš€ EPM Integration Agent and Local SQL Tunneling | ðŸ“± | [24.09_EPM_Integration_Agent_and_Local_SQL_Tunneling.md](./24_Architect_Masterclass/24.09_EPM_Integration_Agent_and_Local_SQL_Tunneling.md) |
-| 24.10 | ðŸš€ FreeForm Cubes GenAI and Future Architecture | ðŸ“± | [24.10_FreeForm_Cubes_GenAI_and_Future_Architecture.md](./24_Architect_Masterclass/24.10_FreeForm_Cubes_GenAI_and_Future_Architecture.md) |
+| 24.01 | ðŸŽ¯€ The Springboard and Settings Map | ðŸŽ¯ | [24.01_The_Springboard_and_Settings_Map.md](./24_Architect_Masterclass/24.01_The_Springboard_and_Settings_Map.md) |
+| 24.02 | ðŸŽ¯€ Essbase Under The Hood | ðŸŽ¯ | [24.02_Essbase_Under_The_Hood.md](./24_Architect_Masterclass/24.02_Essbase_Under_The_Hood.md) |
+| 24.03 | ðŸŽ¯€ Elite Groovy Architecture | ðŸŽ¯ | [24.03_Elite_Groovy_Architecture.md](./24_Architect_Masterclass/24.03_Elite_Groovy_Architecture.md) |
+| 24.04 | ðŸŽ¯€ The Dark Arts of Performance | ðŸŽ¯ | [24.04_The_Dark_Arts_of_Performance.md](./24_Architect_Masterclass/24.04_The_Dark_Arts_of_Performance.md) |
+| 24.05 | ðŸŽ¯€ The Crack Guy Interviews (30 Scenarios) | ðŸŽ¯ | [24.05_The_Crack_Guy_Interviews.md](./24_Architect_Masterclass/24.05_The_Crack_Guy_Interviews.md) |
+| 24.06 | ðŸŽ¯€ EDMCS and Metadata Governance Deep Dive | ðŸŽ¯ | [24.06_EDMCS_and_Metadata_Governance_Deep_Dive.md](./24_Architect_Masterclass/24.06_EDMCS_and_Metadata_Governance_Deep_Dive.md) |
+| 24.07 | ðŸŽ¯€ IPM Insights and Auto-Predict AI Engine | ðŸŽ¯ | [24.07_IPM_Insights_and_Auto_Predict_AI_Engine.md](./24_Architect_Masterclass/24.07_IPM_Insights_and_Auto_Predict_AI_Engine.md) |
+| 24.08 | ðŸŽ¯€ Complete Error Code Encyclopedia | ðŸŽ¯ | [24.08_The_Complete_Error_Code_Encyclopedia.md](./24_Architect_Masterclass/24.08_The_Complete_Error_Code_Encyclopedia.md) |
+| 24.09 | ðŸŽ¯€ EPM Integration Agent and Local SQL Tunneling | ðŸŽ¯ | [24.09_EPM_Integration_Agent_and_Local_SQL_Tunneling.md](./24_Architect_Masterclass/24.09_EPM_Integration_Agent_and_Local_SQL_Tunneling.md) |
+| 24.10 | ðŸŽ¯€ FreeForm Cubes GenAI and Future Architecture | ðŸŽ¯ | [24.10_FreeForm_Cubes_GenAI_and_Future_Architecture.md](./24_Architect_Masterclass/24.10_FreeForm_Cubes_GenAI_and_Future_Architecture.md) |
 
 ---
 
@@ -430,19 +430,19 @@
 |---|-------|--------|------|
 | 25.01 | EPM Automate CheatSheet | ðŸ¢ | [25.01_EPM_Automate_CheatSheet.md](./25_CheatSheets/25.01_EPM_Automate_CheatSheet.md) |
 | 25.01 | EPM Automate Cheat Sheet | ðŸ¢ | [25.01_EPM_Automate_Cheat_Sheet.md](./25_CheatSheets/25.01_EPM_Automate_Cheat_Sheet.md) |
-| 25.01 | EPM Ecosystem | ðŸ“± | [25.01_EPM_Ecosystem.md](./25_CheatSheets/25.01_EPM_Ecosystem.md) |
+| 25.01 | EPM Ecosystem | ðŸŽ¯ | [25.01_EPM_Ecosystem.md](./25_CheatSheets/25.01_EPM_Ecosystem.md) |
 | 25.02 | Calc Manager Functions | ðŸ¢ | [25.02_Calc_Manager_Functions_CheatSheet.md](./25_CheatSheets/25.02_Calc_Manager_Functions_CheatSheet.md) |
 | 25.02 | Smart View Options Screen | ðŸ¢ | [25.02_Smart_View_Options_Screen.md](./25_CheatSheets/25.02_Smart_View_Options_Screen.md) |
-| 25.02 | Essbase Database | ðŸ“± | [25.02_Essbase_Database.md](./25_CheatSheets/25.02_Essbase_Database.md) |
+| 25.02 | Essbase Database | ðŸŽ¯ | [25.02_Essbase_Database.md](./25_CheatSheets/25.02_Essbase_Database.md) |
 | 25.03 | Calc Manager Syntax | ðŸ¢ | [25.03_Calc_Manager_Syntax_Cheat_Sheet.md](./25_CheatSheets/25.03_Calc_Manager_Syntax_Cheat_Sheet.md) |
-| 25.03 | Account Properties | ðŸ“± | [25.03_Account_Properties.md](./25_CheatSheets/25.03_Account_Properties.md) |
-| 25.04 | Forms and Planning | ðŸ“± | [25.04_Forms_and_Planning.md](./25_CheatSheets/25.04_Forms_and_Planning.md) |
-| 25.05 | Roles | ðŸ“± | [25.05_Roles.md](./25_CheatSheets/25.05_Roles.md) |
-| 25.06 | Business Rules | ðŸ“± | [25.06_Business_Rules.md](./25_CheatSheets/25.06_Business_Rules.md) |
-| 25.07 | Groovy | ðŸ“± | [25.07_Groovy.md](./25_CheatSheets/25.07_Groovy.md) |
-| 25.08 | Data Integration | ðŸ“± | [25.08_Data_Integration.md](./25_CheatSheets/25.08_Data_Integration.md) |
-| 25.09 | Security | ðŸ“± | [25.09_Security.md](./25_CheatSheets/25.09_Security.md) |
-| 25.10 | EPM Automate | ðŸ“± | [25.10_EPM_Automate.md](./25_CheatSheets/25.10_EPM_Automate.md) |
+| 25.03 | Account Properties | ðŸŽ¯ | [25.03_Account_Properties.md](./25_CheatSheets/25.03_Account_Properties.md) |
+| 25.04 | Forms and Planning | ðŸŽ¯ | [25.04_Forms_and_Planning.md](./25_CheatSheets/25.04_Forms_and_Planning.md) |
+| 25.05 | Roles | ðŸŽ¯ | [25.05_Roles.md](./25_CheatSheets/25.05_Roles.md) |
+| 25.06 | Business Rules | ðŸŽ¯ | [25.06_Business_Rules.md](./25_CheatSheets/25.06_Business_Rules.md) |
+| 25.07 | Groovy | ðŸŽ¯ | [25.07_Groovy.md](./25_CheatSheets/25.07_Groovy.md) |
+| 25.08 | Data Integration | ðŸŽ¯ | [25.08_Data_Integration.md](./25_CheatSheets/25.08_Data_Integration.md) |
+| 25.09 | Security | ðŸŽ¯ | [25.09_Security.md](./25_CheatSheets/25.09_Security.md) |
+| 25.10 | EPM Automate | ðŸŽ¯ | [25.10_EPM_Automate.md](./25_CheatSheets/25.10_EPM_Automate.md) |
 
 ---
 
@@ -459,7 +459,7 @@
 
 | # | Document | Origin | Link |
 |---|----------|--------|------|
-| 27.01 | Exam 1Z0-1086 Complete Guide | ðŸ“± | [27.01_Exam_1Z0_1086_Complete_Guide.md](./27_Certification/27.01_Exam_1Z0_1086_Complete_Guide.md) |
+| 27.01 | Exam 1Z0-1086 Complete Guide | ðŸŽ¯ | [27.01_Exam_1Z0_1086_Complete_Guide.md](./27_Certification/27.01_Exam_1Z0_1086_Complete_Guide.md) |
 
 ---
 

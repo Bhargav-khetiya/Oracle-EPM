@@ -1,10 +1,10 @@
-# @WITHATTR
+﻿# @WITHATTR
 
 ## Overview
 
 `@WITHATTR` is a **member selection function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns all members in a base dimension that are associated with a specific **Attribute**. It allows you to dynamically select members based on their attribute values, operators, or a combination of attributes.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Essbase supports Attribute Dimensions, which are dynamically linked to base dimensions (e.g., a "Store Size" attribute tied to the "Entity" dimension). You often need to calculate based on these attributes:
 - Calculate different marketing expenses based on "Store Size" (e.g., "Large", "Small")

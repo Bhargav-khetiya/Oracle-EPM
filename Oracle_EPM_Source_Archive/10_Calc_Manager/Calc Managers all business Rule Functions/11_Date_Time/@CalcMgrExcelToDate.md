@@ -1,11 +1,11 @@
-# @CalcMgrExcelToDate
+﻿# @CalcMgrExcelToDate
 
 ## Overview
 
 `@CalcMgrExcelToDate` is a **custom Calc Manager date conversion function** in Oracle EPM Cloud (PBCS/EPBCS). It bridges the gap between Oracle's native `YYYYMMDD` integer date format and the legacy Microsoft Excel Serial Date/Time format. 
 It analyzes a massive decimal that Excel uses to track time (e.g., `45657.0`) and securely converts it into an Essbase-friendly integer (e.g., `20241231`) that can be used in native Date-Time math functions or member naming conventions.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Microsoft Excel tracks time very uniquely: `Day 1` is January 1, 1900. Every single day since then adds `1.0` to the serial number. For example, December 31, 2024 is exactly `45,657` days after Jan 1, 1900, so Excel stores it internally as `45657.0`. 
 Essbase does not use this system. Essbase and Calc Manager typically prefer `YYYYMMDD` format (`20241231`) because it is human-readable, chronologically sortable as a pure integer, and easy to parse. 

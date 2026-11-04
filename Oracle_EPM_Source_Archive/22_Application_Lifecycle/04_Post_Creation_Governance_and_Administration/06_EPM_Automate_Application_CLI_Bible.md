@@ -1,4 +1,4 @@
-﻿# 🤖 EPM Automate Application Bible
+﻿﻿# 🤖 EPM Automate Application Bible
 ## Command Reference, Syntax Dictionary & Enterprise Automation Runbooks
 
 > **Tool:** EPM Automate CLI  
@@ -241,9 +241,9 @@ echo "=== ROLLBACK COMPLETE: ENVIRONMENT RESTORED TO GOLD BASELINE ==="
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: What are the most critical application-level EPM Automate commands for daily DevOps pipelines?
+### Q1: What are the most critical application-level EPM Automate commands for daily DevOps pipelines—
 **Answer:**
 - `refreshCube`: Compiles metadata and security into Essbase.
 - `importMetadata` / `exportMetadata`: Automates chart of accounts synchronization.
@@ -251,7 +251,7 @@ echo "=== ROLLBACK COMPLETE: ENVIRONMENT RESTORED TO GOLD BASELINE ==="
 - `clearcube`: Clears specific data slices prior to reload.
 - `runBusinessRule`: Executes Calc Manager calculations and data maps.
 
-### Q2: How do you trap errors in Windows Batch scripts when an EPM Automate command returns exit code 0 despite warnings?
+### Q2: How do you trap errors in Windows Batch scripts when an EPM Automate command returns exit code 0 despite warnings—
 **Answer:** Parse the console output log. EPM Automate may return exit code 0 if the API call succeeded, even if individual metadata records failed. Use PowerShell to check return code AND inspect log output for error strings:
 ```powershell
 $log = & epmautomate refreshCube 2>&1
@@ -260,8 +260,8 @@ if ($LASTEXITCODE -ne 0 -or $log -match "Failed" -or $log -match "Error") {
 }
 ```
 
-### Q3: Can multiple EPM Automate CLI commands be chained together in a single pipeline?
-**Answer:** Yes. Scripts can execute login â†’ clear data â†’ load data â†’ run business rules â†’ refresh cube â†’ export backup â†’ logout in a continuous pipeline, provided proper error checking is implemented after each step.
+### Q3: Can multiple EPM Automate CLI commands be chained together in a single pipeline—
+**Answer:** Yes. Scripts can execute login → clear data → load data → run business rules → refresh cube → export backup → logout in a continuous pipeline, provided proper error checking is implemented after each step.
 
 ---
 

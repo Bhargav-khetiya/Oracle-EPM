@@ -1,4 +1,4 @@
-# 02 — The 9 Menu Item Types: Complete Reference
+﻿# 02 — The 9 Menu Item Types: Complete Reference
 
 ---
 
@@ -30,7 +30,7 @@ The **Type** dropdown determines the operational capability of the right-click m
 ┌─────────────────────────────────────────────────────────────┐
 │                          URL PANEL                          │
 ├─────────────────────────────────────────────────────────────┤
-│ URL:                [https://erp.orbrick.com/ledger?cc=$Row$]│
+│ URL:                [https://erp.orbrick.com/ledger—cc=$Row$]│
 │ Use Form Context:   [X] Checked                             │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -40,7 +40,7 @@ The **Type** dropdown determines the operational capability of the right-click m
   * **`URL`** *(Required)*: The target web address.
   * **`Use Form Context`** *(Checkbox)*: When checked, Planning appends the active cell's dimension coordinates as HTTP query parameters to the URL string.
 * **Context Token Syntax**:
-  * Standard URL parameters: `https://mybi.com/report?entity=$Entity$&period=$Period$&account=$Account$`
+  * Standard URL parameters: `https://mybi.com/report—entity=$Entity$&period=$Period$&account=$Account$`
   * Planning replaces `$Entity$`, `$Period$`, `$Account$` at runtime with the exact names of the clicked members.
 
 ---

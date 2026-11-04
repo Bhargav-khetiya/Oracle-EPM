@@ -1,10 +1,10 @@
-# @CalcMgrGetLongFromString
+﻿# @CalcMgrGetLongFromString
 
 ## Overview
 
 `@CalcMgrGetLongFromString` is a **custom Calc Manager string conversion function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a **Text String** that contains numeric digits (e.g., `"4000000000"`) and forcefully converts it into a pure mathematical **64-bit Long Integer** (e.g., `4000000000`) that can be safely used in massive global aggregations or high-precision timestamp math.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When parsing external text data loaded into Essbase (like `"TransactionID_89324589234"`), administrators often use substring functions to extract the numeric portion. 
 However, standard 32-bit integers in Java (and by extension Calc Manager) crash at roughly `2.14 Billion`. If you use standard `@CalcMgrGetIntegerFromString` to parse the string `"4000000000"`, the Java engine will trigger a catastrophic "Integer Overflow," either throwing a `NumberFormatException` or silently wrapping the number into a massive negative integer, destroying your calculation.

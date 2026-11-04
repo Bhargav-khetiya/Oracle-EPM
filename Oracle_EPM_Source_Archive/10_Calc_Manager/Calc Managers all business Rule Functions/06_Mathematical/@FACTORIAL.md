@@ -1,10 +1,10 @@
-# @FACTORIAL
+﻿# @FACTORIAL
 
 ## Overview
 
 `@FACTORIAL` is a **native Essbase mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates the **factorial** of a given integer. In mathematics, the factorial of a non-negative integer $n$ (denoted as $n!$) is the product of all positive integers less than or equal to $n$. (e.g., $5! = 5 \times 4 \times 3 \times 2 \times 1 = 120$).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In advanced operations research, probability modeling, and workforce optimization, administrators often need to calculate combinations or permutations (how many different ways can a schedule be arranged, or what is the probability of a specific sequence of events occurring). 
 The mathematical formulas for combinations ($nCr$) and permutations ($nPr$) rely heavily on factorials: $\frac{n!}{r!(n-r)!}$.

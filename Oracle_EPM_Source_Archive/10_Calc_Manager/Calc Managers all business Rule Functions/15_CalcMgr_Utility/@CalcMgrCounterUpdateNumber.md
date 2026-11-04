@@ -1,10 +1,10 @@
-# @CalcMgrCounterUpdateNumber
+﻿# @CalcMgrCounterUpdateNumber
 
 ## Overview
 
 `@CalcMgrCounterUpdateNumber` is a **custom Calc Manager state-tracking function** in Oracle EPM Cloud (PBCS/EPBCS). It functions almost identically to `@CalcMgrCounterUpdate`—it directly forces a new numeric value into a specific memory counter stored in the Java heap, completely overwriting the previous value. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In the evolution of the Calc Manager Custom Function library, function names were iteratively standardized. The existence of both `@CalcMgrCounterUpdate` and `@CalcMgrCounterUpdateNumber` is largely an artifact of this evolution. 
 `@CalcMgrCounterUpdateNumber` was introduced to explicitly mirror the naming convention of its sibling, `@CalcMgrCounterUpdateText`. By explicitly stating "Number" in the function name, it makes the codebase more self-documenting for future developers, clarifying that this memory bucket holds mathematical data, not string logs.

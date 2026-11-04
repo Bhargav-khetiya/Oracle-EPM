@@ -1,10 +1,10 @@
-# @SHIFTPLUS
+﻿# @SHIFTPLUS
 
 ## Overview
 
 `@SHIFTPLUS` is a **time series function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that **shifts data forward** across time periods by a specified offset. It is functionally similar to `@SHIFT` but is explicitly designed to only move forward (into the future) along the time dimension.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building forward-looking calculations, clarity and intent are important:
 - **Lead indicators**: Looking at next month's committed pipeline or orders

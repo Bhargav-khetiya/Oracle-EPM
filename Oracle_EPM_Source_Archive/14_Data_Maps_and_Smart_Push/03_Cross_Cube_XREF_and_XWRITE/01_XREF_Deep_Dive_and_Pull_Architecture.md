@@ -1,4 +1,4 @@
-# 01 @XREF Deep Dive, Location Aliases, and Pull Architecture
+﻿# 01 @XREF Deep Dive, Location Aliases, and Pull Architecture
 
 ## 1. The `@XREF` Pull Mechanism
 
@@ -44,7 +44,7 @@ The `@XREF` function is Essbase's native, legacy calculation script function des
 @XREF ( LocationAlias [, MemberList ] )
 ```
 
-| Parameter | Type | Required? | Description |
+| Parameter | Type | Required— | Description |
 | :--- | :--- | :--- | :--- |
 | `LocationAlias` | Identifier | **Yes** | A predefined connection descriptor configured in Essbase that resolves the remote server, application, database, and authentication token. |
 | `MemberList` | Member List | No | Optional comma-separated list of member names corresponding to dimensions in the remote cube that differ from the current local context. |

@@ -1,10 +1,10 @@
-# @ISLEV
+﻿# @ISLEV
 
 ## Overview
 
 `@ISLEV` is a **Boolean logical function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It checks whether a specified member (or the current member of a dimension) belongs to a specific hierarchical Level (counted from the bottom up). It returns `TRUE` or `FALSE`.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When looping through large blocks of data in a `FIX` statement, you often want to execute mathematical logic *only* at the lowest level (Level 0) so that parents can aggregate naturally without being overridden by driver-based math. 
 Alternatively, you might want to execute logic *only* on parents.

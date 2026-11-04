@@ -1,10 +1,10 @@
-# @ANCEST
+﻿# @ANCEST
 
 ## Overview
 
 `@ANCEST` is a **member navigation function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns the ancestor of a specified member at a specific generation or level in the outline. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When calculating at a detailed (base) level, you frequently need to reference a specific parent higher up the tree. However, hardcoding parent names breaks if the hierarchy reorganizes. 
 - You need the regional parent of a specific store to calculate a "Share of Region" metric.

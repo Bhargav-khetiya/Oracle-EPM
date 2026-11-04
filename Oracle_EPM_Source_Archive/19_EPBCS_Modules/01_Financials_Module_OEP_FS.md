@@ -1,4 +1,4 @@
-# 01 Financials Module (`OEP_FS`): The Complete Techno-Functional Master Blueprint
+﻿# 01 Financials Module (`OEP_FS`): The Complete Techno-Functional Master Blueprint
 
 ---
 
@@ -211,13 +211,13 @@ $$\text{Net Operating Cash Flow} = \text{Net Income} + \text{Depreciation (Non-C
 
 ## 1.6 Techno-Functional Review Trap Questions & Battle-Tested Answers
 
-### Q1: "A client enters $500,000 on a web form at `OFS_Total Plan Element` and clicks Save. The cell reverts to blank or throws an error. Why?"
+### Q1: "A client enters $500,000 on a web form at `OFS_Total Plan Element` and clicks Save. The cell reverts to blank or throws an error. Why—
 * **The Consultant's Answer**: "`OFS_Total Plan Element` is a **Dynamic Calc parent** member in the `Plan Element` dimension. In multidimensional Essbase storage physics, data cells can only be written to **Level 0 Stored members**. The user must enter their number on **`OFS_Direct Input`**."
 
-### Q2: "How does Financials maintain the fundamental accounting equation ($\text{Assets} = \text{Liabilities} + \text{Equity}$) automatically?"
+### Q2: "How does Financials maintain the fundamental accounting equation ($\text{Assets} = \text{Liabilities} + \text{Equity}$) automatically—
 * **The Consultant's Answer**: "Financials uses an automated balancing mechanism:
   1. Net Income from the P&L is carried into **`Retained Earnings Current Year`** under Equity.
   2. Any imbalance between total assets and total liabilities + equity is directed into the **`Cash / Short-Term Debt Plug Account`**. If assets exceed liabilities/equity, the plug borrows debt; if liabilities/equity exceed assets, the cash surplus is deposited into Cash."
 
-### Q3: "Can you disable Balance Sheet or Expense Driver planning once enabled in Financials?"
+### Q3: "Can you disable Balance Sheet or Expense Driver planning once enabled in Financials—
 * **The Consultant's Answer**: "**NO**. In Oracle EPM Cloud, module enablement is **permanent and irrevocable**. Once a business process feature is enabled, its relational tables, dimensions, accounts, and calculation rules are permanently stamped into the repository. You can never uncheck the box."

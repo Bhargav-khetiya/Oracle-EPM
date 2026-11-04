@@ -1,43 +1,54 @@
-# Essbase Architecture
+# Module 07: Essbase Architecture, Storage Engines & Block Physics
 
-> Essbase is the multidimensional calculation engine underneath Oracle EPM Cloud Planning. Understanding how it stores, indexes, and calculates data is essential for performance tuning and troubleshooting.
+## Navigation & Module Overview
 
----
-
-## Reading Order
-
-| # | File | What You'll Learn |
-|---|------|-------------------|
-| 1 | [Essbase Overview](01_Essbase_Overview.md) | BSO vs ASO vs Hybrid, sparse/dense, blocks, hourglass principle, retrieval flow |
-| 2 | [Essbase Storage and Performance](02_Essbase_Storage_and_Performance.md) | .OTL/.IND/.PAG files, block architecture, index/data caches, ASO load buffers, calculation engine, fragmentation, tuning |
+This module covers the core Essbase analytical database engine, BSO vs ASO vs Hybrid storage engines, physical block mathematics, memory cache hierarchy, and Implied Share mechanics.
 
 ---
 
-## Key Concept Diagram
+<!-- ===================================================================== -->
+<!-- 🎯 LIVE INTERACTIVE VISUAL CARD: MODULE 07 ESSBASE ARCHITECTURE -->
+<!-- ===================================================================== -->
+<details open>
+<summary><b>🎯 Live Interactive Architecture Card: Essbase Architecture Suite (Click to Collapse / Expand)</b></summary>
 
+<br/>
+
+> [!TIP]
+> **Interactive Standalone Dashboard:** Open [`card_kb_06_essbase_deep_dive.html`](../interactive_cards/card_kb_06_essbase_deep_dive.html) in your browser for a live interactive Essbase storage engine & memory cache explorer!
+
+| Document | Primary Domain | Core Focus | Direct Link |
+| :--- | :--- | :--- | :--- |
+| **7.1 Essbase Overview** | Storage Engines | BSO vs ASO vs Modern Hybrid BSO, Physical Block Array vs Columnar Tuple | [01_Essbase_Overview.md](01_Essbase_Overview.md) |
+| **7.2 Storage & Performance** | Block Sizing & Caches | Block Sizing Formula ($D_1 \times D_2 \times \dots \times 8$), Memory Caches, Implied Shares | [02_Essbase_Storage_and_Performance.md](02_Essbase_Storage_and_Performance.md) |
+
+```mermaid
+flowchart TD
+    M7["Module 07: Essbase Engine"] --> D1["7.1 Essbase Overview<br/>(BSO vs ASO vs Hybrid BSO)"]
+    M7 --> D2["7.2 Storage & Performance<br/>(Block Math & Memory Caches)"]
+    D2 --> Sizing["Block Sizing Target: 8 KB to 100 KB"]
+    D2 --> Caches["Cache Sizing (Page, Index, Dynamic Calc)"]
+    D2 --> Implied["Implied Share Traps & Never Share"]
 ```
-                    ESSBASE DATABASE
-                         │
-          ┌──────────────┼──────────────┐
-          ▼              ▼              ▼
-      OUTLINE         INDEX           PAGE
-      (.OTL)          (.IND)          (.PAG)
-      Blueprint       B-tree          Data blocks
-      of dims &       mapping         with 8-byte
-      members         sparse →        cells per
-                      block loc.      intersection
-```
 
-## BSO vs ASO at a Glance
-
-| Feature | BSO | ASO |
-|:---|:---:|:---:|
-| Data entry via forms | ✅ | ❌ (load buffers only) |
-| Calc scripts | ✅ | ❌ (MDX only) |
-| All consolidation operators | ✅ | Only +, ~ |
-| Large-scale ad hoc reporting | Moderate | ✅ Excellent |
-| Block storage | ✅ | Slices + views |
+</details>
 
 ---
 
-**Provenance:** Merged from ChatGPT `Essbase_Internal_Architecture/` (17 files), Claude `03_Essbase/`, Gemini equivalents. See [MERGE_MAP.md](../MERGE_MAP.md).
+## Module Documents
+
+1. **[7.1 Essbase Architecture: BSO, ASO & Modern Hybrid Storage Engines](01_Essbase_Overview.md)**
+   * BSO (Block Storage) vs. ASO (Aggregate Storage) vs. Modern Hybrid BSO.
+   * Physical storage atoms: Multidimensional array (`.pag`) vs. Compressed tuple (`.dat`).
+   * Hybrid BSO dual-kernel execution internals and fallback risks.
+   * Tough & twisted review questions with consultant model answers.
+
+2. **[7.2 Essbase Storage, Memory Caches & Block Math Physics](02_Essbase_Storage_and_Performance.md)**
+   * The Block Sizing Formula: Dense Cartesian cells $\times 8$ bytes (8 KB - 100 KB target).
+   * Three Essbase files: Blueprint (`.otl`), Index (`.ind`), Page (`.pag`).
+   * Memory cache hierarchy: Page Cache, Index Cache, Dynamic Calc Cache.
+   * Implied Share mechanics, 1-child parent traps, and `Never Share` configuration.
+   * Tough & twisted review questions with consultant model answers.
+
+---
+*Return to [Knowledge Base Master Index](../README.md) or advance to [Module 08: Dimensions and Metadata Engineering](../08_Dimensions_and_Metadata/00_INDEX.md).*

@@ -1,10 +1,10 @@
-# @SIBLINGS
+﻿# @SIBLINGS
 
 ## Overview
 
 `@SIBLINGS` is a **member relationship function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns all **sibling members** — members that share the same parent — of a specified member. The returned set excludes the specified member itself.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Sibling-level calculations are common in financial planning:
 - Calculating a department's share of the total across peer departments

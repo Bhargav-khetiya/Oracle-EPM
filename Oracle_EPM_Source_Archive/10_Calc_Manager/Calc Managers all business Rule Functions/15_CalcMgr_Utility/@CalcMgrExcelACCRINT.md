@@ -1,11 +1,11 @@
-# @CalcMgrExcelACCRINT
+﻿# @CalcMgrExcelACCRINT
 
 ## Overview
 
 `@CalcMgrExcelACCRINT` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `ACCRINT` function directly inside an Essbase calculation script. 
 It calculates the accrued interest for a security (like a bond) that pays periodic interest, calculating the interest accrued from the issue date to the first interest date, or between subsequent interest dates, up to the specific settlement date.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When migrating complex financial models from Excel into EPM Cloud (such as corporate treasury models, bond portfolio management, or debt servicing models), developers historically had to manually recreate complex financial formulas using massive algebraic `IF` statements inside Calc Scripts. This was error-prone, difficult to maintain, and often resulted in slight fractional discrepancies compared to the legacy Excel model.
 Oracle introduced a suite of "Excel-equivalent" functions to solve this. `@CalcMgrExcelACCRINT` utilizes the underlying Java math engine to execute the exact same algorithmic logic as Excel, guaranteeing that the accrued interest calculated in the Essbase cube matches the legacy Excel spreadsheet down to the penny.

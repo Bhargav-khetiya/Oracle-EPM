@@ -1,11 +1,11 @@
-# @CalcMgrExcelCOUPPCD
+﻿# @CalcMgrExcelCOUPPCD
 
 ## Overview
 
 `@CalcMgrExcelCOUPPCD` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `COUPPCD` function directly inside an Essbase calculation script. 
 It calculates the exact calendar **date** (returned as a standard `YYYYMMDD` integer) of the **P**revious **C**oupon **D**ate for a given bond or security, relative to the settlement date.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In corporate finance and debt servicing models, debt tranches usually only have their "Issue Date", "Maturity Date", and "Frequency" (e.g., Semi-Annual) stored in the database. 
 If an analyst evaluates a bond on May 15th, and they need to know exactly when the *last* interest payment was made (to calculate accrued interest or reconcile cash accounts), building the calendar logic manually in Essbase is incredibly complex. You have to work backward from the maturity date, determine the theoretical payment schedule, and figure out which theoretical payment immediately preceded May 15th.

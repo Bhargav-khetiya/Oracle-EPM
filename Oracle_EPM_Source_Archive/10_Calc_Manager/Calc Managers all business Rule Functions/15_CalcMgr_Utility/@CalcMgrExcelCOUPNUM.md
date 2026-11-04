@@ -1,13 +1,13 @@
-# @CalcMgrExcelCOUPNUM
+﻿# @CalcMgrExcelCOUPNUM
 
 ## Overview
 
 `@CalcMgrExcelCOUPNUM` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `COUPNUM` function directly inside an Essbase calculation script. 
 It calculates the exact **number of coupon payments remaining** to be paid out between the settlement date and the maturity date of a bond or debt security.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
-In corporate finance, debt amortization and valuation models require knowing exactly how many cash flow periods remain in the lifespan of an instrument. For example, if a 10-year bond pays semi-annually, it has 20 total payments. If you evaluate it in year 8, how many payments are left?
+In corporate finance, debt amortization and valuation models require knowing exactly how many cash flow periods remain in the lifespan of an instrument. For example, if a 10-year bond pays semi-annually, it has 20 total payments. If you evaluate it in year 8, how many payments are left—
 While you could try to write custom math in Essbase (e.g., `(Maturity_Year - Settlement_Year) * Frequency`), leap years, varying month lengths, and specific European vs. US day-count basis rules make manual proration highly inaccurate. `@CalcMgrExcelCOUPNUM` handles all of this internally, executing the exact same algorithm as Excel to return the precise number of remaining payments, ensuring the resulting financial valuation matches the legacy spreadsheet exactly.
 
 ### When to Use It

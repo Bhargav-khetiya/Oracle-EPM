@@ -1,4 +1,4 @@
-# @ICHILDREN
+﻿# @ICHILDREN
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 *(The "I" stands for Inclusive).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building calculation logic, administrators frequently need to address a parent and its direct sub-components simultaneously. For example, if `"Total_Marketing"` has three direct children (`"Digital"`, `"Print"`, `"Events"`), you might need to apply an overhead factor to all four of those members.
 Native `@CHILDREN` would return Digital, Print, and Events, but it would *exclude* `"Total_Marketing"`. To include the parent, you would have to write `"Total_Marketing", @CHILDREN("Total_Marketing")`. 
@@ -56,7 +56,7 @@ Returns a comma-separated array of members.
 ## How It Works (Behind the Scenes)
 
 1. **Member Resolution**: Essbase evaluates the target `MemberName`.
-2. **Outline Query**: It queries the active `.otl` outline. It locates the target member and asks: "Who are your direct descendants exactly one step below you?"
+2. **Outline Query**: It queries the active `.otl` outline. It locates the target member and asks: "Who are your direct descendants exactly one step below you—
 3. **Array Assembly**: It grabs those direct children in outline order.
 4. **Inclusion**: It prepends the original `MemberName` to the front of the list.
 5. **Return**: It returns the concatenated array to the `FIX` statement or calculation engine.

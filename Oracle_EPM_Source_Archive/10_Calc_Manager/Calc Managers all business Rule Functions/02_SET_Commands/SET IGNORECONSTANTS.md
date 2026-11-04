@@ -1,10 +1,10 @@
-# SET IGNORECONSTANTS
+﻿# SET IGNORECONSTANTS
 
 ## Overview
 
 `SET IGNORECONSTANTS` is a **specialized Essbase calculation directive** in Oracle EPM Cloud (PBCS/EPBCS). It controls how the calculation engine optimizes blocks that contain nothing but constant equations or raw numeric data loads. Specifically, it dictates whether the engine should aggressively skip processing mathematical formulas on blocks where the data is entirely derived from hardcoded constants rather than dynamic dimensional references.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When the Essbase compiler reads a script, it analyzes the equations to build an execution path.
 If an equation is `"Sales" = "Units" * 10;`, Essbase knows it must evaluate the block, look up `"Units"`, multiply by 10, and write to `"Sales"`. 

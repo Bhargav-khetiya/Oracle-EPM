@@ -1,10 +1,10 @@
-# @MEMBER
+﻿# @MEMBER
 
 ## Overview
 
 `@MEMBER` is a **string-to-member conversion function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It takes a text string and attempts to resolve it into a valid member reference within the outline.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Calc scripts often require dynamic cross-referencing. For example, if you are looking at `Entity_101`, and you need to push data to `Project_101`, you have to dynamically construct the string `"Project_101"`. 
 However, Essbase cannot mathematically assign a value to a string. `("Project_" + "101") = 500` is invalid syntax.

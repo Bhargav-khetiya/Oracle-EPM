@@ -1,10 +1,10 @@
-# @LEVMBRS
+﻿# @LEVMBRS
 
 ## Overview
 
 `@LEVMBRS` is a **native Essbase member selection function** in Oracle EPM Cloud (PBCS/EPBCS). It queries the database outline and generates a comprehensive, horizontal array containing **every single member** in a specified dimension that resides at a specific **Level** (distance from the bottom of the tree).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When executing horizontal allocations or peer benchmarking, an administrator often needs to target all members of a specific management tier across the entire company. For example, they might need to apply a default tax rate to every single "Regional Manager" in the world.
 If the outline is ragged (different depths), but the Regional Managers have all been structurally aligned to Level 1, you need a way to extract them.

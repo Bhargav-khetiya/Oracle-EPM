@@ -1,11 +1,11 @@
-# @CalcMgrExcelPERCENTRANK
+﻿# @CalcMgrExcelPERCENTRANK
 
 ## Overview
 
 `@CalcMgrExcelPERCENTRANK` is a **custom Calc Manager statistical array function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `PERCENTRANK` (specifically `PERCENTRANK.INC`) function directly inside an Essbase calculation script. 
-It analyzes an array of data, takes a specific numerical value, and returns the **Percentile Rank** of that value within the dataset (e.g., "If a store sold $450,000, what percentile does that store fall into compared to the rest of the company?").
+It analyzes an array of data, takes a specific numerical value, and returns the **Percentile Rank** of that value within the dataset (e.g., "If a store sold $450,000, what percentile does that store fall into compared to the rest of the company—).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While `PERCENTILE` calculates the dollar threshold for a given target, `PERCENTRANK` is the exact inverse. It evaluates a specific individual's performance and scores them relative to their peers. 
 For example, if you want to grade 50 different subsidiary companies from 0% to 100% based on their profit margins, calculating this manually in Essbase requires massive looping logic: counting exactly how many companies had a lower profit margin, dividing that by the total number of companies, and handling interpolation if the specific margin isn't an exact match to the dataset.

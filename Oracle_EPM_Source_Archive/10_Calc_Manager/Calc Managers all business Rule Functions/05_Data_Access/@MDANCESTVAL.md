@@ -1,10 +1,10 @@
-# @MDANCESTVAL
+﻿# @MDANCESTVAL
 
 ## Overview
 
 `@MDANCESTVAL` is a **multi-dimensional data access function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns the **data value stored at an ancestor member** of the current member in a specified dimension, at a specified generation. It is the multi-dimensional version of `@ANCESTVAL`, designed for complex applications where you need to explicitly specify which dimension's hierarchy to navigate.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Accessing ancestor-level data is essential for:
 - Computing percentage-of-total calculations against any ancestor level

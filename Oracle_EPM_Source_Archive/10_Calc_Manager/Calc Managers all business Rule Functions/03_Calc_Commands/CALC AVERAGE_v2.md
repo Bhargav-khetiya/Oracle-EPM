@@ -1,10 +1,10 @@
-# CALC AVERAGE
+﻿# CALC AVERAGE
 
 ## Overview
 
 `CALC AVERAGE` is a **specialized native Essbase calculation directive** in Oracle EPM Cloud (PBCS/EPBCS). Unlike standard `CALC DIM` or `AGG` commands (which strictly perform mathematical addition when rolling up parent branches), `CALC AVERAGE` overrides the structural hierarchy logic and forces the calculation engine to mathematically **AVERAGE** the children together as it rolls up the dimension tree, rather than summing them.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 By default, Essbase outlines are designed for additive consolidation. If you have a `"Product"` dimension, the parent `"Total_Product"` is simply the sum of its children (`Shoes + Shirts + Hats`). 
 However, some metrics are non-additive. For example, if you are tracking `"Customer_Satisfaction_Score"`, you cannot add the scores together. If Store A scores `90%` and Store B scores `90%`, the Regional Total is not `180%`. The Regional Total must be `90%`.

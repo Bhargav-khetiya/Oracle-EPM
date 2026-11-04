@@ -1,11 +1,11 @@
-# @CalcMgrExcelYIELD
+﻿# @CalcMgrExcelYIELD
 
 ## Overview
 
 `@CalcMgrExcelYIELD` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `YIELD` function directly inside an Essbase calculation script. 
 It calculates the **Yield to Maturity (YTM)** for a standard coupon-bearing bond based on its current market purchase price.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When a company buys a 10-year bond in the secondary market, they almost never pay the exact face value ($100). If the bond pays a 5% coupon, but market interest rates have risen to 7%, the bond will be sold at a deep discount (e.g., $85). 
 To determine if this $85 bond is actually a good investment, the Treasury department must reverse-engineer the *true* Yield to Maturity. This requires calculating exactly how many coupon payments remain, stripping out accrued interest, and running a complex recursive guess-and-check (Newton-Raphson) algorithm to find the exact discount rate that makes the present value of all those future coupons perfectly equal the $85 purchase price.

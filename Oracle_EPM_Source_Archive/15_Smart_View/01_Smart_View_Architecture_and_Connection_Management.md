@@ -1,4 +1,4 @@
-# 01 — Smart View and connections
+﻿# 01 — Smart View and connections
 
 ## Core idea
 
@@ -35,9 +35,9 @@ For Planning Cloud, Oracle documents the private URL pattern /HyperionPlanning/S
 
 ## Recall check
 
-1. What does a connection URL identify? The route to a configured provider; it does not grant data permissions.
-2. Who should provide the actual service URL? The Smart View/EPM administrator.
-3. What should be recorded before troubleshooting? The client version, provider, target, error text, time, user context, and relevant diagnostics.
+1. What does a connection URL identify— The route to a configured provider; it does not grant data permissions.
+2. Who should provide the actual service URL— The Smart View/EPM administrator.
+3. What should be recorded before troubleshooting— The client version, provider, target, error text, time, user context, and relevant diagnostics.
 
 **Teach-back:** Explain the difference between a shared connection entry and a user’s private connection.
 

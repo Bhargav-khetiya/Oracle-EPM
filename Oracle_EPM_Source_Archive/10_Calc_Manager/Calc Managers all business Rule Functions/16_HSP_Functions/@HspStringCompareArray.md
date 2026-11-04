@@ -1,10 +1,10 @@
-# @HspStringCompareArray
+﻿# @HspStringCompareArray
 
 ## Overview
 
 `@HspStringCompareArray` is a **Hyperion Planning (HSP) custom string function** embedded within Oracle EPM Cloud (PBCS/EPBCS). It takes a single target text string and evaluates it against an entire array (list) of strings. It returns an integer indicating whether the target string exists anywhere within that array.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In advanced conditional logic, administrators frequently need to check if a specific member belongs to a specific group. If you are calculating `"Entity_105"`, you might need to know if it belongs to the `"High_Risk_Group"`. 
 Natively, you could use `@ISMBR`, but that requires the group to be defined structurally in the Essbase `.otl` file (like a UDA or a parent member). If the `"High_Risk_Group"` is actually just a text string passed as a runtime prompt (e.g., `"Entity_105, Entity_201, Entity_404"`), `@ISMBR` cannot read it.

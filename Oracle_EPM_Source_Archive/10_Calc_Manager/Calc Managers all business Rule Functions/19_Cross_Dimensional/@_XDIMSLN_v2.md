@@ -1,4 +1,4 @@
-# @_XDIMSLN
+﻿# @_XDIMSLN
 
 ## Overview
 
@@ -8,7 +8,7 @@
 
 *(Note: Functions prefixed with an underscore `_` in Essbase are typically internal, unlisted variants of standard functions. They exist to support specialized, out-of-the-box financial modules that require non-standard timing conventions).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In corporate accounting, policies regarding the "In-Service Date" vary wildly.
 - **Policy A (Standard)**: If you buy a server in January, you take a full month of depreciation in January. (Use `@XDIMSLN`).

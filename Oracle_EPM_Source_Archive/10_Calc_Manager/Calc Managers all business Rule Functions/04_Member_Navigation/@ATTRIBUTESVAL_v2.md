@@ -1,13 +1,13 @@
-# @ATTRIBUTESVAL
+﻿# @ATTRIBUTESVAL
 
 ## Overview
 
 `@ATTRIBUTESVAL` is a **data retrieval and string function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It retrieves the text string assigned to a Text Attribute dimension for a specified base member. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Numeric attributes can be used in math via `@ATTRIBUTEVAL`. Boolean attributes can be used in logic via `@ATTRIBUTEBVAL`. 
-But what if you have a Text Attribute (like "State_Name" or "Manager_Name") and you need to extract that raw text to use in a dynamic cross-reference or logging statement?
+But what if you have a Text Attribute (like "State_Name" or "Manager_Name") and you need to extract that raw text to use in a dynamic cross-reference or logging statement—
 `@ATTRIBUTESVAL` extracts the metadata tag as a pure string, allowing you to concatenate it, parse it, or pass it into `@MEMBER` to dynamically target data.
 
 ### When to Use It

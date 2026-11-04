@@ -1,10 +1,10 @@
-# @CalcMgrDaysDiff
+﻿# @CalcMgrDaysDiff
 
 ## Overview
 
 `@CalcMgrDaysDiff` is a **custom Calc Manager date function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates the exact number of calendar days between two standard Essbase `YYYYMMDD` integers. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard Essbase dates are stored as literal integers (e.g., `20241231`). You cannot perform standard subtraction on them (`20241231 - 20240101`) because the integer math does not understand that months have 30 or 31 days, or that leap years exist.
 While `@CalcMgrDateDiff` can also calculate the difference in days (by passing `"day"` as the third parameter), `@CalcMgrDaysDiff` is a dedicated, streamlined function that assumes you *always* want the result in days. By dropping the third parameter, it makes the calculation script slightly cleaner and more readable for developers exclusively executing daily math.
@@ -80,7 +80,7 @@ Returns a numeric value representing the exact number of calendar days between t
 "Days_Between" = @CalcMgrDaysDiff(20241101, 20241231);
 ```
 
-### Variant 2: Conditional Evaluation (Is it overdue?)
+### Variant 2: Conditional Evaluation (Is it overdue—)
 
 ```essbase
 /* If the project ended more than 30 days after its target date, flag it */

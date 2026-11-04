@@ -1,10 +1,10 @@
-# @CalcMgrAddDays
+﻿# @CalcMgrAddDays
 
 ## Overview
 
 `@CalcMgrAddDays` is a **custom Calc Manager date function** in Oracle EPM Cloud (PBCS/EPBCS). It adds or subtracts a specified number of exact calendar days to a starting date formatted as a `YYYYMMDD` integer.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While you can technically use `@CalcMgrAddDate(Date, 30, "day")`, `@CalcMgrAddDays` is a cleaner, more concise shortcut specifically built for daily increments. 
 It eliminates the need to pass the `"day"` string parameter, making the code slightly shorter, cleaner to read, and reducing the potential for syntax errors caused by forgotten quotation marks.

@@ -1,10 +1,10 @@
-# 04 — Version Dimension and Sandboxes: Workflow & Target Modeling
+﻿# 04 — Version Dimension and Sandboxes: Workflow & Target Modeling
 
 ---
 
 ## 4.1 Overview: Modeling Scenarios Across Iterations
 
-The **Version** dimension represents iterative stages of a plan or forecast within a given Scenario. While `Scenario` answers *"What business case are we modeling?"* (Budget, Forecast), `Version` answers *"Which revision or iteration of this plan is this?"* (Working, Draft 1, Review, Final).
+The **Version** dimension represents iterative stages of a plan or forecast within a given Scenario. While `Scenario` answers *"What business case are we modeling—* (Budget, Forecast), `Version` answers *"Which revision or iteration of this plan is this—* (Working, Draft 1, Review, Final).
 
 ---
 
@@ -98,7 +98,7 @@ When `Enabled for Approvals` is **Checked**:
 └─────────────────────────────────────────────────────────────┘
 ```
 
-* **What is a Sandbox?**: A private "What-If" workspace created dynamically for each user without requiring administrators to add new members to the Version dimension.
+* **What is a Sandbox—**: A private "What-If" workspace created dynamically for each user without requiring administrators to add new members to the Version dimension.
 * **Storage Mechanics**: Sandboxes use virtual cell overlays. Changes are held in a private memory layer and do not dirty or corrupt shared production data.
 * **Publishing**: When satisfied with a scenario, the user selects **Publish Sandbox**, which writes the numbers back into the base `Working` version.
 
@@ -106,7 +106,7 @@ When `Enabled for Approvals` is **Checked**:
 
 ## 4.6 Version Lifecycle Comparison Matrix
 
-| Version Name | Version Type | Data Storage | Approvals Enabled? | Sandboxes Enabled? | Typical Consultant Use Case |
+| Version Name | Version Type | Data Storage | Approvals Enabled— | Sandboxes Enabled— | Typical Consultant Use Case |
 | :--- | :--- | :--- | :---: | :---: | :--- |
 | **`Working`** | Standard Bottom Up | `Never Share` | **Yes** | Optional | Daily collaborative budget and forecast entry. |
 | **`Target`** | Standard Target | `Never Share` | No | No | Executive top-down corporate targets. |

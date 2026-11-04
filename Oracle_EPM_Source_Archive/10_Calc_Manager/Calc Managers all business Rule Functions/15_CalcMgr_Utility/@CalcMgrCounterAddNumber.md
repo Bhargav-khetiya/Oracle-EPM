@@ -1,10 +1,10 @@
-# @CalcMgrCounterAddNumber
+﻿# @CalcMgrCounterAddNumber
 
 ## Overview
 
 `@CalcMgrCounterAddNumber` is a **custom Calc Manager state-tracking function** in Oracle EPM Cloud (PBCS/EPBCS). It adds a specified numeric value to an invisible, globally tracked memory variable (a "counter") running in the background during the execution of a Business Rule.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard Essbase calculation scripts evaluate data block by block, member by member. Native `VAR` variables exist, but they are often constrained to the local scope of the specific `FIX` block or member formula they are declared in. 
 If you need to keep a running total of *something* across the entire execution of a complex, multi-pass business rule (e.g., keeping track of how many validation errors occurred across 15 different departments), standard variables often reset or fail to carry over between passes.

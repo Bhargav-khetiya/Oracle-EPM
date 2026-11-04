@@ -1,10 +1,10 @@
-# @CalcMgrReplaceFirst
+﻿# @CalcMgrReplaceFirst
 
 ## Overview
 
 `@CalcMgrReplaceFirst` is a **custom Calc Manager string manipulation function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a targeted, single-use search-and-replace engine. It scans a source text string from left to right, locates the **very first occurrence** of a specific target substring, replaces it with a new string, and then immediately halts—ignoring any subsequent matches in the text.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When formatting hierarchical text strings or complex file paths, you often want to modify the prefix while preserving the suffix exactly as it is. 
 For example, if you have a string `"Total_Product_Total_Sales"`, and you want to rename the root from `"Total"` to `"All"`, using `@CalcMgrReplaceAll` would brutally change the string to `"All_Product_All_Sales"`. This destroys the suffix hierarchy.

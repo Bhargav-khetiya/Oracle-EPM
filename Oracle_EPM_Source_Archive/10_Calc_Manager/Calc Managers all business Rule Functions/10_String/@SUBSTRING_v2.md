@@ -1,10 +1,10 @@
-# @SUBSTRING
+﻿# @SUBSTRING
 
 ## Overview
 
 `@SUBSTRING` is a **string manipulation function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that extracts a specific portion (a substring) from a given string. It allows you to parse text by starting at a specific character position and optionally defining how many characters to extract.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While Essbase is primarily a numeric engine, strings are frequently used for dynamic member names, dates, and variable concatenation:
 - **Date Parsing**: Extracting the month `"09"` from a YYYYMMDD string `"20240925"`.

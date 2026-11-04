@@ -1,11 +1,11 @@
-# @CalcMgrExcelGCD
+﻿# @CalcMgrExcelGCD
 
 ## Overview
 
 `@CalcMgrExcelGCD` is a **custom Calc Manager mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `GCD` function directly inside an Essbase calculation script. 
 It calculates the **Greatest Common Divisor** of two or more integers. The GCD is the largest positive integer that divides all the provided numbers without leaving a remainder.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In advanced supply chain optimization, manufacturing, and packaging models, identifying the Greatest Common Divisor is a core component of calculating optimal batch sizes, cutting patterns, or unified shipping pallets.
 For example, a factory produces 250 units of Product A and 150 units of Product B. They need to pack them into identical master shipping crates so that every crate is full and contains only one type of product. The optimal crate size is the GCD of 250 and 150 (which is 50).

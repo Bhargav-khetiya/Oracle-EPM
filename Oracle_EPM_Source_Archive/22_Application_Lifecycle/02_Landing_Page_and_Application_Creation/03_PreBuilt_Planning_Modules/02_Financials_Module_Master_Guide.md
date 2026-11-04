@@ -1,4 +1,4 @@
-﻿# 💰 Financials Module — Complete Setup Guide
+﻿﻿# 💰 Financials Module — Complete Setup Guide
 ## Revenue, Expense, P&L, Balance Sheet, Cash Flow Planning
 
 > **Module:** Financials  
@@ -224,18 +224,18 @@ OFS_Total Account
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: What is the technical difference between Driver-Based Revenue Planning and Direct Entry in Financials?
+### Q1: What is the technical difference between Driver-Based Revenue Planning and Direct Entry in Financials—
 **Answer:**
 - **Driver-Based:** Calculates revenue dynamically using business drivers: $\text{Revenue} = \text{Volume} \times \text{Average Selling Price (ASP)}$. Planners enter drivers, and the system executes Calc Manager rules to compute gross revenue and discounts.
 - **Direct Entry:** Planners directly input currency numbers into account intersections.
 Both approaches can coexist within the same application by configuring the Plan Element dimension (OFS_Direct Input vs OFS_Calculated).
 
-### Q2: How does Rolling Forecast work in Financials, and how do you update the forecast horizon without rebuilding forms?
-**Answer:** Rolling Forecast leverages **Rolling Forecast Ranges** configured in Application â†’ Configure â†’ Financials â†’ Rolling Forecast Setup. You define the number of historical actual periods (e.g. trailing 12 months) and future forecast periods (e.g. forward 18 months). By updating the **Current Period** substitution variable (&CurMo), forms automatically roll forward dynamically, shifting the boundary between Actuals and Forecast without any manual form modifications.
+### Q2: How does Rolling Forecast work in Financials, and how do you update the forecast horizon without rebuilding forms—
+**Answer:** Rolling Forecast leverages **Rolling Forecast Ranges** configured in Application → Configure → Financials → Rolling Forecast Setup. You define the number of historical actual periods (e.g. trailing 12 months) and future forecast periods (e.g. forward 18 months). By updating the **Current Period** substitution variable (&CurMo), forms automatically roll forward dynamically, shifting the boundary between Actuals and Forecast without any manual form modifications.
 
-### Q3: Can custom corporate expense accounts be created outside the seeded OFS_Operating Expenses hierarchy?
+### Q3: Can custom corporate expense accounts be created outside the seeded OFS_Operating Expenses hierarchy—
 **Answer:** Yes. You can add custom parent and child accounts. However, best practice is to place custom expense accounts under the seeded parent OFS_Operating Expenses (or map them via shared members). Placing accounts outside the seeded tree prevents them from rolling into the out-of-the-box Income Statement forms, KPI ratios, and cash flow integration rules.
 
 ---

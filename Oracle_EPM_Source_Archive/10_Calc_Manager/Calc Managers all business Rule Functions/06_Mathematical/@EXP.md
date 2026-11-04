@@ -1,10 +1,10 @@
-# @EXP
+﻿# @EXP
 
 ## Overview
 
 `@EXP` is a **native Essbase mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates the **exponential value** of a given number, which mathematically means raising Euler's number ($e \approx 2.7182818$) to the power of the specified number ($e^x$).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In advanced statistical modeling, continuous compound interest, and probability distribution curves (like the Poisson distribution or Normal distribution), calculations rely heavily on the natural exponential base $e$.
 If a treasury department needs to calculate the continuous compounding future value of an asset ($A = Pe^{rt}$), they cannot use standard discrete compounding (`@COMPOUND`), and they cannot easily hardcode $e$ because EPM calculation scripts do not natively store Euler's constant to infinite precision. 

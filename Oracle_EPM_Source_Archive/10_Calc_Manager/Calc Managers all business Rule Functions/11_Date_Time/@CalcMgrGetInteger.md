@@ -1,10 +1,10 @@
-# @CalcMgrGetInteger
+﻿# @CalcMgrGetInteger
 
 ## Overview
 
 `@CalcMgrGetInteger` is a **custom Calc Manager numeric casting function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a double-precision floating-point number (e.g., `14.95`) and violently **truncates** it into a pure integer (e.g., `14`).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Essbase natively handles all data as 64-bit double-precision floating-point numbers. Even if you type `14` into a cell, Essbase stores it as `14.0`. Most of the time, this is fine. 
 However, when building complex algorithmic models involving array indexes, dynamic date manipulation (`YYYYMMDD`), or modular arithmetic, floating-point decimals cause catastrophic failures. If you try to extract the 3rd item from a custom array, but your math dynamically calculated the index as `3.14`, Java will crash because array indexes must be absolute whole integers.

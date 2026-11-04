@@ -1,11 +1,11 @@
-# @CalcMgrExcelEVEN
+﻿# @CalcMgrExcelEVEN
 
 ## Overview
 
 `@CalcMgrExcelEVEN` is a **custom Calc Manager mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `EVEN` function directly inside an Essbase calculation script. 
 It analyzes a number, and if that number is not an even integer, it forces the number **away from zero** to the nearest even integer.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard rounding (`@ROUND` or `@TRUNC`) typically rounds to the nearest whole integer. However, in physical logistics, packaging, and supply chain manufacturing, items are frequently bundled in pairs or produced in symmetrical batches. 
 For example, if you mathematically calculate that you need `4.2` pallets of raw material, standard rounding gives you `4`. The `CEILING` function might give you `5`. But if your trucks can only be loaded with a balanced, even number of pallets (e.g., 2, 4, 6, 8), you must forcefully round `4.2` up to `6`.

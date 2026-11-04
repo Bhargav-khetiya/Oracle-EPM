@@ -1,4 +1,4 @@
-# 04 — Flex forms, supporting detail, comments, and attachments
+﻿# 04 — Flex forms, supporting detail, comments, and attachments
 
 ## Core idea
 
@@ -35,9 +35,9 @@ Keep sensitive information out of comments and attachments unless the organizati
 
 ## Recall check
 
-1. Does a flex form delete cube data when a user removes a row from the worksheet? No; worksheet layout removal is not a data-clear operation.
-2. What is supporting detail for? Building a cell value from a hierarchy of text, values, and operators.
-3. What must be enabled for change history? Data auditing.
+1. Does a flex form delete cube data when a user removes a row from the worksheet— No; worksheet layout removal is not a data-clear operation.
+2. What is supporting detail for— Building a cell value from a hierarchy of text, values, and operators.
+3. What must be enabled for change history— Data auditing.
 
 **Teach-back:** Explain the difference between a comment, an attachment, supporting detail, and a change history record.
 

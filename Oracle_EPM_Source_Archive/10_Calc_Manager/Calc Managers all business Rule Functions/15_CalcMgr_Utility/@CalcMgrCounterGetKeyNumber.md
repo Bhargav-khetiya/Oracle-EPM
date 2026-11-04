@@ -1,10 +1,10 @@
-# @CalcMgrCounterGetKeyNumber
+﻿# @CalcMgrCounterGetKeyNumber
 
 ## Overview
 
 `@CalcMgrCounterGetKeyNumber` is a **custom Calc Manager memory retrieval function** in Oracle EPM Cloud (PBCS/EPBCS). It retrieves the numeric value currently stored inside a specific "key" (a named sub-bucket) located within a master hash map running in the background Java heap.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When developers build complex logic, they often use hash maps (key-value pairs) to track subtotals for dozens or hundreds of different members simultaneously. For example, a map named `"Department_Expenses"` might contain keys like `"IT"`, `"HR"`, and `"Finance"`, each holding their own running numeric total.
 Functions like `@CalcMgrCounterAddNumber` (which has variants for maps) allow you to put data *into* the map. But eventually, you need to extract that data and stamp it into an Essbase data block so users can report on it. 

@@ -1,10 +1,10 @@
-# @MIN
+﻿# @MIN
 
 ## Overview
 
 `@MIN` is a **native Essbase mathematical array function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates a specified range (array) of members and returns the **absolute lowest single numeric value** found across that entire dataset.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In corporate finance, supply chain modeling, and risk analysis, identifying the lowest point in a dataset is just as critical as finding the peak. An administrator might need to find the absolute lowest cash balance achieved during the year to determine if the company requires a short-term revolver loan, or they might need to identify the lowest-performing store in a region to flag it for management review.
 Without this function, you would be forced to write an infinitely complex nested `IF` structure: `IF(Jan < Feb AND Jan < Mar...)`. This is unmaintainable.

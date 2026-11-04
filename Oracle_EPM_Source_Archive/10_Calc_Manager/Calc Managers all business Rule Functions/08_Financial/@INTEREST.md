@@ -1,10 +1,10 @@
-# @INTEREST
+﻿# @INTEREST
 
 ## Overview
 
 `@INTEREST` is a **native Essbase financial function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates the total accumulated interest on a loan or savings balance over a specified range of periods, taking into account the principal balance, the interest rate, and a payment amount (for amortization).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In corporate finance, calculating the interest expense on debt schedules is mathematically complex because the principal balance changes every period (as payments are made). To manually calculate interest over a 5-year monthly forecast (60 periods), an administrator would have to write a rigid, recursive `CALCMODE(CELL)` loop.
 In Period 1, they would calculate `Interest = Principal * Rate`, then calculate the new `Ending Principal = Principal + Interest - Payment`. Then Period 2 would have to reference Period 1's Ending Principal. This is computationally expensive and highly prone to circular reference errors.

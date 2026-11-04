@@ -1,13 +1,13 @@
-# @ILDESCENDANTS
+﻿# @ILDESCENDANTS
 
 ## Overview
 
 `@ILDESCENDANTS` (Inclusive Level Descendants) is a **member selection function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It returns a specified member *and* all of its descendants down to a specific hierarchical level.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard functions like `@DESCENDANTS("Parent")` return every single child, grandchild, and great-grandchild down to Level 0. 
-But what if your hierarchy is deep, and you only want to process calculations down to the Regional level (Level 2), ignoring the individual Store level (Level 0)?
+But what if your hierarchy is deep, and you only want to process calculations down to the Regional level (Level 2), ignoring the individual Store level (Level 0)—
 - Calculating regional management bonus pools without overriding store-level bonuses.
 - Aggregating data up to a specific intermediate level.
 - Pushing data from a top-level node down to an intermediate tier without flooding the base levels.

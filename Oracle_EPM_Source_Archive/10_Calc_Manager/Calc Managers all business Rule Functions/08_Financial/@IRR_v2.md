@@ -1,10 +1,10 @@
-# @IRR
+﻿# @IRR
 
 ## Overview
 
 `@IRR` is a **financial function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that calculates the **Internal Rate of Return** for a series of cash flows. The IRR is the discount rate that makes the Net Present Value (NPV) of all cash flows (both positive and negative) from a particular investment equal to zero.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 IRR is a universally accepted metric used alongside NPV to evaluate and compare the profitability of investments:
 - **Project Selection**: If a project's IRR exceeds the company's hurdle rate (cost of capital), the project is typically approved.

@@ -1,10 +1,10 @@
-# @CalcMgrExcelDAYSINMONTH
+﻿# @CalcMgrExcelDAYSINMONTH
 
 ## Overview
 
 `@CalcMgrExcelDAYSINMONTH` is a **custom Calc Manager date evaluation function** in Oracle EPM Cloud (PBCS/EPBCS). It acts similarly to native Microsoft Excel date math, taking a specific Year and Month and returning the exact total number of calendar days in that month (e.g., returning `28`, `29`, `30`, or `31`).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When calculating daily prorations in financial models (e.g., daily interest expense, daily rent, or allocating an annual budget down to a daily curve), you must know exactly how many days are in the month being calculated. 
 If an employee is hired on March 15th, they worked 17 days out of a 31-day month. If they are hired on April 15th, they worked 16 days out of a 30-day month.

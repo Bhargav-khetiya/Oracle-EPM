@@ -1,10 +1,10 @@
-# @MBRPARENT
+﻿# @MBRPARENT
 
 ## Overview
 
 `@MBRPARENT` is a **member navigation function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns the **name of the parent member** for a given member. Unlike `@PARENTVAL` (which returns the parent's data value), `@MBRPARENT` returns the parent **member itself** as a member reference, which can then be used in cross-dimensional references, conditional checks, or other member-based operations.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In hierarchical planning applications, you often need to dynamically determine a member's parent to:
 - Build cross-dimensional references that navigate to the parent level

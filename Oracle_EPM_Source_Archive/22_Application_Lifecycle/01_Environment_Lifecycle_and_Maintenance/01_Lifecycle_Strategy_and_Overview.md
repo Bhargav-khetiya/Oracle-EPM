@@ -1,4 +1,4 @@
-﻿# Oracle EPM Cloud: Instance Remove, Recreate & Migration — Master Overview
+﻿﻿# Oracle EPM Cloud: Instance Remove, Recreate & Migration — Master Overview
 
 ## Purpose of This Guide
 
@@ -207,16 +207,16 @@ For a direct **step-by-step walkthrough** of copying Prod to Demo, jump to [01_P
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: When should an enterprise use cloneEnvironment versus the multi-step exportSnapshot + importSnapshot approach?
-**Answer:** Use cloneEnvironment when you need an exact, full-fidelity replica of Production in Test/Demoâ€”including Data Management staging tables, historical audit logs, and Job Console historyâ€”in a single unattended command. Use the snapshot approach (exportSnapshot $\to$ copySnapshotFromInstance $\to$ importSnapshot) when:
+### Q1: When should an enterprise use cloneEnvironment versus the multi-step exportSnapshot + importSnapshot approach—
+**Answer:** Use cloneEnvironment when you need an exact, full-fidelity replica of Production in Test/Demo—including Data Management staging tables, historical audit logs, and Job Console history—in a single unattended command. Use the snapshot approach (exportSnapshot $\to$ copySnapshotFromInstance $\to$ importSnapshot) when:
 1. Environments are in different monthly patch windows (Test on release .11, Prod on .10).
 2. You only want selective artifacts (e.g. metadata and rules without multi-year transactional data).
 3. You need to keep an offline archival .zip file for compliance or disaster recovery.
 
-### Q2: What happens if an administrator initiates a clone during the two-week monthly patch window between Test and Prod?
+### Q2: What happens if an administrator initiates a clone during the two-week monthly patch window between Test and Prod—
 **Answer:** The clone command fails immediately with a version incompatibility error (EPMLCM-14000: Release version mismatch). Oracle blocks cross-version cloning to prevent relational schema and Essbase outline corruption. The only supported method during this window is to migrate from the lower version to the higher version (Prod $\to$ Test) using snapshot copy, never higher to lower.
 
-### Q3: Can you execute environment lifecycle commands while end users are actively working in the system?
+### Q3: Can you execute environment lifecycle commands while end users are actively working in the system—
 **Answer:** Non-destructive commands (listFiles, listBackups) are safe during active hours. Destructive operations (ecreate, cloneEnvironment, estoreEnvironment, unDailyMaintenance) will forcefully terminate all active HTTP/Smart View sessions, abort running calculation scripts, rollback uncommitted data grids, and lock out users. Always broadcast an outage notification and set the system to Admin-only mode before executing lifecycle operations.

@@ -1,10 +1,10 @@
-# CLEARBLOCK
+﻿# CLEARBLOCK
 
 ## Overview
 
 `CLEARBLOCK` is a **block-level data management command** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that clears data within the **current data block** during calculation. Unlike `CLEARDATA` which targets specific members, `CLEARBLOCK` operates on the block currently being processed and provides options to clear different types of cells within that block.
 
-### Why Does This Command Exist?
+### Why Does This Command Exist—
 
 In BSO (Block Storage Option), data is stored in blocks defined by sparse dimension intersections. Within each block, data cells are categorized as:
 - **Input cells**: Values entered by users or loaded from external sources

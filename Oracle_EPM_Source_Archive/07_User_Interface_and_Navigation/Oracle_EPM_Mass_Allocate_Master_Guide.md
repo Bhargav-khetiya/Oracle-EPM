@@ -1,10 +1,10 @@
-# Oracle EPM: The Ultimate Deep-Dive Guide to Mass Allocate (Data Forms)
+﻿# Oracle EPM: The Ultimate Deep-Dive Guide to Mass Allocate (Data Forms)
 
 ---
 
 ## Table of Contents
-1. [Introduction: What is Mass Allocate?](#1-introduction-what-is-mass-allocate)
-2. [Why is Mass Allocate Needed?](#2-why-is-mass-allocate-needed)
+1. [Introduction: What is Mass Allocate—](#1-introduction-what-is-mass-allocate)
+2. [Why is Mass Allocate Needed—](#2-why-is-mass-allocate-needed)
 3. [Mass Allocate vs Grid Spread — The Fundamental Difference](#3-mass-allocate-vs-grid-spread--the-fundamental-difference)
 4. [How to Enable Mass Allocate (Administrator Setup)](#4-how-to-enable-mass-allocate-administrator-setup)
 5. [How Mass Allocate Works Internally — Architecture Deep Dive](#5-how-mass-allocate-works-internally--architecture-deep-dive)
@@ -35,7 +35,7 @@
 
 ---
 
-## 1. Introduction: What is Mass Allocate?
+## 1. Introduction: What is Mass Allocate—
 
 **Mass Allocate** is a powerful server-side data distribution feature in Oracle Cloud EPM (Planning, FreeForm, and related business processes) that takes a value from a **parent/summary/total cell** on a data form and distributes it directly to **all descendants in the database** — including children and intersections that are **NOT visible on the current form grid**.
 
@@ -58,7 +58,7 @@ Think of it this way: A CFO enters `$50,000,000` as the company-wide revenue tar
 
 ---
 
-## 2. Why is Mass Allocate Needed?
+## 2. Why is Mass Allocate Needed—
 
 ### The Business Problem Grid Spread Cannot Solve
 
@@ -96,13 +96,13 @@ This is the most important distinction to understand. These two features look si
 | Aspect | Grid Spread | Mass Allocate |
 |:---|:---|:---|
 | **Execution location** | Client-side (browser/Excel) | **Server-side (Essbase)** |
-| **Writes to database when?** | Only after user clicks Save | **Immediately on execution** |
+| **Writes to database when—** | Only after user clicks Save | **Immediately on execution** |
 | **Target scope** | ONLY visible cells on the grid | **ALL descendants in the database** |
-| **Target cells must be on the form?** | ✅ Yes — mandatory | ❌ No — distributes to hidden members |
-| **Respects form security?** | ✅ Yes — skips read-only cells | ❌ **No — bypasses form security** |
-| **Can be undone?** | ✅ Yes — before saving | ❌ **No — irreversible once executed** |
-| **Requires special role?** | ❌ No — standard user access | ✅ **Yes — Mass Allocate role required** |
-| **Intermediate generations required on form?** | ✅ Yes — all levels must be visible | ❌ No — writes directly to level-0 |
+| **Target cells must be on the form—** | ✅ Yes — mandatory | ❌ No — distributes to hidden members |
+| **Respects form security—** | ✅ Yes — skips read-only cells | ❌ **No — bypasses form security** |
+| **Can be undone—** | ✅ Yes — before saving | ❌ **No — irreversible once executed** |
+| **Requires special role—** | ❌ No — standard user access | ✅ **Yes — Mass Allocate role required** |
+| **Intermediate generations required on form—** | ✅ Yes — all levels must be visible | ❌ No — writes directly to level-0 |
 | **Spread patterns** | Proportional, Even, Fill | Proportional, Even, Fill + **Relational Spread** |
 | **Custom Spread Patterns** | ✅ Supported | ✅ Supported |
 | **Performance impact** | Minimal (client-side math) | ⚠️ **Can be heavy** (creates data blocks in Essbase) |
@@ -162,15 +162,15 @@ Mass Allocate requires **TWO** prerequisites — both must be in place:
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│  GATE 1: Does the user have the Mass Allocate ROLE?     │
+│  GATE 1: Does the user have the Mass Allocate ROLE—     │
 │  ✅ Yes → Proceed                                       │
 │  ❌ No  → Option is greyed out / hidden                 │
 ├─────────────────────────────────────────────────────────┤
-│  GATE 2: Is "Enable Mass Allocate" checked on the FORM?│
+│  GATE 2: Is "Enable Mass Allocate" checked on the FORM—│
 │  ✅ Yes → Proceed                                       │
 │  ❌ No  → Option is not available on this form          │
 ├─────────────────────────────────────────────────────────┤
-│  GATE 3: Is "Disable Spreading" UNCHECKED in SV Options?│
+│  GATE 3: Is "Disable Spreading" UNCHECKED in SV Options—│
 │  ✅ Yes → Proceed (Smart View)                          │
 │  ❌ No  → Blocked in Smart View                         │
 └─────────────────────────────────────────────────────────┘
@@ -290,9 +290,9 @@ This is the feature that makes Mass Allocate uniquely powerful — see [Section 
 
 | Aspect | Proportional | Evenly Split | Fill | Relational |
 |:---|:---|:---|:---|:---|
-| **Uses existing target data?** | ✅ Yes | ❌ No | ❌ No | ❌ No (uses separate source) |
-| **Uses external reference data?** | ❌ No | ❌ No | ❌ No | ✅ Yes |
-| **Available in Grid Spread?** | ✅ Yes | ✅ Yes | ✅ Yes | ❌ **No — Mass Allocate only** |
+| **Uses existing target data—** | ✅ Yes | ❌ No | ❌ No | ❌ No (uses separate source) |
+| **Uses external reference data—** | ❌ No | ❌ No | ❌ No | ✅ Yes |
+| **Available in Grid Spread—** | ✅ Yes | ✅ Yes | ✅ Yes | ❌ **No — Mass Allocate only** |
 | **Result at parent** | Equals entered total | Equals entered total | SUM of fills | Equals entered total |
 | **Best for** | Seasonal adjustments | New items, flat distributions | Fixed recurring costs | Historical-driver budgeting |
 
@@ -300,15 +300,15 @@ This is the feature that makes Mass Allocate uniquely powerful — see [Section 
 
 ## 7. Relational Spread — The Unique Mass Allocate Feature
 
-### What is Relational Spread?
+### What is Relational Spread—
 
 Relational Spread is a spreading pattern **exclusive to Mass Allocate** that distributes data using values from a **completely different cross-dimensional location** as the weighting basis.
 
-### Why is it Needed?
+### Why is it Needed—
 
 **Scenario:** You want to spread the FY2026 Budget total across departments using FY2025 Actuals as the distribution pattern.
 
-With Proportional Spread, the system uses the **existing FY2026 Budget values** as weights — but what if FY2026 Budget is empty or has incorrect preliminary values?
+With Proportional Spread, the system uses the **existing FY2026 Budget values** as weights — but what if FY2026 Budget is empty or has incorrect preliminary values—
 
 With Relational Spread, you tell the system: *"Use FY2025 Actuals as the weight pattern to distribute the FY2026 Budget target."*
 
@@ -377,7 +377,7 @@ You can **remap any dimension** to a different member, creating a cross-dimensio
 
 ## 8. Custom Spread Patterns
 
-### What is a Custom Spread Pattern?
+### What is a Custom Spread Pattern—
 
 Beyond the four built-in patterns, Oracle EPM allows administrators to define **Custom Spread Patterns** — weighted distribution templates with specific ratios for each target member.
 
@@ -460,8 +460,8 @@ Mass Allocate writes data **directly to Essbase**. It targets **level-0 (leaf) S
 | Property | Mass Allocate Behavior |
 |:---|:---|
 | **Data Storage** | Store |
-| **Can be a SOURCE cell?** | ✅ Yes |
-| **Can be a TARGET cell?** | ✅ Yes — Mass Allocate writes data directly to Store members |
+| **Can be a SOURCE cell—** | ✅ Yes |
+| **Can be a TARGET cell—** | ✅ Yes — Mass Allocate writes data directly to Store members |
 
 This is the standard, expected behavior. Mass Allocate's ultimate target is always level-0 Store members.
 
@@ -470,8 +470,8 @@ This is the standard, expected behavior. Mass Allocate's ultimate target is alwa
 | Property | Mass Allocate Behavior |
 |:---|:---|
 | **Data Storage** | Dynamic Calc |
-| **Can be a SOURCE cell?** | ✅ Yes — Mass Allocate reads the dynamic value and uses it as the starting point |
-| **Can be a TARGET cell?** | ❌ **No** — Dynamic Calc members don't store data; Mass Allocate skips them and writes to their Store-type level-0 descendants |
+| **Can be a SOURCE cell—** | ✅ Yes — Mass Allocate reads the dynamic value and uses it as the starting point |
+| **Can be a TARGET cell—** | ❌ **No** — Dynamic Calc members don't store data; Mass Allocate skips them and writes to their Store-type level-0 descendants |
 
 **The Flow:** When you select a Dynamic Calc parent and run Mass Allocate, the system reads its dynamically calculated value, then **traverses down the hierarchy** until it finds Store-type level-0 members. Data is written ONLY to those level-0 members.
 
@@ -480,13 +480,13 @@ This is the standard, expected behavior. Mass Allocate's ultimate target is alwa
 | Property | Mass Allocate Behavior |
 |:---|:---|
 | **Data Storage** | Dynamic Calc and Store |
-| **Can be a TARGET cell?** | ⚠️ **Risky** — Mass Allocate may write to the stored portion, but the member formula overwrites the stored value on the next calculation or retrieval |
+| **Can be a TARGET cell—** | ⚠️ **Risky** — Mass Allocate may write to the stored portion, but the member formula overwrites the stored value on the next calculation or retrieval |
 
 **Verdict:** Avoid targeting "Dynamic Calc and Store" members. The write may succeed, but the formula recalculates and overwrites the value, making the allocation appear to "vanish."
 
 ### 10.4 Summary Table
 
-| Data Storage Property | Can be SOURCE? | Can be TARGET? | Notes |
+| Data Storage Property | Can be SOURCE— | Can be TARGET— | Notes |
 |:---|:---:|:---:|:---|
 | **Store** | ✅ | ✅ | The ideal and intended target |
 | **Dynamic Calc** | ✅ | ❌ | Skipped — system writes to Store descendants |
@@ -523,7 +523,7 @@ Total Entity (Dynamic Calc)  ← User selects this, enters $12M
         └── China (Store)           ← ✅ Mass Allocate writes here
 ```
 
-### What if ALL Descendants are Dynamic Calc?
+### What if ALL Descendants are Dynamic Calc—
 
 If there are **no Store-type level-0 members** in the entire descendant tree, Mass Allocate has **no valid target cells**. The operation will fail or produce no results.
 
@@ -535,8 +535,8 @@ If there are **no Store-type level-0 members** in the entire descendant tree, Ma
 
 | Rule | Details |
 |:---|:---|
-| **Can you Mass Allocate TO a shared member?** | ⚠️ **Conditional** — Not recommended. Writing to a shared hierarchy's branch can cause unpredictable behavior |
-| **Where does the data go?** | If the write succeeds, data is written to the **base (primary) member** |
+| **Can you Mass Allocate TO a shared member—** | ⚠️ **Conditional** — Not recommended. Writing to a shared hierarchy's branch can cause unpredictable behavior |
+| **Where does the data go—** | If the write succeeds, data is written to the **base (primary) member** |
 | **Best Practice** | Always perform Mass Allocate from the **primary (non-shared) hierarchy** — never from alternate/shared hierarchies |
 
 ### Why Shared Members are Risky for Mass Allocate
@@ -573,11 +573,11 @@ Alternate Hierarchy (⚠️ Avoid for Mass Allocate):
 
 | Aspect | Details |
 |:---|:---|
-| **Can Mass Allocate source from a Label-Only member?** | ❌ **No** — Label-Only members hold no data to distribute |
-| **Can Mass Allocate write to a Label-Only member?** | ❌ **No** — Label-Only members have no data storage |
-| **Why?** | Label-Only members are structural placeholders with zero data intersections in the cube |
+| **Can Mass Allocate source from a Label-Only member—** | ❌ **No** — Label-Only members hold no data to distribute |
+| **Can Mass Allocate write to a Label-Only member—** | ❌ **No** — Label-Only members have no data storage |
+| **Why—** | Label-Only members are structural placeholders with zero data intersections in the cube |
 
-### What Happens If You Try?
+### What Happens If You Try—
 
 The system treats the cell as **invalid for data input**. The Mass Allocate dialog will either:
 *   Not appear (the cell is not recognized as a valid source).
@@ -628,9 +628,9 @@ Mass Allocate distributes only to Revenue, COGS, and Operating Expenses. Gross M
 
 | Aspect | Details |
 |:---|:---|
-| **Does Mass Allocate overwrite Supporting Detail values?** | ⚠️ **Yes, partially** — Mass Allocate writes the new value directly to the Essbase cell, but the Supporting Detail structure (stored relationally) remains disconnected |
-| **What happens to the Supporting Detail?** | The Supporting Detail entries still exist in the relational database, but their sum no longer matches the Essbase cell value. This creates a **data discrepancy** |
-| **Does Mass Allocate skip Supporting Detail cells?** | Unlike Grid Spread (which skips them), Mass Allocate writes directly to Essbase and **does NOT check for Supporting Detail** |
+| **Does Mass Allocate overwrite Supporting Detail values—** | ⚠️ **Yes, partially** — Mass Allocate writes the new value directly to the Essbase cell, but the Supporting Detail structure (stored relationally) remains disconnected |
+| **What happens to the Supporting Detail—** | The Supporting Detail entries still exist in the relational database, but their sum no longer matches the Essbase cell value. This creates a **data discrepancy** |
+| **Does Mass Allocate skip Supporting Detail cells—** | Unlike Grid Spread (which skips them), Mass Allocate writes directly to Essbase and **does NOT check for Supporting Detail** |
 
 ### Best Practice
 
@@ -740,7 +740,7 @@ If Mass Allocate tries to distribute data to `Entity = "US Operations"` × `Curr
 
 | Aspect | Behavior |
 |:---|:---|
-| **Mass Allocate supported?** | ✅ Fully supported — this is the native environment |
+| **Mass Allocate supported—** | ✅ Fully supported — this is the native environment |
 | **Data write target** | Level-0 stored data blocks |
 | **Block creation** | Essbase **creates new data blocks** if they don't exist for target intersections |
 | **After execution** | Parent blocks marked dirty; may need manual or automatic aggregation |
@@ -749,15 +749,15 @@ If Mass Allocate tries to distribute data to `Entity = "US Operations"` × `Curr
 
 | Aspect | Behavior |
 |:---|:---|
-| **Mass Allocate supported?** | ❌ **Not natively supported** on ASO-backed forms |
-| **Why?** | ASO cubes are designed for read-only aggregation and reporting. Direct user data input (including Mass Allocate) is not supported on ASO forms |
+| **Mass Allocate supported—** | ❌ **Not natively supported** on ASO-backed forms |
+| **Why—** | ASO cubes are designed for read-only aggregation and reporting. Direct user data input (including Mass Allocate) is not supported on ASO forms |
 | **Workaround** | Perform Mass Allocate on the **BSO input cube**, then use **Smart Push** or **DataMaps** to push results to the ASO reporting cube |
 
 ### 19.3 Hybrid BSO Mode ✅
 
 | Aspect | Behavior |
 |:---|:---|
-| **Mass Allocate supported?** | ✅ **Fully supported** — operates on the BSO write-back layer |
+| **Mass Allocate supported—** | ✅ **Fully supported** — operates on the BSO write-back layer |
 | **Advantage** | Dynamic sparse aggregation means parents update instantly after write-back |
 | **After execution** | Parent aggregates update automatically via Calc-on-the-Fly |
 
@@ -765,8 +765,8 @@ If Mass Allocate tries to distribute data to `Entity = "US Operations"` × `Curr
 
 | Feature | Pure ASO | Traditional BSO | Hybrid BSO |
 |:---|:---|:---|:---|
-| **Mass Allocate supported?** | ❌ No | ✅ Yes | ✅ Yes |
-| **Block creation?** | N/A | ✅ Creates new blocks | ✅ Creates new blocks |
+| **Mass Allocate supported—** | ❌ No | ✅ Yes | ✅ Yes |
+| **Block creation—** | N/A | ✅ Creates new blocks | ✅ Creates new blocks |
 | **Post-execution rollup** | N/A | Manual calc needed | Automatic (Calc-on-the-Fly) |
 | **Performance** | N/A | Depends on block density | Optimized |
 
@@ -808,7 +808,7 @@ Mass Allocate writes directly to Essbase. If target data blocks **don't exist** 
 
 | Concept | Details |
 |:---|:---|
-| **What is a data block?** | Every unique combination of stored sparse dimension members forms a data block. Each block contains all dense dimension members |
+| **What is a data block—** | Every unique combination of stored sparse dimension members forms a data block. Each block contains all dense dimension members |
 | **Missing Block Rule** | Essbase does NOT create empty blocks — if no data exists at an intersection, no block exists |
 | **The Catch** | Mass Allocate may try to write to intersections where no block exists — forcing Essbase to create them |
 
@@ -1182,24 +1182,24 @@ When a form is embedded as a **grid component inside a Dashboard 2.0**, Mass All
 └──────────────────────────────────────────────────────────────┘
 ```
 
-### Decision Tree: Which Spreading Tool to Use?
+### Decision Tree: Which Spreading Tool to Use—
 
 ```
                     ┌─────────────────────────┐
                     │ Need to distribute       │
-                    │ data from a parent?       │
+                    │ data from a parent—       │
                     └───────────┬──────────────┘
                                 │
                     ┌───────────▼──────────────┐
                     │ Are ALL target cells      │
-                    │ visible on the form?      │
+                    │ visible on the form—      │
                     └───────────┬──────────────┘
                            ╱         ╲
                          Yes           No
                          ╱               ╲
              ┌──────────▼──────┐   ┌──────▼───────────────┐
              │ Need to undo     │   │ Do you need a cross-  │
-             │ before saving?   │   │ dimensional driver?   │
+             │ before saving—   │   │ dimensional driver—   │
              └───────┬─────────┘   └──────┬───────────────┘
                   ╱     ╲               ╱       ╲
                 Yes       No          Yes         No

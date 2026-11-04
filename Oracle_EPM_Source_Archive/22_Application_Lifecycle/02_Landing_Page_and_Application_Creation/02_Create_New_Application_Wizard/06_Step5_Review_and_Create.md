@@ -1,4 +1,4 @@
-﻿# 🚀 Step 5: Review & Create
+﻿﻿# 🚀 Step 5: Review & Create
 ## Final Review Screen and Application Creation
 
 > **Wizard Step:** 5 of 5 (Final Step)  
@@ -71,31 +71,31 @@ Before clicking **Create**, verify each section:
 ### ✅ General Properties Verification
 | Check | Question | If Wrong... |
 |-------|----------|-------------|
-| ☐ | Is the Application Name correct and following naming conventions? | Click **Back** to Step 1 |
-| ☐ | Is the Description accurate? | Click **Back** to Step 1 (or edit later) |
-| ☐ | Is the Application Type correct (Planning vs FreeForm)? | Click **Back** to Step 1 |
+| ☐ | Is the Application Name correct and following naming conventions— | Click **Back** to Step 1 |
+| ☐ | Is the Description accurate— | Click **Back** to Step 1 (or edit later) |
+| ☐ | Is the Application Type correct (Planning vs FreeForm)— | Click **Back** to Step 1 |
 
 ### ✅ Enabled Features Verification
 | Check | Question | If Wrong... |
 |-------|----------|-------------|
-| ☐ | Are the correct modules enabled? | Click **Back** to Step 2 |
-| ☐ | Are unnecessary modules disabled? | Click **Back** to Step 2 |
+| ☐ | Are the correct modules enabled— | Click **Back** to Step 2 |
+| ☐ | Are unnecessary modules disabled— | Click **Back** to Step 2 |
 | ☐ | Remember: you can enable more modules later, but cannot disable | N/A |
 
 ### ✅ Calendar Verification
 | Check | Question | If Wrong... |
 |-------|----------|-------------|
-| ☐ | Is the Start Year early enough for historical data? | Click **Back** to Step 3 |
-| ☐ | Is the End Year far enough for your planning horizon? | Click **Back** (or extend later) |
-| ☐ | Is the Fiscal Year Start Month correct? | Click **Back** to Step 3 |
-| ☐ | Is the Period Type correct (12/13/Custom)? | Click **Back** to Step 3 |
+| ☐ | Is the Start Year early enough for historical data— | Click **Back** to Step 3 |
+| ☐ | Is the End Year far enough for your planning horizon— | Click **Back** (or extend later) |
+| ☐ | Is the Fiscal Year Start Month correct— | Click **Back** to Step 3 |
+| ☐ | Is the Period Type correct (12/13/Custom)— | Click **Back** to Step 3 |
 
 ### ✅ Currency Verification
 | Check | Question | If Wrong... |
 |-------|----------|-------------|
-| ☐ | Is the Main Currency your primary reporting currency? | Click **Back** to Step 4 |
-| ☐ | Is Multi-Currency enabled if needed? | Click **Back** to Step 4 |
-| ☐ | Are all required currencies added? | Click **Back** (or add later) |
+| ☐ | Is the Main Currency your primary reporting currency— | Click **Back** to Step 4 |
+| ☐ | Is Multi-Currency enabled if needed— | Click **Back** to Step 4 |
+| ☐ | Are all required currencies added— | Click **Back** (or add later) |
 
 ---
 
@@ -109,7 +109,7 @@ Before clicking **Create**, verify each section:
 
 ### Create Button Behavior:
 1. Click **Create**
-2. Confirmation dialog may appear: *"Are you sure you want to create this application?"*
+2. Confirmation dialog may appear: *"Are you sure you want to create this application—*
 3. Click **OK/Yes** to confirm
 4. Progress indicator appears showing creation stages
 5. Application creation takes **5-20 minutes** depending on:
@@ -201,9 +201,9 @@ Upon successful creation, you are automatically redirected to the **EPM Applicat
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: What exact technical operations occur in the background when you click "Create"?
+### Q1: What exact technical operations occur in the background when you click "Create"—
 **Answer:** The server executes a 5-phase provisioning pipeline:
 1. Provisions the relational schema tables for forms, security, and task lists.
 2. Initializes the physical Essbase cubes (Plan1, etc.) and outlines on disk.
@@ -211,7 +211,7 @@ Upon successful creation, you are automatically redirected to the **EPM Applicat
 4. Generates system rate tables and default currency exchange rules.
 5. Performs the initial full Database Restructure and deploys security access control.
 
-### Q2: What should an administrator do if application creation fails with an internal timeout error?
+### Q2: What should an administrator do if application creation fails with an internal timeout error—
 **Answer:** Wait 15 minutes. Check the application URL. If the Landing Page is still displayed or the environment is unresponsive, log in via EPM Automate and check status:
 `cmd
 epmautomate login admin@company.com "C:\EPM\pass.epw" "https://epm.oraclecloud.com"
@@ -219,7 +219,7 @@ epmautomate recreate -f
 `
 Wipe the instance clean and retry. Timeouts typically occur if underlying cloud storage is undergoing maintenance or if an invalid reserved keyword was used in naming.
 
-### Q3: Can the configuration choices displayed on the Review screen be exported for documentation?
+### Q3: Can the configuration choices displayed on the Review screen be exported for documentation—
 **Answer:** The web wizard does not offer a "Print to PDF" button. Best practice is to take a screenshot of the Step 5 Review screen and archive it in your project repository as part of the formal System Architecture Document (SAD) sign-off.
 
 ---

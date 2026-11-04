@@ -1,4 +1,4 @@
-# 🧠 Oracle Cloud EPM: Master Twisted Questions & Deep Architectural Scenarios
+﻿# 🧠 Oracle Cloud EPM: Master Twisted Questions & Deep Architectural Scenarios
 ## The Definitive Guide to Real-World Edge Cases, High-Stakes Dilemmas & Technical Traps
 
 > **Target Audience:** Lead EPM Architects, Principal Implementation Consultants, Certification Candidates & Senior DevOps Engineers  
@@ -29,7 +29,7 @@
 
 ---
 
-### Q1: Can you convert an existing Standard Planning application to FreeForm (or vice versa) if the client realizes they don't want standard dimensions?
+### Q1: Can you convert an existing Standard Planning application to FreeForm (or vice versa) if the client realizes they don't want standard dimensions—
 
 #### 🎯 The Scenario
 A client initially implemented a Standard Planning application with the 6 standard dimensions (`Account`, `Entity`, `Period`, `Year`, `Scenario`, `Version`). After 6 months, they decide their specialized actuarial and underwriting models do not fit this rigid structure and demand to switch the application to **FreeForm** to remove the mandatory dimensions.
@@ -57,10 +57,10 @@ To achieve this transition without losing business logic:
 
 ---
 
-### Q2: A junior administrator accidentally clicked "CREATE" (Vision Sample App) on a fresh Production pod. Can the process be stopped midway by closing the browser or killing the session?
+### Q2: A junior administrator accidentally clicked "CREATE" (Vision Sample App) on a fresh Production pod. Can the process be stopped midway by closing the browser or killing the session—
 
 #### 🎯 The Scenario
-During initial provisioning of a Production instance, an administrator accidentally clicks the black **[CREATE]** button under "Create a sample application" instead of the **[START]** button. Panicking, they immediately close the browser tab, terminate their VPN, and clear the browser cache. Did they stop the sample application from being created?
+During initial provisioning of a Production instance, an administrator accidentally clicks the black **[CREATE]** button under "Create a sample application" instead of the **[START]** button. Panicking, they immediately close the browser tab, terminate their VPN, and clear the browser cache. Did they stop the sample application from being created—
 
 #### 💣 The Naive (Wrong) Answer
 *"Yes, closing the browser aborts the HTTP POST request, stopping the application creation process on the server."*
@@ -87,10 +87,10 @@ Once completed, the Vision sample application fully occupies the instance. Any a
 
 ---
 
-### Q3: Can an application name be changed after creation (e.g. from `PlanDev` to `PlanProd`), and what happens to internal artifact references if you rename the snapshot `.zip` file?
+### Q3: Can an application name be changed after creation (e.g. from `PlanDev` to `PlanProd`), and what happens to internal artifact references if you rename the snapshot `.zip` file—
 
 #### 🎯 The Scenario
-An implementation team created an application named `PlanDev` in the Development pod. When preparing to promote to Production, the executive sponsor demands that the application must be named `PlanProd`. The administrator renames the LCM snapshot file from `PlanDev_Snapshot.zip` to `PlanProd_Snapshot.zip` and imports it into the clean Production pod. What happens?
+An implementation team created an application named `PlanDev` in the Development pod. When preparing to promote to Production, the executive sponsor demands that the application must be named `PlanProd`. The administrator renames the LCM snapshot file from `PlanDev_Snapshot.zip` to `PlanProd_Snapshot.zip` and imports it into the clean Production pod. What happens—
 
 #### 💣 The Naive (Wrong) Answer
 *"The application in Production will be created with the name of the zip file (`PlanProd`)."*
@@ -123,14 +123,14 @@ If an application must be renamed during cross-pod migration:
 
 ---
 
-### Q4: What is the exact technical difference between `recreate -f` and `recreate -f removeAll=true`? If you run `removeAll=true`, can Oracle Support recover your instance?
+### Q4: What is the exact technical difference between `recreate -f` and `recreate -f removeAll=true`— If you run `removeAll=true`, can Oracle Support recover your instance—
 
 #### 🎯 The Scenario
 A disaster recovery drill requires wiping a Sandbox environment. An automation engineer executes:
 ```cmd
 epmautomate recreate -f removeAll=true
 ```
-Two hours later, management realizes that a critical unversioned calculation script was on that pod and was never exported to GitHub. They immediately open an urgent Severity 1 ticket with Oracle Cloud Support asking to restore the pod from last night's Object Storage maintenance backup. Will Oracle Support be able to recover it?
+Two hours later, management realizes that a critical unversioned calculation script was on that pod and was never exported to GitHub. They immediately open an urgent Severity 1 ticket with Oracle Cloud Support asking to restore the pod from last night's Object Storage maintenance backup. Will Oracle Support be able to recover it—
 
 #### 💣 The Naive (Wrong) Answer
 *"Yes, Oracle Cloud maintains automated 60-day immutable disaster recovery backups in OCI Object Storage that cannot be touched by tenant administrators."*
@@ -165,10 +165,10 @@ Two hours later, management realizes that a critical unversioned calculation scr
 
 ---
 
-### Q5: Can you create an application with Sandboxing disabled, and enable it later on a specific cube? What is the permanent impact on block size and outline design?
+### Q5: Can you create an application with Sandboxing disabled, and enable it later on a specific cube— What is the permanent impact on block size and outline design—
 
 #### 🎯 The Scenario
-A project team creates a Planning application without Sandboxing to keep things simple. Later, during budget season, the FP&A director requests private sandbox modeling ("What-if" private versions) for regional managers on the `OEP_FS` cube. Can the administrator enable Sandboxing on that cube?
+A project team creates a Planning application without Sandboxing to keep things simple. Later, during budget season, the FP&A director requests private sandbox modeling ("What-if" private versions) for regional managers on the `OEP_FS` cube. Can the administrator enable Sandboxing on that cube—
 
 #### 💣 The Naive (Wrong) Answer
 *"Yes, just navigate to Application → Overview → Cubes, select OEP_FS, and check the 'Enable Sandboxing' checkbox."*
@@ -189,10 +189,10 @@ If you enable Sandboxing at cube creation:
 
 ---
 
-### Q6: Why does application creation fail with cryptic errors when using names like `CALC`, `ALL`, `DEFAULT`, `DATABASE`, or names exceeding 8 characters?
+### Q6: Why does application creation fail with cryptic errors when using names like `CALC`, `ALL`, `DEFAULT`, `DATABASE`, or names exceeding 8 characters—
 
 #### 🎯 The Scenario
-A customer creates a new Financial Planning application and names it `FINANCE_PLAN` (12 characters). The wizard throws a validation error. They change it to `CALC` (4 characters). The wizard accepts the input on Step 1, but on Step 5 ("Create"), the backend job crashes with an internal database exception. Why?
+A customer creates a new Financial Planning application and names it `FINANCE_PLAN` (12 characters). The wizard throws a validation error. They change it to `CALC` (4 characters). The wizard accepts the input on Step 1, but on Step 5 ("Create"), the backend job crashes with an internal database exception. Why—
 
 #### 🔬 The Deep Technical Reality
 Application names in Oracle Cloud EPM are subject to two strict layers of constraints:
@@ -210,10 +210,10 @@ Application names in Oracle Cloud EPM are subject to two strict layers of constr
 
 ---
 
-### Q7: If a company has a Standard Cloud EPM subscription, can they enable Strategic Modeling or create 3 custom cubes? What is the licensing enforcement mechanism?
+### Q7: If a company has a Standard Cloud EPM subscription, can they enable Strategic Modeling or create 3 custom cubes— What is the licensing enforcement mechanism—
 
 #### 🎯 The Scenario
-A customer purchased **Oracle Cloud EPM Standard Edition**. The administrator reads that Strategic Modeling is a great tool for long-range planning and attempts to enable it via `Application → Configure → Strategic Modeling → Enable Features`. What happens?
+A customer purchased **Oracle Cloud EPM Standard Edition**. The administrator reads that Strategic Modeling is a great tool for long-range planning and attempts to enable it via `Application → Configure → Strategic Modeling → Enable Features`. What happens—
 
 #### 💣 The Naive (Wrong) Answer
 *"The software allows you to enable it, but Oracle will send an audit invoice at the end of the year for license true-up."*
@@ -228,10 +228,10 @@ A customer purchased **Oracle Cloud EPM Standard Edition**. The administrator re
 
 ---
 
-### Q8: What happens if two Service Administrators simultaneously launch the Application Creation Wizard from two different browser sessions on the same blank pod?
+### Q8: What happens if two Service Administrators simultaneously launch the Application Creation Wizard from two different browser sessions on the same blank pod—
 
 #### 🎯 The Scenario
-Two administrators are assigned to set up a new environment. Admin A opens the wizard at 9:00 AM. Admin B opens the wizard at 9:02 AM. Admin A fills out the wizard and clicks **Create** at 9:05 AM. Admin B clicks **Create** with different settings at 9:06 AM. What happens?
+Two administrators are assigned to set up a new environment. Admin A opens the wizard at 9:00 AM. Admin B opens the wizard at 9:02 AM. Admin A fills out the wizard and clicks **Create** at 9:05 AM. Admin B clicks **Create** with different settings at 9:06 AM. What happens—
 
 #### 🔬 The Deep Technical Reality
 1. Admin A's transaction acquires an exclusive row-level lock on the core tenancy database record (`EPM_TENANCY_STATUS = CREATING`).
@@ -246,7 +246,7 @@ Two administrators are assigned to set up a new environment. Admin A opens the w
 
 ---
 
-### Q9: The client created an application with a 12-month calendar (Jan–Dec). Six months into production, the executive board changes the fiscal year-end to June (July–June fiscal year). Can you change Fiscal Year First Month post-creation?
+### Q9: The client created an application with a 12-month calendar (Jan–Dec). Six months into production, the executive board changes the fiscal year-end to June (July–June fiscal year). Can you change Fiscal Year First Month post-creation—
 
 #### 🎯 The Scenario
 A retail client originally set up their application with:
@@ -276,13 +276,13 @@ The ONLY way to change fiscal calendar alignment:
 
 ---
 
-### Q10: Can you switch an application from a 12-period monthly calendar to a 13-period (4-4-5 or 5-4-4) calendar after application creation?
+### Q10: Can you switch an application from a 12-period monthly calendar to a 13-period (4-4-5 or 5-4-4) calendar after application creation—
 
 #### 🎯 The Scenario
-A manufacturing company created an application using standard 12 monthly periods. After 1 year, the supply chain team complains that month-length variations (28 to 31 days) distort weekly production forecasting. They demand switching to a **13-period calendar (4-4-5 weekly distribution)**. Can you add `Period13` to the Period dimension?
+A manufacturing company created an application using standard 12 monthly periods. After 1 year, the supply chain team complains that month-length variations (28 to 31 days) distort weekly production forecasting. They demand switching to a **13-period calendar (4-4-5 weekly distribution)**. Can you add `Period13` to the Period dimension—
 
 #### 💣 The Naive (Wrong) Answer
-*"Yes, go to Application → Overview → Dimensions → Period, click the '+' button, and add a 13th member named 'P13' under YearTotal."*
+*"Yes, go to Application → Overview → Dimensions → Period, click the '→ button, and add a 13th member named 'P13' under YearTotal."*
 
 #### 🔬 The Deep Technical Reality
 **NO. In Standard Planning, the Period dimension structure is strictly generated and protected by the system.**
@@ -293,10 +293,10 @@ A manufacturing company created an application using standard 12 monthly periods
 
 ---
 
-### Q11: An application was built as "Single Currency". Later, the company acquires an entity in the UK and needs reporting in GBP and EUR. Can you toggle Multi-Currency on?
+### Q11: An application was built as "Single Currency". Later, the company acquires an entity in the UK and needs reporting in GBP and EUR. Can you toggle Multi-Currency on—
 
 #### 🎯 The Scenario
-A US-based startup implements Cloud EPM Planning with **Single Currency (USD)**. Two years later, they acquire subsidiaries in London (GBP) and Frankfurt (EUR). The CFO demands multi-currency financial reporting with currency translation rules. Can you enable Multi-Currency on the existing application?
+A US-based startup implements Cloud EPM Planning with **Single Currency (USD)**. Two years later, they acquire subsidiaries in London (GBP) and Frankfurt (EUR). The CFO demands multi-currency financial reporting with currency translation rules. Can you enable Multi-Currency on the existing application—
 
 #### 💣 The Naive (Wrong) Answer
 *"Go to Application Settings, toggle 'Enable Multi-Currency' to Yes, and add GBP and EUR to the Currency dimension."*
@@ -319,13 +319,13 @@ There are only two architectural options:
 
 ---
 
-### Q12: Can you add past historical years (e.g. FY20, FY21) if the application Start Year was configured as FY24?
+### Q12: Can you add past historical years (e.g. FY20, FY21) if the application Start Year was configured as FY24—
 
 #### 🎯 The Scenario
 An administrator sets up an application with:
 - Start Year: **FY24**
 - Number of Years: **5** (FY24 to FY28)
-During the second month of implementation, executive management demands loading 4 years of historical actuals (FY20 through FY23) for 5-year trend analysis. Can the administrator add `FY20` through `FY23` to the Year dimension?
+During the second month of implementation, executive management demands loading 4 years of historical actuals (FY20 through FY23) for 5-year trend analysis. Can the administrator add `FY20` through `FY23` to the Year dimension—
 
 #### 💣 The Naive (Wrong) Answer
 *"Yes, open the Year dimension in Dimension Management, click 'Add Member', and add FY20, FY21, FY22, FY23 above FY24."*
@@ -349,10 +349,10 @@ You must recreate the application:
 
 ---
 
-### Q13: In Multi-Currency applications, why does entering data into the `USD` currency member directly fail or get overwritten after Currency Translation runs?
+### Q13: In Multi-Currency applications, why does entering data into the `USD` currency member directly fail or get overwritten after Currency Translation runs—
 
 #### 🎯 The Scenario
-A user working on a UK entity (`UK_Operations`, whose default currency is `GBP`) opens an ad-hoc grid in Smart View. They change their POV Currency to `USD` and type `100,000` into Sales Revenue. The cell saves successfully. That night, the automated Currency Translation rule runs. The next morning, the value in `USD` has changed to `130,000` (the converted equivalent of GBP). Why was their manual input overwritten?
+A user working on a UK entity (`UK_Operations`, whose default currency is `GBP`) opens an ad-hoc grid in Smart View. They change their POV Currency to `USD` and type `100,000` into Sales Revenue. The cell saves successfully. That night, the automated Currency Translation rule runs. The next morning, the value in `USD` has changed to `130,000` (the converted equivalent of GBP). Why was their manual input overwritten—
 
 #### 🔬 The Deep Technical Reality
 - In Cloud EPM Multi-Currency architecture:
@@ -366,10 +366,10 @@ A user working on a UK entity (`UK_Operations`, whose default currency is `GBP`)
 
 ---
 
-### Q14: What is the difference between Currency Triangulation enabled vs disabled, and when does European EMU regulation mandate it?
+### Q14: What is the difference between Currency Triangulation enabled vs disabled, and when does European EMU regulation mandate it—
 
 #### 🎯 The Scenario
-An international company configures Multi-Currency. In Step 4 of the wizard, they see the checkbox **"Enable Currency Triangulation"**. What is the mathematical and compliance impact of this setting?
+An international company configures Multi-Currency. In Step 4 of the wizard, they see the checkbox **"Enable Currency Triangulation"**. What is the mathematical and compliance impact of this setting—
 
 #### 🔬 The Deep Technical Reality
 - **Direct Currency Conversion (Triangulation Disabled):**
@@ -386,7 +386,7 @@ An international company configures Multi-Currency. In Step 4 of the wizard, the
 
 ---
 
-### Q15: What happens if a developer renames or deletes a seeded member (e.g. `OWP_Salary` in Workforce or `OFS_Cash` in Financials)? Can it be restored?
+### Q15: What happens if a developer renames or deletes a seeded member (e.g. `OWP_Salary` in Workforce or `OFS_Cash` in Financials)— Can it be restored—
 
 #### 🎯 The Scenario
 A developer customizing the Workforce module decides that their company uses the term "Base Wage" instead of "Salary". In Dimension Management, they rename the seeded member `OWP_Salary` to `Base_Wage`. The next morning, users report that running the "Calculate Compensation" business rule throws a catastrophic calculation engine failure.
@@ -402,7 +402,7 @@ A developer customizing the Workforce module decides that their company uses the
    `Error: 1200315 - Member OWP_Salary does not exist in cube OEP_WFP.`
 4. Furthermore, **Smart Push** definitions that synchronize labor costs to Financials (`OEP_WFP` $\to$ `OEP_FS`) map `OWP_Salary` to `OFS_Salaries`. With `OWP_Salary` missing, the Smart Push mapping fails.
 
-#### ⚠️ Can it be restored by re-running "Enable Features"?
+#### ⚠️ Can it be restored by re-running "Enable Features"—
 **NO.** Re-running Enable Features checks if the module is already enabled and skips seeded member generation if the parent hierarchy already exists.
 
 #### 🛠️ The Architect's Golden Rule
@@ -412,10 +412,10 @@ A developer customizing the Workforce module decides that their company uses the
 
 ---
 
-### Q16: In Workforce, you selected "Job-based" planning during Enable Features. The client later demands individual "Employee-based" planning. Can you switch the planning approach?
+### Q16: In Workforce, you selected "Job-based" planning during Enable Features. The client later demands individual "Employee-based" planning. Can you switch the planning approach—
 
 #### 🎯 The Scenario
-During initial configuration of Workforce, the team chooses **Job-based** planning to accelerate deployment. One year later, HR demands detailed named employee planning (**Employee-based**). Can the administrator change the Planning Approach?
+During initial configuration of Workforce, the team chooses **Job-based** planning to accelerate deployment. One year later, HR demands detailed named employee planning (**Employee-based**). Can the administrator change the Planning Approach—
 
 #### 💣 The Naive (Wrong) Answer
 *"Go to Application → Configure → Workforce → Enable Features, change the radio button from Job-based to Employee-based, and click Enable."*
@@ -452,10 +452,10 @@ If you must switch from Job-based to Employee-based:
 
 ---
 
-### Q17: In Capital module, why does the Depreciation rule recalculate prior, closed periods when run for the current budget year?
+### Q17: In Capital module, why does the Depreciation rule recalculate prior, closed periods when run for the current budget year—
 
 #### 🎯 The Scenario
-A company has closed Actuals for `FY25` (Jan through Dec). While planning `FY26` budget, an analyst runs the **Calculate Capital** rule for existing fixed assets. Unexpectedly, the historical depreciation expense numbers for `FY25` change, corrupting audited financial reports. Why did this happen?
+A company has closed Actuals for `FY25` (Jan through Dec). While planning `FY26` budget, an analyst runs the **Calculate Capital** rule for existing fixed assets. Unexpectedly, the historical depreciation expense numbers for `FY25` change, corrupting audited financial reports. Why did this happen—
 
 #### 🔬 The Deep Technical Reality
 - The Capital module calculates depreciation using continuous asset lifecycle schedules based on:
@@ -475,10 +475,10 @@ A company has closed Actuals for `FY25` (Jan through Dec). While planning `FY26`
 
 ---
 
-### Q18: In Projects module, what is the exact execution order of the "Tri-Sync" mechanism between Projects, Workforce, Capital, and Financials? What happens if you run Project-to-Financials sync first?
+### Q18: In Projects module, what is the exact execution order of the "Tri-Sync" mechanism between Projects, Workforce, Capital, and Financials— What happens if you run Project-to-Financials sync first—
 
 #### 🎯 The Scenario
-An organization uses four integrated modules: Projects (`OEP_PJC`), Workforce (`OEP_WFP`), Capital (`OEP_CPX`), and Financials (`OEP_FS`). An automated nightly batch job runs data synchronizations in arbitrary order. Why do Financials reports show stale, inaccurate project costs?
+An organization uses four integrated modules: Projects (`OEP_PJC`), Workforce (`OEP_WFP`), Capital (`OEP_CPX`), and Financials (`OEP_FS`). An automated nightly batch job runs data synchronizations in arbitrary order. Why do Financials reports show stale, inaccurate project costs—
 
 #### 🔬 The Deep Technical Reality
 The four modules operate in a strict **hierarchical data dependency flow (Tri-Sync)**:
@@ -520,10 +520,10 @@ Automated batch pipelines must strictly execute in this 6-step sequence:
 
 ---
 
-### Q19: Strategic Modeling models reside in `.alc` files. Why does standard Smart View Ad-Hoc analysis directly against `OEP_FS` not display Strategic Modeling numbers?
+### Q19: Strategic Modeling models reside in `.alc` files. Why does standard Smart View Ad-Hoc analysis directly against `OEP_FS` not display Strategic Modeling numbers—
 
 #### 🎯 The Scenario
-Corporate FP&A creates a 10-year M&A acquisition model in Strategic Modeling. The CFO opens Excel Smart View, connects to the Financials cube (`OEP_FS`), and performs an ad-hoc query on the target entity. The cells return `#MISSING`. The CFO accuses the admin of losing the data. Where is the data?
+Corporate FP&A creates a 10-year M&A acquisition model in Strategic Modeling. The CFO opens Excel Smart View, connects to the Financials cube (`OEP_FS`), and performs an ad-hoc query on the target entity. The cells return `#MISSING`. The CFO accuses the admin of losing the data. Where is the data—
 
 #### 🔬 The Deep Technical Reality
 - **Strategic Modeling has an entirely separate computational engine:**
@@ -537,7 +537,7 @@ Corporate FP&A creates a 10-year M&A acquisition model in Strategic Modeling. Th
 
 ---
 
-### Q20: Can you disable a Planning Module after enabling it (e.g. disable Capital or Workforce)?
+### Q20: Can you disable a Planning Module after enabling it (e.g. disable Capital or Workforce)—
 
 #### 🎯 The Scenario
 A client enables Financials, Workforce, and Capital during Phase 1. During Phase 2, they realize that fixed asset tracking will remain in their SAP ERP and they no longer want the Capital module. They ask the administrator to disable Capital to save system resources.
@@ -557,7 +557,7 @@ To cleanly retire an enabled module without rebuilding the entire application:
 
 ---
 
-### Q21: In Workforce, why does a newly hired employee assigned to Entity `E01` fail to push to Financials when running Smart Push?
+### Q21: In Workforce, why does a newly hired employee assigned to Entity `E01` fail to push to Financials when running Smart Push—
 
 #### 🎯 The Scenario
 An HR planner adds a new position in Workforce under `New York Sales (E01)`. They click Save, which triggers Smart Push to update Financials. Financials does not update. The job console shows Smart Push failed with:
@@ -572,10 +572,10 @@ An HR planner adds a new position in Workforce under `New York Sales (E01)`. The
 
 ---
 
-### Q22: In Sales Planning, what happens if top-down quota adjustments exceed 100% of the target waterfall?
+### Q22: In Sales Planning, what happens if top-down quota adjustments exceed 100% of the target waterfall—
 
 #### 🎯 The Scenario
-A VP of Sales uses the Sales Planning module to allocate a corporate revenue target of $100M down to 5 regional directors. Through manual adjustments, the sum of regional quotas totals $108M. What happens during the quota approval workflow?
+A VP of Sales uses the Sales Planning module to allocate a corporate revenue target of $100M down to 5 regional directors. Through manual adjustments, the sum of regional quotas totals $108M. What happens during the quota approval workflow—
 
 #### 🔬 The Deep Technical Reality
 - Sales Planning includes embedded quota waterfall integrity validation rules.
@@ -588,10 +588,10 @@ A VP of Sales uses the Sales Planning module to allocate a corporate revenue tar
 
 ---
 
-### Q23: In FreeForm, can you create a BSO cube with ZERO Dense dimensions? Why does Essbase reject an outline with all Sparse dimensions?
+### Q23: In FreeForm, can you create a BSO cube with ZERO Dense dimensions— Why does Essbase reject an outline with all Sparse dimensions—
 
 #### 🎯 The Scenario
-A database architect migrating a custom reporting cube to FreeForm decides that all 8 dimensions represent distinct analytical facets (Region, Product, Channel, Customer, Project, Currency, Scenario, Year). To maximize flexibility, they mark **all 8 dimensions as Sparse**. They click "Refresh Database". The refresh fails with a fatal Essbase outline error. Why?
+A database architect migrating a custom reporting cube to FreeForm decides that all 8 dimensions represent distinct analytical facets (Region, Product, Channel, Customer, Project, Currency, Scenario, Year). To maximize flexibility, they mark **all 8 dimensions as Sparse**. They click "Refresh Database". The refresh fails with a fatal Essbase outline error. Why—
 
 #### 💣 The Naive (Wrong) Answer
 *"Essbase BSO doesn't care whether dimensions are Dense or Sparse; Dense/Sparse is just a performance tuning option."*
@@ -626,7 +626,7 @@ A database architect migrating a custom reporting cube to FreeForm decides that 
 
 ---
 
-### Q24: Can you import an on-premises Essbase outline (`.otl`) that contains duplicate member names into FreeForm?
+### Q24: Can you import an on-premises Essbase outline (`.otl`) that contains duplicate member names into FreeForm—
 
 #### 🎯 The Scenario
 An organization is migrating an on-premises Essbase 11.1.2.4 outline to Cloud FreeForm. The outline has duplicate member names (e.g. member `Other` exists under both `Operating_Expenses` and `Cost_of_Goods_Sold`). During FreeForm creation, the outline load fails with:
@@ -643,10 +643,10 @@ An organization is migrating an on-premises Essbase 11.1.2.4 outline to Cloud Fr
 
 ---
 
-### Q25: Why does `@XREF` or `@CALCMODE(BLOCK)` cause a Hybrid BSO cube to revert to Classic BSO calculation mode, and what is the performance penalty?
+### Q25: Why does `@XREF` or `@CALCMODE(BLOCK)` cause a Hybrid BSO cube to revert to Classic BSO calculation mode, and what is the performance penalty—
 
 #### 🎯 The Scenario
-A team converts their FreeForm BSO cube to **Hybrid BSO** to get sub-second aggregation times on sparse dimensions. An analyst adds a member formula to calculate consolidated intercompany revenue using `@XREF` to pull currency rates from another cube. Suddenly, retrieval times for all users jump from **0.4 seconds to 45 seconds**. Why?
+A team converts their FreeForm BSO cube to **Hybrid BSO** to get sub-second aggregation times on sparse dimensions. An analyst adds a member formula to calculate consolidated intercompany revenue using `@XREF` to pull currency rates from another cube. Suddenly, retrieval times for all users jump from **0.4 seconds to 45 seconds**. Why—
 
 #### 🔬 The Deep Technical Reality
 - **How Hybrid BSO Works:**
@@ -663,10 +663,10 @@ A team converts their FreeForm BSO cube to **Hybrid BSO** to get sub-second aggr
 
 ---
 
-### Q26: Can a FreeForm application have 12 cubes, and can they all be Aggregate Storage (ASO)?
+### Q26: Can a FreeForm application have 12 cubes, and can they all be Aggregate Storage (ASO)—
 
 #### 🎯 The Scenario
-A business intelligence team wants to build a pure enterprise reporting data mart in Cloud EPM with 12 distinct analytical cubes (Sales, Inventory, Supply Chain, HR, Logistics...). Can all 12 cubes be configured as **Aggregate Storage (ASO)**?
+A business intelligence team wants to build a pure enterprise reporting data mart in Cloud EPM with 12 distinct analytical cubes (Sales, Inventory, Supply Chain, HR, Logistics...). Can all 12 cubes be configured as **Aggregate Storage (ASO)**—
 
 #### 🔬 The Deep Technical Reality
 **YES.**
@@ -677,7 +677,7 @@ A business intelligence team wants to build a pure enterprise reporting data mar
 
 ---
 
-### Q27: Why does a Data Map fail between two FreeForm cubes with the error "Unmapped Required Dimensions"?
+### Q27: Why does a Data Map fail between two FreeForm cubes with the error "Unmapped Required Dimensions"—
 
 #### 🎯 The Scenario
 In a FreeForm application, Cube 1 (`SalesBSO`) has 8 dimensions: `Account`, `Entity`, `Period`, `Year`, `Product`, `Channel`, `Version`, `Scenario`.
@@ -689,17 +689,17 @@ When the admin builds a Data Map to push data from `SalesBSO` to `SalesASO`, the
 - In standard Planning modules, the system automatically resolves dimensional mismatches using predefined module rules.
 - In FreeForm, there are no predefined rules.
 - If Source Cube has dimension $D_{\text{source}}$ that does not exist in Target Cube:
-  - Essbase cannot determine what to do with the data across $D_{\text{source}}$. Should it sum all channels? Push only `Total Channel`? Or ignore it?
+  - Essbase cannot determine what to do with the data across $D_{\text{source}}$. Should it sum all channels— Push only `Total Channel`— Or ignore it—
 - **The Fix:** In the Data Map definition, you must explicitly configure a **Source Filter**:
   - Restrict `Channel` to a single specific member (e.g. `Total Channel` or `Channel_NA`).
   - Data Maps cannot automatically aggregate on-the-fly during a push; you must select a single slice to map into the target.
 
 ---
 
-### Q28: In FreeForm ASO cubes, can you run Calc Manager business rules written in Essbase Calculation Script syntax?
+### Q28: In FreeForm ASO cubes, can you run Calc Manager business rules written in Essbase Calculation Script syntax—
 
 #### 🎯 The Scenario
-A developer writes a custom allocation script in Calc Manager using standard Essbase syntax (`FIX(...)`, `CALC DIM(...)`, `DATACOPY...`) and attempts to deploy it against a FreeForm ASO cube. The deployment fails with a compilation error. Why?
+A developer writes a custom allocation script in Calc Manager using standard Essbase syntax (`FIX(...)`, `CALC DIM(...)`, `DATACOPY...`) and attempts to deploy it against a FreeForm ASO cube. The deployment fails with a compilation error. Why—
 
 #### 🔬 The Deep Technical Reality
 **ASO cubes DO NOT UNDERSTAND Essbase Calculation Script language.**
@@ -718,7 +718,7 @@ A developer writes a custom allocation script in Calc Manager using standard Ess
 
 ---
 
-### Q29: Why does `importSnapshot` fail with error `EPMIE-00070: Failed to find user` when migrating between environments, and how do you resolve it without creating users manually?
+### Q29: Why does `importSnapshot` fail with error `EPMIE-00070: Failed to find user` when migrating between environments, and how do you resolve it without creating users manually—
 
 #### 🎯 The Scenario
 An administrator takes an Artifact Snapshot from Production and imports it into a newly provisioned Sandbox environment using:
@@ -746,14 +746,14 @@ epmautomate importSnapshot "Prod_Snapshot" importUsers=true
 
 ---
 
-### Q30: During the monthly Oracle patch window (1st Friday for Test, 3rd Friday for Prod), why does importing a snapshot from Test to Prod fail with version mismatch, and can you force it?
+### Q30: During the monthly Oracle patch window (1st Friday for Test, 3rd Friday for Prod), why does importing a snapshot from Test to Prod fail with version mismatch, and can you force it—
 
 #### 🎯 The Scenario
 On the second week of the month, the development team finishes testing an urgent bug fix in the **Test** pod. The Test pod was upgraded on the 1st Friday of the month to release `26.11`. The **Production** pod will not be upgraded until the 3rd Friday of the month and remains on release `26.10`. The admin exports the snapshot from Test and attempts to import it into Prod. The import fails with:
 `EPMLCM-14000: Migration failed due to incompatible version. Source is 26.11.x, Target is 26.10.x.`
 
 #### 💣 The Twisted Question
-*"Can you unzip the snapshot, open `PackageInfo.xml`, change `<ReleaseVersion>26.11.00</ReleaseVersion>` to `26.10.00`, re-zip, and bypass the check?"*
+*"Can you unzip the snapshot, open `PackageInfo.xml`, change `<ReleaseVersion>26.11.00</ReleaseVersion>` to `26.10.00`, re-zip, and bypass the check—*
 
 #### 🔬 The Deep Technical Reality
 **DO NOT DO THIS IN PRODUCTION. It can cause severe database corruption.**
@@ -773,10 +773,10 @@ On the second week of the month, the development team finishes testing an urgent
 
 ---
 
-### Q31: Can you restore a single form or a single business rule from a 60-day-old Object Storage backup without wiping or reverting the active production database?
+### Q31: Can you restore a single form or a single business rule from a 60-day-old Object Storage backup without wiping or reverting the active production database—
 
 #### 🎯 The Scenario
-A business user accidentally deletes a critical executive dashboard form in Production. The form was created 3 weeks ago, and no recent manual LCM export exists. The only backup containing that form is the automated Daily Maintenance snapshot from 20 days ago stored in Oracle Object Storage. The admin cannot run `restoreEnvironment` because that would wipe 20 days of live production transactional data! How do you recover that single form?
+A business user accidentally deletes a critical executive dashboard form in Production. The form was created 3 weeks ago, and no recent manual LCM export exists. The only backup containing that form is the automated Daily Maintenance snapshot from 20 days ago stored in Oracle Object Storage. The admin cannot run `restoreEnvironment` because that would wipe 20 days of live production transactional data! How do you recover that single form—
 
 #### 🔬 The Deep Technical Reality
 You can recover single artifacts using the **Selective Sandbox Isolation Pattern**:
@@ -812,7 +812,7 @@ You can recover single artifacts using the **Selective Sandbox Isolation Pattern
 
 ---
 
-### Q32: Why does an LCM snapshot import fail when the source environment has renamed seeded period members?
+### Q32: Why does an LCM snapshot import fail when the source environment has renamed seeded period members—
 
 #### 🎯 The Scenario
 An administrator renames the seeded member `YearTotal` to `Total_Year_Old` and creates a new custom calculated member called `YearTotal`. When exporting this snapshot and importing it into another clean environment, the import crashes with:
@@ -831,7 +831,7 @@ An administrator renames the seeded member `YearTotal` to `Total_Year_Old` and c
 
 ---
 
-### Q33: What is the 2 GB Web UI upload limit vs the EPM Automate streaming capability?
+### Q33: What is the 2 GB Web UI upload limit vs the EPM Automate streaming capability—
 
 #### 🎯 The Scenario
 An enterprise snapshot with 10 years of data is 14 GB in size. The administrator attempts to upload the zip file via the Web UI (`Tools → Migration → Snapshots → Upload`). The browser tab freezes at 2 GB and fails with `HTTP 413: Request Entity Too Large`.
@@ -847,7 +847,7 @@ An enterprise snapshot with 10 years of data is 14 GB in size. The administrator
 
 ---
 
-### Q34: If a snapshot contains Data Management staging tables, why does importing it into an environment with different data sources corrupt the staging repository?
+### Q34: If a snapshot contains Data Management staging tables, why does importing it into an environment with different data sources corrupt the staging repository—
 
 #### 🎯 The Scenario
 A team clones Production into Demo. Production had Data Management connected to an on-premises ERP via the EPM Integration Agent. The demo environment does not have access to that corporate network. When users run Data Management in Demo, jobs hang and the staging table throws SQL database timeout errors.
@@ -866,7 +866,7 @@ A team clones Production into Demo. Production had Data Management connected to 
 
 ---
 
-### Q35: Why does an imported application show corrupted, unformatted form grids with `#ERROR` or blank cells?
+### Q35: Why does an imported application show corrupted, unformatted form grids with `#ERROR` or blank cells—
 
 #### 🎯 The Scenario
 A team migrates forms and dashboards from Dev to Prod. The import report shows 100% success. When planners open the "Revenue Planning" form in Prod, every cell displays `#ERROR` or the grid fails to render.
@@ -879,7 +879,7 @@ A team migrates forms and dashboards from Dev to Prod. The import report shows 1
 
 ---
 
-### Q36: What happens if you import a snapshot while users are actively entering data in Smart View?
+### Q36: What happens if you import a snapshot while users are actively entering data in Smart View—
 
 #### 🎯 The Scenario
 An administrator imports an updated snapshot into Production during business hours without kicking users out. Multiple planners are actively submitting data in Smart View.
@@ -895,11 +895,11 @@ An administrator imports an updated snapshot into Production during business hou
 
 ---
 
-### Q37: What is the exact technical difference between a "Cube Refresh" and a "Full Restructure", and when does Essbase trigger a Dense Restructure?
+### Q37: What is the exact technical difference between a "Cube Refresh" and a "Full Restructure", and when does Essbase trigger a Dense Restructure—
 
 #### 🎯 The Scenario
 An administrator adds 5 new cost centers to the `Entity` dimension (Sparse) and refreshes the database. The refresh completes in **45 seconds**.
-The next day, they add 1 new measure to the `Account` dimension (Dense) and refresh the database. The refresh takes **2 hours and 15 minutes**. Why did adding 1 account take 180 times longer than adding 5 entities?
+The next day, they add 1 new measure to the `Account` dimension (Dense) and refresh the database. The refresh takes **2 hours and 15 minutes**. Why did adding 1 account take 180 times longer than adding 5 entities—
 
 #### 🔬 The Deep Technical Reality
 Essbase has two completely different restructuring algorithms:
@@ -925,12 +925,12 @@ Essbase has two completely different restructuring algorithms:
 
 ---
 
-### Q38: What happens if an administrator changes a dimension from Sparse to Dense without checking available disk space?
+### Q38: What happens if an administrator changes a dimension from Sparse to Dense without checking available disk space—
 
 #### 🎯 The Scenario
 A cube has 40 GB of stored data blocks on disk. An architect changes a dimension with 10 members from Sparse to Dense. They execute Database Refresh. After 1 hour, the refresh crashes with:
 `Error: 1008106 - Cannot write to page file. Disk is full.`
-What is the state of the database?
+What is the state of the database—
 
 #### 🔬 The Deep Technical Reality
 **The database is corrupted and offline.**
@@ -944,14 +944,14 @@ What is the state of the database?
 
 ---
 
-### Q39: Why does a formula on a Dynamic Calc Sparse parent in a Hybrid BSO cube return incorrect values or `#MISSING`?
+### Q39: Why does a formula on a Dynamic Calc Sparse parent in a Hybrid BSO cube return incorrect values or `#MISSING`—
 
 #### 🎯 The Scenario
 In a Hybrid BSO cube, an analyst writes a member formula on a Dynamic Calc sparse parent member (`Total_Adjusted_Sales`):
 ```essbase
 "Total_Adjusted_Sales" = "Sales" * 1.05;
 ```
-When querying in Smart View, the cell returns `#MISSING`, even though `Sales` has data. Why?
+When querying in Smart View, the cell returns `#MISSING`, even though `Sales` has data. Why—
 
 #### 🔬 The Deep Technical Reality
 - In Hybrid BSO, sparse parents are calculated dynamically by the in-memory aggregation engine.
@@ -960,14 +960,14 @@ When querying in Smart View, the cell returns `#MISSING`, even though `Sales` ha
 
 ---
 
-### Q40: What are the 4 data clearing modes in `clearcube`, and which one actually reclaims physical disk space?
+### Q40: What are the 4 data clearing modes in `clearcube`, and which one actually reclaims physical disk space—
 
 #### 🎯 The Scenario
 A database grows to 80 GB. The administrator runs:
 ```cmd
 epmautomate clearcube Plan1 all
 ```
-The command finishes successfully. All data is gone. The administrator checks the cube storage size in Application Overview. The cube still shows **80 GB of disk space consumed!** Why was no disk space freed?
+The command finishes successfully. All data is gone. The administrator checks the cube storage size in Application Overview. The cube still shows **80 GB of disk space consumed!** Why was no disk space freed—
 
 #### 🔬 The Deep Technical Reality
 The 4 modes of `clearcube`:
@@ -985,10 +985,10 @@ The 4 modes of `clearcube`:
 
 ---
 
-### Q41: Why does an ASO cube experience severe query performance degradation after multiple incremental data loads, and how does Slice Merging resolve it?
+### Q41: Why does an ASO cube experience severe query performance degradation after multiple incremental data loads, and how does Slice Merging resolve it—
 
 #### 🎯 The Scenario
-An ASO reporting cube receives automated hourly incremental data feeds. After 3 weeks (500 data loads), users complain that Smart View retrieve times have slowed from **0.2 seconds to 35 seconds**. Why?
+An ASO reporting cube receives automated hourly incremental data feeds. After 3 weeks (500 data loads), users complain that Smart View retrieve times have slowed from **0.2 seconds to 35 seconds**. Why—
 
 #### 🔬 The Deep Technical Reality
 - Aggregate Storage (ASO) architecture stores each incremental data load as an independent, physical **Data Slice** on disk.
@@ -1005,14 +1005,14 @@ An ASO reporting cube receives automated hourly incremental data feeds. After 3 
 
 ---
 
-### Q42: What is the Solve Order property, and why does a conflicting Solve Order between Account and Period dimensions produce mathematically false financial ratios?
+### Q42: What is the Solve Order property, and why does a conflicting Solve Order between Account and Period dimensions produce mathematically false financial ratios—
 
 #### 🎯 The Scenario
 In a Planning cube:
 - `Gross_Margin_%` (Account) has formula: `Gross_Margin / Revenue`
 - `Q1` (Period) has member calculation: `Jan + Feb + Mar`
 In January, GM% is 20%. In February, GM% is 20%. In March, GM% is 20%.
-In Smart View, `Q1` displays **60% Gross Margin**! Why did the system calculate 60% instead of 20%?
+In Smart View, `Q1` displays **60% Gross Margin**! Why did the system calculate 60% instead of 20%—
 
 #### 🔬 The Deep Technical Reality
 **This is the classic Solve Order Conflict.**
@@ -1040,10 +1040,10 @@ In Smart View, `Q1` displays **60% Gross Margin**! Why did the system calculate 
 
 ---
 
-### Q43: Can you change a member's Data Storage property from `Store` to `Dynamic Calc` if it already contains transactional data? What happens to the historical data?
+### Q43: Can you change a member's Data Storage property from `Store` to `Dynamic Calc` if it already contains transactional data— What happens to the historical data—
 
 #### 🎯 The Scenario
-An administrator realizes that a parent account `Total_Opex` is set to `Store` and takes too long to calculate. They change its Data Storage property to `Dynamic Calc` and refresh the database. The next week, the client asks to revert `Total_Opex` back to `Store`. The admin changes it back to `Store` and refreshes. Where is the historical data?
+An administrator realizes that a parent account `Total_Opex` is set to `Store` and takes too long to calculate. They change its Data Storage property to `Dynamic Calc` and refresh the database. The next week, the client asks to revert `Total_Opex` back to `Store`. The admin changes it back to `Store` and refreshes. Where is the historical data—
 
 #### 🔬 The Deep Technical Reality
 **The historical data is PERMANENTLY DESTROYED.**
@@ -1059,7 +1059,7 @@ An administrator realizes that a parent account `Total_Opex` is set to `Store` a
 
 ---
 
-### Q44: Can two different scheduled batch jobs run `epmautomate login` using the same service administrator account simultaneously on two different automation servers?
+### Q44: Can two different scheduled batch jobs run `epmautomate login` using the same service administrator account simultaneously on two different automation servers—
 
 #### 🎯 The Scenario
 A company has two automation servers:
@@ -1069,7 +1069,7 @@ Both servers execute scripts that start with:
 ```cmd
 epmautomate login svc_epm@company.com "C:\EPM\pass.epw" "https://epm.oraclecloud.com"
 ```
-Server A logs in at 2:00 AM. Server B logs in at 2:01 AM. At 2:05 AM, Server A finishes and issues `epmautomate logout`. Does Server A's logout terminate Server B's active session?
+Server A logs in at 2:00 AM. Server B logs in at 2:01 AM. At 2:05 AM, Server A finishes and issues `epmautomate logout`. Does Server A's logout terminate Server B's active session—
 
 #### 🔬 The Deep Technical Reality
 **NO. Server B's session remains active and unaffected.**
@@ -1080,7 +1080,7 @@ Server A logs in at 2:00 AM. Server B logs in at 2:01 AM. At 2:05 AM, Server A f
 
 ---
 
-### Q45: Why does an encrypted password file (`.epw`) created on Server A fail with `EPMCSS-20071` or decryption failure when copied to Server B?
+### Q45: Why does an encrypted password file (`.epw`) created on Server A fail with `EPMCSS-20071` or decryption failure when copied to Server B—
 
 #### 🎯 The Scenario
 A DevOps engineer generates an encrypted password file on their local laptop:
@@ -1100,7 +1100,7 @@ They copy `admin.epw` to the production automation server (`Server B`). When the
 
 ---
 
-### Q46: Why does a Windows Batch script report success (`%ERRORLEVEL% = 0`) even when an EPM Automate command like `importSnapshot` encountered hundreds of artifact errors?
+### Q46: Why does a Windows Batch script report success (`%ERRORLEVEL% = 0`) even when an EPM Automate command like `importSnapshot` encountered hundreds of artifact errors—
 
 #### 🎯 The Scenario
 An automated deployment batch script contains:
@@ -1112,7 +1112,7 @@ IF %ERRORLEVEL% NEQ 0 (
 )
 echo Deployment Succeeded!
 ```
-The script outputs `Deployment Succeeded!` and sends a success notification to the DevOps Slack channel. However, when users log in, none of the new forms exist. The Migration Status report shows 450 artifact failures! Why did `%ERRORLEVEL%` return 0?
+The script outputs `Deployment Succeeded!` and sends a success notification to the DevOps Slack channel. However, when users log in, none of the new forms exist. The Migration Status report shows 450 artifact failures! Why did `%ERRORLEVEL%` return 0—
 
 #### 🔬 The Deep Technical Reality
 - EPM Automate returns exit code `0` as long as the **API command itself was successfully accepted and executed by the server**, regardless of whether individual artifacts inside the snapshot failed validation!
@@ -1136,10 +1136,10 @@ if ($LASTEXITCODE -ne 0 -or $log -match "Failed" -or $log -match "EPMIE-" -or $l
 
 ---
 
-### Q47: What happens if the Daily Maintenance window begins while an automated script is in the middle of a 2-hour data load or snapshot upload?
+### Q47: What happens if the Daily Maintenance window begins while an automated script is in the middle of a 2-hour data load or snapshot upload—
 
 #### 🎯 The Scenario
-The Daily Maintenance window for an environment is configured for **02:00 UTC**. At 01:15 UTC, an automated batch script starts a large 10-year historical data load expected to take 90 minutes. At 02:00 UTC, the data load is at 60%. What happens?
+The Daily Maintenance window for an environment is configured for **02:00 UTC**. At 01:15 UTC, an automated batch script starts a large 10-year historical data load expected to take 90 minutes. At 02:00 UTC, the data load is at 60%. What happens—
 
 #### 🔬 The Deep Technical Reality
 **Daily Maintenance has ABSOLUTE, UNCOMPROMISING PRIORITY.**
@@ -1158,10 +1158,10 @@ The Daily Maintenance window for an environment is configured for **02:00 UTC**.
 
 ---
 
-### Q48: How does `copySnapshotFromInstance` avoid the 2 GB web UI limit and local disk bottlenecks?
+### Q48: How does `copySnapshotFromInstance` avoid the 2 GB web UI limit and local disk bottlenecks—
 
 #### 🎯 The Scenario
-A customer needs to migrate a 35 GB Production application to their Test pod. The administrator's company laptop has a 20 Mbps home internet connection. Downloading 35 GB would take 5 hours, and uploading it would take 8 hours. How does `copySnapshotFromInstance` solve this?
+A customer needs to migrate a 35 GB Production application to their Test pod. The administrator's company laptop has a 20 Mbps home internet connection. Downloading 35 GB would take 5 hours, and uploading it would take 8 hours. How does `copySnapshotFromInstance` solve this—
 
 #### 🔬 The Deep Technical Reality
 ```
@@ -1192,14 +1192,14 @@ A customer needs to migrate a 35 GB Production application to their Test pod. Th
 
 ---
 
-### Q49: If an automation server reboots during `cloneEnvironment`, does the clone process abort or continue? How do you monitor its status?
+### Q49: If an automation server reboots during `cloneEnvironment`, does the clone process abort or continue— How do you monitor its status—
 
 #### 🎯 The Scenario
 A team executes a full environment clone:
 ```cmd
 epmautomate cloneEnvironment svc_admin pass.epw "https://epm-test.oraclecloud.com" sourceEnvironment=PROD
 ```
-The command begins executing (expected duration: 2 hours). Thirty minutes in, the local Windows automation server reboots due to a scheduled Windows update. Did the clone fail?
+The command begins executing (expected duration: 2 hours). Thirty minutes in, the local Windows automation server reboots due to a scheduled Windows update. Did the clone fail—
 
 #### 🔬 The Deep Technical Reality
 **NO. The clone process CONTINUES ON THE CLOUD SERVER.**
@@ -1221,7 +1221,7 @@ After the machine reboots:
 
 ---
 
-### Q50: What is the definitive Disaster Recovery hierarchy: Artifact Snapshot vs Daily Maintenance Archive vs Object Storage `restoreEnvironment`?
+### Q50: What is the definitive Disaster Recovery hierarchy: Artifact Snapshot vs Daily Maintenance Archive vs Object Storage `restoreEnvironment`—
 
 #### 🎯 The Scenario
 An auditor asks the Lead Architect to define the exact Recovery Time Objective (RTO) and Recovery Point Objective (RPO) strategy across all three levels of Oracle Cloud EPM backup mechanisms.
@@ -1250,10 +1250,10 @@ An auditor asks the Lead Architect to define the exact Recovery Time Objective (
 ```
 
 #### 🛡️ The Disaster Recovery Decision Flowchart
-1. **Accidental delete within the last 24 hours?** $\to$ Re-import from yesterday's `Artifact Snapshot` in the Inbox.
-2. **Accidental delete from 2 weeks ago?** $\to$ Use `epmautomate restoreBackup` to pull the snapshot to Inbox, then cherry-pick the artifact in Migration UI.
-3. **Catastrophic pod corruption or ransomware event?** $\to$ Use `epmautomate restoreEnvironment` from Object Storage.
-4. **Multi-year audit investigation?** $\to$ Retrieve encrypted `.zip` from offsite enterprise cold storage.
+1. **Accidental delete within the last 24 hours—** $\to$ Re-import from yesterday's `Artifact Snapshot` in the Inbox.
+2. **Accidental delete from 2 weeks ago—** $\to$ Use `epmautomate restoreBackup` to pull the snapshot to Inbox, then cherry-pick the artifact in Migration UI.
+3. **Catastrophic pod corruption or ransomware event—** $\to$ Use `epmautomate restoreEnvironment` from Object Storage.
+4. **Multi-year audit investigation—** $\to$ Retrieve encrypted `.zip` from offsite enterprise cold storage.
 
 ---
 

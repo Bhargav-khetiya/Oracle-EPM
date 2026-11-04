@@ -1,10 +1,10 @@
-# @CalcMgrFindFirst
+﻿# @CalcMgrFindFirst
 
 ## Overview
 
 `@CalcMgrFindFirst` is a **custom Calc Manager string manipulation function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a powerful search tool that scans a source string and returns the **starting index position** of the *very first* occurrence of a specified target substring.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard Essbase calculates numbers perfectly, but it is notoriously terrible at parsing Text/String data. When external systems load unformatted text strings into Essbase (like `"VendorID_12345_TX"`, or `"Jan_Actuals_Final"`), administrators often need to slice that string apart to extract meaningful data.
 Before you can slice a string using `@CalcMgrSubstring`, you must know exactly *where* to slice it. If the target substring (like an underscore `_` or a specific word like `"Final"`) moves around dynamically depending on the text length, hardcoding index numbers (like "slice at position 5") will fail. 

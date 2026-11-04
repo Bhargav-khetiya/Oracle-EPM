@@ -1,4 +1,4 @@
-# 06 — Form Properties: Performance Tuning & Interview Bible
+﻿# 06 — Form Properties: Performance Tuning & Interview Bible
 
 ---
 
@@ -78,17 +78,17 @@ To optimize any slow form to sub-second load times:
 
 ## 6.5 Top 10 Consultant Interview Questions & Answers
 
-### Q1: What is the physical difference between `Suppress missing data` and `Suppress missing blocks`?
+### Q1: What is the physical difference between `Suppress missing data` and `Suppress missing blocks`—
 > **Answer**: `Suppress missing data` retrieves all rows into application memory and filters out rows where all cells equal `#MISSING`. `Suppress missing blocks` queries the **Essbase Index (`.IND`) file B-tree** *before* retrieving data; if no physical block exists for that sparse combination, Essbase bypasses the row entirely, resulting in up to 50x faster query execution.
 
-### Q2: What does `Use Database Suppression` do behind the scenes?
+### Q2: What does `Use Database Suppression` do behind the scenes—
 > **Answer**: By default, suppression filtering occurs in the Java web application server tier. Enabling `Use Database Suppression` pushes the suppression algorithm directly into the native **Essbase C++ engine (`ESSSVR`)**, filtering empty records in RAM before transmitting them across the network. This eliminates up to 98% of network payload between Essbase and Planning.
 
-### Q3: Why is `Validate only for pages with existing blocks` critical for form performance?
+### Q3: Why is `Validate only for pages with existing blocks` critical for form performance—
 > **Answer**: If a form has 500 departments on the Page axis but only 50 have data, unchecking this option forces Planning to evaluate validation rules against all 500 pages, wasting CPU on empty space. Checking it instructs Planning to consult the `.IND` index and execute validation strictly on the 50 pages with physical `.PAG` blocks.
 
-### Q4: What is the difference between `Run Before Save` and `Run After Save` business rules?
+### Q4: What is the difference between `Run Before Save` and `Run After Save` business rules—
 > **Answer**: `Run Before Save` executes before modified cells are committed to Essbase; if an error or validation failure occurs, the save is rolled back. `Run After Save` executes immediately after data is safely written to `.PAG` disk blocks, making it ideal for aggregations, driver allocations, and cross-cube sync.
 
-### Q5: What are Flex Forms in Smart View?
+### Q5: What are Flex Forms in Smart View—
 > **Answer**: Flex Forms allow Excel users to dynamically insert new rows, delete rows, sort, filter, and rearrange dimensional hierarchies in Smart View without breaking form definitions. When data is submitted, Planning validates the modified row structure and writes back to the correct Essbase blocks.

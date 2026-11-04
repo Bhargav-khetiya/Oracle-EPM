@@ -1,11 +1,11 @@
-# @CalcMgrExcelCUMIPMT
+﻿# @CalcMgrExcelCUMIPMT
 
 ## Overview
 
 `@CalcMgrExcelCUMIPMT` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `CUMIPMT` function directly inside an Essbase calculation script. 
-It calculates the **Cumulative Interest Paid** on a loan or amortizing debt instrument between two specific periods (e.g., "How much total interest did we pay between Month 12 and Month 24?").
+It calculates the **Cumulative Interest Paid** on a loan or amortizing debt instrument between two specific periods (e.g., "How much total interest did we pay between Month 12 and Month 24—).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building debt amortization schedules (like Mortgages or Term Loans) in Essbase, standard interest for a single period is calculated using `IPMT`. 
 However, for annual budgeting or quarterly reporting, a company might need to know the total aggregate interest they will pay over the entire upcoming year (Periods 13 through 24). To calculate this manually in Essbase, a developer would have to write a highly inefficient loop that calculates the `IPMT` for period 13, adds it to a variable, calculates period 14, adds it, etc., up to 24. 

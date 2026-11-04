@@ -1,10 +1,10 @@
-# @CalcMgrGetCurrentDateTime
+﻿# @CalcMgrGetCurrentDateTime
 
 ## Overview
 
 `@CalcMgrGetCurrentDateTime` is a **custom Calc Manager date/time function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a dynamic, high-precision system clock query, pinging the underlying EPM Java application server and returning the **Current Date and Exact Time** (down to the second) at the exact moment the calculation script is executed.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While `@CalcMgrGetCurrentDate` is perfect for finding out what day it is (e.g., Dec 31, 2024), it intentionally erases the time-of-day. However, in modern EPM systems used for High-Frequency Operational Planning, daily tracking is not enough. You must track hours and minutes. 
 For example, if an automated job runs every 4 hours, it needs to log exactly when it started and when it finished to calculate its own execution duration. If an SLA dictates that an external API feed must be processed within 60 minutes of receipt, the script must pull the exact current time to verify compliance.

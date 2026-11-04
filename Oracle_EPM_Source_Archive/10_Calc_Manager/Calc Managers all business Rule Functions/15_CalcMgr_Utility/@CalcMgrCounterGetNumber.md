@@ -1,10 +1,10 @@
-# @CalcMgrCounterGetNumber
+﻿# @CalcMgrCounterGetNumber
 
 ## Overview
 
 `@CalcMgrCounterGetNumber` is a **custom Calc Manager memory retrieval function** in Oracle EPM Cloud (PBCS/EPBCS). It retrieves the current mathematical total stored inside a specific global numeric counter in the background Java heap memory.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When you use `@CalcMgrCounterAddNumber` to build a running total (e.g., counting validation errors across 100 entities), you are putting data *into* an invisible Java memory bucket. 
 Eventually, you must take that total *out* of memory so that you can stamp it into a physical Essbase data block for reporting, or evaluate it in an `IF` statement to determine how the rest of the script should behave. 

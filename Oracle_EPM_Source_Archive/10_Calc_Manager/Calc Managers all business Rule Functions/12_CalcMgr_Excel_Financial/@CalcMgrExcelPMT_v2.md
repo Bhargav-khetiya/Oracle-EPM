@@ -1,13 +1,13 @@
-# @CalcMgrExcelPMT
+﻿# @CalcMgrExcelPMT
 
 ## Overview
 
 `@CalcMgrExcelPMT` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `PMT` function directly inside an Essbase calculation script. 
 It calculates the **Constant Periodic Payment** required to fully pay off a loan (or reach an investment target) based on a constant interest rate and a fixed number of periods.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
-The `PMT` function is arguably the single most commonly used financial function in the world. It answers the fundamental question: *"If I take a $5,000,000 loan at 6% interest for 5 years, exactly how much do I have to pay the bank every single month?"*
+The `PMT` function is arguably the single most commonly used financial function in the world. It answers the fundamental question: *"If I take a $5,000,000 loan at 6% interest for 5 years, exactly how much do I have to pay the bank every single month—*
 The mathematical formula for an amortizing annuity payment is `(PV * Rate * (1 + Rate)^Nper) / ((1 + Rate)^Nper - 1)`. Writing this complex algebraic formula manually in Essbase is completely unnecessary and prone to syntax errors. 
 `@CalcMgrExcelPMT` wraps this precise algebraic formula into a highly optimized Java call. It instantly returns the exact flat payment amount required, ensuring your Essbase P&L debt schedules match the legacy Excel models perfectly.
 

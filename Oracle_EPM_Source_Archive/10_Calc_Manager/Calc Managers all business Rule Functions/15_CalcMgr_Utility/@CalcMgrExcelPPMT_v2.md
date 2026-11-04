@@ -1,11 +1,11 @@
-# @CalcMgrExcelPPMT
+﻿# @CalcMgrExcelPPMT
 
 ## Overview
 
 `@CalcMgrExcelPPMT` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `PPMT` function directly inside an Essbase calculation script. 
 It calculates the **Principal Payment** for a specific period of an investment or loan, based on periodic, constant payments and a constant interest rate.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When a company makes a flat monthly payment on a standard amortizing loan (like a $5M corporate mortgage), the *total* cash leaving their bank account is identical every month (`PMT`). However, accounting rules strictly require that this payment be split on the general ledger: the Interest portion hits the P&L as an expense, while the Principal portion hits the Balance Sheet to reduce the outstanding liability. 
 In Month 1, almost all of the payment is Interest. By Month 60, almost all of it is Principal. 
@@ -109,8 +109,8 @@ FIX("FY25", "Working", @LEVEL0("Debt_Tranches"))
             "Monthly_Principal_Reduction" = @ROUND(
                 @CalcMgrExcelPPMT(
                     vMonthlyRate, 
-                    "Period_Index",        /* 'per': The specific target month */
-                    "Total_Loan_Months",   /* 'nper': Total lifespan (e.g., 60) */
+                    "Period_Indexâ”‚        /* 'per': The specific target month */
+                    "Total_Loan_Monthsâ”‚   /* 'nper': Total lifespan (e.g., 60) */
                     "Initial_Loan_Amount", /* 'pv': Initial $5M */
                     0, 0
                 ) * -1

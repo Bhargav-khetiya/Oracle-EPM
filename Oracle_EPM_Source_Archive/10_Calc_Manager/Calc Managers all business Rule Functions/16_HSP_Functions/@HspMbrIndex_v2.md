@@ -1,10 +1,10 @@
-# @HspMbrIndex
+﻿# @HspMbrIndex
 
 ## Overview
 
 `@HspMbrIndex` is a **Hyperion Planning (HSP) custom indexing function** embedded within Oracle EPM Cloud (PBCS/EPBCS). It evaluates a specific member name against a predefined list of members and returns an **integer index (position)** representing exactly where that member sits within the list.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In advanced array processing or dynamic matrix math, the physical location of a member within a sequence is critical. 
 If an administrator generates a list of priority products (`"Prod_A"`, `"Prod_B"`, `"Prod_C"`), and the engine is currently calculating `"Prod_B"`, the script might need to know that `"Prod_B"` is the *second* item in the priority list, so it can apply a "Tier 2" discount multiplier. 

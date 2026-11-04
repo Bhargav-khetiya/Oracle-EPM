@@ -1,11 +1,11 @@
-# @CalcMgrExcelToDateTime
+﻿# @CalcMgrExcelToDateTime
 
 ## Overview
 
 `@CalcMgrExcelToDateTime` is a **custom Calc Manager date/time conversion function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of a Microsoft Excel date/time conversion, bridging the gap between legacy Excel serial numbers and modern enterprise Java architectures. 
 It analyzes a massive decimal that Excel uses to track time (e.g., `45657.75`) and securely converts it into a **Java Date/Timestamp object**, fully preserving both the calendar day and the exact down-to-the-second time.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Microsoft Excel tracks time using a continuous floating-point serial number starting from January 1, 1900. The integer portion represents the Day (e.g., `45657` is Dec 31, 2024), and the fractional decimal represents the Time of day (`0.75` is exactly 18:00:00, or 6:00 PM). 
 While `@CalcMgrExcelToDate` chops off the fraction and returns a `YYYYMMDD` integer, that is useless if you are building High-Frequency Operational Models that require millisecond or second-level SLA tracking. You cannot store "6:00 PM" easily inside a `YYYYMMDD` integer without massive string manipulation. 

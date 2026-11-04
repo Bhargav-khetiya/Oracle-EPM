@@ -1,38 +1,47 @@
-# Application Lifecycle Management
+# Module 14: Application Lifecycle Management & Environment Migration
 
-> From creating a new application to migration, cloning, patching, and disaster recovery — managing the full lifecycle of an EPM Cloud application.
+## Navigation & Module Overview
 
----
-
-## Reading Order
-
-| # | File | What You'll Learn |
-|---|------|-------------------|
-| 1 | Application Lifecycle Guide (coming) | Application creation, LCM snapshots, environment migration, cloning, patching |
+This module covers application provisioning, the 3-tier deployment pipeline (Dev -> Test -> Prod), Lifecycle Management (LCM) snapshots, environment cloning (`epmautomate cloneenvironment`), disaster recovery, and the 28-day monthly update cadence.
 
 ---
 
-## Lifecycle Stages
+<!-- ===================================================================== -->
+<!-- 🎯 LIVE INTERACTIVE VISUAL CARD: MODULE 14 LIFECYCLE -->
+<!-- ===================================================================== -->
+<details open>
+<summary><b>🎯 Live Interactive Architecture Card: Application Lifecycle Suite (Click to Collapse / Expand)</b></summary>
 
+<br/>
+
+> [!TIP]
+> **Interactive Standalone Dashboard:** Open [`card_kb_08_lifecycle_migration.html`](../interactive_cards/card_kb_08_lifecycle_migration.html) in your browser for a live interactive application lifecycle & snapshot migration simulator!
+
+| Document | Primary Domain | Core Focus | Direct Link |
+| :--- | :--- | :--- | :--- |
+| **14.1 Lifecycle Guide** | Environment Migration | 3-Tier Pipeline, LCM Snapshots, Selective Migration, `cloneenvironment`, Disaster Recovery | [01_Lifecycle_Guide.md](01_Lifecycle_Guide.md) |
+
+```mermaid
+flowchart TD
+    M14["Module 14: Application Lifecycle"] --> D1["14.1 Lifecycle Guide<br/>(Dev > Test > Prod Migration)"]
+    D1 --> LCM["LCM Snapshots (Full vs Selective)"]
+    D1 --> Clone["Environment Cloning (Cloud-to-Cloud)"]
+    D1 --> DR["Disaster Recovery (RPO 24h, RTO 1-2h)"]
 ```
-CREATE → DEVELOP → TEST → MIGRATE → PRODUCTION → MAINTAIN → ARCHIVE
-   │         │        │       │          │            │          │
-   ▼         ▼        ▼       ▼          ▼            ▼          ▼
- App      Dims,     Clone   LCM       Nightly      Patches,   Snapshot
- Wizard   Rules,    to      Export/   ETL +        Updates,   Export &
-          Forms,    Test    Import    Calc          DR         Archive
-          Data      Env     Snapshots Pipeline     Planning
-```
 
-## Key Tools
-
-| Tool | Purpose |
-|:---|:---|
-| **LCM (Lifecycle Management)** | Export/import application artifacts as snapshots |
-| **Migration** | Move artifacts between environments (Dev → Test → Prod) |
-| **Clone** | Create a copy of the application for testing |
-| **EPM Automate** | Script backup, migration, and maintenance tasks |
+</details>
 
 ---
 
-**Provenance:** Source material from ChatGPT `05_Application_Creation_and_Lifecycle_Management/`, Claude `19_Implementation/`, `20_Projects/`.
+## Module Documents
+
+1. **[14.1 Application Lifecycle Management: LCM, Migration & Environment Cloning](01_Lifecycle_Guide.md)**
+   * The 3-Tier deployment pipeline (Dev, Test/UAT, Production).
+   * Lifecycle Management (LCM) snapshot architecture and selective migration.
+   * Direct cloud-to-cloud environment cloning (`epmautomate cloneenvironment`).
+   * Disaster recovery architecture: RPO, RTO, and automated snapshot rotation.
+   * Monthly patch cadence (1st Friday Test, 3rd Friday Prod).
+   * Tough & twisted review questions with consultant model answers.
+
+---
+*Return to [Knowledge Base Master Index](../README.md) or advance to [Module 15: Professional Development & Reviews](../15_Professional_Development/00_INDEX.md).*

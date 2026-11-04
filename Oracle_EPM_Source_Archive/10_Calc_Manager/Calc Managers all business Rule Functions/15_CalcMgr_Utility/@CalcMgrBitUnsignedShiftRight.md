@@ -1,10 +1,10 @@
-# @CalcMgrBitUnsignedShiftRight
+﻿# @CalcMgrBitUnsignedShiftRight
 
 ## Overview
 
 `@CalcMgrBitUnsignedShiftRight` is a **custom Calc Manager bitwise function** in Oracle EPM Cloud (PBCS/EPBCS). It performs a mathematical "unsigned right shift" operation on the binary representation of an integer, moving all bits to the right by a specified number of positions, and forcibly filling the newly vacated left-most bits with zeros, regardless of the original sign of the number.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In Java (the underlying engine for Calc Manager), integers are signed 32-bit values. The far-left bit (the 32nd bit) is the "Sign Bit" (0 = positive, 1 = negative). 
 When you use a standard right shift (`@CalcMgrBitShiftRight`), the system preserves the sign by copying the sign bit into the new spaces on the left. If you shift a negative number right, it stays negative.

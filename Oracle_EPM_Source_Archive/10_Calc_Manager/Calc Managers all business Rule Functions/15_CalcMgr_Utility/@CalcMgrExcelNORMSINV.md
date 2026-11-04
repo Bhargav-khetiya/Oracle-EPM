@@ -1,11 +1,11 @@
-# @CalcMgrExcelNORMSINV
+﻿# @CalcMgrExcelNORMSINV
 
 ## Overview
 
 `@CalcMgrExcelNORMSINV` is a **custom Calc Manager statistical function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `NORMSINV` (or `NORM.S.INV`) function directly inside an Essbase calculation script. 
 It calculates the **Inverse of the Standard Normal Cumulative Distribution**. In simpler terms, if you provide a target probability percentage (e.g., "I want to be 95% confident"), it returns the exact Z-score (the number of standard deviations) required to hit that target on a standard bell curve.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building predictive models for manufacturing safety stock or financial risk reserves, executives don't pick Z-scores; they pick probabilities. A CEO says, "I want a 99% guarantee that we won't run out of inventory." 
 To calculate exactly how many units of safety stock you need, you must first translate that `99%` probability into a Z-score (which is roughly `2.326`). You then multiply that Z-score by the standard deviation of your historical demand. 

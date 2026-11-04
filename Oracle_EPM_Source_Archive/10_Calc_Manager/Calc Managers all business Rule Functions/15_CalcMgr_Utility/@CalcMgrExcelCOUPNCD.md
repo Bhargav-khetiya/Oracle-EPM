@@ -1,14 +1,14 @@
-# @CalcMgrExcelCOUPNCD
+﻿# @CalcMgrExcelCOUPNCD
 
 ## Overview
 
 `@CalcMgrExcelCOUPNCD` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `COUPNCD` function directly inside an Essbase calculation script. 
 It calculates the exact calendar **date** (returned as a standard `YYYYMMDD` integer) of the **N**ext **C**oupon **D**ate for a given bond or security, relative to the settlement date.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In corporate finance and debt servicing models, debt tranches rarely have their coupon dates explicitly loaded into the database. Usually, the metadata only stores the "Issue Date", the "Maturity Date", and the "Frequency" (e.g., Semi-Annual). 
-If an analyst needs to know exactly when the *next* cash outflow will occur so they can map the expense to the correct month in the forecast (e.g., "Will this interest hit the P&L in June or July?"), building the calendar logic manually in Essbase is incredibly difficult. `@CalcMgrExcelCOUPNCD` resolves this. It uses the maturity date and the frequency to project the coupon schedule backwards, identifies which period the settlement date falls into, and returns the exact date of the next impending payment.
+If an analyst needs to know exactly when the *next* cash outflow will occur so they can map the expense to the correct month in the forecast (e.g., "Will this interest hit the P&L in June or July—), building the calendar logic manually in Essbase is incredibly difficult. `@CalcMgrExcelCOUPNCD` resolves this. It uses the maturity date and the frequency to project the coupon schedule backwards, identifies which period the settlement date falls into, and returns the exact date of the next impending payment.
 
 ### When to Use It
 

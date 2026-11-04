@@ -1,14 +1,14 @@
-# @CalcMgrLogStrings
+﻿# @CalcMgrLogStrings
 
 ## Overview
 
 `@CalcMgrLogStrings` is a **custom Calc Manager diagnostic logging function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a universal, general-purpose "Print Statement," allowing an administrator to inject **custom text variables or static messages** directly into the Calc Manager Job Console log during script execution. 
 *(Note: This function is functionally identical to `@CalcMgrLogMessageTrace`. It exists as an alternative alias to align with the naming conventions of the `@CalcMgrLogValues` numeric logger).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building dynamic calculation scripts, administrators constantly manipulate strings (e.g., dynamically generating a filename for an export, or constructing a cross-dimensional member name like `"FY25_Final"`). 
-If the script fails, standard Essbase provides no visibility into what those temporary string variables actually looked like in memory at the exact moment of failure. Did the concatenation macro accidentally create `"FY25Final"` (missing the underscore)? 
+If the script fails, standard Essbase provides no visibility into what those temporary string variables actually looked like in memory at the exact moment of failure. Did the concatenation macro accidentally create `"FY25Final"` (missing the underscore)— 
 `@CalcMgrLogStrings` resolves this by allowing you to manually print those temporary string variables directly to the backend Job Console. By placing these print statements right before a risky operation, you leave a permanent trace that proves exactly what the script was trying to do, drastically reducing debugging time.
 
 ### When to Use It

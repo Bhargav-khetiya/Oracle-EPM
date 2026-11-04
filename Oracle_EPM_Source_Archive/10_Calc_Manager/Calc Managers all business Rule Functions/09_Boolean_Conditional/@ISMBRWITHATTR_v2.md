@@ -1,12 +1,12 @@
-# @ISMBRWITHATTR
+﻿# @ISMBRWITHATTR
 
 ## Overview
 
-`@ISMBRWITHATTR` is a **Boolean logical and comparison function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It checks whether the member currently being calculated possesses an attribute that satisfies a specific logical condition (e.g., "Is the Population attribute > 10000?"). It returns `TRUE` or `FALSE`.
+`@ISMBRWITHATTR` is a **Boolean logical and comparison function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It checks whether the member currently being calculated possesses an attribute that satisfies a specific logical condition (e.g., "Is the Population attribute > 10000—). It returns `TRUE` or `FALSE`.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
-Standard `@ISATTRIBUTE` only checks for an *exact match* of an attribute member (e.g., "Is this a 'Large' store?").
+Standard `@ISATTRIBUTE` only checks for an *exact match* of an attribute member (e.g., "Is this a 'Large' store—).
 But Attribute Dimensions in Essbase can be **Numeric**, **Boolean**, or **Date** types. 
 - You want to apply a bonus calculation to any store where the "Square_Footage" attribute is greater than 50,000.
 - You want to apply an inflation factor to any product introduced before the "Launch_Date" of 01-01-2023.

@@ -1,53 +1,63 @@
-# 📖 Oracle EPM Cloud — Action Menus: Master Architecture Bible
+﻿# 18. Action Menus — Form Context Interception & Dynamic RTP Passing
 
-> **Purpose**: This directory provides an exhaustive, consultant-level reference for Oracle EPM Cloud Planning Action Menus (Right-Click Context Menus). Every property, menu item type, required parameter, context relay mechanism, business rule runtime prompt mapping, approval action, and troubleshooting diagnostic is covered in depth based on production HTML source extractions.
-
----
-
-## 📂 Document Index
-
-| # | File | Topic & Focus Area | Technical Level |
-|---|------|--------------------|-----------------|
-| 00 | [00_INDEX.md](./00_INDEX.md) | Master directory index, architecture summary, and navigation guide | Overview |
-| 01 | [01_Action_Menu_Architecture_and_Context_Relay.md](./01_Action_Menu_Architecture_and_Context_Relay.md) | Architecture, front-end vs back-end, Web Forms vs Smart View, Context Relay physics (Page, POV, Row, Column coordinate harvesting), shared common fields | Foundation & Core |
-| 02 | [02_The_9_Menu_Item_Types_Complete_Guide.md](./02_The_9_Menu_Item_Types_Complete_Guide.md) | Exhaustive breakdown of all 9 item types: URL, Form, Business Rule, Manage Approvals, Dashboard, Change Status (20 actions), Menu Header, Previous Form, Copy Version | Core Engineering |
-| 03 | [03_Required_Parameters_and_Targeting_Matrix.md](./03_Required_Parameters_and_Targeting_Matrix.md) | The 23 Required Parameters: Point of View, Page, Row, Column, Cell Only, Members only, and all 16 dimension-specific targeting rules | UI Context Targeting |
-| 04 | [04_Business_Rules_Integration_and_RTP_Passing.md](./04_Business_Rules_Integration_and_RTP_Passing.md) | Business Rule integration, Runtime Prompt (RTP) injection from grid coordinates, Classic vs Streamline View, Hide Prompt mechanics, 52 production rules analyzed | Advanced Integration |
-| 05 | [05_Troubleshooting_Security_and_Best_Practices.md](./05_Troubleshooting_Security_and_Best_Practices.md) | Production troubleshooting matrix, security permissions, migration via LCM snapshot, consultant Do's & Don'ts, 15 interview questions and answers | Governance & Reference |
+> **Consultant High-Yield Summary:**  
+> Action Menus provide right-click context-sensitive functionality on data forms. When a user right-clicks a cell, an Action Menu captures the exact multidimensional coordinate (Entity, Account, Period, Year) and dynamically injects those coordinates into target business rules as Runtime Prompts (RTP) or redirects to secondary forms.
 
 ---
 
-## 🎯 How to Use This Guide
+## ðŸŽ¯ Live Interactive Visual Architecture Card
 
-1. **For Fundamentals & Context Mechanics**: Read `01` → `02`.
-2. **For Menu Targeting & Grid Restraints**: Read `03`.
-3. **For Business Rules & Approvals Automation**: Read `02` → `04`.
-4. **For Production Troubleshooting & Consultant Interviews**: Read `05`.
+<details open>
+<summary><b>ðŸŽ¯ Live Interactive Architecture Card: Action Menu Context Interception & Rule Launch Architecture</b></summary>
 
----
+| Action Menu Type | Target Object | Consultant Implementation Value |
+| :--- | :--- | :--- |
+| **Business Rule** | Calc Manager Rule with Runtime Prompts (RTP) | Injects the right-clicked row/column coordinate directly into the rule's RTP, scoping calculations instantly. |
+| **Secondary Form** | Target Data Form | Navigates the user to a detailed breakdown form filtered automatically to the selected cost center. |
+| **URL / External Page** | Web Dashboard or External System | Constructs a dynamic URL appending query string parameters from form context. |
+| **Manage Approvals** | Approval Unit Promotion Screen | Opens the workflow submission window for the selected Entity and Scenario. |
 
-## 🔑 Key Architecture at a Glance
-
+```mermaid
+flowchart LR
+    UserClick["User Right-Clicks Cell in Form<br/>(Entity: E101, Period: Jan, Account: Salary)"] --> Intercept["Action Menu Engine<br/>Captures Context Coordinates"]
+    Intercept --> MenuChoice{"User Selects Menu Action"}
+    MenuChoice -->|Run Detailed Calc| RTP["Dynamic RTP Binding<br/>&RTP_Entity = E101<br/>&RTP_Period = Jan"]
+    MenuChoice -->|Open Sub-Form| Redirect["Redirects to Employee Detail Form<br/>Filtered to E101"]
+    RTP --> Essbase["Essbase Scoped Calc Execution"]
 ```
-User Right-Clicks a Data Cell in Planning / Smart View
-  │
-  ▼
-[Context Relay Engine]
-  ├── Harvests Page Dimension Members (e.g., Entity: US_East)
-  ├── Harvests POV Dimension Members (e.g., Scenario: Budget, Version: Working)
-  ├── Harvests Row Dimension Members (e.g., Account: Gross_Sales)
-  └── Harvests Column Dimension Members (e.g., Period: Jan, Years: FY25)
-  │
-  ▼
-[Evaluates "Required Parameters"]
-  ├── Does the clicked cell match targeting rules? (Cell Only, Row, Dimension)
-  └── Filters visible menu options in the right-click dropdown
-  │
-  ▼
-[Executes Target Action]
-  ├── URL: Injects context tokens into target web URL
-  ├── Form / Dashboard: Opens target object filtered by clicked POV
-  ├── Business Rule: Injects clicked coordinates into Runtime Prompts (RTP)
-  ├── Change Status: Executes approval promotion/rejection on clicked Entity
-  └── Copy Version: Copies data slice from Source Version to Target Version
-```
+
+</details>
+
+---
+
+## ðŸ›ï¸ Architectural Comparison & Design Patterns
+
+| Execution Method | Static Form Button / On-Save Calc | Right-Click Action Menu |
+| :--- | :--- | :--- |
+| Execution Flexibility | Fires unconditionally on entire form context when saved | Executed on demand only on specific rows/cells chosen by the user |
+| Context Passing | Limited to static form POV or prompt prompts | Dynamically captures row, column, and POV coordinates of clicked cell |
+| User Experience | User must manually navigate between related forms | Seamless 1-click drill-down to supporting detail forms |
+
+---
+
+## ðŸ’¼ Tough & Twisted Review Scenarios (Consultant Review Defense)
+
+### Question 1: "A consultant configures an Action Menu to run a business rule with an RTP for Entity, but when users click the menu, the rule fails with 'Invalid Member'. Why?"
+> **Consultant Model Answer:**  
+> The Action Menu was configured with the wrong context mapping or attached to a form where Entity is on the Page axis instead of Rows or Columns. If the dimension is not on an active grid coordinate that the right-click can resolve, the RTP receives a null or empty string at runtime, causing the calc script validation to fail. Ensure the targeted dimension is properly mapped in the Action Menu designer.
+
+---
+
+## ðŸ“‘ Complete Document Catalog
+
+| # | Document File | Topic Description |
+|---|---------------|-------------------|
+| 01 | [01_Action_Menu_Architecture_and_Context_Relay.md](./01_Action_Menu_Architecture_and_Context_Relay.md) | 01 — Action Menu Architecture & Context Relay |
+| 02 | [02_The_9_Menu_Item_Types_Complete_Guide.md](./02_The_9_Menu_Item_Types_Complete_Guide.md) | 02 — The 9 Menu Item Types: Complete Reference |
+| 03 | [03_Required_Parameters_and_Targeting_Matrix.md](./03_Required_Parameters_and_Targeting_Matrix.md) | 03 — Required Parameters & Targeting Matrix |
+| 04 | [04_Business_Rules_Integration_and_RTP_Passing.md](./04_Business_Rules_Integration_and_RTP_Passing.md) | 04 â€” Business Rules Integration & RTP Passing |
+| 05 | [05_Troubleshooting_Security_and_Best_Practices.md](./05_Troubleshooting_Security_and_Best_Practices.md) | 05 — Action Menus: Troubleshooting, Security, & Interview Bible |
+
+---
+
+> **Consultant Implementation Note:** Master the architectural comparison and review defense questions in this module before presenting designs to client stakeholders or senior review panels.

@@ -1,4 +1,4 @@
-# @MOVSUMX
+﻿# @MOVSUMX
 
 ## Overview
 
@@ -6,10 +6,10 @@
 
 *Crucially, the "X" denotes that this function accepts a dynamic numeric expression/formula as its input, rather than just a static member name.*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 The standard `@MOVSUM` function (without the X) is highly efficient, but it only accepts a single, raw member name (like `"Sales"`). 
-But what if the metric you want to roll up doesn't physically exist in the database? What if you need to calculate the "Rolling 12-Month Net Margin", but `"Net_Margin"` is not stored anywhere; it must be calculated on the fly as `("Revenue" - "Expenses")`?
+But what if the metric you want to roll up doesn't physically exist in the database— What if you need to calculate the "Rolling 12-Month Net Margin", but `"Net_Margin"` is not stored anywhere; it must be calculated on the fly as `("Revenue" - "Expenses")`—
 If you only had `@MOVSUM`, you would be forced to calculate the Net Margin, store it in a dummy account, run the `@MOVSUM` on that dummy account, and then clear the dummy account. This wastes immense calculation time and database space.
 `@MOVSUMX` solves this by accepting a raw mathematical expression. It calculates the `("Revenue" - "Expenses")` formula in memory for every period in the historical window, sums the results of those on-the-fly calculations, and writes the final rolling total to the target block. 
 

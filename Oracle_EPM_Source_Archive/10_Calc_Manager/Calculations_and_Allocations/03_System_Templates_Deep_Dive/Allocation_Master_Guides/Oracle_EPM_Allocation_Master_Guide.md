@@ -1,4 +1,4 @@
-# Oracle EPM: The Ultimate Master Guide to Allocations (EPBCS / PBCS)
+﻿# Oracle EPM: The Ultimate Master Guide to Allocations (EPBCS / PBCS)
 
 ---
 
@@ -663,9 +663,9 @@ The Allocation Template is a **system-provided template** in Calculation Manager
 ```
 FIX("Total Expenses")
     Budget = @ALLOCATE(
-        Budget->"Total Expenses",           /* amount: source value */
+        Budget->"Total Expensesâ”‚           /* amount: source value */
         @CHILDREN("Total Expenses"),        /* allocationRange: targets */
-        "PY Actual",                        /* basisMbr: driver */
+        "PY Actualâ”‚                        /* basisMbr: driver */
         ,                                   /* roundMbr: not specified */
         share                               /* method: proportional share */
     );
@@ -736,22 +736,22 @@ The allocation type determines how Essbase constructs its internal calculation l
 ```
 ┌─────────────────────────────────────┐
 │ Does at least one destination       │
-│ dimension = "Same as Source"?        │
+│ dimension = "Same as Source"—        │
 ├───────┬─────────────────────────────┤
 │  YES  │  NO                         │
 │       │  → Is any destination       │
 │       │    "Same as Source,          │
-│       │     Different Dimension"?   │
+│       │     Different Dimension"—   │
 │       │    YES → SAD                │
 │       │    NO  → (Not valid)        │
 ├───────┘                             │
 │ Is the source a level 0 member      │
 │ OR destination = Same as Source      │
-│ for non-level-0 source dims?        │
+│ for non-level-0 source dims—        │
 ├───────┬─────────────────────────────┤
 │  YES  │  NO → Invalid config        │
 ├───────┘                             │
-│ Is the driver a level 0 tuple?      │
+│ Is the driver a level 0 tuple—      │
 ├───────┬─────────────────────────────┤
 │  YES  │  NO                         │
 │  SDE  │  CDE (if dim extension)     │
@@ -898,7 +898,7 @@ Without rounding error handling, your books are off by $0.01. In large allocatio
 
 ### Rounding Decision Matrix
 
-| Do You Want Rounding? | Where Should the Difference Go? | Setting |
+| Do You Want Rounding— | Where Should the Difference Go— | Setting |
 |---|---|---|
 | No | N/A | `noRound` (or "No Rounding" in wizard) |
 | Yes | Specific member I choose | `roundAmt` + `numDigits` + `errorsToMbr` → specify `roundMbr` |
@@ -948,7 +948,7 @@ With errorsToHigh (all equal, so goes to first):
 **Path:** `System View → Right-click the Business Rule → Open → In Rule Designer, click the allocation component in the flowchart`
 
 **What You Can Edit:**
-| Property | Editable? |
+| Property | Editable— |
 |---|---|
 | Source member | ✅ Yes |
 | Target level 0 members | ✅ Yes |
@@ -1197,7 +1197,7 @@ START: You need to allocate data in EPM Cloud
 ┌──────────────────────────────────┐
 │ Do you need to reuse the         │
 │ allocation across multiple       │
-│ rules or templates?              │
+│ rules or templates—              │
 ├────────┬─────────────────────────┤
 │  YES   │  NO                     │
 │        │                         │
@@ -1205,7 +1205,7 @@ START: You need to allocate data in EPM Cloud
 │  ALLOC │  simple (single         │
 │  TEMP- │  source, single         │
 │  LATE  │  range, no complex      │
-│        │  conditions)?           │
+│        │  conditions)—           │
 │        ├────────┬────────────────┤
 │        │  YES   │  NO            │
 │        │        │                │
@@ -1216,7 +1216,7 @@ START: You need to allocate data in EPM Cloud
        │
        ▼
 ┌──────────────────────────────────┐
-│ Do you need an offset?           │
+│ Do you need an offset—           │
 ├────────┬─────────────────────────┤
 │  YES   │  NO                     │
 │        │                         │
@@ -1233,13 +1233,13 @@ START: You need to allocate data in EPM Cloud
 ┌──────────────────────────────────┐
 │ Choose allocation method:        │
 ├──────────────────────────────────┤
-│ • Have a driver metric?          │
+│ • Have a driver metric—          │
 │   → Use SHARE method             │
-│ • No driver, split equally?      │
+│ • No driver, split equally—      │
 │   → Use SPREAD method            │
-│ • Basis contains %s?             │
+│ • Basis contains %s—             │
 │   → Use PERCENT method           │
-│ • Need arithmetic operation?     │
+│ • Need arithmetic operation—     │
 │   → Use ADD/SUB/MUL/DIV          │
 └──────────────────────────────────┘
        │
@@ -1247,11 +1247,11 @@ START: You need to allocate data in EPM Cloud
 ┌──────────────────────────────────┐
 │ Choose rounding:                 │
 ├──────────────────────────────────┤
-│ • Financial reporting?           │
+│ • Financial reporting—           │
 │   → Round to 2 decimals,         │
 │     errorsToHigh or              │
 │     errorsToMbr                  │
-│ • Statistical/approximate?       │
+│ • Statistical/approximate—       │
 │   → noRound or Discard           │
 └──────────────────────────────────┘
 ```

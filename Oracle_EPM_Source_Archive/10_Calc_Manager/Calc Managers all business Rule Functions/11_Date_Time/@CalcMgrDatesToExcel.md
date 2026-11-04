@@ -1,10 +1,10 @@
-# @CalcMgrDatesToExcel
+﻿# @CalcMgrDatesToExcel
 
 ## Overview
 
 `@CalcMgrDatesToExcel` is a **custom Calc Manager data transformation function** in Oracle EPM Cloud (PBCS/EPBCS). It takes an array (a range or list) of standard Essbase `YYYYMMDD` integers and simultaneously converts all of them into Microsoft Excel Serial Date numbers, returning an array of results.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard Essbase dates (e.g., `20241231`) are easy for humans to read, but Microsoft Excel does not understand them natively. Excel tracks time using a "Serial Date" system—a continuous count of days starting from January 1, 1900 (which is Serial Date `1`). In Excel, December 31, 2024, is stored as `45657`.
 If you export raw Essbase `YYYYMMDD` integers into an Excel-based report or a CSV file meant for downstream consumption, and a user tries to format the column as a "Short Date", Excel will fail completely (interpreting `20241231` as a date millions of years in the future).

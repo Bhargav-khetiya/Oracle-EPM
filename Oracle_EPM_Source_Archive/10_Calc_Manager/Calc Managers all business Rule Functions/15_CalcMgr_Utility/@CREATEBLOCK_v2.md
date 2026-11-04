@@ -1,10 +1,10 @@
-# @CREATEBLOCK
+﻿# @CREATEBLOCK
 
 ## Overview
 
 `@CREATEBLOCK` is a **database management and optimization function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager used in Block Storage Option (BSO) cubes. It forces the creation of a physical data block in the Essbase database for a specified sparse intersection, even if that intersection currently has no data (`#MISSING`).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Essbase BSO cubes are highly optimized: they do not create physical storage blocks for sparse intersections until data actually exists there. This saves massive amounts of disk space and memory. However, this optimization causes a problem during calculations:
 - If you write a formula like `A = B + C`, and Block A does not exist, Essbase skips the calculation entirely to save time. 

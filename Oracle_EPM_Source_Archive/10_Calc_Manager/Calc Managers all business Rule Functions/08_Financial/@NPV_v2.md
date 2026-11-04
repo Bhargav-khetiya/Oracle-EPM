@@ -1,10 +1,10 @@
-# @NPV
+﻿# @NPV
 
 ## Overview
 
 `@NPV` is a **financial function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that calculates the **Net Present Value** of an investment. It computes the current value of a series of future cash flows, discounted at a specified rate.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 NPV is a fundamental metric in corporate finance and capital planning:
 - **Capital Budgeting**: Evaluating whether a new project or asset purchase will generate a positive return.

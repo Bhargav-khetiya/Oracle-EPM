@@ -1,4 +1,4 @@
-# @ISISIBLING
+﻿# @ISISIBLING
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 *(The first "I" stands for Inclusive, checking Is-Inclusive-Sibling).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building horizontal calculations across a dimension, you often need to execute identical logic on an entire "family" of members. For example, if the script is processing an allocation that should only apply to `"Q1"` and its siblings (`"Q2"`, `"Q3"`, `"Q4"`), you need a way to branch the logic.
 If you use the native `@ISSIBLING("Q1")` function, it will trigger on Q2, Q3, and Q4, but it will explicitly skip `"Q1"` (because you cannot be your own sibling). To trigger the target member as well, you would have to write a cumbersome `OR` statement: `IF(@ISSIBLING("Q1") OR @ISMBR("Q1"))`.
@@ -57,8 +57,8 @@ Returns `TRUE` (1) if the currently calculating member is a sibling of the `Memb
 1. **Trigger**: The Essbase engine encounters the `IF(@ISISIBLING(...))` block during a calculation sweep.
 2. **Context Query**: It identifies the specific member it is currently calculating (e.g., `"Q3"`).
 3. **Equality Check**: It first checks if the current member is exactly identical to the `MemberName` parameter (e.g., `"Q1"`). If yes, it immediately returns `TRUE`.
-4. **Outline Trace**: If not identical, it queries the active `.otl` outline. It looks at the current member and asks: "Who is my direct parent?"
-5. **Target Trace**: It looks at the `MemberName` parameter and asks: "Who is the target's direct parent?"
+4. **Outline Trace**: If not identical, it queries the active `.otl` outline. It looks at the current member and asks: "Who is my direct parent—
+5. **Target Trace**: It looks at the `MemberName` parameter and asks: "Who is the target's direct parent—
 6. **Match Evaluation**: It compares the two parents. If they are exactly the same member, they are siblings, and it returns `TRUE`.
 7. **Fail State**: If the parents do not match, it returns `FALSE`.
 

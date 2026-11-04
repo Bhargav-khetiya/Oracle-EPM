@@ -1,10 +1,10 @@
-# CALC FIRST
+﻿# CALC FIRST
 
 ## Overview
 
 `CALC FIRST` is a **specialized native Essbase calculation directive** in Oracle EPM Cloud (PBCS/EPBCS). Similar to `CALC AVERAGE`, it overrides the standard additive consolidation logic (`+`, `-`) of a dimension. Instead of summing the children together, `CALC FIRST` commands the engine to look at the children of a parent and exclusively write the **numeric value of the very first child** into the parent block, completely ignoring the rest of the children.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard dimensional consolidation is additive (e.g., `Jan + Feb + Mar = Q1`). 
 However, "Opening Balances" (such as Opening Cash or Opening Inventory) are explicitly non-additive metrics. The Opening Cash for `Q1` is not the sum of Jan, Feb, and Mar. The Opening Cash for `Q1` is simply whatever the Opening Cash was in `Jan`. 

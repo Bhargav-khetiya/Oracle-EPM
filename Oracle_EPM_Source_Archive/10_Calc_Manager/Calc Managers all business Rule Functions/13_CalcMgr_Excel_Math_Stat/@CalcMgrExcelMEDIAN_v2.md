@@ -1,11 +1,11 @@
-# @CalcMgrExcelMEDIAN
+﻿# @CalcMgrExcelMEDIAN
 
 ## Overview
 
 `@CalcMgrExcelMEDIAN` is a **custom Calc Manager statistical function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `MEDIAN` function directly inside an Essbase calculation script. 
 It analyzes a list or array of data points and returns the **Median** value—the number perfectly in the middle of the dataset when sorted from lowest to highest.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard averages (`@AVG`) are highly susceptible to outliers. If a retail chain has 4 stores that sell $1,000 a month, and 1 flagship store that sells $100,000 a month, the "Average" store sales is $20,800. This average is mathematically true, but operationally useless for setting baseline quotas for standard stores. 
 The Median, however, sorts the data (`$1k, $1k, $1k, $1k, $100k`) and picks the exact middle number (`$1,000`). This perfectly filters out massive outliers and provides a much more realistic picture of standard operational performance. 

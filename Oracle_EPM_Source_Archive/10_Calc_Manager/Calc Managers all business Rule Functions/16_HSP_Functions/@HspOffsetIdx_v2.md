@@ -1,10 +1,10 @@
-# @HspOffsetIdx
+﻿# @HspOffsetIdx
 
 ## Overview
 
 `@HspOffsetIdx` is a **Hyperion Planning (HSP) custom indexing function** embedded within Oracle EPM Cloud (PBCS/EPBCS). It serves as an advanced sequence locator. Given a starting index integer, a text string array (list), and a target member, this function dynamically calculates the **mathematical distance (offset)** between the start of the array and the location of the target member.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When executing parallel array iteration, you often need to move back and forth across a sequence. If an administrator is evaluating a list of 12 months (`"Jan, Feb, Mar, Apr..."`), and they know the current calculation is running on `"Mar"` (which is Index 3), they might need to mathematically find how many steps it takes to reach `"Oct"`.
 Instead of manually writing an iterative C-loop to count the steps, `@HspOffsetIdx` calculates the distance natively. You give it the array, tell it where you currently are (or where to start counting), and ask it to find `"Oct"`. It returns the integer offset (the number of steps). This offset can then be used in `SHIFT` logic or to jump directly to corresponding data in a parallel array.

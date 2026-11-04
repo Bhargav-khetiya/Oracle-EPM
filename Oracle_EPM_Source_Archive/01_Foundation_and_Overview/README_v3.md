@@ -1,4 +1,4 @@
-# 🏛️ Oracle EPBCS Mastery — Unified Knowledge Base 2.0
+﻿# 🏛️ Oracle EPBCS Mastery — Unified Knowledge Base 2.0
 
 > **Author:** Bhargav Khetiya | **Started:** June 22, 2026 | **Upgraded to 2.0:** August 16, 2026
 
@@ -119,7 +119,7 @@ Oracle_EPM_Merged/
 
 ### 💡 Pro Tip: The Architect's Mentality
 > **Misconception:** "This knowledge base is a dictionary. I should memorize it."
-> **Reality:** A true architect doesn't memorize; they *internalize principles*. Don't memorize the exact syntax for `DataGridBuilder`. Internalize *why* we use it (JVM memory constraints vs Essbase kernel limits). When you read these modules, always ask yourself: "What happens if this scales to 1,000 users?" That is how you transcend from Developer to Lead Solution Architect.
+> **Reality:** A true architect doesn't memorize; they *internalize principles*. Don't memorize the exact syntax for `DataGridBuilder`. Internalize *why* we use it (JVM memory constraints vs Essbase kernel limits). When you read these modules, always ask yourself: "What happens if this scales to 1,000 users— That is how you transcend from Developer to Lead Solution Architect.
 
 ### 💡 Pro Tip: The Data Flow Learning Path
 > **Fastest way to master EPM:** Don't read left-to-right. Trace a number:

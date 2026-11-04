@@ -1,14 +1,14 @@
-# @LOG10
+﻿# @LOG10
 
 ## Overview
 
 `@LOG10` is a **native Essbase mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates the **Base-10 Logarithm** (the common logarithm) of a specified numeric value. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While `@LOG` calculates the Natural Logarithm (Base $e$), `@LOG10` is used for order-of-magnitude scaling. 
 In corporate finance and data science, datasets often span massive scales. A company might have a `"Local_Store"` making `$1,000` a day, and a `"Global_HQ"` making `$10,000,000` a day. If you attempt to plot these on a linear chart or feed them into a linear scoring model, the `$1,000` store essentially disappears into a flat line at the bottom.
-The Base-10 logarithm answers the question: *"10 raised to what power equals this number?"* 
+The Base-10 logarithm answers the question: *"10 raised to what power equals this number—* 
 Because $10^3 = 1,000$, the Base-10 log of $1,000$ is `3`. Because $10^7 = 10,000,000$, the Base-10 log is `7`. 
 By passing the raw financial data through `@LOG10`, Essbase compresses a variance of $9,999,000$ down to a clean, highly manageable scale of $3$ to $7$. This allows administrators to build normalized performance indices, tier groupings, and statistical models natively inside the Essbase engine.
 

@@ -1,13 +1,13 @@
-# @MAXS
+﻿# @MAXS
 
 ## Overview
 
 `@MAXS` is a **native Essbase mathematical array function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates a specified range of members and returns the highest numeric value found. However, unlike the standard `@MAX` function (which evaluates every single member independently), `@MAXS` is a **Sequential Evaluator**. It evaluates the array strictly in the order the members appear in the database outline, and it allows the use of an internal mathematical condition to define the array.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 The standard `@MAX` function is highly optimized for simple ranges (e.g., `"Jan":"Dec"`). However, in older versions of Essbase (prior to the introduction of advanced `IF` branching inside cross-dimensional arrays), administrators needed a way to find a maximum value *conditionally*. 
-For example, what if you only want to find the maximum sales month, but ONLY among the months where `"Marketing_Spend"` was greater than `$10,000`? 
+For example, what if you only want to find the maximum sales month, but ONLY among the months where `"Marketing_Spend"` was greater than `$10,000`— 
 `@MAXS` was designed to handle these sequenced, conditional arrays. It steps through the members one by one. If the condition is met, it checks the maximum. If the condition fails, it skips that member.
 
 *Note: In modern EPM Cloud, `@MAXS` is largely considered a legacy function. The standard `@MAX` function, combined with modern `IF` logic, `SKIPMISSING` flags, and temporary staging accounts, is almost universally preferred because it is significantly easier to read, debug, and compile.*

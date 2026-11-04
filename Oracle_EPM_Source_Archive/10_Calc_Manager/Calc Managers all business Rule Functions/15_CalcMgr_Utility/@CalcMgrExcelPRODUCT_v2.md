@@ -1,11 +1,11 @@
-# @CalcMgrExcelPRODUCT
+﻿# @CalcMgrExcelPRODUCT
 
 ## Overview
 
 `@CalcMgrExcelPRODUCT` is a **custom Calc Manager mathematical array function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `PRODUCT` function directly inside an Essbase calculation script. 
 It analyzes a list or array of data points and multiplies them all together, returning the massive **cumulative product**.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While Essbase has native functions to calculate the sum (`@SUM`) or average (`@AVG`) of an array of members, it lacks a native function to dynamically calculate the cumulative product of an array.
 In advanced financial models, calculating the compound return of a portfolio over multiple years requires taking the individual yearly growth multipliers (e.g., `1.05`, `1.03`, `1.08`) and multiplying them all together: `1.05 * 1.03 * 1.08`. Doing this manually for 3 years is easy. Doing it dynamically for a rolling 10-year array requires complex looping logic or massive hardcoded equations. 

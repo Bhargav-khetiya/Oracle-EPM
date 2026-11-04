@@ -1,10 +1,10 @@
-# @CalcMgrCounterGetText
+﻿# @CalcMgrCounterGetText
 
 ## Overview
 
 `@CalcMgrCounterGetText` is a **custom Calc Manager memory retrieval function** in Oracle EPM Cloud (PBCS/EPBCS). It retrieves the composite text string currently stored inside a specific global string counter in the background Java heap memory.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When developers build complex validation or auditing scripts, they often use `@CalcMgrCounterAddText` to append strings (like the names of failing entities) into an invisible Java memory bucket. This creates a running log (e.g., `"New_York, Texas, California, "`).
 Eventually, you must take that massive text string *out* of memory so that you can process it. You might want to write it to a centralized Text Attribute, evaluate it in an `IF` statement to see if it contains a specific keyword, or most commonly, pass it back out to a Groovy script that will email the log to an administrator.
@@ -75,7 +75,7 @@ Returns the literal text string currently stored in the specified counter.
 VAR vGlobalLog = @CalcMgrCounterGetText("Global_Error_Log");
 ```
 
-### Variant 2: Conditional Evaluation (Does the log exist?)
+### Variant 2: Conditional Evaluation (Does the log exist—)
 
 ```essbase
 /* If the log string is not empty, it means errors occurred */

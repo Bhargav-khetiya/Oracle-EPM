@@ -1,10 +1,10 @@
-# @ISIDESC
+﻿# @ISIDESC
 
 ## Overview
 
 `@ISIDESC` (Inclusive Is Descendant) is a **Boolean logical function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It checks whether the member currently being calculated is a descendant (child, grandchild) of a specified parent member, **OR if it is that exact parent member itself**. It returns `TRUE` or `FALSE`.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard `@ISDESC` returns `FALSE` if it evaluates the actual parent node. If you want a calculation to fire for a whole branch of a hierarchy *including the top-level parent of that branch*, you would normally have to write:
 `IF(@ISDESC("North_America") OR @ISMBR("North_America"))`
@@ -46,7 +46,7 @@ Where:
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `mbrName` | Member | ✅ Yes | The target parent. The function asks: "Is the current member a descendant of, or equal to, this `mbrName`?" |
+| `mbrName` | Member | ✅ Yes | The target parent. The function asks: "Is the current member a descendant of, or equal to, this `mbrName`— |
 
 ---
 
@@ -136,7 +136,7 @@ ENDFIX
 |----------|-------------|
 | [`@ISDESC`](./@ISDESC.md) | The *Exclusive* version. Returns FALSE for the parent member itself |
 | [`@IDESCENDANTS`](../04_Member_Navigation/@IDESCENDANTS.md) | Returns the *list* of members (used in FIX blocks) |
-| [`@ISIANC`](./@ISIANC.md) | The reverse check (Is the current member an ancestor of, or equal to, X?) |
+| [`@ISIANC`](./@ISIANC.md) | The reverse check (Is the current member an ancestor of, or equal to, X—) |
 
 ---
 

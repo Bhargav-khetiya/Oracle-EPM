@@ -1,13 +1,13 @@
-# @MAXSRANGE
+﻿# @MAXSRANGE
 
 ## Overview
 
 `@MAXSRANGE` is a **native Essbase mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates a distinct, explicitly provided list of numeric values or cross-dimensional intersections and returns the absolute **maximum numeric value** found within that specific list. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
-The standard `@MAX` function requires a structural *Member Range* (e.g., `"Jan":"Dec"` or `@CHILDREN("East")`). But what if the numbers you need to compare are entirely un-related? 
-For example, what if you need to calculate a "Penalty Rate" that is defined as the *highest* value among three completely different, disconnected sources: The `"Standard_Rate"`, the `"Historical_Penalty"`, and a hardcoded minimum of `0.05`? 
+The standard `@MAX` function requires a structural *Member Range* (e.g., `"Jan":"Dec"` or `@CHILDREN("East")`). But what if the numbers you need to compare are entirely un-related— 
+For example, what if you need to calculate a "Penalty Rate" that is defined as the *highest* value among three completely different, disconnected sources: The `"Standard_Rate"`, the `"Historical_Penalty"`, and a hardcoded minimum of `0.05`— 
 You cannot use `@MAX` because `0.05` is not a dimension member, and the accounts are not siblings. You would have to write complex `IF` statements: `IF(A > B AND A > C) Then A`.
 `@MAXSRANGE` solves this. It accepts a raw, comma-separated list of individual numeric values, hardcoded numbers, formulas, or distinct account intersections. It sweeps through this arbitrary list, compares the math, and returns the highest number. This completely breaks the requirement that array functions must operate on structural dimension ranges.
 

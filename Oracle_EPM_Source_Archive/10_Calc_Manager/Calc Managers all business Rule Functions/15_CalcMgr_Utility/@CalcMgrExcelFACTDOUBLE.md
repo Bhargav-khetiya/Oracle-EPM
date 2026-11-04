@@ -1,11 +1,11 @@
-# @CalcMgrExcelFACTDOUBLE
+﻿# @CalcMgrExcelFACTDOUBLE
 
 ## Overview
 
 `@CalcMgrExcelFACTDOUBLE` is a **custom Calc Manager mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `FACTDOUBLE` function directly inside an Essbase calculation script. 
 It calculates the **Double Factorial** of a number, mathematically represented as `n!!`.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 A standard factorial (`n!`) multiplies every integer downwards (e.g., 6 * 5 * 4 * 3 * 2 * 1). 
 A *double* factorial (`n!!`) steps down by **two** integers at a time, strictly preserving the parity (even/odd nature) of the starting number. 

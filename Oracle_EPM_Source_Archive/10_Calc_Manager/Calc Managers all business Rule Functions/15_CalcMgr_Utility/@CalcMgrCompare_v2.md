@@ -1,10 +1,10 @@
-# @CalcMgrCompare
+﻿# @CalcMgrCompare
 
 ## Overview
 
 `@CalcMgrCompare` is a **custom Calc Manager string comparison function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates two text strings and determines whether they are exactly identical (case-sensitive) or different. It returns a boolean equivalent (`True` or `False`).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In classic Essbase Calc Scripts (prior to Calc Manager custom functions), comparing text strings dynamically was extremely difficult. You could compare member names (using `@ISMBR`), but comparing raw text strings (e.g., evaluating if a Smart List text value equaled a specific hardcoded string) often required convoluted workarounds using numeric mappings or external macros.
 `@CalcMgrCompare` brings native, standard Java-style string comparison into Calc Scripts. It allows you to directly evaluate if String A matches String B, which is critical when processing text attributes, User-Defined Attributes (UDAs), or string-based Smart Lists.

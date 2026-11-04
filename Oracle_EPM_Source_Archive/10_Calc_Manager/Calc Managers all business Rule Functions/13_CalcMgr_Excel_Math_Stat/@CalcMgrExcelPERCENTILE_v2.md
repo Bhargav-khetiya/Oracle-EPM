@@ -1,11 +1,11 @@
-# @CalcMgrExcelPERCENTILE
+﻿# @CalcMgrExcelPERCENTILE
 
 ## Overview
 
 `@CalcMgrExcelPERCENTILE` is a **custom Calc Manager statistical array function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `PERCENTILE` (specifically `PERCENTILE.INC`) function directly inside an Essbase calculation script. 
-It analyzes an array of data and returns the specific numerical **value** that corresponds to a target percentile (e.g., "What was the exact dollar amount of sales that separates the bottom 90% of stores from the top 10%?").
+It analyzes an array of data and returns the specific numerical **value** that corresponds to a target percentile (e.g., "What was the exact dollar amount of sales that separates the bottom 90% of stores from the top 10%—).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Averages and medians are useful for finding the "middle" of a dataset, but in performance banding, executives often want to measure against the extremes. For example, an HR department might want to ensure that all salaries are above the 25th percentile of the market data. 
 To calculate a percentile manually in an Essbase calc script, you would have to sort the entire array of data in memory, calculate the exact interpolative index (`k * (N-1) + 1`), and then write complex fraction-based math to blend the two adjacent numbers if the index doesn't land perfectly on a whole number. 

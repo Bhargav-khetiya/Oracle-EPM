@@ -1,10 +1,10 @@
-# @STDEVP
+﻿# @STDEVP
 
 ## Overview
 
 `@STDEVP` is a **statistical function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that calculates the **population standard deviation** of a specified set of values. It measures the dispersion of a dataset when that dataset represents the *entire population* being studied, rather than a sample.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard deviation requires different mathematical formulas depending on the data:
 - **Sample (`@STDEV`)**: You are looking at a subset of data (e.g., 3 months of sales) to predict a broader trend. Uses `N-1` in the denominator to correct for bias.

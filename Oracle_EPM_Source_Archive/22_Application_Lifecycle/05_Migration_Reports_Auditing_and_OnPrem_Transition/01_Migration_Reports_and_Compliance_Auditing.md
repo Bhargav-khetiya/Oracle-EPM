@@ -1,4 +1,4 @@
-﻿# 📊 Migration Reports, History & Audit Governance
+﻿﻿# 📊 Migration Reports, History & Audit Governance
 ## Tracking Artifact Migrations, Delta Modifications, and Comprehensive Audit Trails
 
 > **Navigation:** `Home → Tools (🔧) → Migration → Reports`  
@@ -168,15 +168,15 @@ When replicating Production to Demo or restoring a snapshot, use the reports to 
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: Where are Migration Status diagnostic reports stored, and how long are they retained?
-**Answer:** Diagnostic reports are accessible via `Tools â†’ Migration â†’ Reports â†’ Migration Status`. Oracle Cloud EPM retains migration execution logs for **7 days**. For permanent compliance records, administrators should export migration reports to PDF or CSV immediately after migration completion.
+### Q1: Where are Migration Status diagnostic reports stored, and how long are they retained—
+**Answer:** Diagnostic reports are accessible via `Tools → Migration → Reports → Migration Status`. Oracle Cloud EPM retains migration execution logs for **7 days**. For permanent compliance records, administrators should export migration reports to PDF or CSV immediately after migration completion.
 
-### Q2: How does an auditor track delta changes between two application snapshots for SOX compliance?
-**Answer:** Use **Artifact Modification History** under `Tools â†’ Migration â†’ Reports â†’ Artifact Modification History`. Filter by date range to generate a comprehensive audit report detailing which forms, rules, calculations, or dimensions were modified, the timestamp of modification, and the user identity who made the change.
+### Q2: How does an auditor track delta changes between two application snapshots for SOX compliance—
+**Answer:** Use **Artifact Modification History** under `Tools → Migration → Reports → Artifact Modification History`. Filter by date range to generate a comprehensive audit report detailing which forms, rules, calculations, or dimensions were modified, the timestamp of modification, and the user identity who made the change.
 
-### Q3: Can you extract the Migration Status report programmatically via EPM Automate or REST API?
+### Q3: Can you extract the Migration Status report programmatically via EPM Automate or REST API—
 **Answer:** Yes. Cloud EPM provides REST API endpoints under `/interop/rest/v1/applicationsnapshots/migrationreports` to retrieve migration logs in JSON format, enabling automated compliance ingestion into SIEM or governance systems.
 
 ---

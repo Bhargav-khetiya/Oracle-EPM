@@ -1,10 +1,10 @@
-# @DATEROLL
+﻿# @DATEROLL
 
 ## Overview
 
 `@DATEROLL` is a **native Essbase date mathematics function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a **native Essbase Date Integer** (a Unix epoch timestamp representing seconds since Jan 1, 1970) and mathematically rolls a specific calendar component (such as Days, Months, or Years) forward or backward by a specified integer amount, returning a completely new Unix timestamp.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Before Calc Manager introduced Java-based functions (like `@CalcMgrRollMonth`), Essbase still needed a way to project Unix timestamps into the future for things like asset retirement or contract expiration.
 You cannot manually add `3` months to a Unix timestamp by adding seconds, because months have variable numbers of days. If you just add `2,592,000` seconds (30 days) to a timestamp in February, it will throw off the calendar. 

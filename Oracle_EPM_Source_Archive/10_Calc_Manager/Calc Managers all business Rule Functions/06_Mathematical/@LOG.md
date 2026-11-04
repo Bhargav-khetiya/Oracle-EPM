@@ -1,10 +1,10 @@
-# @LOG
+﻿# @LOG
 
 ## Overview
 
 `@LOG` is a **native Essbase mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates the **Natural Logarithm** (base *e*) of a given numeric value.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In advanced financial modeling, statistics, and data science, logarithmic transformations are essential for normalizing highly skewed data or modeling exponential compound growth.
 If a data scientist is pushing a massive dataset of "Store Revenue" into a predictive Machine Learning model, raw revenue numbers (ranging from $10,000 to $50,000,000) will break the algorithm due to extreme variance. The standard mathematical solution is to take the Natural Logarithm ($\ln$) of every revenue number, compressing that massive range into a tight, manageable scale (e.g., $9.21$ to $17.72$).

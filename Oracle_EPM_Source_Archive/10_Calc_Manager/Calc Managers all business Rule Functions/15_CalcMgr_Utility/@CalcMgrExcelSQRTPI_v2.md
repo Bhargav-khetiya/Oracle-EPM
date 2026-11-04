@@ -1,11 +1,11 @@
-# @CalcMgrExcelSQRTPI
+﻿# @CalcMgrExcelSQRTPI
 
 ## Overview
 
 `@CalcMgrExcelSQRTPI` is a **custom Calc Manager mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `SQRTPI` function directly inside an Essbase calculation script. 
 It calculates the **Square Root of (Number * Pi)**. Mathematically, it executes `SQRT(number * 3.14159...)`.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In physics, fluid dynamics, and advanced manufacturing models involving cylindrical or spherical constraints, you frequently need to calculate surface areas, radii, and volumetric flow rates. Many of these algebraic formulas require dividing by Pi, or finding the root of a Pi-scaled constant. 
 While you can easily write this manually in Essbase using two distinct functions (`@CalcMgrExcelSQRT(Number * @CalcMgrExcelPI())`), utilizing the dedicated `SQRTPI` function reduces calculation script clutter, eliminates multiple function calls to the Java engine, and perfectly mirrors the syntax of legacy engineering spreadsheets built in Excel.

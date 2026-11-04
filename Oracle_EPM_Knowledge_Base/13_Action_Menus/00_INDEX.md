@@ -1,26 +1,46 @@
-# Action Menus
+# Module 13: Action Menus & Context-Driven Navigation
 
-> Action Menus provide right-click context actions on form cells — launching business rules, opening URLs, navigating forms, or triggering data movements from a single click.
+## Navigation & Module Overview
 
----
-
-## Reading Order
-
-| # | File | What You'll Learn |
-|---|------|-------------------|
-| 1 | Action Menus Complete Guide (coming) | Configuration, menu types, use cases, form integration |
+This module covers right-click Action Menus on data forms, context-sensitive coordinate extraction, dynamic Runtime Prompt (RTP) binding, and target form redirection.
 
 ---
 
-## Menu Types
+<!-- ===================================================================== -->
+<!-- 🎯 LIVE INTERACTIVE VISUAL CARD: MODULE 13 ACTION MENUS -->
+<!-- ===================================================================== -->
+<details open>
+<summary><b>🎯 Live Interactive Architecture Card: Action Menus Suite (Click to Collapse / Expand)</b></summary>
 
-| Type | Purpose |
-|:---|:---|
-| **Launch Business Rule** | Run a calculation rule from a form context |
-| **Navigate to URL** | Open an external link or Oracle document |
-| **Navigate to Form** | Jump to another Planning form |
-| **Move Data** | Trigger a Data Map or Smart Push |
+<br/>
+
+> [!TIP]
+> **Consultant High-Yield Summary:** Master the context-passing pipeline (Form Coordinate -> Action Menu Intercept -> Silent Business Rule Prompt Injection).
+
+| Document | Primary Domain | Core Focus | Direct Link |
+| :--- | :--- | :--- | :--- |
+| **13.1 Action Menus Guide** | Context Navigation | Right-Click Architecture, Context Passing, RTP Parameter Binding, Smart View Integration | [01_Action_Menus_Guide.md](01_Action_Menus_Guide.md) |
+
+```mermaid
+flowchart TD
+    M13["Module 13: Action Menus"] --> D1["13.1 Action Menus Guide<br/>(Context-Driven Execution)"]
+    D1 --> Intercept["Right-Click Coordinate Interception"]
+    D1 --> RTP["Dynamic RTP Binding to Business Rules"]
+    D1 --> FormDrill["Secondary Form & Dashboard Drill"]
+```
+
+</details>
 
 ---
 
-**Provenance:** Source material from ChatGPT `Action_Menus/`, Gemini equivalents.
+## Module Documents
+
+1. **[13.1 Action Menus: Context-Sensitive Navigation & Dynamic Parameter Passing](01_Action_Menus_Guide.md)**
+   * Right-click coordinate interception and parameter passing mechanics.
+   * Action item types: Forms, Business Rules, Dashboards, and external URLs.
+   * Silent execution via Runtime Prompt (RTP) binding.
+   * Web form vs. Smart View right-click context menu behavior.
+   * Tough & twisted review questions with consultant model answers.
+
+---
+*Return to [Knowledge Base Master Index](../README.md) or advance to [Module 14: Application Lifecycle Management](../14_Application_Lifecycle/00_INDEX.md).*

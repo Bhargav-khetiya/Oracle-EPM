@@ -1,10 +1,10 @@
-# @ISSAMEGEN
+﻿# @ISSAMEGEN
 
 ## Overview
 
 `@ISSAMEGEN` is a **Boolean logical function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It checks whether the member currently being calculated belongs to the exact same top-down Generation as a specified reference member. It returns `TRUE` or `FALSE`.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When applying logic across unbalanced hierarchies, you often want to target members that sit at the same conceptual tier (e.g., all "Regions" or all "Countries").
 While you can use `@ISGEN("Entity", 3)`, that requires hardcoding the generation number `3`. If the outline changes and "Countries" are pushed down to Generation 4, you have to rewrite the script.
@@ -45,7 +45,7 @@ Where:
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `mbrName` | Member | ✅ Yes | The benchmark member. The function asks: "Is the current member in the same generation as `mbrName`?" |
+| `mbrName` | Member | ✅ Yes | The benchmark member. The function asks: "Is the current member in the same generation as `mbrName`— |
 
 ---
 

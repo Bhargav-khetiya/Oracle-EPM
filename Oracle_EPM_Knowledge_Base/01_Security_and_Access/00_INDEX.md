@@ -1,45 +1,50 @@
-# Security and Access Control — Index
+# Module 01: Security, Access Control & Valid Intersections
 
-> This section covers everything about Oracle EPM Cloud security: from identity management and role provisioning to data-level permissions and valid intersections.
+## Navigation & Module Overview
+
+This module covers identity management, multi-group collision precedence, cell-level security, and dimensional validation in Oracle Enterprise Performance Management (EPM) Cloud.
 
 ---
 
-## Reading Order
+<!-- ===================================================================== -->
+<!-- 🎯 LIVE INTERACTIVE VISUAL CARD: MODULE 01 SECURITY -->
+<!-- ===================================================================== -->
+<details open>
+<summary><b>🎯 Live Interactive Architecture Card: Security & Governance (Click to Collapse / Expand)</b></summary>
 
-| # | Document | What You'll Learn | Time |
-|---|----------|------------------|------|
-| 1 | [01_Access_Control_and_Roles.md](01_Access_Control_and_Roles.md) | Security layers, predefined roles, IDCS/IAM, permissions, troubleshooting | 45 min |
-| 2 | [02_Valid_Intersections.md](02_Valid_Intersections.md) | Filtering invalid dimensional combinations, anchor/nonanchor, design patterns | 30 min |
+<br/>
 
-## Key Concepts
+> [!TIP]
+> **Interactive Standalone Dashboard:** Open [`card_kb_02_security_intersections.html`](../interactive_cards/card_kb_02_security_intersections.html) in your browser for a live interactive security & valid intersections simulator!
 
-Security in Oracle EPM Cloud is **layered** — think of it as multiple checkpoints:
+| Document | Primary Domain | Core Focus | Direct Link |
+| :--- | :--- | :--- | :--- |
+| **1.1 Access Control & Roles** | Security Architecture | 4-Layer Security, Multi-Group Precedence (None > Write > Read), CLS vs Member Grants | [01_Access_Control_and_Roles.md](01_Access_Control_and_Roles.md) |
+| **1.2 Valid Intersections** | Dimensional Validation | Anchor vs Non-Anchor Rules, Usability vs Security, Form Suppression | [02_Valid_Intersections.md](02_Valid_Intersections.md) |
 
+```mermaid
+flowchart TD
+    M1["Module 01: Security & Governance"] --> D1["1.1 Access Control & Roles<br/>(Precedence: None > Write > Read)"]
+    M1 --> D2["1.2 Valid Intersections<br/>(Anchor/Non-Anchor Business Rules)"]
 ```
-Layer 1: Identity (Can you sign in?)
-    ↓
-Layer 2: Application Role (What broad capabilities do you have?)
-    ↓
-Layer 3: Artifact Permissions (Which forms, rules, dashboards can you use?)
-    ↓
-Layer 4: Member/Data Permissions (Which data members can you see/edit?)
-    ↓
-Layer 5: Valid Intersections (Which dimensional combinations are offered?)
-    ↓
-Layer 6: Workflow State (Can you act in the current approval state?)
-```
 
-> **Critical distinction:** Valid intersections **filter** dimensional combinations — they are NOT access grants. Security permissions and valid intersections are **independent** checks.
+</details>
 
 ---
 
-## Prerequisites
+## Module Documents
 
-Before studying Security, you should understand:
-- What dimensions and members are → [08_Dimensions_and_Metadata](../08_Dimensions_and_Metadata/00_INDEX.md)
-- What forms are → [02_User_Interface_and_Navigation](../02_User_Interface_and_Navigation/00_INDEX.md)
+1. **[1.1 Oracle EPM Security, Access Control & Role Precedence](01_Access_Control_and_Roles.md)**
+   * Layered security architecture: OCI IAM, Artifacts, Dimension Members, Cell-Level Security (CLS).
+   * Multi-group permission collision resolution (`NONE > WRITE > READ`).
+   * Diagnostic pipeline for read-only cell issues.
+   * Tough & twisted review questions with consultant model answers.
+
+2. **[1.2 Valid Intersections: Filtering Dimensional Combinations](02_Valid_Intersections.md)**
+   * Architectural difference between Valid Intersections (Data Integrity) and Security (Authorization).
+   * Anchor and Non-Anchor dimension design rules.
+   * Performance optimization using "Suppress Invalid Combinations".
+   * Tough & twisted review questions with consultant model answers.
 
 ---
-
-> **Provenance:** Content merged from ChatGPT (`01_Security_and_Access/`), Claude (`12_Security/`), Gemini (`01_Security_and_Access/`)
-
+*Return to [Knowledge Base Master Index](../README.md) or advance to [Module 02: Finance Concepts & UI Navigation](../02_Finance_Concepts/00_INDEX.md).*

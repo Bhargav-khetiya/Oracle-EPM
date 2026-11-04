@@ -1,4 +1,4 @@
-﻿# 🚀 Step 3: Calendar & Fiscal Year Setup
+﻿﻿# 🚀 Step 3: Calendar & Fiscal Year Setup
 ## Time Period Configuration — Every Option Explained
 
 > **Wizard Step:** 3 of 5  
@@ -222,7 +222,7 @@
 > [!IMPORTANT]
 > Your calendar choices affect the ENTIRE application permanently:
 
-| Setting | Affects | Can Change Later? |
+| Setting | Affects | Can Change Later— |
 |---------|---------|-------------------|
 | Start Year | Earliest available year | ❌ No |
 | End Year | Latest available year | ✅ Yes (can extend) |
@@ -242,12 +242,12 @@
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: Can an administrator change the Fiscal Year First Month from January to July after the application is created?
+### Q1: Can an administrator change the Fiscal Year First Month from January to July after the application is created—
 **Answer:** No. Fiscal Year First Month is permanently locked at creation. It dictates internal chronological indexing, BegBalance calculations, and YTD dynamic rollups. Changing it requires exporting all metadata/data, recreating the application, and re-mapping historical periods.
 
-### Q2: What is the difference between Even, 4-4-5, 4-5-4, and 5-4-4 weekly distribution patterns?
+### Q2: What is the difference between Even, 4-4-5, 4-5-4, and 5-4-4 weekly distribution patterns—
 **Answer:** In retail and manufacturing, months are defined by 4 or 5 full weeks rather than calendar days:
 - **4-4-5:** First two months have 4 weeks (28 days), third month has 5 weeks (35 days).
 - **4-5-4:** Middle month has 5 weeks.
@@ -255,8 +255,8 @@
 - **Even:** Spreads annual figures evenly across 12 monthly periods (8.33% per month).
 This setting dictates how annual budgets automatically spread to periods in data forms.
 
-### Q3: Can an administrator add historical past years (e.g. FY20, FY21) if the Start Year was set to FY24?
-**Answer:** No. In Dimension Management, you can only **"Add Years" to the end** of the time horizon (FY29, FY30). You cannot push the Start Year backwards because Essbase time-series calculation formulas (@PRIOR, @MDSHIFT) anchor to the Start Year. Always configure the Start Year 3â€“5 years in the past if historical actuals will ever be required.
+### Q3: Can an administrator add historical past years (e.g. FY20, FY21) if the Start Year was set to FY24—
+**Answer:** No. In Dimension Management, you can only **"Add Years" to the end** of the time horizon (FY29, FY30). You cannot push the Start Year backwards because Essbase time-series calculation formulas (@PRIOR, @MDSHIFT) anchor to the Start Year. Always configure the Start Year 3"5 years in the past if historical actuals will ever be required.
 
 ---
 

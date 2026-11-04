@@ -1,10 +1,10 @@
-# ACCUMULATEVAR
+﻿# ACCUMULATEVAR
 
 ## Overview
 
 `ACCUMULATEVAR` is a **specialized Calculation Manager command** (rather than a native Essbase `@` function) used in Oracle EPM Cloud (PBCS/EPBCS). It acts as a runtime directive that forces a specific custom variable (`VAR` or `ARRAY`) to retain its accumulated state and roll its value forward across successive blocks, iterations, or even parallel execution threads, rather than resetting to zero at the start of each new block.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 By default, when Essbase executes a calculation script inside a `FIX` statement, it calculates one block (e.g., `"Store_101"`), and then moves to the next block (`"Store_102"`). 
 If you define a custom tracking variable (`VAR vCounter = 0;`), that variable exists *locally* within the calculation context of the current block. When the engine finishes Store 101 and moves to Store 102, `vCounter` is destroyed and reset to 0. 

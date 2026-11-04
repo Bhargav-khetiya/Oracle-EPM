@@ -1,10 +1,10 @@
-# @CalcMgrAddMonths
+﻿# @CalcMgrAddMonths
 
 ## Overview
 
 `@CalcMgrAddMonths` is a **custom Calc Manager date function** in Oracle EPM Cloud (PBCS/EPBCS). It adds or subtracts a specified number of calendar months to a starting date formatted as a `YYYYMMDD` integer.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While `@CalcMgrAddDays` is useful for short-term exact dates, financial and corporate modeling heavily relies on monthly cycles (amortization, depreciation, loan terms, contract lengths, subscription renewals). 
 Adding exactly 3 months to Jan 15th should yield Apr 15th. However, if you simply added 90 days, you might yield Apr 14th or Apr 16th depending on the presence of leap years and varying month lengths. 

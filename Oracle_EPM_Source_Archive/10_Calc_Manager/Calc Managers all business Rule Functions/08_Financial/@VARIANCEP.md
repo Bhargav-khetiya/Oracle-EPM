@@ -1,10 +1,10 @@
-# @VARIANCEP
+﻿# @VARIANCEP
 
 ## Overview
 
 `@VARIANCEP` is a **financial and reporting function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It calculates the **Variance Percentage** between two members (typically Actual and Budget), automatically honoring the `Expense` vs `Revenue` reporting attributes of the Account dimension to ensure the percentage is directionally correct.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Calculating variance percentages manually is fraught with errors because you must handle account types (Revenue vs. Expense) and division-by-zero scenarios:
 - **Revenue**: (Actual 120 - Budget 100) / Budget 100 = +20% (Favorable)

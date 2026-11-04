@@ -1,4 +1,4 @@
-﻿# 🎨 FreeForm — Dimension Setup
+﻿﻿# 🎨 FreeForm — Dimension Setup
 ## Mapping and Configuring Dimensions
 
 > **Wizard Step:** 3 (FreeForm path)  
@@ -163,15 +163,15 @@ After the FreeForm application is created, you manage dimensions via:
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: What are the 3 optional default dimensions offered during FreeForm wizard setup?
+### Q1: What are the 3 optional default dimensions offered during FreeForm wizard setup—
 **Answer:** The wizard offers Account, Entity, and Period as optional checkboxes. Unlike standard Planning where these are mandatory, in FreeForm you can uncheck any or all of them. You can rename them (e.g. renaming Account to Measures or Period to Time).
 
-### Q2: What is the maximum number of dimensions allowed per cube in FreeForm?
+### Q2: What is the maximum number of dimensions allowed per cube in FreeForm—
 **Answer:** A FreeForm cube supports up to **29 dimensions**. However, best practice for performance in BSO Hybrid is to keep dimension counts between 8 and 14 to avoid excessive sparse block header overhead.
 
-### Q3: Can you import an Essbase outline (.otl) directly into FreeForm during application creation?
+### Q3: Can you import an Essbase outline (.otl) directly into FreeForm during application creation—
 **Answer:** Yes. If you select "Create from Essbase Outline (.otl)" in the creation flow, the wizard allows you to upload an existing on-premises Essbase outline file. FreeForm parses the outline, creates the cubes, and builds all dimensions, member formulas, and alias tables automatically.
 
 ---

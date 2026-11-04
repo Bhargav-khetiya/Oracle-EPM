@@ -1,11 +1,11 @@
-# @CalcMgrExcelTBILLEQ
+﻿# @CalcMgrExcelTBILLEQ
 
 ## Overview
 
 `@CalcMgrExcelTBILLEQ` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `TBILLEQ` function directly inside an Essbase calculation script. 
 It calculates the **Bond-Equivalent Yield** for a Treasury Bill (T-Bill).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Treasury Bills are unique because they are "discounted" securities. They do not pay periodic interest. Instead, they are sold at a discount (e.g., $95) and mature at face value ($100). The quoted rate on a T-Bill is a *bank discount rate*, which is calculated based on a 360-day year. 
 However, standard corporate bonds pay interest and quote their yields based on a full 365-day calendar year. If a corporate treasury wants to compare the true return of a T-Bill against the true return of a standard corporate bond, they cannot compare the quoted rates directly. The T-Bill's discount rate must be mathematically converted into a "Bond-Equivalent Yield" (BEY).

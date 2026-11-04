@@ -1,10 +1,10 @@
-# @HspCreateEssbaseServerFile
+﻿# @HspCreateEssbaseServerFile
 
 ## Overview
 
 `@HspCreateEssbaseServerFile` is a **Hyperion Planning (HSP) custom function** embedded within Oracle EPM Cloud (PBCS/EPBCS). It is an administrative utility designed to dynamically generate a physical text file (or CSV) directly onto the Essbase server's filesystem, populating it with a specific payload of text. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When EPM administrators build dynamic calculation scripts, they often need to extract data, trigger downstream system alerts, or create audit logs. Standard `DATAEXPORT` commands export large blocks of numeric data, but they are rigid and cannot easily export custom text strings or contextual warnings (e.g., "Warning: Cost Center 001 Failed Validation").
 `@HspCreateEssbaseServerFile` provides granular filesystem control. An administrator can use string concatenation (`@HspConcat` or `@CalcMgrStringsToString`) to build a highly specific custom message, and then use this function to instantly write that message out to a physical `.txt` file on the server. That file can then be picked up by EPM Automate, an FTP agent, or a downstream ERP system for processing.

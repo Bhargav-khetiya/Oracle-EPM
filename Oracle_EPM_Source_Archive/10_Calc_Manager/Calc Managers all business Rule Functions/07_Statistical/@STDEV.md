@@ -1,10 +1,10 @@
-# @STDEV
+﻿# @STDEV
 
 ## Overview
 
 `@STDEV` is a **statistical function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that calculates the **sample standard deviation** of a specified set of values. Standard deviation measures the amount of variation or dispersion of a set of values relative to its mean.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard deviation is critical for risk analysis, quality control, and volatility measurement:
 - **Financial Volatility**: Measuring how wildly revenue or expenses fluctuate month-over-month.

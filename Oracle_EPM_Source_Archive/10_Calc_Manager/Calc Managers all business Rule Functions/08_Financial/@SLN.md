@@ -1,10 +1,10 @@
-# @SLN
+﻿# @SLN
 
 ## Overview
 
 `@SLN` is a **financial depreciation function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that calculates the **Straight-Line Depreciation** of an asset for a single period. Straight-line depreciation distributes the cost of an asset evenly across its useful life.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Depreciation is a core requirement of financial accounting and capital planning:
 - **Expense Planning**: Translating large capital expenditures (CapEx) into monthly/annual depreciation expenses on the P&L.

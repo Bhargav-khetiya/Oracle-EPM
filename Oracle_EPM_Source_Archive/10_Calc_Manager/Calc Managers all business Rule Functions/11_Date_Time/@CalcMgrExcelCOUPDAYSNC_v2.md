@@ -1,11 +1,11 @@
-# @CalcMgrExcelCOUPDAYSNC
+﻿# @CalcMgrExcelCOUPDAYSNC
 
 ## Overview
 
 `@CalcMgrExcelCOUPDAYSNC` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `COUPDAYSNC` function directly inside an Essbase calculation script. 
 It calculates the exact number of days from the settlement date up to the **N**ext **C**oupon date.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In bond pricing and treasury cash flow models, it is essential to know exactly how far away the next cash outflow (interest payment) is. If a company issues a semi-annual bond (paying July 1 and Dec 31) and today's settlement date is May 15, the treasury department needs to know exactly how many days they have left to prepare the July 1 cash payment. 
 Calculating this manually in Essbase requires extrapolating the theoretical coupon schedule backwards from the maturity date, determining which period today falls into, and doing day-count math. `@CalcMgrExcelCOUPDAYSNC` executes this complex calendar logic seamlessly, returning the precise number of days remaining until the next coupon payment, matching Excel's internal math exactly.

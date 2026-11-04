@@ -1,10 +1,10 @@
-# @CalcMgrRollMonth
+﻿# @CalcMgrRollMonth
 
 ## Overview
 
 `@CalcMgrRollMonth` is a **custom Calc Manager date mathematics function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a **Java Date Object** (or Timestamp) and mathematically rolls the **Month** forward or backward by a specific integer amount, returning an entirely new, modified Java Date Object.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While `@CalcMgrRollDay` handles exact daily offsets (e.g., Net 45 Terms), many financial contracts operate on strict monthly cycles. If an enterprise software license begins on January 31st and lasts exactly 3 months, it does not last "90 days." It lasts exactly 3 calendar months. 
 Calculating this manually in Essbase is nearly impossible. Adding `300` to `20240131` (moving the month digit up by 3) results in `20240431` (April 31st). But April only has 30 days. Attempting to use `20240431` in downstream logic will crash the calendar parser.

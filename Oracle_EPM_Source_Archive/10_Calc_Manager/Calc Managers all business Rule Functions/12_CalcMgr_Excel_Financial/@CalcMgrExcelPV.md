@@ -1,14 +1,14 @@
-# @CalcMgrExcelPV
+﻿# @CalcMgrExcelPV
 
 ## Overview
 
 `@CalcMgrExcelPV` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `PV` function directly inside an Essbase calculation script. 
 It calculates the **Present Value** of a loan or an investment, based on a constant interest rate and a series of equal, periodic payments. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
-Present Value answers the fundamental corporate finance question: *"If I am promised $10,000 every month for the next 5 years, and my corporate discount rate is 6%, how much is that entire contract worth to me TODAY?"* 
-Alternatively, for debt modeling: *"If I can afford to pay exactly $50,000 a month to the bank for 10 years at a 5% interest rate, exactly how large of a loan can I take out today?"*
+Present Value answers the fundamental corporate finance question: *"If I am promised $10,000 every month for the next 5 years, and my corporate discount rate is 6%, how much is that entire contract worth to me TODAY—* 
+Alternatively, for debt modeling: *"If I can afford to pay exactly $50,000 a month to the bank for 10 years at a 5% interest rate, exactly how large of a loan can I take out today—*
 The mathematical formula for the present value of an annuity is `PMT * ((1 - (1 + Rate)^-Nper) / Rate)`. Writing this complex algebraic formula manually in Essbase is completely unnecessary and prone to syntax errors. 
 `@CalcMgrExcelPV` wraps this precise algebraic formula into a highly optimized Java call. It instantly returns the exact present value, ensuring your Essbase valuation models match legacy Excel spreadsheets perfectly.
 

@@ -1,4 +1,4 @@
-# 05 — Smart Lists: Scenarios, Troubleshooting, & Interview Bible
+﻿# 05 — Smart Lists: Scenarios, Troubleshooting, & Interview Bible
 
 > **Source Reference**: Extracted from production planning extractions (`smartlist.txt`) and enterprise implementation standards.
 
@@ -73,19 +73,19 @@ The following 8 scenarios represent the most common enterprise use cases for Sma
 
 ### Beginner Level (Fundamentals)
 
-#### Q1: What is an Oracle EPM Planning Smart List?
+#### Q1: What is an Oracle EPM Planning Smart List—
 > **Answer**: A Smart List is a predefined dropdown list of text choices assigned to an Account or custom dimension member. While the user selects and views a descriptive text label in forms or Smart View, Essbase physically stores a corresponding numeric integer in the underlying multi-dimensional data block.
 
-#### Q2: How does Essbase store a Smart List value on disk?
+#### Q2: How does Essbase store a Smart List value on disk—
 > **Answer**: Essbase stores Smart List values as standard 64-bit IEEE double-precision floating-point numbers (e.g., `1.00000000`, `2.00000000`) inside the 8-byte cells of `.PAG` data files. Essbase has no native text engine; Planning acts as an application-tier translation dictionary between the number and the text label.
 
-#### Q3: Which dimension member data type is required to display a Smart List?
+#### Q3: Which dimension member data type is required to display a Smart List—
 > **Answer**: The member's **Data Type** property must be set to **`SmartList`**, and the specific list must be selected in the **`Smart Lists`** dropdown property in the Dimension Editor.
 
-#### Q4: What is the difference between the Smart List Name and its Label on the Properties tab?
+#### Q4: What is the difference between the Smart List Name and its Label on the Properties tab—
 > **Answer**: The **Smart List Name** (e.g., `SL_Status`) is the internal programmatic identifier referenced in Calc Manager rules and REST APIs (max 80 chars, alphanumeric and underscores only). The **Label** (e.g., `Project Approval Status`) is the human-readable display name shown in administration screens and form builders.
 
-#### Q5: What are the two available tabs other than Properties observed on the Smart List configuration screen?
+#### Q5: What are the two available tabs other than Properties observed on the Smart List configuration screen—
 > **Answer**: The **Entries** tab (used to define entry IDs, names, and labels) and the **Preview** tab (used by administrators to test dropdown sorting and missing label rendering).
 
 ---
@@ -95,54 +95,54 @@ The following 8 scenarios represent the most common enterprise use cases for Sma
 #### Q6: Explain the difference between `Drop Down Setting` and `Form Setting` in `#Missing Form Label`.
 > **Answer**: `Drop Down Setting` causes an empty cell to display the text specified in `#Missing Drop Down Label` (e.g., `"No Data"`) before the user clicks it. `Form Setting` defers to the web form's global missing setting, typically rendering the empty cell as completely blank.
 
-#### Q7: What are the 4 available options in the `Display Order` dropdown?
+#### Q7: What are the 4 available options in the `Display Order` dropdown—
 > **Answer**: **`ID`** (sorts numerically by entry ID), **`Name`** (sorts alphabetically by programmatic entry name), **`Label`** (sorts alphabetically by user-facing label), and **`Hierarchy`** (arranges entries in parent-child indented tree format when built using `Create From Members`).
 
-#### Q8: Why is Dimension Evaluation Order critical when working with Smart Lists?
+#### Q8: Why is Dimension Evaluation Order critical when working with Smart Lists—
 > **Answer**: Because cells are multidimensional intersections, multiple dimensions dictate formatting. If the Currency dimension is evaluated before the Account dimension, Planning formats the cell as currency (e.g., `$1.00`). Setting Account to **Evaluation Order Rank 1** ensures the Smart List formatting takes precedence.
 
-#### Q9: What happens when `Automatically generate ID` is checked versus unchecked?
+#### Q9: What happens when `Automatically generate ID` is checked versus unchecked—
 > **Answer**: When checked, Planning automatically assigns sequential IDs (`1, 2, 3...`) as new entries are added. When unchecked, administrators must manually specify the integer ID for each entry. Unchecking is the production best practice in multi-environment deployments to prevent ID mismatches between Dev, Test, and Prod.
 
-#### Q10: What is an "Orphan ID" and how does it occur?
+#### Q10: What is an "Orphan ID" and how does it occur—
 > **Answer**: An Orphan ID occurs when an administrator deletes an entry from a Smart List after historical data was saved against it. Essbase retains the numeric float (e.g., `4.0`), but because ID `4` no longer exists in the Planning relational dictionary, forms render the raw number `"4.00"` instead of a text label.
 
 ---
 
 ### Advanced Level (Calculations & Multi-Cube Integration)
 
-#### Q11: How do you reference a Smart List entry inside an Essbase calculation script?
+#### Q11: How do you reference a Smart List entry inside an Essbase calculation script—
 > **Answer**: Using double-bracket notation: `IF ("Employee_Type" == [[Employee_Type.Full_Time]])`. Planning pre-compiles this into the numeric integer before sending the script to the Essbase kernel (`IF ("Employee_Type" == 1)`).
 
-#### Q12: How do you extract the text string of a Smart List entry in Calculation Manager for export?
+#### Q12: How do you extract the text string of a Smart List entry in Calculation Manager for export—
 > **Answer**: Using the CDF (Custom Defined Function) `@HspNumToString("AccountName")` or `@HspGetSmartListLabel("SmartListName", "AccountName")`.
 
-#### Q13: How do you read and write Smart List values in EPM Groovy rules?
+#### Q13: How do you read and write Smart List values in EPM Groovy rules—
 > **Answer**: Use `cell.getSmartList()` or `cell.getFormattedValue()` to read the text label, and `cell.setSmartList("Full_Time")` or `cell.data = 1` to write values back to the grid.
 
-#### Q14: What happens if a calculation script writes a number that does not correspond to any Smart List entry (e.g., `999.0`)?
+#### Q14: What happens if a calculation script writes a number that does not correspond to any Smart List entry (e.g., `999.0`)—
 > **Answer**: Essbase successfully commits the float `999.0` to the data block. However, when viewed on a form, Planning will display the raw number `"999.00"` because no corresponding text label exists in the dictionary.
 
-#### Q15: How does `Create From Members` work architecturally?
+#### Q15: How does `Create From Members` work architecturally—
 > **Answer**: Planning links the Smart List directly to an Essbase dimension hierarchy within a selected cube. Whenever members are added, renamed, or moved in that dimension, Planning automatically synchronizes the Smart List entries without requiring manual maintenance.
 
 ---
 
 ### Scenario-Based & Production Debugging
 
-#### Q16: A finance user complains that a Smart List dropdown shows "$1.00", "$2.00" instead of "Draft", "Approved". How do you resolve this?
+#### Q16: A finance user complains that a Smart List dropdown shows "$1.00", "$2.00" instead of "Draft", "Approved". How do you resolve this—
 > **Answer**: Navigate to **Application $\rightarrow$ Overview $\rightarrow$ Dimensions $\rightarrow$ Evaluation Order**. Verify the rank order. Move the **Account** dimension to **Rank 1** above Currency and Entity. Perform a database refresh.
 
-#### Q17: You are migrating a Workforce planning application from Dev to Prod via LCM. Planners in Prod report that all "Full-Time" employees are now showing as "Contractors". What caused this?
+#### Q17: You are migrating a Workforce planning application from Dev to Prod via LCM. Planners in Prod report that all "Full-Time" employees are now showing as "Contractors". What caused this—
 > **Answer**: `Automatically generate ID` was checked, and entries were created in a different order in Dev versus Prod (e.g., Full-Time was ID 1 in Dev, but Contractor was ID 1 in Prod). The data was loaded with ID 1, leading to swapped classifications. Fix: Align Prod entry IDs to Dev via LCM snapshot import.
 
-#### Q18: Can a Smart List be assigned to a Dense dimension member other than Account?
+#### Q18: Can a Smart List be assigned to a Dense dimension member other than Account—
 > **Answer**: Yes, Smart Lists can be assigned to custom Dense dimensions or Period/Version in specialized modules, provided the dimension evaluation order prioritizes the Smart List dimension over conflicting currency or numeric formats.
 
-#### Q19: How do Smart Lists behave in Smart View when copying and pasting data?
+#### Q19: How do Smart Lists behave in Smart View when copying and pasting data—
 > **Answer**: Users can copy and paste the text label (e.g., "Approved") across cells. Upon submitting data, Smart View translates the text into the corresponding numeric ID before transmitting the payload to Essbase. If an invalid string is typed, Smart View rejects the submission.
 
-#### Q20: What is the recommended deployment checklist before releasing a Smart List to production?
+#### Q20: What is the recommended deployment checklist before releasing a Smart List to production—
 > **Answer**:
 > 1. Uncheck `Automatically generate ID` and verify manual integer IDs across Dev, Test, and Prod.
 > 2. Confirm Account dimension is Evaluation Order Rank 1.

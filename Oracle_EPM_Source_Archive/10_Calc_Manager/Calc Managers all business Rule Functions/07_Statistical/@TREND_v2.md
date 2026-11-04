@@ -1,10 +1,10 @@
-# @TREND
+﻿# @TREND
 
 ## Overview
 
 `@TREND` is a **statistical forecasting function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that predicts future values based on a series of historical data points. It uses mathematical trending algorithms (like Linear Regression, Exponential Smoothing, or Moving Average) to project past trends into the future.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Forecasting often starts with a baseline projected from history before human adjustments are applied:
 - **Baseline Budgeting**: Using the last 3 years of actual sales to pre-populate next year's budget.

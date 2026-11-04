@@ -1,10 +1,10 @@
-# @CalcMgrFormatDouble
+﻿# @CalcMgrFormatDouble
 
 ## Overview
 
 `@CalcMgrFormatDouble` is a **custom Calc Manager string manipulation and formatting function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a raw numeric value (a double-precision floating point number) and perfectly formats it into a highly customizable **Text String** based on standard Java/Excel numeric formatting patterns.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Essbase natively stores and calculates pure numbers (e.g., `1234567.89`). However, when building dynamic alerts, automated commentary narratives, or exporting data to flat files via calc scripts, humans do not want to read pure raw floats. They want to read `$1,234,567.89`. 
 Trying to dynamically insert commas and dollar signs into a number using basic Essbase algebra or string concatenation is impossible without thousands of lines of code. 

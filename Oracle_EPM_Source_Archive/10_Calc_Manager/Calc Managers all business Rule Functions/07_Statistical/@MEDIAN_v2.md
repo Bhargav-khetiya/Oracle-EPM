@@ -1,10 +1,10 @@
-# @MEDIAN
+﻿# @MEDIAN
 
 ## Overview
 
 `@MEDIAN` is a **native Essbase mathematical array function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates a specified range (array) of members, sorts their numeric values internally from lowest to highest, and returns the **exact middle value** (the 50th percentile) of the dataset.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When benchmarking or creating standardized performance drivers, the standard Average (`@AVG`) is mathematically dangerous if the dataset contains massive outliers. 
 For example, if you have 5 stores, and their daily sales are `$10`, `$15`, `$20`, `$25`, and `$1,000,000` (a flagship store), the Average is `$200,014`. If you set next year's budget using that average, 4 out of 5 stores will fail spectacularly because the average was corrupted by a single outlier.

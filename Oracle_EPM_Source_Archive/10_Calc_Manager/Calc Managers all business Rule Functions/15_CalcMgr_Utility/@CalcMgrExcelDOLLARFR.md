@@ -1,11 +1,11 @@
-# @CalcMgrExcelDOLLARFR
+﻿# @CalcMgrExcelDOLLARFR
 
 ## Overview
 
 `@CalcMgrExcelDOLLARFR` is a **custom Calc Manager formatting/math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `DOLLARFR` function directly inside an Essbase calculation script. 
 It is the exact inverse of `DOLLARDE`. It takes a standard **decimal number** (e.g., `102.125`) and converts it into a fractional representation expressed as a decimal (e.g., `102.04`, representing 102 and 4/32nds).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While calculating bond yields and treasury portfolio valuations mathematically requires standard decimals (`102.125`), the traders and external systems that consume those reports often expect to see the data formatted in legacy fractional notation (e.g., `102.04`). 
 If a Treasury model calculates an optimal sell price for a bond as `$104.75`, and needs to export that to a trading desk system that strictly accepts quotes in 32nds, the system must translate `.75` into `24/32nds`, formatting the final output as `104.24`.

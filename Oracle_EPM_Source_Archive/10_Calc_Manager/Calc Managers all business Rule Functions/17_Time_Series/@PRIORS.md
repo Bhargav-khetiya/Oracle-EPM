@@ -1,13 +1,13 @@
-# @PRIORS
+﻿# @PRIORS
 
 ## Overview
 
 `@PRIORS` is a **native Essbase time-series array function** in Oracle EPM Cloud (PBCS/EPBCS). Unlike `@PRIOR` (which returns a single data value from a single historical period), `@PRIORS` generates a **dynamic array** of multiple historical periods based on a defined look-back integer. It is specifically designed to feed historical ranges into other array functions (like `@SUM` or `@MAX`) when calculating moving windows.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building moving averages or trailing totals, you typically use `@MOVAVG` or `@MOVSUM`. However, those functions inherently *include* the current period in their window. 
-What if you need to calculate a trailing sum of the *past* 3 months, explicitly EXCLUDING the current month? 
+What if you need to calculate a trailing sum of the *past* 3 months, explicitly EXCLUDING the current month— 
 If you are calculating `"Apr"`, and you need the sum of `"Jan", "Feb", "Mar"`, you cannot use `@MOVSUM(3)` because that gives you `(Feb + Mar + Apr)`. You cannot use standard sibling functions because they don't cross year boundaries.
 `@PRIORS` solves this natively. You pass it the number of periods to look backward (e.g., `3`). It steps back from the current period, collects exactly 3 historical periods into a contiguous array, and hands that array off to `@SUM` or `@AVG`. It explicitly excludes the current period, providing perfect, offset historical arrays.
 

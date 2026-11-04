@@ -1,4 +1,4 @@
-﻿# 📊 Projects Module — Complete Master Setup Guide
+﻿﻿# 📊 Projects Module — Complete Master Setup Guide
 ## Project Financial Planning, Resource Allocation, Billing & Cross-Module Integration
 
 > **Module:** Projects  
@@ -173,22 +173,22 @@ Projects is uniquely designed to communicate with three separate business cubes:
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: What are the core architectural differences between Contract, Capital, and Indirect projects?
+### Q1: What are the core architectural differences between Contract, Capital, and Indirect projects—
 **Answer:**
 - **Contract Projects:** Customer-facing billable projects that generate revenue based on Time & Materials (T&M) or Fixed Price milestones.
 - **Capital Projects:** Internal investment projects (e.g. constructing a manufacturing plant) where all project costs accumulate as Work-in-Progress (WIP) and monetize upon project completion into fixed assets in the Capital module.
 - **Indirect Projects:** Internal overhead projects (e.g. IT software upgrades) whose costs flow directly to operating expenses in Financials.
 
-### Q2: How does the Projects module synchronize resource allocations from Workforce and assets from Capital?
+### Q2: How does the Projects module synchronize resource allocations from Workforce and assets from Capital—
 **Answer:** Projects utilizes the **Tri-Sync** pipeline:
 1. Workforce planners allocate named employees to project codes (OEP_WFP $\to$ OEP_PJC).
 2. Capital planners link capital asset purchase requests to project numbers (OEP_CPX $\to$ OEP_PJC).
 3. Projects aggregates labor, asset, and direct expense lines to compute total project budget.
 4. An automated Smart Push pushes project summaries into corporate Financials (OEP_FS).
 
-### Q3: What happens if a project milestone billing date is pushed back by 3 months?
+### Q3: What happens if a project milestone billing date is pushed back by 3 months—
 **Answer:** The project calculation rule recalculates project revenue cash flow schedules. When the data map Projects to Financials executes, it automatically shifts the revenue recognition and accounts receivable balances 3 months forward in the corporate P&L and Balance Sheet.
 
 ---

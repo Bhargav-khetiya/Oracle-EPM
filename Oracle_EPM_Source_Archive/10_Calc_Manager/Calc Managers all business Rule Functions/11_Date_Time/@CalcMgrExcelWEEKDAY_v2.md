@@ -1,11 +1,11 @@
-# @CalcMgrExcelWEEKDAY
+﻿# @CalcMgrExcelWEEKDAY
 
 ## Overview
 
 `@CalcMgrExcelWEEKDAY` is a **custom Calc Manager date conversion function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `WEEKDAY` function directly inside an Essbase calculation script. 
 It analyzes an Excel Serial Date decimal (or a Java Timestamp) and extracts the **Day of the Week**, returning it as a simple integer (e.g., `1` for Sunday, `2` for Monday).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In retail, supply chain, and workforce planning, operational requirements fluctuate wildly based on the day of the week. Retail stores require double staffing on Saturdays (`7`). B2B supply chains ship absolutely nothing on Sundays (`1`). 
 When an EPM system runs a massive daily forecast out 365 days, it must systematically evaluate whether every single day is a weekday or a weekend to apply the correct Volume Multipliers. Determining if "July 14th, 2026" is a Tuesday or a Saturday using manual Essbase algebra requires incredibly complex Julian date modulo division (`(Date + Offset) % 7`).

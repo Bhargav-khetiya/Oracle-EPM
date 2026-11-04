@@ -1,10 +1,10 @@
-# @CalcMgrCounterClear
+﻿# @CalcMgrCounterClear
 
 ## Overview
 
 `@CalcMgrCounterClear` is a **custom Calc Manager state-tracking function** in Oracle EPM Cloud (PBCS/EPBCS). It completely deletes a specific, named memory counter (whether text or numeric) from the background Java heap memory, resetting it entirely.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When you use `@CalcMgrCounterAddNumber` or `@CalcMgrCounterAddText`, Calc Manager spins up an invisible memory bucket in the background. Because these buckets exist in the Java heap rather than inside the Essbase multidimensional blocks, they persist *across* different `FIX` statements within the same script.
 However, in highly complex architectures—especially those involving nested Business Rules, Groovy scripts iterating over data slices, or continuous user sessions—these counters can persist longer than intended. If a user runs a rule twice in a row, a counter named `"ErrorLog"` might still contain the text from the *first* run, causing the second run to append data to an already full log.

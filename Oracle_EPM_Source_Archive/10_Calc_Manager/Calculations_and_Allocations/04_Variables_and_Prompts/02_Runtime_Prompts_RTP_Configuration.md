@@ -1,4 +1,4 @@
-# 02 Runtime Prompts (RTP): Dynamic User Inputs, Member Limits, and Headless Overrides
+﻿# 02 Runtime Prompts (RTP): Dynamic User Inputs, Member Limits, and Headless Overrides
 
 ## 1. Architectural Essence of Runtime Prompts
 
@@ -17,7 +17,7 @@ A **Runtime Prompt (RTP)** is a Calculation Manager variable configured to promp
 |     |                                                                         |                   |
 |     | Select Cost Center: [ E101_Sales_East           ]  <-- Member Selector  |                   |
 |     | Enter Inflation %:  [ 5.5%                      ]  <-- Numeric Input    |                   |
-|     | Run Full Rollup?    [ (X) Yes   ( ) No          ]  <-- Boolean Input    |                   |
+|     | Run Full Rollup—    [ (X) Yes   ( ) No          ]  <-- Boolean Input    |                   |
 |     |                                                                         |                   |
 |     |                   [ LAUNCH ]       [ CANCEL ]                           |                   |
 |     +-------------------------------------------------------------------------+                   |

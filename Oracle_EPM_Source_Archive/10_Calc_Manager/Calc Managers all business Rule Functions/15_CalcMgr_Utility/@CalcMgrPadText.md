@@ -1,10 +1,10 @@
-# @CalcMgrPadText
+﻿# @CalcMgrPadText
 
 ## Overview
 
 `@CalcMgrPadText` is a **custom Calc Manager string manipulation function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a structural formatting tool, taking a dynamically generated string and forcefully expanding it to a specific **total character length** by adding a repeating **pad character** to either the left or right side.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building flat-file exports for downstream ERP systems (like SAP or Oracle GL), those legacy systems often require strict "fixed-width" file formats. If the GL expects the Department ID to be exactly 10 characters long, and your Essbase department is only `"Sales"` (5 characters), the ERP system will reject the file unless you pad it with spaces to become `"Sales     "`.
 Conversely, when constructing dynamic cross-dimensional target strings in Essbase, standard formatting matters. If you dynamically extract the month index `5` and try to build `"Period_5"`, but the database outline expects `"Period_05"`, the script will crash. 

@@ -1,10 +1,10 @@
-# @MEMBERAT
+﻿# @MEMBERAT
 
 ## Overview
 
 `@MEMBERAT` is a **member selection function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns a specific member from a list based on its index position (its numeric placement within that list).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When dealing with dynamic arrays of members (like `@CHILDREN("Total Entity")`), you sometimes need to isolate exactly one member from that list without knowing its explicit name.
 - Grab the *first* child of a hierarchy to park rounding errors.

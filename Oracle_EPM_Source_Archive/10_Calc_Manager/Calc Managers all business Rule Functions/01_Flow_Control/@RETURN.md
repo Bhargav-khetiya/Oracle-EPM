@@ -1,10 +1,10 @@
-# @RETURN
+﻿# @RETURN
 
 ## Overview
 
 `@RETURN` is a **control flow and debugging command** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that **aborts the calculation script** immediately and returns a custom error message to the user. It functions as a hard stop or "fail-fast" mechanism.
 
-### Why Does This Command Exist?
+### Why Does This Command Exist—
 
 Business rules often have prerequisites. If those conditions aren't met, continuing the calculation might corrupt data, waste server resources, or produce invalid results:
 - Running a forecast calculation when the forecast is already locked.

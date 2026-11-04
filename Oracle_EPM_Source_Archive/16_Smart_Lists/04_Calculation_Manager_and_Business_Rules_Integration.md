@@ -1,4 +1,4 @@
-# Smart Lists in Calculation Manager and Rules
+﻿# Smart Lists in Calculation Manager and Rules
 
 ## Core idea
 Calculation Manager can reference Smart List choices in supported Planning formulas and scripts.
@@ -40,7 +40,7 @@ Groovy has a separate API/context. Do not use copied methods such as getSmartLis
 | Groovy method fails | Current API reference and object context |
 | Push displays unexpectedly | Target member/list configuration and supported mappings |
 
-**Recall:** How do you reference an entry? What do you verify before a Groovy method or cross-cube push?
+**Recall:** How do you reference an entry— What do you verify before a Groovy method or cross-cube push—
 **Answer:** Use supported Calculation Manager insertion/syntax. Verify API support and target configuration; do not infer undocumented behavior.
 **Teach-back:** Explain how to test a choice from form entry through rule result.
 

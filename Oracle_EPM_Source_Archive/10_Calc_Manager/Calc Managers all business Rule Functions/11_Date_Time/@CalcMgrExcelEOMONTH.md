@@ -1,11 +1,11 @@
-# @CalcMgrExcelEOMONTH
+﻿# @CalcMgrExcelEOMONTH
 
 ## Overview
 
 `@CalcMgrExcelEOMONTH` is a **custom Calc Manager date function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `EOMONTH` function directly inside an Essbase calculation script. 
 It takes a starting date, shifts it forward (or backward) by a specified number of months, and mathematically forces the resulting date to be the **very last day** of that new month.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In accounting and corporate finance, cash flows and accruals are almost universally aligned to the "End of Month". If an invoice is issued on October 12, and the payment terms are "Net 60", the payment is technically due on December 11. However, FP&A models usually don't forecast cash flows on a daily basis; they forecast them monthly, pushing that cash outflow to the end of December (December 31).
 Calculating the "End of Month" dynamically in Essbase is highly complex. If you shift a date into February, you must know if it's a leap year to determine if the end of the month is the 28th or 29th. If you shift into April, the end is the 30th. 

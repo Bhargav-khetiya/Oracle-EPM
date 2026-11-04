@@ -1,11 +1,11 @@
-# @CalcMgrExcelAVEDEV
+﻿# @CalcMgrExcelAVEDEV
 
 ## Overview
 
 `@CalcMgrExcelAVEDEV` is a **custom Calc Manager statistical function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `AVEDEV` function directly inside an Essbase calculation script. 
 It calculates the **average of the absolute deviations** of data points from their mean. In simple terms, it measures the variability or volatility of a dataset—telling you, on average, how far off each data point is from the center (mean) of the dataset, regardless of whether the deviation is positive or negative.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Essbase natively supports `@AVG` (to find the mean) and `@STDDEV` (to find standard deviation). However, `AVEDEV` is a highly specific statistical measure often preferred in operational forecasting or supply chain models because it is less sensitive to extreme outliers than standard deviation (since it does not square the deviations).
 If an FP&A analyst built a sales forecasting model in Excel using `=AVEDEV(Jan:Dec)` to measure the volatility of product sales, recreating this mathematically in an Essbase block would require multiple passes:

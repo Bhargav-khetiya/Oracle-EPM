@@ -1,10 +1,10 @@
-# @SYD
+﻿# @SYD
 
 ## Overview
 
 `@SYD` is a **financial depreciation function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that calculates the **Sum-of-the-Years' Digits** depreciation for an asset for a specific period. This is an **accelerated depreciation method**, meaning more expense is recognized in the early years of the asset's life and less in the later years.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While straight-line depreciation (@SLN) spreads cost evenly, some assets (like computers or vehicles) lose most of their value or utility rapidly in the first few years.
 - **Tax Planning**: Accelerated depreciation often provides near-term tax benefits by increasing deductible expenses early in an asset's life.

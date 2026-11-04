@@ -1,10 +1,10 @@
-# Oracle EPM: The Ultimate Master Guide to the @RETURN Function (Essbase)
+﻿# Oracle EPM: The Ultimate Master Guide to the @RETURN Function (Essbase)
 
 
 ---
 
 ## 1. Introduction to @RETURN
-Imagine you are building a house (running a calculation). Before you pour the concrete, you notice the wooden frame is crooked. What do you do? You stop working immediately and tell the site manager there is a problem. 
+Imagine you are building a house (running a calculation). Before you pour the concrete, you notice the wooden frame is crooked. What do you do— You stop working immediately and tell the site manager there is a problem. 
 
 In Oracle EPM (Essbase), `@RETURN` is that **Emergency Stop Button**. It is a command you put inside a Calculation Script. If it detects a problem—like a user entering a negative number where it shouldn't be—it immediately halts the entire calculation and sends a custom text message to the user explaining exactly what went wrong.
 
@@ -146,27 +146,27 @@ ENDFIX
 
 ## 6. Advanced Technical Questions
 
-**Q1: Does @RETURN rollback data?**
+**Q1: Does @RETURN rollback data—**
 > **A:** **No.** Essbase does not have transactional rollback for calc scripts. If the script modified data blocks before hitting the `@RETURN` statement, those modifications remain saved in the database. This is why validation checks should occur at the beginning of the script.
 
-**Q2: I want to send a warning message to the Job Console, but I want the script to finish calculating. Can I use `@RETURN("Message", WARNING)`?**
+**Q2: I want to send a warning message to the Job Console, but I want the script to finish calculating. Can I use `@RETURN("Message", WARNING)`—**
 > **A:** **No.** Any use of `@RETURN`, regardless of whether it is INFO, WARNING, or ERROR, will immediately stop the calculation. To log without stopping, you would need to use Groovy scripting (e.g., `println`) instead of standard Essbase calc scripts.
 
-**Q3: How do I tell the user the exact intersection that caused the error?**
+**Q3: How do I tell the user the exact intersection that caused the error—**
 > **A:** You must nest `@CONCATENATE` and `@NAME(@CURRMBR("Dimension"))` functions. Since `@CONCATENATE` only accepts two arguments, building a string with 3 or 4 dimensions requires deep nesting: 
 > `@CONCATENATE(@CONCATENATE("Error at ", @NAME(@CURRMBR("Entity"))), @NAME(@CURRMBR("Account")))`.
 
-**Q4: Can I use `@RETURN` inside an `@IF` in a member formula?**
+**Q4: Can I use `@RETURN` inside an `@IF` in a member formula—**
 > **A:** **No.** The documentation specifically states `@RETURN` can only be used in calculation scripts, not member formulas.
 
-**Q5: What happens if an `@RETURN` condition is met inside a Business Rule that is triggered by a Data Form "Save" action?**
+**Q5: What happens if an `@RETURN` condition is met inside a Business Rule that is triggered by a Data Form "Save" action—**
 > **A:** The rule fails, the message is displayed directly on the user's screen in the web UI as a pop-up, and (depending on form configuration) the data save itself may be aborted if the rule is set to "Run Before Save".
 
-**Q6: Can I return the actual numerical value that caused the error in my message?**
+**Q6: Can I return the actual numerical value that caused the error in my message—**
 > **A:** Standard Essbase calc scripts struggle to convert numbers to strings inside `@RETURN`. You generally use Groovy for this. However, in pure Essbase, you can use `@HspNumToString` (if available in your EPM version) to convert the number, then `@CONCATENATE` it into the message.
 
-**Q7: I wrote `@RETURN("Failed", ERROR)` but the syntax check failed. Why?**
+**Q7: I wrote `@RETURN("Failed", ERROR)` but the syntax check failed. Why—**
 > **A:** Ensure it is inside a valid block. `@RETURN` must be tied to a member block or inside an `IF` statement that is tied to a member. For example: `"Account" ( IF(condition) @RETURN(...) ENDIF )`
 
-**Q8: If I have a parent script that uses `RUNSQL` or calls another script, and the child script hits `@RETURN`, does the parent script keep running?**
+**Q8: If I have a parent script that uses `RUNSQL` or calls another script, and the child script hits `@RETURN`, does the parent script keep running—**
 > **A:** Generally, the entire job terminates. An `@RETURN` throws a termination signal to the Essbase calculation engine, which bubbles up and stops the parent process.

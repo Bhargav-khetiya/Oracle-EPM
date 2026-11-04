@@ -1,6 +1,6 @@
-# Oracle EPM Cloud: The Ultimate Master Guide to Approval Flows
+﻿# Oracle EPM Cloud: The Ultimate Master Guide to Approval Flows
 
-## 1. Introduction: What is an Approval Flow?
+## 1. Introduction: What is an Approval Flow—
 An Approval Flow in Oracle EPM Cloud is a structured, systematic process for reviewing and approving data (usually a Budget or Forecast). It tracks the status of data slices (known as **Planning Units**) as they move up the organizational hierarchy from preparers, to reviewers, to final executives. 
 
 During this process, the system dynamically locks and unlocks data to ensure that once a user submits their budget, they can no longer alter the numbers while it is under review.

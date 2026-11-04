@@ -1,4 +1,4 @@
-# 12 — Quick Reference and Cheat Sheet
+﻿# 12 — Quick Reference and Cheat Sheet
 
 ---
 
@@ -59,12 +59,12 @@ DATA CACHE UTILIZATION:
 ## 12.3 Sparse vs Dense Decision Tree
 
 ```
-Is the member count ≤ 30?
-├── YES → Is data density > 50%?
-│         ├── YES → Does making it dense keep block size < 200 KB?
+Is the member count ≤ 30—
+├── YES → Is data density > 50%—
+│         ├── YES → Does making it dense keep block size < 200 KB—
 │         │         ├── YES → ✅ DENSE
 │         │         └── NO  → ⚠️ SPARSE (block would be too large)
-│         └── NO  → Is it a calculation-heavy dimension (Account, Period)?
+│         └── NO  → Is it a calculation-heavy dimension (Account, Period)—
 │                   ├── YES → ✅ DENSE (intra-block calc benefit outweighs density)
 │                   └── NO  → ✅ SPARSE
 └── NO  → ✅ SPARSE (almost always)
@@ -176,7 +176,7 @@ ORDER (top to bottom):
 
 ## 12.10 Essbase Operations Impact Reference
 
-| Operation | Blocks Read | Blocks Written | Blocks Created | Database Offline? |
+| Operation | Blocks Read | Blocks Written | Blocks Created | Database Offline— |
 |-----------|-------------|---------------|----------------|-------------------|
 | Single cell retrieve | 1 | 0 | 0 | No |
 | Form open (20 cells) | 1-5 | 0 | 0 | No |
@@ -196,44 +196,44 @@ ORDER (top to bottom):
 ```
 PROBLEM: Form is slow to open
 CHECK:
-  □ How many blocks does the form need? (check member combinations)
-  □ Is Data Cache large enough? (check hit ratio)
-  □ Are there Dynamic Calc members on the form? (each one recalculates)
-  □ Is the Essbase server under load? (check concurrent users)
-  □ Is the network slow? (check latency)
+  □ How many blocks does the form need— (check member combinations)
+  □ Is Data Cache large enough— (check hit ratio)
+  □ Are there Dynamic Calc members on the form— (each one recalculates)
+  □ Is the Essbase server under load— (check concurrent users)
+  □ Is the network slow— (check latency)
 
 PROBLEM: CALC ALL takes too long
 CHECK:
-  □ Is the outline in hourglass order? (check dimension ordering)
-  □ Are there too many empty blocks? (run CLEARBLOCK)
-  □ Is CALCPARALLEL enabled? (check essbase.cfg)
-  □ Can you use FIX instead of CALC ALL? (target specific data)
-  □ Is Data Cache large enough? (check hit ratio)
-  □ Are there unnecessary stored members? (use Dynamic Calc)
+  □ Is the outline in hourglass order— (check dimension ordering)
+  □ Are there too many empty blocks— (run CLEARBLOCK)
+  □ Is CALCPARALLEL enabled— (check essbase.cfg)
+  □ Can you use FIX instead of CALC ALL— (target specific data)
+  □ Is Data Cache large enough— (check hit ratio)
+  □ Are there unnecessary stored members— (use Dynamic Calc)
 
 PROBLEM: Data load is slow
 CHECK:
-  □ Is the data file sorted by sparse keys? (pre-sort!)
-  □ Is the rules file doing too many transformations?
-  □ Is DLTHREADSPREPARE set? (parallel loading)
-  □ Is Data Cache large enough?
-  □ Is the source local or over the network?
+  □ Is the data file sorted by sparse keys— (pre-sort!)
+  □ Is the rules file doing too many transformations—
+  □ Is DLTHREADSPREPARE set— (parallel loading)
+  □ Is Data Cache large enough—
+  □ Is the source local or over the network—
 
 PROBLEM: Database is too large on disk
 CHECK:
-  □ Are there empty blocks? (CLEARBLOCK)
-  □ Is compression enabled? (check DATACOMPRESSIONTYPE)
-  □ Are .PAG files fragmented? (check actual vs expected size)
-  □ Is the block size appropriate? (check dense member counts)
-  □ Are there too many upper-level blocks? (Dynamic Calc upper levels)
+  □ Are there empty blocks— (CLEARBLOCK)
+  □ Is compression enabled— (check DATACOMPRESSIONTYPE)
+  □ Are .PAG files fragmented— (check actual vs expected size)
+  □ Is the block size appropriate— (check dense member counts)
+  □ Are there too many upper-level blocks— (Dynamic Calc upper levels)
 
 PROBLEM: Essbase crashes / out of memory
 CHECK:
-  □ Is Data Cache + Index Cache > available RAM?
-  □ Is CALCPARALLEL too high? (each thread uses memory)
-  □ Are blocks too large? (large blocks = more memory per operation)
-  □ Too many concurrent connections? (check SERVERTHREADS)
-  □ Is the OS swapping? (check page file usage)
+  □ Is Data Cache + Index Cache > available RAM—
+  □ Is CALCPARALLEL too high— (each thread uses memory)
+  □ Are blocks too large— (large blocks = more memory per operation)
+  □ Too many concurrent connections— (check SERVERTHREADS)
+  □ Is the OS swapping— (check page file usage)
 ```
 
 ---

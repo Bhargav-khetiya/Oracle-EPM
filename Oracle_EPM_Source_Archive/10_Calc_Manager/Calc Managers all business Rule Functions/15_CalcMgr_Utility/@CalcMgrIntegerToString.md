@@ -1,10 +1,10 @@
-# @CalcMgrIntegerToString
+﻿# @CalcMgrIntegerToString
 
 ## Overview
 
 `@CalcMgrIntegerToString` is a **custom Calc Manager string conversion function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as the exact inverse of `@CalcMgrGetIntegerFromString`. It takes a **pure mathematical integer** (e.g., `2024`) and systematically converts it into a **Text String** (e.g., `"2024"`).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Essbase natively handles all data as numbers. You can easily calculate that next year is `2024 + 1 = 2025`. 
 However, standard numbers cannot be used to dynamically point to a member in the database. You cannot tell Essbase to push data into member `2025`. You must tell it to push data into member `"FY25"` or `"2025"`. 

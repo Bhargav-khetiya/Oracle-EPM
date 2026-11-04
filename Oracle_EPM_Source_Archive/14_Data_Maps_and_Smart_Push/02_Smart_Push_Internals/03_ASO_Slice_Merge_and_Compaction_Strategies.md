@@ -1,4 +1,4 @@
-# 03 ASO Slice Merge, Zero-Cell Removal, and Compaction Strategies
+﻿# 03 ASO Slice Merge, Zero-Cell Removal, and Compaction Strategies
 
 ## 1. The Slice Accumulation Lifecycle
 
@@ -147,7 +147,7 @@ Write-Host "Maintenance completed successfully."
 
 ## 5. Architectural Comparison: Maintenance Operations
 
-| Maintenance Operation | Recommended Frequency | Typical Duration | Locks Database? | Primary Benefit |
+| Maintenance Operation | Recommended Frequency | Typical Duration | Locks Database— | Primary Benefit |
 | :--- | :--- | :--- | :--- | :--- |
 | **Incremental Slice Merge** | Hourly / Intra-day during budget cycle | 5 – 20 seconds | Minimal read lock | Prevents query degradation without disrupting users |
 | **Full Slice Merge (`all`)** | Nightly batch window | 1 – 10 minutes | Exclusive lock during final atomic index swap | Restores cube to peak single-slice performance |

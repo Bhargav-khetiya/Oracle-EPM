@@ -1,10 +1,10 @@
-# @GEN
+﻿# @GEN
 
 ## Overview
 
 `@GEN` is a **hierarchy context function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It returns the integer generation number of a specified member within its dimension.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In Essbase, **Generations** count from the top of the hierarchy down. Generation 1 is the absolute root member of a dimension. Generation 2 comprises the immediate children of the root, and so on.
 Generations are highly stable for horizontal alignment in unbalanced hierarchies. For example, if Gen 2 is always "Region" and Gen 3 is always "Country", you can safely rely on Gen 3 to mean "Country", even if one country has states (Level 0) and another does not.

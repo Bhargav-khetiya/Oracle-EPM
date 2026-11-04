@@ -1,4 +1,4 @@
-# 11 — Essbase Kernel and Memory Architecture
+﻿# 11 — Essbase Kernel and Memory Architecture
 
 ---
 
@@ -161,7 +161,7 @@ Cache is FULL, and a new block needs to be loaded:
 
 1. Find the LEAST RECENTLY USED block in cache
 
-2. Is it DIRTY? (has it been modified since last disk write?)
+2. Is it DIRTY— (has it been modified since last disk write—)
    ├── YES → Flush to disk first:
    │         Compress the block
    │         Write to .PAG file

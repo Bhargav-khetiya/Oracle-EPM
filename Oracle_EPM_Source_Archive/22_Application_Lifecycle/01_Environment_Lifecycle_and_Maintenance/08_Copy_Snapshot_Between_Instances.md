@@ -1,4 +1,4 @@
-﻿# Oracle EPM Cloud: Copy Snapshot Between Instances (Server-to-Server)
+﻿﻿# Oracle EPM Cloud: Copy Snapshot Between Instances (Server-to-Server)
 
 ## 1. `copySnapshotFromInstance` — Direct Server-to-Server Transfer
 
@@ -17,7 +17,7 @@ Source (Production)                    Target (Demo/Test)
        │                              (ready for import)
 ```
 
-### Why Use This Instead of Download/Upload?
+### Why Use This Instead of Download/Upload—
 
 | Method | Speed | Local Disk Needed | Network Used |
 |--------|-------|-------------------|-------------|
@@ -144,7 +144,7 @@ epmautomate logout
 
 ### What `copySnapshotFromInstance` Does NOT Transfer
 
-| Item | Included? | Alternative |
+| Item | Included— | Alternative |
 |------|-----------|-------------|
 | Application artifacts (metadata, data, forms, rules) | ✅ Yes | — |
 | Security (groups, role assignments) | ✅ Yes (in snapshot) | Import with `importUsers=true` |
@@ -179,13 +179,13 @@ epmautomate logout
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: How does copySnapshotFromInstance achieve 10x faster transfer speeds than download and upload?
+### Q1: How does copySnapshotFromInstance achieve 10x faster transfer speeds than download and upload—
 **Answer:** copySnapshotFromInstance streams data **server-to-server** across Oracle's internal 100 Gbps cloud backbone network. It establishes a secure mutual-TLS tunnel directly between the source pod and target pod. No data flows through the administrator's local computer or corporate VPN, eliminating local network latency and bandwidth bottlenecks.
 
-### Q2: Does copySnapshotFromInstance consume local disk space on the administrator's workstation?
+### Q2: Does copySnapshotFromInstance consume local disk space on the administrator's workstation—
 **Answer:** Zero bytes of local disk space are consumed. The command executed locally is merely a 1 KB control signal. The snapshot archive streams directly from the source environment's cloud storage into the target environment's Inbox.
 
-### Q3: What happens if the target environment already has a snapshot with the exact same name?
+### Q3: What happens if the target environment already has a snapshot with the exact same name—
 **Answer:** The incoming snapshot will overwrite the existing file in the target environment's Inbox without warning. If you need to preserve the target snapshot, use epmautomate renameFile to archive the target copy before initiating the cross-pod transfer.

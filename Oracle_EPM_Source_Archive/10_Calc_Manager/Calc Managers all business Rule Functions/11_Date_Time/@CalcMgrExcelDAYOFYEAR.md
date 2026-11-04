@@ -1,10 +1,10 @@
-# @CalcMgrExcelDAYOFYEAR
+﻿# @CalcMgrExcelDAYOFYEAR
 
 ## Overview
 
 `@CalcMgrExcelDAYOFYEAR` is a **custom Calc Manager date function** in Oracle EPM Cloud (PBCS/EPBCS). It analyzes a provided date and returns its numerical position within the calendar year (from `1` to `365` or `366`).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In manufacturing, retail, and supply chain models, time is frequently analyzed using the "Julian Day" or "Day of Year" format. For example, January 1st is Day 1. February 1st is Day 32. December 31st is Day 365 (or 366 in a leap year).
 This is crucial for calculating seasonality curves, daily depreciation, or prorating annual subscription contracts. Calculating this manually in Essbase requires complex arrays mapping the cumulative days in each month and injecting `IF` statements to handle leap years. 

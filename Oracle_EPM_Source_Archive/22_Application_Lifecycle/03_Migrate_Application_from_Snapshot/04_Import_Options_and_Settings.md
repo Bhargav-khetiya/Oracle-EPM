@@ -1,4 +1,4 @@
-﻿# ⚙️ Migration Import Options & Settings — Deep Dive
+﻿﻿# ⚙️ Migration Import Options & Settings — Deep Dive
 ## Configuring Group Management, Role Assignment Rules, and Migration Policies
 
 > **Navigation:** `Home → Tools (🔧) → Migration → Snapshots → Options (⚙️)`  
@@ -55,7 +55,7 @@ The most consequential setting in Migration Options is the **Groups and Membersh
 
 The table below contrasts the 4 operational modes:
 
-| Option Mode | New Groups Created? | Existing Groups Updated? | Missing Groups Deleted? | Granular Role Assignments | Recommended Use Case |
+| Option Mode | New Groups Created— | Existing Groups Updated— | Missing Groups Deleted— | Granular Role Assignments | Recommended Use Case |
 |:---|:---:|:---:|:---:|:---|:---|
 | **Create or Update** *(Default)* | ✅ Yes | ✅ Yes | ❌ No | Adds newly assigned roles; updates existing bindings | **Standard Application Migrations & Clones.** Ensures target environment matches source without wiping non-overlapping local groups. |
 | **Create Only** | ✅ Yes | ❌ No | ❌ No | Assigns roles only to newly created groups/users | **Initial onboarding** of new business units or subsidiary groups where existing target configurations must remain untouched. |
@@ -150,17 +150,17 @@ In Data Management (`Tools → Data Management → System Settings`):
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: What is the difference between Group Import Mode Create or Update versus Skip Existing?
+### Q1: What is the difference between Group Import Mode Create or Update versus Skip Existing—
 **Answer:**
 - **Create or Update:** If a group in the snapshot exists in the target, the import merges roles and updates group membership. If it does not exist, it creates the group.
 - **Skip Existing:** If a group already exists in the target, the import ignores the snapshot definition, preserving target group permissions untouched.
 
-### Q2: What is the Error Threshold parameter, and what happens if errors exceed it?
+### Q2: What is the Error Threshold parameter, and what happens if errors exceed it—
 **Answer:** In Migration Options, the **Error Threshold** specifies the maximum number of artifact import errors allowed before the migration engine aborts the entire job (default is typically 100 errors). If corrupted metadata triggers errors exceeding this count, the import immediately halts to prevent leaving the application in an unstable state.
 
-### Q3: How do you resolve EPMIE-00070 when the executing admin is not an Identity Domain Administrator?
+### Q3: How do you resolve EPMIE-00070 when the executing admin is not an Identity Domain Administrator—
 **Answer:** If the executing user holds only the application Service Administrator role but lacks the **Identity Domain Administrator** role, they cannot provision new users into IDCS. In this case, either assign the Identity Domain Administrator role to the migration user or pre-create the missing users in the target identity domain before running the import.
 
 ---

@@ -1,11 +1,11 @@
-# @CalcMgrExcelDATE
+﻿# @CalcMgrExcelDATE
 
 ## Overview
 
 `@CalcMgrExcelDATE` is a **custom Calc Manager date construction function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `DATE` function directly inside an Essbase calculation script. 
 It takes three separate integers representing the Year, Month, and Day, and combines them into a single valid date value. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In EPM Cloud, dates are typically stored as 8-digit integers (e.g., `20241231`). If you have three separate numeric components (e.g., a Year variable `2024`, a Month variable `12`, and a Day variable `31`), attempting to combine them manually using mathematical multiplication (e.g., `(Year * 10000) + (Month * 100) + Day`) is theoretically possible, but breaks down entirely if the day or month logic is dynamic and rolls over (e.g., trying to set the date to Month 13).
 In Excel, `=DATE(2024, 13, 1)` automatically rolls over to January 1, 2025. `@CalcMgrExcelDATE` executes this exact same intelligent calendar math in the Java engine. It synthesizes the components, handles all leap-year and rollover logic effortlessly, and returns a perfect Excel Serial Date (a decimal number) that can be easily exported or further processed.

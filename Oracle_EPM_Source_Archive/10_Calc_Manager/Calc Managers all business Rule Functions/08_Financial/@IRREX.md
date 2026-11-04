@@ -1,12 +1,12 @@
-# @IRREX
+﻿# @IRREX
 
 ## Overview
 
 `@IRREX` is a **native Essbase financial function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates the **Extended Internal Rate of Return (IRR)** for a series of cash flows that occur across a specified time horizon.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
-The Internal Rate of Return is a critical corporate finance metric used to evaluate the profitability of an investment. It answers the question: "What discount rate forces the Net Present Value (NPV) of all my cash flows to exactly zero?"
+The Internal Rate of Return is a critical corporate finance metric used to evaluate the profitability of an investment. It answers the question: "What discount rate forces the Net Present Value (NPV) of all my cash flows to exactly zero—
 The native `@IRR` function calculates this, but it requires an initial "guess" parameter to seed the mathematical algorithm. In massive EPM models (like a 500-project capital portfolio), guessing the IRR for every single project dynamically is nearly impossible. If the guess is too far off, the standard IRR algorithm fails to converge and returns an error.
 `@IRREX` (IRR Extended) is the modernized version. It does NOT require a guess parameter. It utilizes a more advanced, exhaustive internal iteration engine that automatically searches for the convergence point across a much wider mathematical spectrum. It is highly robust and significantly easier to implement in automated calculation scripts than the legacy `@IRR`.
 

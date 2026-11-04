@@ -1,4 +1,4 @@
-﻿# 🎨 FreeForm Application — Complete Overview
+﻿﻿# 🎨 FreeForm Application — Complete Overview
 ## Custom Cubes, Flexible Dimensions, Maximum Freedom
 
 > **Application Type:** FreeForm  
@@ -96,13 +96,13 @@ The FreeForm wizard is shorter than the Planning wizard:
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: How does Cloud EPM FreeForm differ from standalone on-premises Essbase 11.1.2.4 or Essbase 21c?
-**Answer:** FreeForm runs modern Essbase in the Oracle Cloud SaaS tier, wrapped inside the EPM Cloud platform. Unlike standalone Essbase, FreeForm provides native web forms, dashboards, Calc Manager rules, Data Integration, EPM Automate CLI, and Task Lists out of the boxâ€”while granting complete freedom to design outlines without the 6 mandatory Planning dimensions.
+### Q1: How does Cloud EPM FreeForm differ from standalone on-premises Essbase 11.1.2.4 or Essbase 21c—
+**Answer:** FreeForm runs modern Essbase in the Oracle Cloud SaaS tier, wrapped inside the EPM Cloud platform. Unlike standalone Essbase, FreeForm provides native web forms, dashboards, Calc Manager rules, Data Integration, EPM Automate CLI, and Task Lists out of the box—while granting complete freedom to design outlines without the 6 mandatory Planning dimensions.
 
-### Q2: Can a FreeForm application be created with NO dimensions at all?
+### Q2: Can a FreeForm application be created with NO dimensions at all—
 **Answer:** No. An Essbase cube requires at least one dimensional coordinate structure to exist. In Step 3 of the FreeForm wizard, you can accept default dimension suggestions (Account, Entity, Period) or disable them, but you must provision at least one dimension (or load an outline file) so Essbase can compile block storage structures.
 
-### Q3: Can planners connect Excel Smart View directly to FreeForm cubes without Account and Entity dimensions?
+### Q3: Can planners connect Excel Smart View directly to FreeForm cubes without Account and Entity dimensions—
 **Answer:** Yes. Smart View connects to FreeForm cubes exactly like standard Essbase connections. Users perform ad-hoc multi-dimensional slicing across whatever custom dimensions you created (e.g. Measures, Geography, Product, Time).

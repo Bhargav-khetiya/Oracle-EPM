@@ -1,11 +1,11 @@
-# @CalcMgrExcelRATE
+﻿# @CalcMgrExcelRATE
 
 ## Overview
 
 `@CalcMgrExcelRATE` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `RATE` function directly inside an Essbase calculation script. 
 It calculates the **Interest Rate per Period** of an annuity, loan, or investment.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In corporate finance, you often know the beginning state of a loan, the ending state, and the payment schedule, but the exact interest rate is hidden. 
 For example, a vendor offers you a lease: "Give us $50,000 today, and pay us $2,000 every month for 3 years, and you own the machine." The vendor does not explicitly tell you what interest rate they are charging. To find out if this is a good deal, the Treasury department must mathematically reverse-engineer the interest rate from the cash flows.
@@ -103,7 +103,7 @@ FIX("FY25", "Working", @LEVEL0("Vendor_Contracts"))
         VAR vMonthlyRate = @CalcMgrExcelRATE(
             "Contract_Months", /* e.g., 48 */
             vNegativePMT,      /* e.g., -6000 */
-            "Asset_Value",     /* e.g., 250000 */
+            "Asset_Valueâ”‚     /* e.g., 250000 */
             0, 0, 0.1
         );
         

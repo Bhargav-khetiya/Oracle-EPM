@@ -1,10 +1,10 @@
-# @MOVAVG
+﻿# @MOVAVG
 
 ## Overview
 
 `@MOVAVG` is a **native Essbase time-series array function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates a **Moving Average** (or rolling average) across a specified time series. For every member in the specified time range, it looks backward a defined number of periods, sums those periods together, divides by the count, and writes the average into the current block.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard averages (`@AVG`) provide a static view of a dataset. However, businesses operate dynamically. A "Trailing 3-Month Average" is the gold standard for smoothing out volatile monthly sales spikes and identifying the true underlying trend of a business.
 To calculate a 3-month trailing average for `"Mar"`, you need `(Jan + Feb + Mar) / 3`. But for `"Apr"`, the window must shift: `(Feb + Mar + Apr) / 3`. 

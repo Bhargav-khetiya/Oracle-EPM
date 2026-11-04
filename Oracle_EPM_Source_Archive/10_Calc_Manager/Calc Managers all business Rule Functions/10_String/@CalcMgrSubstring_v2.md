@@ -1,10 +1,10 @@
-# @CalcMgrSubstring
+﻿# @CalcMgrSubstring
 
 ## Overview
 
 `@CalcMgrSubstring` is a **custom Calc Manager string manipulation function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a precise text extraction tool. It takes a source text string and **slices out a specific section (a substring)** based on numeric starting and ending index positions. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building dynamic logic based on complex, concatenated member names, you often need to extract a specific piece of the string to map data elsewhere. 
 For example, if your application generates unique Project IDs formatted as `"P_2024_NY_105"`, and you need to isolate the Year (`"2024"`), you cannot easily do this using replacement or search functions. You need to tell the engine: "Go to character position 2, and cut out the next 4 characters."

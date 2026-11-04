@@ -1,4 +1,4 @@
-# Smart List Entries and Preview
+﻿# Smart List Entries and Preview
 
 ## Core idea
 The Entries tab defines the choices a user can select; Preview lets an administrator inspect the configured list before using it.
@@ -38,7 +38,7 @@ A hypothetical list contains ID 1 / Name Prior_Year / Label Prior Year and ID 2 
 
 ## Recall
 
-**Question:** Which property is shown to a planner? Which one is the programmatic name? What should be checked before deleting an entry?
+**Question:** Which property is shown to a planner— Which one is the programmatic name— What should be checked before deleting an entry—
 
 **Answer:** Label is user-facing; Name is the programmatic identifier. Check all rule, formula, integration, reporting, and historical uses, then test and retain a recovery path.
 

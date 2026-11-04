@@ -1,10 +1,10 @@
-# @AVG
+﻿# @AVG
 
 ## Overview
 
 `@AVG` is a **statistical function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It calculates the mathematical average (mean) of a specified set of members or values.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Averaging is one of the most fundamental operations in financial modeling:
 - Calculating Average Selling Price (ASP) across a range of products.

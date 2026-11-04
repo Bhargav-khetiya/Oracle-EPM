@@ -1,14 +1,14 @@
-# @HspGetMbrCount
+﻿# @HspGetMbrCount
 
 ## Overview
 
 `@HspGetMbrCount` is a **Hyperion Planning (HSP) custom administrative function** embedded within Oracle EPM Cloud (PBCS/EPBCS). It dynamically queries the internal Planning repository and returns an **integer count** representing the total number of members belonging to a specific dimension.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building highly dynamic allocation loops or validating metadata loads, administrators sometimes need to know the absolute scale of a dimension. 
 If an automation script triggers an integration that imports new `"Employees"` every night, a subsequent script might need to divide a corporate bonus pool evenly across the entire workforce. If the administrator uses `@COUNT` inside Essbase, they must iterate through data blocks, which is slow and only counts members that have active data. 
-`@HspGetMbrCount` bypasses the data blocks entirely. It sends a direct API request to the relational Planning repository and asks: "How many members exist in the Employee dimension right now?" It instantly returns the structural count (e.g., `5420`), allowing the script to execute mathematical divisions instantly without having to scan the database.
+`@HspGetMbrCount` bypasses the data blocks entirely. It sends a direct API request to the relational Planning repository and asks: "How many members exist in the Employee dimension right now— It instantly returns the structural count (e.g., `5420`), allowing the script to execute mathematical divisions instantly without having to scan the database.
 
 ### When to Use It
 

@@ -1,403 +1,232 @@
-# Groovy Advanced Patterns — Complete Guide
+# 3.2 Production Groovy Patterns: Veto, DataGridBuilder & Smart Push
 
-> **Section:** 03 — Groovy Scripting  
-> **File:** 02 — Advanced Patterns  
-> **Difficulty:** Intermediate → Architect  
-> **Prerequisites:** [01_Groovy_Overview](./01_Groovy_Overview.md), [01_Calc_Manager_Overview](../05_Calc_Manager_and_Business_Rules/01_Calc_Manager_Overview.md)
-
----
-
-## Why Advanced Patterns?
-
-Basic Groovy iterates cells on a form. Advanced Groovy does much more:
-- Reads from **other cubes** (DataMaps and Grid Builder)
-- **Writes data** programmatically (DataGridBuilder)
-- Generates and executes **dynamic calc scripts**
-- Calls **REST APIs** and sends **emails**
-- Orchestrates **multi-step workflows** (validate → calculate → approve → notify)
-
-The key insight: **Groovy for logic, Essbase for math.** Use Groovy to read context, make decisions, and build perfectly scoped calc scripts. Let Essbase execute the heavy computation.
+## Table of Contents
+1. [Core Consultant Mental Model](#1-core-consultant-mental-model)
+2. [Pattern 1: Dynamic Micro-FIX Calculation on Edited Cells](#2-pattern-1-dynamic-micro-fix-calculation-on-edited-cells)
+3. [Pattern 2: Pre-Save Business Rule Data Validation & Veto](#3-pattern-2-pre-save-business-rule-data-validation--veto)
+4. [Pattern 3: High-Speed Write-Back via DataGridBuilder](#4-pattern-3-high-speed-write-back-via-datagridbuilder)
+5. [Pattern 4: Dynamic Smart Push Parameterization](#5-pattern-4-dynamic-smart-push-parameterization)
+6. [Pattern 5: Cross-Environment REST API Invocation](#6-pattern-5-cross-environment-rest-api-invocation)
+7. [Tough & Twisted Review Questions with Consultant Model Answers](#7-tough--twisted-review-questions-with-consultant-model-answers)
 
 ---
 
-## Pattern 1: Reading Form Data
+<!-- ===================================================================== -->
+<!-- 🎯 LIVE INTERACTIVE VISUAL CARD: PRODUCTION GROOVY PATTERNS -->
+<!-- ===================================================================== -->
+<details open>
+<summary><b>🎯 Live Interactive Architecture Card: Production Groovy Patterns Matrix (Click to Collapse / Expand)</b></summary>
 
-### Read What the User Sees
+<br/>
 
-```groovy
-/* Read the POV (Point of View) — what the user selected */
-def grid = operation.grid
+> [!TIP]
+> **Consultant High-Yield Summary:** Master these 5 production Groovy patterns. In FTE conversion reviews, you will often be asked to write or debug a pre-save validation rule or explain how `DataGridBuilder` writes to cells without triggering form save cycles.
 
-grid.pov.each { dimName, memberName ->
-    println "POV: ${dimName} = ${memberName}"
-}
+| Pattern Name | Execution Context | Core Method / Class Used | Architectural Benefit |
+| :--- | :--- | :--- | :--- |
+| **1. Dynamic Micro-FIX** | Run on Save (Post-Save) | `operation.grid.dataCellIterator({it.edited})` | Recalculates only modified blocks; sub-second response |
+| **2. Pre-Save Veto** | Run on Save (Pre-Save) | `throwVetoException("Message")` | Blocks invalid submissions before database commit |
+| **3. DataGridBuilder** | Standalone / Action Menu | `cube.dataGridBuilder("GridName")` | High-speed multi-cell creation without opening forms |
+| **4. Dynamic Smart Push** | Post-Save Grid Event | `smartPush.execute(Map<String, String>)` | Syncs only modified slices from BSO to ASO |
+| **5. REST API Client** | Background Automation | `HttpResponse response = operation.application.getConnection("Conn").post()` | Orchestrates cross-pod data flows and jobs |
 
-/* Loop through edited cells only */
-grid.dataCellIterator().each { cell ->
-    if (cell.edited) {
-        println "EDITED: ${cell.memberNames} = ${cell.data}"
-    }
-}
+```mermaid
+flowchart TD
+    Start["User Action (Edit Form / Click Menu)"] --> EventChoice{"Groovy Execution Mode"}
+    
+    EventChoice -->|Pre-Save Event| P2["Pattern 2: Pre-Save Validation<br/>(Check cell values & business logic)"]
+    P2 -->|Validation Fails| Veto["throwVetoException()<br/>Save Canceled with Custom Error Banner"]
+    P2 -->|Validation Passes| CommitGrid["Allow Grid Save to Essbase"]
+    
+    CommitGrid --> EventChoice2{"Post-Save Processing"}
+    EventChoice2 -->|Targeted Calc| P1["Pattern 1: Micro-FIX<br/>(Generate dynamic FIX for edited cells)"]
+    EventChoice2 -->|Targeted Sync| P4["Pattern 4: Smart Push Override<br/>(Push only edited slices to ASO)"]
+    
+    EventChoice -->|Direct Batch Execution| P3["Pattern 3: DataGridBuilder<br/>(Stream thousands of cells into cube)"]
+    EventChoice -->|Cross-Cloud Call| P5["Pattern 5: REST API Connector<br/>(Trigger external jobs / pods)"]
 ```
 
-### Read Specific Intersections from the Cube
+</details>
+
+---
+
+## 1. Core Consultant Mental Model
+
+When writing Groovy in Oracle Cloud EPM, remember:
+* **Pre-Save Rules (`Before Save`):** The data has been typed into the browser, but **has NOT been written to Essbase yet**. The cells in the grid carry an `edited` flag. If you throw a veto exception here, zero database transactions take place.
+* **Post-Save Rules (`After Save`):** The grid data has already been committed to Essbase. This is where you trigger targeted **Micro-FIX calculations** and **Smart Push** synchronization.
+
+---
+
+## 2. Pattern 1: Dynamic Micro-FIX Calculation on Edited Cells
 
 ```groovy
-/* DataGridDefinitionBuilder = READ from cube */
-DataGridDefinitionBuilder builder = new DataGridDefinitionBuilder()
-builder.addPov(["Scenario": "Budget", "Version": "Working",
-                "Year": "FY26", "Entity": "Hotel India"])
-builder.addColumn(["Period": ["Jan", "Feb", "Mar"]])
-builder.addRow(["Account": ["Revenue", "Expense", "Net_Income"]])
+/* Pattern 1: Extracts edited entities and accounts to build an ultra-fast FIX statement */
+def editedEntities = [] as Set
+def editedAccounts = [] as Set
 
-DataGridDefinition dgd = builder.build()
-DataGrid dataGrid = operation.application.getDataGrid(dgd, "Plan1")
-
-dataGrid.dataCellIterator().each { cell ->
-    println "${cell.getMemberName("Account")} / ${cell.getMemberName("Period")} = ${cell.data}"
+// Iterate strictly over edited cells in the active form grid
+operation.grid.dataCellIterator({DataCell cell -> cell.edited}).each { cell ->
+    editedEntities.add(cell.getMemberName("Entity"))
+    editedAccounts.add(cell.getMemberName("Account"))
 }
-```
 
-> [!IMPORTANT]
-> `DataGridDefinitionBuilder` is for **reading**. `DataGridBuilder` is for **writing**. Mixing them up is the most common Groovy mistake.
+// If no cells were edited, exit immediately without executing Essbase scripts
+if (editedEntities.isEmpty()) {
+    println("No cells edited. Skipping calculation.")
+    return
+}
 
----
+// Format comma-delimited strings wrapped in quotes
+String entityScope = editedEntities.collect { '"' + it + '"' }.join(",")
+String accountScope = editedAccounts.collect { '"' + it + '"' }.join(",")
 
-## Pattern 2: Writing Data with DataGridBuilder
-
-```groovy
-/* DataGridBuilder = WRITE to cube */
-DataGridBuilder grid = new DataGridBuilder("Plan1")
-
-grid.addPov("Scenario", "Forecast")
-grid.addPov("Version", "Working")
-grid.addPov("Year", "FY26")
-grid.addPov("Entity", "Hotel India")
-grid.addPov("Currency", "INR")
-
-grid.addColumn("Period", "Jan")
-grid.addColumn("Period", "Feb")
-grid.addColumn("Period", "Mar")
-
-grid.addRow(["Account": "Revenue"], [15000000, 16000000, 17000000])
-grid.addRow(["Account": "Expense"], [9000000, 9500000, 10000000])
-
-grid.build(true)  // true = suppress missing values
-```
-
----
-
-## Pattern 3: Dynamic Calc Script Generation
-
-This is the **most powerful Groovy pattern**. Instead of writing one generic calc script that processes all entities, Groovy reads the user's form context and generates a perfectly scoped script.
-
-```groovy
-/* Read user selections */
-def entity = rtps.RTP_Entity.getEssbaseMemberName()
-def scenario = rtps.RTP_Scenario.getEssbaseMemberName()
-def currYear = operation.application.getSubstitutionVariable("CurrYear", "Plan1")
-
-/* Build a targeted calc script */
+// Execute dynamic Micro-FIX in Essbase
 String calcScript = """
-SET UPDATECALC OFF;
-SET CREATEBLOCKONEQ ON;
-
-FIX("${entity}", "${scenario}", "Working", "${currYear}", @LEVMBRS("Department", 0))
-    @CHILDREN("YearTotal")(
-        "Revenue" = "Revenue" * (1 + ${rtps.RTP_GrowthRate} / 100);
-        "Net_Income" = "Revenue" - "Expense";
-    )
-ENDFIX
-
-SET CREATEBLOCKONEQ OFF;
+    SET UPDATECALC OFF;
+    FIX(${entityScope}, ${accountScope}, "FY26", "Working")
+        "Operating_Expense" = "Expense_Driver" * "Expense_Rate";
+    ENDFIX
 """
-
-/* Execute on Essbase */
-operation.planType.essCalcScript = calcScript
-operation.planType.execute()
+operation.cube.executeCalcScript(calcScript)
 ```
-
-**Performance comparison:**
-
-| Approach | Scope | Time |
-|----------|-------|------|
-| Generic calc script (no FIX on Entity) | All entities | 45 seconds |
-| Groovy-generated script (FIX on specific entity) | One entity | 0.5 seconds |
 
 ---
 
-## Pattern 4: Data Validation and Vetoing Saves
-
-Groovy rules set as **Before Save** on a form can validate data and prevent bad data from reaching the cube:
+## 3. Pattern 2: Pre-Save Business Rule Data Validation & Veto
 
 ```groovy
-def hasErrors = false
+/* Pattern 2: Validates business rules and halts execution if constraints are broken */
+def validationErrors = []
 
-operation.grid.dataCellIterator().each { cell ->
-    if (cell.edited) {
-        def account = cell.getMemberName("Account")
-        def value = cell.data
-
-        // Revenue must be positive
-        if (account == "Revenue" && value < 0) {
-            cell.addValidationError(0xFF0000,
-                "Revenue cannot be negative! You entered: ${value}")
-            hasErrors = true
-        }
-
-        // Occupancy Rate must be 0-100
-        if (account == "Occupancy_Rate" && (value < 0 || value > 100)) {
-            cell.addValidationError(0xFF0000,
-                "Occupancy Rate must be between 0 and 100.")
-            hasErrors = true
-        }
-
-        // Headcount must be whole number
-        if (account == "Headcount" && value != Math.floor(value)) {
-            cell.addValidationError(0xFFA500,
-                "Headcount must be a whole number.")
-            hasErrors = true
-        }
+operation.grid.dataCellIterator().each { DataCell cell ->
+    String account = cell.getMemberName("Account")
+    String entity = cell.getMemberName("Entity")
+    
+    // Constraint 1: Headcount additions cannot be negative
+    if (account == "New_Headcount" && cell.data < 0) {
+        validationErrors.add("Entity [${entity}]: New Headcount cannot be negative (${cell.data}).")
+    }
+    
+    // Constraint 2: Travel expense exceeding $50,000 requires justification in cell comment
+    if (account == "Travel_Expense" && cell.data > 50000 && !cell.hasCellNote()) {
+        validationErrors.add("Entity [${entity}]: Travel expense over $50k requires a cell note.")
     }
 }
 
-if (hasErrors) {
-    throwVetoException("Validation failed. Please fix the highlighted cells.")
+// If errors exist, cancel save and show formatted error banner
+if (!validationErrors.isEmpty()) {
+    String combinedMessage = validationErrors.join("\n")
+    throwVetoException(combinedMessage)
 }
 ```
 
-The user sees the cell highlighted in red with the error message. Data is **not** saved to the cube.
+---
+
+## 4. Pattern 3: High-Speed Write-Back via DataGridBuilder
+
+```groovy
+/* Pattern 3: Writes multiple data intersections directly to Essbase using DataGridBuilder */
+Cube cube = operation.application.getCube("Plan1")
+DataGridBuilder builder = cube.dataGridBuilder("Grid1")
+
+// Define grid dimensions (Slicers, Rows, Columns)
+builder.addPov("FY26", "Working", "USD", "Final")
+builder.addColumn("Jan", "Feb", "Mar")
+
+// Add rows with coordinate members and data cell values
+builder.addRow(["E01_US", "Acc_Salary"], [15000, 15000, 15000])
+builder.addRow(["E01_US", "Acc_Bonus"],  [2500,  2500,  5000])
+builder.addRow(["E02_UK", "Acc_Salary"], [12000, 12000, 12000])
+
+// Build and save data grid directly to Essbase
+DataGridBuilder.Status status = new DataGridBuilder.Status()
+DataGrid grid = builder.build(status)
+operation.application.saveData(grid)
+
+println("Successfully saved ${status.cellsSaved} cells with 0 errors.")
+```
 
 ---
 
-## Pattern 5: Cross-Cube Data Access (DataMaps)
-
-DataMaps let a Groovy rule read data from a **different cube** than the current form's plan type.
+## 5. Pattern 4: Dynamic Smart Push Parameterization
 
 ```groovy
-/* Reference a pre-configured Data Map */
-DataMap wfpMap = operation.dataMap("WFP_to_FinPlan")
+/* Pattern 4: Dynamically overrides Smart Push slice to push only edited intersections */
+def editedEntities = [] as Set
 
-/* Use it in cell iteration */
-operation.grid.dataCellIterator("Account#Labor_Cost").each { cell ->
-    double salary = cell.crossDimCell(wfpMap, "Account#Basic_Salary").data
-    double benefits = cell.crossDimCell(wfpMap, "Account#Benefits").data
-    cell.data = salary + benefits
+operation.grid.dataCellIterator({DataCell cell -> cell.edited}).each { cell ->
+    editedEntities.add(cell.getMemberName("Entity"))
+}
+
+if (!editedEntities.isEmpty()) {
+    // Obtain Smart Push mapping from form
+    SmartPush smartPush = operation.grid.getSmartPush("Push_To_Reporting")
+    
+    // Override the Entity dimension slice dynamically
+    Map<String, String> overrides = [
+        "Entity": editedEntities.collect { '"' + it + '"' }.join(",")
+    ]
+    
+    // Execute targeted Smart Push
+    smartPush.execute(overrides)
+    println("Targeted Smart Push executed for: ${overrides['Entity']}")
 }
 ```
 
-The DataMap must be pre-configured in Navigator → Data Exchange → Data Maps.
-
 ---
 
-## Pattern 6: REST API Calls
-
-Groovy rules can call external APIs — fetching exchange rates, posting to Slack, updating dashboards.
+## 6. Pattern 5: Cross-Environment REST API Invocation
 
 ```groovy
-/* GET request */
-def url = new URL("https://api.exchangerate-api.com/v4/latest/USD")
-HttpURLConnection conn = (HttpURLConnection) url.openConnection()
-conn.setRequestMethod("GET")
-conn.setConnectTimeout(5000)   // Always set timeouts
-conn.setReadTimeout(10000)
+/* Pattern 5: Calls external EPM / ERP REST endpoint using named connection */
+Connection connection = operation.application.getConnection("FCCS_Prod_Connection")
 
-try {
-    if (conn.responseCode == 200) {
-        def jsonSlurper = new groovy.json.JsonSlurper()
-        def rates = jsonSlurper.parseText(conn.inputStream.text)
-        double inrRate = rates.rates.INR
-        println "USD to INR: ${inrRate}"
-
-        // Write rate to cube
-        DataGridBuilder grid = new DataGridBuilder("Plan1")
-        grid.addPov("Scenario", "Actual")
-        grid.addPov("Version", "Working")
-        grid.addPov("Year", "FY26")
-        grid.addPov("Entity", "HSP_Rates")
-        grid.addColumn("Period", "Jan")
-        grid.addRow(["Account": "USD_Rate"], [inrRate])
-        grid.build(true)
+// Construct payload to launch a consolidation job in FCCS
+String payload = """{
+    "jobType": "Consolidate",
+    "jobName": "Consol_Europe",
+    "parameters": {
+        "scenario": "Actual",
+        "year": "FY26",
+        "period": "Jan",
+        "entity": "FCCS_Europe"
     }
-} catch (Exception e) {
-    println "API call failed: ${e.message}"
-    // Don't block the rule for non-critical API failures
-} finally {
-    conn.disconnect()
-}
-```
+}"""
 
-### POST Request (Slack Notification)
+// Submit POST request to EPM REST endpoint
+HttpResponse<String> response = connection.post("/HyperionPlanning/rest/v3/applications/FCCS/jobs")
+                                          .body(payload)
+                                          .asString()
 
-```groovy
-def url = new URL("https://hooks.slack.com/services/YOUR/WEBHOOK/URL")
-HttpURLConnection conn = url.openConnection()
-conn.setRequestMethod("POST")
-conn.setRequestProperty("Content-Type", "application/json")
-conn.setDoOutput(true)
-
-def payload = """{"text": "Budget approved for Mumbai Hotel - FY2026"}"""
-conn.outputStream.write(payload.getBytes("UTF-8"))
-conn.outputStream.flush()
-
-println "Slack notification sent: ${conn.getResponseCode()}"
-conn.disconnect()
-```
-
----
-
-## Pattern 7: Email Notifications
-
-```groovy
-def emailService = operation.application.getEmailService()
-
-emailService.sendMail(
-    "cfo@company.com",
-    "Budget Approved: ${entity}",
-    "The FY2026 Budget has been approved.\nApproved by: ${operation.user.name}"
-)
-```
-
-> [!WARNING]
-> Always wrap email calls in `try-catch`. If the email service is unavailable, the entire rule fails otherwise.
-
----
-
-## Pattern 8: Multi-Step Workflow
-
-The most powerful real-world pattern combines validation, calculation, status updates, and notification in a single rule:
-
-```groovy
-/* ===== Monthly Close Workflow ===== */
-
-// STEP 1: VALIDATE
-def errors = []
-operation.grid.dataCellIterator("Account#Room_Revenue").each { cell ->
-    if (cell.data < 0) {
-        errors << "Negative: ${cell.getMemberName('Entity')}/${cell.getMemberName('Period')}"
-    }
-}
-if (errors.size() > 0) {
-    throwVetoException("Validation Failed:\n${errors.join('\n')}")
-}
-
-// STEP 2: CALCULATE (embedded calc script for performance)
-def calcScript = """
-SET LOCKBLOCK ON;
-SET CALCPARALLEL 4;
-FIX("Budget", "Working", "FY2026", @RELATIVE("All_Hotels", 0))
-  "Total_Revenue" = "Room_Revenue" + "FB_Revenue" + "Spa_Revenue";
-  "Net_Income" = "Total_Revenue" - "Total_Expenses";
-ENDFIX
-FIX("Budget", "Working", "FY2026")
-  AGG("Entity");
-ENDFIX
-SET LOCKBLOCK OFF;
-"""
-operation.application.getEssbaseServer()
-    .getApplication(operation.application.getName())
-    .getCube("OEP_FS")
-    .executeCalcScript(calcScript)
-
-// STEP 3: AUTO-APPROVE (Smart List update)
-int approvedCount = 0
-operation.grid.dataCellIterator("Account#Budget_Status").each { cell ->
-    if (cell.getSmartListValue() == "In Review") {
-        double variance = cell.crossDimCell("Account#Variance_Pct").data
-        if (Math.abs(variance) <= 5.0) {
-            cell.data = 3  // 3 = "Approved" in Smart List
-            approvedCount++
-        }
-    }
-}
-
-// STEP 4: NOTIFY
-try {
-    operation.application.getEmailService().sendMail(
-        "cfo@company.com",
-        "Budget Processing Report",
-        "Auto-approved: ${approvedCount} entities\nTimestamp: ${new Date()}"
-    )
-} catch (Exception e) {
-    println "Email failed: ${e.message}"
+if (response.status == 200 || response.status == 201) {
+    println("Consolidation job successfully launched in FCCS.")
+} else {
+    throwVetoException("Failed to launch FCCS consolidation: ${response.body}")
 }
 ```
 
 ---
 
-## Groovy vs Calc Script — Decision Guide
+## 7. Tough & Twisted Review Questions with Consultant Model Answers
 
-| Requirement | Best Choice | Why |
-|-------------|------------|-----|
-| Simple math (A + B = C) | **Calc Script** | Native, 2–4× faster |
-| Aggregation (AGG) | **Calc Script** | Not available in Groovy |
-| DATACOPY | **Calc Script** | Native command |
-| SET commands (LOCKBLOCK, PARALLEL) | **Calc Script** | Not available in Groovy |
-| Complex validation with user messages | **Groovy** | `throwVetoException()` |
-| Send email | **Groovy** | Only way |
-| REST API calls | **Groovy** | Only way |
-| Smart List text comparison | **Groovy** | `getSmartListValue()` returns text |
-| Cross-cube data access | **Groovy** | DataMap + `crossDimCell()` |
-| Math + integration | **Both** | Groovy for logic + embedded calc for math |
+### Question 1: "Why does `operation.grid.dataCellIterator()` without a closure cause performance issues, and what is the optimal filtering syntax?"
+**Consultant Model Answer:**
+> "`operation.grid.dataCellIterator()` without a filtering predicate instantiates a heavy Java `DataCell` object in memory for **every single cell on the web form** (e.g., 500 rows × 12 columns = 6,000 cells). If only 2 cells were edited, creating 6,000 Java objects wastes JVM memory and CPU cycles. 
+> The optimal syntax is passing a filtering closure directly into the iterator:
+> `operation.grid.dataCellIterator({DataCell cell -> cell.edited})`
+> This causes the underlying Java engine to evaluate cell state before object instantiation, returning an iterator containing strictly the 2 modified cells."
 
-**Rule of thumb:** Start with a Calc Script. If you hit a limitation, switch to Groovy (or use the hybrid approach).
+### Question 2: "What is the difference between `cube.executeCalcScript(script)` and `operation.application.saveData(grid)` inside Groovy?"
+**Consultant Model Answer:**
+> "* `cube.executeCalcScript(script)` sends a procedural calc script string directly to the **Essbase calculation engine**. It computes numbers using Essbase block algebra, evaluates `@` functions, and updates blocks on disk.
+> * `operation.application.saveData(grid)` uses the **Planning Web Application Server pipeline**. It writes cells via `DataGridBuilder`, which performs form validation rules, evaluates cell-level security, creates audit logs, and triggers Smart Push mappings.
+> For pure numerical calculation speed, `executeCalcScript` is faster; for audited, validated write-backs that respect Planning security, `saveData` is required."
 
----
-
-## Performance Guidelines
-
-| Guideline | Reason |
-|-----------|--------|
-| Use Groovy to BUILD calc scripts, not DO math | Essbase is 100× faster at math |
-| Minimize DataGrid reads | Each read = network round trip |
-| Use targeted FIX in generated scripts | Narrow scope = fast execution |
-| Batch DataGridBuilder writes to ≤10,000 cells | Larger writes may timeout |
-| Always set `connectTimeout` on HTTP calls | Prevents rule hangs |
-| Close connections in `try/finally` | Prevents memory leaks |
-
-**Memory limits:** Each Groovy rule runs in the Planning JVM with approximately 50 MB per execution. DataGridBuilder can handle ~500,000 cells before memory issues. [Recommendation]
-
-| Cell Count | Approach |
-|-----------|----------|
-| < 10,000 | Groovy can handle directly |
-| 10,000 – 100,000 | Use Groovy to generate calc scripts |
-| > 100,000 | Must use calc scripts (not Groovy) |
+### Question 3: "A consultant writes a Groovy script to push data to an ASO reporting cube. Why is dynamic Smart Push override superior to running a full Data Map?"
+**Consultant Model Answer:**
+> "A full Data Map extracts and pushes the entire pre-configured dimensional slice (e.g., all 50 entities, all 12 periods, all accounts) from BSO to ASO. This creates unnecessary slice fragmentation in ASO, takes 10 to 30 seconds to run, and consumes significant network bandwidth. 
+> Dynamic Smart Push override in Groovy evaluates `cell.edited`, overrides the Entity and Account dimensions with strictly the 1 or 2 members changed by the user, and pushes an ultra-compact coordinate slice in under 200 milliseconds."
 
 ---
-
-## Common Mistakes
-
-| Mistake | Problem | Fix |
-|---------|---------|-----|
-| Using Groovy to loop through 1M cells | JVM memory crash | Generate a calc script instead |
-| Not checking for null | `NullPointerException` | Use `?.` (safe navigation operator) |
-| Forgetting `getEssbaseMemberName()` on RTP | Returns object, not string | Always call `.getEssbaseMemberName()` |
-| Hard-coding member names | Breaks when members change | Use RTPs and substitution variables |
-| Not using `throwVetoException()` for validation | Bad data saves to cube | Always veto on validation failure |
-| Writing AGG in Groovy | Impossible | Embed calc script inside Groovy |
-| No timeout on HTTP connections | Rule hangs if API is down | Set `connectTimeout` and `readTimeout` |
-| Sending email in a loop | 100 emails instead of 1 | Collect data, send 1 summary email |
-
----
-
-## Quick Recall
-
-1. **What's the difference between DataGridDefinitionBuilder and DataGridBuilder?** → DefinitionBuilder is for READING, GridBuilder is for WRITING.
-2. **What does `throwVetoException()` do?** → Prevents the form save and shows an error message to the user.
-3. **When should you use embedded calc scripts in Groovy?** → For AGG, DATACOPY, SET commands, and any math-heavy operations.
-4. **Why generate dynamic calc scripts instead of hard-coding them?** → Dynamic scripts FIX on exactly the user's context, making them 10–100× faster.
-5. **Can Groovy call external APIs?** → Yes, via `HttpURLConnection` with GET/POST requests.
-
-**Teach-back prompt:** Walk a colleague through the hybrid Groovy/calc script pattern: when does Groovy take control, when does it hand off to Essbase, and why?
-
----
-
-## Source Provenance
-
-| Source | Files |
-|--------|-------|
-| Claude | `09_Groovy/09.01_Groovy_Basics_and_Architecture.md` (839 lines), `09.06_Groovy_Advanced_Patterns.md`, `09.04_Groovy_REST_API_and_Email.md`, `09.07_Groovy_vs_Calc_Script_Decision.md` |
-| ChatGPT | `Calc Manager/Calculations_and_Allocations/06_Groovy_Business_Rules/` (3 files) |
-| Gemini | `Calc Manager/Calculations_and_Allocations/06_Groovy_Business_Rules/` (mirrors ChatGPT) |
-| Oracle | [EPM Cloud Groovy Rules](https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/groov/) |
-
+*Proceed to [Module 03B: Workflow and Task Management](../03_Workflow_and_Task_Management/00_INDEX.md).*

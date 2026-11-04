@@ -1,4 +1,4 @@
-﻿# 🚀 Step 1: General Properties
+﻿﻿# 🚀 Step 1: General Properties
 ## Application Name, Description & Type Selection
 
 > **Wizard Step:** 1 of 5  
@@ -55,7 +55,7 @@
 | **Uniqueness** | Must be unique within the environment |
 
 #### ✅ Valid Application Names
-| Name | Valid? | Notes |
+| Name | Valid— | Notes |
 |------|--------|-------|
 | `FinancialPlan` | ✅ | Good — descriptive, no special chars |
 | `Budget_2025` | ✅ | Good — underscore allowed |
@@ -64,7 +64,7 @@
 | `CORP_PLANNING` | ✅ | Good — uppercase with underscore |
 
 #### ❌ Invalid Application Names
-| Name | Valid? | Reason |
+| Name | Valid— | Reason |
 |------|--------|--------|
 | `Financial Plan` | ❌ | Contains space |
 | `2025_Budget` | ❌ | Starts with number |
@@ -168,16 +168,16 @@ and allocation analysis."
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: Can the Application Name ever be renamed after completing Step 1?
+### Q1: Can the Application Name ever be renamed after completing Step 1—
 **Answer:** No. The Application Name is permanently bound to the internal relational schema, Essbase directory trees, security groups, and REST API endpoints. There is no rename command or setting. Changing an application name requires exporting all metadata and data, wiping the environment via ecreate -f, and creating a new application with the desired name.
 
-### Q2: Why does the wizard reject application names containing underscores or hyphens like PLAN_CORP or FIN-2026?
-**Answer:** Oracle Cloud EPM enforces strict naming syntax: maximum **8 characters**, must start with a letter (Aâ€“Z), and allow only alphanumeric characters (Aâ€“Z, â€“z,  â€“9). Hyphens (-), underscores (_), spaces, and special symbols are strictly prohibited because they interfere with internal Unix/Essbase path resolution and SQL table prefix generation.
+### Q2: Why does the wizard reject application names containing underscores or hyphens like PLAN_CORP or FIN-2026—
+**Answer:** Oracle Cloud EPM enforces strict naming syntax: maximum **8 characters**, must start with a letter (A"Z), and allow only alphanumeric characters (A"Z, "z,  "9). Hyphens (-), underscores (_), spaces, and special symbols are strictly prohibited because they interfere with internal Unix/Essbase path resolution and SQL table prefix generation.
 
-### Q3: Can the Description field be modified after the application has been created?
-**Answer:** Yes. Unlike the Application Name, the **Description** field is fully editable post-creation. Service Administrators can update it at any time by navigating to Application â†’ Settings â†’ General Properties â†’ Description.
+### Q3: Can the Description field be modified after the application has been created—
+**Answer:** Yes. Unlike the Application Name, the **Description** field is fully editable post-creation. Service Administrators can update it at any time by navigating to Application → Settings → General Properties → Description.
 
 ---
 

@@ -1,10 +1,10 @@
-# SET COPYMISSINGBLOCK
+﻿# SET COPYMISSINGBLOCK
 
 ## Overview
 
 `SET COPYMISSINGBLOCK` is a **native Essbase system directive** in Oracle EPM Cloud (PBCS/EPBCS). It controls the fundamental behavior of the `DATACOPY` command, specifically dictating whether the engine is allowed to create brand new, empty blocks when copying data from a source intersection to a destination intersection.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 The `DATACOPY` command (e.g., `DATACOPY "Actual" TO "Forecast"`) is heavily optimized. By default, Essbase only copies blocks that *already physically exist* in the destination. 
 If `"Store_101"` has actuals, but the `"Forecast"` scenario for `"Store_101"` has never been used before, the Forecast block doesn't exist on the disk. By default, `DATACOPY` will skip it, meaning your Actuals will not copy over!

@@ -1,4 +1,4 @@
-# Oracle EPM Cloud: Troubleshooting and FAQ
+﻿# Oracle EPM Cloud: Troubleshooting and FAQ
 
 ## 1. Common Errors and Resolutions
 
@@ -98,7 +98,7 @@
 
 ## 3. Frequently Asked Questions
 
-### Q1: Can I clone from Test to Production?
+### Q1: Can I clone from Test to Production—
 
 **A:** Yes, `cloneEnvironment` works in both directions. You can clone from Test→Prod or Prod→Test. Just ensure you're logged into the **source** and providing **target** credentials.
 
@@ -107,13 +107,13 @@
 
 ---
 
-### Q2: How long does Oracle keep backups in Object Storage?
+### Q2: How long does Oracle keep backups in Object Storage—
 
 **A:** Approximately **60 days**. After that, backups are automatically purged. Always maintain your own archive for critical snapshots.
 
 ---
 
-### Q3: Can I selectively import only specific artifacts from a snapshot?
+### Q3: Can I selectively import only specific artifacts from a snapshot—
 
 **A:** Not via EPM Automate. To selectively import:
 1. Upload the snapshot to the environment
@@ -126,13 +126,13 @@ The Migration UI provides a tree view of all artifacts in the snapshot, letting 
 
 ---
 
-### Q4: Does recreate delete users from the Identity Domain?
+### Q4: Does recreate delete users from the Identity Domain—
 
 **A:** **No.** `recreate` deletes the application, database, and data. User accounts in the Identity Domain are NOT affected. Users will still exist but won't have an application to access until you create or import one.
 
 ---
 
-### Q5: Can I clone during the patch blackout period?
+### Q5: Can I clone during the patch blackout period—
 
 **A:** **No.** During the ~2-week period between Test patching (1st Friday) and Prod patching (3rd Friday), the environments are on different versions and cloning is blocked.
 
@@ -147,7 +147,7 @@ epmautomate logout
 
 ---
 
-### Q6: What happens if my clone or import fails mid-way?
+### Q6: What happens if my clone or import fails mid-way—
 
 **A:** The target environment may be in an inconsistent state. Options:
 1. **Retry** — run the command again
@@ -158,7 +158,7 @@ This is why **always backing up the target before migration** is critical.
 
 ---
 
-### Q7: Can I run EPM Automate commands while users are working?
+### Q7: Can I run EPM Automate commands while users are working—
 
 **A:** Some commands (like `listFiles`, `listBackups`) are safe. However:
 - `recreate` — **NO**, kicks everyone out and destroys the app
@@ -170,13 +170,13 @@ Always ensure no users are active before running destructive commands.
 
 ---
 
-### Q8: Do I need separate EPM Automate installations for each environment?
+### Q8: Do I need separate EPM Automate installations for each environment—
 
 **A:** **No.** A single EPM Automate installation can connect to any environment. You just use different URLs and password files when logging in. However, you can only be logged into **one environment at a time** per session.
 
 ---
 
-### Q9: My snapshot is very large. How can I speed up the process?
+### Q9: My snapshot is very large. How can I speed up the process—
 
 **A:** Several strategies:
 
@@ -189,7 +189,7 @@ Always ensure no users are active before running destructive commands.
 
 ---
 
-### Q10: I need to change my environment from Planning to FreeForm. How?
+### Q10: I need to change my environment from Planning to FreeForm. How—
 
 **A:** Planning and FreeForm share the same base service type. When you `recreate`, you get a clean environment where you can create either type:
 
@@ -208,7 +208,7 @@ epmautomate importSnapshot "FreeFormSnapshot"
 
 ---
 
-### Q11: Can I have more than two environments (Prod + Test)?
+### Q11: Can I have more than two environments (Prod + Test)—
 
 **A:** Oracle provisions two environments by default (Production + Test). If you need additional environments (e.g., a dedicated Demo or Development):
 

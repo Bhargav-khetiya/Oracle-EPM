@@ -1,10 +1,10 @@
-# @CalcMgrBitShiftLeft
+﻿# @CalcMgrBitShiftLeft
 
 ## Overview
 
 `@CalcMgrBitShiftLeft` is a **custom Calc Manager bitwise function** in Oracle EPM Cloud (PBCS/EPBCS). It performs a mathematical "left shift" operation on the binary representation of an integer, moving all bits to the left by a specified number of positions and filling the vacated right-side positions with zeros.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In computer science, shifting binary bits to the left by `N` positions is the mathematical equivalent of multiplying the decimal number by `2^N` (two to the power of N). 
 While you can simply write `"Value" * 2` in Essbase, `@CalcMgrBitShiftLeft` is provided for developers migrating highly specific low-level algorithms, hashing functions, or complex custom security models from Java or Groovy directly into Calc Scripts. It executes at the processor level via Java, making it technically faster than standard floating-point multiplication, though this speed difference is completely negligible in standard FP&A OLAP operations.

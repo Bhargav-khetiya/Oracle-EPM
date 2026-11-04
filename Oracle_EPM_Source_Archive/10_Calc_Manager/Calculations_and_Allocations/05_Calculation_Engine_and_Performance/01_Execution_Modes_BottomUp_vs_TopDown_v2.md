@@ -1,4 +1,4 @@
-# 01 Execution Modes: Bottom-Up vs. Top-Down Calculation Engine Internals
+﻿# 01 Execution Modes: Bottom-Up vs. Top-Down Calculation Engine Internals
 
 ## 1. The Two Essbase Calculation Execution Modes
 
@@ -61,11 +61,11 @@ When a developer knows that a formula can be safely executed across existing blo
 )
 ```
 
-### When is `@CALCMODE(BOTTOMUP)` Safe?
+### When is `@CALCMODE(BOTTOMUP)` Safe—
 * When the target block **already exists** on disk.
 * When the calculation does not require creating brand-new sparse blocks from non-existent intersections.
 
-### When is `@CALCMODE(BOTTOMUP)` Dangerous?
+### When is `@CALCMODE(BOTTOMUP)` Dangerous—
 * If the target sparse block does not exist, a Bottom-Up calculation will **completely skip that intersection**, resulting in missing calculated data! In that specific scenario, Top-Down execution (or `SET CREATEBLOCKONEQ ON`) is required.
 
 ---
@@ -78,7 +78,7 @@ When a developer knows that a formula can be safely executed across existing blo
 ### 2. Simple Explanation & Analogy
 * **Everyday Analogy**: Imagine a postal delivery driver with 5 packages to deliver in a sprawling rural county with 50,000 potential street addresses:
   * **Bottom-Up Driver**: Looks at the 5 packages, gets the 5 exact street addresses from the GPS, drives directly to those 5 houses, drops the packages, and finishes in 10 minutes.
-  * **Top-Down Driver**: Drives down every single dirt road and knocks on all 50,000 doors in the county to ask, *"Do you happen to have a package today?"* — taking 3 full days to deliver the same 5 packages!
+  * **Top-Down Driver**: Drives down every single dirt road and knocks on all 50,000 doors in the county to ask, *"Do you happen to have a package today—* — taking 3 full days to deliver the same 5 packages!
 
 ### 3. Purpose: Why It Matters
 In enterprise Planning systems, business rules attached to Web Forms run while a live user waits for the browser to unlock. A Top-Down calculation causes web forms to freeze for 45 to 90 seconds, triggering HTTP 504 Gateway Timeouts and frustrates executive planners. Enforcing Bottom-Up calculation guarantees sub-second response times.
@@ -98,7 +98,7 @@ In enterprise Planning systems, business rules attached to Web Forms run while a
                                │
             Does the formula reference members from
                    SPARSE dimensions or use
-             sparse IF conditions / cross-dims?
+             sparse IF conditions / cross-dims—
                                │
                ┌───────────────┴───────────────┐
               NO                              YES
@@ -110,7 +110,7 @@ In enterprise Planning systems, business rules attached to Web Forms run while a
    • 0.15s execution               • 45.0s execution (300x slower!)
                                                │
                                    Can target blocks be
-                                 guaranteed to exist on disk?
+                                 guaranteed to exist on disk—
                                                │
                                ┌───────────────┴───────────────┐
                               YES                              NO
@@ -124,8 +124,8 @@ In enterprise Planning systems, business rules attached to Web Forms run while a
 1. Check the Essbase Application Log (`app.log`) for compiler warnings indicating Top-Down degradation:
    `Formula for member [X] will be executed in TOPDOWN mode.`
 2. Inspect the formula for sparse references:
-   * Is there an `IF (@ISMBR("SparseEntity"))`?
-   * Is there a cross-dimensional pointer to a sparse member (e.g., `->"No_Department"`)?
+   * Is there an `IF (@ISMBR("SparseEntity"))`—
+   * Is there a cross-dimensional pointer to a sparse member (e.g., `->"No_Department"`)—
 3. Remove the sparse `IF` condition from the member formula and push it into a calculation script `FIX("SparseEntity")`.
 4. If the target blocks are pre-existing, inject `@CALCMODE(BOTTOMUP)` directly above the formula assignment.
 5. Recompile and verify the log confirms Bottom-Up execution.
@@ -183,8 +183,8 @@ In enterprise Planning systems, business rules attached to Web Forms run while a
 
 ### 12. Remember and Explain It (Active Recall & Teach-Back)
 * **Quick Recap**: Bottom-Up visits only blocks with data; Top-Down visits every possible address on the map. Never write an `IF` statement referencing a sparse dimension inside a member formula.
-* **Recall Question 1**: What is the primary cause of inadvertent Top-Down calculation degradation in Essbase?
+* **Recall Question 1**: What is the primary cause of inadvertent Top-Down calculation degradation in Essbase—
   * *Answer*: Referencing sparse dimensions in member formula `IF` statements or cross-dimensional operators (`->`).
-* **Recall Question 2**: What is the risk of blindly forcing `@CALCMODE(BOTTOMUP)` on a calculation?
+* **Recall Question 2**: What is the risk of blindly forcing `@CALCMODE(BOTTOMUP)` on a calculation—
   * *Answer*: If the destination block does not already exist on disk, the calculation will silently skip it, leaving data `#MISSING`.
 * **Teach-Back Prompt**: *Explain the delivery driver analogy to a junior developer and show them why pushing a sparse condition from an Account formula into a script FIX statement speeds up execution by 300x.*

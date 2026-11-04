@@ -1,10 +1,10 @@
-# @CalcMgrGetListItem
+﻿# @CalcMgrGetListItem
 
 ## Overview
 
 `@CalcMgrGetListItem` is a **custom Calc Manager array processing function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as an array-extraction tool. You pass it an array of data points and a specific **index number**, and it reaches into the array, instantly grabbing and returning the exact value residing at that specific position.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard Essbase calculates numbers perfectly, but it natively struggles with true "Array Indexing" (the ability to say: "Give me the 4th item in this list"). 
 If a supply chain model needs to evaluate the trailing 6 months of sales and pull exactly the sales volume from the "3rd month back" to use as a baseline, writing that logic using standard `@PRIOR` or `IF` statements is clunky and rigid.

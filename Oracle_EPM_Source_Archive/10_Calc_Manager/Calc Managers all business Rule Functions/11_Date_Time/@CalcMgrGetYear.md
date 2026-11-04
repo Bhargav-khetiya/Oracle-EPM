@@ -1,10 +1,10 @@
-# @CalcMgrGetYear
+﻿# @CalcMgrGetYear
 
 ## Overview
 
 `@CalcMgrGetYear` is a **custom Calc Manager date extraction wrapper function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a unified **Java Date Object** (or Java Timestamp Object) and precisely extracts the **Year**, returning it as a pure 4-digit integer (e.g., `2024`).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When executing advanced calendar logic in Calc Manager, scripts rely heavily on Java Date Objects (via `@CalcMgrGetCurrentDate()`). However, Java Objects cannot be saved into the database, nor can they be used to dynamically generate standard Essbase dimensional member names like `"FY24"`. 
 To build dynamic member names or execute year-over-year mathematical variance logic, you must isolate the Year component. 

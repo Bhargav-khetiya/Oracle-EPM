@@ -1,4 +1,4 @@
-# @XWRITE
+﻿# @XWRITE
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 `@XWRITE` does **not impose member and dimension mapping restrictions**, which means the data source and data target outlines can be completely different — different dimensions, different hierarchies, different member names.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Calculations in one plan type sometimes need to push results to another:
 - Writing calculated salary expense from Workforce to FinStmt
@@ -178,7 +178,7 @@ ENDFIX
 
 **How the target intersection is built:**
 
-| Target Dimension | Source? | In mbrList? | Resolved From | Resolved Value |
+| Target Dimension | Source— | In mbrList— | Resolved From | Resolved Value |
 |------------------|---------|-------------|---------------|----------------|
 | Account | ✅ Yes | ✅ Yes (`"HC_Account"`) | **mbrList** (Priority 1) | `HC_Account` |
 | Entity | ✅ Yes | ❌ No | **POV** (Priority 2) | `East` |
@@ -213,7 +213,7 @@ ENDFIX
 
 **How the target intersection is built:**
 
-| Target Dimension | In Source? | In mbrList? | Resolved From | Resolved Value |
+| Target Dimension | In Source— | In mbrList— | Resolved From | Resolved Value |
 |------------------|-----------|-------------|---------------|----------------|
 | Account | ✅ Yes | ✅ Yes (`"Revenue_Line"`) | **mbrList** (Priority 1) | `Revenue_Line` |
 | Entity | ✅ Yes | ❌ No | **POV** (Priority 2) | `East` |
@@ -223,7 +223,7 @@ ENDFIX
 | Product | ❌ No | ❌ No | **Top Member** (Priority 3) | `Total Product` |
 | Currency | ❌ No | ❌ No | **Top Member** (Priority 3) | `Total Currency` |
 
-**What about Customer and Channel?** They exist **only in the source** — the target has no such dimensions. They are simply **ignored**. The target doesn't have a slot for them, so they play no role. They are part of the source FIX (they scope which data to iterate), but the target has no corresponding dimension.
+**What about Customer and Channel—** They exist **only in the source** — the target has no such dimensions. They are simply **ignored**. The target doesn't have a slot for them, so they play no role. They are part of the source FIX (they scope which data to iterate), but the target has no corresponding dimension.
 
 ### Critical Insight: Source-Only Dimensions Are Ignored, Target-Only Dimensions Default to Top Member
 
@@ -251,7 +251,7 @@ SOURCE CUBE (Revenue Detail):           TARGET CUBE (FinStmt):
                                          ├── Currency ← TARGET ONLY
 ```
 
-**The big question**: Source has `Customer` and `Channel` (target doesn't). Target has `Scenario`, `Product`, and `Currency` (source doesn't). What happens with each type?
+**The big question**: Source has `Customer` and `Channel` (target doesn't). Target has `Scenario`, `Product`, and `Currency` (source doesn't). What happens with each type—
 
 ---
 
@@ -287,10 +287,10 @@ ENDFIX
 - `"Cust_001"` → locks Customer to Cust_001 on source (source-only dim!)
 - `"Online"` → locks Channel to Online on source (source-only dim!)
 
-**What value does `"Net_Revenue"` evaluate to?**
+**What value does `"Net_Revenue"` evaluate to—**
 → It reads `Net_Revenue` at the intersection of `East, Jan, FY25, Cust_001, Online` on the source cube. This is the revenue for Customer "Cust_001" through the "Online" channel. The FIX on source-only dims controls which specific value is picked up.
 
-**Where does it land in the target?**
+**Where does it land in the target—**
 
 | Target Dim | How Resolved | Value | Why |
 |------------|-------------|-------|-----|
@@ -304,13 +304,13 @@ ENDFIX
 
 **Result**: The value of `Net_Revenue` for `Cust_001, Online` is written to `FinStmt → Revenue_Line, East, Jan, FY25, Actual, Product_A, USD`.
 
-**What about `Cust_001` and `Online`?** They were used to read the value from source, but the target has no Customer or Channel dimension. They simply vanish — no trace of them in the target intersection.
+**What about `Cust_001` and `Online`—** They were used to read the value from source, but the target has no Customer or Channel dimension. They simply vanish — no trace of them in the target intersection.
 
 ---
 
 #### Case B: Writing at Aggregated Level (Top of Source-Only Dims)
 
-**This is the key insight the user is asking about**: What if you FIX source-only dims at their TOP LEVEL (aggregated) and then dump into a specific member of target-only dims?
+**This is the key insight the user is asking about**: What if you FIX source-only dims at their TOP LEVEL (aggregated) and then dump into a specific member of target-only dims—
 
 ```essbase
 /* FIX scopes source-only dims to their TOP (aggregated) members */
@@ -326,12 +326,12 @@ ENDFIX
 - `"All_Channels"` → picks up the AGGREGATED value across all channels
 - Together: `Net_Revenue` at `East, Jan, FY25, Total_Customer, All_Channels` = **the total revenue for all customers through all channels**
 
-**What value does `"Net_Revenue"` evaluate to?**
-→ This is where the **critical question** comes in: **does @XWRITE (or Data Maps) automatically aggregate?**
+**What value does `"Net_Revenue"` evaluate to—**
+→ This is where the **critical question** comes in: **does @XWRITE (or Data Maps) automatically aggregate—**
 
 ---
 
-##### ⚠️ Deep Dive: Does It Aggregate Automatically? (Dynamic Calc vs. Stored Parents)
+##### ⚠️ Deep Dive: Does It Aggregate Automatically— (Dynamic Calc vs. Stored Parents)
 
 **NO — neither @XWRITE nor Data Maps/Smart Push trigger automatic aggregation.** They all read whatever value currently exists at the intersection. The behavior depends entirely on how the parent member is configured in the **source** outline:
 
@@ -382,7 +382,7 @@ When @XWRITE reads `Total_Customer`:
 
 ##### Comparison: @XWRITE vs. Data Maps vs. Smart Push — Aggregation Behavior
 
-| Tool | Triggers Aggregation? | What Value Does It Read? |
+| Tool | Triggers Aggregation— | What Value Does It Read— |
 |------|-----------------------|--------------------------|
 | **@XWRITE** | ❌ No | Reads whatever exists at the intersection — Dynamic Calc gives real-time value, Stored gives last-stored value |
 | **Smart Push** | ❌ No | Same behavior — reads the value at the mapped intersection. Does NOT aggregate first |
@@ -393,7 +393,7 @@ When @XWRITE reads `Total_Customer`:
 
 ---
 
-##### What About Writing TO a Parent in the Target?
+##### What About Writing TO a Parent in the Target—
 
 Same principle applies on the **target** side:
 
@@ -439,9 +439,9 @@ FIX("FY25", @CHILDREN("Total Entity"), @CHILDREN("All Periods"),
 ENDFIX
 ```
 
-##### Quick Decision: Do I Need to Aggregate First?
+##### Quick Decision: Do I Need to Aggregate First—
 
-| Source Parent Type | Need AGG Before Push? | Why |
+| Source Parent Type | Need AGG Before Push— | Why |
 |-------------------|----------------------|-----|
 | Dynamic Calc | ❌ No — it auto-calculates on read | Value is always current |
 | Stored + recently aggregated | ❌ No — value is already fresh | But verify it's not stale |
@@ -450,7 +450,7 @@ ENDFIX
 
 ---
 
-**Where does the value land in the target?**
+**Where does the value land in the target—**
 
 | Target Dim | How Resolved | Value | Why |
 |------------|-------------|-------|-----|
@@ -466,19 +466,19 @@ ENDFIX
 
 ---
 
-#### Case C: What If You DON'T Specify Target-Only Dims? (Top Member Fallback)
+#### Case C: What If You DON'T Specify Target-Only Dims— (Top Member Fallback)
 
 ```essbase
 /* NO target-only dims specified in mbrList! */
 FIX("FY25", "East", "Jan", "Total_Customer", "All_Channels")
     "Net_Revenue"(
         @XWRITE("Net_Revenue", "FinStmt", "Total_Revenue");
-        /* Only Account is overridden. What about Scenario, Product, Currency? */
+        /* Only Account is overridden. What about Scenario, Product, Currency— */
     )
 ENDFIX
 ```
 
-**Where does it land?**
+**Where does it land—**
 
 | Target Dim | How Resolved | Value | Why |
 |------------|-------------|-------|-----|
@@ -624,9 +624,9 @@ This pattern effectively creates a **manual dimension-to-dimension mapping**: so
 
 ---
 
-#### Case F: FIX Says FY25 but mbrList Says FY26 — What Happens? (Shared Dim Override)
+#### Case F: FIX Says FY25 but mbrList Says FY26 — What Happens— (Shared Dim Override)
 
-This scenario is about **overriding a shared dimension**. Year exists in BOTH source and target. Normally the POV flows through automatically. But what if you specify a **different** member in mbrList?
+This scenario is about **overriding a shared dimension**. Year exists in BOTH source and target. Normally the POV flows through automatically. But what if you specify a **different** member in mbrList—
 
 ```essbase
 FIX("FY25", "East", "Jan", "Total_Customer", "All_Channels")
@@ -786,7 +786,7 @@ Without `"HR_Department"` in the mbrList, the Department dimension would fall ba
 
 ### Allowed in `mbrList` Parameter (3rd argument onward)
 
-| Construct | Allowed? | Notes |
+| Construct | Allowed— | Notes |
 |-----------|----------|-------|
 | Individual member names | ✅ Yes | `"100-20"`, `"East"`, `"Actual"` |
 | Multiple members (different dims) | ✅ Yes | `"100-20", "East", "Actual"` |
@@ -794,7 +794,7 @@ Without `"HR_Department"` in the mbrList, the Department dimension would fall ba
 
 ### NOT Allowed in `mbrList`
 
-| Construct | Allowed? | Why Not |
+| Construct | Allowed— | Why Not |
 |-----------|----------|---------|
 | Functions returning multiple members | ❌ No | e.g., `@LEVMBRS(Market, 0)` — returns a list, not a single member |
 | Member ranges | ❌ No | e.g., `"Jan":"Dec"` — ranges are not supported |
@@ -993,9 +993,9 @@ ENDFIX
 |--------|-------|---------|
 | Direction | READ from another cube | WRITE to another cube |
 | Location Alias Role | Represents the **data source** | Represents the **data target** |
-| Returns a value? | ✅ Yes — numeric value | ❌ No — performs a write |
+| Returns a value— | ✅ Yes — numeric value | ❌ No — performs a write |
 | @LOOPBACK | Not applicable | ✅ Yes — write to same cube |
-| Same location alias? | ✅ Yes — can share with @XWRITE | ✅ Yes — can share with @XREF |
+| Same location alias— | ✅ Yes — can share with @XWRITE | ✅ Yes — can share with @XREF |
 | Formula type | N/A | Top-down formula |
 
 ---
@@ -1057,5 +1057,5 @@ ENDFIX
 ## Official Oracle Reference
 
 - [Oracle Essbase 21 — @XWRITE](https://docs.oracle.com/en/database/other-databases/essbase/21/esscq/xwrite.html)
-- [Understand XREF/XWRITE](https://docs.oracle.com/pls/topic/lookup?ctx=en/database/other-databases/essbase/21/esscq&id=UGESS-GUID-F8BB3012-42C8-4A96-B18C-B8D68EC8A056)
-- [Create a Location Alias](https://docs.oracle.com/pls/topic/lookup?ctx=en/database/other-databases/essbase/21/esscq&id=UGESS-GUID-6CF2B0AB-9E8D-47B1-92F5-112D7A31D841)
+- [Understand XREF/XWRITE](https://docs.oracle.com/pls/topic/lookup—ctx=en/database/other-databases/essbase/21/esscq&id=UGESS-GUID-F8BB3012-42C8-4A96-B18C-B8D68EC8A056)
+- [Create a Location Alias](https://docs.oracle.com/pls/topic/lookup—ctx=en/database/other-databases/essbase/21/esscq&id=UGESS-GUID-6CF2B0AB-9E8D-47B1-92F5-112D7A31D841)

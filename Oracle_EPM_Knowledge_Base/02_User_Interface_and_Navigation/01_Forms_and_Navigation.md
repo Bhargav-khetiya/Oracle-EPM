@@ -1,166 +1,165 @@
-# User Interface, Forms, and Navigation
+# 2.2 Forms, Navigation Flows & User Interface Architecture
 
-> **Prerequisites:** [What Is EPM](../00_Foundation/01_What_Is_EPM.md)  
-> **Sources merged:** ChatGPT 02_User_Interface_and_Navigation + Form_Properties (14 files), Claude 06_Forms + 28_Screen_Encyclopedia + 33_Navigation_Encyclopedia, Gemini equivalents  
-> **Evidence Labels:** `[Oracle Documented]` · `[Illustrative]` · `[Recommendation]`
+## Table of Contents
+1. [Core Consultant Mental Model](#1-core-consultant-mental-model)
+2. [Redwood UI & Navigation Flow Hierarchy](#2-redwood-ui--navigation-flow-hierarchy)
+3. [Data Form Architecture & Grid Layout Principles](#3-data-form-architecture--grid-layout-principles)
+4. [Grid Spread Physics & Data Validation Rules](#4-grid-spread-physics--data-validation-rules)
+5. [Smart Push on Save & Action Menus Integration](#5-smart-push-on-save--action-menus-integration)
+6. [Tough & Twisted Review Questions with Consultant Model Answers](#6-tough--twisted-review-questions-with-consultant-model-answers)
 
 ---
 
-## Navigation Flows
+<!-- ===================================================================== -->
+<!-- 🎯 LIVE INTERACTIVE VISUAL CARD: FORMS & NAVIGATION ARCHITECTURE -->
+<!-- ===================================================================== -->
+<details open>
+<summary><b>🎯 Live Interactive Architecture Card: Redwood Navigation & Web Form Layout (Click to Collapse / Expand)</b></summary>
 
-Navigation Flows control the user interface experience — what icons, cards, and tabs a user sees on the EPM Cloud home page.
-
-### Structural Hierarchy
-
-```
-HOME PAGE
-  └── Clusters (large folders: "Financials", "Workforce")
-        └── Cards (clickable tiles: "Expense Planning", "Revenue")
-              └── Tabs (organize content within cards)
-                    ├── Vertical tabs (left side)
-                    └── Horizontal tabs (top within a vertical tab)
-```
-
-### Attachable Objects
-
-Cards and tabs can point to: Dashboards (1.0/2.0), Data Forms, Business Rules, Task Lists, Financial Reports, URLs, Approvals, and Job Console.
-
-### Role-Based Flows
-
-| Flow | Audience | Shows |
-|:---|:---|:---|
-| **Executive Flow** | Senior leaders | Dashboards and reports only |
-| **Planner Flow** | Budget analysts | Forms, task lists, business rules |
-| **Admin Flow (Default)** | Administrators | All features based on role |
-
-> [!IMPORTANT]
-> **Hiding ≠ Securing.** Removing a card from a Navigation Flow hides it from the home page but does NOT remove underlying security access. Users can still access rules via Smart View or direct URL. Navigation Flows are for UI simplicity, not security.
+<br/>
 
 > [!TIP]
-> You cannot edit the Default flow. Duplicate it, edit the duplicate, and activate the new one. If a user belongs to multiple groups with different flows, the flow highest in the list order takes priority.
+> **Consultant High-Yield Summary:** A high-performing EPM application balances user experience and query latency. Designing forms with 50,000 cells or unnecessary dynamic calc columns degrades performance. Best practice: keep active web forms under **500 rows and 30 columns**, enable **Suppress Missing / Invalid Data**, and trigger **Smart Push on Save**.
 
-`[Oracle Documented]`
+| UI Component | Structural Role | Performance & Configuration Impact |
+| :--- | :--- | :--- |
+| **Navigation Flow** | Role-based portal experience | Clusters, Cards, and Tabs mapped to specific user groups |
+| **Page / POV Axis** | Global slicers outside the grid | Reduces rendered Cartesian product; users select 1 coordinate at a time |
+| **Row / Column Axis** | Two-dimensional visible grid | Cartesian product of row members × column members determines block fetch volume |
+| **Grid Spread** | Top-down parent/summary input | Allocates entered parent amounts down to Level 0 descendants proportionally or evenly |
+| **Smart Push on Save** | Real-time BSO to ASO push | Synchronizes edited leaf cells into reporting cubes upon clicking "Save" |
 
----
+```mermaid
+flowchart TD
+    subgraph NavHierarchy ["1. Redwood Navigation Flow Hierarchy"]
+        Home["Home Page"] --> Clust["Cluster (Folder: 'Financial Planning')"]
+        Clust --> Card["Card (Clickable Tile: 'Opex Input')"]
+        Card --> VTab["Vertical Tab (Left Pane: 'Salaries', 'Travel')"]
+        VTab --> HTab["Horizontal Tab (Top Sub-Tab: 'Drivers', 'Review')"]
+    end
 
-## Web Data Forms
+    subgraph FormEngine ["2. Form Grid Architecture"]
+        POV["POV Axis (Year, Scenario, Version)"]
+        Page["Page Axis (Entity Slicer)"]
+        RowCol["Row × Column Grid<br/>(Accounts × Periods)"]
+    end
 
-A Planning form is the primary data entry interface. It combines a grid layout with display, validation, and save behavior.
+    subgraph SavePipeline ["3. On-Save Execution Pipeline"]
+        SaveClick["User Edits Cells & Clicks 'Save'"] --> EvalVal["Data Validation Rules Evaluate"]
+        EvalVal --> CalcExec["Run Business Rules on Save (Calc Manager / Groovy)"]
+        CalcExec --> SmartPushExec["Smart Push Data to Reporting Cube (ASO)"]
+        SmartPushExec --> Commit["Data Committed & Grid Refreshed"]
+    end
 
-### Form Design Essentials
-
-| Component | Purpose |
-|:---|:---|
-| **Rows** | Usually Account dimension members |
-| **Columns** | Usually Period dimension members |
-| **POV (Point of View)** | Fixed context: Entity, Scenario, Version, Year |
-| **Page** | Selectable dimension member (user can switch) |
-| **Business Rules** | Rules attached to run on save or on demand |
-| **Smart Push** | Data Map to push data to another cube on save |
-
-### Form Properties
-
-#### Precision and Display
-
-| Setting | What It Does | Example |
-|:---|:---|:---|
-| **Minimum Decimals** | Pads trailing zeros | Min 2: `100` → `100.00` |
-| **Maximum Decimals** | Rounds displayed decimal places | Max 3: `100.12345` → `100.123` |
-| **Currency Member Precision** | Uses precision defined for the currency member | Varies by currency |
-
-#### Suppression Settings
-
-| Setting | Practical Meaning | Caution |
-|:---|:---|:---|
-| **Suppress Missing Data** | Hides rows/columns with no data | May hide intersections users need to populate |
-| **Suppress Missing Blocks** | Skips missing blocks at query level | Can help with many missing rows; can hurt with few |
-| **Database Suppression** | Applies suppression closer to the database | Test with formula columns (may suppress before formula evaluates) |
-| **Suppress Invalid Data** | Hides invalid intersection rows/columns | Users may not understand why data is unavailable |
-| **Suppress Missing + Zero** | Combines missing and zero suppression | Behavior varies by form version; test zero-valued data |
-
-#### Grid and Save Options
-
-| Setting | Purpose |
-|:---|:---|
-| **Autosave** | Saves as users navigate between cells |
-| **Calc On the Fly** | Evaluates formulas without submitting (Forms 2.0) |
-| **Enable Mass Allocate** | Allows mass data spreading across intersections |
-| **Enable Grid Spread** | Allows spreading values across periods |
-| **Make Form Read-Only** | Prevents data entry (does not revoke data access) |
-| **Cell-Level Documents** | Enables attachments on individual cells |
-
-### Grid Spread and Mass Allocate
-
-**Grid Spread** lets users distribute a value across time periods:
-
-```
-User enters Q1 Revenue = $300,000
-Grid Spread options:
-  • Evenly:    Jan=$100K, Feb=$100K, Mar=$100K
-  • Based on existing data ratios
-  • Based on prior year pattern
-  • Fill: $300K in each month
+    HTab --> FormEngine
+    FormEngine --> SavePipeline
 ```
 
-**Mass Allocate** distributes data across dimensional intersections (entities, departments, products) based on rules.
-
-`[Oracle Documented]`
+</details>
 
 ---
 
-## Dashboards
+## 1. Core Consultant Mental Model
 
-EPM Cloud offers two dashboard types:
-
-| Type | Description |
-|:---|:---|
-| **Dashboards 1.0** | Legacy — component-based layout with forms, charts, and tiles |
-| **Dashboards 2.0 (Infolets)** | Modern — responsive, configurable tiles showing KPIs and trends |
-
-Dashboards are read-only views that pull data from forms and cubes. They're typically attached to Navigation Flow cards for executive consumption.
-
-`[Oracle Documented]`
+When a user complains that *"The application is slow and forms freeze when saving"*, freshers often assume Essbase is broken. In 90% of cases, the bottleneck is **poor form design**:
+1. **Unbounded Cartesian Product:** Placing 4 sparse dimensions on rows without member restrictions forces the web application server to fetch thousands of empty blocks.
+2. **Missing Suppression:** Failing to enable `Suppress Missing Data` forces the browser DOM to render 10,000 blank cells.
+3. **Heavy Save Operations:** Attaching a monolithic calculation script (e.g., `CALC ALL;`) to "Run on Save" causes 30-second delays every time a user saves a single cell.
 
 ---
 
-## Form Design Best Practices
+## 2. Redwood UI & Navigation Flow Hierarchy
 
+Oracle Cloud EPM uses the **Redwood Design System**, governed by role-based **Navigation Flows**:
+
+* **Cluster:** High-level grouping of related business processes (e.g., *Financials*, *Workforce*, *System Administration*).
+* **Card:** Clickable tile inside a cluster representing a specific functional task (e.g., *Expense Planning*, *Revenue Modeling*).
+* **Vertical Tab:** Left-hand navigation panel within a card separating major phases (e.g., *Inputs*, *Calculations*, *Reports*).
+* **Horizontal Tab:** Top-level secondary tabs within a vertical tab (e.g., *Base Salary*, *Overtime*, *Taxes*).
+
+### Role-Based Navigation Best Practice:
+* **Planner Navigation Flow:** Tailored exclusively for business users. Strips away all administrative menus, showing only their specific task cards.
+* **Reviewer / Executive Flow:** Displays executive Dashboards 2.0, Infolets, and Financial Reports; hides input forms.
+* **Default Admin Flow:** Reserved for Service Administrators for system maintenance.
+
+---
+
+## 3. Data Form Architecture & Grid Layout Principles
+
+Every EPM data form organizes dimensions into three distinct structural axes:
+
+```mermaid
+graph TD
+    POV["Point of View (POV): Fixed global dimensions (e.g., Currency: USD)"]
+    Page["Page: Drop-down slicer dimension (e.g., Entity: Corporate, East, West)"]
+    RowsCols["Rows & Columns: The visible 2D Cartesian grid (Accounts × Months)"]
+    
+    POV --> RowsCols
+    Page --> RowsCols
 ```
-✅ DO:
-  - Keep forms focused on a single planning task
-  - Use clear form instructions telling users what to enter
-  - Test suppression with populated, empty, and zero-valued data
-  - Attach business rules to run on save only when needed
-  - Test Smart Push with "Use Form Context" enabled
 
-❌ DON'T:
-  - Create forms with hundreds of rows (use filtering/paging)
-  - Enable Grid Spread without confirming the required role
-  - Assume hiding a form removes data access (use security)
-  - Enable Autosave + complex rules without testing performance
-```
-
-`[Recommendation]`
+### Grid Layout Rules:
+1. **Dense Dimensions on Columns/Rows:** Dense dimensions (e.g., `Period`, `Account`) are ideal for columns and rows because all dense cells reside inside the same memory block.
+2. **Sparse Dimensions on Page/POV:** Placing large sparse dimensions (e.g., `Entity`, `Cost Center`, `Product`) on Page or POV ensures that opening the form only queries blocks for that single coordinate rather than attempting to retrieve the entire multidimensional database.
+3. **Suppression Settings:**
+   * **Suppress Missing Data:** Hides rows or columns where every cell is `#Missing`.
+   * **Suppress Invalid Combinations:** Hides rows or columns filtered out by Valid Intersection rules.
 
 ---
 
-## Quick Recall
+## 4. Grid Spread Physics & Data Validation Rules
 
-1. **What are Navigation Flows and what can't they do?**
-   → They control the home page UI (clusters, cards, tabs). They CANNOT enforce security — hiding a card doesn't prevent access via Smart View or URL.
+### Grid Spread
+When a user types a summary amount into an upper-level parent member on a form (e.g., changing Q1 Total Expense from \$30,000 to \$60,000), Cloud EPM executes **Grid Spread**:
+* **Proportional Spread (Default):** Distributes the \$30,000 increase proportionally across Jan, Feb, and Mar based on their existing ratio.
+* **Even Spread:** Divides the amount equally (\$20,000 each) across the open leaf periods.
+* **Locked Cell Spread:** If a user locks February (e.g., holding \$10,000), the spread distributes the remaining balance strictly across January and March.
 
-2. **What is the difference between Grid Spread and Mass Allocate?**
-   → Grid Spread distributes across time periods (one dimension). Mass Allocate distributes across multiple dimensional intersections.
-
-3. **Why must you test suppression before enabling it?**
-   → Aggressive suppression can hide intersections that users need for data entry, and formula columns may be suppressed before formulas evaluate.
+### Data Validation Rules
+Administrators can configure conditional validation rules that trigger visual formatting:
+* If `Operating Margin % < 10%`, format the cell background as **Red** and display a tooltip warning.
+* Validation rules can prevent form saving if critical business constraints are violated (e.g., *Total Allocation % must equal 100%*).
 
 ---
 
-## Oracle References
+## 5. Smart Push on Save & Action Menus Integration
 
-- [Setting Form Grid Properties](https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/setting_form_grid_properties.html)
-- [Setting Form Precision](https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/setting_form_precision_and_other_options.html)
-- [Form Design Considerations](https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/form_design_considerations.html)
-- [About Navigation Flows](https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/about_navigation_flows.html)
+### Smart Push on Save
+In a modern hybrid planning architecture, users input data into a BSO/Hybrid cube, but reporting and dashboards query an ASO cube.
+* Attaching **Smart Push** to the form with the **"Run on Save"** option automatically pushes only the edited cell intersections from BSO to ASO the instant the user hits "Save".
+* Planners get sub-second write-back, and executive dashboards update instantaneously.
 
+### Action Menus
+Right-click context menus configured on forms allow users to:
+1. Launch specific business rules passing the clicked cell's POV as Runtime Prompts.
+2. Drill through to source ERP general ledger journal lines.
+3. Open a secondary form filtered to the current entity/account context.
+
+---
+
+## 6. Tough & Twisted Review Questions with Consultant Model Answers
+
+### Question 1: "A user enters \$120,000 at the 'Q1' parent period cell on a web form and clicks Save. The cell reverts back to its original value of \$90,000. Why did Grid Spread fail to update the child periods?"
+**Consultant Model Answer:**
+> "Grid Spread fails and reverts the parent value under three primary conditions:
+> 1. **All Children are Missing / Zero with Proportional Spread:** If January, February, and March cells are all `#Missing` or `0`, a proportional spread has no existing baseline ratio to allocate against. Without a ratio, the calculation cannot divide by zero and reverts. The user must manually input into at least one child cell or select 'Spread Evenly'.
+> 2. **Child Periods are Locked or Read-Only:** If the child periods are closed for input (e.g., January Actuals is Read-Only due to Scenario/Version security or Approval Unit status), the system cannot write back to closed periods.
+> 3. **The Parent Period is Stored instead of Dynamic Calc:** If Q1 is configured as a Stored member in a Classic BSO cube, direct write-back to a stored parent without a spreading rule is blocked."
+
+### Question 2: "What is the physical architectural difference between placing a dimension on the 'Page' axis versus the 'Point of View (POV)' axis of a form?"
+**Consultant Model Answer:**
+> "Architecturally:
+> * **Page Axis:** When a dimension is placed on Page, the web server retrieves the list of page members into memory and allows the user to quickly cycle through them via a drop-down menu on the web form. In Smart View, page members appear as a drop-down selector above row 1.
+> * **POV Axis:** Dimensions on the POV act as global context anchors for the entire grid. While users can select members via the POV bar, POV members do not generate individual page cache segments in the web form. Placing high-cardinality dimensions on POV rather than Page reduces the initial form initialization footprint."
+
+### Question 3: "A form that queries a Hybrid BSO cube takes 25 seconds to open. The administrator has 15 sparse dimensions on the form rows. What architectural change will reduce load time to under 2 seconds?"
+**Consultant Model Answer:**
+> "Placing 15 sparse dimensions on rows creates an explosive Cartesian product, forcing the WebLogic server to evaluate millions of potential cell combinations against Essbase index files. To optimize:
+> 1. Move static or context dimensions (e.g., Scenario, Version, Currency, Year, and high-level Entity nodes) to the **POV or Page axis**.
+> 2. Limit the visible row axis to 1 or 2 core operational dimensions (e.g., `Account` and `CostCenter`).
+> 3. Enable **'Suppress Missing Data'** and **'Suppress Invalid Combinations'** on the form layout.
+> 4. Restrict member selections from `@DESCENDANTS` to `@RELATIVE` or specific user-entry Level 0 members.
+> This slashes the query footprint, reducing the rendered grid from tens of thousands of coordinate checks to a compact, sub-second block lookup."
+
+---
+*Proceed to [Module 03: Groovy Scripting & Business Rules](../03_Groovy_Scripting/00_INDEX.md).*

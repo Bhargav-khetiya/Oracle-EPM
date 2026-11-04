@@ -1,4 +1,4 @@
-# 03 — Business Rules & Smart Push on Forms: Automation Architecture
+﻿# 03 — Business Rules & Smart Push on Forms: Automation Architecture
 
 ---
 
@@ -86,7 +86,7 @@ From your supplied extraction:
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### What is Smart Push?
+### What is Smart Push—
 In enterprise applications, data is entered in a detailed Block Storage (BSO) cube (`FinPlan`), but executive reports are queried from an Aggregate Storage (ASO) cube (`EPBCS`).
 * **Smart Push** automatically extracts the saved data slice from `FinPlan` and loads it into `EPBCS` the moment the user clicks **Save**.
 * **`Run Smart Push In Background`**: Executes the data transfer asynchronously on a background server thread. The planner receives instant confirmation ("Data Saved") and continues working without waiting for the reporting cube refresh to finish.

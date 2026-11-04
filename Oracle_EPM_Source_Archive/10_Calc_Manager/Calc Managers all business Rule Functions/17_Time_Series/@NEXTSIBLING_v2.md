@@ -1,10 +1,10 @@
-# @NEXTSIBLING
+﻿# @NEXTSIBLING
 
 ## Overview
 
 `@NEXTSIBLING` is a **member navigation function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns the *member name* of the immediate next sibling of a specified member. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While `@NEXT` is used to get the *data value* of the next period, `@NEXTSIBLING` is used to get the *member reference itself*. This is critical when you need to dynamically build target destinations for cross-dimensional pushes or when executing conditional logic based on outline structure.
 - Find the next cost center in line.

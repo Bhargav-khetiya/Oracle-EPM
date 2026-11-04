@@ -1,10 +1,10 @@
-# @MINRANGE
+﻿# @MINRANGE
 
 ## Overview
 
 `@MINRANGE` is a **statistical/mathematical function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns the **minimum value** across a specified range of members. Unlike `@MIN` which takes a list of explicit member–value pairs or cross-dimensional references, `@MINRANGE` operates across a contiguous **range** of members within a single dimension, making it ideal for finding the lowest value across time periods, scenarios, or entity hierarchies.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In financial planning and budgeting, you frequently need to identify the lowest value across a series:
 - Finding the month with the lowest revenue in a fiscal year

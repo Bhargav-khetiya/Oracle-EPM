@@ -1,10 +1,10 @@
-# @CalcMgrLogValues
+﻿# @CalcMgrLogValues
 
 ## Overview
 
 `@CalcMgrLogValues` is a **custom Calc Manager diagnostic logging function** in Oracle EPM Cloud (PBCS/EPBCS). Unlike string-based loggers, this function is designed specifically to capture **live numerical calculations or block data values** in memory and physically print them into the official Calc Manager Job Console log during the execution of a script.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When a complex calculation script produces an incorrect final answer (e.g., Net Income is off by `$5M`), standard Essbase gives you no visibility into the intermediate steps. If the formula is `Net Income = (Revenue - COGS) * Tax_Rate`, and the result is wrong, you do not know which variable caused the error. 
 To debug this in standard Essbase, you have to create "dummy" accounts (like `"Debug_Tax_Rate"`) in the database outline, save the intermediate variables to the database, run the script, open a Smart View grid, and check the dummy accounts manually. This bloats the database outline and requires structural changes just to trace a math error.

@@ -1,11 +1,11 @@
-# @CalcMgrExcelTBILLPRICE
+﻿# @CalcMgrExcelTBILLPRICE
 
 ## Overview
 
 `@CalcMgrExcelTBILLPRICE` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `TBILLPRICE` function directly inside an Essbase calculation script. 
 It calculates the **Price** of a Treasury Bill (T-Bill) per $100 of face value.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Treasury Bills do not pay periodic interest. Instead, they are sold at a discount and mature at face value. If you want to buy a $1,000,000 T-Bill that matures in 90 days and offers a 4% bank discount rate, you don't pay $1,000,000 today. You pay the "discounted" price. 
 To calculate exactly how much physical cash you must transfer to the broker today to secure that T-Bill, you must calculate the price per $100 of face value using the exact number of days remaining until maturity, assuming a 360-day banking year.

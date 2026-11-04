@@ -1,55 +1,78 @@
-# 📖 Oracle EPM Cloud — Dimension and Member Properties: Master Architecture Bible
+﻿# 05. Dimensions and Metadata — 12-Dimension Architecture & Member Properties
 
-> **Purpose**: This directory serves as the exhaustive, deep-dive reference for all member and dimension properties in Oracle EPM Cloud Planning (PBCS / EPBCS) and Essbase. Every property, dropdown option, UI state, Essbase storage mechanic, calculation effect, and business use case is documented at consultant depth based on actual production extractions.
-
----
-
-## 📂 Document Index
-
-| # | File | Topic & Focus Area | Technical Level |
-|---|------|--------------------|-----------------|
-| 00 | [00_INDEX.md](./00_INDEX.md) | Master directory index, taxonomy, and navigation guide | Overview |
-| 01 | [01_Universal_Member_Properties.md](./01_Universal_Member_Properties.md) | Universal properties: Name, Alias, Storage types (`Store`, `Dynamic Calc`, `Never Share`, `Label Only`), Two-Pass Calc, Plan Type Enablement, 7 Consolidation Operators, Data Types, Dynamic Children, UDAs | Foundation & Core |
-| 02 | [02_Account_Dimension_Deep_Dive.md](./02_Account_Dimension_Deep_Dive.md) | Account Dimension (`Net Profit` screen): 6 Account Types, Variance Reporting (`Expense` vs `Non-Expense`), Time Balance (`Flow`, `Balance`, `First`, `Average`), Skip options, Exchange Rate Types, Source Cubes | Core Financials |
-| 03 | [03_Period_and_Scenario_Dimensions.md](./03_Period_and_Scenario_Dimensions.md) | Period & Scenario Dimensions (`Q1` and `Actual` screens): `Start/End Period`, `Start/End Year`, `Include BegBal as Time Period`, `Enabled for Approvals`, Hierarchy Types (`Not Set`, `Stored`, `Dynamic`), active data range binding | Core Planning |
-| 04 | [04_Version_Dimension_and_Sandboxes.md](./04_Version_Dimension_and_Sandboxes.md) | Version Dimension (`Working` screen): `Standard Bottom Up` vs `Standard Target`, Target-based spreading, `Enable Sandboxes`, sandbox virtual block mechanics, publishing data | Advanced Workflow |
-| 05 | [05_Currency_and_Custom_Dimensions.md](./05_Currency_and_Custom_Dimensions.md) | Currency & Custom Dimensions (`USD_Reporting`, `No Custom1`, `D10010:Catering`): Reporting Currencies, `Hsp_Rates`, the multi-cube "No Member" pattern, multi-cube plan type enablement matrix | Multi-Cube Architecture |
-| 06 | [06_System_Approval_Dimensions_and_17_Metric_Types.md](./06_System_Approval_Dimensions_and_17_Metric_Types.md) | System & Approval Dimensions (`HSP_Approval Unit Hierarchy` & `Submission Group`): What `HSP_` means, exhaustive breakdown of all 17 Metric Types, Planning Unit Hierarchies (PUH), promotion lifecycles | Enterprise Governance |
-| 07 | [07_Troubleshooting_Dos_and_Donts_and_Interview_Guide.md](./07_Troubleshooting_Dos_and_Donts_and_Interview_Guide.md) | Production troubleshooting matrix, golden Do's & Don'ts, 20 consultant interview questions and answers, deployment checklist | Best Practices & Reference |
-| 08 | [08_Attribute_Dimensions_vs_UDAs_Deep_Dive.md](./08_Attribute_Dimensions_vs_UDAs_Deep_Dive.md) | Attribute Dimensions vs UDAs: Storage engine mechanics (0-byte footprint), `@ATTRIBUTE` vs `@ISUDA`, dynamic rollups, query performance | Advanced Metadata Architecture |
-| 09 | [09_Relational_Schema_Internals_and_HSP_Tables.md](./09_Relational_Schema_Internals_and_HSP_Tables.md) | Relational Schema Internals: `HSP_OBJECT`, `HSP_MEMBER`, `HSP_ACCOUNT`, `HSP_MEMBER_TO_PLAN_TYPE`, SQL metadata persistence | Database Internals |
-| 10 | [10_Advanced_Solve_Order_and_Formula_Execution.md](./10_Advanced_Solve_Order_and_Formula_Execution.md) | Advanced Solve Order & Formula Execution: Cell collisions, mathematical divergence proof, solve order hierarchy (0-127), ASO/BSO differences | Calculation Engine Architecture |
-| 11 | [11_Member_Formula_Compilation_and_Execution_Internals.md](./11_Member_Formula_Compilation_and_Execution_Internals.md) | Member Formula Compilation & Execution: AST and bytecode generation, Dense vs Sparse execution physics, `@XREF` / `@XWRITE` socket streaming, DAG circular reference detection | Advanced Formula Architecture |
-| 12 | [12_Smart_Push_Data_Maps_and_Dimensional_Mapping.md](./12_Smart_Push_Data_Maps_and_Dimensional_Mapping.md) | Smart Push & Data Maps: BSO-to-ASO bridge, Unmapped & Excluded dimensional topologies, `EssASOInitLoadBuffer` kernel lifecycle, slice merge optimization | Hybrid Multi-Cube Integration |
+> **Consultant High-Yield Summary:**  
+> Metadata forms the structural backbone of every EPM application. Correctly configuring data storage properties (Store, Dynamic Calc, Shared, Never Share), time balance attributes, consolidation operators, and two-pass calculations determines cube size, query speed, and financial accuracy.
 
 ---
 
-## 🎯 How to Use This Guide
+## ðŸŽ¯ Live Interactive Visual Architecture Card
 
-1. **For Outline & Dimension Design**: Read `01` → `02` → `05`.
-2. **For Financial Modeling & Balance Sheets**: Read `02` → `03`.
-3. **For Workflow, Targets & Approvals**: Read `03` → `04` → `06`.
-4. **For Multi-Cube Architecture**: Read `01` → `05` → `12`.
-5. **For Metadata Attributes & SQL Catalogs**: Read `08` → `09`.
-6. **For Dynamic Formula Resolution & Solve Orders**: Read `10` → `11`.
-7. **For Production Troubleshooting & Interview Preparation**: Read `07`.
+<details open>
+<summary><b>ðŸŽ¯ Live Interactive Architecture Card: Dimensional Properties & Implied Share Governance</b></summary>
 
----
+| Property | Technical Mechanism | Implementation Best Practice |
+| :--- | :--- | :--- |
+| **Data Storage** | Store, Dynamic Calc, Dynamic Calc and Store, Shared, Never Share | Leaf cells store data; Upper Hybrid parents must be Dynamic Calc. Shared members reuse existing blocks. |
+| **Consolidation Operator** | `+`, `-`, `*`, `/`, `%`, `~` (Ignore), `^` (Never) | Use `~` for informational drivers to prevent unintended parent rollups. |
+| **Two-Pass Calculation** | Forces Essbase to calculate ratios AFTER full hierarchy aggregation | Mandatory on dynamic margin % and ratio accounts in Account dimension to prevent wrong rolled-up averages. |
+| **Implied Share** | Essbase converts a parent with 1 child or 1 consolidatable child into a shared pointer | Set parent to 'Never Share' if direct data entry or distinct parent storage is required. |
 
-## 🔑 Key Concepts at a Glance
-
+```mermaid
+flowchart TD
+    Dim["EPM Dimensions"] --> Std["Standard Required Dimensions<br/>Account, Period, Entity, Scenario, Version, Years"]
+    Dim --> Cust["Custom Business Dimensions<br/>Department, Product, Channel, Project, Currency"]
+    Std --> Props["Member Properties<br/>Data Storage, Operator, Time Balance, Two-Pass"]
+    Cust --> Props
+    Props --> Outline["Essbase Cube Outline"]
 ```
-Oracle EPM Planning Member Configuration
-├── RELATIONAL LAYER (Planning SQL DB):
-│   ├── Validates unique names, aliases, and metadata constraints
-│   ├── Stores form layouts, task lists, and approval units
-│   └── Governs user security and role permissions
-│
-└── PHYSICAL LAYER (Essbase MOLAP Engine):
-    ├── Dense Dimension Members → define 8-byte cell offsets in data blocks
-    ├── Sparse Dimension Members → define B-tree index branches in .IND
-    ├── Data Storage = Store → physical block cells in .PAG
-    ├── Data Storage = Dynamic Calc → computed in RAM (0 bytes disk)
-    ├── Two-Pass Calc → corrects ratio aggregations on dense dynamic members
-    └── Consolidation Operators (+, -, *, /, %, ~, ^) → procedural rollup
-```
+
+</details>
+
+---
+
+## ðŸ›ï¸ Architectural Comparison & Design Patterns
+
+| Property / Setting | Dynamic Calc (~) | Stored (+) |
+| :--- | :--- | :--- |
+| Storage Footprint | Zero physical disk space; computed in memory during query | Allocates physical cells in .PAG files; persists until cleared |
+| Calculation Timing | Evaluated on retrieval by end user or Smart View query | Pre-calculated during batch business rules or data save |
+| Write-Back Eligibility | Cannot accept direct user input (unless overridden by Groovy) | Fully editable in web forms and Smart View ad-hoc grids |
+
+---
+
+## ðŸ’¼ Tough & Twisted Review Scenarios (Consultant Review Defense)
+
+### Question 1: "A user enters data into a level 0 member, but the parent shows the exact same value even though there are other sibling members. What happened?"
+> **Consultant Model Answer:**  
+> Implied Share. When a parent has only one child that consolidates (e.g. all other siblings are set to ~ or dynamic calc), Essbase treats the parent and child as sharing the exact same cell coordinate. If a second child is later loaded with data, the parent may fail to roll up properly or display confusing results unless the parent's storage property is explicitly set to 'Never Share'.
+
+---
+
+## ðŸ“‘ Complete Document Catalog
+
+| # | Document File | Topic Description |
+|---|---------------|-------------------|
+| 01 | [01_Universal_Member_Properties.md](./01_Universal_Member_Properties.md) | 01 — Universal Member Properties: The Complete Foundation |
+| 02 | [02_Account_Dimension_Deep_Dive.md](./02_Account_Dimension_Deep_Dive.md) | 02 â€” Account Dimension Deep Dive: Financial Logic & Storage |
+| 03 | [03_Period_and_Scenario_Dimensions.md](./03_Period_and_Scenario_Dimensions.md) | 03 â€” Period and Scenario Dimensions: Time Bounding & Lifecycles |
+| 04 | [04_Version_Dimension_and_Sandboxes.md](./04_Version_Dimension_and_Sandboxes.md) | 04 — Version Dimension and Sandboxes: Workflow & Target Modeling |
+| 05 | [05.08_Account_Dimension_Exhaustive.md](./05.08_Account_Dimension_Exhaustive.md) | 05.08 Account Dimension — Exhaustive Property Reference |
+| 06 | [05.09_Entity_Dimension_Exhaustive.md](./05.09_Entity_Dimension_Exhaustive.md) | 05.09 Entity Dimension — Exhaustive Property Reference |
+| 07 | [05.10_Period_Scenario_Version_Year_Dimensions.md](./05.10_Period_Scenario_Version_Year_Dimensions.md) | 05.10 Period, Scenario, Version & Year Dimensions — Exhaustive Reference |
+| 08 | [05.12_Custom_Dimensions_Design_Patterns.md](./05.12_Custom_Dimensions_Design_Patterns.md) | 05.12 Custom Dimensions — Design Patterns & Best Practices |
+| 09 | [05.20_Dimensions_Reference.md](./05.20_Dimensions_Reference.md) | 📒 Document 06 — Dimensions — The Complete Reference |
+| 10 | [05.21_Account_Dimension.md](./05.21_Account_Dimension.md) | 📔 Document 07 — Account Dimension — Deep Dive |
+| 11 | [05.28_Member_Formulas_Intro.md](./05.28_Member_Formulas_Intro.md) | 🧮 Member Formulas — Introduction |
+| 12 | [05.30_Dimensions_Bible_Deep_Dive.md](./05.30_Dimensions_Bible_Deep_Dive.md) | 05.30 Dimensions Bible — Deep Dive |
+| 13 | [05_Currency_and_Custom_Dimensions.md](./05_Currency_and_Custom_Dimensions.md) | 05 â€” Currency and Custom Dimensions: Multi-Cube Modeling |
+| 14 | [06_System_Approval_Dimensions_and_17_Metric_Types.md](./06_System_Approval_Dimensions_and_17_Metric_Types.md) | 06 â€” System Approval Dimensions & The 17 Metric Types |
+| 15 | [07_Troubleshooting_Dos_and_Donts_and_Interview_Guide.md](./07_Troubleshooting_Dos_and_Donts_and_Interview_Guide.md) | 07 — Dimension Properties: Troubleshooting, Dos & Donts, and Interview Bible |
+| 16 | [08_Attribute_Dimensions_vs_UDAs_Deep_Dive.md](./08_Attribute_Dimensions_vs_UDAs_Deep_Dive.md) | 08 — Attribute Dimensions vs. UDAs: Deep Architecture |
+| 17 | [09_Relational_Schema_Internals_and_HSP_Tables.md](./09_Relational_Schema_Internals_and_HSP_Tables.md) | 09 â€” Relational Schema Internals & The `HSP_` Database Tables |
+| 18 | [10_Advanced_Solve_Order_and_Formula_Execution.md](./10_Advanced_Solve_Order_and_Formula_Execution.md) | 10 — Advanced Solve Order & Formula Collision Mathematics |
+| 19 | [11_Member_Formula_Compilation_and_Execution_Internals.md](./11_Member_Formula_Compilation_and_Execution_Internals.md) | âš¡ Dimension Properties â€” Member Formula Compilation & Execution Internals |
+| 20 | [12_Smart_Push_Data_Maps_and_Dimensional_Mapping.md](./12_Smart_Push_Data_Maps_and_Dimensional_Mapping.md) | ðŸ”„ Dimension Properties â€” Smart Push, Data Maps & Dimensional Mapping Mechanics |
+
+---
+
+> **Consultant Implementation Note:** Master the architectural comparison and review defense questions in this module before presenting designs to client stakeholders or senior review panels.

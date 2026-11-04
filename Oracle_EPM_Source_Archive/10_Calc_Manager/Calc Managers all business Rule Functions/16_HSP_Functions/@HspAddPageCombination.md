@@ -1,10 +1,10 @@
-# @HspAddPageCombination
+﻿# @HspAddPageCombination
 
 ## Overview
 
 `@HspAddPageCombination` is a **Hyperion Planning (HSP) custom function** embedded within Oracle EPM Cloud (PBCS/EPBCS). It is an advanced administrative function used to **dynamically register a specific intersection of members as a valid Page/Form combination** within the Planning relational database, bypassing the standard user interface setup.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In massive Planning applications (like Workforce or Capital), web forms are often designed using "Page" dropdowns to filter data (e.g., picking a specific Employee or Asset from a dropdown list). To maintain performance, Planning only allows users to select combinations that are considered "valid."
 If an administrator loads 500 new temporary employees via an Essbase calculation script (e.g., dynamically generating `Emp_9001`, `Emp_9002`), those employees exist in Essbase, but the relational Planning tier does not know they should be visible in the Data Form dropdowns for the `"Contractors"` department. 

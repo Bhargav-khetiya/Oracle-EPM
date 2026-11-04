@@ -1,10 +1,10 @@
-# @CalcMgrGetCurrentDateTimeTZ
+﻿# @CalcMgrGetCurrentDateTimeTZ
 
 ## Overview
 
 `@CalcMgrGetCurrentDateTimeTZ` is a **custom Calc Manager timezone-aware date/time function** in Oracle EPM Cloud (PBCS/EPBCS). It pings the underlying EPM Java application server for the current UTC time, and then **automatically shifts that time** to perfectly match a specified local timezone, returning a highly precise Java Timestamp object.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Oracle EPM Cloud servers are hosted in massive global data centers. To maintain consistency, Oracle hardcodes all EPM Cloud server clocks to **UTC (Coordinated Universal Time)**. 
 If an administrator in New York executes a calculation script at exactly 4:00 PM Eastern Standard Time, and the script uses standard `@CalcMgrGetCurrentDateTime`, the server will return 9:00 PM (UTC). If the script has a hardcoded SLA rule that says `"Reject data if time > 5:00 PM"`, the script will incorrectly reject the New York user's data because 9:00 PM UTC > 5:00 PM. 

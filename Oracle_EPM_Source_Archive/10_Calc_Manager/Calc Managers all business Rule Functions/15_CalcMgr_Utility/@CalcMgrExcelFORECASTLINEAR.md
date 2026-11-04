@@ -1,11 +1,11 @@
-# @CalcMgrExcelFORECASTLINEAR
+﻿# @CalcMgrExcelFORECASTLINEAR
 
 ## Overview
 
 `@CalcMgrExcelFORECASTLINEAR` is a **custom Calc Manager predictive mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It replicates the behavior of the Microsoft Excel `FORECAST.LINEAR` (or simply `FORECAST`) function directly inside an Essbase calculation script. 
 It predicts a future value along a linear trend by using existing historical data points. It essentially calculates the "line of best fit" (linear regression) through a known set of X and Y values, and then determines what the Y value will be at a specific future X coordinate.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Predictive planning is a massive component of EPM Cloud. FP&A analysts constantly need to extrapolate future sales, expenses, or headcount based on historical trends. 
 In Excel, analysts simply use `=FORECAST(Future_Month, Known_Sales, Known_Months)`. To calculate linear regression manually in Essbase, a developer would have to write massive algebraic formulas to find the Slope (using covariances and variances) and the Y-Intercept, and then apply `Y = mx + b`. This requires dozens of lines of code and massive iterative loops for every single product they want to forecast.
@@ -100,7 +100,7 @@ FIX("FY25", "Working", @LEVEL0("OpEx_Accounts"))
         */
         "Baseline_Forecast" = @ROUND(
             @CalcMgrExcelFORECASTLINEAR(
-                "Time_Index",                      /* Target X (The future month) */
+                "Time_Indexâ”‚                      /* Target X (The future month) */
                 "Actuals"->"FY24"->@IDESCENDANTS("YearTotal"), /* Known Ys (Historical $) */
                 "Time_Index"->"FY24"->@IDESCENDANTS("YearTotal") /* Known Xs (Historical 1-12) */
             )

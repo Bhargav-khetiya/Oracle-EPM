@@ -1,10 +1,10 @@
-# @MINS
+﻿# @MINS
 
 ## Overview
 
 `@MINS` is a **mathematical/statistical function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns the **minimum value** from a list of expressions while **skipping `#MISSING` values**. The "S" suffix stands for "Skip Missing." Unlike `@MIN`, which may return `#MISSING` if any argument is missing, `@MINS` ignores missing values and finds the minimum among the remaining non-missing values.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In financial planning, data is often incomplete — not all scenarios, versions, or periods may have values:
 - Comparing budget vs. forecast vs. actual where some versions may not yet be populated

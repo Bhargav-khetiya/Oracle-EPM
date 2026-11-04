@@ -1,11 +1,11 @@
-# @CalcMgrExcelWEEKNUM
+﻿# @CalcMgrExcelWEEKNUM
 
 ## Overview
 
 `@CalcMgrExcelWEEKNUM` is a **custom Calc Manager date conversion function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `WEEKNUM` function directly inside an Essbase calculation script. 
 It analyzes an Excel Serial Date decimal (or a Java Timestamp) and calculates exactly which **Week of the Year** that date falls into, returning an integer between `1` and `53`.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Retail, manufacturing, and supply chain industries operate heavily on weekly reporting cycles, often comparing "Week 42" of this year to "Week 42" of last year. 
 Calculating the week number manually in Essbase is excruciatingly difficult. You must figure out what day of the week January 1st fell on, count how many days have elapsed since then, divide by 7, and apply rounding logic based on whether you consider Sunday or Monday the start of the week. 

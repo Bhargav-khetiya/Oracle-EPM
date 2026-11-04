@@ -1,4 +1,4 @@
-﻿# 📦 Vision Sample Application — Post-Creation Walkthrough
+﻿﻿# 📦 Vision Sample Application — Post-Creation Walkthrough
 ## Exploring Your New Vision Application
 
 > **Prerequisite:** Vision sample application has been successfully created  
@@ -115,15 +115,15 @@ This opens the Application administration area:
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: What is the first diagnostic step an administrator should execute immediately after Vision creation finishes?
-**Answer:** Navigate to Application â†’ Jobs (Job Console). Verify that the Create Database, Cube Refresh, and Metadata Load background jobs all display a status of **Completed** with zero fatal exceptions. If any job shows errors, the database outline may require a manual Refresh Database.
+### Q1: What is the first diagnostic step an administrator should execute immediately after Vision creation finishes—
+**Answer:** Navigate to Application → Jobs (Job Console). Verify that the Create Database, Cube Refresh, and Metadata Load background jobs all display a status of **Completed** with zero fatal exceptions. If any job shows errors, the database outline may require a manual Refresh Database.
 
-### Q2: How can an administrator quickly verify that sample data loaded properly across all scenarios?
-**Answer:** Open Smart View or navigate to Data â†’ Revenue Planning â†’ Revenue Overview. Change the POV to Scenario: Actual, Year: FY24, Version: Working. Cells should populate with formatted financial numbers. If cells display #MISSING, run the pre-built Calculate Revenue business rule from the Actions menu.
+### Q2: How can an administrator quickly verify that sample data loaded properly across all scenarios—
+**Answer:** Open Smart View or navigate to Data → Revenue Planning → Revenue Overview. Change the POV to Scenario: Actual, Year: FY24, Version: Working. Cells should populate with formatted financial numbers. If cells display #MISSING, run the pre-built Calculate Revenue business rule from the Actions menu.
 
-### Q3: If a tester modifies formulas or data in Vision and breaks the calculation engine, what is the fastest way to reset?
+### Q3: If a tester modifies formulas or data in Vision and breaks the calculation engine, what is the fastest way to reset—
 **Answer:** Execute a reset and recreation:
 `cmd
 epmautomate login admin@company.com "C:\EPM\pass.epw" "https://epm.oraclecloud.com"

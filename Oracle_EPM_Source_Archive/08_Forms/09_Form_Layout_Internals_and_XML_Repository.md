@@ -1,4 +1,4 @@
-# 09 — Form artifact lifecycle and technical boundaries
+﻿# 09 — Form artifact lifecycle and technical boundaries
 
 ## Core idea
 
@@ -28,18 +28,18 @@ Do not execute an old bulk-edit script merely because it is stored in the docs l
 
 ## Review questions for an artifact change
 
-- Is the proposed change available in the supported form designer or import workflow?
-- Which dependencies are included and which must be moved separately?
-- Does the import report warnings or errors?
-- Does the form work in its intended web and Smart View clients?
-- Can the original definition be restored using a tested Oracle-supported method?
-- Who approved the production change?
+- Is the proposed change available in the supported form designer or import workflow—
+- Which dependencies are included and which must be moved separately—
+- Does the import report warnings or errors—
+- Does the form work in its intended web and Smart View clients—
+- Can the original definition be restored using a tested Oracle-supported method—
+- Who approved the production change—
 
 ## Recall check
 
-1. Are internal table names and XML examples verified Cloud interfaces? Not by this review.
-2. What is the safe migration path? Use the current Oracle-documented artifact and environment migration process.
-3. What must be checked after import? Job outcome, dependencies, permissions, layout, rules, and representative user behavior.
+1. Are internal table names and XML examples verified Cloud interfaces— Not by this review.
+2. What is the safe migration path— Use the current Oracle-documented artifact and environment migration process.
+3. What must be checked after import— Job outcome, dependencies, permissions, layout, rules, and representative user behavior.
 
 **Teach-back:** Explain why an undocumented XML edit may seem to work but still be unsafe to use as a repeatable Cloud deployment method.
 

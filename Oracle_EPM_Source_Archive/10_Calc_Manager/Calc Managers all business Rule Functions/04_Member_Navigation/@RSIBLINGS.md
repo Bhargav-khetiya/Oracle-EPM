@@ -1,4 +1,4 @@
-# @RSIBLINGS
+﻿# @RSIBLINGS
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 *(The "R" stands for Right. Crucially, this function is **non-inclusive**; it explicitly excludes the target member itself).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In time-series forecasting, administrators frequently need to isolate the "Future" or calculate a "Balance to Go". If the current active forecast month is `"May"`, the business needs to execute predictive logic on all the months that come *after* May (Jun-Dec) without accidentally overwriting the actuals that live in Jan-May.
 Because the physical outline order of Time dimensions represents chronological progression (`May` is above `Jun`, `Jun` is above `Jul`), you can use structural traversal to find the future. 

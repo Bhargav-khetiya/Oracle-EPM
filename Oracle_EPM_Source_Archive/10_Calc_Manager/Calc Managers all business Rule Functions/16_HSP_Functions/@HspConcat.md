@@ -1,10 +1,10 @@
-# @HspConcat
+﻿# @HspConcat
 
 ## Overview
 
 `@HspConcat` is a **Hyperion Planning (HSP) custom string function** embedded within Oracle EPM Cloud (PBCS/EPBCS). It concatenates (joins) two text strings together into a single, unified string. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In modern Calc Manager, EPM Cloud provides dozens of powerful string-processing functions (like `@CalcMgrStringsToString` and native concatenation operators). However, these did not always exist. In older versions of Hyperion Planning, manipulating text inside a calculation script was nearly impossible because Essbase is fundamentally a numeric database.
 `@HspConcat` was introduced as an administrative bridge, allowing developers to dynamically construct strings (like piecing together `"Proj_"` and `"001"` into `"Proj_001"`) so they could dynamically reference members or log detailed error messages to the Job Console.

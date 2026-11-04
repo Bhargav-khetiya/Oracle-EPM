@@ -1,6 +1,6 @@
-﻿# Oracle EPM Cloud: EPM Automate Setup and Authentication
+﻿﻿# Oracle EPM Cloud: EPM Automate Setup and Authentication
 
-## 1. What is EPM Automate?
+## 1. What is EPM Automate—
 
 **EPM Automate** is Oracle's official command-line utility for automating Oracle EPM Cloud operations. It is the backbone of all migration, backup, restore, and environment management activities.
 
@@ -212,13 +212,13 @@ C:\EPM_Scripts\
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: Why does an encrypted password file (.epw) fail with decryption errors when copied from Server A to Server B?
+### Q1: Why does an encrypted password file (.epw) fail with decryption errors when copied from Server A to Server B—
 **Answer:** The epmautomate encrypt command leverages the Windows Data Protection API (DPAPI) or local host cryptographic hardware GUIDs. The encryption key is mathematically tied to the specific Windows User SID and local machine hardware master key. Copying the .epw file to another host or running it under a different Windows service account prevents decryption (EPMCSS-20071). The .epw file must always be generated directly on the target execution server under the service account that runs the scheduled task.
 
-### Q2: How does OAuth 2.0 token-based authentication work with EPM Automate, and does it bypass Identity Cloud Service (IDCS) MFA?
+### Q2: How does OAuth 2.0 token-based authentication work with EPM Automate, and does it bypass Identity Cloud Service (IDCS) MFA—
 **Answer:** EPM Automate supports OAuth 2.0 token authentication via registered confidential applications in IDCS / OCI IAM. When configured, scripts authenticate using a client ID and client secret (private key) rather than a human user password. This is mandatory for automated unattended batch processes because it bypasses Interactive Multi-Factor Authentication (MFA) prompts that would otherwise freeze headless batch scripts.
 
-### Q3: What happens if an automated script issues epmautomate logout while another batch process is running in parallel on the same server?
+### Q3: What happens if an automated script issues epmautomate logout while another batch process is running in parallel on the same server—
 **Answer:** On Windows, EPM Automate stores the active session token in %USERPROFILE%\.epmautomate. If two concurrent scripts run under the **same Windows user profile**, Script A's logout deletes the token file, causing Script B's subsequent command to fail with EPMCSS-20187: Session not authenticated. To run parallel CLI tasks on the same server, execute each task under a separate Windows service account or use direct HTTP REST API calls with independent bearer tokens.

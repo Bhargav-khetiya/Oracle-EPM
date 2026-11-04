@@ -1,10 +1,10 @@
-# @CalcMgrGetCustomDate
+﻿# @CalcMgrGetCustomDate
 
 ## Overview
 
 `@CalcMgrGetCustomDate` is a **custom Calc Manager date instantiation function** in Oracle EPM Cloud (PBCS/EPBCS). It takes three distinct integers (Year, Month, and Day) and systematically fuses them together into a highly precise **Java Date Object**.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building calculation scripts that forecast future operations, administrators frequently need to construct dynamic dates. For example, calculating the "Contract Renewal Date" by extracting the Year from a start date, adding 5 to it, and keeping the same Month and Day. 
 Once those new mathematical integers (e.g., Year = `2029`, Month = `10`, Day = `15`) are calculated, they must be converted back into a unified Date Object so they can be passed into downstream date-math functions like `@CalcMgrDaysBetween`.

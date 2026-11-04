@@ -1,10 +1,10 @@
-# @CalcMgrReplaceAll
+﻿# @CalcMgrReplaceAll
 
 ## Overview
 
 `@CalcMgrReplaceAll` is a **custom Calc Manager string manipulation function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a universal search-and-replace engine. It scans a source text string, searches for **ALL occurrences** of a specific target substring, and replaces every single one of them with a new replacement string.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When formatting strings in EPM—such as generating clean outline member names from messy flat-file imports—data often contains invalid characters. For example, Essbase members cannot contain spaces or hyphens without causing calculation script syntax issues.
 If an external HR system loads `"Dept - Sales - West"` into a text field, and you need to convert that into the physical outline member `"Dept_Sales_West"`, you cannot use a simple `@CalcMgrReplaceFirst` function, because that would only fix the first hyphen, leaving `"Dept_Sales - West"`.
@@ -123,7 +123,7 @@ ENDFIX
 |---------|-------------|-----|
 | Using ReplaceFirst Accidentally | `"New York City"` becomes `"New_York City"` | A common mistake is using `@CalcMgrReplace` or `@CalcMgrReplaceFirst` when you actually intended to replace all occurrences. If your data contains multiple spaces, commas, or delimiters, you MUST use `ReplaceAll` to ensure global sanitization |
 | Replacing with Space vs Deleting | Passing `" "` instead of `""` | If you want to delete a comma from `"1,000"`, you must pass an empty string `""` as the replacement. If you accidentally pass a space `" "`, the result will be `"1 000"`, which will still crash numerical parsers |
-| Regex Interpretation | Passing Regex tokens | In older EPM versions, `ReplaceAll` utilized Java's regex engine under the hood. If your `search_string` contains special regex characters (like `.`, `*`, or `?`), it may produce unexpected behavior or replace the entire string. If you are doing advanced character matching, consider using `@CalcMgrReplaceRegex` instead |
+| Regex Interpretation | Passing Regex tokens | In older EPM versions, `ReplaceAll` utilized Java's regex engine under the hood. If your `search_string` contains special regex characters (like `.`, `*`, or `—`), it may produce unexpected behavior or replace the entire string. If you are doing advanced character matching, consider using `@CalcMgrReplaceRegex` instead |
 
 ---
 

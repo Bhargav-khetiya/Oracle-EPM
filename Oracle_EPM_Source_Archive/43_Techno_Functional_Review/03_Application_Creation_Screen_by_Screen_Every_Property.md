@@ -1,4 +1,4 @@
-# 03 Application Creation: Screen-by-Screen Walkthrough, Every Property, and Behind-the-Scenes Mechanics
+﻿# 03 Application Creation: Screen-by-Screen Walkthrough, Every Property, and Behind-the-Scenes Mechanics
 
 ## 1. The Application Creation Lifecycle
 
@@ -47,12 +47,12 @@ Creating an Oracle EPM Cloud application is an irrevocable architectural event. 
 ### Screen 2: General Properties
 * **Application Name**:
   * **Rule**: Maximum of **8 alphanumeric characters** (e.g., `Vision`, `CorpPlan`, `FinApp`).
-  * **Why 8 characters?**: Legacy Essbase operating system directory limitations require 8-character folder names.
+  * **Why 8 characters—**: Legacy Essbase operating system directory limitations require 8-character folder names.
 * **Description**: Freeform text explaining business ownership.
 
 ### Screen 3: Time & Calendar Architecture
 
-| Property Field | Options | Architectural Meaning & Behind-the-Scenes Effect | Can it be Changed Later? |
+| Property Field | Options | Architectural Meaning & Behind-the-Scenes Effect | Can it be Changed Later— |
 | :--- | :--- | :--- | :--- |
 | **First Fiscal Year** | Dropdown (e.g., `FY20`) | The earliest historical year stored in the `Years` dimension. | **NO**. Irrevocable. |
 | **Number of Fiscal Years**| Integer (e.g., `10`) | Instantiates sequential members in the `Years` dimension (e.g., FY20 through FY29). Additional future years can be appended later. | Additional years can be added. |
@@ -62,7 +62,7 @@ Creating an Oracle EPM Cloud application is an irrevocable architectural event. 
 
 ### Screen 4: Currency & Exchange Rate Architecture
 
-| Property Field | Options | Architectural Meaning & Behind-the-Scenes Effect | Can it be Changed Later? |
+| Property Field | Options | Architectural Meaning & Behind-the-Scenes Effect | Can it be Changed Later— |
 | :--- | :--- | :--- | :--- |
 | **Multi-Currency** | **Yes** / **No** | If **Yes**: Automatically instantiates the **`Currency`** dimension, creates the **`HSP_Rates`** exchange rate cube, and seeds rate accounts (`HSP_Rate_Average`, `HSP_Rate_Ending`). If **No**: Cube operates strictly in a single currency. | **NO**. Cannot enable or disable later! |
 | **Base Currency** | Dropdown (USD, EUR, GBP, JPY, CAD) | The default corporate functional currency assigned to `Entity` members unless overridden. | **NO**. Irrevocable. |
@@ -77,7 +77,7 @@ Creating an Oracle EPM Cloud application is an irrevocable architectural event. 
 
 ---
 
-## 3. What Happens Behind the Scenes During the 5-Minute Build?
+## 3. What Happens Behind the Scenes During the 5-Minute Build—
 
 When you click **Create Application**, Oracle EPM Cloud triggers an asynchronous infrastructure orchestrator:
 
@@ -116,19 +116,19 @@ When you click **Create Application**, Oracle EPM Cloud triggers an asynchronous
 
 These are the exact trap questions interviewers use to detect inexperienced consultants:
 
-### Trap 1: "A client created an application with Multi-Currency = No. Two months into UAT, they acquired a UK subsidiary and need GBP. How do you enable Multi-Currency?"
+### Trap 1: "A client created an application with Multi-Currency = No. Two months into UAT, they acquired a UK subsidiary and need GBP. How do you enable Multi-Currency—
 * **The Trap**: Claiming you can go to Dimension Library or Application Settings to check a box.
 * **The Truth**: **You CANNOT enable Multi-Currency post-creation!** It is an irrevocable binary switch at application initialization. The only solution is to **recreate the application** or build a custom currency dimension workaround.
 
-### Trap 2: "Can you change the Fiscal Year Start Month from January to July after go-live?"
+### Trap 2: "Can you change the Fiscal Year Start Month from January to July after go-live—
 * **The Truth**: **NO**. The fiscal year start month permanently establishes the internal calendar token index in Essbase. Changing it requires an application rebuild.
 
-### Trap 3: "What is the consequence of enabling Sandboxes 'just in case'?"
+### Trap 3: "What is the consequence of enabling Sandboxes 'just in case'—
 * **The Truth**: Enabling Sandboxes creates the `HSP_View` dimension permanently. Every query, form, and calculation script must now account for `HSP_View`. It creates dense/sparse block indexing overhead and **cannot be deleted**. Never enable it unless there is an approved business requirement.
 
-### Trap 4: "What is the maximum number of characters permitted for an application name, and why?"
+### Trap 4: "What is the maximum number of characters permitted for an application name, and why—
 * **The Truth**: **8 alphanumeric characters**. Because under the hood, Essbase creates physical file system directory paths on Linux (`/app/<AppName>`) based on legacy 8.3 filename conventions.
 
-### Trap 5: "When should you use 13-Period frequency instead of 12-Month?"
+### Trap 5: "When should you use 13-Period frequency instead of 12-Month—
 * **The Truth**: Use **13-Period** for **Retail and Hospitality clients** who operate on 4-week reporting cycles (52 weeks = $13 \times 4$-week periods). This eliminates the distortion caused by months having different numbers of weekends (e.g., February 28 days vs. March 31 days).
 

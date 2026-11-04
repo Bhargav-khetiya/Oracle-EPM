@@ -1,11 +1,11 @@
-# @CalcMgrExcelCEILING
+﻿# @CalcMgrExcelCEILING
 
 ## Overview
 
 `@CalcMgrExcelCEILING` is a **custom Calc Manager mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `CEILING` function directly inside an Essbase calculation script. 
 It forcefully rounds a number **UP** to the nearest multiple of a specified significance. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard rounding (`@ROUND` or `@TRUNC`) typically rounds to the nearest whole integer or decimal place. However, business logic often dictates rounding to entirely arbitrary multiples based on packaging, logistics, or pricing tiers.
 For example, if you calculate that you need `4.2` gallons of paint, standard rounding gives you `4`. But paint is only sold in 5-gallon buckets. You must round `4.2` up to the nearest multiple of `5` (which is `5`). If you need `6.1` gallons, you must round up to the nearest multiple of `5` (which is `10`). 

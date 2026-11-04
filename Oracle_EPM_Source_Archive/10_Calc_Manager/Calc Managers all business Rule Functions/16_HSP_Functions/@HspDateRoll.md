@@ -1,10 +1,10 @@
-# @HspDateRoll
+﻿# @HspDateRoll
 
 ## Overview
 
 `@HspDateRoll` is a **Hyperion Planning (HSP) custom date function** embedded within Oracle EPM Cloud (PBCS/EPBCS). It takes a **`YYYYMMDD` formatted integer** (e.g., `20240115`) and mathematically rolls a specific calendar component (such as Days, Months, or Years) forward or backward by a specified amount, returning a newly constructed `YYYYMMDD` integer.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard Essbase block storage only understands numbers. If a user inputs a contract start date of `20240115` (Jan 15, 2024), and the contract is for `3` months, the system needs to calculate the end date.
 You cannot just add `300` to `20240115` (which equals `20240415`), because standard math breaks down at year and month boundaries. (e.g., `20241115` + `300` = `20241415`, which is not a valid date). 

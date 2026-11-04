@@ -1,12 +1,12 @@
-# @CalcMgrSortAndReturn
+﻿# @CalcMgrSortAndReturn
 
 ## Overview
 
 `@CalcMgrSortAndReturn` is a **custom Calc Manager array processing function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as an advanced, one-step array sorter and extractor. It takes a dynamic array of numbers, **sorts them numerically** in memory (Ascending or Descending), and immediately **returns the specific value sitting at a requested index position** of that newly sorted array.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
-When building complex financial logic, administrators often need to find specific statistical data points within a historical trend. For example: "What was the 3rd highest revenue month this year?"
+When building complex financial logic, administrators often need to find specific statistical data points within a historical trend. For example: "What was the 3rd highest revenue month this year—
 If you use standard Essbase logic, finding the 3rd highest number is nearly impossible. You would have to write massive, chained comparison loops (`IF Jan > Feb AND Jan > Mar...`). 
 `@CalcMgrSortAndReturn` entirely automates this. You simply pass it the array of the 12 months, tell it to sort Descending (highest to lowest), and ask for the value at Index `2` (the 3rd item). The Java engine handles all the complex array sorting in a fraction of a millisecond, returning the exact number you requested, allowing you to instantly build advanced tiered-pricing or risk-modeling algorithms.
 

@@ -1,4 +1,4 @@
-# 07 — Data Operations and Performance: How Things Work Internally
+﻿# 07 — Data Operations and Performance: How Things Work Internally
 
 ---
 
@@ -41,7 +41,7 @@ USER OPENS FORM
 │    - Data display properties (precision, scaling)         │
 │                                                          │
 │ 2. Apply SECURITY filters                                 │
-│    - Which members can this user see?                     │
+│    - Which members can this user see—                     │
 │    - Read/Write access at member level                    │
 │                                                          │
 │ 3. Build GRID of cell addresses                           │
@@ -119,9 +119,9 @@ USER CLICKS SAVE (with modified cells)
 │    [{cell: (Rev,Jan,FY24,Act,Wrk,USE,Wdg), value: 160}] │
 │                                                          │
 │ 2. Validate data                                         │
-│    - Is the cell writable? (not read-only)                │
-│    - Is the value valid? (numeric, in range)              │
-│    - Does user have WRITE access?                         │
+│    - Is the cell writable— (not read-only)                │
+│    - Is the value valid— (numeric, in range)              │
+│    - Does user have WRITE access—                         │
 │                                                          │
 │ 3. Send cell updates to ESSBASE                           │
 └──────────────────────┬──────────────────────────────────┘
@@ -467,7 +467,7 @@ Essbase Application Log entry after CALC ALL:
 
 ## 7.8 Restructure Operations — The Most Disruptive Operation
 
-### What Triggers a Restructure?
+### What Triggers a Restructure—
 
 ```
 Change Type                      Restructure Type    Impact

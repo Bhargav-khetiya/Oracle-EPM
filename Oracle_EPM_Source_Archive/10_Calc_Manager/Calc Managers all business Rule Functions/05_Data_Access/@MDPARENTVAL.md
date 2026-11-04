@@ -1,10 +1,10 @@
-# @MDPARENTVAL
+﻿# @MDPARENTVAL
 
 ## Overview
 
 `@MDPARENTVAL` is a **multi-dimensional data access function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns the **data value stored at the parent member** of the current member, with the ability to specify which dimension's parent to navigate to. It is the multi-dimensional version of `@PARENTVAL`, designed for use in applications with multiple dimensions where you need to clearly specify which dimension's hierarchy to navigate.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In multi-dimensional planning applications with many dimensions, you often need to reference the parent's data:
 - Computing each entity's share of the parent entity's total

@@ -1,10 +1,10 @@
-# @CalcMgrLogCurrMembers
+﻿# @CalcMgrLogCurrMembers
 
 ## Overview
 
 `@CalcMgrLogCurrMembers` is a **custom Calc Manager diagnostic logging function** in Oracle EPM Cloud (PBCS/EPBCS). It serves as a powerful debugging tool that captures the **exact dimensional intersection** (the specific combination of members) currently being evaluated by the Essbase engine, and physically writes that intersection into the official Calc Manager Job Console log.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Essbase calculation scripts operate using multi-dimensional loop blocks (`FIX` statements). If you write a `FIX` on 1,000 Products and 100 Entities, Essbase will dynamically evaluate 100,000 unique intersections in memory. 
 When a calculation fails, returns unexpected numbers, or triggers a "Divide by Zero" exception deep inside one of those blocks, finding the exact intersection where the math failed is like finding a needle in a haystack. Standard Essbase debugging involves manually isolating variables and writing dummy data to dummy accounts.

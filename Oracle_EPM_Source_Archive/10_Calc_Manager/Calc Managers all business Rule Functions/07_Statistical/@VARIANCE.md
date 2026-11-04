@@ -1,4 +1,4 @@
-# @VARIANCE
+﻿# @VARIANCE
 
 ## Overview
 
@@ -6,7 +6,7 @@
 **CRITICAL NOTE**: In Essbase and Calc Manager, `@VARIANCE` is typically a **financial function** used to calculate the difference between two members (e.g., Actual vs. Budget), honoring the `Expense` reporting attribute. 
 *Do not confuse this with the statistical variance of a sample, which is calculated using the `@VAR` function.*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard subtraction (`Actual - Budget`) works fine for Revenue accounts, but fails for Expense accounts where a lower actual is a *positive* variance (favorable). 
 - **Revenue**: Actual (120) - Budget (100) = +20 (Favorable)

@@ -1,10 +1,10 @@
-# @CalcMgrIsFinite
+﻿# @CalcMgrIsFinite
 
 ## Overview
 
 `@CalcMgrIsFinite` is a **custom Calc Manager mathematical validation function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a strict safety check, analyzing a numeric value and returning a Boolean flag (`true` or `false`) confirming whether the number is a mathematically valid, **finite** number, as opposed to an infinite error or a `NaN` (Not a Number) exception.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When executing massive driver-based allocation scripts, division by zero is a constant threat. In standard Essbase, if you divide `100 / 0`, the system usually returns `#MISSING`. 
 However, Calc Manager custom functions rely on the underlying Java engine, which adheres to strict IEEE 754 floating-point math standards. In Java, dividing a double by zero does not return `#MISSING`; it literally returns the mathematical concept of `Infinity`. Furthermore, attempting to calculate the square root of a negative number (`@CalcMgrExcelSQRT(-5)`) returns `NaN` (Not a Number). 

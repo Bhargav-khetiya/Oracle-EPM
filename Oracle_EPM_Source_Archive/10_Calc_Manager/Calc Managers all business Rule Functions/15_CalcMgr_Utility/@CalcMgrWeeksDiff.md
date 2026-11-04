@@ -1,10 +1,10 @@
-# @CalcMgrWeeksDiff
+﻿# @CalcMgrWeeksDiff
 
 ## Overview
 
 `@CalcMgrWeeksDiff` is a **custom Calc Manager date mathematics function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates the mathematical **difference in weeks** between two provided **Java Date Objects**, returning the result as a precise floating-point decimal (a Double).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While `@CalcMgrWeeksBetween` is excellent for integer-based counting (e.g., calculating exactly 3 full weeks for payroll), it completely ignores remainders. If a project lasts 3 weeks and 5 days, `WeeksBetween` rounds down to `3`.
 If you are prorating costs, allocating weekly manufacturing overhead, or calculating HR benefit accruals, throwing away those 5 days causes severe financial under-allocation.

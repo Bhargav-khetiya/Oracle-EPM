@@ -1,10 +1,10 @@
-# @ATTRIBUTEVAL
+﻿# @ATTRIBUTEVAL
 
 ## Overview
 
 `@ATTRIBUTEVAL` is a **data retrieval function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It retrieves the actual numeric value assigned to a numeric attribute for a specified base member. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Attributes in Essbase are not just text tags; they can be actual numbers (Numeric Attributes). For example, a store might have a numeric attribute called "Square_Footage" with a value of `50000`, or a product might have "Ounces" set to `12.5`.
 Instead of storing these metrics as data intersections in the cube (which increases database size and calculation time), you store them as metadata.

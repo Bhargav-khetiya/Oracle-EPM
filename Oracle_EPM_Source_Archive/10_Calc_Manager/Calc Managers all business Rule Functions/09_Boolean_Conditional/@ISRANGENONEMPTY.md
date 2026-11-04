@@ -1,14 +1,14 @@
-# @ISRANGENONEMPTY
+﻿# @ISRANGENONEMPTY
 
 ## Overview
 
 `@ISRANGENONEMPTY` is a **native Essbase boolean array function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates an entire array (or range) of members and returns `TRUE` if **at least one** block in that range contains real, non-missing data. It returns `FALSE` only if the entire range is completely empty (`#MISSING`).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building calculation scripts that execute massive top-down allocations or complex spreading logic, performance is everything. The slowest operation in Essbase is calculating blocks that don't need to be calculated.
 If a script allocates `"Corporate_Overhead"` down to 500 stores, but only 3 of those stores actually have `"Direct_Expenses"` (the allocation driver), the script will waste immense time running math against 497 empty stores, generating thousands of `#MISSING` blocks.
-Natively, you can check `IF("Direct_Expenses" != #MISSING)`, but that only works on a single cell. What if you need to know if the *entire Year* is empty before bothering to run a Year-To-Date formula? Or if an entire Region is empty before running a consolidation?
+Natively, you can check `IF("Direct_Expenses" != #MISSING)`, but that only works on a single cell. What if you need to know if the *entire Year* is empty before bothering to run a Year-To-Date formula— Or if an entire Region is empty before running a consolidation—
 `@ISRANGENONEMPTY` solves this. You pass it a range (e.g., `Jan:Dec`, or `@CHILDREN("East_Region")`), and it performs a rapid block-scan. If it finds even a single valid number anywhere in that array, it returns `TRUE`, allowing the heavy mathematical logic to proceed.
 
 ### When to Use It

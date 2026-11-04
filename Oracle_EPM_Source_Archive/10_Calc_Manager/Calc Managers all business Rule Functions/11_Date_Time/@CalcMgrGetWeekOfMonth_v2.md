@@ -1,13 +1,13 @@
-# @CalcMgrGetWeekOfMonth
+﻿# @CalcMgrGetWeekOfMonth
 
 ## Overview
 
 `@CalcMgrGetWeekOfMonth` is a **custom Calc Manager calendar logic function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a unified **Java Date Object** (or Java Timestamp Object) and precisely calculates **which week of the month** that specific date falls into, returning it as an integer (e.g., `1` through `6`).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While calculating the current month or current day is straightforward, calculating the exact *Week of the Month* is a logistical nightmare in standard Essbase. 
-If today is Friday, November 3rd, is it Week 1? Or is it Week 2? That depends entirely on what day November 1st landed on. If November 1st was a Wednesday, then Friday the 3rd is still technically part of Week 1 in some regional calendars, but part of Week 2 in others (where weeks strictly begin on Sunday). 
+If today is Friday, November 3rd, is it Week 1— Or is it Week 2— That depends entirely on what day November 1st landed on. If November 1st was a Wednesday, then Friday the 3rd is still technically part of Week 1 in some regional calendars, but part of Week 2 in others (where weeks strictly begin on Sunday). 
 Writing standard Essbase math to track this requires knowing the weekday of the 1st of every month, historically, for eternity. 
 `@CalcMgrGetWeekOfMonth` completely eliminates this complexity. It queries the Java Calendar engine, natively evaluates the calendar matrix for that specific month, and returns exactly which week bucket (`1-6`) the date falls into. This allows FP&A administrators to easily model weekly sales run-rates, retail foot-traffic seasonality, or 4-4-5 accounting periods.
 

@@ -1,10 +1,10 @@
-# @CalcMgrBitShiftRight
+﻿# @CalcMgrBitShiftRight
 
 ## Overview
 
 `@CalcMgrBitShiftRight` is a **custom Calc Manager bitwise function** in Oracle EPM Cloud (PBCS/EPBCS). It performs a mathematical "right shift" operation on the binary representation of an integer, moving all bits to the right by a specified number of positions.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In computer science, shifting binary bits to the right by `N` positions is the mathematical equivalent of performing integer division by `2^N` (two to the power of N) and discarding the remainder. 
 While you can simply write `@TRUNC("Value" / 2)` in Essbase, `@CalcMgrBitShiftRight` is provided for developers implementing highly specific low-level algorithms, data compression, or complex custom bitmasking security models natively inside Calc Scripts. 

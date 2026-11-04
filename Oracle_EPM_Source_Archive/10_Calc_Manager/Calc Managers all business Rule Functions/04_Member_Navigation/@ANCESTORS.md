@@ -1,10 +1,10 @@
-# @ANCESTORS
+﻿# @ANCESTORS
 
 ## Overview
 
 `@ANCESTORS` is a **member set function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns the **set of ancestors** of a specified member, optionally limited to a specific generation or level. Unlike `@ALLANCESTORS` which always returns every ancestor up to the root, `@ANCESTORS` can be constrained to return ancestors only up to a certain point.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building calculations that need to operate on multiple levels of a hierarchy but not necessarily all the way to the root, `@ANCESTORS` provides the needed control. For example:
 - Get all ancestors up to the regional level (but not the global root)

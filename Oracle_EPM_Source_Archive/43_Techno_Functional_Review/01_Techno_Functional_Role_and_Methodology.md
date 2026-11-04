@@ -1,4 +1,4 @@
-# 01 The Techno-Functional Role, Implementation Methodology, and Project Lifecycle
+﻿# 01 The Techno-Functional Role, Implementation Methodology, and Project Lifecycle
 
 ## 1. The End-to-End Enterprise EPM Implementation Lifecycle
 
@@ -70,7 +70,7 @@ In modern cloud consulting, implementations rarely follow rigid pure Waterfall. 
 
 ---
 
-## 4. Key Review Talking Points: "What Was Your Role on the Project?"
+## 4. Key Review Talking Points: "What Was Your Role on the Project—
 
 When asked on Monday: *"Describe your role as a techno-functional consultant on your last EPM implementation"*:
 

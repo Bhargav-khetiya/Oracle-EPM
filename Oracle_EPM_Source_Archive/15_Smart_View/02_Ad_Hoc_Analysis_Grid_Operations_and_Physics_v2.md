@@ -1,8 +1,8 @@
-# 02 — Ad Hoc Analysis: Grid Operations & Dimensional Slicing
+﻿# 02 — Ad Hoc Analysis: Grid Operations & Dimensional Slicing
 
 ---
 
-## 2.1 What is Ad Hoc Analysis?
+## 2.1 What is Ad Hoc Analysis—
 
 **Ad Hoc Analysis** is the free-form, multidimensional exploration canvas of Oracle EPM. Instead of being locked into a rigid form layout, analysts can slice, dice, pivot, drill down, filter, and expand any dimension hierarchy in real time directly within Microsoft Excel.
 

@@ -1,10 +1,10 @@
-# @CalcMgrConcat
+﻿# @CalcMgrConcat
 
 ## Overview
 
 `@CalcMgrConcat` is a **custom Calc Manager string manipulation function** in Oracle EPM Cloud (PBCS/EPBCS). It concatenates (joins together) two or more text strings into a single continuous text string.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While Essbase has a native `@CONCATENATE` function, the native version historically had limitations regarding the number of strings it could join at once, and how it handled variables versus hardcoded text within complex Calc Manager GUI loops.
 `@CalcMgrConcat` utilizes the underlying Java engine's robust string builder capabilities. It is the backbone of dynamic string generation in modern EPM applications—allowing developers to stitch together prefixes, dynamic attributes, and suffixes to create highly dynamic cross-dimensional target pointers.

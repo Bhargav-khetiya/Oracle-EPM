@@ -1,11 +1,11 @@
-# @CalcMgrExcelXNPV
+﻿# @CalcMgrExcelXNPV
 
 ## Overview
 
 `@CalcMgrExcelXNPV` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `XNPV` function directly inside an Essbase calculation script. 
 It calculates the **Net Present Value (NPV)** of an investment based on a specified discount rate and a series of cash flows that occur on **irregular, specific dates**.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 The standard `@CalcMgrExcelNPV` function assumes that all cash flows happen exactly one period apart (e.g., exactly 1 year). It applies a rigid exponent-based discount: Year 1 is discounted by `(1+Rate)^1`, Year 2 by `(1+Rate)^2`. 
 However, in heavy construction, oil & gas exploration, or Private Equity modeling, cash flows are completely erratic. A company might invest $5M on January 1st, inject another $2M on March 15th, and receive a payout on November 2nd. 

@@ -1,10 +1,10 @@
-# @ANCESTVAL
+﻿# @ANCESTVAL
 
 ## Overview
 
 `@ANCESTVAL` is a **data retrieval function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It returns the numeric data value of an ancestor of the specified member at a given generation or level. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While `@ANCEST` returns the *member reference* (which you must then use in a cross-dimensional operator like `"Revenue" -> @ANCEST(...)`), `@ANCESTVAL` directly fetches the numeric value from the current data intersection, shifted up to the specified ancestor.
 It simplifies syntax when you just need the number (e.g., to use as a denominator) and don't need to dynamically assign data to that parent.

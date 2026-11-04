@@ -1,4 +1,4 @@
-# @ISIBLINGS
+﻿# @ISIBLINGS
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 *(The "I" stands for Inclusive).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In cross-dimensional allocations or peer-to-peer benchmarking, administrators often need to execute logic on an entire "family" of members that share the exact same parent. For example, if a script is calculating `"Q2"`, it might need to calculate the average of all the quarters in the year (`"Q1, Q2, Q3, Q4"`) to perform a smoothing allocation.
 If you use the native `@SIBLINGS("Q2")` function, Essbase returns `"Q1", "Q3", "Q4"`, but it specifically *excludes* `"Q2"`. To get the full year, you would be forced to write `"Q2", @SIBLINGS("Q2")`. 

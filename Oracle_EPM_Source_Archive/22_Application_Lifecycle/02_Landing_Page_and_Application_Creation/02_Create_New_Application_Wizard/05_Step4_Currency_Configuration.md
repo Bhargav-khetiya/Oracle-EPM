@@ -1,4 +1,4 @@
-﻿# 🚀 Step 4: Currency Configuration
+﻿﻿# 🚀 Step 4: Currency Configuration
 ## Currency Setup and Multi-Currency Options
 
 > **Wizard Step:** 4 of 5  
@@ -186,12 +186,12 @@ After application creation, exchange rates are managed via:
 
 | Question | If Yes → | If No → |
 |----------|----------|---------|
-| Does your organization operate in multiple countries? | Enable multi-currency | Consider single currency |
-| Do you need to report in multiple currencies? | Enable multi-currency | Single currency may suffice |
-| Do entities have different local currencies? | Enable multi-currency | Single currency |
-| Do you need currency translation for consolidation? | Enable multi-currency | Single currency |
-| Is this a simple budget app for one country? | Single currency may suffice | - |
-| Are you unsure? | **Enable it** (can't add later) | - |
+| Does your organization operate in multiple countries— | Enable multi-currency | Consider single currency |
+| Do you need to report in multiple currencies— | Enable multi-currency | Single currency may suffice |
+| Do entities have different local currencies— | Enable multi-currency | Single currency |
+| Do you need currency translation for consolidation— | Enable multi-currency | Single currency |
+| Is this a simple budget app for one country— | Single currency may suffice | - |
+| Are you unsure— | **Enable it** (can't add later) | - |
 
 ---
 
@@ -205,18 +205,18 @@ After application creation, exchange rates are managed via:
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: Can an application created as "Single Currency" be converted to "Multi-Currency" later?
+### Q1: Can an application created as "Single Currency" be converted to "Multi-Currency" later—
 **Answer:** No. In Single Currency applications, the Currency dimension is omitted entirely from Essbase block headers, and currency exchange tables (HSP_RATES) are not generated. Enabling Multi-Currency later is prohibited because it would alter the dimensional coordinates of every block in the database.
 
-### Q2: What is the purpose of the HSP_InputValue and Local currency members?
+### Q2: What is the purpose of the HSP_InputValue and Local currency members—
 **Answer:** In Multi-Currency applications:
 - Local: Represents data entered in the native functional currency of the specific Entity (e.g. GBP for London, EUR for Paris).
 - HSP_InputValue: The system input layer that holds raw user entries before currency translation rules execute.
 Base data must **never** be entered directly into reporting currencies (USD), as translation rules will overwrite them.
 
-### Q3: When should "Enable Currency Triangulation" be checked?
+### Q3: When should "Enable Currency Triangulation" be checked—
 **Answer:** Enable Triangulation when cross-currency conversions between two non-base currencies must pass through an intermediate common currency (e.g. converting JPY to GBP via USD). This eliminates the need to maintain hundreds of individual cross-rate pairs and enforces European Monetary Union (EMU) statutory compliance.
 
 ---

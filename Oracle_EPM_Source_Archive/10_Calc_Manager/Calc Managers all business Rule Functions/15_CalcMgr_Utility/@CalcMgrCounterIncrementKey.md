@@ -1,10 +1,10 @@
-# @CalcMgrCounterIncrementKey
+﻿# @CalcMgrCounterIncrementKey
 
 ## Overview
 
 `@CalcMgrCounterIncrementKey` is a **custom Calc Manager state-tracking function** in Oracle EPM Cloud (PBCS/EPBCS). It adds a value of exactly `1` to a specific "key" (a named sub-bucket) located inside a master hash map running in the background Java heap.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While `@CalcMgrCounterIncrement` works on simple, single-value global counters (e.g., tracking a single integer for "Global_Errors"), advanced Calc Manager logic frequently relies on **Hash Maps** to track multiple different subtotals simultaneously. 
 For example, instead of tracking one massive global error count, you might want to track exactly how many errors occurred in *each* Region. You create a single master map called `"Region_Error_Counts"`. Inside this map, you have dynamic keys for `"Texas"`, `"California"`, and `"New_York"`. 

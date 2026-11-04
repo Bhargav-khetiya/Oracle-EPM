@@ -1,10 +1,10 @@
-# @CalcMgrGetDateTimePart
+﻿# @CalcMgrGetDateTimePart
 
 ## Overview
 
 `@CalcMgrGetDateTimePart` is a **custom Calc Manager time extraction function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a scalpel, dissecting a unified **Java Timestamp Object** and extracting one specific Time-of-Day component (such as the Hour, Minute, or Second), returning it as a usable integer.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While `@CalcMgrGetDatePart` pulls out the Calendar elements (Year, Month, Day) from a Java object, it cannot touch the clock data. If your script uses `@CalcMgrGetCurrentDateTime()` to capture the exact current time to monitor a processing SLA, the resulting Timestamp Object is unreadable to standard Essbase logic. 
 If a corporate SLA rule states, "Reject all data submissions that arrive after 6:00 PM", the calculation script must isolate just the "Hour" component from the Timestamp Object to check if it is greater than `18`. 

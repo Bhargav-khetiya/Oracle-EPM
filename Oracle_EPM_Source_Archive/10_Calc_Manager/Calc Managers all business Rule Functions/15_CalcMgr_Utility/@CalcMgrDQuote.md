@@ -1,10 +1,10 @@
-# @CalcMgrDQuote
+﻿# @CalcMgrDQuote
 
 ## Overview
 
 `@CalcMgrDQuote` is a **custom Calc Manager string formatting function** in Oracle EPM Cloud (PBCS/EPBCS). It takes an existing text string and strictly wraps it in double quotation marks (`""`), returning the newly wrapped string.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building complex strings dynamically inside a Calc Script (especially when generating SQL queries, exporting JSON payloads, or passing parameters to Groovy and external APIs), you frequently need to wrap specific values in double quotes. 
 However, double quotes are a reserved syntax character in Essbase calc scripts. If you try to concatenate a literal double quote into a string like this: `@CalcMgrConcat(""", "Text")`, the Essbase parser will crash, thinking you prematurely ended the string.

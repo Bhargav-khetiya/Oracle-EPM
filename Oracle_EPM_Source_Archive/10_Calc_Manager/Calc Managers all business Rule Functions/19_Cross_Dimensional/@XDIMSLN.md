@@ -1,10 +1,10 @@
-# @XDIMSLN
+﻿# @XDIMSLN
 
 ## Overview
 
 `@XDIMSLN` is a **native Essbase specialized financial function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates **Straight-Line Depreciation** (or amortization) for an asset. Crucially, the `XDIM` prefix means this function is explicitly designed to calculate and push the depreciation values across **multiple different periods and cross-dimensional intersections** simultaneously, rather than just calculating a single value for a single block.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard straight-line depreciation is simple math: `(Cost - Salvage Value) / Lifespan`. 
 The standard `@SLN` function performs this math, but it only returns the answer to the *current block* being calculated. You have to put it inside a massive Time loop, check if the asset is active every month, execute the math, and stop when the lifespan ends. This is tedious and slow.

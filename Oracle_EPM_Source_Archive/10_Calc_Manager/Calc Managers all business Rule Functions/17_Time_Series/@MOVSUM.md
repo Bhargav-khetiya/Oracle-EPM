@@ -1,10 +1,10 @@
-# @MOVSUM
+﻿# @MOVSUM
 
 ## Overview
 
 `@MOVSUM` is a **time-series aggregation function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that calculates a **moving (rolling) sum** across a specified number of periods. It sums the values from the current period backward for a given number of consecutive periods, creating a rolling total that moves forward through time.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Moving sums (rolling totals) are fundamental in financial analysis:
 - Trailing twelve-month (TTM) revenue calculations

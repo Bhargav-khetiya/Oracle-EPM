@@ -1,4 +1,4 @@
-# @LSIBLINGS
+﻿# @LSIBLINGS
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 *(The "L" stands for Left. Crucially, this function is **non-inclusive**; it explicitly excludes the target member itself).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In time-series forecasting, calculating actuals versus budget often requires splitting the year. If you are forecasting starting in `"May"`, you need to know exactly which months came *before* May so you can lock their data or copy their actuals.
 Because the physical outline order of Time dimensions represents chronological progression (`Jan` is above `Feb`, `Feb` is above `Mar`), you can use structural traversal to find the past. 

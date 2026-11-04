@@ -1,11 +1,11 @@
-# @CalcMgrExcelEFFECT
+﻿# @CalcMgrExcelEFFECT
 
 ## Overview
 
 `@CalcMgrExcelEFFECT` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `EFFECT` function directly inside an Essbase calculation script. 
 It calculates the **Effective Annual Interest Rate**, converting a nominal annual interest rate (e.g., a "stated" rate of 12%) into its true compounding rate based on how many times per year the interest actually compounds.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When a bank quotes a 12% Annual Percentage Rate (APR), that is the "Nominal" rate. However, if that loan compounds monthly, the borrower is actually paying interest on their interest every single month. By the end of the year, the *actual* amount of interest paid is mathematically equivalent to an annual rate of `12.68%`. This is known as the Effective Annual Rate (EAR) or Annual Percentage Yield (APY).
 To calculate this manually in Essbase, an analyst would write: `((1 + (Nominal_Rate / Periods)) ^ Periods) - 1`. While this algebraic formula is relatively simple, migrating a massive Treasury model from Excel where users relied entirely on `=EFFECT()` requires an exact one-to-one translation to ensure validation checks pass. `@CalcMgrExcelEFFECT` handles this translation instantly in Java.

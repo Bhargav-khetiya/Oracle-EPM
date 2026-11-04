@@ -1,4 +1,4 @@
-# 04 — Smart View, Predictive Planning, and printing
+﻿# 04 — Smart View, Predictive Planning, and printing
 
 ## Core idea
 
@@ -45,9 +45,9 @@ Printing differs by form version. Oracle documents a Planning print-to-PDF optio
 
 ## Recall check
 
-1. Does disabling sheet protection permit submitting changed data? No, Oracle says users can enter or paste but cannot submit the changed data.
-2. Where are Flex Forms used? Smart View for Office, subject to the documented configuration and limits.
-3. Is a predicted value an approved forecast? No; it is an analytical estimate that requires review.
+1. Does disabling sheet protection permit submitting changed data— No, Oracle says users can enter or paste but cannot submit the changed data.
+2. Where are Flex Forms used— Smart View for Office, subject to the documented configuration and limits.
+3. Is a predicted value an approved forecast— No; it is an analytical estimate that requires review.
 
 **Teach-back:** Tell a planner why Smart View’s ability to edit a worksheet and the ability to submit data are not the same thing.
 

@@ -1,10 +1,10 @@
-# ENDFIX
+﻿# ENDFIX
 
 ## Overview
 
 `ENDFIX` is the **mandatory closing command** for every `FIX` block in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. Every `FIX` statement must have a matching `ENDFIX` — without it, the calculation script will fail with a syntax error. Together, `FIX`/`ENDFIX` form the most fundamental structural pair in Essbase calc scripts.
 
-### Why Does This Command Exist?
+### Why Does This Command Exist—
 
 Essbase uses block-structured syntax. `FIX` opens a scoped calculation block, and `ENDFIX` tells Essbase where that scope ends. Without a clear terminator:
 - The engine wouldn't know where the restricted scope ends

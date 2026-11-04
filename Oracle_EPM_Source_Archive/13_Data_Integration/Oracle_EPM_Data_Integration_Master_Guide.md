@@ -1,4 +1,4 @@
-# Oracle EPM Cloud — Data Integration Master Guide
+﻿# Oracle EPM Cloud — Data Integration Master Guide
 
 ## Overview
 
@@ -92,7 +92,7 @@ Data Integration is built on **five core components** that chain together to for
 
 **What it is**: Defines WHERE your data comes from.
 
-| Source Type | Description | Requires Agent? |
+| Source Type | Description | Requires Agent— |
 |-------------|-------------|-----------------|
 | **File** | CSV, TXT, or delimited file uploaded to the Inbox | ❌ No |
 | **Oracle ERP Cloud** | Direct connection to Oracle Fusion ERP | ❌ No |
@@ -266,7 +266,7 @@ Source Pattern       Target Value
 ══════════════       ════════════
 40*              →   Revenue_*        (Copy everything after 40)
 50*              →   COGS_*
-6???0            →   Admin_????       (? matches single character)
+6———0            →   Admin_————       (— matches single character)
 ```
 
 **Use when**: Source and target follow predictable naming conventions.
@@ -725,7 +725,7 @@ The **Workbench** is where you view, troubleshoot, and fix data at every stage o
 
 ---
 
-## 📋 Data Integration vs. Data Management — Which UI?
+## 📋 Data Integration vs. Data Management — Which UI—
 
 EPM Cloud has **two interfaces** for the same underlying engine:
 

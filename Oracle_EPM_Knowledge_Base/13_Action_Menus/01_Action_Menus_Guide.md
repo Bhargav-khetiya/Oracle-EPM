@@ -1,178 +1,115 @@
-# Action Menus — Complete Guide
+# 13.1 Action Menus: Context-Sensitive Navigation & Dynamic Parameter Passing
 
-> **Section:** 13 — Action Menus  
-> **File:** 01 — Action Menus Guide  
-> **Difficulty:** Beginner → Advanced  
-> **Prerequisites:** [01_Forms_and_Navigation](../02_User_Interface_and_Navigation/01_Forms_and_Navigation.md)
-
----
-
-## What Are Action Menus?
-
-An **Action Menu** is a right-click context menu attached to cells on a data form (or Smart View grid). When a user right-clicks a cell, they see options like "Drill to Detail," "Calculate Revenue," or "Open Dashboard" — all pre-configured by the administrator.
-
-### Why They Matter
-
-Without action menus, a user reviewing sales data who notices a variance in the East Region must close the current form, navigate to a different form, manually select East Region, and re-select the scenario and period. With action menus, they right-click → select "Drill to Personnel" → the target form opens instantly, pre-filtered to the exact context.
-
-```
-Without Action Menus:           With Action Menus:
-6 steps, 60-90 seconds          1 right-click, 2 seconds
-```
+## Table of Contents
+1. [Core Consultant Mental Model](#1-core-consultant-mental-model)
+2. [Action Menu Architecture: Right-Click Interception](#2-action-menu-architecture-right-click-interception)
+3. [Menu Item Types: Forms, Business Rules & URL Redirection](#3-menu-item-types-forms-business-rules--url-redirection)
+4. [Context Passing Mechanics (Passing Current POV to Targets)](#4-context-passing-mechanics-passing-current-pov-to-targets)
+5. [Tough & Twisted Review Questions with Consultant Model Answers](#5-tough--twisted-review-questions-with-consultant-model-answers)
 
 ---
 
-## How Action Menus Work
+<!-- ===================================================================== -->
+<!-- 🎯 LIVE INTERACTIVE VISUAL CARD: ACTION MENUS ARCHITECTURE -->
+<!-- ===================================================================== -->
+<details open>
+<summary><b>🎯 Live Interactive Architecture Card: Action Menus & Context-Passing Pipeline (Click to Collapse / Expand)</b></summary>
 
-When a user right-clicks a cell:
+<br/>
 
-1. The EPM engine **intercepts** the click coordinates
-2. It **scans the active grid context**: page dimensions, POV, row headers, column headers
-3. It **evaluates required parameters** to determine which menu items are valid for this intersection
-4. It displays the **filtered menu** showing only relevant actions
-5. When the user selects an action, the engine **relays context** (Entity, Period, Account, etc.) to the target
+> [!TIP]
+> **Consultant High-Yield Summary:** An Action Menu is a right-click context menu bound to data forms. It intercepts the user's active coordinate (Entity, Account, Period, Year) and dynamically injects those coordinates as **Runtime Prompts (RTP)** into targeted business rules or secondary forms, eliminating manual navigation.
 
----
+| Target Action Type | Parameter Passing Mechanism | User Experience Outcome |
+| :--- | :--- | :--- |
+| **Data Form** | Passes active Page/POV/Row/Column members | Opens detailed breakdown form filtered to the clicked entity |
+| **Business Rule** | Binds clicked coordinate into Rule RTPs | Executes calculation strictly on the clicked cell intersection |
+| **URL Link** | Appends query string parameters (`?entity=US`) | Opens external ERP invoice viewer or operational dashboard |
+| **Manage Approvals** | Evaluates active Scenario/Version/Entity | Jumps directly to the Approval Unit promotion screen |
 
-## The 9 Menu Item Types
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User as Financial Planner
+    participant Form as Web Form / Smart View Grid
+    participant MenuEngine as Action Menu Context Router
+    participant Target as Target Form / Business Rule
 
-| Type | Purpose | Common Use |
-|------|---------|------------|
-| **URL** | Open an external website or dashboard | Drill to ERP, BI report, or CRM |
-| **Form** | Navigate to another Planning form | Drill from summary to detail form |
-| **Business Rule** | Execute a calc script or Groovy rule | On-demand calculations |
-| **Manage Approvals** | Open the approval workflow screen | Review/manage budget approvals |
-| **Dashboard** | Open a Planning dashboard | Context-filtered visualizations |
-| **Change Status** | Execute approval actions (Promote, Approve, Reject) | Inline workflow actions |
-| **Menu Header** | Visual separator/folder | Organize menu items |
-| **Previous Form** | Return to the previously opened form | Breadcrumb navigation |
-| **Copy Version** | Copy data between versions | Working → Final copy |
-
-### Type 1: URL — External Drill-Through
-
-```
-URL: https://erp.company.com/ledger?entity=$Entity$&period=$Period$&account=$Account$
-Use Form Context: ✓ Checked
+    User->>Form: Right-clicks cell [Entity: US_East, Account: Travel_Opex, Period: Oct]
+    Form->>MenuEngine: Intercepts coordinate tuple: {US_East, Travel_Opex, Oct, FY26}
+    MenuEngine->>User: Displays context menu: "Calculate Department Travel"
+    User->>MenuEngine: Clicks "Calculate Department Travel"
+    MenuEngine->>Target: Launches Business Rule passing RTPs:<br/>Entity="US_East", Account="Travel_Opex"
+    Target-->>User: Rule executes in 150 ms; targeted cell updated
 ```
 
-Planning replaces `$Entity$`, `$Period$`, `$Account$` with the actual member names from the clicked cell.
-
-### Type 2: Form — Cross-Form Navigation
-
-Navigates to another form, automatically passing the current context (Entity, Scenario, Version, Period) to set the target form's POV. The user sees the detail form pre-filtered to their context.
-
-### Type 3: Business Rule — The Most Powerful Type
-
-Triggers a calculation directly from the grid. Key configuration options:
-
-| Field | Purpose |
-|-------|---------|
-| **Cube** | Which plan type the rule belongs to |
-| **Business Rules** | The deployed rule to execute |
-| **View Type** | Classic (popup) or Streamline (inline modal) |
-| **Hide Prompt** | If all RTPs can be satisfied from cell context, skip the prompt dialog |
-| **Window Title** | Custom title for the dialog |
-
-When **Hide Prompt** is checked and all RTPs match the cell context, the rule executes immediately on right-click — no dialog at all.
-
-### Type 6: Change Status — Inline Approval Actions
-
-Allows users to Promote, Approve, Reject, or Sign Off budgets directly from the grid without opening the approval dashboard. Supports 20 approval actions including Start, Exclude, Delegate, Freeze/Unfreeze, and Submit to Top.
+</details>
 
 ---
 
-## Creating an Action Menu
+## 1. Core Consultant Mental Model
 
-### Step 1: Create the Menu
-
-```
-Navigator → Action Menus → Create
-Name: Revenue_Analysis_Menu
-```
-
-### Step 2: Add Menu Items
-
-For each item, configure:
-
-| Field | Description | Limits |
-|-------|-------------|--------|
-| **Menu Item** | Programmatic name (unique key) | 80 chars, alphanumeric + underscore only |
-| **Label** | Display text the user sees | 80 chars, free-form text |
-| **Icon** | Optional icon | Text/path input |
-| **Type** | One of the 9 types | Required |
-| **Required Parameters** | Dimensional targeting criteria | 23 options, default: None |
-| **Members** | Restrict to specific members | Optional |
-
-### Step 3: Assign to Forms
-
-```
-Form Properties → Action Menu dropdown → Select the menu
-```
-
-### Step 4: Test
-
-Open the form, right-click a cell, verify the menu appears with correct items filtered by context.
+Action Menus represent the difference between an amateur EPM design and an enterprise-grade consultant design:
+* **The Amateur Design:** A planner looking at corporate expenses sees an anomaly in Travel for the East Region. They must write down the numbers, close the form, open the navigation menu, search for the Personnel Travel form, manually select East Region, select October, and find the account.
+* **The Consultant Design:** The planner right-clicks the cell, selects **"Drill to Travel Detail"**, and the system instantly opens the detailed breakdown form pre-filtered to East Region and October.
 
 ---
 
-## Required Parameters — Controlling When Menu Items Appear
+## 2. Action Menu Architecture: Right-Click Interception
 
-Required Parameters determine which right-click locations show a specific menu item:
-
-| Parameter | Menu Appears When Clicking On |
-|-----------|------------------------------|
-| **None** | Anywhere on the grid |
-| **Row** | Any row header |
-| **Column** | Any column header |
-| **Page** | Any page/POV dropdown |
-| **Cell** | Any data cell |
-| **Account (Row/Column/Page)** | Specific Account dimension member |
-| **Entity (Row/Column/Page)** | Specific Entity dimension member |
-| **Period (Row/Column/Page)** | Specific Period dimension member |
-| **Scenario (Row/Column/Page)** | Specific Scenario dimension member |
-
-When you specify "Account" as the required parameter, you can further restrict to specific members (e.g., only show "Calculate Catering" when right-clicking on "Catering_Revenue").
+When an Action Menu is attached to a web data form:
+1. The user right-clicks any data cell or row/column header.
+2. The Planning JavaScript engine extracts the active cell's **coordinate vector**:
+   $$\text{Tuple} = \{\text{Scenario}, \text{Version}, \text{Year}, \text{Period}, \text{Entity}, \text{Account}, \dots\}$$
+3. The menu engine evaluates menu conditions:
+   * If a menu item is configured to appear only on `Account: Travel`, it hides the menu item on salary cells.
+4. The user selects an action, and the router passes the coordinate vector to the target destination.
 
 ---
 
-## Web Forms vs Smart View Differences
+## 3. Menu Item Types: Forms, Business Rules & URL Redirection
 
-| Feature | Web Data Forms | Smart View (Excel) |
-|---------|---------------|-------------------|
-| Menu access | Direct right-click | Right-click → Smart View flyout |
-| POV targeting | Supported | **Not supported** |
-| Launch window | Browser popup/tab | External browser window |
-| Flex Forms | N/A | Fully supported |
-
----
-
-## Best Practices
-
-1. **Group related items** under Menu Header separators
-2. **Use Hide Prompt** for business rules that only need the cell context
-3. **Limit menu items** to 10–15 per menu (too many overwhelms users)
-4. **Name consistently**: `Drill_to_[TargetForm]`, `Calc_[Operation]`
-5. **Test in both** web forms and Smart View
-6. **Use required parameters** to show only relevant items per context
+| Item Type | Configuration Property | Execution Behavior |
+| :--- | :--- | :--- |
+| **Form** | Target Form, Target Cube | Opens the secondary form, filtering its Page/POV to match the clicked cell. |
+| **Business Rule** | Target Rule, Prompt Mappings | Passes clicked cell members into rule variables, bypassing user prompt popups. |
+| **Dashboard** | Target Dashboard 2.0 | Launches an interactive dashboard filtered to the clicked division. |
+| **URL** | External URL with tokens | Resolves tokens like `https://erp.company.com/invoice?id={cell.value}`. |
 
 ---
 
-## Quick Recall
+## 4. Context Passing Mechanics (Passing Current POV to Targets)
 
-1. **What is an Action Menu?** → A right-click context menu on form cells that provides drill-through, calculations, and navigation.
-2. **How many menu item types exist?** → 9: URL, Form, Business Rule, Manage Approvals, Dashboard, Change Status, Menu Header, Previous Form, Copy Version.
-3. **What does Hide Prompt do?** → Executes the rule immediately without showing a prompt dialog if all RTPs are satisfied by the cell context.
-4. **What are Required Parameters?** → Rules that control when a menu item appears based on what the user right-clicked.
-
-**Teach-back prompt:** Explain to a colleague how an Action Menu business rule item can execute a calculation on the exact entity and period the user right-clicked, without showing any prompts.
+When configuring an Action Menu item in Calculation Manager or Form Designer:
+* **Use Form Context:** Automatically maps dimensions from the source form to matching dimensions in the target form.
+* **Runtime Prompt (RTP) Binding:** In business rules, assign the prompt default value to **"Current Member"** from the active grid:
+  * Variable `var_Entity` is bound to the clicked Row Entity.
+  * Variable `var_Period` is bound to the clicked Column Period.
+* When launched from the Action Menu, the business rule runs silently in the background without prompting the user for input.
 
 ---
 
-## Source Provenance
+## 5. Tough & Twisted Review Questions with Consultant Model Answers
 
-| Source | Files |
-|--------|-------|
-| ChatGPT | `Action_Menus/01-05` (5 files, ~45KB total) |
-| Gemini | `Action_Menus/` (mirrors ChatGPT structure) |
-| Oracle | [Action Menus in Planning](https://docs.oracle.com/en/cloud/saas/planning-budgeting-cloud/pfusa/) |
+### Question 1: "An administrator builds an Action Menu item to launch a business rule from a form. When users right-click, the rule prompt dialog still pops up asking for Entity and Year. How do you make the rule execute silently using the clicked cell's context?"
+**Consultant Model Answer:**
+> "To execute silently without user prompts:
+> 1. In the Action Menu Designer, edit the rule menu item.
+> 2. Locate the **Prompt Mappings** section.
+> 3. For each Runtime Prompt (e.g., `rtp_Entity`, `rtp_Year`), set the mapping source to **'Grid Context'** (or select the specific dimension from the form grid).
+> 4. Ensure the **'Hide Prompts'** checkbox is checked.
+> When configured, the menu router automatically binds the clicked cell's Entity and Year into the prompt variables and dispatches the execution immediately, bypassing the interactive prompt window."
 
+### Question 2: "Can an Action Menu item be attached to Smart View ad-hoc grids, or does it only work on predefined web data forms?"
+**Consultant Model Answer:**
+> "Action Menus are configured at the **Data Form definition level**. 
+> * **On Web Forms and Smart View Forms:** When a user opens a data form inside Excel via Smart View, right-clicking any cell exposes the Action Menu directly inside the Excel right-click context menu.
+> * **On Free-Form Smart View Ad-Hoc Grids:** Action Menus do not appear because free-form grids do not have an underlying form definition to bind the menu. However, users can execute business rules on ad-hoc grids via the Smart View ribbon rule launcher."
+
+### Question 3: "A user right-clicks a cell on row 10 and selects an Action Menu linking to a secondary form. The secondary form opens, but displays data for the entire company instead of the clicked entity. What was misconfigured?"
+**Consultant Model Answer:**
+> "In the Action Menu item definition, the administrator failed to enable **'Pass Context'** (or 'Use Form Context') for the Entity dimension. 
+> Without context passing enabled, the target form opens with its own default Page/POV selections (which defaulted to 'Total_Company'). Enabling 'Pass Context' ensures that the target form's POV is dynamically overwritten with the clicked cell's specific leaf entity coordinate."
+
+---
+*Proceed to [Module 14: Application Lifecycle Management & Cloning](../14_Application_Lifecycle/00_INDEX.md).*

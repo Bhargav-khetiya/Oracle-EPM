@@ -1,11 +1,11 @@
-# @CalcMgrExcelPRICEDISC
+﻿# @CalcMgrExcelPRICEDISC
 
 ## Overview
 
 `@CalcMgrExcelPRICEDISC` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `PRICEDISC` function directly inside an Essbase calculation script. 
 It calculates the **Price** of a discounted security (like a zero-coupon bond or a short-term Treasury Bill) per $100 of face value. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Unlike standard corporate bonds that pay periodic interest coupons (`@CalcMgrExcelPRICE`), short-term discounted securities pay absolutely no interest during their lifespan. Instead, they are sold at a deep discount (e.g., $95) and mature at their full face value (e.g., $100). The profit is entirely derived from that $5 difference.
 To calculate the current market price of a T-Bill based on today's interest rates, you must calculate the exact number of days remaining until maturity, apply the specific calendar basis (e.g., Actual/360), and discount the $100 redemption value back to today. Doing this manually in Essbase is highly tedious and brittle.

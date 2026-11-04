@@ -1,10 +1,10 @@
-# @CalcMgrAddDatePart
+﻿# @CalcMgrAddDatePart
 
 ## Overview
 
 `@CalcMgrAddDatePart` is a **custom Calc Manager date function** in Oracle EPM Cloud (PBCS/EPBCS). It adds or subtracts a specified number of time units (days, months, or years) to a serialized date (a date stored as a single contiguous integer, often used internally in Java/Groovy date formats).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While `@CalcMgrAddDate` works specifically with `YYYYMMDD` integer formats (like `20241231`), sometimes you are dealing with dates that have been serialized into continuous numbers (e.g., number of days since a specific epoch, or full timestamp integers).
 `@CalcMgrAddDatePart` provides a similar math capability but is often used interchangeably in Calc Manager GUI rules when the underlying date variable is strongly typed as a `Date` object rather than a raw integer. 

@@ -1,8 +1,8 @@
-# 03 — Required Parameters & Targeting Matrix
+﻿# 03 — Required Parameters & Targeting Matrix
 
 ---
 
-## 3.1 What are Required Parameters?
+## 3.1 What are Required Parameters—
 
 The **Required Parameters** dropdown controls the **spatial and dimensional visibility** of an Action Menu item. Without targeting, every menu item would appear whenever a user right-clicks anywhere on the form, cluttering the UI with irrelevant actions.
 

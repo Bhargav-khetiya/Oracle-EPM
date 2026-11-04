@@ -1,4 +1,4 @@
-﻿# 👥 Workforce Module — Complete Setup Guide
+﻿﻿# 👥 Workforce Module — Complete Setup Guide
 ## Headcount, Compensation, Benefits & Labor Cost Planning
 
 > **Module:** Workforce  
@@ -156,15 +156,15 @@ When enabling Workforce, you choose a planning approach:
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: Why is selecting "Employee-based" versus "Job-based" planning strictly irreversible?
+### Q1: Why is selecting "Employee-based" versus "Job-based" planning strictly irreversible—
 **Answer:** Employee-based planning provisions the Employee dimension and compiles calculation scripts to iterate over individual human records (managing FTE, hire dates, and merit months). Job-based planning omits the Employee dimension entirely, modeling labor at aggregate job code averages. Switching between these structures requires rebuilding the underlying Essbase block matrix and rewriting all compensation calculation rules.
 
-### Q2: How does Workforce calculate compensation for mid-year new hires and terminations?
+### Q2: How does Workforce calculate compensation for mid-year new hires and terminations—
 **Answer:** Workforce utilizes the Property dimension members: Start Date, End Date, and Status (Active, Departed, New Hire). The calculation rule OWP_Calculate_Compensation evaluates the employee's start and end dates against the fiscal calendar. For periods prior to Start Date or following End Date, compensation and tax components evaluate to $0. For the partial start month, the rule applies day-count proration if configured.
 
-### Q3: What happens if a merit increase is applied to an employee whose compensation is set to Grade/Step rather than individual salary?
+### Q3: What happens if a merit increase is applied to an employee whose compensation is set to Grade/Step rather than individual salary—
 **Answer:** In Grade/Step modeling, base pay is derived from the centralized Grade/Step matrix table. If an administrator applies a general merit increase rule, the system updates the salary matrix rates across grades rather than altering the individual employee's override property, ensuring pay equity governance across all employees assigned to that grade.
 
 ---

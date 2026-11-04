@@ -1,10 +1,10 @@
-# @CalcMgrCounterGetKeyText
+﻿# @CalcMgrCounterGetKeyText
 
 ## Overview
 
 `@CalcMgrCounterGetKeyText` is a **custom Calc Manager memory retrieval function** in Oracle EPM Cloud (PBCS/EPBCS). It retrieves the text string currently stored inside a specific "key" (a named sub-bucket) located within a master hash map running in the background Java heap.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Advanced calculation scripts often use hash maps (key-value pairs) to track text logs or statuses for multiple different members simultaneously. For example, a map named `"Validation_Logs"` might contain keys for each Region. The key `"North_America"` might hold the string `"Missing_Data, Unbalanced_Entries"`, while the key `"EMEA"` holds an entirely different text string.
 While `@CalcMgrCounterAddText` (and its map variants) allows you to push strings *into* these memory locations, `@CalcMgrCounterGetKeyText` is the "Read" operation. It reaches into the master map, locates the specific key you request, extracts the composite text string, and brings it back into the active Essbase script so it can be evaluated, concatenated, or written to a String account/attribute.

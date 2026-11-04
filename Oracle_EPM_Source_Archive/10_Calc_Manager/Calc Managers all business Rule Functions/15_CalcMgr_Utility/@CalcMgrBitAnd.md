@@ -1,10 +1,10 @@
-# @CalcMgrBitAnd
+﻿# @CalcMgrBitAnd
 
 ## Overview
 
 `@CalcMgrBitAnd` is a **custom Calc Manager bitwise function** in Oracle EPM Cloud (PBCS/EPBCS). It performs a bitwise logical `AND` operation between two integers. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In traditional financial planning applications, binary and bitwise operations are extremely rare. Essbase is fundamentally a multidimensional OLAP database designed for floating-point aggregations (like Revenue and Expenses), not low-level computer science operations.
 However, in highly advanced models (particularly those dealing with complex system security, custom metadata tagging, or high-performance state tracking), developers sometimes use **Bitmasking**.

@@ -1,6 +1,6 @@
-﻿# Oracle EPM Cloud: Key Concepts and Terminology
+﻿﻿# Oracle EPM Cloud: Key Concepts and Terminology
 
-## 1. What is an EPM Cloud "Instance" / "Environment"?
+## 1. What is an EPM Cloud "Instance" / "Environment"—
 
 An **instance** (also called an **environment**) is a fully provisioned Oracle EPM Cloud service deployment. When you purchase an Oracle EPM Cloud subscription, Oracle provisions **two** environments:
 
@@ -191,15 +191,15 @@ Every EPM Cloud environment undergoes a mandatory **1-hour daily maintenance** w
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: What is the exact architectural difference between an "Artifact Snapshot" and an "Environment Backup"?
+### Q1: What is the exact architectural difference between an "Artifact Snapshot" and an "Environment Backup"—
 **Answer:** 
 - An **Artifact Snapshot** (LCM snapshot) is a portable .zip archive containing application metadata (XML, CSV), forms, business rules, Calc Manager scripts, and Level 0 data slices. It can be exported, downloaded, and imported selectively.
 - An **Environment Backup** is an automated, full-system disk and relational database image taken during Daily Maintenance and written to Oracle Cloud Object Storage. It represents the complete state of the underlying Kubernetes container, Essbase binaries, and relational schemas.
 
-### Q2: Why does an Artifact Snapshot NOT include Data Management staging tables or audit records by default?
+### Q2: Why does an Artifact Snapshot NOT include Data Management staging tables or audit records by default—
 **Answer:** Artifact Snapshots focus on application definition and active data. Data Management staging tables and system audit logs can grow to hundreds of gigabytes over time. Including them in routine snapshots would cause backup files to exceed size limits and drag backup windows past acceptable thresholds. To capture staging and audit data, you must explicitly use cloneEnvironment or configure full LCM audit exports.
 
-### Q3: Can an enterprise query Oracle Cloud Object Storage backups directly using AWS S3 or OCI Object Storage SDKs?
+### Q3: Can an enterprise query Oracle Cloud Object Storage backups directly using AWS S3 or OCI Object Storage SDKs—
 **Answer:** No. Oracle Cloud EPM manages the underlying OCI Object Storage bucket within Oracle's internal infrastructure control plane. Customers do not receive direct S3/OCI REST API bucket credentials. All interactions with Object Storage backups must be orchestrated through EPM Automate commands (listBackups, estoreBackup, estoreEnvironment) or EPM Cloud REST API endpoints.

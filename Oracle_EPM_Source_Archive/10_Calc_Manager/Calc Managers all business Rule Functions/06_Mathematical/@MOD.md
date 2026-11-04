@@ -1,14 +1,14 @@
-# @MOD
+﻿# @MOD
 
 ## Overview
 
 `@MOD` is a **native Essbase mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It performs a "modulo" operation. It divides one numeric value (the dividend) by another numeric value (the divisor) and returns the **remainder** of that division.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In operational modeling, workforce planning, and logistics, division rarely results in a perfect integer. 
 For example, if a warehouse has $105$ `"Total_Units"` and they must be packed into `"Pallets"` that hold exactly $10$ units each, doing standard division ($105 / 10$) gives $10.5$ pallets. 
-But physically, you can't ship half a pallet. The business needs to know two things: How many full pallets do we ship? (10). And how many units are left over sitting on the floor? (5).
+But physically, you can't ship half a pallet. The business needs to know two things: How many full pallets do we ship— (10). And how many units are left over sitting on the floor— (5).
 You can find the full pallets using `@INT(105 / 10)`. 
 `@MOD` exists to find the leftover pieces. By calling `@MOD(105, 10)`, the math engine divides 105 by 10, completely ignores the whole number quotient (10), and explicitly returns the remainder: $5$. This allows for complex, physical unit routing and cycle processing natively in Essbase.
 

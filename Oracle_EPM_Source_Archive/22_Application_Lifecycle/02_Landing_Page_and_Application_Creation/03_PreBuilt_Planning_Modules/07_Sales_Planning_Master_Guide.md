@@ -1,4 +1,4 @@
-﻿# 💼 Sales Planning — Complete Master Setup Guide
+﻿﻿# 💼 Sales Planning — Complete Master Setup Guide
 ## Quota Planning, Territory Management, Pipeline Forecasting & Revenue Integration
 
 > **Module:** Sales Planning  
@@ -164,17 +164,17 @@ Instantiated automatically inside the `OEP_STP` cube:
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: How does Sales Planning handle sales territory realignments without corrupting historical rep quota performance?
+### Q1: How does Sales Planning handle sales territory realignments without corrupting historical rep quota performance—
 **Answer:** Sales Planning manages territories through effective dating and historical version snapshots. When an account or zip code is moved from Territory East to Territory Central, historical closed actuals remain locked under the prior territory hierarchy, while forward-looking quotas and pipeline opportunities re-aggregate under the new alignment.
 
-### Q2: What is the difference between Top-Down Quota Allocation and Bottom-Up Rep Commitment?
+### Q2: What is the difference between Top-Down Quota Allocation and Bottom-Up Rep Commitment—
 **Answer:**
 - **Top-Down:** Executive leadership assigns a macro quota target (e.g. ) to a sales VP, who waterfalls it down across directors and managers using historical seasonality or market growth drivers.
 - **Bottom-Up:** Individual account executives submit their commit and stretch numbers based on deal pipeline. The module reconciles variances between top-down targets and bottom-up commitments.
 
-### Q3: How does pipeline probability weighting link CRM opportunities with financial revenue forecasts?
+### Q3: How does pipeline probability weighting link CRM opportunities with financial revenue forecasts—
 **Answer:** Through Data Integration or Oracle CX connections, Sales Planning ingests CRM deal stages. Each deal stage has an assigned win probability (e.g. *Stage 3 Proposal = 50%*, *Stage 4 Negotiation = 80%*). The module calculates Probability-Weighted Pipeline ( \times \text{Deal Amount}$) and pushes the forecast to Financials to seed revenue projections.
 
 ---

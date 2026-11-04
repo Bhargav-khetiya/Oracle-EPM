@@ -1,10 +1,10 @@
-# @HspRemoveCDFSession
+﻿# @HspRemoveCDFSession
 
 ## Overview
 
 `@HspRemoveCDFSession` is a **Hyperion Planning (HSP) custom administrative function** embedded within Oracle EPM Cloud (PBCS/EPBCS). It acts as the closing handshake for a persistent relational connection. It takes an active **Session ID** (generated previously by `@HspCreateCDFSession`), explicitly terminates the connection to the relational Planning repository, and frees up server memory and networking threads.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When an Essbase calculation script uses `@HspCreateCDFSession` to open a dedicated, authenticated channel to the relational database (usually to push thousands of Web Form UI combinations or update workflow statuses), that connection reserves dedicated CPU and RAM on the Planning tier. 
 If an administrator runs a script that opens a session, does the work, but never explicitly closes the session, that connection becomes a "zombie" or "orphan." The server holds it open, waiting for more data. If this happens repeatedly across multiple calculations, the relational connection pool will max out, completely crashing the Planning UI for all end users.

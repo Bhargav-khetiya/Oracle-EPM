@@ -1,10 +1,10 @@
-# @CalcMgrSplit
+﻿# @CalcMgrSplit
 
 ## Overview
 
 `@CalcMgrSplit` is a **custom Calc Manager string-to-array conversion function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a powerful data shredder. It takes a single, massive, comma-delimited text string (or any character-delimited string) and forcefully splits it into a **Java String Array**, where each chunk of text becomes an independent, indexed item in a list.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In modern cloud architectures, external REST API payloads or Smart View runtime prompts often send data to Essbase as a single massive string. For example, a user might select multiple products in a prompt, and EPM passes the string `"Prod1,Prod2,Prod3"` into the calculation script. 
 Essbase calculation scripts cannot natively iterate through a comma-delimited string. You cannot loop a `FIX` statement across `"Prod1,Prod2,Prod3"`. 

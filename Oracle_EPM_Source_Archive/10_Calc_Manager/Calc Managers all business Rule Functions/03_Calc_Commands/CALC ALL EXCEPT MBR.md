@@ -1,12 +1,12 @@
-# CALC ALL EXCEPT MBR
+﻿# CALC ALL EXCEPT MBR
 
 ## Overview
 
 `CALC ALL EXCEPT MBR` is a **native Essbase calculation command** in Oracle EPM Cloud (PBCS/EPBCS). It is an aggressive, macro-level directive that commands the Essbase calculation engine to execute a full, top-to-bottom structural aggregation (calculating all dimension trees, running all formulas, rolling up all parents)... **EXCEPT** for a specific list of defined dimension members and their descendants. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
-The `CALC ALL` command rolls up the entire database. The `CALC ALL EXCEPT DIM` command protects an entire dimension. But what if you only need to protect a *piece* of a dimension?
+The `CALC ALL` command rolls up the entire database. The `CALC ALL EXCEPT DIM` command protects an entire dimension. But what if you only need to protect a *piece* of a dimension—
 For example, you have an `"Entity"` dimension. You need to roll up the entire company because base-level data was just loaded. However, there is a specific branch called `"Discontinued_Operations"`. Data in this branch is frozen. You do not want the engine wasting 10 minutes aggregating the hundreds of dormant stores inside the discontinued branch. 
 You cannot use `EXCEPT DIM("Entity")` because you *need* the rest of the Entity dimension to calculate. 
 `CALC ALL EXCEPT MBR` solves this. You instruct the engine to roll up the entire database, but you provide a blacklist of specific members (e.g., `"Discontinued_Operations"`). The engine will aggressively aggregate the outline, but the moment it hits your blacklisted member (and all of its descendants), it skips them entirely.

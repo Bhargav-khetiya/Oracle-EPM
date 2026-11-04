@@ -1,10 +1,10 @@
-# @CalcMgrCounterDecrement
+﻿# @CalcMgrCounterDecrement
 
 ## Overview
 
 `@CalcMgrCounterDecrement` is a **custom Calc Manager state-tracking function** in Oracle EPM Cloud (PBCS/EPBCS). It specifically subtracts a value of exactly `1` from an existing, named memory counter running in the background Java heap during the execution of a Business Rule.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When developers track states or occurrences (e.g., keeping a running tally of active projects), they typically use `@CalcMgrCounterAddNumber("Count", 1)` to increment the counter, and `@CalcMgrCounterAddNumber("Count", -1)` to decrement it. 
 However, decrementing a counter by exactly 1 is such a common programmatic operation (equivalent to the `i--` operator in Java/C++) that Calc Manager provides `@CalcMgrCounterDecrement` as a semantic shortcut. 

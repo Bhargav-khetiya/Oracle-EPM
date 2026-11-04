@@ -1,10 +1,10 @@
-# @CalcMgrAddDate
+﻿# @CalcMgrAddDate
 
 ## Overview
 
 `@CalcMgrAddDate` is a **custom Calc Manager date function** in Oracle EPM Cloud (PBCS/EPBCS). It allows you to add or subtract a specific number of days, months, or years to a starting date, returning a new, mathematically correct future or past date.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Essbase natively handles dates as either raw integers (YYYYMMDD) or serialized numbers (days since Jan 1, 1970). 
 If you try to natively add 1 month to `20241215`, you can't just add `100` mathematically (`20241315` is an invalid date). 

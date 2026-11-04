@@ -1,10 +1,10 @@
-# @CalcMgrLogMessageTrace
+﻿# @CalcMgrLogMessageTrace
 
 ## Overview
 
 `@CalcMgrLogMessageTrace` is a **custom Calc Manager diagnostic logging function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a universal, general-purpose "Print Statement," allowing an administrator to inject **custom informational alerts, trace markers, or status updates** directly into the Calc Manager Job Console log during the execution of a script.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When executing monolithic, hour-long calculation scripts that consolidate hundreds of entities and process millions of data points, it is often impossible to know exactly which phase of the script is currently running. If the script crashes after 45 minutes, administrators have no idea if it crashed during the "Currency Translation" phase or the "Overhead Allocation" phase.
 While specialized functions exist to print specific array values (`LogValues`) or current members (`LogCurrMembers`), there is a critical need for simple, human-readable breadcrumbs. 

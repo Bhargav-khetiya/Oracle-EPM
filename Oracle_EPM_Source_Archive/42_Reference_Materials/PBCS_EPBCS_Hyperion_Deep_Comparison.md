@@ -1,4 +1,4 @@
-# Oracle EPM: Hyperion vs PBCS vs EPBCS — Complete Deep-Dive Guide
+﻿# Oracle EPM: Hyperion vs PBCS vs EPBCS — Complete Deep-Dive Guide
 
 > [!NOTE]
 > This document covers the full spectrum of Oracle's EPM evolution — from on-premises Hyperion to cloud-based PBCS and EPBCS — including modules, applications, architecture, dimensions, and key differences.
@@ -87,7 +87,7 @@ timeline
 
 ## 3. Hyperion On-Premises — Deep Dive
 
-### 3.1 What is Hyperion?
+### 3.1 What is Hyperion—
 
 Oracle Hyperion is the **on-premises EPM suite** that includes multiple standalone products for planning, consolidation, reporting, and data management. Each product is installed, configured, and maintained separately on customer-managed infrastructure.
 
@@ -172,7 +172,7 @@ Standard dimensions in Hyperion Planning:
 
 ## 4. PBCS (Planning and Budgeting Cloud Service) — Deep Dive
 
-### 4.1 What is PBCS?
+### 4.1 What is PBCS—
 
 PBCS is Oracle's **cloud-based planning solution** — essentially Hyperion Planning moved to the cloud with enhancements. It allows organizations to build **free-form custom applications** for budgeting, forecasting, and planning without needing to manage infrastructure.
 
@@ -261,7 +261,7 @@ PBCS is Oracle's **cloud-based planning solution** — essentially Hyperion Plan
 
 ## 5. EPBCS (Enterprise Planning and Budgeting Cloud Service) — Deep Dive
 
-### 5.1 What is EPBCS?
+### 5.1 What is EPBCS—
 
 EPBCS is the **premium tier** of Oracle's cloud planning solution. It includes everything in PBCS **plus pre-built planning modules** with best-practice content, pre-defined dimensions, forms, dashboards, business rules, and workflows.
 

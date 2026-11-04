@@ -1,10 +1,10 @@
-# @CalcMgrGetListCount
+﻿# @CalcMgrGetListCount
 
 ## Overview
 
 `@CalcMgrGetListCount` is a **custom Calc Manager array/list processing function** in Oracle EPM Cloud (PBCS/EPBCS). It analyzes a standard Essbase numeric array or list and dynamically calculates exactly **how many total items** exist within that list.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When processing dynamic cross-dimensional ranges in Essbase (like `@CHILDREN("Forecast_Months")`), the exact number of items in that list can change based on the outline structure or the specific context of the calculation block. 
 If you are attempting to write a custom loop, calculate an average, or build a statistical variance array, you must know exactly what your denominator (`N`) is. While Essbase has native aggregate functions like `@AVG`, it historically lacked a clean way to simply count the number of valid items in a dynamic array and store that count in a variable. 

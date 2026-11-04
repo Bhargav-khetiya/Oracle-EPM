@@ -1,10 +1,10 @@
-# IF
+﻿# IF
 
 ## Overview
 
 `IF` is the **conditional logic command** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It evaluates a Boolean condition for each cell in the calculation scope and executes different code paths based on whether the condition is TRUE or FALSE. Along with `FIX`, `IF` is one of the two most frequently used commands in every business rule.
 
-### Why Does This Command Exist?
+### Why Does This Command Exist—
 
 Business logic is rarely uniform. Different accounts, entities, periods, or data conditions require different calculations:
 - Revenue accounts might grow at one rate, expense accounts at another

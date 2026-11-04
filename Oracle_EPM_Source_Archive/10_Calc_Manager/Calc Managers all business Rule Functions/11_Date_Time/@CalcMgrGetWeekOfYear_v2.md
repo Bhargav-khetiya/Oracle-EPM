@@ -1,10 +1,10 @@
-# @CalcMgrGetWeekOfYear
+﻿# @CalcMgrGetWeekOfYear
 
 ## Overview
 
 `@CalcMgrGetWeekOfYear` is a **custom Calc Manager calendar logic function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a unified **Java Date Object** (or Java Timestamp Object) and calculates the **absolute Week of the Year** that specific date falls into, returning it as an integer (e.g., `1` through `52` or `53`).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While `GetWeekOfMonth` is useful for monthly bucketing, many manufacturing, logistics, and continuous-delivery organizations completely ignore months. They operate on absolute "Week of the Year" numbering. 
 A manufacturing plant might schedule a critical turbine replacement during "Week 42". If an administrator is generating a multi-year forecast, they need to know exactly which dates correspond to Week 42 in 2024 versus 2025. 

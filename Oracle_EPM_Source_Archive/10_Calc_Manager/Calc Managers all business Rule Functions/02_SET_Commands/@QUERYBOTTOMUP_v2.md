@@ -1,4 +1,4 @@
-# @QUERYBOTTOMUP
+﻿# @QUERYBOTTOMUP
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 *Note: This is a highly specialized internal optimization function. It is rarely used in standard FP&A scripting. It is primarily utilized by database administrators attempting to tune the performance of massively dense, sparse-spanning relational queries or complex custom Java CDFs that are timing out during execution.*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Essbase outlines are hierarchical trees. When you run a query like "Find all members whose attribute is 'Red'", the engine typically starts at the root (`"Total_Company"`), looks at the children, looks at their children, and eventually hits the leaf nodes (Top-Down). 
 However, in massive sparse dimensions with millions of leaf nodes and very flat hierarchies, Top-Down traversal can be incredibly inefficient. The engine wastes time navigating parent levels that don't hold the data it actually needs.

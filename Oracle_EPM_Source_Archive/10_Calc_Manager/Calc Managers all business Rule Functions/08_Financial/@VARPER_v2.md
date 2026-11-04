@@ -1,4 +1,4 @@
-# @VARPER
+﻿# @VARPER
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 *Note: `@VARPER` is functionally identical to [`@VARIANCEP`](./@VARIANCEP.md). Both exist as aliases for the same underlying engine operation. Many developers prefer `@VARPER` simply because it is shorter to type.*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Calculating variance percentages manually is fraught with errors because you must handle account types (Revenue vs. Expense) and division-by-zero scenarios:
 - **Revenue**: (Actual 120 - Budget 100) / Budget 100 = +20% (Favorable)

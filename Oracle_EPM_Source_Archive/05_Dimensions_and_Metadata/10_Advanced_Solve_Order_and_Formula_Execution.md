@@ -1,4 +1,4 @@
-# 10 — Advanced Solve Order & Formula Collision Mathematics
+﻿# 10 — Advanced Solve Order & Formula Collision Mathematics
 
 ---
 
@@ -15,7 +15,7 @@ In a multidimensional database containing multiple dynamic calculation dimension
                                       │
                                       ▼
                         INTERSECTION CELL (X)
-                 Which formula executes first in RAM?
+                 Which formula executes first in RAM—
 ```
 
 Without an explicit **Solve Order**, the Essbase kernel resolves collisions arbitrarily based on dimension outline order, frequently producing **mathematically invalid financial metrics** on executive reports.

@@ -1,10 +1,10 @@
-# @ACCUM
+﻿# @ACCUM
 
 ## Overview
 
 `@ACCUM` is a **time-series accumulation function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that **accumulates (running total)** values across time periods. It takes the value from the current time period and adds it to the accumulated total from all prior periods in the same consolidation path.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In financial planning, you frequently need Year-to-Date (YTD) calculations. Instead of manually writing formulas like `Jan + Feb + Mar + ...`, `@ACCUM` automatically creates a running total across the time dimension.
 

@@ -1,4 +1,4 @@
-# 02 Toolbar Buttons, Screen Anatomy, and Canvas Visual Designer
+﻿# 02 Toolbar Buttons, Screen Anatomy, and Canvas Visual Designer
 
 ## 1. Calculation Manager Screen Anatomy
 
@@ -37,19 +37,19 @@ The Calculation Manager top toolbar contains specialized action triggers. Unders
 
 | Toolbar Icon / Button | Command Label | Exact Operational Function |
 | :--- | :--- | :--- |
-| ![Save](file:///save.png) | **Save** | Serializes the visual canvas into the relational database (`HSP_CALCMGR_RULES`). Saves draft state without deploying. |
-| ![Save As](file:///saveas.png) | **Save As** | Clones the current rule, formula, or template under a new artifact name. |
-| ![Validate](file:///val.png) | **Validate** | Compiles the visual canvas into memory, checking member names against the Essbase outline and syntax rules. Reports errors in the Log Pane. |
-| ![Deploy](file:///dep.png) | **Deploy** | Performs validation, compiles the rule into raw Essbase script language (`.csc`), registers it with Planning, and makes it available to end users. |
-| ![Edit Script](file:///code.png) | **Edit Script / Designer Toggle** | Switches between the graphical visual flowchart canvas and the low-level text/code editor. |
-| ![Variable Designer](file:///var.png) | **Variable Designer** | Launches the variable management modal to create, edit, or delete Global, Application, Plan Type, and Rule-scoped variables. |
-| ![Database Properties](file:///db.png) | **Database Properties** | Opens physical Essbase database settings: cache sizing (Index, Data, Calc), storage limits, and location aliases. |
-| ![Show Grid](file:///grid.png) | **Show / Hide Grid** | Toggles alignment grid lines on the visual canvas. |
-| ![Snap to Grid](file:///snap.png) | **Snap to Grid** | Enforces mathematical alignment of dragged palette components to the canvas coordinate grid. |
-| ![Zoom In](file:///zoomin.png) | **Zoom In / Out** | Adjusts canvas magnification from 25% to 200% for navigating complex rule flowcharts. |
-| ![Fit to Window](file:///fit.png) | **Fit to Window** | Auto-scales large, multi-branching rule diagrams to fit completely within the visible screen dimensions. |
-| ![Format](file:///format.png) | **Format Flowchart** | Auto-aligns all visual components, straightening connector arrows and organizing branching logic into clean vertical swimlanes. |
-| ![Find/Replace](file:///find.png) | **Find and Replace** | Searches across formulas, scripts, and component member selections for specific member strings. |
+| 💾 **Save** | **Save** | Serializes the visual canvas into the relational database (`HSP_CALCMGR_RULES`). Saves draft state without deploying. |
+| 📋 **Save As** | **Save As** | Clones the current rule, formula, or template under a new artifact name. |
+| ✅ **Validate** | **Validate** | Compiles the visual canvas into memory, checking member names against the Essbase outline and syntax rules. Reports errors in the Log Pane. |
+| 🚀 **Deploy** | **Deploy** | Performs validation, compiles the rule into raw Essbase script language (`.csc`), registers it with Planning, and makes it available to end users. |
+| 📝 **Edit Script** | **Edit Script / Designer Toggle** | Switches between the graphical visual flowchart canvas and the low-level text/code editor. |
+| ⚙️ **Variable Designer** | **Variable Designer** | Launches the variable management modal to create, edit, or delete Global, Application, Plan Type, and Rule-scoped variables. |
+| 🗄️ **Database Properties** | **Database Properties** | Opens physical Essbase database settings: cache sizing (Index, Data, Calc), storage limits, and location aliases. |
+| 📏 **Show Grid** | **Show / Hide Grid** | Toggles alignment grid lines on the visual canvas. |
+| 📐 **Snap to Grid** | **Snap to Grid** | Enforces mathematical alignment of dragged palette components to the canvas coordinate grid. |
+| 🔍 **Zoom In** | **Zoom In / Out** | Adjusts canvas magnification from 25% to 200% for navigating complex rule flowcharts. |
+| 🖼️ **Fit to Window** | **Fit to Window** | Auto-scales large, multi-branching rule diagrams to fit completely within the visible screen dimensions. |
+| 🔲 **Format** | **Format Flowchart** | Auto-aligns all visual components, straightening connector arrows and organizing branching logic into clean vertical swimlanes. |
+| 🔎 **Find/Replace** | **Find and Replace** | Searches across formulas, scripts, and component member selections for specific member strings. |
 
 ---
 

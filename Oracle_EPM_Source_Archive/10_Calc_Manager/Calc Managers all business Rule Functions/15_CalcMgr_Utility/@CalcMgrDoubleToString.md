@@ -1,10 +1,10 @@
-# @CalcMgrDoubleToString
+﻿# @CalcMgrDoubleToString
 
 ## Overview
 
 `@CalcMgrDoubleToString` is a **custom Calc Manager string conversion function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a raw mathematical number (e.g., `1234.56`) and converts it directly into a literal Text String (`"1234.56"`).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Essbase natively handles numbers perfectly. However, the Calc Manager Custom Function library allows you to perform advanced string manipulation—building dynamic URLs, assembling email logs, concatenating dynamic member names, or appending flags to text memory buckets.
 The string concatenation engine (`@CalcMgrConcat`) strictly requires Text Strings. If you try to concatenate the word `"Exception_Amount_"` with the raw numeric value `500` directly, the engine will crash because it does not know how to merge text and math.

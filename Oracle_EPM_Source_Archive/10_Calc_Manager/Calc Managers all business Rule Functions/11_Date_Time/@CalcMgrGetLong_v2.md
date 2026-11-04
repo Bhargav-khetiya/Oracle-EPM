@@ -1,10 +1,10 @@
-# @CalcMgrGetLong
+﻿# @CalcMgrGetLong
 
 ## Overview
 
 `@CalcMgrGetLong` is a **custom Calc Manager numeric casting function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a double-precision floating-point number (e.g., `14.95`) and violently **truncates** it into a pure **64-bit Long Integer** (e.g., `14`).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In Java, standard `int` variables (32-bit integers) have a maximum mathematical limit of roughly `2.14 Billion`. If you try to cast `3,000,000,000` into a standard `int`, the system will trigger a catastrophic "Integer Overflow," flipping the number negative or crashing the calculation entirely.
 While `@CalcMgrGetInteger` is perfectly fine for casting array indexes or dates (e.g., `20241231`), it cannot safely handle massive global enterprise identifiers, multi-billion-dollar global revenue checks, or nanosecond timestamps. 

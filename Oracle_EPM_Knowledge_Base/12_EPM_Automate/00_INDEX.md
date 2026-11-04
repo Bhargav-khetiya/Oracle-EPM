@@ -1,43 +1,46 @@
-# EPM Automate
+# Module 12: EPM Automate CLI & Enterprise Batch Orchestration
 
-> EPM Automate is Oracle's CLI for automating every EPM Cloud administration task — from nightly data loads and metadata imports to backups, business rule execution, and security auditing.
+## Navigation & Module Overview
 
----
-
-## Reading Order
-
-| # | File | What You'll Learn |
-|---|------|-------------------|
-| 1 | [EPM Automate Complete Guide](01_EPM_Automate_Complete_Guide.md) | Architecture, installation, authentication, all commands, scripting, scheduling, troubleshooting |
+This module covers the EPM Automate command-line interface (CLI), client-to-REST translation architecture, credential encryption (`.epw`), master command syntax, and production batch scripting pipelines.
 
 ---
 
-## Architecture
+<!-- ===================================================================== -->
+<!-- 🎯 LIVE INTERACTIVE VISUAL CARD: MODULE 12 EPM AUTOMATE -->
+<!-- ===================================================================== -->
+<details open>
+<summary><b>🎯 Live Interactive Architecture Card: EPM Automate CLI Suite (Click to Collapse / Expand)</b></summary>
 
+<br/>
+
+> [!TIP]
+> **Interactive Standalone Dashboard:** Open [`card_kb_07_epm_automate_terminal.html`](../interactive_cards/card_kb_07_epm_automate_terminal.html) in your browser for a live interactive EPM Automate command runner & script simulator!
+
+| Document | Primary Domain | Core Focus | Direct Link |
+| :--- | :--- | :--- | :--- |
+| **12.1 EPM Automate Guide** | Batch Orchestration | CLI Architecture, Password Encryption, Core Commands, Production PowerShell Pipeline | [01_EPM_Automate_Complete_Guide.md](01_EPM_Automate_Complete_Guide.md) |
+
+```mermaid
+flowchart TD
+    M12["Module 12: EPM Automate"] --> D1["12.1 EPM Automate Guide<br/>(Command Wrapper for REST)"]
+    D1 --> Enc["Password Encryption (.epw files)"]
+    D1 --> Commands["Core Operations (Upload, Rule, Refresh, Merge)"]
+    D1 --> Script["Production Pipeline (Error Trapping & Retries)"]
 ```
-CLI Command ──► REST API Call ──► EPM Cloud Gateway ──► Application Server
-                (JSON/HTTPS)         (OCI IAM)            (Planning/Essbase)
-```
 
-## Command Categories
-
-| Category | Key Commands |
-|:---|:---|
-| **Session** | `login`, `logout` |
-| **File** | `uploadFile`, `downloadFile`, `deleteFile`, `listFiles` |
-| **Metadata** | `importMetadata`, `exportMetadata`, `refreshCube` |
-| **Data** | `importData`, `exportData`, `runDataRule`, `runDataMap`, `clearCube` |
-| **Calculations** | `runBusinessRule`, `runRuleSet`, `runJob` |
-| **Backup** | `exportSnapshot`, `importSnapshot`, `copySnapshotFromInstance` |
-| **Security** | `exportUsers`, `userAccessReport`, `userAuditReport`, `assignRole` |
-
-## Typical Nightly Sequence
-
-```
-login → exportSnapshot → uploadFile → importMetadata → refreshCube
-→ runDataRule → runBusinessRule → runDataMap → logout
-```
+</details>
 
 ---
 
-**Provenance:** Merged from ChatGPT `EPM_Automate/` (6 files), Claude `14_EPM_Automate/`, Gemini equivalents. See [MERGE_MAP.md](../MERGE_MAP.md).
+## Module Documents
+
+1. **[12.1 EPM Automate CLI: Architecture, Scripting & Enterprise Orchestration](01_EPM_Automate_Complete_Guide.md)**
+   * CLI-to-REST translation engine over HTTPS port 443.
+   * Authentication architecture: Encrypted `.epw` files vs. OAuth 2.0.
+   * Master command matrix: Lifecycle, Cube operations, ETL, and File transfers.
+   * Robust production batch scripting architecture with exit code verification.
+   * Tough & twisted review questions with consultant model answers.
+
+---
+*Return to [Knowledge Base Master Index](../README.md) or advance to [Module 13: Action Menus Architecture](../13_Action_Menus/00_INDEX.md).*

@@ -1,4 +1,4 @@
-# 05 — Index Files (.IND) and Page Files (.PAG): The Filing System of Essbase
+﻿# 05 — Index Files (.IND) and Page Files (.PAG): The Filing System of Essbase
 
 ---
 
@@ -9,7 +9,7 @@ Essbase uses a **two-file system** to store and locate data:
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                                                                 │
-│   INDEX (.IND) = "Where is the data?"                           │
+│   INDEX (.IND) = "Where is the data—                           │
 │     - Maps sparse member combinations → physical locations      │
 │     - Like a book's TABLE OF CONTENTS                           │
 │     - Stored as a B-tree structure                              │
@@ -259,7 +259,7 @@ INDEX FILE (.IND)                       PAGE FILE (.PAG)
                     ┌───────────────────────────────────────┐
                     │ 2. CHECK INDEX CACHE                   │
                     │    Is the index page for this key      │
-                    │    already in memory?                   │
+                    │    already in memory—                   │
                     │    ┌────────────────────────────────┐  │
                     │    │ Index Cache (RAM)              │  │
                     │    │ Recently accessed index pages  │  │
@@ -290,7 +290,7 @@ INDEX FILE (.IND)                       PAGE FILE (.PAG)
                                     ▼
                     ┌───────────────────────────────────────┐
                     │ 4. CHECK DATA CACHE                    │
-                    │    Is this block already in memory?     │
+                    │    Is this block already in memory—     │
                     │    ┌────────────────────────────────┐  │
                     │    │ Data Cache (RAM)               │  │
                     │    │ Recently accessed data blocks  │  │
@@ -443,31 +443,31 @@ COMPLETE DATA FLOW:
                     ┌───────────────▼───────────────┐
                     │         INDEX CACHE            │
                     │  (RAM - index pages)            │
-                    │  Hit? → Get block location      │
-                    │  Miss? → Read .IND file         │
+                    │  Hit— → Get block location      │
+                    │  Miss— → Read .IND file         │
                     │          └→ Load into cache      │
                     └───────────────┬───────────────┘
                                     │
                     ┌───────────────▼───────────────┐
                     │          DATA CACHE            │
                     │  (RAM - uncompressed blocks)    │
-                    │  Hit? → Get block from memory   │
-                    │  Miss? → Need to read .PAG      │
+                    │  Hit— → Get block from memory   │
+                    │  Miss— → Need to read .PAG      │
                     └───────────────┬───────────────┘
                                     │
                     ┌───────────────▼───────────────┐
                     │       DATA FILE CACHE          │
                     │  (OS file handle cache)         │
-                    │  Hit? → File already open       │
-                    │  Miss? → Open .PAG file         │
+                    │  Hit— → File already open       │
+                    │  Miss— → Open .PAG file         │
                     │          └→ Add to file cache    │
                     └───────────────┬───────────────┘
                                     │
                     ┌───────────────▼───────────────┐
                     │     OPERATING SYSTEM CACHE      │
                     │  (OS disk cache / buffer pool)  │
-                    │  Hit? → Read from OS cache      │
-                    │  Miss? → Physical disk I/O      │
+                    │  Hit— → Read from OS cache      │
+                    │  Miss— → Physical disk I/O      │
                     └───────────────┬───────────────┘
                                     │
                     ┌───────────────▼───────────────┐

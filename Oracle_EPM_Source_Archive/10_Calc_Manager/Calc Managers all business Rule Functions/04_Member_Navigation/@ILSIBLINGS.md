@@ -1,4 +1,4 @@
-# @ILSIBLINGS
+﻿# @ILSIBLINGS
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 *(The "I" stands for Inclusive, and the "L" stands for Left).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In time-series modeling (like Year-To-Date aggregations) or sequential phasing (like Project Milestones), the physical order of members in the database outline represents chronological progression (e.g., `Jan` is physically above `Feb`, `Feb` is above `Mar`).
 If a calculation script needs to calculate a Year-To-Date sum for `"Mar"`, it needs to sum `"Jan"`, `"Feb"`, and `"Mar"`. 

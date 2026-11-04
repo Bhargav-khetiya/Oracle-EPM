@@ -1,4 +1,4 @@
-# 01 Execution Modes: Bottom-Up vs. Top-Down Calculation Engine Internals
+﻿# 01 Execution Modes: Bottom-Up vs. Top-Down Calculation Engine Internals
 
 ## 1. The Two Essbase Calculation Execution Modes
 
@@ -61,10 +61,10 @@ When a developer knows that a formula can be safely executed across existing blo
 )
 ```
 
-### When is `@CALCMODE(BOTTOMUP)` Safe?
+### When is `@CALCMODE(BOTTOMUP)` Safe—
 * When the target block **already exists** on disk.
 * When the calculation does not require creating brand-new sparse blocks from non-existent intersections.
 
-### When is `@CALCMODE(BOTTOMUP)` Dangerous?
+### When is `@CALCMODE(BOTTOMUP)` Dangerous—
 * If the target sparse block does not exist, a Bottom-Up calculation will **completely skip that intersection**, resulting in missing calculated data! In that specific scenario, Top-Down execution (or `SET CREATEBLOCKONEQ ON`) is required.
 

@@ -1,4 +1,4 @@
-# 📚 Official Oracle Documentation Sources Register
+﻿# 📚 Official Oracle Documentation Sources Register
 
 This register catalogues the official Oracle Cloud EPM, Essbase, and Groovy documentation sources utilized as the authoritative benchmark for all technical configurations, architectural descriptions, syntax rules, and error codes documented in this repository.
 
@@ -52,5 +52,5 @@ To maintain the highest level of rigor during technical reviews, all documentati
    - Supported by mathematical proofs and operational trade-offs.
 4. **Unresolved Question / Unknown**:
    - Facts requiring customer confirmation or pending architecture board decisions (e.g., *"Pending client confirmation of EPM Integration Agent server location"*).
-   - Explicitly logged in [`PROJECT_DECISIONS_AND_ASSUMPTIONS_REGISTER.md`](file:///d:/OneDrive%20-%20Orbrick/Oracle%20EPM/Oracle%20EPM%20Docs%20with%20Examples/PROJECT_DECISIONS_AND_ASSUMPTIONS_REGISTER.md).
+   - Explicitly logged in [`PROJECT_DECISIONS_AND_ASSUMPTIONS_REGISTER.md`](PROJECT_DECISIONS_AND_ASSUMPTIONS_REGISTER.md).
 

@@ -1,10 +1,10 @@
-# @TODATEEX
+﻿# @TODATEEX
 
 ## Overview
 
 `@TODATEEX` is an **extended time series function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. While `@TODATE` only performs summation (adding values up to the current date), `@TODATEEX` allows you to apply **custom functions** (like Average, Minimum, or Maximum) over the period-to-date range.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Summing period-to-date values is only one piece of time-series analysis:
 - **YTD Average**: Calculating the average monthly headcount from the start of the year.

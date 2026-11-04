@@ -1,11 +1,11 @@
-# CALC DIM
+﻿# CALC DIM
 
 ## Overview
 
 `CALC DIM` is a **native Essbase calculation command** in Oracle EPM Cloud (PBCS/EPBCS). It is the primary, targeted macro used by administrators to force the calculation engine to structurally aggregate (roll up) specific, explicitly named dimensions in the database. 
 Unlike `CALC ALL` (which blindly aggregates the entire database) or `AGG` (which is highly optimized but strictly limited to sparse dimensions), `CALC DIM` evaluates the full structural outline logic, including member formulas, hierarchical `+`, `-`, `*`, `/` operators, and complex dimension intersections, for the explicitly listed dimensions.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When a user submits data to a Level 0 block (e.g., `"Store_101"`), the upper-level parent blocks (e.g., `"New_York"`, `"USA"`, `"Total_Company"`) do not automatically update. They remain stale until an aggregation script is run.
 If you use `CALC ALL`, the engine wastes time recalculating dimensions that didn't change (like Historical Years) or dimensions that shouldn't be calculated (like Scenarios). 

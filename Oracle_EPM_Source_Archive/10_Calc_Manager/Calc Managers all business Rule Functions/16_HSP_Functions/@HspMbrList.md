@@ -1,10 +1,10 @@
-# @HspMbrList
+﻿# @HspMbrList
 
 ## Overview
 
 `@HspMbrList` is a **Hyperion Planning (HSP) custom array function** embedded within Oracle EPM Cloud (PBCS/EPBCS). It dynamically retrieves the structural definition of a Smart List, substitution variable array, or relational member list from the Planning repository, and returns it as a **comma-separated text string**. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In EPM Cloud, administrators can create Smart Lists (dropdown menus) or custom relational Member Lists (like "Tier 1 Priority Products") inside the Web UI. These lists are stored in the relational database, not in the Essbase `.otl` outline. 
 If an Essbase calculation script needs to evaluate if the currently calculating product is part of that "Priority Products" list, it cannot use native functions like `@ISMBR`, because the list doesn't technically exist in Essbase. 

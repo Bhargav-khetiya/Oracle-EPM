@@ -1,14 +1,14 @@
-# @CalcMgrExcelLCM
+﻿# @CalcMgrExcelLCM
 
 ## Overview
 
 `@CalcMgrExcelLCM` is a **custom Calc Manager mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `LCM` function directly inside an Essbase calculation script. 
 It calculates the **Least Common Multiple** of two or more integers. The LCM is the smallest positive integer that is perfectly divisible by all of the provided numbers.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In supply chain, procurement, and manufacturing models, aligning disparate production cycles or batch constraints requires finding a common operational denominator. 
-For example, a raw material supplier only sells screws in boxes of 25. Another supplier only sells washers in boxes of 15. If a manufacturing process requires exactly 1 screw and 1 washer per widget, what is the minimum number of components you can buy to ensure you have exactly matching quantities with zero leftovers? You must find the Least Common Multiple of 25 and 15 (which is 75).
+For example, a raw material supplier only sells screws in boxes of 25. Another supplier only sells washers in boxes of 15. If a manufacturing process requires exactly 1 screw and 1 washer per widget, what is the minimum number of components you can buy to ensure you have exactly matching quantities with zero leftovers— You must find the Least Common Multiple of 25 and 15 (which is 75).
 Writing a custom loop in Essbase to iteratively calculate multiples of numbers until a match is found is horribly inefficient and can easily cause infinite loops if poorly designed. `@CalcMgrExcelLCM` delegates this calculation to the Java engine, instantly returning the mathematically perfect intersection point.
 
 ### When to Use It

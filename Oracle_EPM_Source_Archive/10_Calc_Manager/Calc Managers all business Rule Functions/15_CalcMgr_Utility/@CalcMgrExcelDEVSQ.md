@@ -1,11 +1,11 @@
-# @CalcMgrExcelDEVSQ
+﻿# @CalcMgrExcelDEVSQ
 
 ## Overview
 
 `@CalcMgrExcelDEVSQ` is a **custom Calc Manager statistical function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `DEVSQ` function directly inside an Essbase calculation script. 
 It calculates the **Sum of Squares of Deviations** of data points from their sample mean. In statistical terms, it is a core building block used to measure the variance or dispersion within a dataset.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When analyzing historical data (like sales volume, manufacturing defect rates, or employee churn), statisticians look at variance to understand how erratic the data is. To calculate variance manually, you must:
 1. Find the Average (Mean) of the dataset.

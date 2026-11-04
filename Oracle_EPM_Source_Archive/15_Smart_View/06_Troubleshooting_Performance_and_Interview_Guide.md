@@ -1,4 +1,4 @@
-# 06 — Smart View troubleshooting and professional review
+﻿# 06 — Smart View troubleshooting and professional review
 
 ## Core idea
 
@@ -38,9 +38,9 @@ Record exact client and Office versions, provider, application, form/ad hoc mode
 
 ## Recall
 
-1. Why is “missing” ambiguous? It can mean empty, suppressed, invalid, inaccessible, or a different POV.
-2. Which action sends eligible changes? Submit Data.
-3. Is Health Check a universal repair? No; it reports system details and offers recommended settings.
+1. Why is “missing” ambiguous— It can mean empty, suppressed, invalid, inaccessible, or a different POV.
+2. Which action sends eligible changes— Submit Data.
+3. Is Health Check a universal repair— No; it reports system details and offers recommended settings.
 
 **Teach-back:** Explain how you would write a reproducible Smart View issue report for another consultant.
 

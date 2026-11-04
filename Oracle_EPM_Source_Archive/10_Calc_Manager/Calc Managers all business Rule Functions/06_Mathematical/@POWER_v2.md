@@ -1,10 +1,10 @@
-# @POWER
+﻿# @POWER
 
 ## Overview
 
 `@POWER` is a **mathematical function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns a number raised to a **specified power** (exponent). It performs exponentiation — calculating baseᵉˣᵖᵒⁿᵉⁿᵗ.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Exponentiation is essential for many financial and mathematical calculations:
 - **Compound interest**: FV = PV × (1 + r)ⁿ

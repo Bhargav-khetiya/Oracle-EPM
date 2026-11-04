@@ -1,10 +1,10 @@
-# @REMOVE
+﻿# @REMOVE
 
 ## Overview
 
 `@REMOVE` is a **native Essbase member array function** in Oracle EPM Cloud (PBCS/EPBCS). It performs a mathematical set-theory subtraction on two lists of dimension members. It takes a primary list of members, takes a secondary list of members, and mathematically subtracts the second list from the first. The resulting array contains only the members from the primary list that did NOT exist in the secondary list.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When defining massive calculation blocks using `FIX` statements, or when passing arrays to functions like `@SUM`, administrators often need to include "everyone EXCEPT" a specific group. 
 For example, you need to execute a calculation on EVERY level 0 Entity (`@LEVEL0("Total_Geography")`), EXCEPT for the Entities located in the `"Holding_Companies"` branch. 

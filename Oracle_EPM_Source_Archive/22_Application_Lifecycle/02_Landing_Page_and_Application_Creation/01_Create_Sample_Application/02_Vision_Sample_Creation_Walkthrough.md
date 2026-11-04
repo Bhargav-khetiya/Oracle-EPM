@@ -1,4 +1,4 @@
-﻿# 📦 Vision Sample Application — Step-by-Step Creation
+﻿﻿# 📦 Vision Sample Application — Step-by-Step Creation
 ## Every Screen, Every Click, Every Button
 
 > **Navigation:** `Planning Landing Page → CREATE button`  
@@ -34,7 +34,7 @@ In some Oracle Cloud EPM versions, a confirmation dialog appears:
 │          Create Sample Application          │
 │                                             │
 │  Are you sure you want to create the        │
-│  Vision sample application?                 │
+│  Vision sample application—                 │
 │                                             │
 │  This will create a fully configured        │
 │  Planning application with sample data      │
@@ -164,13 +164,13 @@ After the Vision sample application is created, verify the following:
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: What happens if the network connection drops while the creation progress bar displays 45%?
+### Q1: What happens if the network connection drops while the creation progress bar displays 45%—
 **Answer:** The creation process continues uninterrupted on Oracle Cloud's backend Kubernetes cluster. The browser progress bar is merely a client-side listener polling a server-side status API. If your network disconnects, simply wait 10 minutes, reconnect, and navigate to the application URL. You will be redirected to the fully provisioned Vision Home Page.
 
-### Q2: Why does Vision sample creation take 10â€“15 minutes while a clean wizard application takes under 3 minutes?
+### Q2: Why does Vision sample creation take 10"15 minutes while a clean wizard application takes under 3 minutes—
 **Answer:** A clean wizard application provisions an empty Essbase outline and metadata container. The Vision sample application, by contrast, loads thousands of historical transactional data records, compiles dozens of Calc Manager business rules, deploys dashboards, imports financial reports, and restructures database indexes across multiple cubes.
 
-### Q3: Can you automate the creation of the Vision sample application via EPM Automate CLI without opening a browser?
+### Q3: Can you automate the creation of the Vision sample application via EPM Automate CLI without opening a browser—
 **Answer:** No. EPM Automate does not offer a standalone createSampleApplication command. To automate environment setup without the UI, export a baseline snapshot of Vision once (Vision_Baseline.zip), and use epmautomate importSnapshot "Vision_Baseline" in automated test pipelines.

@@ -1,10 +1,10 @@
-# @TRUNCATE
+﻿# @TRUNCATE
 
 ## Overview
 
 `@TRUNCATE` is a **native Essbase mathematical rounding function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates a numeric value and completely slices off (truncates) the decimal portion, returning a clean, absolute whole number integer. It does NOT perform standard mathematical rounding (e.g., $10.9$ becomes $10$, not $11$).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In corporate finance, headcount planning, and supply chain logistics, partial units are often mathematically impossible or legally invalid. 
 If an algorithm calculates that a store needs $4.9$ `"Managers"` based on store square footage, the company cannot hire $0.9$ of a person. If you use a standard `@ROUND` function, it rounds $4.9$ up to $5$. But if the budget only allows for fully funded roles, rounding up causes an immediate budget overrun. The company can only afford $4$ managers. 
@@ -101,7 +101,7 @@ ENDFIX
 
 | Mistake | Explanation | Fix |
 |---------|-------------|-----|
-| Expecting Standard Rounding | "Why didn't 10.9 become 11?" | The entire purpose of this function is to explicitly *prevent* rounding up. It is a guillotine for decimals. If your business logic dictates that $10.5$ or higher should round up to the next integer, you MUST use the `@ROUND` function instead |
+| Expecting Standard Rounding | "Why didn't 10.9 become 11— | The entire purpose of this function is to explicitly *prevent* rounding up. It is a guillotine for decimals. If your business logic dictates that $10.5$ or higher should round up to the next integer, you MUST use the `@ROUND` function instead |
 | Confusing with `@INT` | Practically Identical | In modern Essbase, `@TRUNCATE(10.5)` and `@INT(10.5)` perform the exact same action (both return 10). They are functionally interchangeable for positive numbers. However, they can behave slightly differently on deeply negative numbers depending on the legacy C-engine patch. `@TRUNCATE` is generally preferred when you want to explicitly signal "chopping" in your code |
 | Applying it to Small Decimals | Destroying Precision | Do not use `@TRUNCATE` to clean up floating point errors like `0.00000001`. If a rate account is supposed to hold `0.05` (5%), and you accidentally run `@TRUNCATE("Rate")`, it slices off the `.05` and leaves `0`. Your rate is now 0%, and all downstream multiplication fails. Use `@ROUND("Rate", 2)` to preserve precision |
 

@@ -1,10 +1,10 @@
-# @CalcMgrGetDayOfYear
+﻿# @CalcMgrGetDayOfYear
 
 ## Overview
 
 `@CalcMgrGetDayOfYear` is a **custom Calc Manager date extraction wrapper function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a unified **Java Date Object** (or Java Timestamp Object) and precisely extracts the **absolute Day of the Year** (the Julian day), returning it as a pure integer (e.g., `1` through `365`, or `366` in a leap year).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While identifying the Day of the Month (`1-31`) is useful for payroll and rent, manufacturing, logistics, and agriculture industries operate on absolute "Days of the Year" (Julian days). A shipping container might be logged to arrive on "Day 215".
 Calculating this manually in Essbase is nearly impossible. You have to evaluate the current month, manually sum all the days in the preceding months, evaluate if the current year is a leap year to add a day to February, and then add the current day of the month. 

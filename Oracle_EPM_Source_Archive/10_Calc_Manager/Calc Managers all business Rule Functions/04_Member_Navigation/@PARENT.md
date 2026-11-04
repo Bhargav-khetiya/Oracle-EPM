@@ -1,10 +1,10 @@
-# @PARENT
+﻿# @PARENT
 
 ## Overview
 
 `@PARENT` is a **member relationship function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns the **parent member** of a specified member in the outline hierarchy. It navigates one level up in the dimension tree.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Essbase outlines are hierarchical — every member (except the dimension root) has a parent. Many calculations need to reference the parent level:
 - Comparing a department's value to its division total

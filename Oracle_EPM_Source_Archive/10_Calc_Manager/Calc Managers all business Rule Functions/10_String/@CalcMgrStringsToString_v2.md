@@ -1,10 +1,10 @@
-# @CalcMgrStringsToString
+﻿# @CalcMgrStringsToString
 
 ## Overview
 
 `@CalcMgrStringsToString` is a **custom Calc Manager array processing function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a massive array compiler. It takes a **Java String Array** (a list of independent text items) and stitches them all back together into a **single, concatenated text string**, while automatically applying custom prefixes, suffixes, wrapper quotes, and delimiters to every item.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When processing multi-select runtime prompts or flat-file loads, administrators often use `@CalcMgrSplit` to tear a comma-delimited string (e.g., `"101,102,103"`) into a Java String Array (`[101] [102] [103]`). 
 However, you cannot pass a Java Array into an Essbase `FIX` statement or a MaxL script. It must be converted back into a single Essbase-readable string. If the outline expects Department members to be wrapped in quotes and prefixed with `"Dept_"` (e.g., `"Dept_101","Dept_102","Dept_103"`), achieving this using standard `@CONCATENATE` logic inside a custom loop is an absolute nightmare.

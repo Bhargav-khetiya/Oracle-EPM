@@ -1,4 +1,4 @@
-# 03 — Smart View options
+﻿# 03 — Smart View options
 
 ## Core idea
 
@@ -38,9 +38,9 @@ Oracle’s options documentation distinguishes global settings from sheet-level 
 
 ## Recall check
 
-1. Do replacement labels secure data? No.
-2. Why can a setting change behavior across an entire workbook? Some options are global or applied to all sheets.
-3. Why test formatting after zoom and refresh? Grid operations can affect retained formatting.
+1. Do replacement labels secure data— No.
+2. Why can a setting change behavior across an entire workbook— Some options are global or applied to all sheets.
+3. Why test formatting after zoom and refresh— Grid operations can affect retained formatting.
 
 **Teach-back:** Describe how you would test a suppression option without confusing hidden values with deleted data.
 

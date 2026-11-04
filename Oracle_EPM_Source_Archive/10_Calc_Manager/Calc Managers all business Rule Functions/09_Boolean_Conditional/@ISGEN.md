@@ -1,10 +1,10 @@
-# @ISGEN
+﻿# @ISGEN
 
 ## Overview
 
 `@ISGEN` is a **Boolean logical function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It checks whether a specified member (or the current member of a dimension) belongs to a specific hierarchical Generation (counted from the top down). It returns `TRUE` or `FALSE`.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While `@ISLEV` checks depth from the bottom up, `@ISGEN` checks depth from the top down.
 In unbalanced hierarchies (where some branches go deeper than others), Level 1 might be a Country in one branch and a State in another. However, Generation 2 might be definitively designed to *always* be a Country across the entire dimension.

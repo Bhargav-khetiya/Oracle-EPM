@@ -1,10 +1,10 @@
-# @CONCATENATE
+﻿# @CONCATENATE
 
 ## Overview
 
 `@CONCATENATE` is a **string manipulation function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that combines two text strings into a single, continuous string. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Essbase Calc Manager requires a way to dynamically construct strings when referencing members, creating custom messages, or parsing naming conventions. Because Essbase uses the `+` operator strictly for mathematical addition (not string appending as in JavaScript or Python), you must use `@CONCATENATE` to join text together.
 

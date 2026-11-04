@@ -1,10 +1,10 @@
-# @MAX
+﻿# @MAX
 
 ## Overview
 
 `@MAX` is a **native Essbase mathematical array function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates a specified range (array) of members and returns the **highest single numeric value** found across that entire range. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building financial allocations, inventory models, or performance benchmarking, scripts frequently need to identify the peak value within a dataset. For example, you might need to find the highest single month of `"Sales"` during the year to establish a seasonal benchmark, or find the maximum `"Headcount"` across all 50 states to determine which region requires the largest overhead allocation.
 Natively, you could write a massive `IF` block: `IF(Jan > Feb AND Jan > Mar...)`. This is impossible to maintain and fails immediately if the outline changes.

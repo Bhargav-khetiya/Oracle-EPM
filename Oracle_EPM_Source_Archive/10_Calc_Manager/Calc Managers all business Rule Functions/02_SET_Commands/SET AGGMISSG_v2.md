@@ -1,4 +1,4 @@
-# SET AGGMISSG
+﻿# SET AGGMISSG
 
 ## Overview
 
@@ -6,9 +6,9 @@
 
 *(Note: The default behavior in modern Essbase depends on the underlying server configuration, but it is overwhelmingly recommended to explicitly set this command at the top of every calculation script to guarantee predictable block behavior).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
-When Essbase rolls up a sparse dimension (like `"Entity"`), it has a choice. If `"Store_A"` has no data (`#MISSING`), does Essbase load the empty block into memory, do the math (`0 + 0`), and create a `#MISSING` parent block? 
+When Essbase rolls up a sparse dimension (like `"Entity"`), it has a choice. If `"Store_A"` has no data (`#MISSING`), does Essbase load the empty block into memory, do the math (`0 + 0`), and create a `#MISSING` parent block— 
 If `AGGMISSG` is `ON`, Essbase will literally roll up `#MISSING` data. If you have 10,000 stores, and only 5 of them have data, Essbase will still create upper-level blocks for the parents of the 9,995 empty stores. This causes catastrophic **Block Explosion**, severely inflating the size of the database on disk and crippling aggregation performance.
 If `AGGMISSG` is `OFF`, Essbase completely ignores `#MISSING` blocks. It only rolls up the 5 stores that actually have data, skipping the dead branches entirely. This makes the aggregation lightning fast.
 

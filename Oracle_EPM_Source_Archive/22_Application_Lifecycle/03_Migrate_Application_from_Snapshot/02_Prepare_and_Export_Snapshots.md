@@ -1,4 +1,4 @@
-﻿# 📥 Prepare Snapshot — Complete Export & Packaging Guide
+﻿﻿# 📥 Prepare Snapshot — Complete Export & Packaging Guide
 ## Full Application Backups vs. Selective Incremental Exports from Source Environments
 
 > **Source Environment:** Any healthy Oracle Fusion Cloud EPM Environment  
@@ -67,7 +67,7 @@ Log in to the **Source Environment** as Service Administrator:
 │ Destination Snapshot Name:                                  │
 │ [ Production_Gold_Build_20261012                          ] │
 │                                                             │
-│ ⚠️ Note: Do not use illegal OS characters (e.g., : / \ * ?) │
+│ ⚠️ Note: Do not use illegal OS characters (e.g., : / \ * —) │
 │                                                             │
 │                                       [ OK ]     [ Cancel ] │
 └─────────────────────────────────────────────────────────────┘
@@ -175,15 +175,15 @@ epmautomate logout
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: How do you exclude transactional data from a snapshot to create a lightweight "Structure-Only" template?
-**Answer:** In Tools â†’ Migration â†’ Categories, expand the Planning business process, expand **Data**, and uncheck all cube data categories (Plan1 Data, OEP_FS Data). Exporting without data reduces snapshot size from 10 GB+ to under 50 MB, making it fast and safe for promoting application design changes across pods.
+### Q1: How do you exclude transactional data from a snapshot to create a lightweight "Structure-Only" template—
+**Answer:** In Tools → Migration → Categories, expand the Planning business process, expand **Data**, and uncheck all cube data categories (Plan1 Data, OEP_FS Data). Exporting without data reduces snapshot size from 10 GB+ to under 50 MB, making it fast and safe for promoting application design changes across pods.
 
-### Q2: Why should administrators ensure no users are active when running exportSnapshot?
+### Q2: Why should administrators ensure no users are active when running exportSnapshot—
 **Answer:** If users are submitting data forms or executing calculation scripts while an export is running, Essbase blocks may be in a "dirty / uncommitted" state in memory. This can result in transactional data slices capturing partial or inconsistent data, or cause the export job to fail with outline lock contention.
 
-### Q3: How do you script automated nightly scheduled LCM exports using EPM Automate?
+### Q3: How do you script automated nightly scheduled LCM exports using EPM Automate—
 **Answer:** Execute in an automated batch pipeline:
 `cmd
 epmautomate login admin@company.com "C:\EPM\pass.epw" "https://epm.oraclecloud.com"
@@ -196,17 +196,17 @@ epmautomate logout
     "03_Migrate_Application_from_Snapshot\03_Upload_and_Import_Walkthrough.md" = @"
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: What is the exact difference between importing via Web UI Migration versus EPM Automate importSnapshot?
+### Q1: What is the exact difference between importing via Web UI Migration versus EPM Automate importSnapshot—
 **Answer:**
 - **Web UI Migration:** Allows granular, selective artifact selection. You can expand trees and choose to import only a single form, a single business rule, or a single dimension.
 - **EPM Automate importSnapshot:** Executes a **full application ingestion** of the entire snapshot archive in unattended mode. It cannot cherry-pick individual forms from CLI.
 
-### Q2: Why does an import sometimes complete with "Completed with Warnings", and where is the error log?
-**Answer:** "Completed with Warnings" indicates that the core application was created, but specific artifacts encountered non-fatal conflicts (e.g. an imported form references a user variable that was not in the snapshot). Navigate to Tools â†’ Migration â†’ Reports â†’ Migration Status, click the completed job, and view the line-by-line diagnostic details.
+### Q2: Why does an import sometimes complete with "Completed with Warnings", and where is the error log—
+**Answer:** "Completed with Warnings" indicates that the core application was created, but specific artifacts encountered non-fatal conflicts (e.g. an imported form references a user variable that was not in the snapshot). Navigate to Tools → Migration → Reports → Migration Status, click the completed job, and view the line-by-line diagnostic details.
 
-### Q3: How do you resolve missing user identity errors during automated import?
+### Q3: How do you resolve missing user identity errors during automated import—
 **Answer:** Include the parameter importUsers=true:
 `cmd
 epmautomate importSnapshot "ProdSnapshot" importUsers=true

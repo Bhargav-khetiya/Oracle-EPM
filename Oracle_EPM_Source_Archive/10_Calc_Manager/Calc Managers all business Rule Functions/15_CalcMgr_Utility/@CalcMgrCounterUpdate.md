@@ -1,10 +1,10 @@
-# @CalcMgrCounterUpdate
+﻿# @CalcMgrCounterUpdate
 
 ## Overview
 
 `@CalcMgrCounterUpdate` is a **custom Calc Manager state-tracking function** in Oracle EPM Cloud (PBCS/EPBCS). It directly forces a new numeric value into a specific memory counter stored in the background Java heap, completely overwriting whatever value was previously stored there.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard memory counters (`@CalcMgrCounterAddNumber`) are inherently additive. If a counter holds the value `5`, and you add `10`, the new value is `15`. 
 However, in certain algorithmic flows, you don't want to *add* to the existing number; you want to *replace* it entirely. For example, if you are tracking the "Maximum Inventory Level" encountered during a loop, you want to continuously overwrite the counter with the new highest number you find, rather than adding the new number to the old number.

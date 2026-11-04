@@ -1,11 +1,11 @@
-# @CalcMgrExcelPOWER
+﻿# @CalcMgrExcelPOWER
 
 ## Overview
 
 `@CalcMgrExcelPOWER` is a **custom Calc Manager mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `POWER` function directly inside an Essbase calculation script. 
 It returns the result of a **base number raised to a specific exponential power**. Mathematically, it executes `number ^ power`.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In legacy on-premise Essbase, calculating exponents typically required using the native `@POWER` function. However, the Calc Manager `@CalcMgrExcelPOWER` function was introduced to guarantee perfect 1-to-1 floating-point parity with the Microsoft Excel mathematical engine. 
 In advanced financial physics, depreciation curves, and compound interest models, a slight difference in floating-point precision deep within a massive exponent calculation (e.g., `(1 + 0.05) ^ 120`) can compound into a multi-thousand dollar variance by the end of a 10-year forecast.

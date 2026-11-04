@@ -1,10 +1,10 @@
-# @CalcMgrRemoveQuotes
+﻿# @CalcMgrRemoveQuotes
 
 ## Overview
 
 `@CalcMgrRemoveQuotes` is a **custom Calc Manager string cleansing function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as an aggressive, universal quotation sanitizer. It scans a text string and **simultaneously removes ALL double quotes (`"`) AND all single quotes/apostrophes (`'`)** found anywhere within the text, returning a perfectly clean string.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When dealing with user-generated text inputs (like variance explanations or journal entry descriptions), users are entirely unpredictable. One user might type `"Q1 Adjustments"`, another might type `'Q1 Adjustments'`, and a third might type `"O'Connor's 'Approved' Budget"`. 
 If you try to process this text using standard cleansing functions, you have a problem. `@CalcMgrRemoveDQuotes` will miss the single quotes, and `@CalcMgrRemoveSQuotes` will miss the double quotes. If you miss either, and attempt to inject this text into a CSV export or a SQL insert statement, the remaining quotes will destroy the syntax and crash the downstream system.

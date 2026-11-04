@@ -1,10 +1,10 @@
-# @CalcMgrLogMemberStrings
+﻿# @CalcMgrLogMemberStrings
 
 ## Overview
 
 `@CalcMgrLogMemberStrings` is a **custom Calc Manager diagnostic logging function** in Oracle EPM Cloud (PBCS/EPBCS). Unlike `@CalcMgrLogCurrMembers` (which dynamically checks the active calculation state), this function allows you to manually inject a **static, concatenated string of member names or text** directly into the official Calc Manager Job Console log during the execution of a script.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When executing complex calculation scripts, administrators often build dynamic string variables that represent target database intersections. For example, a script might slice the current year, add 1 to it, concatenate it into `"FY25"`, and then attempt to copy data. 
 If the data copy fails or produces unexpected results, the administrator needs to know exactly what string was generated in memory before the failure occurred. Standard Essbase gives you no visibility into temporary string variables once the script finishes running. 

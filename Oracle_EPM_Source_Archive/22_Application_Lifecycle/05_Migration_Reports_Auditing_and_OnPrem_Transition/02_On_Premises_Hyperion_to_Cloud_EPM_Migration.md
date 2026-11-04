@@ -1,4 +1,4 @@
-﻿# 🏛️ On-Premises Hyperion to Cloud EPM Migration & Role Mapping
+﻿﻿# 🏛️ On-Premises Hyperion to Cloud EPM Migration & Role Mapping
 ## Complete Transition Architecture, Application Conversion Paths, and Security Role Mapping
 
 > **Source Systems:** Oracle Hyperion EPM Release 11.1.2.4.x / 11.2.x (On-Premises)  
@@ -188,19 +188,19 @@ Artifact Migration Phase:
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: Why cannot on-premises Hyperion Planning EPMA outlines be imported directly into Cloud EPM?
+### Q1: Why cannot on-premises Hyperion Planning EPMA outlines be imported directly into Cloud EPM—
 **Answer:** Oracle Enterprise Performance Management Architect (EPMA) relies on an on-premises relational metadata engine that is not supported in Cloud EPM. Prior to migration, EPMA applications must be transformed to **Classic Planning** applications or dimensions must be exported as flat outline files (`.csv` / `.txt`) using the Outline Load Utility before importing into Cloud EPM.
 
-### Q2: How do on-premises Shared Services security roles map to Oracle Cloud EPM predefined roles?
+### Q2: How do on-premises Shared Services security roles map to Oracle Cloud EPM predefined roles—
 **Answer:** On-premises Shared Services used granular provisioned roles (e.g. *Planner*, *Interactive User*, *Mass Allocate*). Cloud EPM consolidates security into 4 predefined functional roles:
 1. **Service Administrator** (Full control)
 2. **Power User** (Manage forms, rules, and task lists)
 3. **User** (Data entry, run rules, view reports)
 4. **Viewer** (Read-only reporting)
 
-### Q3: What happens to on-premises custom Essbase Calc Scripts during migration to Cloud EPM?
+### Q3: What happens to on-premises custom Essbase Calc Scripts during migration to Cloud EPM—
 **Answer:** Standalone `.csc` calc scripts stored in the Essbase filesystem are not natively exposed in the Cloud EPM web interface. Calc scripts must be converted into **Calc Manager Business Rules** in Calculation Manager. Furthermore, scripts using unsupported functions (such as custom C-based User Defined Functions or file-system `@EXECUTE` calls) must be refactored into Groovy rules or native functions.
 
 ---

@@ -1,4 +1,4 @@
-# @SPARENTVAL
+﻿# @SPARENTVAL
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 *(The "S" stands for Stored/Static).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building step-down allocations, a Level 0 member (like `"Store_101"`) often needs to query data from its direct parent (`"New_York"`) to calculate its proportional share (e.g., `Store Sales / New York Sales`). 
 The standard function for this is `@PARENTVAL`. However, `@PARENTVAL` strictly obeys the physical outline. If `"New_York"` is a `Dynamic Calc` member, querying it natively forces Essbase to pause calculating the store, run an on-the-fly aggregation of all NY stores to find the total, return the total to Store 101, and then repeat that massive aggregation for Store 102. This causes terrible performance degradation.

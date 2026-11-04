@@ -1,4 +1,4 @@
-# SET CREATENONMISSINGBLK
+﻿# SET CREATENONMISSINGBLK
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 Unlike `SET CREATEBLOCKONEQ` (which blindly creates blocks for every member in the `FIX` statement), `SET CREATENONMISSINGBLK` is a highly intelligent, conditionally safe macro. It tells the engine: "Only create a brand new block for the Left Side of the equation **IF** the data on the Right Side of the equation actually exists (is non-missing)."
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Essbase's default Bottom-Up calculation engine only evaluates blocks that already exist. 
 Imagine you want to calculate `"Bonus" = "Salary" * 0.10;`. 
@@ -118,7 +118,7 @@ SET CREATENONMISSINGBLK OFF;
 
 | Mistake | Explanation | Fix |
 |---------|-------------|-----|
-| Using it with Constants | `"Account" = 500;` | This is a logical trap. If you write `"Account" = 500;` with `CREATENONMISSINGBLK ON`, what is the Right Side? The Right Side is `500`. `500` is non-missing. Therefore, Essbase will evaluate the Right Side as TRUE for every single member in the `FIX`, and will aggressively create blocks for everyone, effectively mirroring the catastrophic behavior of `CREATEBLOCKONEQ`. This command is ONLY safe when the Right Side of the equation contains a Sparse dimension pointer or a data-driven account |
+| Using it with Constants | `"Account" = 500;` | This is a logical trap. If you write `"Account" = 500;` with `CREATENONMISSINGBLK ON`, what is the Right Side— The Right Side is `500`. `500` is non-missing. Therefore, Essbase will evaluate the Right Side as TRUE for every single member in the `FIX`, and will aggressively create blocks for everyone, effectively mirroring the catastrophic behavior of `CREATEBLOCKONEQ`. This command is ONLY safe when the Right Side of the equation contains a Sparse dimension pointer or a data-driven account |
 | Forgetting to Turn it Off | Slowing Down the Script | If you leave this `ON` for the entire script, Essbase will constantly check the Right Side of every equation to see if it needs to create a block. This adds unnecessary overhead to standard dense calculations. Always turn it `OFF` when the specific block-creation phase is over |
 | Using it for `DATACOPY` | Wrong Command | This command controls block creation for mathematical equations. It does not affect the `DATACOPY` command. You must use `SET COPYMISSINGBLOCK ON` for data replication |
 

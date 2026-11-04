@@ -1,4 +1,4 @@
-# 06 — Smart View & Ad Hoc: Troubleshooting, Performance, & Interview Bible
+﻿# 06 — Smart View & Ad Hoc: Troubleshooting, Performance, & Interview Bible
 
 ---
 
@@ -61,17 +61,17 @@ When querying enterprise cubes containing millions of blocks, ad-hoc queries can
 
 ## 6.4 Top 10 Consultant Interview Questions & Answers
 
-### Q1: What is the architectural difference between Shared Connections and Private Connections?
+### Q1: What is the architectural difference between Shared Connections and Private Connections—
 > **Answer**: A Shared Connection uses a centralized XML server endpoint (`/workspace/SmartViewProviders`) that lists all provisioned cloud applications and cubes in an enterprise tree. A Private Connection connects directly to a specific application or Essbase cube URL, bypassing the tree hierarchy; it is required for `HsGetValue` formulas and VBA macros.
 
-### Q2: What causes 32-bit Excel to crash when querying large Essbase cubes?
+### Q2: What causes 32-bit Excel to crash when querying large Essbase cubes—
 > **Answer**: 32-bit Microsoft Excel has a hard architectural ceiling of **2 GB of virtual addressable RAM**. When zooming in on large hierarchies without data suppression, the grid XML payload and memory structures exceed 2 GB, causing Excel to terminate with an `"Out of Memory"` crash. 64-bit Excel eliminates this constraint.
 
-### Q3: What is the difference between `Zoom In: Bottom Level` and `Zoom In: All Levels`?
+### Q3: What is the difference between `Zoom In: Bottom Level` and `Zoom In: All Levels`—
 > **Answer**: `Zoom In: All Levels` recursively expands every parent and child down the hierarchy tree. `Zoom In: Bottom Level` expands **strictly the Level 0 leaf members**, skipping all intermediate summary parents, making it ideal for extracting pure transactional input data.
 
-### Q4: How do Flex Forms differ from standard Smart View data forms?
+### Q4: How do Flex Forms differ from standard Smart View data forms—
 > **Answer**: Standard data forms lock the Excel worksheet to protect structure, disabling row insertion, deletion, and sorting. Flex Forms allow planners to insert new rows, paste members, reorder lines, and apply native Excel filters. Upon clicking Submit Data, Smart View validates the modified rows against the cube metadata and submits successfully.
 
-### Q5: What is the function of the `smartview.bas` module?
+### Q5: What is the function of the `smartview.bas` module—
 > **Answer**: `smartview.bas` is the official VBA developer library provided by Oracle. It declares all external C/COM functions (`HypConnect`, `HypRetrieve`, `HypSubmitData`, `HypZoomIn`, `HypDisconnect`), allowing developers to write macros that automate the generation and distribution of financial reporting packages.

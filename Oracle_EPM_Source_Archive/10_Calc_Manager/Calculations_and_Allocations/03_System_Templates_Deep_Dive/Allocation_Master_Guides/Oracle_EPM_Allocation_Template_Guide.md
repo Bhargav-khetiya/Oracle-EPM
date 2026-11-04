@@ -1,8 +1,8 @@
-# Oracle EPM: Complete Guide to the Allocation Template (EPBCS / PBCS)
+﻿# Oracle EPM: Complete Guide to the Allocation Template (EPBCS / PBCS)
 
 ---
 
-## 1. What Is the Allocation Template?
+## 1. What Is the Allocation Template—
 
 The **Allocation Template** is a system-provided wizard in Oracle EPM Cloud's **Calculation Manager** that generates an Essbase allocation calculation without requiring you to write any calc script manually. It distributes data from a source intersection to target intersections — either evenly or based on a specified driver.
 
@@ -17,7 +17,7 @@ Calculation Manager
 
 ### When to Use This Template
 
-| Situation | Use Allocation Template? |
+| Situation | Use Allocation Template— |
 |---|---|
 | Spread a cost pool to level 0 members using a driver (e.g., revenue, headcount) | ✅ Yes |
 | Allocate a fixed percentage of a source (e.g., 25%) | ✅ Yes — Source step accepts percentage |
@@ -460,10 +460,10 @@ Skip Both:    $100,000 ÷ 3 = $33,333 (A, B, E get data; C & D = #MISSING)
 
 | Question | Options | Recommendation |
 |---|---|---|
-| **Clear the Allocation Range before allocation?** | Yes / No | **Yes** if re-running — prevents double-counting. **No** if multiple allocations feed the same range. |
-| **Reaggregate the allocation range after allocation?** | Yes / No | **Yes** if downstream calcs or reports need updated parent values immediately. **No** for performance (aggregate later). |
+| **Clear the Allocation Range before allocation—** | Yes / No | **Yes** if re-running — prevents double-counting. **No** if multiple allocations feed the same range. |
+| **Reaggregate the allocation range after allocation—** | Yes / No | **Yes** if downstream calcs or reports need updated parent values immediately. **No** for performance (aggregate later). |
 | **Number of decimal places** | Integer (e.g., `0`, `2`, `4`) | `2` for financial data. `0` for whole-number allocations. |
-| **Create missing blocks automatically?** | Yes / No | **Yes** if target members might not have existing data blocks. **No** for performance (only if blocks already exist). |
+| **Create missing blocks automatically—** | Yes / No | **Yes** if target members might not have existing data blocks. **No** for performance (only if blocks already exist). |
 
 #### Rounding Methods (If Decimal Places > 0)
 

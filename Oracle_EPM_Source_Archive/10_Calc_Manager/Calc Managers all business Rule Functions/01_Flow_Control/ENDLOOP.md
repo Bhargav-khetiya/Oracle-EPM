@@ -1,10 +1,10 @@
-# ENDLOOP
+﻿# ENDLOOP
 
 ## Overview
 
 `ENDLOOP` is the **mandatory closing command** for every `LOOP` block in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. Every `LOOP` statement must have a matching `ENDLOOP` — without it, the calculation script will fail with a syntax error. Together, `LOOP`/`ENDLOOP` form the iteration control pair.
 
-### Why Does This Command Exist?
+### Why Does This Command Exist—
 
 Essbase uses block-structured syntax where every opening command needs a closing pair:
 - `FIX` → `ENDFIX`
@@ -137,7 +137,7 @@ LOOP(20)
     ENDFIX
     
     AGG("Department");  /* Re-aggregate before next pass */
-ENDLOOP                 /* ← Checks: iteration < 20? If yes, loop again */
+ENDLOOP                 /* ← Checks: iteration < 20— If yes, loop again */
 
 /* Final result is in "Allocated_Cost" after convergence */
 ```

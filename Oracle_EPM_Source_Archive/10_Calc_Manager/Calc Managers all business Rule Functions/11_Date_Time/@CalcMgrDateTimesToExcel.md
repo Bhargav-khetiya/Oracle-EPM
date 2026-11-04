@@ -1,10 +1,10 @@
-# @CalcMgrDateTimesToExcel
+﻿# @CalcMgrDateTimesToExcel
 
 ## Overview
 
 `@CalcMgrDateTimesToExcel` is a **custom Calc Manager data transformation function** in Oracle EPM Cloud (PBCS/EPBCS). It takes an array (a range or list) of massive timestamp integers (formatted as `YYYYMMDDHHMMSS`) and simultaneously converts all of them into Microsoft Excel Serial DateTime numbers, returning an array of results.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When developers need to track hours, minutes, and seconds inside standard Essbase data cells, they must format the timestamp into a massive 14-digit integer (e.g., `20241025143045` for Oct 25, 2024 at 14:30:45). 
 While this preserves the data safely inside Essbase, Microsoft Excel uses an entirely different system. Excel tracks Date and Time as a "Serial Date"—a continuous float number starting from Jan 1, 1900. In Excel, the whole number represents the day, and the decimal fraction represents the time of day (e.g., `0.5` = Noon, `0.75` = 6:00 PM).

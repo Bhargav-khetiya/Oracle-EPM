@@ -1,4 +1,4 @@
-# Shared Members — Oracle EPM Cloud / Essbase
+﻿# Shared Members — Oracle EPM Cloud / Essbase
 
 ## Overview
 
@@ -6,7 +6,7 @@ A **Shared Member** is one of the most fundamental concepts in Oracle Essbase an
 
 Think of it this way: a base member is the **original document**. A shared member is a **shortcut** to that document. No matter which shortcut you click, you always open the same file. Edit through the shortcut, and the original changes. Edit the original, and all shortcuts reflect it.
 
-### Why Do Shared Members Exist?
+### Why Do Shared Members Exist—
 
 Business reporting almost always requires viewing the same data from multiple angles:
 
@@ -91,23 +91,23 @@ There is only ONE copy of the data.
 | Property | Base Member | Shared Member |
 |----------|-------------|---------------|
 | **Data Storage** | `Store Data` (or `Dynamic Calc`, `Never Share`) | `Shared` (always) |
-| **Stores data?** | ✅ Yes — owns its data block | ❌ No — points to base member's block |
+| **Stores data—** | ✅ Yes — owns its data block | ❌ No — points to base member's block |
 | **Member name** | The original name | **Must be identical** to the base member name |
-| **Can have children?** | ✅ Yes | ❌ No — shared members are always leaf nodes |
-| **Can have a formula?** | ✅ Yes | ❌ No — formulas only on base members |
-| **Can have UDAs?** | ✅ Yes | ❌ No — UDAs only on base members |
-| **Can have attributes?** | ✅ Yes | ❌ No — attributes only on base members |
-| **Can have aliases?** | ✅ Yes (sets alias for all shared) | Inherits alias from base member |
+| **Can have children—** | ✅ Yes | ❌ No — shared members are always leaf nodes |
+| **Can have a formula—** | ✅ Yes | ❌ No — formulas only on base members |
+| **Can have UDAs—** | ✅ Yes | ❌ No — UDAs only on base members |
+| **Can have attributes—** | ✅ Yes | ❌ No — attributes only on base members |
+| **Can have aliases—** | ✅ Yes (sets alias for all shared) | Inherits alias from base member |
 | **Consolidation operator** | Has its own (`+`, `-`, `~`, etc.) | Has its **own** (can differ from base!) |
 | **Outline position** | Must appear **BEFORE** any shared members | Must appear **AFTER** the base member |
-| **Can be renamed?** | ✅ Yes — all shared members auto-update | N/A — name always mirrors base |
-| **Can be deleted?** | ⚠️ Deleting base removes ALL shared instances | ✅ Can be deleted independently |
+| **Can be renamed—** | ✅ Yes — all shared members auto-update | N/A — name always mirrors base |
+| **Can be deleted—** | ⚠️ Deleting base removes ALL shared instances | ✅ Can be deleted independently |
 
 ### What Shared Members CAN Have (Different from Base)
 
 Despite being "pointers," shared members have a few independent properties:
 
-| Property | Can Differ from Base? | Why? |
+| Property | Can Differ from Base— | Why— |
 |----------|-----------------------|------|
 | **Parent** | ✅ Yes — that's the whole point | Different parent = different hierarchy |
 | **Consolidation operator** | ✅ Yes | May aggregate differently in the alternate hierarchy |
@@ -115,9 +115,9 @@ Despite being "pointers," shared members have a few independent properties:
 
 ### What Shared Members CANNOT Have
 
-| Property | Allowed? | Why Not? |
+| Property | Allowed— | Why Not— |
 |----------|----------|----------|
-| Own formula | ❌ No | Would create data conflicts — which formula runs? |
+| Own formula | ❌ No | Would create data conflicts — which formula runs— |
 | Own children | ❌ No | Would create an independent sub-hierarchy under a pointer |
 | Own UDAs | ❌ No | UDAs belong to the base member |
 | Own attributes | ❌ No | Attributes belong to the base member |
@@ -176,7 +176,7 @@ For automated metadata management:
 
 ## 🔍 Deep Dive: How to Identify Shared Members (Finding Base vs. Shared)
 
-This is one of the most common questions: "I'm looking at a member — how do I know if it's a base or shared?"
+This is one of the most common questions: "I'm looking at a member — how do I know if it's a base or shared—
 
 ### Method 1: Dimension Editor
 
@@ -235,7 +235,7 @@ FIX("FY25", "Actual")
 ENDFIX
 ```
 
-**What happens during aggregation?**
+**What happens during aggregation—**
 
 ```
 By_Region:                          By_BusinessUnit:
@@ -295,7 +295,7 @@ Shared members are one of several data storage properties. Understanding them al
 
 ### All Data Storage Types
 
-| Storage Type | Stores Data? | Creates Block? | Use Case |
+| Storage Type | Stores Data— | Creates Block— | Use Case |
 |-------------|-------------|----------------|----------|
 | **Store Data** (default) | ✅ Yes | ✅ Yes (for sparse dims) | Standard data storage — level-0 input members, stored parents |
 | **Dynamic Calc** | ❌ No (calculated on-the-fly) | ❌ No | Parents that should always show current aggregation. Saves storage but costs CPU. |
@@ -331,7 +331,7 @@ Essbase automatically "shares" data between a parent and child in specific situa
 | **Parent has multiple children, only ONE consolidates** | Parent shares data with the only consolidating child | `Total` has `Active (+)` and `Inactive (~)`. Parent shares with `Active`. |
 | **Parent is Label Only** | Parent inherits the value of its first child | `Group_Label` (Label Only) → `First_Child` shows same value. |
 
-**Why does implicit sharing matter?**
+**Why does implicit sharing matter—**
 
 Normally you don't notice it. But it can cause unexpected behavior:
 - Entering data in a parent form cell might actually write to the child (because they share data)
@@ -473,7 +473,7 @@ Enterprise (form view):
   US = 1200  ← user changed this
 ```
 
-**What actually happens?**
+**What actually happens—**
 1. `US` under `Enterprise` is a **shared member** → it points to the base `US` under `Americas`
 2. The value **1200 is written to the base member's data block**
 3. Now `US` everywhere shows **1200** — under `Americas` AND under `Enterprise`
@@ -533,7 +533,7 @@ ENDFIX
 
 `@DESCENDANTS("Enterprise")` returns: `US, UK, Germany, Japan` (the shared members under Enterprise).
 
-**What happens?**: Essbase resolves these to their **base member data blocks** and modifies them. This means:
+**What happens—**: Essbase resolves these to their **base member data blocks** and modifies them. This means:
 - US's revenue under Americas is also changed (same block!)
 - Any other shared reference to US also reflects the change
 
@@ -571,7 +571,7 @@ If `North` is a shared member, DATACOPY reads from the base member's block that 
 
 ## 🆚 Shared Members vs. Other Approaches
 
-| Approach | Same Data? | Independent Values? | Use Case |
+| Approach | Same Data— | Independent Values— | Use Case |
 |----------|-----------|--------------------|---------| 
 | **Shared Members** | ✅ Single copy of data | ❌ Always same value | Alternate hierarchies for reporting |
 | **Duplicate Members (different names)** | ❌ Independent data | ✅ Each has own value | When hierarchies need different values |

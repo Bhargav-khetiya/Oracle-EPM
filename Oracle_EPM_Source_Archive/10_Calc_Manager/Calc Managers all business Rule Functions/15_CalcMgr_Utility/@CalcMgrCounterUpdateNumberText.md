@@ -1,10 +1,10 @@
-# @CalcMgrCounterUpdateNumberText
+﻿# @CalcMgrCounterUpdateNumberText
 
 ## Overview
 
 `@CalcMgrCounterUpdateNumberText` is a **custom Calc Manager map management function** in Oracle EPM Cloud (PBCS/EPBCS). Despite its somewhat confusing name, it serves a highly specific purpose: it directly overwrites the numeric value stored inside a specific "key" (a named sub-bucket) located within a master hash map running in the Java heap memory.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When dealing with advanced Hash Maps (key-value pairs), you often need to target a specific key. 
 If you want to *add* to a key's value, you use `@CalcMgrCounterIncrementKey`.

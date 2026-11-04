@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KB Interactive Card 01: EPM Cloud Platform Ecosystem</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .tab-active { border-bottom: 3px solid #38bdf8; color: #38bdf8; font-weight: 700; }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-6 font-sans">
+  <div class="max-w-5xl mx-auto space-y-6">
+    <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 shadow-2xl backdrop-blur">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-700 pb-4">
+        <div>
+          <span class="text-xs font-bold tracking-widest text-sky-400 uppercase bg-sky-950/60 px-3 py-1 rounded-full border border-sky-800">
+            Knowledge Base Card 01
+          </span>
+          <h1 class="text-2xl font-black mt-2 text-white">Oracle Cloud EPM Ecosystem & Process Navigator</h1>
+        </div>
+        <div class="flex gap-2">
+          <span class="text-xs px-2.5 py-1 rounded-md bg-emerald-950 text-emerald-400 border border-emerald-800">OCI Gen 2</span>
+          <span class="text-xs px-2.5 py-1 rounded-md bg-blue-950 text-blue-400 border border-blue-800">Enterprise SaaS</span>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="flex space-x-6 mt-6 border-b border-slate-700 text-sm">
+        <button id="tab-all" onclick="selectProcess('all')" class="pb-3 px-2 tab-active transition-colors">All Business Processes</button>
+        <button id="tab-plan" onclick="selectProcess('plan')" class="pb-3 px-2 text-slate-400 hover:text-white transition-colors">Planning (EPBCS)</button>
+        <button id="tab-fccs" onclick="selectProcess('fccs')" class="pb-3 px-2 text-slate-400 hover:text-white transition-colors">FCCS (Consolidation)</button>
+        <button id="tab-arcs" onclick="selectProcess('arcs')" class="pb-3 px-2 text-slate-400 hover:text-white transition-colors">ARCS (Reconciliation)</button>
+        <button id="tab-edm" onclick="selectProcess('edm')" class="pb-3 px-2 text-slate-400 hover:text-white transition-colors">EDMCS (Master Data)</button>
+      </div>
+
+      <!-- Process Cards Grid -->
+      <div id="process-container" class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-6">
+        <!-- Planning -->
+        <div id="card-plan" class="process-card bg-slate-800/60 border border-sky-500/40 rounded-xl p-5 hover:border-sky-400 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-lg font-bold text-sky-400">Planning (PBCS / EPBCS)</h3>
+            <span class="text-xs bg-sky-950 text-sky-300 px-2 py-0.5 rounded border border-sky-800">Hybrid BSO + ASO</span>
+          </div>
+          <p class="text-xs text-slate-300 mb-3">Enterprise financial modeling, driver forecasting, Workforce, Capital, and Project planning.</p>
+          <ul class="text-xs text-slate-400 space-y-1 list-disc list-inside">
+            <li><strong>Underlying Engine:</strong> Level 0 BSO leaf storage + ASO dynamic vector reporting.</li>
+            <li><strong>Write-Back:</strong> Full in-place grid spread, Groovy event interceptors, Smart Push.</li>
+            <li><strong>FTE Review Trap:</strong> Never store summary parent blocks in modern Cloud Planning.</li>
+          </ul>
+        </div>
+
+        <!-- FCCS -->
+        <div id="card-fccs" class="process-card bg-slate-800/60 border border-indigo-500/40 rounded-xl p-5 hover:border-indigo-400 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-lg font-bold text-indigo-400">Financial Consolidation & Close (FCCS)</h3>
+            <span class="text-xs bg-indigo-950 text-indigo-300 px-2 py-0.5 rounded border border-indigo-800">Consol + Rates Cubes</span>
+          </div>
+          <p class="text-xs text-slate-300 mb-3">Statutory multi-GAAP financial close, currency translation, intercompany eliminations.</p>
+          <ul class="text-xs text-slate-400 space-y-1 list-disc list-inside">
+            <li><strong>Underlying Engine:</strong> Pre-seeded consolidation rules; strict dimensional framework.</li>
+            <li><strong>Translation:</strong> CTA (Cumulative Translation Adjustment) & Net Income to Retained Earnings.</li>
+            <li><strong>FTE Review Trap:</strong> Custom dimension addition is restricted to preserve out-of-the-box calculations.</li>
+          </ul>
+        </div>
+
+        <!-- ARCS -->
+        <div id="card-arcs" class="process-card bg-slate-800/60 border border-emerald-500/40 rounded-xl p-5 hover:border-emerald-400 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-lg font-bold text-emerald-400">Account Reconciliation (ARCS)</h3>
+            <span class="text-xs bg-emerald-950 text-emerald-300 px-2 py-0.5 rounded border border-emerald-800">Relational + Matching</span>
+          </div>
+          <p class="text-xs text-slate-300 mb-3">Automated high-volume transaction matching and balance sheet account reconciliation.</p>
+          <ul class="text-xs text-slate-400 space-y-1 list-disc list-inside">
+            <li><strong>Underlying Engine:</strong> High-throughput relational matching engine (millions of rows).</li>
+            <li><strong>Compliance:</strong> SOX 404 audit compliance, balance sheet variance analysis.</li>
+            <li><strong>FTE Review Trap:</strong> ARCS does not use an Essbase cube; it uses relational storage.</li>
+          </ul>
+        </div>
+
+        <!-- EDMCS -->
+        <div id="card-edm" class="process-card bg-slate-800/60 border border-amber-500/40 rounded-xl p-5 hover:border-amber-400 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-lg font-bold text-amber-400">Enterprise Data Management (EDMCS)</h3>
+            <span class="text-xs bg-amber-950 text-amber-300 px-2 py-0.5 rounded border border-amber-800">Graph Master Data</span>
+          </div>
+          <p class="text-xs text-slate-300 mb-3">Master data governance, chart of accounts maintenance, cross-system dimension mapping.</p>
+          <ul class="text-xs text-slate-400 space-y-1 list-disc list-inside">
+            <li><strong>Underlying Engine:</strong> Node-based graph repository; automated change request workflow.</li>
+            <li><strong>Syndication:</strong> Exports validated hierarchies to ERP, Planning, FCCS, and data warehouses.</li>
+            <li><strong>FTE Review Trap:</strong> EDMCS enforces structural integrity before metadata touches target cubes.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function selectProcess(type) {
+      document.querySelectorAll('button[id^="tab-"]').forEach(btn => {
+        btn.classList.remove('tab-active');
+        btn.classList.add('text-slate-400');
+      });
+      document.getElementById('tab-' + type).classList.add('tab-active');
+      document.getElementById('tab-' + type).classList.remove('text-slate-400');
+
+      const cards = document.querySelectorAll('.process-card');
+      cards.forEach(card => {
+        if (type === 'all') {
+          card.classList.remove('hidden');
+        } else {
+          card.id === 'card-' + type ? card.classList.remove('hidden') : card.classList.add('hidden');
+        }
+      });
+    }
+  </script>
+</body>
+</html>

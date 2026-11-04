@@ -1,10 +1,10 @@
-# @SHARE
+﻿# @SHARE
 
 ## Overview
 
 `@SHARE` is a **native Essbase boolean function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates the currently calculating member and returns `TRUE` or `FALSE` based on whether the active member block is a **Shared Member** pointer in the database outline.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Essbase outlines frequently utilize "Shared Members" (an alternate hierarchy technique). For example, `"Store_101"` might physically live under the `"Geographic"` branch, but it is *shared* under a secondary `"Management_Reporting"` branch. 
 Data is only physically stored in the primary (base) member. The shared member is simply a virtual pointer that redirects queries to the base block.

@@ -1,10 +1,10 @@
-# @ISMBRUDA
+﻿# @ISMBRUDA
 
 ## Overview
 
 `@ISMBRUDA` is a **Boolean metadata function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that checks whether a specified member has a specific **User-Defined Attribute (UDA)** assigned to it. It returns `TRUE` if the member carries the named UDA, `FALSE` otherwise.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 User-Defined Attributes (UDAs) are custom tags attached to members in the outline that don't fit into standard dimension hierarchies. They are widely used to:
 - Classify members by custom categories (e.g., "Controllable", "Discretionary", "Intercompany")

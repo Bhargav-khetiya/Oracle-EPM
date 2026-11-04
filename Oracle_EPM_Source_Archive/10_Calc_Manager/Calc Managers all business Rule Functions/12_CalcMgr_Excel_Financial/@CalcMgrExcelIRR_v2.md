@@ -1,13 +1,13 @@
-# @CalcMgrExcelIRR
+﻿# @CalcMgrExcelIRR
 
 ## Overview
 
 `@CalcMgrExcelIRR` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `IRR` function directly inside an Essbase calculation script. 
 It calculates the **Internal Rate of Return** for a series of cash flows that occur at regular intervals (like months or years).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
-The Internal Rate of Return (IRR) is the ultimate metric used in corporate finance to evaluate the profitability of a project or investment. It answers the question: "If I spend $1,000,000 today, and receive varying amounts of cash back over the next 5 years, what is my annualized percentage return?" 
+The Internal Rate of Return (IRR) is the ultimate metric used in corporate finance to evaluate the profitability of a project or investment. It answers the question: "If I spend $1,000,000 today, and receive varying amounts of cash back over the next 5 years, what is my annualized percentage return— 
 Mathematically, IRR is the discount rate that makes the Net Present Value (NPV) of all cash flows equal exactly zero. There is no clean algebraic formula for IRR; it requires an iterative, "guess and check" computational algorithm (like the Newton-Raphson method) that attempts hundreds of discount rates until it hones in on the perfect percentage.
 Writing a recursive guess-and-check loop inside an Essbase calculation script is essentially impossible and highly destructive to system performance. `@CalcMgrExcelIRR` completely offloads this intensive algorithm to the Java engine. It takes an array of cash flows, runs the iterations in memory instantly, and returns the final IRR decimal.
 

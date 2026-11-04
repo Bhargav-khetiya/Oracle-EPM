@@ -1,10 +1,10 @@
-# @COUNT
+﻿# @COUNT
 
 ## Overview
 
 `@COUNT` is a **native Essbase statistical function** in Oracle EPM Cloud (PBCS/EPBCS). It counts the number of non-missing (or conditionally defined) data values within a specified range of members. It returns an integer representing the exact number of populated data points.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When calculating averages, execution rates, or dynamic thresholds, you must know the denominator (how many items actually exist or have data). 
 If a department has 12 months in a year, but they only started spending money in April, dividing their Total Year expenses by 12 yields an inaccurate monthly run-rate. You only want to divide by the number of months that actually had activity (9). 

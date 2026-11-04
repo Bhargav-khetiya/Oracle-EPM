@@ -1,4 +1,4 @@
-# 01 Data Maps Core Architecture and Relational Repository Schema
+﻿# 01 Data Maps Core Architecture and Relational Repository Schema
 
 ## 1. Executive Architectural Overview
 
@@ -133,7 +133,7 @@ When an administrator or user triggers a Data Map (either via Web UI, Job Consol
 During Migration (LCM snapshot export), Data Maps are serialized into XML files within the `resource/Data Maps` folder. An analysis of the LCM XML reveals the operational parameters passed to the engine:
 
 ```xml
-<?xml version="1.0" encoding="UTF-8"?>
+<—xml version="1.0" encoding="UTF-8"—>
 <DataMap xmlns="http://xmlns.oracle.com/epm/planning/datamap" version="24.08.65">
     <Name>OEP_FS to OEP_REP</Name>
     <Description>Data Push from Financials Core BSO to Reporting ASO Cube</Description>

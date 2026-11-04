@@ -1,10 +1,10 @@
-# @RDESCENDANTS
+﻿# @RDESCENDANTS
 
 ## Overview
 
 `@RDESCENDANTS` is a **member relationship function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns all **descendants** of a member **including the member itself**. The "R" stands for "Relative" or "Root-inclusive" — it's `@DESCENDANTS` plus the starting member.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Many calculations need to process an entire sub-hierarchy including its root:
 - Processing all entities INCLUDING the "Total Entity" parent

@@ -1,10 +1,10 @@
-# @CalcMgrDecimalFormat
+﻿# @CalcMgrDecimalFormat
 
 ## Overview
 
 `@CalcMgrDecimalFormat` is a **custom Calc Manager string conversion function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a raw mathematical number (like `1234.5678`) and converts it into a highly polished, human-readable Text String (like `"1,234.57"`) according to a specific formatting pattern you provide.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Essbase natively stores all data as double-precision floating-point numbers. If an account holds the value `1000`, the underlying engine just sees `1000.0`. It does not inherently know about currency symbols, commas, or fixed decimal places—that formatting is traditionally handled on the frontend by Smart View or Financial Reporting.
 However, sometimes you need to generate polished reports, email alerts, or audit logs *directly* from a Calc Script or Groovy Rule before the data ever reaches a frontend tool. If you pass raw Essbase numbers to an email script, the users will see ugly, unformatted data (e.g., `"Your budget is 1000000.456"`). 

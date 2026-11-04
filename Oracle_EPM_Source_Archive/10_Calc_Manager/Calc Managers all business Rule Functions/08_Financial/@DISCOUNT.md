@@ -1,10 +1,10 @@
-# @DISCOUNT
+﻿# @DISCOUNT
 
 ## Overview
 
 `@DISCOUNT` is a **native Essbase financial function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates the **Present Value (PV)** of a future stream of cash flows based on a specific discount rate. It takes future dollar amounts and mathematically discounts them back to "today's dollars" to account for the time value of money.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 A dollar today is worth more than a dollar five years from now due to inflation and lost investment opportunity (the time value of money). When evaluating long-term capital projects, acquisitions, or real estate leases, a company might expect to receive `$1,000,000` in Year 5. But to compare that project against other investments *today*, FP&A teams must discount that future `$1,000,000` back to its present value using the company's Weighted Average Cost of Capital (WACC) or a hurdle rate.
 Writing the exponential present value formula ($PV = \frac{FV}{(1 + r)^n}$) manually across an entire 10-year array using `@POWER` is extremely tedious. 

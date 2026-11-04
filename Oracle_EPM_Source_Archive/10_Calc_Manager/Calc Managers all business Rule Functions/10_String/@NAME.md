@@ -1,10 +1,10 @@
-# @NAME
+﻿# @NAME
 
 ## Overview
 
 `@NAME` is a **native Essbase string conversion function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a type-caster. It takes a structural dimension member object (or a function that returns a member object) and strictly converts it into a **literal text string**.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In the Essbase calculation engine, there is a massive difference between a *Member Object* and a *Text String*. 
 If you write `@CURRMBR("Entity")`, Essbase returns a pointer to a physical block in the database (e.g., `[Entity_101]`). 

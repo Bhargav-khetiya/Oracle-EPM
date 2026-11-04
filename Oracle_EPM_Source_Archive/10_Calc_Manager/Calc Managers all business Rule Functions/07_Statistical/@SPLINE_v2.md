@@ -1,10 +1,10 @@
-# @SPLINE
+﻿# @SPLINE
 
 ## Overview
 
 `@SPLINE` is a **statistical interpolation function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It is used to fill in missing data points (`#MISSING`) within a series of data by fitting a smooth curve (a cubic spline) through the known data points. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Real-world financial and operational data is rarely perfectly continuous. There may be gaps due to missing submissions, system errors, or irregular entry periods (e.g., quarterly data that needs to be smoothed into monthly data).
 - **Data Cleansing**: Before running functions like `@TREND` or `@STDEV`, which fail or skew heavily on missing data, you must "fill the gaps."

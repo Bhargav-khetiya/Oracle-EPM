@@ -1,4 +1,4 @@
-# Planning Approvals: Beginner-to-Consultant Guide
+﻿# Planning Approvals: Beginner-to-Consultant Guide
 
 ## Core idea
 Planning approvals route configured planning data units through assigned owners and reviewers, with actions and available statuses determined by the approvals template, current state, and access.
@@ -73,7 +73,7 @@ Do not grant broad roles as a shortcut for an ownership or workflow issue.
 
 ## Remember and explain
 
-**Recall:** What is an approval unit? What controls available actions? Does ownership alone guarantee write access? Why might a unit be rejected?
+**Recall:** What is an approval unit— What controls available actions— Does ownership alone guarantee write access— Why might a unit be rejected—
 
 **Answer key:** It is a configured unit of planning data in an approval process. Template, status, and access determine actions. The new owner needs applicable write permission. Validation or review findings may require changes before progression.
 

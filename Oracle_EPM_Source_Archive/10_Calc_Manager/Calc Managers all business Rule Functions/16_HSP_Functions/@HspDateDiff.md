@@ -1,10 +1,10 @@
-# @HspDateDiff
+﻿# @HspDateDiff
 
 ## Overview
 
 `@HspDateDiff` is a **Hyperion Planning (HSP) custom date function** embedded within Oracle EPM Cloud (PBCS/EPBCS). It calculates the mathematical difference (in days) between two **`YYYYMMDD` formatted integers** (e.g., `20240515`). 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Historically, Essbase only understood dates as Unix timestamps (seconds since 1970). If an administrator loaded a user-friendly `YYYYMMDD` date (like `20240515`) into an account, and tried to subtract it from `20240101` using native math, Essbase would return `404` (basic integer subtraction), which is mathematically meaningless for calendars (May 15th is not 404 days after Jan 1st). 
 The native `@DATEDIFF` function exists, but it ONLY accepts Unix timestamps. 

@@ -1,10 +1,10 @@
-# @ALLOCATE
+﻿# @ALLOCATE
 
 ## Overview
 
 `@ALLOCATE` is a **data distribution function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that spreads a data value (an amount) across a specified range of members based on an allocation method (such as an even spread, a driver-based share, or a percentage basis).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Allocations are the backbone of management reporting:
 - **Overhead Distribution**: Spreading corporate IT costs down to operating departments.
@@ -106,9 +106,9 @@ Returns the allocated portion of the amount for the current member being evaluat
 FIX("FY25", "Working", @DESCENDANTS("Departments"))
     /* Assuming we are calculating at the department level */
     "Allocated_HR_Cost" = @ALLOCATE(
-        "HR_Pool" -> "Corporate",   /* Amount to allocate */
+        "HR_Pool" -> "Corporateâ”‚   /* Amount to allocate */
         @CHILDREN("Total_Dept"),    /* Target Range */
-        "Headcount",                /* Driver */
+        "Headcountâ”‚                /* Driver */
         roundAmt(2),                /* Round to 2 decimals */
         roundErrTo("Administration") /* Put the penny here */
     );

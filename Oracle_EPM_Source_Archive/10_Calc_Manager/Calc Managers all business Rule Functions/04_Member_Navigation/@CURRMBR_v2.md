@@ -1,10 +1,10 @@
-# @CURRMBR
+﻿# @CURRMBR
 
 ## Overview
 
-`@CURRMBR` is a **native Essbase hierarchical evaluation function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as an absolute spatial pointer. As the calculation engine loops through millions of data intersections, `@CURRMBR` dynamically queries the engine to ask: "What exact member of this specific dimension are you calculating right now?"
+`@CURRMBR` is a **native Essbase hierarchical evaluation function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as an absolute spatial pointer. As the calculation engine loops through millions of data intersections, `@CURRMBR` dynamically queries the engine to ask: "What exact member of this specific dimension are you calculating right now—
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When writing advanced cross-dimensional formulas or relative allocations, you cannot hardcode member names. 
 For example, if you want to copy `"Budget"` data to `"Forecast"`, but ONLY if the current `"Location"` is an American state, you can't write 50 different `IF` statements. You must write one dynamic formula that evaluates the current location block in memory. 

@@ -1,10 +1,10 @@
-# Oracle EPM: The Ultimate Deep-Dive Guide to Grid Spread (Data Forms)
+﻿# Oracle EPM: The Ultimate Deep-Dive Guide to Grid Spread (Data Forms)
 
 ---
 
 ## Table of Contents
-1. [Introduction: What is Grid Spread?](#1-introduction-what-is-grid-spread)
-2. [Why is Grid Spread Needed?](#2-why-is-grid-spread-needed)
+1. [Introduction: What is Grid Spread—](#1-introduction-what-is-grid-spread)
+2. [Why is Grid Spread Needed—](#2-why-is-grid-spread-needed)
 3. [How to Enable Grid Spread (Administrator Setup)](#3-how-to-enable-grid-spread-administrator-setup)
 4. [How Grid Spread Works Internally — Architecture Deep Dive](#4-how-grid-spread-works-internally--architecture-deep-dive)
 5. [Spreading Patterns Explained](#5-spreading-patterns-explained)
@@ -27,7 +27,7 @@
 
 ---
 
-## 1. Introduction: What is Grid Spread?
+## 1. Introduction: What is Grid Spread—
 
 **Grid Spread** is a data-entry feature in Oracle Cloud EPM (Planning, FreeForm, and related business processes) that allows users to take a value from a **parent/summary/total cell** on a data form and **automatically distribute (spread) it downward** to its underlying child/target cells across one or more dimensions visible on the grid.
 
@@ -46,7 +46,7 @@ Think of it this way: A Finance Director enters `$1,200,000` as the annual reven
 
 ---
 
-## 2. Why is Grid Spread Needed?
+## 2. Why is Grid Spread Needed—
 
 ### The Business Problem
 In enterprise planning, data is frequently entered or targeted at **summary levels**:
@@ -70,7 +70,7 @@ But the **planning database** and downstream reporting need data at **granular, 
 2. **Revenue Forecasting** — Update Q3 forecast; spread proportionally to July, August, September based on prior-year mix.
 3. **Headcount Planning** — Set total FTE target for a department; spread evenly across cost centers.
 4. **Expense Adjustments** — Increase travel budget by 10%; Grid Spread applies the percentage increase across all visible periods.
-5. **Quick What-If Analysis** — "What if we increase Q2 by $50K?" — Grid Spread shows the impact instantly before saving.
+5. **Quick What-If Analysis** — "What if we increase Q2 by $50K— — Grid Spread shows the impact instantly before saving.
 
 ---
 
@@ -236,8 +236,8 @@ The "Fill" pattern interacts with the Account dimension's **Time Balance** prope
 
 | Aspect | Proportional | Evenly Split | Fill |
 |:---|:---|:---|:---|
-| **Preserves existing pattern?** | ✅ Yes | ❌ No | ❌ No |
-| **Works with all-zero data?** | ⚠️ Degenerates to even split | ✅ Yes | ✅ Yes |
+| **Preserves existing pattern—** | ✅ Yes | ❌ No | ❌ No |
+| **Works with all-zero data—** | ⚠️ Degenerates to even split | ✅ Yes | ✅ Yes |
 | **Result at parent** | Equals the entered total | Equals the entered total | Equals SUM of fills (or Time Balance result) |
 | **Best for** | Seasonal budgets, revenue forecasting | New items, flat distributions | Fixed recurring costs |
 
@@ -245,7 +245,7 @@ The "Fill" pattern interacts with the Account dimension's **Time Balance** prope
 
 ## 6. Custom Spread Patterns
 
-### What is a Custom Spread Pattern?
+### What is a Custom Spread Pattern—
 
 Beyond the three built-in patterns, Oracle EPM allows administrators to define **Custom Spread Patterns** — weighted distribution templates that control exactly how data flows from parent to children. These custom patterns appear in the **Spread Pattern dropdown** within the Grid Spread and Mass Allocate dialogs.
 
@@ -340,8 +340,8 @@ This is the **most important section** for understanding when Grid Spread works 
 | Property | Grid Spread Behavior |
 |:---|:---|
 | **Data Storage** | Store |
-| **Can be a SOURCE cell?** | ✅ Yes — you CAN select a Store member cell and spread from it |
-| **Can be a TARGET cell?** | ✅ Yes — Grid Spread WILL write data to Store members |
+| **Can be a SOURCE cell—** | ✅ Yes — you CAN select a Store member cell and spread from it |
+| **Can be a TARGET cell—** | ✅ Yes — Grid Spread WILL write data to Store members |
 | **Typical Use** | Level-0 (leaf) members where data is physically stored |
 
 **This is the happy path.** Grid Spread is designed to write data into Store-type level-0 members.
@@ -364,10 +364,10 @@ Entity Dimension:
 | Property | Grid Spread Behavior |
 |:---|:---|
 | **Data Storage** | Dynamic Calc |
-| **Can be a SOURCE cell?** | ✅ Yes — you CAN select a Dynamic Calc parent and say "spread this total down" |
-| **Can be a TARGET cell?** | ❌ **NO** — Grid Spread CANNOT write data to a Dynamic Calc member |
+| **Can be a SOURCE cell—** | ✅ Yes — you CAN select a Dynamic Calc parent and say "spread this total down" |
+| **Can be a TARGET cell—** | ❌ **NO** — Grid Spread CANNOT write data to a Dynamic Calc member |
 
-**Why?** Dynamic Calc members do not physically store data. They calculate their values on-the-fly by aggregating their children or evaluating a member formula. Since Grid Spread needs to **write** values into cells, and Dynamic Calc cells cannot accept writes, the system **skips** them entirely.
+**Why—** Dynamic Calc members do not physically store data. They calculate their values on-the-fly by aggregating their children or evaluating a member formula. Since Grid Spread needs to **write** values into cells, and Dynamic Calc cells cannot accept writes, the system **skips** them entirely.
 
 **The Golden Rule:**
 > *You can spread FROM a Dynamic Calc parent, but Grid Spread will ONLY write data INTO its Store-type children/descendants. Dynamic Calc members in the target path are simply skipped.*
@@ -392,7 +392,7 @@ Period Dimension:
 | Property | Grid Spread Behavior |
 |:---|:---|
 | **Data Storage** | Dynamic Calc and Store |
-| **Can be a TARGET cell?** | ⚠️ **Conditional** — The system may accept the write, BUT the member formula will overwrite the stored value on the next retrieval/recalculation |
+| **Can be a TARGET cell—** | ⚠️ **Conditional** — The system may accept the write, BUT the member formula will overwrite the stored value on the next retrieval/recalculation |
 
 **The Problem:** A "Dynamic Calc and Store" member has a member formula. If you Grid Spread a value INTO it, the value may appear to save. But on the next database retrieval or form refresh, the member formula recalculates and **overwrites** the stored value. The user sees their spread value "disappear."
 
@@ -403,11 +403,11 @@ Period Dimension:
 | Property | Grid Spread Behavior |
 |:---|:---|
 | **Data Storage** | Never Share |
-| **Can be a TARGET cell?** | ✅ Yes — Grid Spread treats it like a Store member; it can receive writes |
+| **Can be a TARGET cell—** | ✅ Yes — Grid Spread treats it like a Store member; it can receive writes |
 
 ### 8.5 Summary Table: Storage Properties & Grid Spread
 
-| Data Storage Property | Can be SOURCE? | Can be TARGET? | Notes |
+| Data Storage Property | Can be SOURCE— | Can be TARGET— | Notes |
 |:---|:---:|:---:|:---|
 | **Store** | ✅ | ✅ | The ideal target cell type |
 | **Dynamic Calc** | ✅ | ❌ | Skipped — cannot accept writes |
@@ -420,7 +420,7 @@ Period Dimension:
 
 ## 9. Grid Spread and Shared Members
 
-### What Happens When Grid Spread Targets a Shared Member?
+### What Happens When Grid Spread Targets a Shared Member—
 
 **Shared members** are pointers to a "base" (primary) member that exists elsewhere in the hierarchy. They enable alternate rollup hierarchies without duplicating data.
 
@@ -428,8 +428,8 @@ Period Dimension:
 
 | Rule | Details |
 |:---|:---|
-| **Can you spread TO a shared member?** | ✅ **Yes**, if the user has write access to the underlying base member |
-| **Where does the data go?** | The data is written to the **base member**, not a separate storage location |
+| **Can you spread TO a shared member—** | ✅ **Yes**, if the user has write access to the underlying base member |
+| **Where does the data go—** | The data is written to the **base member**, not a separate storage location |
 | **Security check** | If the shared member's context (e.g., alternate hierarchy security) renders it read-only, Grid Spread **skips** it |
 | **Member formula** | Shared members **cannot have their own member formulas** — they inherit all properties from the base member |
 
@@ -458,11 +458,11 @@ If the base member is set to **Dynamic Calc**, then even though the shared membe
 
 | Aspect | Details |
 |:---|:---|
-| **Can Grid Spread write to a Label-Only member?** | ❌ **No — Never** |
-| **Can Grid Spread source from a Label-Only member?** | ❌ **No** — Label-Only members have no data to spread |
-| **Why?** | Label-Only members are structural placeholders. They do NOT store data values, they do NOT have data intersections in the cube, and they cannot participate in any data write operation |
+| **Can Grid Spread write to a Label-Only member—** | ❌ **No — Never** |
+| **Can Grid Spread source from a Label-Only member—** | ❌ **No** — Label-Only members have no data to spread |
+| **Why—** | Label-Only members are structural placeholders. They do NOT store data values, they do NOT have data intersections in the cube, and they cannot participate in any data write operation |
 
-### What is a Label-Only Member?
+### What is a Label-Only Member—
 A Label-Only member is a parent node used purely for **organizational/structural grouping**. It has no data storage, no aggregation, and no calculation. It simply provides a label/header in the hierarchy.
 
 ### Implied Share Trap
@@ -490,7 +490,7 @@ Account Dimension:
 
 Cells whose values are governed by a **member formula** are treated as **read-only** by Grid Spread. The system skips them entirely.
 
-### Why?
+### Why—
 Member formulas enforce calculation logic (e.g., `"Revenue" - "Expenses"`). If Grid Spread were to overwrite these cells, it would break the formula-based integrity. The system protects formula cells from inadvertent data input.
 
 ### Scenarios
@@ -526,17 +526,17 @@ These three are often confused. Here is the complete comparison:
 |:---|:---|:---|:---|
 | **What triggers it** | Typing a value into a parent time period cell and hitting Enter/Tab | Selecting a cell → Edit → Grid Spread | Selecting a cell → Adjust → Mass Allocate |
 | **Primary scope** | **Time dimension only** (periods) | **Any dimension visible on the grid** | **Any dimension, including hidden descendants** |
-| **Target cells must be visible?** | Time children are usually on the form | ✅ **Yes — mandatory** | ❌ **No — can write to unseen descendants** |
-| **Writes directly to database?** | After Save | After Save | ✅ **Yes — immediately on execution** |
-| **Respects form security?** | ✅ Yes | ✅ Yes | ❌ **No — writes directly to Essbase, bypassing form security** |
-| **Requires special role?** | No | No | ✅ **Yes — requires "Mass Allocate" role** |
+| **Target cells must be visible—** | Time children are usually on the form | ✅ **Yes — mandatory** | ❌ **No — can write to unseen descendants** |
+| **Writes directly to database—** | After Save | After Save | ✅ **Yes — immediately on execution** |
+| **Respects form security—** | ✅ Yes | ✅ Yes | ❌ **No — writes directly to Essbase, bypassing form security** |
+| **Requires special role—** | No | No | ✅ **Yes — requires "Mass Allocate" role** |
 | **Reversibility** | Undo before save | Undo before save | ❌ **Cannot undo — requires reverse data submission** |
 | **Spread patterns** | Time Balance properties, weekly layouts (4-4-5) | Proportional, Even, Fill (+ custom) | Proportional, Even, Fill (+ custom) |
 | **Form property** | Always available (unless spreading disabled) | Must enable "Enable Grid Spread" | Must enable "Enable Mass Allocate" |
 | **Smart View property** | Controlled by "Disable Spreading" | Controlled by "Disable Spreading" | Controlled by "Disable Spreading" |
 | **Performance impact** | Minimal | Minimal (client-side calculation) | Can be heavy (writes to many blocks in Essbase) |
 
-### When to Use Which?
+### When to Use Which—
 
 | Scenario | Recommended Tool |
 |:---|:---|
@@ -555,7 +555,7 @@ These three are often confused. Here is the complete comparison:
 
 | Aspect | Behavior |
 |:---|:---|
-| **Grid Spread supported?** | ✅ Fully supported |
+| **Grid Spread supported—** | ✅ Fully supported |
 | **Requirements** | All intermediate generations between parent and level-0 must be on the form |
 | **Write target** | Level-0 stored blocks |
 | **After save** | Requires manual or scripted rollup (AGG/CALC) to update parent aggregates |
@@ -564,15 +564,15 @@ These three are often confused. Here is the complete comparison:
 
 | Aspect | Behavior |
 |:---|:---|
-| **Grid Spread supported?** | ❌ **Not natively supported** for upper-level parents |
-| **Why?** | ASO is designed for fast aggregation and reporting, not data input. Upper-level cells are dynamically aggregated and read-only |
+| **Grid Spread supported—** | ❌ **Not natively supported** for upper-level parents |
+| **Why—** | ASO is designed for fast aggregation and reporting, not data input. Upper-level cells are dynamically aggregated and read-only |
 | **Workaround** | Use Groovy Rules or custom MDX write-back scripts to achieve similar behavior |
 
 ### 13.3 Hybrid BSO Mode ✅ (Optimized)
 
 | Aspect | Behavior |
 |:---|:---|
-| **Grid Spread supported?** | ✅ **Fully supported and optimized** |
+| **Grid Spread supported—** | ✅ **Fully supported and optimized** |
 | **Advantage** | Leverages **Calc-on-the-Fly** — back-spreading to level-0 cells is seamless |
 | **After save** | Parent aggregates update **instantly** (no manual rollup needed) |
 | **Performance** | Significantly faster than traditional BSO |
@@ -916,24 +916,24 @@ To access Grid Spread for a dashboard grid component:
 └──────────────────────────────────────────────────────────────┘
 ```
 
-### Decision Tree: Which Spreading Tool to Use?
+### Decision Tree: Which Spreading Tool to Use—
 
 ```
                     ┌─────────────────────┐
                     │ Need to distribute   │
-                    │ data from a parent?  │
+                    │ data from a parent—  │
                     └─────────┬───────────┘
                               │
                     ┌─────────▼───────────┐
                     │ Are ALL target cells │
-                    │ visible on the form? │
+                    │ visible on the form— │
                     └─────────┬───────────┘
                          ╱         ╲
                        Yes           No
                        ╱               ╲
            ┌──────────▼─────┐    ┌──────▼──────────┐
            │ Is it just the │    │ Use Mass         │
-           │ Time dimension?│    │ Allocate         │
+           │ Time dimension—│    │ Allocate         │
            └───────┬────────┘    │ (or Groovy/Calc  │
                 ╱     ╲          │  Manager Rules)  │
               Yes       No       └─────────────────┘

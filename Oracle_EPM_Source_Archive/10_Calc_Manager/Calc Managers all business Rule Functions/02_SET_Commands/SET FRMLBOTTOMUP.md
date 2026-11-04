@@ -1,10 +1,10 @@
-# SET FRMLBOTTOMUP
+﻿# SET FRMLBOTTOMUP
 
 ## Overview
 
 `SET FRMLBOTTOMUP` is a **native Essbase system directive** in Oracle EPM Cloud (PBCS/EPBCS). It overrides the default calculation methodology for complex formulas executed on sparse dimension members. It explicitly forces the engine to calculate the formula using a **Bottom-Up** block resolution path, rather than a Top-Down resolution path.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Essbase has two fundamental ways to calculate a block:
 1. **Top-Down**: It looks at the formula on the parent, decides it needs children, creates potential virtual blocks for every child, steps down the tree, does the math, and rolls back up. This is incredibly safe, but in a massive sparse dimension, creating virtual blocks for millions of children who don't even have data takes an eternity.

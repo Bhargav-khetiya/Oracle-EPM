@@ -1,10 +1,10 @@
-# @CalcMgrCounterUpdateText
+﻿# @CalcMgrCounterUpdateText
 
 ## Overview
 
 `@CalcMgrCounterUpdateText` is a **custom Calc Manager state-tracking function** in Oracle EPM Cloud (PBCS/EPBCS). It directly forces a new text string into a specific memory counter stored in the background Java heap, completely overwriting whatever string was previously stored there.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard text counters (`@CalcMgrCounterAddText`) are designed for appending. If the memory bucket contains `"Error_1, "`, and you add `"Error_2"`, the bucket grows to `"Error_1, Error_2"`.
 However, sometimes you need a global variable to hold a single, definitive status string rather than a growing log. For instance, you might want a global string variable called `"System_Status"` that starts as `"Running"`, and if a critical error is encountered, you want to completely overwrite it to say `"Failed"`.

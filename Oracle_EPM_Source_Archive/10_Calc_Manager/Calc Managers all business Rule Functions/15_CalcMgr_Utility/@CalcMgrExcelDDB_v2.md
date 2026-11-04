@@ -1,11 +1,11 @@
-# @CalcMgrExcelDDB
+﻿# @CalcMgrExcelDDB
 
 ## Overview
 
 `@CalcMgrExcelDDB` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `DDB` function directly inside an Essbase calculation script. 
 It calculates the depreciation of an asset for a specific period using the **Double-Declining Balance Method** (or some other specified declining factor).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Double-Declining Balance is one of the most common accelerated depreciation methods used in US tax planning (like MACRS). Instead of calculating a complex fractional rate based on salvage value (like the `DB` function), `DDB` simply calculates the straight-line rate (e.g., 20% for a 5-year asset) and doubles it (40%). It then applies this 40% rate to the remaining Net Book Value every single period. 
 However, the math gets complicated because you are legally not allowed to depreciate the asset below its salvage value. Therefore, in the final years, the calculation must intelligently switch logic to ensure the accumulated depreciation lands exactly on the salvage value boundary without breaching it.

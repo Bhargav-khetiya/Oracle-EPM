@@ -1,10 +1,10 @@
-# @AVGRANGE
+﻿# @AVGRANGE
 
 ## Overview
 
 `@AVGRANGE` is a **statistical and cross-dimensional function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It calculates the average (mean) of a specified measure across a dynamic range of members from a different dimension.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard `@AVG` requires you to pass the exact target intersections into it, often leading to clunky syntax like `@AVG(SKIPNONE, "Jan"->"Sales", "Feb"->"Sales")`. 
 `@AVGRANGE` cleanly separates the *What* (the measure you are averaging) from the *Where* (the time periods or entities you are averaging it across). 

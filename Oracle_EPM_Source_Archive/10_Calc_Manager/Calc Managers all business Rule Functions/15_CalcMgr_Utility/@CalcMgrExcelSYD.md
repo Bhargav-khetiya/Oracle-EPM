@@ -1,11 +1,11 @@
-# @CalcMgrExcelSYD
+﻿# @CalcMgrExcelSYD
 
 ## Overview
 
 `@CalcMgrExcelSYD` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `SYD` function directly inside an Essbase calculation script. 
 It calculates the **Sum-of-Years' Digits Depreciation** of an asset for a specific, single period.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While Straight-Line depreciation (`SLN`) spreads an asset's cost equally over its life, some assets (like computers or heavy vehicles) lose the majority of their value in the very first few years. To account for this, tax and FP&A models use "Accelerated Depreciation" methods.
 Sum-of-Years' Digits (SYD) is one of these accelerated methods. The formula calculates the sum of all the years in the asset's life (e.g., for a 5-year asset: `5 + 4 + 3 + 2 + 1 = 15`). In Year 1, you write off `5/15` of the asset's depreciable base. In Year 2, you write off `4/15`, and so on.

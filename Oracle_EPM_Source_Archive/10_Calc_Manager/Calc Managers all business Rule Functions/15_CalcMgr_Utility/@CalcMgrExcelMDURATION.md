@@ -1,14 +1,14 @@
-# @CalcMgrExcelMDURATION
+﻿# @CalcMgrExcelMDURATION
 
 ## Overview
 
 `@CalcMgrExcelMDURATION` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `MDURATION` function directly inside an Essbase calculation script. 
 It calculates the **Modified Macaulay Duration** for a security with an assumed par value of $100. Modified Duration is a critical risk metric used to measure a bond's price sensitivity to interest rate changes.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While standard `DURATION` (Macaulay Duration) calculates the weighted average time (in years) it takes to receive a bond's cash flows, **Modified Duration** takes that time metric and mathematically adjusts it to calculate actual price volatility. 
-Specifically, Modified Duration answers the question: *"If the market interest rate goes up by 1%, by exactly what percentage will the price of my bond collapse?"*
+Specifically, Modified Duration answers the question: *"If the market interest rate goes up by 1%, by exactly what percentage will the price of my bond collapse—*
 The mathematical formula for Modified Duration is `Macaulay_Duration / (1 + (Yield / Frequency))`. While you could theoretically calculate this manually in Essbase using the standard `DURATION` function and dividing it, `@CalcMgrExcelMDURATION` handles the entire iterative discounting loop and the subsequent modification in a single Java call. This guarantees perfect parity with legacy risk-management spreadsheets used by corporate treasurers.
 
 ### When to Use It
@@ -90,7 +90,7 @@ Returns the Modified Duration expressed as a percentage multiplier (e.g., `4.25`
 
 ### Example 1: Stress-Testing a Bond Portfolio (Rate Shock)
 
-**Scenario**: A corporate treasury holds a large portfolio of bonds. The Chief Risk Officer wants a stress-test scenario in the Essbase model: "What is the exact dollar loss to our portfolio if interest rates rise by 1.5% (150 basis points)?" The FP&A team uses `MDURATION` to calculate the price elasticity, and multiplies it by the shock factor.
+**Scenario**: A corporate treasury holds a large portfolio of bonds. The Chief Risk Officer wants a stress-test scenario in the Essbase model: "What is the exact dollar loss to our portfolio if interest rates rise by 1.5% (150 basis points)— The FP&A team uses `MDURATION` to calculate the price elasticity, and multiplies it by the shock factor.
 
 ```essbase
 FIX("Scenario_Rate_Shock_Up_150bps", "Working", @LEVEL0("Debt_Investments"))

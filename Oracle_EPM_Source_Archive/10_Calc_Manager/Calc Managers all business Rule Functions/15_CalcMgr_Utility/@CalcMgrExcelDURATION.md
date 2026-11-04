@@ -1,11 +1,11 @@
-# @CalcMgrExcelDURATION
+﻿# @CalcMgrExcelDURATION
 
 ## Overview
 
 `@CalcMgrExcelDURATION` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `DURATION` function directly inside an Essbase calculation script. 
 It calculates the **Macaulay Duration** of a security that pays periodic interest (like a bond). Duration measures the weighted average time (in years) it takes for an investor to receive the bond's cash flows (both interest and principal), serving as a critical metric for assessing a bond's price sensitivity to interest rate changes.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In advanced Treasury, Banking, and Asset Management models, calculating a bond's Duration is vital for hedging interest rate risk. The math required to calculate Macaulay Duration is intensely complex. It involves calculating the Present Value of *every single future coupon payment*, weighting each one by the time until it is received, summing those weighted values, and dividing by the bond's total current market price. 
 Attempting to build this iterative, discounting loop manually using standard Essbase equations is incredibly difficult, slow, and almost impossible to dynamically scale based on changing maturity dates. `@CalcMgrExcelDURATION` resolves this by offloading the entire iterative discounting loop to the Java engine, returning the exact Macaulay Duration in milliseconds.

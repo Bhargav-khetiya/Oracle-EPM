@@ -1,4 +1,4 @@
-# @SANCESTVAL
+﻿# @SANCESTVAL
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 *(The "S" stands for Stored/Static).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building massive top-down allocations, a Level 0 member (like `"Store_101"`) often needs to query data from its parent (like `"New_York"`) or its grandparent (like `"Total_USA"`) to calculate its proportional share (e.g., `Store Sales / USA Sales`). 
 The standard function for this is `@ANCESTVAL`. However, `@ANCESTVAL` strictly obeys the physical outline. If `"Total_USA"` is a `Dynamic Calc` member, querying it natively will force the Essbase engine to stop calculating the store, run an on-the-fly aggregation of all USA stores to find the total, return the total to Store 101, and then repeat that massive aggregation for Store 102, Store 103, etc. This causes extreme performance degradation (fragmentation).

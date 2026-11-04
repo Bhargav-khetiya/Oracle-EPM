@@ -1,4 +1,4 @@
-# MDX Scripts in Oracle EPM — Complete Deep-Dive Guide
+﻿# MDX Scripts in Oracle EPM — Complete Deep-Dive Guide
 
 > [!NOTE]
 > This document covers MDX (Multi-Dimensional Expressions) in Oracle EPM — what it is, where it's used, how to create MDX scripts, syntax, functions, and practical examples across Hyperion, PBCS, and EPBCS.
@@ -7,9 +7,9 @@
 
 ## Table of Contents
 
-1. [What is MDX?](#1-what-is-mdx)
+1. [What is MDX—](#1-what-is-mdx)
 2. [MDX vs Calc Scripts vs Groovy](#2-mdx-vs-calc-scripts-vs-groovy)
-3. [Where is MDX Used in Oracle EPM?](#3-where-is-mdx-used-in-oracle-epm)
+3. [Where is MDX Used in Oracle EPM—](#3-where-is-mdx-used-in-oracle-epm)
 4. [MDX Fundamentals](#4-mdx-fundamentals)
 5. [MDX Query Syntax (SELECT)](#5-mdx-query-syntax-select)
 6. [MDX Calculation Syntax (Business Rules)](#6-mdx-calculation-syntax-business-rules)
@@ -23,7 +23,7 @@
 
 ---
 
-## 1. What is MDX?
+## 1. What is MDX—
 
 ### 1.1 Definition
 
@@ -75,7 +75,7 @@ Think of it this way:
 
 ---
 
-## 3. Where is MDX Used in Oracle EPM?
+## 3. Where is MDX Used in Oracle EPM—
 
 ### 3.1 MDX Usage Points
 
@@ -281,7 +281,7 @@ WHERE
 | **Purpose** | Read/retrieve data | Write/calculate data |
 | **Keyword** | `SELECT ... FROM` | No SELECT; uses direct assignments |
 | **Where used** | Smart View, Reports | Calc Manager Business Rules |
-| **Modifies data?** | No (read-only) | Yes (writes to cube) |
+| **Modifies data—** | No (read-only) | Yes (writes to cube) |
 
 ### 6.2 MDX Calculation Script Structure
 
@@ -447,11 +447,11 @@ Functions that return **numeric values**:
 | `IIF(condition, true, false)` | If-then-else | `IIF([Revenue] > 0, [COGS]/[Revenue], 0)` |
 | `CASE WHEN` | Multi-condition | See example below |
 | `IsEmpty(value)` | Check if cell is empty | `IsEmpty([Revenue])` |
-| `IsAncestor(mbr, ancestor)` | Is ancestor? | `IsAncestor([Entity].CurrentMember, [East])` |
+| `IsAncestor(mbr, ancestor)` | Is ancestor— | `IsAncestor([Entity].CurrentMember, [East])` |
 | `IsGeneration(mbr, gen)` | Check generation | `IsGeneration([Entity].CurrentMember, 3)` |
 | `IsLevel(mbr, level)` | Check level | `IsLevel([Entity].CurrentMember, 0)` |
-| `IsLeaf(mbr)` | Is leaf member? | `IsLeaf([Entity].CurrentMember)` |
-| `IsValid(tuple)` | Is valid intersection? | `IsValid(([Revenue], [East]))` |
+| `IsLeaf(mbr)` | Is leaf member— | `IsLeaf([Entity].CurrentMember)` |
+| `IsValid(tuple)` | Is valid intersection— | `IsValid(([Revenue], [East]))` |
 | `NOT` | Negation | `NOT IsEmpty([Revenue])` |
 | `AND` | Logical AND | `[Revenue] > 0 AND [COGS] > 0` |
 | `OR` | Logical OR | `[Revenue] > 0 OR [COGS] > 0` |

@@ -1,13 +1,13 @@
-# SET FRMLRTDYNAMIC
+﻿# SET FRMLRTDYNAMIC
 
 ## Overview
 
 `SET FRMLRTDYNAMIC` is a **native Essbase system directive** in Oracle EPM Cloud (PBCS/EPBCS). It controls how the calculation engine handles formulas that are attached to **Dynamic Calc** members when running a batch calculation script. Specifically, it dictates whether a script should temporarily calculate and store a dynamic value in memory so it can be referenced by other calculations downstream.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In a standard Essbase outline, members tagged as `Dynamic Calc` do not store physical data on the disk. They are calculated on-the-fly when a user queries them in Smart View. 
-However, what happens if your calculation script needs to use a dynamic member as an input for a physical calculation? 
+However, what happens if your calculation script needs to use a dynamic member as an input for a physical calculation— 
 For example, you want to calculate `"Bonus" = "Gross_Profit" * 0.10;`. But `"Gross_Profit"` is a `Dynamic Calc` member (`Revenue - Expenses`). 
 By default, when Essbase runs the script and hits that equation, it dynamically calculates `"Gross_Profit"` in memory, uses the result to calculate `"Bonus"`, and writes `"Bonus"` to the disk. 
 But if you reference `"Gross_Profit"` 50 times in your script, the engine will run the `Revenue - Expenses` math 50 times, slowing down the script. 

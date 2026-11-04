@@ -1,8 +1,8 @@
-# Oracle EPM: The Ultimate Master Guide to Action Menus (Right-Click Menus)
+﻿# Oracle EPM: The Ultimate Master Guide to Action Menus (Right-Click Menus)
 
 ---
 
-## 1. Introduction: What is an Action Menu?
+## 1. Introduction: What is an Action Menu—
 An **Action Menu** (also known as a Right-Click Context Menu) allows Service Administrators to create custom options that appear when a user right-clicks on a cell, row, or column in a Web Form or an Ad Hoc Grid. 
 
 Instead of forcing users to navigate through the home screen, Action Menus allow them to seamlessly:
@@ -67,7 +67,7 @@ Launches a specific Business Rule for the selected Cube.
     *   *Classic View:* Default window block.
     *   *Streamline View:* Each prompt on a different line for cleaner UI.
 *   **Customization:** You can customize the Window Title, OK Button text, and Cancel Button text.
-*   **Launch Confirmation Message:** You can provide a custom warning message (e.g., *"Are you sure you want to run this heavy allocation? It may take 5 minutes."*) before the rule executes.
+*   **Launch Confirmation Message:** You can provide a custom warning message (e.g., *"Are you sure you want to run this heavy allocation— It may take 5 minutes."*) before the rule executes.
 
 ### 2. Form
 Jumps the user to a target Data Form.
@@ -78,8 +78,8 @@ Jumps the user to a target Data Form.
 Opens an external webpage in a new tab.
 *   **Use Form Context:** A highly powerful feature. If checked, you can pass EPM dimension members as parameters into the external URL. 
 *   *Example:* If you want to link to an external HR system for the selected Employee:
-    *   `https://hr-system.company.com/profile?EmployeeID=<Employee>`
-    *   When the user right-clicks employee "E1045", it dynamically opens `https://hr-system.company.com/profile?EmployeeID=E1045`.
+    *   `https://hr-system.company.com/profile—EmployeeID=<Employee>`
+    *   When the user right-clicks employee "E1045", it dynamically opens `https://hr-system.company.com/profile—EmployeeID=E1045`.
 
 ### 4. Dashboard
 Opens a selected Dashboard in a new dynamic tab. The cell context from the form is retained and applied to the dashboard filters.
@@ -93,7 +93,7 @@ Directs the user to the Manage Approvals screen for a specific Scenario and Vers
 
 By default, Action Menus must be manually attached to specific Forms (via the Form Designer > Other Options tab). However, you can create **Global Ad Hoc Menus**.
 
-**What is an Ad Hoc Menu?**
+**What is an Ad Hoc Menu—**
 It is a menu that is automatically enabled for *all* Ad Hoc grids across the system, without needing to attach it manually.
 
 **How to Configure:**

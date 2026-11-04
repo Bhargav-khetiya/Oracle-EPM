@@ -1,10 +1,10 @@
-# @CalcMgrIsValidSLMember
+﻿# @CalcMgrIsValidSLMember
 
 ## Overview
 
 `@CalcMgrIsValidSLMember` is a **custom Calc Manager Smart List validation function** in Oracle EPM Cloud (PBCS/EPBCS). It takes the name of a specific Smart List and a dynamic text string, and queries the database to verify if that exact string **exists as a valid entry/label** inside that Smart List, returning a Boolean (`true` or `false`).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Smart Lists in EPM act as dropdown menus on web forms, mapping human-readable text labels (like `"Approved"` or `"New York"`) to underlying Essbase integers (like `1` or `2`). 
 When users load data via flat files or REST API integrations, they often bypass web forms and load text strings directly into Smart List-enabled text accounts. If a user loads `"Apprved"` (a typo) into a Smart List account, the system might accept the string, but any downstream calculation logic relying on the integer mapping (e.g., `IF(Status == 1)`) will completely fail.

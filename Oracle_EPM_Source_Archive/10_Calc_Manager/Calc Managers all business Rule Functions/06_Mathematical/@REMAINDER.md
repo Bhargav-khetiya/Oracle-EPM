@@ -1,4 +1,4 @@
-# @REMAINDER
+﻿# @REMAINDER
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 *(Note: In modern EPM Cloud, `@REMAINDER` is mathematically and functionally identical to `@MOD` (Modulo). They use the exact same underlying C-engine arithmetic. `@REMAINDER` exists primarily as a legacy alias for administrators who prefer non-programmatic, plain-English syntax).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When executing workforce planning, logistics routing, or batch-processing models, mathematical division often leaves leftover pieces. 
 If a retail location has $52$ `"Sales_Associates"`, and they must be grouped into `"Training_Classes"` that hold exactly $10$ people, dividing $52 / 10$ yields $5.2$ classes. 

@@ -1,10 +1,10 @@
-# CALC ALL EXCEPT DIM
+﻿# CALC ALL EXCEPT DIM
 
 ## Overview
 
 `CALC ALL EXCEPT DIM` is a **native Essbase calculation command** in Oracle EPM Cloud (PBCS/EPBCS). It is an aggressive, macro-level directive that commands the Essbase calculation engine to execute a full, top-to-bottom structural aggregation (calculating all dimension trees, running all formulas, rolling up all parents)... **EXCEPT** for one explicitly specified dimension.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 The standard `CALC ALL;` command is the nuclear option of Essbase. It calculates everything. However, in modern multidimensional databases, calculating *everything* is rarely the correct path.
 Often, a specific dimension (like `Currency` or `Scenario`) does not need to be aggregated. For example, if you just loaded Local Currency data for Actuals, you need to roll up the Entity dimension, the Product dimension, and the Time dimension. But you explicitly DO NOT want to aggregate the `Scenario` dimension (adding Actuals to Forecast is mathematically invalid). 

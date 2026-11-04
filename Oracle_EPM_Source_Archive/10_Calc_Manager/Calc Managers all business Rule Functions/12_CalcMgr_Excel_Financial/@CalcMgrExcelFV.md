@@ -1,14 +1,14 @@
-# @CalcMgrExcelFV
+﻿# @CalcMgrExcelFV
 
 ## Overview
 
 `@CalcMgrExcelFV` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `FV` function directly inside an Essbase calculation script. 
 It calculates the **Future Value** of an investment based on periodic, constant payments and a constant interest rate.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In corporate treasury, wealth management, and capital planning models, analysts frequently need to project the future value of a sinking fund, a corporate reserve account, or a bond investment. 
-For example, if a company seeds a reserve account with $10,000, adds $1,000 every single month, and the account yields 5% annually, how much cash will be in the account after 5 years?
+For example, if a company seeds a reserve account with $10,000, adds $1,000 every single month, and the account yields 5% annually, how much cash will be in the account after 5 years—
 To calculate this manually in Essbase, a developer would have to write a highly inefficient looping script to compound the interest and add the new principal month by month. `@CalcMgrExcelFV` entirely eliminates the need for looping. It uses the Java financial engine to execute the integral compound interest formula, instantly calculating the exact future balance. This guarantees parity with legacy Excel models and radically speeds up the calculation.
 
 ### When to Use It

@@ -1,4 +1,4 @@
-# 02 — Essbase Data Storage Architecture: How Data Is Physically Stored
+﻿# 02 — Essbase Data Storage Architecture: How Data Is Physically Stored
 
 ---
 
@@ -83,7 +83,7 @@ $ARBORPATH/app/
         └── temp/                       ← Temporary files during operations
 ```
 
-### Why Multiple .IND and .PAG Files?
+### Why Multiple .IND and .PAG Files—
 
 Each `.IND` and `.PAG` file has a **maximum size limit** (configurable, default ~2GB per file). When a file reaches its limit, Essbase creates overflow files:
 
@@ -98,7 +98,7 @@ The `DATAFILECACHESIZE` configuration setting controls how many of these files c
 
 ## 2.4 The Block — The Fundamental Unit of Storage
 
-### What Is a Block?
+### What Is a Block—
 
 A **block** is the smallest unit of data storage in Essbase BSO. It is a **fixed-size, multi-dimensional array** formed by all **dense dimensions**.
 

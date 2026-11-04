@@ -1,11 +1,11 @@
-# @CalcMgrExcelFACT
+﻿# @CalcMgrExcelFACT
 
 ## Overview
 
 `@CalcMgrExcelFACT` is a **custom Calc Manager mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `FACT` function directly inside an Essbase calculation script. 
 It calculates the **Factorial** of a number, mathematically represented as `n!`.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 A factorial is the product of an integer and all the positive integers below it (e.g., `5!` = 5 * 4 * 3 * 2 * 1 = 120). Factorials are the foundational building block of combinatorics, probability modeling, and operations research.
 If a logistics model needs to calculate how many different ways a fleet of 8 delivery trucks can be routed (`8!`), Essbase does not have a native `!` operator. Writing a custom loop in an Essbase calc script to calculate `8 * 7 * 6 * 5...` is highly inefficient and creates messy code.

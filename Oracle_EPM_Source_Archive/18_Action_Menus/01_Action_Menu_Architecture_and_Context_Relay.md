@@ -1,8 +1,8 @@
-# 01 — Action Menu Architecture & Context Relay
+﻿# 01 — Action Menu Architecture & Context Relay
 
 ---
 
-## 1.1 What is an Action Menu?
+## 1.1 What is an Action Menu—
 
 In Oracle EPM Cloud Planning, an **Action Menu** (commonly referred to as a **Right-Click Context Menu**) allows administrators to attach contextual actions directly to cells, rows, columns, and POV drop-downs in Web Data Forms, Web Ad Hoc grids, and Smart View (Excel).
 
@@ -59,7 +59,7 @@ In Oracle EPM Cloud Planning, an **Action Menu** (commonly referred to as a **Ri
 
 In the supplied production UI extraction (`action menu.txt`), every menu item possesses a common header panel:
 
-| Field Name | UI Label | Required? | Technical Limits & Rules | Internal Mechanics |
+| Field Name | UI Label | Required— | Technical Limits & Rules | Internal Mechanics |
 | :--- | :--- | :---: | :--- | :--- |
 | **`Menu Item`** | `Menu Item` | **Yes** (`*`) | Max 80 characters. Alphanumeric characters and underscores (`_`) **only**. No spaces or punctuation. | The programmatic unique key in the Planning relational database (`HSP_ACTION_MENU_ITEM`). |
 | **`Label`** | `Label` | **Yes** (`*`) | Max 80 characters. Free-form text. Spaces, numbers, and special characters **allowed**. | The human-readable string displayed to planners in the right-click menu. Supports localization keys. |

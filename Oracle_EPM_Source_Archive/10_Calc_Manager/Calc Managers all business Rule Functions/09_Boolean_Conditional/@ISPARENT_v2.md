@@ -1,10 +1,10 @@
-# @ISPARENT
+﻿# @ISPARENT
 
 ## Overview
 
 `@ISPARENT` is a **native Essbase boolean function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates the currently calculating member and returns `TRUE` or `FALSE` based on whether the current member is the **Immediate Parent** (exactly one generation above) of a specified target child member.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building hierarchical validation rules or complex bottom-up allocations, administrators often need precise control over the direct supervisor/parent node of a data point. 
 If a base store (`"Store_101"`) reports a massive loss, the script might need to flag the direct Regional Manager (`"New_York"`) for review. 
@@ -55,7 +55,7 @@ Returns `TRUE` (1) if the currently calculating member is the immediate, first-g
 
 1. **Trigger**: The Essbase engine encounters the `IF(@ISPARENT(...))` block during a calculation pass.
 2. **Context Query**: It identifies the specific member it is currently calculating (e.g., `"New_York"`).
-3. **Outline Trace**: It queries the active `.otl` outline. It looks at the `MemberName` provided in the parameter and asks: "Who is the direct parent of this target?"
+3. **Outline Trace**: It queries the active `.otl` outline. It looks at the `MemberName` provided in the parameter and asks: "Who is the direct parent of this target—
 4. **Match Evaluation**: It compares the direct parent it found against the current calculating member. 
 5. **Return**: If they match perfectly, it returns `TRUE`. If they do not match, it returns `FALSE`.
 
@@ -118,7 +118,7 @@ ENDFIX
 
 | Mistake | Explanation | Fix |
 |---------|-------------|-----|
-| Backward Logic | `IF(@ISPARENT("New_York"))` | The parameter is the CHILD. The function asks "Is the current member the parent of the parameter?" If you put the Parent in the parameter, and the engine calculates the Child, it asks "Am I the parent of my Parent?", returning `FALSE`. If you want to check if the current member is a child of a parent, you MUST use `@ISCHILD` |
+| Backward Logic | `IF(@ISPARENT("New_York"))` | The parameter is the CHILD. The function asks "Is the current member the parent of the parameter— If you put the Parent in the parameter, and the engine calculates the Child, it asks "Am I the parent of my Parent—, returning `FALSE`. If you want to check if the current member is a child of a parent, you MUST use `@ISCHILD` |
 | Confusing with `@ISANCEST` | Missing the Grandparents | If you write an allocation rule using `@ISPARENT("Store_101")`, it will hit `"New_York"`, but it will COMPLETELY IGNORE `"USA"`. If your intent was to apply logic to the parent and EVERY SINGLE member above it all the way to the root, you must use `@ISANCEST` (Is Ancestor) instead of `ISPARENT` |
 | Top Level Execution | Target is the Root | If you pass the absolute root of a dimension (e.g., `@ISPARENT("Total_Company")`), it will ALWAYS return `FALSE`, because the root has no parent. The function will never find a match |
 

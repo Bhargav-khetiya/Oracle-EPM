@@ -1,11 +1,11 @@
-# @CalcMgrExcelCOUPDAYBS
+﻿# @CalcMgrExcelCOUPDAYBS
 
 ## Overview
 
 `@CalcMgrExcelCOUPDAYBS` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `COUPDAYBS` function directly inside an Essbase calculation script. 
 It calculates the exact number of days from the **B**eginning of the coupon period up to the **S**ettlement date for a specific bond or security.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When migrating Corporate Treasury or Investment Banking models from Excel into EPM Cloud, tracking the lifecycle of coupon payments on debt instruments is critical for calculating accrued interest expense.
 If a bond was issued in January, pays interest semi-annually (July 1, Dec 31), and is traded/evaluated on March 15, you must know exactly how many days have elapsed since the *last* interest payment (or the beginning of the current period). 

@@ -1,4 +1,4 @@
-# @IRSIBLINGS
+﻿# @IRSIBLINGS
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 *(The "I" stands for Inclusive, and the "R" stands for Right).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In time-series modeling (like "Balance to Go" or "Remaining Year Forecasting"), the physical order of members in the database outline represents chronological progression (e.g., `Jan` is physically above `Feb`, `Feb` is above `Mar`).
 If a script needs to calculate the remaining projected revenue for the year starting from the current month (`"Mar"`), it needs to sum `"Mar"` through `"Dec"`.

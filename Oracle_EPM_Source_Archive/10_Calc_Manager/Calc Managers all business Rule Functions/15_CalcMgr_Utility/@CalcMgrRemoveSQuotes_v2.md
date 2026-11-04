@@ -1,10 +1,10 @@
-# @CalcMgrRemoveSQuotes
+﻿# @CalcMgrRemoveSQuotes
 
 ## Overview
 
 `@CalcMgrRemoveSQuotes` is a **custom Calc Manager string cleansing function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a text string and systematically searches for and **removes all single-quotation marks / apostrophes** (`'`), returning a clean, unquoted text string.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When exporting data to relational SQL databases, single quotes (`'`) are highly dangerous. In SQL syntax, single quotes are used to define the start and end of a text string (`INSERT INTO table VALUES ('Data')`). 
 If a user types an apostrophe into a text field in EPM (e.g., `"O'Connor"` or `"Don't do this"`), and that text is pushed to a SQL database, the apostrophe in `"O'Connor"` will prematurely close the SQL string. The database will attempt to execute the word `Connor"` as a SQL command, instantly crashing the database integration and throwing a massive SQL Syntax Exception. 

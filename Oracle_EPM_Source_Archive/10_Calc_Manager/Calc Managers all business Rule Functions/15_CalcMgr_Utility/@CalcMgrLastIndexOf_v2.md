@@ -1,11 +1,11 @@
-# @CalcMgrLastIndexOf
+﻿# @CalcMgrLastIndexOf
 
 ## Overview
 
 `@CalcMgrLastIndexOf` is a **custom Calc Manager string manipulation function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a precise search engine, scanning a source text string in reverse (right-to-left) and returning the **starting index position** of the *very last* occurrence of a specific target substring. 
 *(Note: This function is functionally identical to `@CalcMgrFindLast`. It exists as an alias to directly map to the standard Java/JavaScript `lastIndexOf()` naming convention).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When dealing with dynamically loaded text strings that contain multiple identical delimiters (like `"Account_100_US_Active"` or `"/Finance/US/OperatingEx"`), you cannot use standard left-to-right search tools (like `IndexOf` or `FindFirst`). A left-to-right scan will stop at the *first* underscore or slash, breaking your logic if you are trying to extract the final suffix (e.g., `"Active"` or `"OperatingEx"`).
 `@CalcMgrLastIndexOf` solves this by executing a right-to-left scan. It finds the exact integer position of the final delimiter in the array. This allows you to feed that precise integer directly into a `@CalcMgrSubstring` function, cleanly slicing the string *after* the final delimiter, ensuring robust parsing no matter how many identical delimiters preceded it.

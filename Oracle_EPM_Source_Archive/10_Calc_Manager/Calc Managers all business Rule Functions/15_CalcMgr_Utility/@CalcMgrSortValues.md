@@ -1,11 +1,11 @@
-# @CalcMgrSortValues
+﻿# @CalcMgrSortValues
 
 ## Overview
 
 `@CalcMgrSortValues` is a **custom Calc Manager array processing function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a dynamic array of numbers, **sorts them numerically** in memory (Ascending or Descending), and returns the **entire sorted array** back into the calculation script. 
 *(Note: This function is functionally identical to `@CalcMgrSortList`. It exists as an alternative alias to align with other value-centric naming conventions in the Calc Manager library).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When analyzing historical data arrays—such as 12 months of sales, 5 years of expenses, or 100 regional performance metrics—the data is naturally stored chronologically or alphabetically based on the Essbase outline. 
 If an administrator needs to execute Top-N tiering logic (e.g., applying a 5% bonus to the Top 3 regions, and a 1% bonus to the rest), they cannot process the array chronologically. 

@@ -1,10 +1,10 @@
-# @CalcMgrSLMember
+﻿# @CalcMgrSLMember
 
 ## Overview
 
 `@CalcMgrSLMember` is a **custom Calc Manager Smart List resolution function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a two-way translator between human-readable text labels and Essbase backend integers. It takes the name of a Smart List and a specific value, queries the relational EPM dictionary, and returns the corresponding translated value (either converting text to an integer, or an integer to text).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Smart Lists in EPM operate in two distinct domains. To an end-user on a web form, a Smart List looks like a text dropdown menu containing words like `"Active"`, `"Hold"`, or `"Closed"`. To the Essbase calculation engine, these words do not exist; they are stored natively in the database as numerical integers (`1`, `2`, `3`). 
 When writing calculation scripts, administrators often need to dynamically evaluate Smart List values. If a runtime prompt passes the text string `"Active"` into the script, you cannot write `IF("Status" == "Active")` because `"Status"` is storing the number `1`. 
@@ -55,7 +55,7 @@ The return type completely depends on what you passed in:
 ## How It Works (Behind the Scenes)
 
 1. **Parameter Ingestion**: The Java engine receives the Smart List name and the target payload.
-2. **Type Detection**: It analyzes the payload. Is it a string or a number?
+2. **Type Detection**: It analyzes the payload. Is it a string or a number—
 3. **Dictionary Query**: It queries the centralized EPM relational metadata repository (where Smart Lists are defined).
 4. **Translation**: 
    - If payload is a string, it searches the Labels column and extracts the corresponding ID.

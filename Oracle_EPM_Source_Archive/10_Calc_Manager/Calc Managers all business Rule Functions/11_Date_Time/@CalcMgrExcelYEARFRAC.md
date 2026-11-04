@@ -1,11 +1,11 @@
-# @CalcMgrExcelYEARFRAC
+﻿# @CalcMgrExcelYEARFRAC
 
 ## Overview
 
 `@CalcMgrExcelYEARFRAC` is a **custom Calc Manager date manipulation function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `YEARFRAC` function directly inside an Essbase calculation script. 
 It calculates the exact **fraction of a year** that has elapsed between two specific dates, based on various financial day-count conventions (like NASD 30/360 or Actual/Actual).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In corporate finance, interest, depreciation, and contractual obligations are often tied to annual rates. If an annual interest rate is 6%, but a loan is only held from Feb 15th to Nov 4th, you must prorate that 6% based on exactly what fraction of the year the loan was active. 
 Calculating this manually in Essbase is incredibly complex. You have to calculate the exact number of days between the two dates (accounting for leap years) and then divide by 365, 360, or 365.25 depending on the specific banking calendar the contract was signed under. 

@@ -1,6 +1,6 @@
-# 04 Projects Module (`OEP_PFP`): Complete Techno-Functional Engineering Guide
+﻿# 04 Projects Module (`OEP_PFP`): Complete Techno-Functional Engineering Guide
 
-## 1. What is the Projects Module?
+## 1. What is the Projects Module—
 
 Enterprises across technology, consulting, construction, engineering, aerospace, and energy organize major business initiatives into distinct, multi-period projects. 
 
@@ -196,37 +196,37 @@ If an internal employee's annual salary is budgeted inside **Workforce (`OEP_WFP
 
 ## 7. Top 10 Twisted Review & Interview Questions on Projects
 
-### Q1: What is the fundamental difference between an Internal Project and a Contract Project?
+### Q1: What is the fundamental difference between an Internal Project and a Contract Project—
 **Answer**: 
 * **Internal Project**: Budgeted for corporate internal initiatives (e.g., HR intranet portal). All costs are categorized as Operating Expenses (SG&A). It generates zero billable revenue.
 * **Contract Project**: Executed for third-party clients (e.g., client construction or consulting). It models billable revenue streams (T&M, Fixed Price, Cost Plus), direct project costs, and gross profit margins, flowing both revenue and Cost of Goods Sold (COGS) into Financials.
 
-### Q2: How does the Percentage-of-Completion (POC) method prevent revenue distortion during project cost overruns?
+### Q2: How does the Percentage-of-Completion (POC) method prevent revenue distortion during project cost overruns—
 **Answer**: Under POC cost-to-cost formula, POC % is calculated as $\frac{\text{Cumulative Incurred Costs}}{\text{EAC}}$. If EAC increases due to an overrun, the denominator expands, reducing the calculated completion percentage. When multiplied by the contract price, the new cumulative revenue target drops, forcing current period revenue to absorb the dilution and immediately lowering recognized profit margin.
 
-### Q3: Why does EPBCS utilize a `Project Element` dimension in `OEP_PFP`?
+### Q3: Why does EPBCS utilize a `Project Element` dimension in `OEP_PFP`—
 **Answer**: To segregate operational drivers, calculations, and accounting results cleanly without creating hundreds of redundant accounts. For instance, hours worked, hourly rates, direct labor costs, contractor expenses, and revenue all intersect with the same `Resource` and `Project` coordinate by varying the `Project Element` member (`Element_Hours`, `Element_Rate`, `Element_Cost`, `Element_Revenue`).
 
-### Q4: How do you prevent double-counting of employee labor when both Workforce and Projects modules are enabled?
+### Q4: How do you prevent double-counting of employee labor when both Workforce and Projects modules are enabled—
 **Answer**: Through the seeded **`Project Payroll Offset`** contra-account. When employee hours are expensed inside Projects, the system pushes direct labor cost to Financials COGS or project expense accounts, while simultaneously posting an equal credit to `Project Payroll Offset` in the operational cost center. This cancels out the redundant salary expense pushed from Workforce.
 
-### Q5: Can an end user add new WBS Tasks dynamically to a project in a web form?
+### Q5: Can an end user add new WBS Tasks dynamically to a project in a web form—
 **Answer**: Yes, if dynamic member creation is configured or if the application utilizes Groovy rules with the `addMember` API. In standard BSO configurations without Groovy, administrators pre-seed placeholder task members (`Task_01`, `Task_02`, `Task_03`...) or users create them via the **Add Project Task** Action Menu.
 
-### Q6: What happens when a Capital Project in `OEP_PFP` is completed and pushed to Capital (`OEP_CPX`)?
+### Q6: What happens when a Capital Project in `OEP_PFP` is completed and pushed to Capital (`OEP_CPX`)—
 **Answer**: The seeded `Push to Capital` business rule copies the total accumulated capital project expenditure from `OEP_PFP` into `OEP_CPX` as a newly initialized `Asset Detail`. The rule assigns the target `Asset Class`, sets the asset purchase cost equal to the project total, establishes the in-service date, and triggers monthly depreciation calculations.
 
-### Q7: What are the three contract revenue recognition methods supported in Projects?
+### Q7: What are the three contract revenue recognition methods supported in Projects—
 **Answer**:
 1. **Time and Materials (T&M)**: $\text{Revenue} = \text{Logged Labor Hours} \times \text{Billing Rate Card}$.
 2. **Fixed Price**: Revenue recognized across project milestones or via continuous **Percentage of Completion (POC)**.
 3. **Cost Plus**: $\text{Revenue} = \text{Actual Incurred Costs} \times (1 + \text{Agreed Markup \%})$.
 
-### Q8: How does the Projects module handle currency conversion if a project is executed in multiple international entities?
+### Q8: How does the Projects module handle currency conversion if a project is executed in multiple international entities—
 **Answer**: Projects leverages the multi-currency framework. Rate cards can be defined in local currencies (`EUR`, `GBP`) or corporate currency (`USD`). When costs and revenues are calculated, standard currency conversion rules translate local currency figures into parent reporting currencies using monthly exchange rate tables maintained in the platform.
 
-### Q9: What is the purpose of the `Resource` dimension?
+### Q9: What is the purpose of the `Resource` dimension—
 **Answer**: The `Resource` dimension stores the operational components that drive project costs and billing. It contains hierarchical rollups for internal labor roles (`Senior Architect`, `Analyst`), named employees, external vendor contractors, equipment rentals, hardware/software materials, and travel line items.
 
-### Q10: How does Smart Push improve project forecasting cycles?
+### Q10: How does Smart Push improve project forecasting cycles—
 **Answer**: During project review meetings, project managers update EAC cost estimates or log hours on a form. When they click **Save**, Smart Push instantly transfers updated revenue and margin lines to `OEP_FS` within 1 second using "Form Context", giving executive leadership immediate visibility into project P&L impacts without waiting for overnight batch processing.

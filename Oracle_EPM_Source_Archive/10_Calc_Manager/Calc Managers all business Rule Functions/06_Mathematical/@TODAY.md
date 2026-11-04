@@ -1,10 +1,10 @@
-# @TODAY
+﻿# @TODAY
 
 ## Overview
 
 `@TODAY` is a **native Essbase date & time function** in Oracle EPM Cloud (PBCS/EPBCS). It accesses the physical server's internal clock and returns the **current system date** represented as a numeric integer.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building automated, lights-out forecasting models, calculations are often heavily dependent on the passage of time. 
 For example, you might have an `"Aging_Report"` that tracks how many days an invoice has been outstanding. To calculate that, you must subtract the `"Invoice_Date"` from "Today". 

@@ -1,4 +1,4 @@
-﻿# 🏠 Oracle Cloud EPM — Planning Landing Page
+﻿﻿# 🏠 Oracle Cloud EPM — Planning Landing Page
 ## Complete Screen Reference
 
 > **Navigation Path:** `Login → EPM Cloud Home → Planning (Business Process Card)`  
@@ -140,7 +140,7 @@ The page presents **three equal columns**, each representing a distinct path:
 
 ---
 
-## 📊 Decision Matrix: Which Path to Choose?
+## 📊 Decision Matrix: Which Path to Choose—
 
 | Factor | CREATE (Sample) | START (New) | MIGRATE |
 |--------|----------------|-------------|---------|
@@ -155,15 +155,15 @@ The page presents **three equal columns**, each representing a distinct path:
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: When does the Planning Landing Page appear, and why does it disappear once an application exists?
+### Q1: When does the Planning Landing Page appear, and why does it disappear once an application exists—
 **Answer:** The Planning Landing Page appears **only when an environment container contains ZERO applications** (freshly provisioned or reset via ecreate -f). In Oracle Cloud EPM, each business process pod hosts exactly **one active application**. Once an application is created (via Sample, Wizard, or Migration), the Landing Page is permanently replaced by the Application Home Page. To see the Landing Page again, the application must be dropped.
 
-### Q2: Can a user with the "User" or "Power User" role access the Landing Page?
+### Q2: Can a user with the "User" or "Power User" role access the Landing Page—
 **Answer:** No. Standard Users and Power Users logging into a clean instance will receive an authorization notice: *"No application is available. Please contact your Service Administrator."* Only users assigned the **Service Administrator** predefined role in Identity Domain (OCI IAM / IDCS) are authorized to view the Landing Page and initiate application creation.
 
-### Q3: If an administrator clicks START by mistake, can they safely return to the clean Landing Page?
+### Q3: If an administrator clicks START by mistake, can they safely return to the clean Landing Page—
 **Answer:** Yes. As long as the administrator does not click the final **[Create]** button on Step 5 of the wizard, clicking **[Cancel]** at any step immediately aborts the wizard and returns the browser to the pristine Landing Page without making any changes to the database.
 
 ---

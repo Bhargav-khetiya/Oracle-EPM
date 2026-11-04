@@ -1,10 +1,10 @@
-# @CalcMgrDateDiff
+﻿# @CalcMgrDateDiff
 
 ## Overview
 
 `@CalcMgrDateDiff` is a **custom Calc Manager date function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates the mathematical difference between two calendar dates, returning the result in a specified unit of measurement (such as days, months, weeks, or years).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard Essbase dates are typically stored as literal `YYYYMMDD` integers (e.g., `20241231` and `20241101`). If you simply subtract one from the other (`20241231 - 20241101 = 130`), the result is a mathematically meaningless number because the integer system does not understand leap years, differing month lengths, or calendar logic.
 `@CalcMgrDateDiff` bridges this gap. It takes two standard Essbase `YYYYMMDD` integers, translates them internally into Java calendar objects, calculates the true chronological span between them accounting for all calendar rules, and returns that duration exactly in the unit you requested.

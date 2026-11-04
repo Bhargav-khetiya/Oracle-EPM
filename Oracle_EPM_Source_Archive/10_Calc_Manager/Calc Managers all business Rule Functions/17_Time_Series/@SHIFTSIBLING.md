@@ -1,10 +1,10 @@
-# @SHIFTSIBLING
+﻿# @SHIFTSIBLING
 
 ## Overview
 
 `@SHIFTSIBLING` is a **native Essbase member selection/shifting function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates a target member and navigates horizontally across its structural peer group (its siblings). It steps backward (left) or forward (right) by a specified integer offset, and returns the **physical member name** (or pointer) of the sibling sitting at that offset.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building dynamic calculation scripts, administrators often need to reference a peer member relative to the member currently being calculated. 
 For example, if you are forecasting `"Version_3"`, you might need to copy the starting balance from `"Version_2"`. You don't want to hardcode `"Version_2"`, because next month you'll be on `"Version_4"` and need `"Version_3"`. 

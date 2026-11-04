@@ -1,11 +1,11 @@
-# @CalcMgrExcelSTDEV
+﻿# @CalcMgrExcelSTDEV
 
 ## Overview
 
 `@CalcMgrExcelSTDEV` is a **custom Calc Manager statistical array function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `STDEV` (specifically `STDEV.S` for samples) function directly inside an Essbase calculation script. 
 It analyzes a list or array of data points and calculates the **Sample Standard Deviation**, providing a single metric that represents how widely spread out the data is from the average.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard Deviation is the ultimate measure of volatility and risk. If a store sells exactly 100 units every single week, the standard deviation is 0. If it sells 200 one week and 0 the next, the average is still 100, but the standard deviation is extremely high. 
 Calculating this manually in Essbase is a nightmare. You have to calculate the overall average, loop through every single data point to subtract the average, square that difference, sum all the squares together, divide by `(N - 1)`, and finally take the square root. 

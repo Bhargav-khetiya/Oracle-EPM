@@ -1,10 +1,10 @@
-# @RANGELASTVAL
+﻿# @RANGELASTVAL
 
 ## Overview
 
 `@RANGELASTVAL` is a **native Essbase mathematical array function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates a specified range (array) of members strictly in the order they appear in the outline, and returns the **numeric value of the very last member** in that range.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In corporate finance and reporting, the concept of a "Closing Balance" or "Ending Headcount" is ubiquitous. 
 If you want to know how much cash the company has at the end of the year, you don't sum the months together (cash isn't additive). You simply need the value from the absolute final period of the year. 

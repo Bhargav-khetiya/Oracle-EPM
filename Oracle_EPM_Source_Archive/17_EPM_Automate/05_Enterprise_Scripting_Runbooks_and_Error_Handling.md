@@ -1,4 +1,4 @@
-# 05 — Enterprise Scripting Frameworks & Nightly Runbooks
+﻿# 05 — Enterprise Scripting Frameworks & Nightly Runbooks
 
 ---
 
@@ -108,7 +108,7 @@ set -euo pipefail
 URL="https://epm-prod.oraclecloud.com"
 USER="epm_svc_automation@orbrick.com"
 PW_FILE="/opt/epmautomate/keys/prod.epw"
-LOG_FILE="/opt/epmautomate/logs/epm_$(date +'%Y%m%d_%H%M%S').log"
+LOG_FILE="/opt/epmautomate/logs/epm_$(date →%Y%m%d_%H%M%S').log"
 
 log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"

@@ -1,4 +1,4 @@
-# 03 — Form business rules and Smart Push
+﻿# 03 — Form business rules and Smart Push
 
 ## Core idea
 
@@ -58,9 +58,9 @@ For a form with multiple segments, Oracle documents an Overwrite Selection patte
 
 ## Recall check
 
-1. What does a data map define? The member mappings and data selection used to move data between supported cubes.
-2. Does “Use Members on Form” guarantee the correct business scope? No; verify prompt configuration and the final selection.
-3. What must be checked after a background Smart Push? Its completion/result and the target intersections.
+1. What does a data map define— The member mappings and data selection used to move data between supported cubes.
+2. Does “Use Members on Form” guarantee the correct business scope— No; verify prompt configuration and the final selection.
+3. What must be checked after a background Smart Push— Its completion/result and the target intersections.
 
 **Teach-back:** Explain the difference between saving a source form and pushing data to a target cube.
 

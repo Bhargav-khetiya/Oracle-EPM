@@ -1,10 +1,10 @@
-# @CalcMgrCounterClearAll
+﻿# @CalcMgrCounterClearAll
 
 ## Overview
 
 `@CalcMgrCounterClearAll` is a **custom Calc Manager state-tracking function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a master reset switch, completely deleting *every single* named memory counter (both text and numeric) from the background Java heap memory for the active execution session.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While `@CalcMgrCounterClear("SpecificName")` is excellent for surgical precision (e.g., clearing a sub-total counter while leaving a grand-total counter intact), there are times when a Business Rule is so complex that tracking down and clearing every single individual counter name becomes a maintenance nightmare.
 If a script utilizes 15 different counters to track various validation states, exception logs, and sequence IDs, missing just one `Clear` statement at the end of the script can cause a memory leak or cause data bleed into a subsequent script run in the same session.

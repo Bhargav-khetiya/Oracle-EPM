@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Source Archive Card 02: Calc Manager & Essbase Function Finder</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-6 font-sans">
+  <div class="max-w-6xl mx-auto space-y-6">
+    <!-- Header -->
+    <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 shadow-2xl backdrop-blur">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-700 pb-4">
+        <div>
+          <span class="text-xs font-bold tracking-widest text-sky-400 uppercase bg-sky-950/60 px-3 py-1 rounded-full border border-sky-800">
+            Source Archive Card 02
+          </span>
+          <h1 class="text-2xl font-black mt-2 text-white">Calc Manager & Essbase Function Inspector</h1>
+          <p class="text-slate-400 text-sm mt-1">Interactive search and vector-engine compatibility guide for 800+ Calculation Manager functions and CDFs.</p>
+        </div>
+        <div class="flex gap-2">
+          <span class="text-xs px-2.5 py-1 rounded-md bg-emerald-950 text-emerald-400 border border-emerald-800">Hybrid Compatible</span>
+          <span class="text-xs px-2.5 py-1 rounded-md bg-amber-950 text-amber-400 border border-amber-800">Procedural BSO</span>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="mt-6 flex flex-col md:flex-row gap-4 items-center justify-between">
+        <div class="w-full md:w-96">
+          <input type="text" id="fnSearch" oninput="filterFunctions()" placeholder="Search function (e.g. @IDESCENDANTS, @ALLOCATE, Date)..." 
+                 class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition-colors">
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs">
+          <button onclick="setCategory('all')" id="btn-all" class="cat-btn px-3 py-1.5 rounded-lg bg-sky-500 text-white font-bold">All Types</button>
+          <button onclick="setCategory('memberset')" id="btn-memberset" class="cat-btn px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">Member Set</button>
+          <button onclick="setCategory('financial')" id="btn-financial" class="cat-btn px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">Financial</button>
+          <button onclick="setCategory('math')" id="btn-math" class="cat-btn px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">Math & Stat</button>
+          <button onclick="setCategory('allocation')" id="btn-allocation" class="cat-btn px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">Allocation</button>
+          <button onclick="setCategory('datetime')" id="btn-datetime" class="cat-btn px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">Date/Time</button>
+        </div>
+      </div>
+
+      <div class="mt-4 text-xs text-slate-400 flex items-center justify-between border-t border-slate-700/60 pt-3">
+        <span id="fnCount">Showing core function library</span>
+        <span class="text-sky-400">Click card for detailed syntax & defense physics</span>
+      </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Function List -->
+      <div id="functionList" class="lg:col-span-1 space-y-2 max-h-[650px] overflow-y-auto pr-1">
+        <!-- Rendered via JS -->
+      </div>
+
+      <!-- Detail Card View -->
+      <div id="functionDetail" class="lg:col-span-2 bg-slate-800/80 border border-slate-700 rounded-2xl p-6 shadow-xl">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const functionsData = [
+      {
+        name: "@IDESCENDANTS",
+        category: "memberset",
+        hybrid: true,
+        syntax: "@IDESCENDANTS(mbrName)",
+        desc: "Returns the specified member and all of its descendants down to leaf level.",
+        reviewDefense: "Critical for FIX scopes on Sparse dimensions. Inclusive of the parent, unlike @DESCENDANTS.",
+        example: "FIX(@IDESCENDANTS(\"Total_Entity\"), \"FY26\", \"Plan\")\n    \"Salary\" = \"Base_Rate\" * \"Headcount\";\nENDFIX",
+        pitfall: "Do not use inside formulas executed on dense members; place on the Sparse FIX statement."
+      },
+      {
+        name: "@CHILDREN",
+        category: "memberset",
+        hybrid: true,
+        syntax: "@CHILDREN(mbrName)",
+        desc: "Returns the immediate child members of the specified parent.",
+        reviewDefense: "Evaluated natively in RAM by the Hybrid ASO dynamic vector engine without procedural fallback.",
+        example: "FIX(@CHILDREN(\"Operating_Expenses\"))\n    \"Budget_Seed\" = \"Actual\" * 1.05;\nENDFIX",
+        pitfall: "Only returns Level 1 children, not grandchild leaf nodes."
+      },
+      {
+        name: "@RELATIVE",
+        category: "memberset",
+        hybrid: true,
+        syntax: "@RELATIVE(mbrName, genLevNum)",
+        desc: "Returns all members at a specific generation or level under a parent member.",
+        reviewDefense: "Standard pattern for targeting Level 0 leaf cells: @RELATIVE(mbrName, 0).",
+        example: "FIX(@RELATIVE(\"Total_Department\", 0))\n    \"Allocated_IT\" = \"Pool_IT\" * \"Weight\";\nENDFIX",
+        pitfall: "Level 0 represents leaf members; Generation 1 represents top parent root."
+      },
+      {
+        name: "@ALLOCATE",
+        category: "allocation",
+        hybrid: false,
+        syntax: "@ALLOCATE(amount, [shareBasis], targetMbr, roundMbr, [options])",
+        desc: "Spreads an amount across a range of target members based on a share or percentage basis.",
+        reviewDefense: "Procedural BSO only. Cannot be used in Dynamic Calc upper member formulas.",
+        example: "FIX(\"FY26\", \"Budget\")\n    @ALLOCATE(\"Corp_Overhead\", , @RELATIVE(\"All_Plants\", 0), \"Round_Err\");\nENDFIX",
+        pitfall: "Fails if target members do not exist or if block allocation buffer is exhausted."
+      },
+      {
+        name: "@CURRMBRRANGE",
+        category: "memberset",
+        hybrid: false,
+        syntax: "@CURRMBRRANGE(dimName, genLevNum, startOffset, stopOffset)",
+        desc: "Generates a dynamic range of members relative to the current member being calculated.",
+        reviewDefense: "WARNING: Using in Dynamic Calc upper parent members forces Hybrid BSO fallback to procedural mode.",
+        example: "FIX(\"FY26\")\n    \"Rolling_3Mo_Avg\" = @AVGRANGE(SKIPMISSING, \"Revenue\", @CURRMBRRANGE(\"Period\", 0, -2, 0));\nENDFIX",
+        pitfall: "Do NOT attach to dynamic outline members; use strictly inside batch business rules."
+      },
+      {
+        name: "@DEPRECIATION",
+        category: "financial",
+        hybrid: false,
+        syntax: "@DEPRECIATION(cost, salvage, life, method)",
+        desc: "Calculates asset depreciation over time according to straight-line, declining-balance, or sum-of-years.",
+        reviewDefense: "Core engine of EPBCS Capital (OEP_CPX) module. Runs on leaf asset blocks.",
+        example: "\"Monthly_Depr\" = @DEPRECIATION(\"Asset_Cost\", 0, \"Life_Months\", 1);",
+        pitfall: "Requires valid asset start period and positive life duration."
+      },
+      {
+        name: "@CalcMgrAddMonths",
+        category: "datetime",
+        hybrid: true,
+        syntax: "@CalcMgrAddMonths(dateYYYYMMDD, monthsToAdd)",
+        desc: "Calc Manager Custom Defined Function (CDF) that increments a date integer by specified calendar months.",
+        reviewDefense: "Handles leap years and month-end dates accurately without custom calendar tables.",
+        example: "\"Maturity_Date\" = @CalcMgrAddMonths(\"Issue_Date\", 12);",
+        pitfall: "Input must be formatted as standard integer YYYYMMDD."
+      },
+      {
+        name: "@ROUND",
+        category: "math",
+        hybrid: true,
+        syntax: "@ROUND(expression, numDecimals)",
+        desc: "Rounds a numerical value to a specified number of decimal places.",
+        reviewDefense: "Fully compatible with Hybrid dynamic vector engine and all procedural rules.",
+        example: "\"Tax_Expense\" = @ROUND(\"PreTax_Income\" * \"Tax_Rate\", 2);",
+        pitfall: "Negative decimal places round to powers of 10 (e.g. -3 rounds to thousands)."
+      }
+    ];
+
+    let selectedFn = functionsData[0];
+    let currentCategory = "all";
+
+    function renderList(items) {
+      const container = document.getElementById("functionList");
+      container.innerHTML = items.map(f => `
+        <div onclick="selectFunction('${f.name}')" 
+             class="p-3.5 rounded-xl border transition-all cursor-pointer ${f.name === selectedFn.name ? 'bg-sky-950/70 border-sky-500 shadow-md' : 'bg-slate-800/60 border-slate-700/70 hover:border-slate-500'}">
+          <div class="flex items-center justify-between">
+            <span class="font-mono font-bold text-sm text-white">${f.name}</span>
+            <span class="text-[10px] px-2 py-0.5 rounded font-bold ${f.hybrid ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-amber-950 text-amber-400 border border-amber-800'}">
+              ${f.hybrid ? 'HYBRID OK' : 'PROCEDURAL'}
+            </span>
+          </div>
+          <p class="text-xs text-slate-400 mt-1 truncate">${f.desc}</p>
+        </div>
+      `).join("");
+      document.getElementById("fnCount").innerText = `Showing ${items.length} functions`;
+    }
+
+    function renderDetail(f) {
+      const detail = document.getElementById("functionDetail");
+      detail.innerHTML = `
+        <div class="space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-700 pb-4">
+            <div>
+              <span class="text-xs uppercase tracking-wider text-slate-400 font-bold">${f.category.toUpperCase()} FUNCTION</span>
+              <h2 class="text-3xl font-mono font-black text-white mt-1">${f.name}</h2>
+            </div>
+            <span class="px-3 py-1 rounded-full text-xs font-bold ${f.hybrid ? 'bg-emerald-950 text-emerald-300 border border-emerald-700' : 'bg-amber-950 text-amber-300 border border-amber-700'}">
+              ${f.hybrid ? '✓ Hybrid Vector Engine Compatible' : '⚠️ Procedural BSO Only (Calc Script)'}
+            </span>
+          </div>
+
+          <div>
+            <h3 class="text-xs uppercase tracking-wider font-bold text-slate-400">Syntax</h3>
+            <div class="mt-1 bg-slate-950 border border-slate-700 rounded-xl p-3 font-mono text-sm text-sky-300">
+              ${f.syntax}
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-xs uppercase tracking-wider font-bold text-slate-400">Description</h3>
+            <p class="text-slate-200 text-sm mt-1 leading-relaxed">${f.desc}</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-slate-900/80 border border-slate-700 rounded-xl p-4">
+              <h4 class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Consultant Review Defense</h4>
+              <p class="text-xs text-slate-300 mt-2 leading-relaxed">${f.reviewDefense}</p>
+            </div>
+            <div class="bg-slate-900/80 border border-slate-700 rounded-xl p-4">
+              <h4 class="text-xs font-bold text-rose-400 uppercase tracking-wider">Implementation Pitfall & Trap</h4>
+              <p class="text-xs text-slate-300 mt-2 leading-relaxed">${f.pitfall}</p>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-xs uppercase tracking-wider font-bold text-slate-400">Production Script Example</h3>
+            <pre class="mt-1 bg-slate-950 border border-slate-700 rounded-xl p-4 font-mono text-xs text-emerald-300 overflow-x-auto">${f.example}</pre>
+          </div>
+        </div>
+      `;
+    }
+
+    function selectFunction(name) {
+      selectedFn = functionsData.find(f => f.name === name) || functionsData[0];
+      renderList(getFiltered());
+      renderDetail(selectedFn);
+    }
+
+    function setCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll(".cat-btn").forEach(btn => {
+        btn.classList.remove("bg-sky-500", "text-white", "font-bold");
+        btn.classList.add("bg-slate-800", "text-slate-300", "border", "border-slate-700");
+      });
+      const activeBtn = document.getElementById(`btn-${cat}`);
+      if (activeBtn) {
+        activeBtn.classList.remove("bg-slate-800", "text-slate-300", "border", "border-slate-700");
+        activeBtn.classList.add("bg-sky-500", "text-white", "font-bold");
+      }
+      filterFunctions();
+    }
+
+    function getFiltered() {
+      const q = document.getElementById("fnSearch").value.toLowerCase();
+      return functionsData.filter(f => {
+        const matchesCat = currentCategory === "all" || f.category === currentCategory;
+        const matchesQuery = f.name.toLowerCase().includes(q) || f.desc.toLowerCase().includes(q) || f.category.includes(q);
+        return matchesCat && matchesQuery;
+      });
+    }
+
+    function filterFunctions() {
+      const filtered = getFiltered();
+      renderList(filtered);
+      if (filtered.length > 0 && !filtered.some(f => f.name === selectedFn.name)) {
+        selectedFn = filtered[0];
+        renderDetail(selectedFn);
+      }
+    }
+
+    // Initialize
+    renderList(functionsData);
+    renderDetail(selectedFn);
+  </script>
+</body>
+</html>

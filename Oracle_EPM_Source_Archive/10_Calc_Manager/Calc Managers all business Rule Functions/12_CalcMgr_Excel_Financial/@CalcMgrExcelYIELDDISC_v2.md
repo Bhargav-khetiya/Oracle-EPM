@@ -1,11 +1,11 @@
-# @CalcMgrExcelYIELDDISC
+﻿# @CalcMgrExcelYIELDDISC
 
 ## Overview
 
 `@CalcMgrExcelYIELDDISC` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `YIELDDISC` function directly inside an Essbase calculation script. 
 It calculates the **Annual Yield** of a discounted security (like a zero-coupon bond or commercial paper) based on its current market purchase price.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Unlike standard corporate bonds that pay periodic interest coupons (`@CalcMgrExcelYIELD`), discounted securities pay absolutely no interest during their lifespan. They are sold at a deep discount (e.g., $95) and mature at their full face value ($100). 
 When a corporate treasury buys commercial paper on the secondary market for $96.50, they need to know the *true annualized yield* they are earning to compare it against their corporate hurdle rate.

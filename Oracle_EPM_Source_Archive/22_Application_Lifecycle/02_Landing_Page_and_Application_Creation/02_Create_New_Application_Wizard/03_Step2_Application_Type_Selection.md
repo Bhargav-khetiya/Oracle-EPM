@@ -1,4 +1,4 @@
-﻿# 🚀 Step 2: Application Type & Module Selection
+﻿﻿# 🚀 Step 2: Application Type & Module Selection
 ## Choosing Between Planning Types and Enabling Modules
 
 > **Wizard Step:** 2 of 5  
@@ -300,15 +300,15 @@ When "Planning" is selected as Application Type in Step 1, this screen appears:
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: Can an application created as "Standard Planning" be upgraded to "Enterprise Planning Modules" later?
-**Answer:** Yes. If your organization holds an Enterprise EPM subscription, you can progressively enable pre-built business modules (Financials, Workforce, Capital, Projects, Strategic Modeling) post-creation via Application â†’ Configure â†’ Enable Features.
+### Q1: Can an application created as "Standard Planning" be upgraded to "Enterprise Planning Modules" later—
+**Answer:** Yes. If your organization holds an Enterprise EPM subscription, you can progressively enable pre-built business modules (Financials, Workforce, Capital, Projects, Strategic Modeling) post-creation via Application → Configure → Enable Features.
 
-### Q2: Can an application created with Planning Modules be converted to FreeForm, or vice versa?
+### Q2: Can an application created with Planning Modules be converted to FreeForm, or vice versa—
 **Answer:** No. Standard Planning / Modules enforce the 6 mandatory dimensions (Account, Entity, Period, Year, Scenario, Version). FreeForm is schema-free Essbase without mandatory dimensions. This structural boundary is permanent and cannot be crossed post-creation without an environment reset.
 
-### Q3: What is the architectural impact of selecting "FreeForm" on Step 2?
+### Q3: What is the architectural impact of selecting "FreeForm" on Step 2—
 **Answer:** FreeForm skips the standard Calendar and Currency setup steps entirely. Instead, the wizard prompts you to define custom cubes (BSO/ASO) and allows you to import an existing Essbase .otl outline file directly from on-premises systems.
 
 ---

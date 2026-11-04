@@ -1,6 +1,6 @@
-﻿# Oracle EPM Cloud: Clone Environment (Full One-Command Replication)
+﻿﻿# Oracle EPM Cloud: Clone Environment (Full One-Command Replication)
 
-## 1. What is `cloneEnvironment`?
+## 1. What is `cloneEnvironment`—
 
 The `cloneEnvironment` command is the **most comprehensive** method for replicating an EPM Cloud environment. In a single command, it:
 
@@ -280,13 +280,13 @@ After cloning completes:
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: Does cloneEnvironment require the target environment to be wiped clean with ecreate beforehand?
+### Q1: Does cloneEnvironment require the target environment to be wiped clean with ecreate beforehand—
 **Answer:** No. cloneEnvironment is fully automated and self-contained. The target environment automatically initiates its own clean recreation as Phase 1 of the clone process, dropping the target database before streaming and restoring the source environment.
 
-### Q2: What happens to Data Management target application connections and drill-through URLs after a clone?
-**Answer:** They reflect the **source (Production) environment**. Target application URLs in Data Management will point back to Production. Planners running test data loads in Demo could inadvertently trigger integrations against Production systems. You must immediately navigate to Data Management â†’ Setup â†’ Target Application and update all connection URLs to point to Demo.
+### Q2: What happens to Data Management target application connections and drill-through URLs after a clone—
+**Answer:** They reflect the **source (Production) environment**. Target application URLs in Data Management will point back to Production. Planners running test data loads in Demo could inadvertently trigger integrations against Production systems. You must immediately navigate to Data Management → Setup → Target Application and update all connection URLs to point to Demo.
 
-### Q3: Why does cloneEnvironment fail if source and target environments are on different monthly patch versions?
+### Q3: Why does cloneEnvironment fail if source and target environments are on different monthly patch versions—
 **Answer:** Oracle Cloud EPM enforces strict schema parity for bare-metal replication. If Test is on 26.11 and Prod is on 26.10 during the first two weeks of the month, cloning between them is prohibited (Version Mismatch). In this scenario, use the snapshot export/copy/import method instead.

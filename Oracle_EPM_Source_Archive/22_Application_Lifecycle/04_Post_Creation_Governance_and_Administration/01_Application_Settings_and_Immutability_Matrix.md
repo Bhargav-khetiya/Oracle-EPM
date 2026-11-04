@@ -1,4 +1,4 @@
-﻿# ⚙️ Application Settings Overview — Post-Creation Master Guide
+﻿﻿# ⚙️ Application Settings Overview — Post-Creation Master Guide
 ## Navigating the Application Workbench, System Properties & Configuration Governance
 
 > **Navigation:** `Home → Application → Overview` AND `Home → Application → Settings`  
@@ -152,9 +152,9 @@ Beyond basic settings, the Application navigation group provides access to core 
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: Which core application parameters are permanently locked at creation time?
+### Q1: Which core application parameters are permanently locked at creation time—
 **Answer:** The following parameters can NEVER be modified post-creation:
 1. **Application Name** (e.g. `PlanCorp`)
 2. **Application Type** (Planning vs FreeForm)
@@ -163,11 +163,11 @@ Beyond basic settings, the Application navigation group provides access to core 
 5. **Multi-Currency Architecture** (Single Currency vs Multi-Currency)
 6. **Application Start Year** (cannot add historical past years)
 
-### Q2: What is the performance risk of increasing Grid Display Limits to maximum (100,000 rows Ã— 500 columns)?
-**Answer:** Large grid limits dramatically increase memory usage and server-side query processing times. If a user opens a wide-open suppression grid across 500,000 cells, the browser may freeze, and Essbase thread pools can become saturated, degrading response times for all concurrent users. Keep limits to operational defaults (e.g. 50,000 rows Ã— 250 columns).
+### Q2: What is the performance risk of increasing Grid Display Limits to maximum (100,000 rows × 500 columns)—
+**Answer:** Large grid limits dramatically increase memory usage and server-side query processing times. If a user opens a wide-open suppression grid across 500,000 cells, the browser may freeze, and Essbase thread pools can become saturated, degrading response times for all concurrent users. Keep limits to operational defaults (e.g. 50,000 rows × 250 columns).
 
-### Q3: How do you enable audit tracking for metadata additions and transactional data edits?
-**Answer:** Navigate to `Application â†’ Settings â†’ System Maintenance & Logging` and enable **Artifact Audit Tracking**. For transactional data changes, enable **Data Audit** under `Application â†’ Overview â†’ Dimensions â†’ [Dimension]` for specific accounts or scenarios.
+### Q3: How do you enable audit tracking for metadata additions and transactional data edits—
+**Answer:** Navigate to `Application → Settings → System Maintenance & Logging` and enable **Artifact Audit Tracking**. For transactional data changes, enable **Data Audit** under `Application → Overview → Dimensions → [Dimension]` for specific accounts or scenarios.
 
 ---
 

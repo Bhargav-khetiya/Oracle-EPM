@@ -1,11 +1,11 @@
-# @CalcMgrExcelVAR
+﻿# @CalcMgrExcelVAR
 
 ## Overview
 
 `@CalcMgrExcelVAR` is a **custom Calc Manager statistical array function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `VAR` (specifically `VAR.S` for samples) function directly inside an Essbase calculation script. 
 It analyzes a list or array of data points and calculates the **Sample Variance**, which measures how far a set of numbers is spread out from their average value.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Variance is the fundamental mathematical building block of almost all risk and probability modeling. It is the average of the squared differences from the Mean. (Taking the square root of the Variance gives you the Standard Deviation).
 Calculating Variance manually in an Essbase calc script is extremely inefficient. You must calculate the mean across the array, loop through every single member to subtract that mean, square the difference, sum all the squares, and finally divide by `(N - 1)`. 

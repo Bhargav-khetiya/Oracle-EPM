@@ -1,4 +1,4 @@
-﻿# 📦 Vision Sample Application — Complete Contents Reference
+﻿﻿# 📦 Vision Sample Application — Complete Contents Reference
 ## Everything Included in the Vision Sample
 
 > **Application Name:** Vision  
@@ -160,20 +160,20 @@
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: What cubes are provisioned in the Vision application, and what are their respective storage types?
+### Q1: What cubes are provisioned in the Vision application, and what are their respective storage types—
 **Answer:** Vision provisions two primary Essbase cubes:
 1. Plan1: Block Storage (BSO) Hybrid cube used for financial data entry, driver-based revenue planning, and business rule calculations.
 2. VisnASO / VisnRep: Aggregate Storage (ASO) cube used for high-speed executive multidimensional reporting and fast aggregations.
 
-### Q2: Which dimensions in Vision are configured as Dense versus Sparse?
+### Q2: Which dimensions in Vision are configured as Dense versus Sparse—
 **Answer:** By default in Vision BSO:
 - **Dense Dimensions:** Account and Period (defines the internal contiguous block cell matrix).
 - **Sparse Dimensions:** Entity, Year, Scenario, Version, Currency, and custom dimensions (Product, Market).
 
-### Q3: Can you extract specific business rules or forms from the Vision application to reuse in a custom production app?
-**Answer:** Yes. Navigate to Tools â†’ Migration, expand Planning â†’ Artifacts â†’ Forms or Business Rules, select the desired items, and click **Export**. Download the resulting snapshot and import it into your custom application. *Caution: Ensure that any referenced dimension members in the Vision rules/forms also exist in the target application!*
+### Q3: Can you extract specific business rules or forms from the Vision application to reuse in a custom production app—
+**Answer:** Yes. Navigate to Tools → Migration, expand Planning → Artifacts → Forms or Business Rules, select the desired items, and click **Export**. Download the resulting snapshot and import it into your custom application. *Caution: Ensure that any referenced dimension members in the Vision rules/forms also exist in the target application!*
 
 ---
 

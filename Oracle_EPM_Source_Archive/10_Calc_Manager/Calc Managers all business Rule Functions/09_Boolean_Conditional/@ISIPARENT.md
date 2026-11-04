@@ -1,10 +1,10 @@
-# @ISIPARENT
+﻿# @ISIPARENT
 
 ## Overview
 
 `@ISIPARENT` is a **Boolean relationship function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that checks whether a specified member is the **parent** of another member, **inclusive** — meaning the member itself is also considered its own parent. It returns `TRUE` (non-zero) if the first member is the parent of the second member, or if the two members are the same member.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In hierarchical dimension structures (Entity, Account, Product, etc.), you often need to verify parent-child relationships in conditional logic:
 - Applying different calculation rules based on hierarchy position
@@ -70,7 +70,7 @@ Where:
 
 1. **Hierarchy Lookup**: Essbase checks the outline hierarchy to determine whether `mbrName1` is the **direct** parent of `mbrName2`. It does NOT check grandparent or higher ancestors — only the immediate parent.
 
-2. **Inclusive Logic**: The "I" prefix stands for **Inclusive**. Unlike `@ISPARENT`, `@ISIPARENT` also returns TRUE when `mbrName1` and `mbrName2` are the **same member**. Think of it as: "Is mbrName1 the parent of mbrName2, or IS mbrName1 the same as mbrName2?"
+2. **Inclusive Logic**: The "I" prefix stands for **Inclusive**. Unlike `@ISPARENT`, `@ISIPARENT` also returns TRUE when `mbrName1` and `mbrName2` are the **same member**. Think of it as: "Is mbrName1 the parent of mbrName2, or IS mbrName1 the same as mbrName2—
 
 3. **Same Dimension Requirement**: Both members must belong to the same dimension. Cross-dimension parent checks are not supported.
 

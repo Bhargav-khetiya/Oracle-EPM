@@ -1,10 +1,10 @@
-# @JSendDebug
+﻿# @JSendDebug
 
 ## Overview
 
 `@JSendDebug` is a **Hyperion Planning (HSP) custom Java-based diagnostic function** embedded within Oracle EPM Cloud (PBCS/EPBCS). Similar to `@JDebug`, it acts as a programmatic breakpoint tracer. However, while standard debuggers write directly to the primary server log, `@JSendDebug` was historically designed to push diagnostic text payloads over a specific network socket or to a designated remote debugging listener.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In massive On-Premise Hyperion deployments (where calculating nodes and UI nodes are separated across different physical servers), checking a local server text log for a specific calculation error is tedious. 
 Furthermore, if 100 users are running calculations simultaneously, the primary server log becomes an unreadable mess of intertwined messages.

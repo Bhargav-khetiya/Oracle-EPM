@@ -1,4 +1,4 @@
-﻿# Oracle EPM Cloud: Export and Download Snapshots
+﻿﻿# Oracle EPM Cloud: Export and Download Snapshots
 
 ## 1. `exportSnapshot` — Create or Refresh a Named Snapshot
 
@@ -178,7 +178,7 @@ epmautomate logout
 > - For very large environments, consider using `copySnapshotFromInstance` (server-to-server) instead of downloading locally
 
 > [!NOTE]
-> **What if `downloadFile` fails mid-download?**
+> **What if `downloadFile` fails mid-download—**
 > - The partial file may remain on your local machine — delete it
 > - Re-run the `downloadFile` command (it will overwrite)
 > - If the session timed out, `login` again first
@@ -251,15 +251,15 @@ Oracle enforces automated storage maintenance policies during the nightly mainte
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: What is the exact deletion priority when tenant snapshot storage exceeds the 150 GB threshold?
+### Q1: What is the exact deletion priority when tenant snapshot storage exceeds the 150 GB threshold—
 **Answer:** Oracle Cloud EPM enforces automated lifecycle pruning during the nightly maintenance window. When total snapshot storage exceeds 150 GB, the system purges user-created snapshots starting from the **oldest creation date first**, continuing until total storage drops below 150 GB. The daily maintenance snapshot (Artifact Snapshot) is **exempt** from this deletion rule and will never be purged by the storage threshold.
 
-### Q2: Why does epmautomate downloadFile succeed on a 15 GB snapshot while browser downloads crash at 2 GB?
+### Q2: Why does epmautomate downloadFile succeed on a 15 GB snapshot while browser downloads crash at 2 GB—
 **Answer:** The Oracle Cloud EPM Web Application Firewall (WAF) reverse proxy enforces a hard 2 GB timeout buffer on standard browser HTTP downloads. EPM Automate circumvents this by using chunked binary streams (50 MB blocks) with individual MD5 checksum validation and automatic resume capabilities. Always use CLI for files exceeding 2 GB.
 
-### Q3: How do you automate the cleanup of snapshots older than 14 days to prevent storage threshold alerts?
+### Q3: How do you automate the cleanup of snapshots older than 14 days to prevent storage threshold alerts—
 **Answer:** Use an automated PowerShell script with EPM Automate:
 `powershell
 $files = & epmautomate listFiles
@@ -277,13 +277,13 @@ $files | Where-Object { $_ -match 'Backup_(\d{4}-\d{2}-\d{2})\.zip' } | ForEach-
     "02_Landing_Page_and_Application_Creation\00_Landing_Page_Complete_Overview.md" = @"
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: When does the Planning Landing Page appear, and why does it disappear once an application exists?
+### Q1: When does the Planning Landing Page appear, and why does it disappear once an application exists—
 **Answer:** The Planning Landing Page appears **only when an environment container contains ZERO applications** (freshly provisioned or reset via ecreate -f). In Oracle Cloud EPM, each business process pod hosts exactly **one active application**. Once an application is created (via Sample, Wizard, or Migration), the Landing Page is permanently replaced by the Application Home Page. To see the Landing Page again, the application must be dropped.
 
-### Q2: Can a user with the "User" or "Power User" role access the Landing Page?
+### Q2: Can a user with the "User" or "Power User" role access the Landing Page—
 **Answer:** No. Standard Users and Power Users logging into a clean instance will receive an authorization notice: *"No application is available. Please contact your Service Administrator."* Only users assigned the **Service Administrator** predefined role in Identity Domain (OCI IAM / IDCS) are authorized to view the Landing Page and initiate application creation.
 
-### Q3: If an administrator clicks START by mistake, can they safely return to the clean Landing Page?
+### Q3: If an administrator clicks START by mistake, can they safely return to the clean Landing Page—
 **Answer:** Yes. As long as the administrator does not click the final **[Create]** button on Step 5 of the wizard, clicking **[Cancel]** at any step immediately aborts the wizard and returns the browser to the pristine Landing Page without making any changes to the database.

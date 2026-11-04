@@ -1,10 +1,10 @@
-# CALC TWOPASS
+﻿# CALC TWOPASS
 
 ## Overview
 
 `CALC TWOPASS` is a **specialized native Essbase calculation command** in Oracle EPM Cloud (PBCS/EPBCS). It acts as an aggressive recalculation macro that explicitly hunts down and re-executes formulas attached to members tagged with the **"Two-Pass"** metadata property in the database outline. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Essbase calculates multidimensional databases in a highly specific order (Dense dimensions first, then Sparse dimensions). 
 Because of this sequence, ratio calculations (like `"Gross_Margin_Percent"`) often calculate incorrectly at the parent level. 

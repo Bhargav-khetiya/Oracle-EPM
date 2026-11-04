@@ -1,10 +1,10 @@
-# @SUMRANGE
+﻿# @SUMRANGE
 
 ## Overview
 
 `@SUMRANGE` is a **native Essbase mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates a specified range (array) of cross-dimensional members, adds their numeric values together, and returns the **total sum**. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 The standard `@SUM` function is incredibly powerful, but historically, older versions of the Essbase compiler struggled when administrators tried to sum complex, comma-separated cross-dimensional lists directly inside `@SUM` (e.g., summing `"FY24"->"Actual"` and `"FY25"->"Forecast"` together). 
 `@SUMRANGE` was designed as an explicit array aggregator to ensure that complex, non-contiguous cross-dimensional tuples could be parsed, evaluated, and summed flawlessly without compiler confusion. 

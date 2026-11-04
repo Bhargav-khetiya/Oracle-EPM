@@ -1,13 +1,13 @@
-# SET UPDATECALC
+﻿# SET UPDATECALC
 
 ## Overview
 
 `SET UPDATECALC` is a **native Essbase system directive** in Oracle EPM Cloud (PBCS/EPBCS). It controls the **Intelligent Calculation** feature of the Essbase engine. Intelligent Calculation is a highly advanced internal tracking system that monitors whether a data block is "Clean" (has not been changed since the last calculation) or "Dirty" (has been modified by a user or data load). `SET UPDATECALC` explicitly commands the script whether to use this tracking system to skip clean blocks, or to forcefully recalculate everything.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Aggregating a massive database takes time. If you have 1,000,000 blocks, a full `CALC ALL` might take 2 hours. 
-However, what if a user only updated data in *one* block (`"Store_101"`)? It is incredibly wasteful to recalculate the other 999,999 blocks that didn't change. 
+However, what if a user only updated data in *one* block (`"Store_101"`)— It is incredibly wasteful to recalculate the other 999,999 blocks that didn't change. 
 Essbase's internal Intelligent Calculation system flags `"Store_101"` as "Dirty". It flags all the other blocks as "Clean". 
 By default, standard calculation scripts often run blindly and calculate everything anyway. 
 `SET UPDATECALC ON;` commands the engine to look at the flags. The engine sweeps the index, sees 999,999 Clean blocks, and instantly skips them. It only evaluates `"Store_101"`, calculates its math, updates the parents, and finishes the 2-hour script in 2 seconds. This is the holy grail of Essbase performance optimization.

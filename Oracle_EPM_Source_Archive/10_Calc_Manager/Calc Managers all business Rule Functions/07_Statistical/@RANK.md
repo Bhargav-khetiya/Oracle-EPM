@@ -1,10 +1,10 @@
-# @RANK
+﻿# @RANK
 
 ## Overview
 
 `@RANK` is a **statistical function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns the **rank** (position) of a specific value within a specified set of values. It is commonly used for performance comparisons, tiering, and sorting members based on their data values.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Business analysis frequently relies on ranking to identify top and bottom performers:
 - Ranking sales regions from highest revenue to lowest.

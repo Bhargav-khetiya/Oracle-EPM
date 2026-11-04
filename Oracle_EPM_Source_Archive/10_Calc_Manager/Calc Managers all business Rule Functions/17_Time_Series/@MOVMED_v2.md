@@ -1,10 +1,10 @@
-# @MOVMED
+﻿# @MOVMED
 
 ## Overview
 
 `@MOVMED` is a **native Essbase time-series array function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates a **Moving Median** (or rolling median) across a specified time series. For every member in the time range, it looks backward a defined number of periods, isolates that window of data, sorts it, extracts the exact middle value (the 50th percentile), and writes that median into the current block.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard moving averages (`@MOVAVG`) are excellent for smoothing trendlines, but they are highly susceptible to massive outlier spikes. 
 Imagine a warehouse looking at a 3-month trailing window to set staffing levels. The units shipped were: `[Jan: 100, Feb: 100, Mar: 10,000]`. March had a massive, one-off clearance event. If you use a moving average, the resulting target for April is `3,400`. The warehouse will massively over-staff for April based on a single anomaly.

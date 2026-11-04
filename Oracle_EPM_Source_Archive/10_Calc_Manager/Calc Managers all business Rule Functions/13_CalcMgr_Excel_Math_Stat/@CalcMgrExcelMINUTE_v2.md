@@ -1,11 +1,11 @@
-# @CalcMgrExcelMINUTE
+﻿# @CalcMgrExcelMINUTE
 
 ## Overview
 
 `@CalcMgrExcelMINUTE` is a **custom Calc Manager time extraction function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `MINUTE` function directly inside an Essbase calculation script. 
 It analyzes an Excel Serial Date/Time decimal (or a Java Timestamp object) and extracts solely the **Minute of the Hour**, returning it as an integer between `0` and `59`.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In operational planning models (like call centers, manufacturing plants, or logistics hubs), events are often logged down to the exact second. In EPM Cloud, this data is usually passed as an Excel Serial Time format, where time is represented as a decimal fraction of a day (e.g., `0.5` is exactly 12:00 PM, `0.510416` is 12:15 PM).
 If a factory model needs to measure the exact downtime of a machine that broke at `0.510416` and came back online at `0.53125`, extracting the specific "Minute" components to build a user-readable dashboard requires complex fractional math (`Fraction * 24`, isolate remainder, `* 60`). 

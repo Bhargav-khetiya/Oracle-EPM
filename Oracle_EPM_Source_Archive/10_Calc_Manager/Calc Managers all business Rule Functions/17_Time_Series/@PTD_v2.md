@@ -1,10 +1,10 @@
-# @PTD
+﻿# @PTD
 
 ## Overview
 
 `@PTD` is a **time series function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that stands for **Period-To-Date**. It calculates the cumulative value of a specified member from the beginning of the year (or quarter/half-year depending on context) up to the current period. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Financial reporting relies heavily on cumulative totals:
 - **Year-To-Date (YTD)**: Total revenue from January through the current month

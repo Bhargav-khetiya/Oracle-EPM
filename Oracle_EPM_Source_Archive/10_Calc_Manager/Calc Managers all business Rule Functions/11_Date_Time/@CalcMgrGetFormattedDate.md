@@ -1,10 +1,10 @@
-# @CalcMgrGetFormattedDate
+﻿# @CalcMgrGetFormattedDate
 
 ## Overview
 
 `@CalcMgrGetFormattedDate` is a **custom Calc Manager date instantiation and parsing function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a powerful bridge, taking a **Text String** that contains a date (like `"15-Jan-2024"` or `"2024/12/31 18:30"`) and securely parsing it into a highly precise **Java Date Object**.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In the real world, date data rarely arrives in perfect `YYYYMMDD` Essbase integers or pristine Excel Serial Decimals. Dates loaded from external CRM systems (like Salesforce), HR systems (like Workday), or manual flat-file uploads usually arrive as raw text strings (e.g., `"12-31-2024"`). 
 Essbase math functions cannot calculate "Days Between" if the input is a text string containing dashes or slashes. Before you can perform any calendar math, you must convert that text string into a Java Date Object. 

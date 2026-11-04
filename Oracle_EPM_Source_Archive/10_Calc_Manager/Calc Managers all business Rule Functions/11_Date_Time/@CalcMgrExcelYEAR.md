@@ -1,11 +1,11 @@
-# @CalcMgrExcelYEAR
+﻿# @CalcMgrExcelYEAR
 
 ## Overview
 
 `@CalcMgrExcelYEAR` is a **custom Calc Manager date extraction function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `YEAR` function directly inside an Essbase calculation script. 
 It analyzes an Excel Serial Date decimal (or a Java Timestamp) and extracts strictly the **Year component**, returning it as a four-digit integer (e.g., `2024`).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When time data is imported into EPM from external systems (like HR or ERP databases), it is almost always loaded as a continuous Excel Serial Number (e.g., `45657.0` for Dec 31, 2024) or a native Essbase `YYYYMMDD` integer (`20241231`). 
 While extracting the year from a `YYYYMMDD` integer is easy using basic division (`@INT(Date / 10000)`), extracting the year from an Excel Serial Number is impossible using basic math. You cannot divide `45657` by anything to get `2024` because the serial number is a continuous day-counter starting from Jan 1, 1900, complicated by leap years.

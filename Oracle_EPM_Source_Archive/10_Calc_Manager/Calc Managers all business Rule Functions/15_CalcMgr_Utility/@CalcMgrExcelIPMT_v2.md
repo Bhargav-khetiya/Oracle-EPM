@@ -1,11 +1,11 @@
-# @CalcMgrExcelIPMT
+﻿# @CalcMgrExcelIPMT
 
 ## Overview
 
 `@CalcMgrExcelIPMT` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `IPMT` function directly inside an Essbase calculation script. 
 It calculates the **Interest Payment** for a specific period of an investment or loan, based on periodic, constant payments and a constant interest rate.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When a company takes out a standard amortizing loan (like a mortgage or a standard corporate term loan), they pay the exact same total amount every single month. However, the *composition* of that payment changes dynamically. In Month 1, almost the entire payment goes toward Interest, and very little goes toward paying down the Principal. By Month 60, almost the entire payment is Principal, and very little is Interest.
 To calculate the exact interest expense for "Month 24" manually in Essbase, a developer would normally have to build an iterative loop, calculating the remaining balance month-by-month for 24 months, multiplying it by the rate at each step. This is incredibly slow and complex. 
@@ -109,9 +109,9 @@ FIX("FY25", "Working", @LEVEL0("Debt_Tranches"))
             "Interest_Expense" = @ROUND(
                 @CalcMgrExcelIPMT(
                     vMonthlyRate, 
-                    "Period_Index",     /* 'per': The specific target month */
+                    "Period_Indexâ”‚     /* 'per': The specific target month */
                     "Total_Loan_Months",/* 'nper': Total lifespan (e.g., 60) */
-                    "Loan_Principal",   /* 'pv': Initial $5M */
+                    "Loan_Principalâ”‚   /* 'pv': Initial $5M */
                     0, 0
                 ) * -1
             , 2);

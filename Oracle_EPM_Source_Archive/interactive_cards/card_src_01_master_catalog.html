@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Source Archive Card 01: 44-Category Master Catalog Navigator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .tab-active { border-bottom: 3px solid #38bdf8; color: #38bdf8; font-weight: 700; }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-6 font-sans">
+  <div class="max-w-6xl mx-auto space-y-6">
+    <!-- Header -->
+    <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 shadow-2xl backdrop-blur">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-700 pb-4">
+        <div>
+          <span class="text-xs font-bold tracking-widest text-emerald-400 uppercase bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-800">
+            Source Archive Card 01
+          </span>
+          <h1 class="text-2xl font-black mt-2 text-white">44-Category Master Archive Navigator</h1>
+          <p class="text-slate-400 text-sm mt-1">Direct interactive index to 1,300+ technical guides across all 44 Oracle Cloud EPM & Essbase categories.</p>
+        </div>
+        <div class="flex gap-2">
+          <span class="text-xs px-2.5 py-1 rounded-md bg-sky-950 text-sky-400 border border-sky-800">44 Categories</span>
+          <span class="text-xs px-2.5 py-1 rounded-md bg-purple-950 text-purple-400 border border-purple-800">1,346 Documents</span>
+        </div>
+      </div>
+
+      <!-- Search & Filters -->
+      <div class="mt-6 flex flex-col md:flex-row gap-4 items-center justify-between">
+        <div class="w-full md:w-96">
+          <input type="text" id="searchInput" oninput="filterCategories()" placeholder="Search category name, keyword, or number..." 
+                 class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition-colors">
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs">
+          <button onclick="setFilter('all')" id="pill-all" class="filter-pill px-3 py-1.5 rounded-lg bg-sky-500 text-white font-bold transition-colors">All (44)</button>
+          <button onclick="setFilter('essbase')" id="pill-essbase" class="filter-pill px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white border border-slate-700 transition-colors">Core Essbase</button>
+          <button onclick="setFilter('logic')" id="pill-logic" class="filter-pill px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white border border-slate-700 transition-colors">Business Logic</button>
+          <button onclick="setFilter('integration')" id="pill-integration" class="filter-pill px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white border border-slate-700 transition-colors">Data & Integration</button>
+          <button onclick="setFilter('ui')" id="pill-ui" class="filter-pill px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white border border-slate-700 transition-colors">Redwood UI</button>
+          <button onclick="setFilter('admin')" id="pill-admin" class="filter-pill px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white border border-slate-700 transition-colors">Admin & Governance</button>
+          <button onclick="setFilter('career')" id="pill-career" class="filter-pill px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white border border-slate-700 transition-colors">Review & Masterclass</button>
+        </div>
+      </div>
+
+      <!-- Stats Bar -->
+      <div class="mt-4 text-xs text-slate-400 flex items-center justify-between border-t border-slate-700/60 pt-3">
+        <span id="matchCount">Showing all 44 categories</span>
+        <span class="text-sky-400">Click any card to open its 00_INDEX.md</span>
+      </div>
+    </div>
+
+    <!-- Category Grid -->
+    <div id="categoryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <!-- Populated dynamically via JS -->
+    </div>
+  </div>
+
+  <script>
+    const categories = [
+      { num: "01", name: "Foundation and Overview", group: "career", desc: "Cloud EPM Multi-Tier Platform Topology, OCI Gen 2, and 7 Pillars.", path: "../01_Foundation_and_Overview/00_INDEX.md" },
+      { num: "02", name: "Study Path and Roadmap", group: "career", desc: "Junior to Senior progression milestones, competencies, and evaluation gates.", path: "../02_Study_Path_and_Roadmap/00_INDEX.md" },
+      { num: "03", name: "Finance Concepts", group: "career", desc: "Financial statement mechanics: P&L, Balance Sheet, Cash Flow, and GL accounting.", path: "../03_Finance_Concepts/00_INDEX.md" },
+      { num: "04", name: "Essbase Architecture", group: "essbase", desc: "BSO, ASO, and Hybrid dual-engine physics, block math, .IND/.PAG files.", path: "../04_Essbase_Architecture/00_INDEX.md" },
+      { num: "05", name: "Dimensions and Metadata", group: "essbase", desc: "12-Dimension architecture, Implied Share rules, Storage properties, Two-Pass.", path: "../05_Dimensions_and_Metadata/00_INDEX.md" },
+      { num: "06", name: "Security and Access", group: "admin", desc: "Predefined roles, Cell-Level Security (CLS), Valid Intersections, Least-Privilege.", path: "../06_Security_and_Access/00_INDEX.md" },
+      { num: "07", name: "User Interface and Navigation", group: "ui", desc: "Redwood UX architecture, custom Navigation Flows, Cards, Tabs, and Clusters.", path: "../07_User_Interface_and_Navigation/00_INDEX.md" },
+      { num: "08", name: "Forms", group: "ui", desc: "High-performance form design, suppression physics, Smart Push on save, validation.", path: "../08_Forms/00_INDEX.md" },
+      { num: "09", name: "Workflow and Approvals", group: "ui", desc: "Approval Unit Hierarchies (AUH), promotional paths, state machine, and data locking.", path: "../09_Workflow_and_Approvals/00_INDEX.md" },
+      { num: "10", name: "Calc Manager", group: "logic", desc: "Calculation Manager visual designer, script editor, CDFs, validation & deployment.", path: "../10_Calc_Manager/00_INDEX.md" },
+      { num: "11", name: "Business Rules", group: "logic", desc: "Essbase calc syntax, FIX/ENDFIX, @CALCPARALLEL, bottom-up vs top-down mechanics.", path: "../11_Business_Rules/00_INDEX.md" },
+      { num: "12", name: "Groovy Scripting", group: "logic", desc: "JVM sandbox, Micro-FIX dynamic scoping on edited cells, throwVetoException.", path: "../12_Groovy_Scripting/00_INDEX.md" },
+      { num: "13", name: "Data Integration", group: "integration", desc: "Pipeline architecture, TDATASEG staging, Explicit/Like mapping, Drill-Through.", path: "../13_Data_Integration/00_INDEX.md" },
+      { num: "14", name: "Data Maps and Smart Push", group: "integration", desc: "In-memory inter-cube sync, BSO to ASO push on save, dimensional mapping.", path: "../14_Data_Maps_and_Smart_Push/00_INDEX.md" },
+      { num: "15", name: "Smart View", group: "integration", desc: "Excel add-in mechanics, ad-hoc zooming, Submit Data, HsGetValue/HsSetValue.", path: "../15_Smart_View/00_INDEX.md" },
+      { num: "16", name: "Smart Lists", group: "logic", desc: "Text-to-integer enumeration, non-aggregating drivers, single cell storage.", path: "../16_Smart_Lists/00_INDEX.md" },
+      { num: "17", name: "EPM Automate", group: "admin", desc: "Headless CLI batch orchestration, encrypted auth, maintenance scripts.", path: "../17_EPM_Automate/00_INDEX.md" },
+      { num: "18", name: "Action Menus", group: "logic", desc: "Right-click context menus on forms, dynamic Runtime Prompt (RTP) binding.", path: "../18_Action_Menus/00_INDEX.md" },
+      { num: "19", name: "EPBCS Modules", group: "career", desc: "Pre-built business processes: Financials, Workforce, Capital, Projects, Modeling.", path: "../19_EPBCS_Modules/00_INDEX.md" },
+      { num: "20", name: "REST API", group: "integration", desc: "Headless HTTP endpoints, JSON payloads, asynchronous job polling, token auth.", path: "../20_REST_API/00_INDEX.md" },
+      { num: "21", name: "System Administration", group: "admin", desc: "Daily maintenance window (1-hour), Activity Reports, session diagnostics.", path: "../21_System_Administration/00_INDEX.md" },
+      { num: "22", name: "Application Lifecycle", group: "admin", desc: "LCM snapshots, cloneEnvironment, selective artifact migration, clean resets.", path: "../22_Application_Lifecycle/00_INDEX.md" },
+      { num: "23", name: "Planning Concepts", group: "career", desc: "Driver-based forecasting, rolling forecasts, variance analysis, seeding.", path: "../23_Planning_Concepts/00_INDEX.md" },
+      { num: "24", name: "Performance Tuning", group: "essbase", desc: "Block sizing (8-100 KB), Hourglass dimension ordering, Hybrid parent dynamic calc.", path: "../24_Performance_Tuning/00_INDEX.md" },
+      { num: "25", name: "Debugging and Troubleshooting", group: "admin", desc: "Essbase application logs, Jobs Console stack traces, root-cause isolation.", path: "../25_Debugging_and_Troubleshooting/00_INDEX.md" },
+      { num: "26", name: "Production Support", group: "admin", desc: "Sev-1/Sev-2 incident triage, lock resolution, batch recovery runbooks.", path: "../26_Production_Support/00_INDEX.md" },
+      { num: "27", name: "Implementation", group: "career", desc: "Delivery methodology, CRP1/CRP2 milestones, UAT sign-off, cutover checklist.", path: "../27_Implementation/00_INDEX.md" },
+      { num: "28", name: "Projects", group: "career", desc: "Multi-cube enterprise solution topologies, module integration blueprints.", path: "../28_Projects/00_INDEX.md" },
+      { num: "29", name: "Interview Preparation", group: "career", desc: "Fresher-to-FTE conversion scenarios, twisted panel technical questions.", path: "../29_Interview_Preparation/00_INDEX.md" },
+      { num: "30", name: "Labs and Exercises", group: "career", desc: "Step-by-step implementation labs: metadata builds, calc rules, and pipelines.", path: "../30_Labs_and_Exercises/00_INDEX.md" },
+      { num: "31", name: "Case Studies", group: "career", desc: "Enterprise architecture scenarios: Retail, SaaS, Global Banking, Manufacturing.", path: "../31_Case_Studies/00_INDEX.md" },
+      { num: "32", name: "Architect Masterclass", group: "career", desc: "FreeForm vs Standard Planning, Hybrid vector engine limits, pod scaling.", path: "../32_Architect_Masterclass/00_INDEX.md" },
+      { num: "33", name: "Cheat Sheets", group: "career", desc: "Rapid-fire syntax tables: Essbase commands, Groovy patterns, EPM Automate.", path: "../33_Cheat_Sheets/00_INDEX.md" },
+      { num: "34", name: "Glossary", group: "career", desc: "Authoritative A-Z dictionary of EPM, Essbase storage, and financial terms.", path: "../34_Glossary/00_INDEX.md" },
+      { num: "35", name: "Certification", group: "career", desc: "1Z0-1080 Planning Implementation Specialist exam syllabus and practice traps.", path: "../35_Certification/00_INDEX.md" },
+      { num: "36", name: "Screen Encyclopedia", group: "ui", desc: "Exhaustive Redwood screen and configuration modal reference guide.", path: "../36_Screen_Encyclopedia/00_INDEX.md" },
+      { num: "37", name: "Property Encyclopedia", group: "essbase", desc: "Exhaustive outline, member, form, and application property reference.", path: "../37_Property_Encyclopedia/00_INDEX.md" },
+      { num: "38", name: "Function Reference Encyclopedia", group: "essbase", desc: "Complete Essbase and Calc Manager functions with Hybrid vector status.", path: "../38_Function_Reference_Encyclopedia/00_INDEX.md" },
+      { num: "39", name: "Error Encyclopedia", group: "admin", desc: "Essbase error codes (1000000 - 1200000) and Smart View fixes.", path: "../39_Error_Encyclopedia/00_INDEX.md" },
+      { num: "40", name: "Member Formula Encyclopedia", group: "essbase", desc: "High-performance Dynamic Calc and Two-Pass member formula patterns.", path: "../40_Member_Formula_Encyclopedia/00_INDEX.md" },
+      { num: "41", name: "Navigation Encyclopedia", group: "ui", desc: "Redwood navigation maps, springboards, horizontal/vertical tabs, deep links.", path: "../41_Navigation_Encyclopedia/00_INDEX.md" },
+      { num: "42", name: "Reference Materials", group: "career", desc: "Legacy Hyperion on-prem comparison, MDX reference, migration prompts.", path: "../42_Reference_Materials/00_INDEX.md" },
+      { num: "43", name: "Techno-Functional Review", group: "career", desc: "Dual-hat fluency: connecting business financial logic to Essbase storage physics.", path: "../43_Techno_Functional_Review/00_INDEX.md" },
+      { num: "44", name: "Oracle PDF Books", group: "career", desc: "Curated official Oracle documentation library and consultant reading roadmap.", path: "../44_Oracle_PDF_Books/00_INDEX.md" }
+    ];
+
+    let currentFilter = "all";
+
+    function renderGrid(items) {
+      const grid = document.getElementById("categoryGrid");
+      grid.innerHTML = items.map(c => `
+        <a href="${c.path}" class="block bg-slate-800/70 border border-slate-700/80 hover:border-sky-500 rounded-xl p-5 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-sky-500/10 group">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-sky-400 bg-sky-950/70 px-2.5 py-0.5 rounded border border-sky-800">
+              CATEGORY ${c.num}
+            </span>
+            <span class="text-xs uppercase tracking-wider text-slate-500 group-hover:text-slate-300 transition-colors">
+              ${c.group}
+            </span>
+          </div>
+          <h2 class="text-lg font-bold text-white mt-3 group-hover:text-sky-300 transition-colors">
+            ${c.name}
+          </h2>
+          <p class="text-slate-400 text-xs mt-2 line-clamp-2 leading-relaxed">
+            ${c.desc}
+          </p>
+          <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between text-xs text-slate-400 group-hover:text-sky-400 font-medium">
+            <span>Explore Index</span>
+            <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </div>
+        </a>
+      `).join("");
+      document.getElementById("matchCount").innerText = `Showing ${items.length} of 44 categories`;
+    }
+
+    function setFilter(group) {
+      currentFilter = group;
+      document.querySelectorAll(".filter-pill").forEach(p => {
+        p.classList.remove("bg-sky-500", "text-white", "font-bold");
+        p.classList.add("bg-slate-800", "text-slate-300", "border", "border-slate-700");
+      });
+      const activePill = document.getElementById(`pill-${group}`);
+      if (activePill) {
+        activePill.classList.remove("bg-slate-800", "text-slate-300", "border", "border-slate-700");
+        activePill.classList.add("bg-sky-500", "text-white", "font-bold");
+      }
+      filterCategories();
+    }
+
+    function filterCategories() {
+      const q = document.getElementById("searchInput").value.toLowerCase();
+      const filtered = categories.filter(c => {
+        const matchesGroup = currentFilter === "all" || c.group === currentFilter;
+        const matchesSearch = c.num.includes(q) || c.name.toLowerCase().includes(q) || c.desc.toLowerCase().includes(q);
+        return matchesGroup && matchesSearch;
+      });
+      renderGrid(filtered);
+    }
+
+    // Initialize
+    renderGrid(categories);
+  </script>
+</body>
+</html>

@@ -1,10 +1,10 @@
-# @RELXRANGE
+﻿# @RELXRANGE
 
 ## Overview
 
 `@RELXRANGE` is a **native Essbase time-series tracking function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as an advanced, multi-dimensional array generator. It accepts a specific "Anchor" block, a defined cross-dimensional time range (`XrangeList`), and an integer offset. It then generates a discrete array of members relative to that anchor, seamlessly crossing year boundaries.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building highly customized rolling functions or dynamic allocations, you often need to find a block of time relative to another block of time, but you aren't currently calculating that block.
 For example, if the script is currently calculating `"Q1"` of `"FY25"`, but it needs to generate an array of the 3 months leading up to the `"Launch_Date"` (which is a completely different variable, say `"Mar"` of `"FY24"`). 

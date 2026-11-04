@@ -1,10 +1,10 @@
-# @CalcMgrTrim
+﻿# @CalcMgrTrim
 
 ## Overview
 
 `@CalcMgrTrim` is a **custom Calc Manager string cleansing function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as an invisible character scrubber. It takes a text string and systematically **removes all leading (front) and trailing (back) white space characters**, returning a perfectly clean, tightened string.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Invisible whitespace is one of the most common causes of silent calculation failures in EPM. If an automated flat-file integration loads data using fixed-width text columns, a department name might be loaded into Essbase as `" Sales    "`. 
 To the human eye on a report, it looks fine. But if a calculation script reads that string and attempts to map data to `@MEMBER("Sales")`, Essbase will crash with an "Unknown Member" error, because `" Sales    "` does not match `"Sales"`. 

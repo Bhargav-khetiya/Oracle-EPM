@@ -1,28 +1,48 @@
-# Performance Tuning
+# Module 16: Performance Tuning & Optimization Architecture
 
-> Identifying and resolving performance bottlenecks in EPM Cloud applications — from Essbase caching to form design to calculation optimization.
+## Navigation & Module Overview
 
----
-
-## Reading Order
-
-| # | File | What You'll Learn |
-|---|------|-------------------|
-| 1 | Performance Tuning Guide (coming) | Essbase cache tuning, block optimization, form performance, calc script efficiency, ASO tuning |
+This module covers the 4-layer EPM performance tuning stack: physical outline and block sizing, calculation rule optimization, web form and query tuning, and automated maintenance operations.
 
 ---
 
-## Performance Levers
+<!-- ===================================================================== -->
+<!-- 🎯 LIVE INTERACTIVE VISUAL CARD: MODULE 16 PERFORMANCE TUNING -->
+<!-- ===================================================================== -->
+<details open>
+<summary><b>🎯 Live Interactive Architecture Card: Performance Tuning Suite (Click to Collapse / Expand)</b></summary>
 
-| Area | Key Settings / Actions |
-|:---|:---|
-| **Essbase Caching** | INDEXCACHESIZE, DATACACHESIZE, DYNCALCCACHESIZE |
-| **Block Size** | Dense/Sparse dimension assignment, Dynamic Calc on parents |
-| **Calculation Speed** | CALCPARALLEL, CALCTASKDIMS, FIX scope reduction |
-| **Form Performance** | Suppress missing data, limit row count, minimize Smart Push scope |
-| **Data Load Speed** | Use Data Integration (bulk) over @XWRITE (per-cell) |
-| **Fragmentation** | Periodic export/reimport, outline restructure |
+<br/>
+
+> [!TIP]
+> **Consultant High-Yield Summary:** Master the 4-layer tuning stack (Block Sizing 8-100 KB, Sparse FIX Scopes, Web Form Suppression, and ASO Slice Merges with Drop Zeros).
+
+| Document | Primary Domain | Core Focus | Direct Link |
+| :--- | :--- | :--- | :--- |
+| **16.1 Performance Guide** | Full-Stack Optimization | 4-Layer Stack, Block Sizing Math, Sparse FIX, Web Form Layout, `CLEARBLOCK EMPTY` | [01_Performance_Guide.md](01_Performance_Guide.md) |
+
+```mermaid
+flowchart TD
+    M16["Module 16: Performance Tuning"] --> D1["16.1 Performance Guide<br/>(The 4-Layer Stack)"]
+    D1 --> L1["Layer 1: Block Sizing & Hybrid BSO"]
+    D1 --> L2["Layer 2: Calculation Scopes & Groovy"]
+    D1 --> L3["Layer 3: Form Layout & Suppression"]
+    D1 --> L4["Layer 4: Slice Merging & CLEARBLOCK"]
+```
+
+</details>
 
 ---
 
-**Provenance:** Source material from Claude `16_Performance/`, ChatGPT Essbase performance files, Gemini equivalents.
+## Module Documents
+
+1. **[16.1 Performance Tuning Architecture: Storage, Calculations, Forms & Maintenance](01_Performance_Guide.md)**
+   * The 4-Layer EPM Performance Stack (Storage, Calculations, Forms, Maintenance).
+   * Block sizing optimization (8 KB to 100 KB target range).
+   * Calculation tuning: Sparse FIX scoping, Bottom-Up enforcement, and Groovy event rules.
+   * Form grid and query retrieval tuning: Suppress Missing Data, POV sizing.
+   * Deflating block explosion via `CLEARBLOCK EMPTY;` and ASO slice compaction.
+   * Tough & twisted review questions with consultant model answers.
+
+---
+*Return to [Knowledge Base Master Index](../README.md) or advance to [Module 17: Hands-On Labs & Case Studies](../17_Labs_and_Case_Studies/00_INDEX.md).*

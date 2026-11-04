@@ -1,10 +1,10 @@
-# @ABS
+﻿# @ABS
 
 ## Overview
 
 `@ABS` is a **mathematical function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns the **absolute value** of a given numeric expression. The absolute value of a number is its distance from zero on the number line, regardless of direction — meaning it always returns a non-negative result.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In financial planning and budgeting, you often need to work with magnitudes regardless of sign. For example:
 - Comparing the size of variances without caring whether they are favorable or unfavorable
@@ -160,7 +160,7 @@ FIX("FY24", "Working")
 ENDFIX
 ```
 
-**Why @ABS Here?**: If Budget is -1000 and Actual is -800, without @ABS the percentage would be `(-800 - (-1000)) / (-1000) * 100 = -20%`. With @ABS on the denominator, you get the correct `20%`.
+**Why @ABS Here—**: If Budget is -1000 and Actual is -800, without @ABS the percentage would be `(-800 - (-1000)) / (-1000) * 100 = -20%`. With @ABS on the denominator, you get the correct `20%`.
 
 ---
 

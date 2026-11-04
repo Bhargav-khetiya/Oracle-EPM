@@ -1,4 +1,4 @@
-# Smart Lists: Concept and Data Model
+﻿# Smart Lists: Concept and Data Model
 
 ## Core idea
 A Smart List is a configured drop-down list that lets a user choose a value in supported Planning form cells instead of typing it.
@@ -7,7 +7,7 @@ A Smart List is a configured drop-down list that lets a user choose a value in s
 
 > **Important boundary:** Oracle's user/admin documentation describes the logical Smart List behavior and entry properties. It does not establish that a customer can inspect a specific physical Essbase file or Cloud storage implementation. This guide makes no claims about .PAG files, block bytes, or Cloud internals.
 
-## Why use one?
+## Why use one—
 
 Use a Smart List when users need a small governed set of choices for a supported data-entry cell, such as a hypothetical forecast method. Use a dimension when the values must participate as independent dimensional members for slicing, security, hierarchy, or aggregation. A Smart List is not a replacement for a dimension.
 
@@ -66,7 +66,7 @@ A hypothetical account member called Forecast Method could be associated with en
 
 ## Remember and explain
 
-**Recall:** What is a Smart List? What are ID, Name, and Label? Which dimension belongs first in evaluation order? When is a dimension a better design choice?
+**Recall:** What is a Smart List— What are ID, Name, and Label— Which dimension belongs first in evaluation order— When is a dimension a better design choice—
 
 **Answer key:** A Smart List is a controlled drop-down for supported form cells. ID is the unique numeric entry, Name is the programmatic key, and Label is user-facing. The dimension associated with the Smart List-type member must be first in evaluation order. Use a dimension when values must behave as independent members for analysis/security/hierarchy.
 

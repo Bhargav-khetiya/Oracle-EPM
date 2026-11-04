@@ -1,4 +1,4 @@
-# NotebookLM Prompt — Oracle EPM Cloud Data Integration: Complete Deep Dive Tutorial
+﻿# NotebookLM Prompt — Oracle EPM Cloud Data Integration: Complete Deep Dive Tutorial
 
 ---
 
@@ -16,7 +16,7 @@ Use a conversational, engaging tone — like a brilliant mentor explaining to a 
 
 ### Cover these topics in extreme detail:
 
-1. **What is Oracle EPM Cloud?**
+1. **What is Oracle EPM Cloud—**
    - Explain Planning, Budgeting, Financial Consolidation (FCCS), Tax Reporting, Account Reconciliation
    - Explain that EPM Cloud applications have multiple "plan types" (cubes) — BSO (Block Storage) and ASO (Aggregate Storage)
    - Explain that these cubes store financial data organized by dimensions (Account, Entity, Period, Year, Scenario, Version, etc.)
@@ -132,7 +132,7 @@ Use a conversational, engaging tone — like a brilliant mentor explaining to a 
 
 **Explain every property and option:**
 
-#### What is an Import Format?
+#### What is an Import Format—
 - Think of it as a "column mapping blueprint" — it tells the system how to read the source data
 - It maps each column in your source file (or SQL query result) to a dimension in the target EPM application
 
@@ -197,7 +197,7 @@ Period is derived from the column header, not from a data column.
 
 **Explain every aspect of registering and configuring target applications:**
 
-#### What is a Target Application?
+#### What is a Target Application—
 - The destination EPM business process where data will land
 - Could be: Planning (FinStmt BSO), Planning (Reporting ASO), FCCS, Tax Reporting, Freeform
 
@@ -232,7 +232,7 @@ Period is derived from the column header, not from a data column.
 
 **Explain every property and concept:**
 
-#### What is a Location?
+#### What is a Location—
 - A Location is a **container** that groups together: Source System + Import Format + Target Application + Mappings + Data Load Rules
 - Think of it as a named "pipeline" — everything needed to execute a specific type of data load
 - You can have multiple Locations for different load scenarios (e.g., `GL_Actuals_Load`, `Budget_Upload`, `Headcount_Load`)
@@ -262,7 +262,7 @@ Period is derived from the column header, not from a data column.
 
 **This is the most critical section — explain every mapping type in extreme detail:**
 
-#### What are Member Mappings?
+#### What are Member Mappings—
 - Translation rules that convert source system codes to EPM dimension member names
 - Example: Your ERP uses account code `40100`, but EPM uses member name `Revenue_Product_Sales`
 - Without mappings, the load would fail because EPM doesn't have a member called `40100`
@@ -293,7 +293,7 @@ Period is derived from the column header, not from a data column.
 - **What it is**: Pattern-based matching using wildcards
 - **Wildcards**:
   - `*` — matches any number of characters
-  - `?` — matches exactly one character
+  - `—` — matches exactly one character
 - **Properties**:
 
 | Field | Description | Example |
@@ -305,7 +305,7 @@ Period is derived from the column header, not from a data column.
 - **Examples**:
   - `40*` → `Revenue_*` : Source `40100` becomes `Revenue_100`
   - `*_ELIM` → `*_Elimination` : Source `US_ELIM` becomes `US_Elimination`
-  - `6???0` → `Admin_????` : Source `60010` becomes `Admin_0010`
+  - `6———0` → `Admin_————` : Source `60010` becomes `Admin_0010`
 
 - **When to use**: When source and target follow naming conventions
 - **Performance**: Excellent for large member counts (one rule handles thousands of members)
@@ -534,7 +534,7 @@ If multiple rules of the same type could match, the one with the lowest **Proces
 
 ### Cover every aspect of the agent:
 
-#### What is it?
+#### What is it—
 - A lightweight Java application that runs inside your corporate network
 - Bridges EPM Cloud and on-premise databases
 - Eliminates the need for manual CSV file creation and upload
@@ -621,7 +621,7 @@ URL: jdbc:mysql://hostname:3306/database_name
 
 ### Explain the complete drill-through setup:
 
-#### What is Drill-Through?
+#### What is Drill-Through—
 - Users click on a cell in an EPM form/report and see the original source transactions
 - Provides audit trail and data lineage
 

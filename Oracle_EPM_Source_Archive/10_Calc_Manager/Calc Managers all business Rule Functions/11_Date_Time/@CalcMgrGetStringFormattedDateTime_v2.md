@@ -1,10 +1,10 @@
-# @CalcMgrGetStringFormattedDateTime
+﻿# @CalcMgrGetStringFormattedDateTime
 
 ## Overview
 
 `@CalcMgrGetStringFormattedDateTime` is a **custom Calc Manager string manipulation function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a fully constructed **Java Timestamp Object** (which contains both the calendar date and the exact time of day) and seamlessly converts it into a highly customizable **Text String** based on standard Java date formatting patterns.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When capturing audit trails, system performance logs, or executing automated daily flat-file exports from Essbase, administrators must include exact Timestamps. 
 While functions like `@CalcMgrGetCurrentDateTime()` perfectly capture the current timestamp, they return it as a Java Object in memory. Essbase cannot export Java Objects to a CSV file, nor can it save them directly into a cell. 

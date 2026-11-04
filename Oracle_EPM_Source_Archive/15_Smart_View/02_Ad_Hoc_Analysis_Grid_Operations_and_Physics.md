@@ -1,4 +1,4 @@
-# 02 — Ad hoc analysis and grid operations
+﻿# 02 — Ad hoc analysis and grid operations
 
 ## Core idea
 
@@ -44,9 +44,9 @@ Free-form entry is available for supported providers: users can enter dimension/
 
 ## Recall check
 
-1. What is the difference between Refresh and Submit Data? Refresh retrieves; Submit sends eligible changes.
-2. Why review the POV before submitting? The write applies to the selected members and current context.
-3. Does every provider support every zoom mode? No.
+1. What is the difference between Refresh and Submit Data— Refresh retrieves; Submit sends eligible changes.
+2. Why review the POV before submitting— The write applies to the selected members and current context.
+3. Does every provider support every zoom mode— No.
 
 **Teach-back:** Explain what you would check before submitting a changed ad hoc grid to a production plan.
 

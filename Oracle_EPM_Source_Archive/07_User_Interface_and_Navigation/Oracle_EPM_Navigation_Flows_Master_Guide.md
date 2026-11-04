@@ -1,6 +1,6 @@
-# Oracle EPM Cloud: The Ultimate Master Guide to Navigation Flows
+﻿# Oracle EPM Cloud: The Ultimate Master Guide to Navigation Flows
 
-## 1. Introduction: What are Navigation Flows?
+## 1. Introduction: What are Navigation Flows—
 Navigation Flows control the user interface (UI) experience in Oracle EPM Cloud. They dictate exactly what icons, cards, clusters, and tabs a user sees when they log into the application. By customizing Navigation Flows, administrators can hide irrelevant technical menus and provide a clean, role-based, hyper-focused UI tailored specifically to a user's daily tasks.
 
 ---

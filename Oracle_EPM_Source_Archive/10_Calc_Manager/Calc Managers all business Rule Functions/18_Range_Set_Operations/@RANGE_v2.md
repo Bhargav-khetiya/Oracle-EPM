@@ -1,10 +1,10 @@
-# @RANGE
+﻿# @RANGE
 
 ## Overview
 
 `@RANGE` is a **member selection function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that generates a continuous **list of members** between a specified start and end member, inclusive, across one or more dimensions. It is primarily used within functions like `@SUM`, `@AVG`, or `@MIN` to define the scope of data to aggregate.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard range notation (`"Jan":"Mar"`) works well for single dimensions and fixed ranges, but business logic often requires dynamic ranges or ranges that cross dimension boundaries:
 - Summing from a dynamic start period to a dynamic end period (e.g., project lifecycle)

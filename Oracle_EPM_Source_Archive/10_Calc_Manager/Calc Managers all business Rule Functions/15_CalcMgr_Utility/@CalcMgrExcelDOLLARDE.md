@@ -1,11 +1,11 @@
-# @CalcMgrExcelDOLLARDE
+﻿# @CalcMgrExcelDOLLARDE
 
 ## Overview
 
 `@CalcMgrExcelDOLLARDE` is a **custom Calc Manager formatting/math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `DOLLARDE` function directly inside an Essbase calculation script. 
 It converts a dollar price expressed as an integer and a fraction (e.g., `1.02`, representing 1 and 2/32nds) into a standard **decimal number** (e.g., `1.0625`).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Historically, US Treasury Bonds and certain financial securities were quoted and traded using fractions (specifically 1/32nds or 1/8ths) rather than standard decimals. For example, a bond quote of `102.04` did not mean $102 and 4 cents. It meant $102 and `4/32nds` of a dollar (which is actually $102.125). 
 When pulling market pricing data into an EPM Cloud database from legacy feeds or Bloomberg terminals, these fractional representations must be mathematically converted into standard decimals before you can calculate yields, multiply by quantities, or sum total portfolio value.

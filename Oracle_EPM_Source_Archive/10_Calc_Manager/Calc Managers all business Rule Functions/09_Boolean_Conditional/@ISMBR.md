@@ -1,17 +1,17 @@
-# @ISMBR
+﻿# @ISMBR
 
 ## Overview
 
 `@ISMBR` is a **logical evaluation function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It evaluates whether the member currently being calculated matches a specified member or belongs to a specified list of members. It returns a Boolean value (`TRUE` or `FALSE`).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While `FIX` statements restrict calculations at a macro level (the block level), there are many scenarios where you need cell-level conditional logic:
 - Executing a different tax rate depending on which entity is currently calculating.
 - Applying a calculation only to Level-0 members within a broader `FIX` that includes parents.
 - Branching logic based on whether a member belongs to a specific subset of products.
 
-`@ISMBR` is the primary way to ask Essbase: *"Am I currently calculating X?"*
+`@ISMBR` is the primary way to ask Essbase: *"Am I currently calculating X—*
 
 ### When to Use It
 

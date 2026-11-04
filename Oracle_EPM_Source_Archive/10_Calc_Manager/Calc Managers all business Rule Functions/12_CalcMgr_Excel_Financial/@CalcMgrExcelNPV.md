@@ -1,11 +1,11 @@
-# @CalcMgrExcelNPV
+﻿# @CalcMgrExcelNPV
 
 ## Overview
 
 `@CalcMgrExcelNPV` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `NPV` function directly inside an Essbase calculation script. 
 It calculates the **Net Present Value** of an investment based on a specified discount rate and a series of future periodic cash flows.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 A dollar today is worth more than a dollar tomorrow. In corporate finance, if a project costs $1,000,000 today and returns $300,000 a year for 4 years, the total cash returned is $1,200,000. However, because you could have invested that initial $1M in a safe bond yielding 5%, those future returns must be discounted by 5% to see if the project actually destroys or creates "true" value in today's dollars.
 To calculate NPV manually in Essbase, a developer must loop through every single year, grab the cash flow, divide it by `(1 + Rate) ^ Year_Index`, and sum all those discounted values into a master variable.

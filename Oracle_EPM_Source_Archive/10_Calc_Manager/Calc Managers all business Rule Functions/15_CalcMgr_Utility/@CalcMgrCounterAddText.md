@@ -1,10 +1,10 @@
-# @CalcMgrCounterAddText
+﻿# @CalcMgrCounterAddText
 
 ## Overview
 
 `@CalcMgrCounterAddText` is a **custom Calc Manager state-tracking function** in Oracle EPM Cloud (PBCS/EPBCS). It appends a specified text string into an invisible, globally tracked memory bucket (a "text counter") running in the background during the execution of a Business Rule.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While `@CalcMgrCounterAddNumber` keeps a running mathematical tally, sometimes you need to keep a running *list*. 
 Standard Essbase calculation scripts evaluate data block by block. If you encounter an anomaly (like a validation error) on Entity A, and another on Entity Z, there is no native way to aggregate those specific member names into a single readable string.

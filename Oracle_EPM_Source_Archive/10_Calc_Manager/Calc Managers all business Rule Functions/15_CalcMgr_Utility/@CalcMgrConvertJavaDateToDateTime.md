@@ -1,10 +1,10 @@
-# @CalcMgrConvertJavaDateToDateTime
+﻿# @CalcMgrConvertJavaDateToDateTime
 
 ## Overview
 
 `@CalcMgrConvertJavaDateToDateTime` is a **custom Calc Manager date conversion function** in Oracle EPM Cloud (PBCS/EPBCS). It takes an internal Java `Date` object (which intrinsically holds both calendar and time data) and converts it into a massive `YYYYMMDDHHMMSS` integer format, allowing you to store a highly precise timestamp inside a standard Essbase numeric data cell.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Essbase standard integer dates are typically `YYYYMMDD` (e.g., `20241231`), which represents the day but drops any concept of time.
 However, for detailed operational models (like IT Helpdesk SLA tracking, high-frequency logistics, or system audit trails), you need to know *exactly* when an event happened down to the second.

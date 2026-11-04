@@ -1,4 +1,4 @@
-# 01 Rule Deployment Lifecycle, Validation Compiler, and LCM Migration
+﻿# 01 Rule Deployment Lifecycle, Validation Compiler, and LCM Migration
 
 ## 1. The Rule Compilation and Deployment Lifecycle
 
@@ -71,7 +71,7 @@ Business rules, rule sets, variables, and templates are fully portable across De
 An inspection of the exported rule XML reveals how visual canvas coordinates and compiled calculation syntax are stored concurrently:
 
 ```xml
-<?xml version="1.0" encoding="UTF-8"?>
+<—xml version="1.0" encoding="UTF-8"—>
 <CalculationRule xmlns="http://xmlns.oracle.com/calcmgr" version="24.08.65">
     <Name>Calculate_Gross_Margin</Name>
     <Application>Vision</Application>

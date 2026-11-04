@@ -1,11 +1,11 @@
-# @CalcMgrExcelROUNDDOWN
+﻿# @CalcMgrExcelROUNDDOWN
 
 ## Overview
 
 `@CalcMgrExcelROUNDDOWN` is a **custom Calc Manager mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `ROUNDDOWN` function directly inside an Essbase calculation script. 
 It strictly rounds a number **towards zero** to a specified number of decimal digits, entirely ignoring the standard mathematical rules of nearest-neighbor rounding.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard rounding (`@ROUND`) looks at the next digit to decide whether to round up or down. E.g., `10.5` rounds up to `11`. `10.2` rounds down to `10`.
 However, in physical logistics, manufacturing, and financial payout models, you often cannot assume standard rounding. If you are calculating how many full cars you can build with 15 tires, the math says `15 / 4 = 3.75`. Standard rounding would round `3.75` up to `4`. But you cannot physically sell a car with only 3 tires. You must forcefully round DOWN to `3`, regardless of how close you are to the next integer.

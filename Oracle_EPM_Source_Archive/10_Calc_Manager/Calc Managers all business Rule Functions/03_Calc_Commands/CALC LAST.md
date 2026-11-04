@@ -1,10 +1,10 @@
-# CALC LAST
+﻿# CALC LAST
 
 ## Overview
 
 `CALC LAST` is a **specialized native Essbase calculation directive** in Oracle EPM Cloud (PBCS/EPBCS). Just like `CALC FIRST`, it aggressively overrides the standard additive consolidation logic (`+`, `-`) of a dimension outline. Instead of summing the children together to calculate the parent, `CALC LAST` commands the engine to look at the children and exclusively write the **numeric value of the very last child** into the parent block, completely ignoring the previous children.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In corporate accounting, closing metrics are pervasive. "Closing Cash", "Closing Headcount", "Ending Retained Earnings", and "Ending Inventory" are all non-additive metrics. The Closing Cash for `Q1` is not the sum of Jan, Feb, and Mar. The Closing Cash for `Q1` is simply whatever the cash balance was at the end of `Mar`. 
 If you try to map this dynamically using `@PRIOR` or complex `IF` statements in a massive outline, the retrieval time for parent-level balance sheets becomes disastrous.

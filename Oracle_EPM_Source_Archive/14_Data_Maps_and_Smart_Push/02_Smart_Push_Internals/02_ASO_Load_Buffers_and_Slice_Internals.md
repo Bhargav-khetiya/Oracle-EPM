@@ -1,4 +1,4 @@
-# 02 ASO Load Buffers, C++ Kernel APIs, and Storage Slice Internals
+﻿# 02 ASO Load Buffers, C++ Kernel APIs, and Storage Slice Internals
 
 ## 1. Low-Level ASO Ingestion Architecture
 
@@ -251,19 +251,19 @@ This phenomenon requires strict **ASO Slice Merge Maintenance**.
 
 ## 8. Top 5 Twisted Review & Interview Questions on ASO Load Buffers
 
-### Q1: Why does loading data into an ASO cube never result in block fragmentation or index page splitting?
+### Q1: Why does loading data into an ASO cube never result in block fragmentation or index page splitting—
 **Answer**: Because ASO does not use BSO page files (`.pag`) or block index tables (`.ind`). In ASO, all writes occur via load buffers that append sequentially into brand new physical slice files (`slice_NNNN.dat`). Existing slices on disk are completely read-only and immutable. Because existing data files are never modified in place, zero page splitting or block fragmentation occurs.
 
-### Q2: What is the risk of having 100 Smart Push operations execute throughout the day without a slice merge?
+### Q2: What is the risk of having 100 Smart Push operations execute throughout the day without a slice merge—
 **Answer**: Each Smart Push creates an incremental storage slice. With 100 Smart Pushes, Essbase creates 100 separate `.dat` and `.idx` files. When an executive runs an ad-hoc query or report in Smart View, the ASO retrieval engine must traverse 100 separate B-tree indexes and sum 100 values in memory for every cell displayed. This causes severe query latency degradation, report timeouts, and heavy CPU usage.
 
-### Q3: What is the difference between `ESS_ASO_LOAD_DUPLICATES_ADD` and `ESS_ASO_LOAD_DUPLICATES_OVERWRITE`?
+### Q3: What is the difference between `ESS_ASO_LOAD_DUPLICATES_ADD` and `ESS_ASO_LOAD_DUPLICATES_OVERWRITE`—
 **Answer**:
 * `ESS_ASO_LOAD_DUPLICATES_ADD`: If multiple rows in the load stream have identical dimension member coordinates, Essbase sums their values together. This is the mandatory setting for EPM Cloud financial data maps where multiple operational accounts map to a single reporting account.
 * `ESS_ASO_LOAD_DUPLICATES_OVERWRITE`: If duplicates occur, the last record in the stream replaces any prior records.
 
-### Q4: What happens if an Essbase server crashes while a load buffer is receiving data?
+### Q4: What happens if an Essbase server crashes while a load buffer is receiving data—
 **Answer**: Absolute zero database corruption occurs. The load buffer resides purely in volatile memory. Because the commit API (`EssUpdateFileASO`) was never called, no entry was written to `slice_index.xml`. Upon reboot, the database remains in its clean, pre-load state.
 
-### Q5: Can multiple users load data into the same ASO cube concurrently?
+### Q5: Can multiple users load data into the same ASO cube concurrently—
 **Answer**: **Yes**. The Essbase kernel supports concurrent data loads by allocating distinct `BufferId` numbers (e.g., Buffer 101 and Buffer 102). Each buffer collects and sorts its data independently. When committed, they generate separate incremental slice files, ensuring full multi-user concurrency without database-level write locks.

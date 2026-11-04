@@ -1,11 +1,11 @@
-# @CalcMgrExcelISPMT
+﻿# @CalcMgrExcelISPMT
 
 ## Overview
 
 `@CalcMgrExcelISPMT` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `ISPMT` function directly inside an Essbase calculation script. 
 It calculates the **Interest Payment** for a specific period of an investment or loan, but it specifically assumes a **Straight-Line Principal Reduction** payment schedule, rather than a standard amortizing schedule.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Standard loans (like a mortgage) use a fixed *total* payment every month, meaning the interest portion drops over time while the principal portion rises over time (`IPMT`).
 However, certain commercial loans and structured financial instruments mandate that the borrower pays down the *exact same amount of principal* every single period (e.g., a $120,000 loan over 12 months means exactly $10,000 of principal is paid every month). Because the principal drops in a straight, linear line, the interest expense simply steps down mathematically every month.

@@ -1,4 +1,4 @@
-# 🛡️ Form Properties — Cell-Level Security (CLS) & Valid Intersections (VIC)
+﻿# 🛡️ Form Properties — Cell-Level Security (CLS) & Valid Intersections (VIC)
 
 > **Purpose**: This technical manual details the internal architecture, database evaluation pipeline, grid rendering mechanics, suppression interactions, and performance impacts of **Cell-Level Security (CLS)** and **Valid Intersections (VIC)** within Oracle EPM Cloud Planning web forms and Smart View grids.
 
@@ -66,34 +66,34 @@ When an EPM Form renders or a user attempts to submit data, the application proc
                │
                ▼
    [Stage 1: Essbase Member Security]
-   ├── Does user have Essbase Read/Write to Entity, Account, Version?
+   ├── Does user have Essbase Read/Write to Entity, Account, Version—
    └── If Essbase = NONE ──► Result: #NoAccess (Terminated immediately)
                │ (Pass)
                ▼
    [Stage 2: Scenario / Version Time Restrictions]
-   ├── Is Scenario/Version locked for the period? (Start/End period checks)
+   ├── Is Scenario/Version locked for the period— (Start/End period checks)
    └── If Locked ──► Result: Read-Only (Cell grayed out)
                │ (Pass)
                ▼
    [Stage 3: Planning Unit Approval Hierarchy (PUH)]
-   ├── Is the Approval Unit in 'Promoted' or 'Approved' state?
+   ├── Is the Approval Unit in 'Promoted' or 'Approved' state—
    └── If Not Owner ──► Result: Read-Only
                │ (Pass)
                ▼
    [Stage 4: Valid Intersections (VIC) Engine]
-   ├── Does coordinate match an Invalid Intersection rule?
+   ├── Does coordinate match an Invalid Intersection rule—
    └── If INVALID ──► Result: Read-Only / Tooltip 'Invalid' (Write blocked)
                │ (Valid)
                ▼
    [Stage 5: Cell-Level Security (CLS) Engine]
    ├── Check CLS Rules:
-   │   ├── Match DENY rule? ──► Result: #NoAccess (Data hidden/masked)
-   │   ├── Match WRITE rule? ──► Result: WRITE (Yellow/Editable)
-   │   └── Match READ rule? ──► Result: READ (Gray/Read-Only)
+   │   ├── Match DENY rule— ──► Result: #NoAccess (Data hidden/masked)
+   │   ├── Match WRITE rule— ──► Result: WRITE (Yellow/Editable)
+   │   └── Match READ rule— ──► Result: READ (Gray/Read-Only)
                │ (Write Permitted)
                ▼
    [Stage 6: Form Segment & Dynamic Calc Status]
-   ├── Is member Dynamic Calc or Form Column set to Read-Only?
+   ├── Is member Dynamic Calc or Form Column set to Read-Only—
    └── Final State: EDITABLE or READ-ONLY
 ```
 

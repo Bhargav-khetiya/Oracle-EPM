@@ -1,10 +1,10 @@
-# @HspGetFileName
+﻿# @HspGetFileName
 
 ## Overview
 
 `@HspGetFileName` is a **Hyperion Planning (HSP) custom administrative function** embedded within Oracle EPM Cloud (PBCS/EPBCS). It dynamically retrieves the **exact physical filename (text string)** of the Essbase calculation script (.csc file) that is currently executing on the server.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In massive EPM implementations, it is common to have dozens of complex allocation scripts, aggregation routines, and data pushes running overnight in a tightly scheduled batch. If one of those calculations encounters dirty data (e.g., `"Net_Income" < 0`), it needs to log an error.
 If the error simply says "Validation Failed on Cost Center 100", the administrator might have to comb through 50 different calculation scripts to figure out *which rule* actually threw the error. 

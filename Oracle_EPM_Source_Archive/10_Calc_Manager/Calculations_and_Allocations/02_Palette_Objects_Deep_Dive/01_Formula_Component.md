@@ -1,4 +1,4 @@
-# 01 Formula Component: Properties, Assignment Logics, and Block Generation
+﻿# 01 Formula Component: Properties, Assignment Logics, and Block Generation
 
 ## 1. Architectural Essence of the Formula Component
 
@@ -16,9 +16,9 @@ The **Formula Component** is the primary mathematical workhorse of Calculation M
 |                 |                                                      |                          |
 |                 v                                                      v                          |
 |  [Storage Type Evaluation]                    [Execution Mode & Calculation Engine]              |
-|  - Is target Dense or Sparse?                 - Evaluates RHS expression using Essbase FPU       |
-|  - Does target block exist?                   - Bottom-Up vs. Top-Down resolution                |
-|  - Triggers Block Creation if Sparse?         - Handles #MISSING and Division by Zero            |
+|  - Is target Dense or Sparse—                 - Evaluates RHS expression using Essbase FPU       |
+|  - Does target block exist—                   - Bottom-Up vs. Top-Down resolution                |
+|  - Triggers Block Creation if Sparse—         - Handles #MISSING and Division by Zero            |
 +---------------------------------------------------------------------------------------------------+
 ```
 

@@ -1,4 +1,4 @@
-﻿# 📥 Upload and Import Snapshot — Complete Step-by-Step Guide
+﻿﻿# 📥 Upload and Import Snapshot — Complete Step-by-Step Guide
 ## Restoring or Creating an Application from Snapshot via the Landing Page & Migration Console
 
 > **Navigation Path 1 (Landing Page):** `Planning Landing Page → MIGRATE button`  
@@ -162,7 +162,7 @@ Use this method when creating an application from scratch or completely restorin
 │ all application structures, dimensions, security, forms, rules, │
 │ and data. Existing data will be overwritten.                    │
 │                                                                 │
-│ Do you want to continue?                                        │
+│ Do you want to continue—                                        │
 │                                                                 │
 │                                    [ OK ]         [ Cancel ]    │
 └─────────────────────────────────────────────────────────────────┘
@@ -285,19 +285,19 @@ epmautomate logout
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: How do you bypass the browser 2 GB upload limit when importing a large production snapshot?
+### Q1: How do you bypass the browser 2 GB upload limit when importing a large production snapshot—
 **Answer:** The Oracle Cloud EPM browser UI enforces a hard 2 GB limit on multipart file uploads. For large snapshots (e.g. 5 GB to 50 GB), you must upload using EPM Automate CLI:
 ```cmd
 epmautomate uploadFile "Prod_Snapshot_30GB.zip"
 ```
 EPM Automate automatically splits the file into 50 MB chunked binary streams with MD5 verification and reassembles it in the cloud Inbox.
 
-### Q2: What happens if an automated import process is interrupted midway by a network disconnect?
-**Answer:** Because `importSnapshot` executes server-side, a client network disconnect does not stop the import job. The cloud server completes the database restructuring. You can monitor its completion by logging back in and checking `Tools â†’ Migration â†’ Reports â†’ Migration Status`.
+### Q2: What happens if an automated import process is interrupted midway by a network disconnect—
+**Answer:** Because `importSnapshot` executes server-side, a client network disconnect does not stop the import job. The cloud server completes the database restructuring. You can monitor its completion by logging back in and checking `Tools → Migration → Reports → Migration Status`.
 
-### Q3: Can an administrator import a snapshot while users are actively working in the system?
+### Q3: Can an administrator import a snapshot while users are actively working in the system—
 **Answer:** Never import snapshots while users are connected. The import process acquires exclusive outline locks on Essbase, drops active connections, and invalidates uncommitted Smart View grid submissions. Always broadcast a system maintenance outage beforehand.
 
 ---

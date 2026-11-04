@@ -1,10 +1,10 @@
-# @CalcMgrDoubleFromString
+﻿# @CalcMgrDoubleFromString
 
 ## Overview
 
 `@CalcMgrDoubleFromString` is a **custom Calc Manager string conversion function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a text string that contains numeric characters (e.g., `"1234.56"`) and converts it into a true double-precision floating-point number (`1234.56`) that Essbase can use for mathematical operations.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In EPM Cloud, you often import data from external systems or REST APIs where numbers are provided as literal text strings. Additionally, when extracting data from Essbase Text Attributes or string-based Smart Lists using `@ATTRIBUTESVAL` or similar functions, the engine returns a String object.
 Essbase cannot perform math on a String. If you attempt `"100" * 1.5`, the calculation will fail or return zero. 

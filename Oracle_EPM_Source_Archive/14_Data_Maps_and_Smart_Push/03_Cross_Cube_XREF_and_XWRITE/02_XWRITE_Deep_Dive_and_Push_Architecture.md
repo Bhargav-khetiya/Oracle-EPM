@@ -1,4 +1,4 @@
-# 02 @XWRITE Deep Dive, Push Mechanics, and Target Cube Locking
+﻿# 02 @XWRITE Deep Dive, Push Mechanics, and Target Cube Locking
 
 ## 1. The `@XWRITE` Push Mechanism
 
@@ -14,9 +14,9 @@ While `@XREF` pulls remote data into the local calculation context, `@XWRITE` re
 |                                                                                                   |
 |  FIX("Plan", "FY25", "Working", "Sales_East")                                                     |
 |    "Operating_Profit" (                                                                           |
-|      @XWRITE("Operating_Profit",                    1. Open Network Stream                        |
+|      @XWRITE("Operating_Profitâ”‚                    1. Open Network Stream                        |
 |              RepApp,             -----------------> 2. Acquire Write Lock on Target Block         |
-|              "Periodic",                            3. Check if Target Block Exists:              |
+|              "Periodicâ”‚                            3. Check if Target Block Exists:              |
 |              "Local_Curr");                            - If YES: Decompress & Write Cell          |
 |    )                                                   - If NO:  Allocate & Format New Block      |
 |  ENDFIX                                             4. Commit Block to Target Disk Cache          |
@@ -34,7 +34,7 @@ While `@XREF` pulls remote data into the local calculation context, `@XWRITE` re
 @XWRITE ( Expression, LocationAlias [, MemberList ] )
 ```
 
-| Parameter | Type | Required? | Description |
+| Parameter | Type | Required— | Description |
 | :--- | :--- | :--- | :--- |
 | `Expression` | Math / Member | **Yes** | A constant, member name, or complex mathematical formula evaluated on the source cube whose result will be transmitted. |
 | `LocationAlias` | Identifier | **Yes** | Predefined connection descriptor resolving remote host, application, database, and credentials. |

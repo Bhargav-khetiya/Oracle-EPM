@@ -1,11 +1,11 @@
-# @ISANCEST
+﻿# @ISANCEST
 
 ## Overview
 
 `@ISANCEST` is a **native Essbase boolean function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates the currently calculating member and returns `TRUE` or `FALSE` based on whether the current member is an **Ancestor** (a parent, grandparent, or higher up to the root) of a specified target member. 
 *(Crucially, it is non-inclusive; a member is not considered its own ancestor).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When executing recursive top-down allocations or complex `CLEARBLOCK` logic, administrators often need to know the structural relationship between the block currently being processed and another critical member in the outline. 
 For example, if you are running an allocation that sweeps across the entire `"Entity"` dimension, you might want to execute a specific algorithm ONLY when the engine is actively sitting on a member that rolls up above `"Store_101"`. 
@@ -114,7 +114,7 @@ ENDFIX
 
 | Mistake | Explanation | Fix |
 |---------|-------------|-----|
-| Backward Logic | `IF(@ISANCEST("Parent"))` | This is the most common error. The parameter is the *target* at the bottom. The function asks: "Am I an ancestor of the target?" If you put the Parent in the parameter, and the engine is calculating a child, it asks "Am I an ancestor of my Parent?" which is logically impossible and will always return `FALSE`. If you want to check if the current member is a *child/descendant* of a parent, you MUST use `@ISDESC("Parent")` |
+| Backward Logic | `IF(@ISANCEST("Parent"))` | This is the most common error. The parameter is the *target* at the bottom. The function asks: "Am I an ancestor of the target— If you put the Parent in the parameter, and the engine is calculating a child, it asks "Am I an ancestor of my Parent— which is logically impossible and will always return `FALSE`. If you want to check if the current member is a *child/descendant* of a parent, you MUST use `@ISDESC("Parent")` |
 | Misunderstanding Inclusivity | Expecting `TRUE` on the target | `@ISANCEST` strictly evaluates parents and grandparents. If you want the logic to apply to the ancestors AND the base target itself simultaneously, you must use `@ISIANCEST` (Inclusive Ancestor) |
 | Performance in Large Dimensions | Running on every block | Tracing ancestry requires traversing the outline. If you put `IF(@ISANCEST("Target"))` inside a `FIX` that touches 1,000,000 blocks, Essbase has to perform that outline trace 1,000,000 times. It is usually much faster to write the `FIX` statement as `FIX(@ANCESTORS("Target"))`, restricting the engine before it even starts calculating, rather than using `IF` logic |
 

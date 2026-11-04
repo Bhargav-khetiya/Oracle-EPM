@@ -1,13 +1,13 @@
-# @LIST
+﻿# @LIST
 
 ## Overview
 
 `@LIST` is a **native Essbase member array function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as an explicit array constructor, allowing administrators to group multiple distinct, unconnected members or member sets into a single, cohesive array parameter. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Many advanced mathematical functions in Essbase (like `@SUM`, `@MAX`, or `@AVG`) are strictly designed to accept a single "range" argument. 
-If you want to sum Q1 and Q2, you pass the range `@SUM("Q1":"Q2")`. But what if you want to sum `"Jan"`, `"Mar"`, and `"Aug"`? They are not contiguous. You cannot use a colon (`:`). If you try to write `@SUM("Jan", "Mar", "Aug")`, the compiler will throw a severe syntax error, complaining that `@SUM` only accepts one argument, but you just passed three separate arguments separated by commas.
+If you want to sum Q1 and Q2, you pass the range `@SUM("Q1":"Q2")`. But what if you want to sum `"Jan"`, `"Mar"`, and `"Aug"`— They are not contiguous. You cannot use a colon (`:`). If you try to write `@SUM("Jan", "Mar", "Aug")`, the compiler will throw a severe syntax error, complaining that `@SUM` only accepts one argument, but you just passed three separate arguments separated by commas.
 `@LIST` solves this syntax collision. It acts as an enclosure wrapper. By wrapping the members in `@LIST("Jan", "Mar", "Aug")`, you fuse them into a single, cohesive array object. You can then safely pass this single object into the `@SUM` function (`@SUM(@LIST("Jan", "Mar", "Aug"))`), satisfying the compiler and executing the math perfectly.
 
 ### When to Use It

@@ -1,8 +1,8 @@
-# 01 — What Is Essbase: The Complete Foundation
+﻿# 01 — What Is Essbase: The Complete Foundation
 
 ---
 
-## 1.1 What Is Essbase?
+## 1.1 What Is Essbase—
 
 **Essbase** (Extended Spread Sheet dataBASE) is a **multi-dimensional database** (MDDB) server developed originally by Arbor Software in 1992, later acquired by Hyperion Solutions, and then by Oracle Corporation in 2007.
 
@@ -23,7 +23,7 @@ This is the single most important concept to understand:
 
 ### Why Essbase Exists
 
-In the relational world, if you want to answer: *"What were the sales of Product X in Region Y for Month Z in Scenario Budget?"* — you need to:
+In the relational world, if you want to answer: *"What were the sales of Product X in Region Y for Month Z in Scenario Budget—* — you need to:
 
 1. Write a complex SQL JOIN across multiple tables
 2. GROUP BY and aggregate on the fly
@@ -35,7 +35,7 @@ In Essbase, this answer is **pre-computed and stored at a specific cell intersec
 
 ## 1.2 The Multi-Dimensional Concept
 
-### What Is a "Dimension"?
+### What Is a "Dimension"—
 
 A dimension is a **category of analysis**. Think of it as one axis of a multi-dimensional space.
 
@@ -52,7 +52,7 @@ A dimension is a **category of analysis**. Think of it as one axis of a multi-di
 | Product | What is being sold | Product_A, Product_B, All_Products |
 | Currency | In what currency | USD, EUR, GBP, LC (Local Currency) |
 
-### What Is a "Cube"?
+### What Is a "Cube"—
 
 A cube is a **multi-dimensional data space** defined by its dimensions. If you have 5 dimensions, you have a 5-dimensional cube (a "hypercube").
 
@@ -77,7 +77,7 @@ Imagine a 3D cube:
 
 Now extend this to 8+ dimensions — that's Essbase.
 
-### What Is a "Cell"?
+### What Is a "Cell"—
 
 A cell is a **single intersection** of all dimensions. For example:
 

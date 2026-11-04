@@ -1,4 +1,4 @@
-﻿# Oracle EPM Cloud: Backup Strategy and Daily Maintenance
+﻿﻿# Oracle EPM Cloud: Backup Strategy and Daily Maintenance
 
 ## 1. Understanding the Daily Maintenance Process
 
@@ -166,7 +166,7 @@ epmautomate runDailyMaintenance skipNext=true -f
 ```cmd
 epmautomate runDailyMaintenance skipNext=true
 ```
-*(You will be prompted: "Do you want to continue? (y/n)")*
+*(You will be prompted: "Do you want to continue— (y/n)")*
 
 > [!TIP]
 > **Always run `runDailyMaintenance` on Production before starting a migration** to ensure the snapshot you're copying is the absolute freshest. Wait for it to complete before proceeding.
@@ -266,19 +266,19 @@ Before performing any recreation or migration, follow this checklist:
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: What causes the Daily Maintenance window to take 2 hours instead of the usual 15 minutes?
+### Q1: What causes the Daily Maintenance window to take 2 hours instead of the usual 15 minutes—
 **Answer:** Several factors trigger extended maintenance durations:
 1. **Essbase Outline Restructure / Compaction:** If large metadata additions occurred during the day, Essbase performs defragmentation and page file restructure.
 2. **Monthly Cloud Patch Application:** On the 1st and 3rd Fridays, Oracle applies system updates and restarts cloud containers.
 3. **Massive Snapshot Archival:** If data volume expanded significantly, compressing the Artifact Snapshot to Object Storage takes longer.
 4. **Data Management Index Rebuilds:** Nightly table cleanup on bloated staging repositories.
 
-### Q2: What happens if an automated ETL job is actively writing data when the Daily Maintenance window starts?
+### Q2: What happens if an automated ETL job is actively writing data when the Daily Maintenance window starts—
 **Answer:** Daily Maintenance has absolute priority. At the scheduled start time, the orchestrator forcefully severs all active database connections, aborts running EPM Automate/REST commands, and initiates a clean shutdown of Essbase. Any uncommitted data load transaction is rolled back, and the client script will receive an HTTP 503 or socket reset error. Always schedule automation to finish at least 30 minutes before maintenance starts.
 
-### Q3: Can an administrator trigger an immediate daily maintenance backup on-demand without modifying the scheduled daily window?
+### Q3: Can an administrator trigger an immediate daily maintenance backup on-demand without modifying the scheduled daily window—
 **Answer:** Yes. You can execute:
 `cmd
 epmautomate runDailyMaintenance -f

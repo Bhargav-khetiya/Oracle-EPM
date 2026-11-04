@@ -1,13 +1,13 @@
-# @CalcMgrExcelBINOMDIST
+﻿# @CalcMgrExcelBINOMDIST
 
 ## Overview
 
 `@CalcMgrExcelBINOMDIST` is a **custom Calc Manager statistical function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `BINOMDIST` function directly inside an Essbase calculation script. 
 It calculates the **Binomial Distribution Probability**, which tells you the likelihood of getting exactly *X* successes in *Y* independent trials, given a specific probability of success for each individual trial.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
-In advanced Risk Management, Quality Assurance, and Operational Planning models, analysts frequently need to calculate probability distributions. For example, if a factory knows that 2% of its parts are defective, what is the probability that in a batch of 100 parts, *exactly* 3 will be defective? What is the probability that *at most* 3 will be defective?
+In advanced Risk Management, Quality Assurance, and Operational Planning models, analysts frequently need to calculate probability distributions. For example, if a factory knows that 2% of its parts are defective, what is the probability that in a batch of 100 parts, *exactly* 3 will be defective— What is the probability that *at most* 3 will be defective—
 To calculate this manually in Essbase requires calculating complex factorials (Combinations) and exponents: `C(n, k) * p^k * (1-p)^(n-k)`. Trying to build this algebraic formula manually using standard Essbase math functions is extremely cumbersome, slow, and prone to precision loss.
 `@CalcMgrExcelBINOMDIST` offloads this complex statistical math to the underlying Java engine, returning the exact same probability score that the legacy Excel model produced, allowing FP&A teams to run Monte Carlo simulations or probabilistic risk assessments directly inside the multidimensional cube.
 
@@ -15,7 +15,7 @@ To calculate this manually in Essbase requires calculating complex factorials (C
 
 - **Quality Assurance Planning**: Predicting the probability of failure rates in manufacturing output.
 - **Risk Assessment**: Calculating the likelihood of a specific number of defaults in a portfolio of loans, given a historical default rate.
-- **Sales Forecasting**: If a salesperson has a 10% historical close rate, what is the probability they will close exactly 5 out of their next 20 leads?
+- **Sales Forecasting**: If a salesperson has a 10% historical close rate, what is the probability they will close exactly 5 out of their next 20 leads—
 
 ---
 
@@ -106,8 +106,8 @@ FIX("FY25", "Working", @LEVEL0("Product"))
         */
         "Probability_Batch_Survival" = @CalcMgrExcelBINOMDIST(
             3,               /* number_s: up to 3 defects */
-            "Batch_Size",    /* trials: 100 parts */
-            "Defect_Rate",   /* probability_s: 0.02 */
+            "Batch_Sizeâ”‚    /* trials: 100 parts */
+            "Defect_Rateâ”‚   /* probability_s: 0.02 */
             1                /* cumulative: TRUE */
         );
         

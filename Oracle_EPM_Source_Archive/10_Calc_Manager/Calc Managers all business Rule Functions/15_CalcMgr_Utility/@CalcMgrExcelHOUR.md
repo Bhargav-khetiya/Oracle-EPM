@@ -1,11 +1,11 @@
-# @CalcMgrExcelHOUR
+﻿# @CalcMgrExcelHOUR
 
 ## Overview
 
 `@CalcMgrExcelHOUR` is a **custom Calc Manager time extraction function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `HOUR` function directly inside an Essbase calculation script. 
 It analyzes an Excel Serial Date/Time decimal (or a Java Timestamp object) and extracts solely the **Hour of the Day**, returning it as an integer between `0` (12:00 AM) and `23` (11:00 PM).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In EPM Cloud, time tracking is often stored using Excel Serial Time format, where dates are integers and time is represented as a decimal fraction of a day (e.g., `0.5` is 12:00 PM noon, `0.75` is 6:00 PM). 
 If a call center workforce model imports a massive log of timestamped support tickets and needs to determine peak operational hours, extracting the exact hour from a decimal like `45657.64583` requires complex fractional multiplication and modulus math (`0.64583 * 24`). 

@@ -1,4 +1,4 @@
-# Smart List Properties: Configuration Reference
+﻿# Smart List Properties: Configuration Reference
 
 ## Core idea
 The Properties tab controls a Smart List's identity, ordering, missing-value display, entry source, and member-access filtering.
@@ -58,7 +58,7 @@ A hypothetical Forecast Method list has labels “Prior Year,” “Three-Year A
 
 ## Recall
 
-**Question:** What is the difference between #MISSING Drop-Down Label and #MISSING Form Label?
+**Question:** What is the difference between #MISSING Drop-Down Label and #MISSING Form Label—
 
 **Answer:** One supplies the selectable/display label in the drop-down; the other chooses whether that label or the form's missing-value display is shown when the cell is not focused. Neither changes #MISSING into a text value.
 

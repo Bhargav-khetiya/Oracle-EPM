@@ -1,11 +1,11 @@
-# @CalcMgrExcelCUMPRINC
+﻿# @CalcMgrExcelCUMPRINC
 
 ## Overview
 
 `@CalcMgrExcelCUMPRINC` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `CUMPRINC` function directly inside an Essbase calculation script. 
-It calculates the **Cumulative Principal Paid** on a loan or amortizing debt instrument between two specific periods (e.g., "How much of the actual loan balance did we pay down between Month 12 and Month 24?").
+It calculates the **Cumulative Principal Paid** on a loan or amortizing debt instrument between two specific periods (e.g., "How much of the actual loan balance did we pay down between Month 12 and Month 24—).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building debt amortization schedules in EPM Cloud, you often need to calculate the ending balance of a loan at the end of a specific year. To do this, you take the starting balance and subtract the total principal paid during that year.
 While you can calculate the principal paid for a single month using `PPMT`, finding the total principal paid over an entire year (Periods 13 through 24) would normally require writing an inefficient looping script to sum the 12 individual `PPMT` calculations. 

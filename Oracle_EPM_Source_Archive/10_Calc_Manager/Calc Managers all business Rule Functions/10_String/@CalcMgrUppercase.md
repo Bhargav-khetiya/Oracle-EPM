@@ -1,4 +1,4 @@
-# @CalcMgrUppercase
+﻿# @CalcMgrUppercase
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 *(Note: In some EPM documentation, this function may be referred to interchangeably as `@CalcMgrToUpperCase`, but `@CalcMgrUppercase` is the standard syntax implementation).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When executing string evaluations in Essbase, comparisons are usually strictly case-sensitive. If an administrator writes a script that says `IF("Description" == "APPROVED")`, but a user typed `"Approved"`, the `IF` statement evaluates to `false` and the script silently skips the logic. 
 While you can theoretically use `ignore_case` flags in certain advanced search functions, basic logical operators (`==`) do not support case-insensitivity. 

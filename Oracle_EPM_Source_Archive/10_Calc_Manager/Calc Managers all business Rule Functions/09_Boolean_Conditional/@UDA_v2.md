@@ -1,10 +1,10 @@
-# @UDA
+﻿# @UDA
 
 ## Overview
 
 `@UDA` is a **Boolean filtering function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that tests whether a member has a specific **User-Defined Attribute (UDA)** assigned to it, or returns a list of members that have that UDA. It is widely used for dynamic member selection and conditional logic based on metadata tags rather than outline hierarchy.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Hierarchies organize data in one way (e.g., Geography: NA, EMEA, APAC), but business logic often requires cross-cutting groupings:
 - Calculating taxes only for "Taxable" entities, regardless of region

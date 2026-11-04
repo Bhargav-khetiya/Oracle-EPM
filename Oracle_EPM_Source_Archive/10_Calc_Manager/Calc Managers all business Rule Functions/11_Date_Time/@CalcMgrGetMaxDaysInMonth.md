@@ -1,10 +1,10 @@
-# @CalcMgrGetMaxDaysInMonth
+﻿# @CalcMgrGetMaxDaysInMonth
 
 ## Overview
 
 `@CalcMgrGetMaxDaysInMonth` is a **custom Calc Manager date utility function** in Oracle EPM Cloud (PBCS/EPBCS). It acts as a specialized calendar query. You pass it a specific **Year** and **Month** (as integers), and it returns the exact **total number of days** in that specific month, flawlessly accounting for leap years.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In corporate finance, expenses (like rent, software licenses, or payroll taxes) are often accrued on a daily basis. If a company pays `$31,000` in rent for January, the daily expense is `$1,000` (because January has 31 days). If they pay `$31,000` in February, the daily expense spikes because there are fewer days in the denominator.
 To calculate daily accruals dynamically, the script must know exactly how many days are in the current period. Writing 12 nested `IF` statements (e.g., `IF(Month == 1) Days = 31`) is tedious, and writing custom logic to detect if the current year is divisible by 4 (to handle February leap years) is highly prone to error.

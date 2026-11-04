@@ -1,10 +1,10 @@
-# @GROWTH
+﻿# @GROWTH
 
 ## Overview
 
 `@GROWTH` is a **native Essbase mathematical function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates the mathematical **percentage growth** of a data set over a specified time range based on a fixed or dynamic percentage rate. It essentially calculates $Value_{new} = Value_{old} \times (1 + Rate)$.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building strategic long-range plans (LRP) or standard forecasting models, you rarely input flat dollar amounts for future years. You establish a baseline (e.g., Year 0 Revenue) and assign a "Growth Rate" assumption (e.g., $5\%$).
 To project Year 1 through Year 5, an administrator could write a manual cell-by-cell loop (`@CALCMODE(CELL)`), where Year 2 reads the result of Year 1 and multiplies it by $1.05$. However, writing recursive loops is prone to circular reference errors and is slow to execute. 
@@ -114,7 +114,7 @@ ENDFIX
 | Mistake | Explanation | Fix |
 |---------|-------------|-----|
 | Rate vs Percentage | Passing `5` instead of `0.05` | Essbase mathematical functions expect rates to be expressed as pure decimals. If you pass `5` for 5%, Essbase treats it as `500%`, and your projections will explode into billions of dollars instantly. Always divide whole percentages by 100 before passing them |
-| Confusing `@GROWTH` with `@COMPOUND` | Which to use? | Mathematically, if you use a fixed rate, `@GROWTH` and `@COMPOUND` return the exact same numbers. However, `@GROWTH` allows the *Rate* to be dynamic across the time periods, whereas `@COMPOUND` is generally designed for fixed financial interest calculations |
+| Confusing `@GROWTH` with `@COMPOUND` | Which to use— | Mathematically, if you use a fixed rate, `@GROWTH` and `@COMPOUND` return the exact same numbers. However, `@GROWTH` allows the *Rate* to be dynamic across the time periods, whereas `@COMPOUND` is generally designed for fixed financial interest calculations |
 | Using the Wrong Base Period | Pointing to a moving base | If you want to project a curve, your `Base_Value` should generally be a static, isolated anchor (like `"FY24"->"Actuals"`). If you just point `Base_Value` to the current calculating member, Essbase will try to grow the current period off of itself, creating `#MISSING` loops or circular logic. Always anchor the base |
 | Expecting the Delta | `"Variance" = @GROWTH(...)` | This function returns the TOTAL projected value (the baseline PLUS the growth amount). It does NOT isolate the variance. If you start with $\$100$ and grow by $5\%$, the output is $\$105$. If you ONLY wanted the $\$5$ delta to put on a P&L variance line, you must use `@COMPOUNDGROWTH` or manually subtract the base |
 

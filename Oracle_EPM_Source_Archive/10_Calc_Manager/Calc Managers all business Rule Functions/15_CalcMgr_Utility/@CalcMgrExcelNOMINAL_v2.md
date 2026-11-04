@@ -1,11 +1,11 @@
-# @CalcMgrExcelNOMINAL
+﻿# @CalcMgrExcelNOMINAL
 
 ## Overview
 
 `@CalcMgrExcelNOMINAL` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `NOMINAL` function directly inside an Essbase calculation script. 
 It calculates the **Nominal Annual Interest Rate**, converting a true Effective Annual Rate (EAR / APY) back into the stated "base" rate, based on how many times per year the interest compounds.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When a bank quotes an interest rate, they usually give you the "Nominal" rate (e.g., 12% APR). If it compounds monthly, the *actual* amount of interest paid by the end of the year equates to an Effective Annual Rate (EAR) of 12.68%. The function `@CalcMgrExcelEFFECT` handles that forward calculation.
 However, in reverse-engineering scenarios, you might only know the final Effective yield (e.g., "This investment guarantees a 5.5% APY"). If you need to build a monthly amortization schedule for that investment inside Essbase, you cannot divide 5.5% by 12. You must mathematically strip out the compounding effect to find the underlying Nominal base rate, and *then* divide that base rate by 12. 

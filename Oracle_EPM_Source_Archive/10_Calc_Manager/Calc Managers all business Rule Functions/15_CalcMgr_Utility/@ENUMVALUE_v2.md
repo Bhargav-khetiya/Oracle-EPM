@@ -1,10 +1,10 @@
-# @ENUMVALUE
+﻿# @ENUMVALUE
 
 ## Overview
 
 `@ENUMVALUE` is a **metadata function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns the **enumerated (numeric) value** associated with a Smart List member. Smart Lists are dropdown lists attached to Planning forms that store string labels but internally map to numeric values. `@ENUMVALUE` retrieves the underlying numeric value for a Smart List entry.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Smart Lists are widely used in Planning forms for user-friendly dropdown selections:
 - Converting dropdown selections (strings) to numeric values for calculations

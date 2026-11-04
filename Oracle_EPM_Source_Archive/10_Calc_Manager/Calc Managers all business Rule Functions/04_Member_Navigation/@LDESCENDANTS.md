@@ -1,10 +1,10 @@
-# @LDESCENDANTS
+﻿# @LDESCENDANTS
 
 ## Overview
 
 `@LDESCENDANTS` is a **member set function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager that returns the **left descendants** of a specified member. "Left descendants" are the members in the left (first-child) branch of the hierarchy below the given member. It follows the leftmost child path downward through the hierarchy.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In complex hierarchies, you may need to target only the first-child branch for specific calculations:
 - Building waterfall calculations that follow the primary branch

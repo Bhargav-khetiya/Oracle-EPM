@@ -1,4 +1,4 @@
-# 02 — Dimension axes, member display, and segments
+﻿# 02 — Dimension axes, member display, and segments
 
 ## Core idea
 
@@ -70,9 +70,9 @@ A budget form might put Entity on Page, Account on Rows, Period on Columns, and 
 
 ## Recall check
 
-1. What does Page do compared with POV? Both constrain context, but Page is presented as a user-facing selector for the form grid.
-2. Does hiding a dimension remove its context? No.
-3. Does a read-only segment secure the data everywhere? No; it only affects form interaction.
+1. What does Page do compared with POV— Both constrain context, but Page is presented as a user-facing selector for the form grid.
+2. Does hiding a dimension remove its context— No.
+3. Does a read-only segment secure the data everywhere— No; it only affects form interaction.
 
 **Teach-back:** Sketch a four-axis form for a simple monthly budget and explain why each dimension belongs on its chosen axis.
 

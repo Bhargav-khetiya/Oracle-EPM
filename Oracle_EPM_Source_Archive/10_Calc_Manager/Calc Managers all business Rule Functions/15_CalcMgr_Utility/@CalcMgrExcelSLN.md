@@ -1,11 +1,11 @@
-# @CalcMgrExcelSLN
+﻿# @CalcMgrExcelSLN
 
 ## Overview
 
 `@CalcMgrExcelSLN` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `SLN` function directly inside an Essbase calculation script. 
 It calculates the **Straight-Line Depreciation** of an asset for one single period. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Depreciation is the accounting process of allocating the cost of a tangible asset over its useful life. The simplest and most widely used method globally is Straight-Line Depreciation. In this method, the asset loses the exact same amount of value every single year until it reaches its final salvage value. 
 The algebraic formula is `(Cost - Salvage) / Life`. While this is an incredibly simple mathematical equation that can easily be written natively in Essbase, using `@CalcMgrExcelSLN` provides two distinct advantages: 

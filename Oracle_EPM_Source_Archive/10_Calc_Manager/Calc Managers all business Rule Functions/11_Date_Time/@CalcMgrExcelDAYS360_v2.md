@@ -1,11 +1,11 @@
-# @CalcMgrExcelDAYS360
+﻿# @CalcMgrExcelDAYS360
 
 ## Overview
 
 `@CalcMgrExcelDAYS360` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `DAYS360` function directly inside an Essbase calculation script. 
 It calculates the number of days between two dates based on a **360-day year** (where every single month is considered to have exactly 30 days).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In corporate finance, banking, and real estate, interest payments and accounting accruals are frequently calculated using a standardized 360-day year. This eliminates the mathematical fluctuations caused by months having 28, 29, 30, or 31 days. If you charge daily interest in a 360-day system, the interest expense in February is identical to the interest expense in March.
 Recreating the 30/360 day-count calendar rules manually using standard Essbase math (e.g., trying to flatten February to 30 days) is practically impossible to do cleanly without massive, brittle `IF` statements.

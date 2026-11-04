@@ -1,13 +1,13 @@
-# SET CREATEBLOCKONEQ
+﻿# SET CREATEBLOCKONEQ
 
 ## Overview
 
 `SET CREATEBLOCKONEQ` is a **native Essbase system directive** in Oracle EPM Cloud (PBCS/EPBCS). It controls the fundamental behavior of the Essbase calculation engine regarding the creation of empty Sparse blocks when evaluating standard mathematical equations (`A = B`). 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 By default, Essbase uses a "Bottom-Up" calculation methodology that is completely dependent on existing data. If you write the formula `"Commission" = "Sales" * 0.10;`, Essbase scans the database for blocks that already exist. If `"Store_101"` has `$100` of sales, the block exists. Essbase calculates the commission and writes `$10` into the block. 
-But what if the equation is a constant? `"Tax_Rate" = 0.25;`. 
+But what if the equation is a constant— `"Tax_Rate" = 0.25;`. 
 Because `"Tax_Rate"` doesn't rely on existing data (it's a hardcoded equation), Essbase doesn't know where to put it. By default, Essbase will ONLY write `0.25` into blocks that *already exist* on the disk (e.g., stores that already have sales data). If a store is brand new and has no data, its block doesn't exist, so it gets no Tax Rate.
 If you explicitly want Essbase to aggressively create brand new blocks for EVERY SINGLE store in the scope of the `FIX` statement, just to hold that constant `0.25`, you must use `SET CREATEBLOCKONEQ ON;`. 
 

@@ -1,11 +1,11 @@
-# @CalcMgrExcelDISC
+﻿# @CalcMgrExcelDISC
 
 ## Overview
 
 `@CalcMgrExcelDISC` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `DISC` function directly inside an Essbase calculation script. 
 It calculates the **Discount Rate** of a security (like a bond, treasury bill, or promissory note) based on its current market price and its redemption value at maturity.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When a company issues or buys short-term debt (like a Treasury Bill), it doesn't typically pay interest via a coupon. Instead, it is sold at a "discount" to its face value. For example, you buy a $10,000 bill today for $9,500. When it matures in a year, you get $10,000. The $500 difference is your return, derived from the "Discount Rate".
 To calculate this rate manually, an FP&A analyst would have to write the algebraic discount formula: `((Redemption - Price) / Redemption) * (YearBase / DaysBetween)`. While possible in Essbase, getting the exact `DaysBetween` while adhering to localized calendar rules (like NASD 30/360 or Actual/360) requires massive blocks of `IF` statement logic.

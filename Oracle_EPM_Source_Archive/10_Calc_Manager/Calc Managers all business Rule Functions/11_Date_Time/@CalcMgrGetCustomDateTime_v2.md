@@ -1,10 +1,10 @@
-# @CalcMgrGetCustomDateTime
+﻿# @CalcMgrGetCustomDateTime
 
 ## Overview
 
 `@CalcMgrGetCustomDateTime` is a **custom Calc Manager date/time instantiation function** in Oracle EPM Cloud (PBCS/EPBCS). It takes six distinct integers (Year, Month, Day, Hour, Minute, Second) and systematically fuses them together into a highly precise **Java Timestamp Object**.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When processing external API logs, manufacturing machine telemetry, or global SLA tracking data, the time-of-day is just as critical as the calendar date. If an administrator needs to simulate a specific cutoff time (e.g., "December 31st, 2024 at exactly 5:00 PM") to test whether incoming transactional data is late, they must construct that exact timestamp in memory.
 While `@CalcMgrGetCustomDate` builds a day but forces the time to Midnight (`00:00:00`), `@CalcMgrGetCustomDateTime` allows you to explicitly control the time component. It perfectly constructs a true Java Timestamp Object from the raw integer components, instantly validating the calendar and clock logic (e.g., automatically rolling the hour over if you pass "65 minutes") and returning an object ready for advanced Java time-difference processing.

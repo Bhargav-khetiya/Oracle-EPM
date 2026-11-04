@@ -1,4 +1,4 @@
-﻿# 📈 Strategic Modeling — Complete Setup Guide
+﻿﻿# 📈 Strategic Modeling — Complete Setup Guide
 ## Long-Range Financial Modeling, Scenario Analysis & Valuation
 
 > **Module:** Strategic Modeling  
@@ -125,15 +125,15 @@ Strategic Modeling has a **fundamentally different architecture** from other Pla
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: Why are Strategic Modeling models stored as .alc files rather than standard Essbase cubes?
+### Q1: Why are Strategic Modeling models stored as .alc files rather than standard Essbase cubes—
 **Answer:** Strategic Modeling uses a dedicated financial modeling engine derived from Hyperion Strategic Finance (HSF). It operates on a comprehensive 3-statement linked mathematical matrix (incorporating simultaneous circular balance sheet balancing, debt revolvers, and tax loss carryforwards) that requires a different calculation engine than Essbase multidimensional block storage.
 
-### Q2: How do you push long-range 10-year strategic targets down into operational 1-year annual budgets in OEP_FS?
-**Answer:** In Application â†’ Data Maps, configure a Data Map from Strategic Modeling to the Financials cube (OEP_FS). Map strategic model accounts to operational accounts (e.g. Strategic Model Product Revenue $\to$ Financials OFS_Product Revenue). Planners run this map to seed top-down budget targets for regional operational planners.
+### Q2: How do you push long-range 10-year strategic targets down into operational 1-year annual budgets in OEP_FS—
+**Answer:** In Application → Data Maps, configure a Data Map from Strategic Modeling to the Financials cube (OEP_FS). Map strategic model accounts to operational accounts (e.g. Strategic Model Product Revenue $\to$ Financials OFS_Product Revenue). Planners run this map to seed top-down budget targets for regional operational planners.
 
-### Q3: What is the Debt Scheduler feature, and how does it optimize corporate capital structure?
+### Q3: What is the Debt Scheduler feature, and how does it optimize corporate capital structure—
 **Answer:** The Debt Scheduler models senior debt, subordinated notes, credit facilities, and equity financing. When the model projects cash deficits, it automatically draws on revolving credit lines based on predefined covenant limits. When excess cash is generated, it executes automated debt paydown schedules.
 
 ---

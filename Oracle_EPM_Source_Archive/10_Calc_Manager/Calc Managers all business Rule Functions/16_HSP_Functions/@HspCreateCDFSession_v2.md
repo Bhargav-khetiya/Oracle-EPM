@@ -1,10 +1,10 @@
-# @HspCreateCDFSession
+﻿# @HspCreateCDFSession
 
 ## Overview
 
 `@HspCreateCDFSession` is a **Hyperion Planning (HSP) custom function** embedded within Oracle EPM Cloud (PBCS/EPBCS). It acts as an advanced connection utility that establishes a **stateful, authenticated session** between the Essbase calculation engine and the relational Planning repository (the underlying SQL database that powers the Web UI, task lists, and forms).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Essbase and Planning are technically two separate engines. Essbase handles the multidimensional block math, while Planning handles the relational metadata, user security, and web interfaces. Usually, they communicate seamlessly in the background. However, if a calculation script needs to execute a massive batch of relational updates (for example, dynamically adding 10,000 new combinations via `@HspAddPageCombination` or modifying SQL-based workflow statuses), opening and closing a network connection for every single transaction is cripplingly slow and can crash the environment.
 `@HspCreateCDFSession` solves this by explicitly opening a persistent, authenticated channel to the relational repository at the start of the calculation. Subsequent relational commands use this open session to batch process their payloads, drastically improving performance and stability.

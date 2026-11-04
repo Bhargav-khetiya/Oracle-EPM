@@ -1,11 +1,11 @@
-# @CalcMgrRollDay
+﻿# @CalcMgrRollDay
 
 ## Overview
 
 `@CalcMgrRollDay` is a **custom Calc Manager date mathematics function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a **Java Date Object** (or Timestamp) and mathematically rolls the **Day of the Month** forward or backward by a specific integer amount, returning an entirely new, modified Java Date Object.
 *(Note: This function is functionally identical to `@CalcMgrRollDate`. It exists as an alternative alias to directly align with the naming conventions of `@CalcMgrRollMonth` and `@CalcMgrRollYear`).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Calculating day offsets using basic arithmetic is impossible in EPM. If a manufacturing component expires exactly 45 days after production, and it was produced on October 25th (`20241025`), adding `45` mathematically results in `20241070` (October 70th), which corrupts the database. 
 `@CalcMgrRollDay` natively understands the Gregorian Calendar. By passing it the Date Object and the integer `45`, the Java engine automatically rolls through the days, seamlessly crossing the month boundary into November, skipping over November 30th into December, and perfectly resolving the correct expiration date. 

@@ -1,10 +1,10 @@
-# @RANGEFIRSTVAL
+﻿# @RANGEFIRSTVAL
 
 ## Overview
 
 `@RANGEFIRSTVAL` is a **native Essbase mathematical array function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates a specified range (array) of members strictly in the order they appear in the outline, and returns the **numeric value of the very first member** in that range.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building balance sheet roll-forwards, inventory tracking, or head-count logic, calculations are inherently tied to "Opening Balances". 
 If you want to calculate the annual change in inventory, you need to know exactly what the inventory was on the absolute first day (or month) of the year, regardless of what happened in the middle of the year. 

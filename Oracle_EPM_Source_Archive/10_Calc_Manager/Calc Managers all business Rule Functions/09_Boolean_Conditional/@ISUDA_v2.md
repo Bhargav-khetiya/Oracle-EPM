@@ -1,10 +1,10 @@
-# @ISUDA
+﻿# @ISUDA
 
 ## Overview
 
 `@ISUDA` is a **logical evaluation function** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager. It checks whether the member currently being calculated has a specific User-Defined Attribute (UDA) attached to it in the outline. It returns a Boolean value (`TRUE` or `FALSE`).
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 UDAs are custom tags assigned to members in the outline (e.g., tagging certain entities as "Active", "Closed", or "JointVenture"). While you can use `@UDA` to grab a list of all members with that tag for a `FIX` statement, you often need to evaluate the tag *dynamically* during a calculation:
 - "If this entity is a JointVenture, apply a 50% multiplier."

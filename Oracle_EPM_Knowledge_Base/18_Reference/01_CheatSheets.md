@@ -1,192 +1,120 @@
-# Cheat Sheets — Quick Reference Cards
+# 18.1 Master Review Cheatsheet: Golden Laws, Formula Physics & Rapid Recall
 
-> **Section:** 18 — Reference  
-> **File:** 01 — Cheat Sheets  
-> **Difficulty:** All Levels
-
----
-
-## EPM Navigation Cheat Sheet
-
-| Task | Path |
-|------|------|
-| Open a form | Navigator → Data → Forms |
-| Run a business rule | Navigator → Rules → Select rule → Launch |
-| Open Calc Manager | Navigator → Calculation Manager |
-| Manage dimensions | Navigator → Dimensions |
-| Import metadata | Navigator → Application → Import Metadata |
-| Export snapshot | Navigator → Application → Snapshot |
-| Manage security | Navigator → Tools → Access Control |
-| View jobs | Navigator → Tools → Jobs |
-| Open Data Maps | Navigator → Data Exchange → Data Maps |
-| Create an Action Menu | Navigator → Action Menus |
+## Table of Contents
+1. [The 10 Golden Laws of Oracle EPM Cloud](#1-the-10-golden-laws-of-oracle-epm-cloud)
+2. [Physical Storage & Block Sizing Formula Sheet](#2-physical-storage--block-sizing-formula-sheet)
+3. [Calculation Engine & FIX Scoping Quick Reference](#3-calculation-engine--fix-scoping-quick-reference)
+4. [Security Precedence & Collision Matrix](#4-security-precedence--collision-matrix)
+5. [EPM Automate & REST API Command Cheatsheet](#5-epm-automate--rest-api-command-cheatsheet)
 
 ---
 
-## Essbase @Functions Cheat Sheet
+<!-- ===================================================================== -->
+<!-- 🎯 LIVE INTERACTIVE VISUAL CARD: MASTER REVIEW CHEATSHEET -->
+<!-- ===================================================================== -->
+<details open>
+<summary><b>🎯 Live Interactive Architecture Card: Master Review Cheatsheet (Click to Collapse / Expand)</b></summary>
 
-### Member Navigation
+<br/>
 
-| Function | Returns |
-|----------|---------|
-| `@CHILDREN("P")` | Children of P |
-| `@DESCENDANTS("P")` | All descendants of P |
-| `@PARENT("M")` | Parent of M |
-| `@SIBLINGS("M")` | Siblings of M |
-| `@LEVMBRS("D", 0)` | All level-0 (leaf) members |
-| `@GENMBRS("D", 2)` | All generation-2 members |
-| `@RELATIVE("P", 0)` | Leaf descendants of P |
-| `@UDA("D", "tag")` | Members with UDA "tag" |
+> [!TIP]
+> **Consultant High-Yield Summary:** Keep this cheatsheet open during project emergencies and technical review preparation. It condenses the entire Oracle Cloud EPM architecture into 10 fundamental laws and rapid mathematical formulas.
 
-### Boolean Tests
+| Operational Domain | The Golden Rule | Fatal Anti-Pattern |
+| :--- | :--- | :--- |
+| **Storage Engine** | Block Size strictly between **8 KB and 100 KB** | Making high-cardinality sparse dimensions Dense |
+| **Hybrid BSO** | Upper summary parents configured as **Dynamic Calc (`~`)** | Storing upper parent blocks in Hybrid cubes |
+| **Calc Scripts** | Always `FIX` on **Sparse dimensions** | Fixing on dense dimensions to reduce disk I/O |
+| **Security** | Precedence: **`NONE > WRITE > READ`** | Assigning Service Admin to functional planners |
+| **Data Movement** | Use **Smart Push on Save** for real-time BSO to ASO | Using cell-by-cell `@XREF` across network sockets |
+| **Maintenance** | Automate `mergeslices dropzeros` nightly | Allowing thousands of unmerged ASO micro-slices |
 
-| Function | Tests |
-|----------|-------|
-| `@ISMBR("M")` | Is current member M? |
-| `@ISANCEST("M")` | Is current member ancestor of M? |
-| `@ISDESC("M")` | Is current member descendant of M? |
-| `@ISLEV("D", N)` | Is current member at level N? |
-| `@ISGEN("D", N)` | Is current member at generation N? |
-| `@ISUDA("D", "tag")` | Does current member have UDA? |
+```mermaid
+flowchart TD
+    Cheatsheet["Master EPM Consultant Cheatsheet"]
+    Cheatsheet --> Laws["10 Golden Laws of EPM Architecture"]
+    Cheatsheet --> Math["Block Math: ∏(Dense) × 8 bytes"]
+    Cheatsheet --> Sec["Security: None > Write > Read"]
+    Cheatsheet --> Auto["Automate: login > rundatarule > refresh > merge"]
+```
 
-### Data Access
-
-| Function | Returns |
-|----------|---------|
-| `@PARENTVAL("D")` | Value from parent |
-| `@PRIOR("D")` | Value from previous member |
-| `@NEXT("D")` | Value from next member |
-| `"M1" -> "M2"` | Cross-dimensional reference |
-
-### Commands
-
-| Command | Purpose |
-|---------|---------|
-| `FIX / ENDFIX` | Define calculation scope |
-| `IF / ENDIF` | Conditional logic |
-| `AGG("D")` | Aggregate dimension |
-| `DATACOPY A TO B` | Copy data |
-| `CLEARDATA "M"` | Clear data for member |
+</details>
 
 ---
 
-## SET Commands Cheat Sheet
+## 1. The 10 Golden Laws of Oracle EPM Cloud
 
-| Command | Common Value | Purpose |
-|---------|-------------|---------|
-| `SET UPDATECALC` | OFF | Recalculate everything |
-| `SET CREATEBLOCKONEQ` | ON/OFF | Create blocks on formula assignment |
-| `SET CREATENONMISSINGBLK` | ON | Create blocks for DATACOPY |
-| `SET CALCPARALLEL` | 4 | Enable parallel calculation |
-| `SET CALCTASKDIMS` | 2 | Parallel task splitting |
-| `SET LOCKBLOCK` | ON | Lock blocks during calculation |
-| `SET AGGMISSG` | ON/OFF | Include missing in aggregation |
-| `SET FRMLBOTTOMUP` | ON | Bottom-up formula calculation |
+1. **The Block Sizing Law:** $\text{Block Size} = \prod(\text{Dense Members}) \times 8 \text{ bytes}$. Keep between **8 KB and 100 KB**.
+2. **The Sparsity Law:** Fixing on Sparse dimensions reduces disk block reads. Fixing on Dense dimensions masks cells in RAM but **never reduces disk I/O**.
+3. **The Hybrid Rollup Law:** In Hybrid BSO, upper-level members must be **Dynamic Calc (`~`)**. Never store parent blocks on disk.
+4. **The Two-Pass Ratio Law:** Any ratio or percentage account (`[Margin] / [Revenue]`) must be **Dynamic Calc + Two-Pass**. Without Two-Pass, Essbase sums child percentages.
+5. **The Implied Share Law:** A parent with only one child automatically shares the child's memory pointer. Writing to the parent overwrites the child. Set to **Never Share** if independent targets are required.
+6. **The Multi-Group Security Law:** Group permission collisions resolve as $\text{NONE} \succ \text{WRITE} \succ \text{READ}$. Any group granting `NONE` completely revokes access.
+7. **The Data Integrity Law:** **Valid Intersections** are business data filters, NOT security controls. They prevent nonsensical data entry; they do not authorize users.
+8. **The Groovy Efficiency Law:** Iterating strictly over edited cells (`dataCellIterator({it.edited})`) reduces calculation runtime by up to **99%**.
+9. **The ASO Compaction Law:** Every Smart Push creates an incremental ASO slice. Slices must be merged nightly via `mergeslices dropzeros` to prevent query degradation.
+10. **The Production Safety Law:** Never import an LCM migration package into Production without capturing an **on-demand snapshot** immediately beforehand.
 
 ---
 
-## Groovy Cheat Sheet
+## 2. Physical Storage & Block Sizing Formula Sheet
 
-### Key Objects
+$$\text{Block Size (Bytes)} = (\text{Dense}_1 \times \text{Dense}_2 \times \dots \times \text{Dense}_n) \times 8 \text{ bytes}$$
+$$\text{Block Size (KB)} = \frac{\text{Block Size (Bytes)}}{1024}$$
+$$\text{Potential Blocks} = \text{Sparse}_1 \times \text{Sparse}_2 \times \dots \times \text{Sparse}_n$$
+$$\text{Existing Blocks} = \text{Potential Blocks} \times \text{Sparsity Factor (typically 0.1% to 2%)}$$
 
-| Object | Purpose |
-|--------|---------|
-| `operation.grid` | Current form data grid |
-| `operation.application` | Application object |
-| `operation.planType` | Current plan type |
-| `operation.user` | Current user |
-| `rtps.RTP_Name` | Runtime prompt value |
+---
 
-### Common Operations
+## 3. Calculation Engine & FIX Scoping Quick Reference
 
-```groovy
-// Read edited cells
-operation.grid.dataCellIterator().each { cell ->
-    if (cell.edited) { /* process */ }
-}
+* **`SET UPDATECALC OFF;`** : Forces calculation of clean blocks during batch runs.
+* **`SET CALCMODE BLOCK;`** : Uses fast vectorized array math within data blocks.
+* **`SET CALCPARALLEL 2;`** : Spawns 2 to 4 parallel threads across sparse blocks.
+* **`@RELATIVE("Member", 0)`** : Returns Level 0 leaf members.
+* **`@PRIOR("Mbr", 1, @RELATIVE("Period", 0))`** : Retrieves previous period cell value.
+* **`CLEARBLOCK EMPTY;`** : Scans database and truncates blocks where every cell is `#Missing`.
 
-// Get RTP value
-def entity = rtps.RTP_Entity.getEssbaseMemberName()
+---
 
-// Read from cube
-DataGridDefinitionBuilder builder = new DataGridDefinitionBuilder()
-// ... configure and build
+## 4. Security Precedence & Collision Matrix
 
-// Write to cube
-DataGridBuilder grid = new DataGridBuilder("Plan1")
-// ... add POV, columns, rows, build(true)
+| Group 1 Grant | Group 2 Grant | Group 3 Grant | Effective Permission |
+| :---: | :---: | :---: | :---: |
+| `WRITE` | `READ` | *None* | **`WRITE`** (Write trumps Read) |
+| `READ` | `READ` | *None* | **`READ`** |
+| `WRITE` | `READ` | `NONE` | **`NONE`** (None trumps all!) |
+| `WRITE` | `WRITE` | `NONE` | **`NONE`** |
 
-// Execute calc script
-operation.planType.essCalcScript = "FIX(...) ... ENDFIX"
-operation.planType.execute()
+---
 
-// Validate and veto
-throwVetoException("Error message")
+## 5. EPM Automate & REST API Command Cheatsheet
 
-// Send email
-operation.application.getEmailService().sendMail(to, subject, body)
+```bash
+# 1. Login with encrypted password file
+epmautomate login admin@company.com C:\EPM\pass.epw https://epm.oraclecloud.com MyKey
+
+# 2. Upload file to Inbox
+epmautomate uploadfile "C:\Data\gl_actuals.csv" inbox
+
+# 3. Run Data Integration rule
+epmautomate rundatarule Import_GL Oct FY26 MERGE
+
+# 4. Refresh Database
+epmautomate refreshcube
+
+# 5. Merge ASO Slices and Drop Zeros
+epmautomate mergeslices Plan1 OEP_REP dropzeros
+
+# 6. Export Full Application Backup
+epmautomate exportsnapshot "Nightly_Backup_Snapshot"
+
+# 7. Download Snapshot to Local Storage
+epmautomate downloadfile "Nightly_Backup_Snapshot"
+
+# 8. Logout
+epmautomate logout
 ```
 
 ---
-
-## EPM Automate Cheat Sheet
-
-### Connection
-
-| Command | Purpose |
-|---------|---------|
-| `epmautomate login user pass url` | Connect |
-| `epmautomate logout` | Disconnect |
-
-### Data Operations
-
-| Command | Purpose |
-|---------|---------|
-| `epmautomate importdata "RuleName"` | Load data |
-| `epmautomate exportdata "RuleName"` | Export data |
-| `epmautomate runbusinessrule "Rule"` | Run rule |
-| `epmautomate rundatarule "Rule" start end import export` | Run data integration rule |
-| `epmautomate refreshcube` | Deploy metadata to Essbase |
-
-### File Operations
-
-| Command | Purpose |
-|---------|---------|
-| `epmautomate uploadfile "file"` | Upload to inbox |
-| `epmautomate downloadfile "file"` | Download from outbox |
-| `epmautomate listfiles` | List files |
-| `epmautomate deletefile "file"` | Delete file |
-
-### Lifecycle Operations
-
-| Command | Purpose |
-|---------|---------|
-| `epmautomate exportsnapshot "name"` | Export snapshot |
-| `epmautomate importsnapshot "name"` | Import snapshot |
-| `epmautomate copySnapshotFromInstance url user pass "name"` | Cross-instance copy |
-| `epmautomate cloneEnvironment ...` | Clone entire environment |
-| `epmautomate recreate -f` | Factory reset |
-
----
-
-## Dimension Properties Cheat Sheet
-
-| Property | Values | Default |
-|----------|--------|---------|
-| Data Storage | Store, Dynamic Calc, Never Share, Label Only, Shared | Store |
-| Data Type | Currency, Non-currency, Percentage, Date, Text, Unspecified | Unspecified |
-| Two Pass Calculation | True/False | False |
-| Skip Value | None, Missing, Zeros, Missing and Zeros | None |
-| Time Balance | None, First, Last, Average | None |
-| Variance Reporting | Non-Expense, Expense | Non-Expense |
-
----
-
-## Source Provenance
-
-| Source | Files |
-|--------|-------|
-| Claude | `25_CheatSheets/` |
-| ChatGPT | Various topic files (consolidated) |
-| Gemini | Various topic files (consolidated) |
-
+*Proceed to [18.2 Error Encyclopedia & Production Debugging](03_Error_Encyclopedia.md).*

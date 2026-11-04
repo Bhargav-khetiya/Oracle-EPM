@@ -1,10 +1,10 @@
-# @CalcMgrWeeksBetween
+﻿# @CalcMgrWeeksBetween
 
 ## Overview
 
 `@CalcMgrWeeksBetween` is a **custom Calc Manager date mathematics function** in Oracle EPM Cloud (PBCS/EPBCS). It calculates the exact **integer number of full weeks** that exist between two provided **Java Date Objects**.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In retail, manufacturing, and HR planning, business logic is frequently driven by weekly cycles rather than monthly cycles (e.g., 4-4-5 accounting calendars, weekly payroll, or weekly supply chain lead times).
 If an administrator needs to calculate how many weeks a temporary contractor has been active, standard Essbase math fails. Subtracting two integers (e.g., `20240215 - 20240101 = 114`) yields a mathematically useless number.

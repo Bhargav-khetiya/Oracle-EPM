@@ -1,10 +1,10 @@
-# @CalcMgrBitOR
+﻿# @CalcMgrBitOR
 
 ## Overview
 
 `@CalcMgrBitOR` is a **custom Calc Manager bitwise function** in Oracle EPM Cloud (PBCS/EPBCS). It performs a bitwise logical `OR` (Inclusive OR) operation between two integers. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 Bitwise operations are primarily utilized in EPM when a developer implements a **Bitmasking** strategy—compressing multiple Boolean states (True/False flags) into a single integer account to conserve database block size and reduce outline sparsity. 
 In bitmasking architecture:

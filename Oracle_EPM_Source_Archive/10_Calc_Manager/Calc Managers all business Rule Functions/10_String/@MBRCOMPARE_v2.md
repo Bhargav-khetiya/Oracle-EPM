@@ -1,10 +1,10 @@
-# @MBRCOMPARE
+﻿# @MBRCOMPARE
 
 ## Overview
 
 `@MBRCOMPARE` is a **native Essbase boolean/numeric function** in Oracle EPM Cloud (PBCS/EPBCS). It evaluates two structural member names and compares them lexicographically (alphabetically) to determine their sorting order. It returns a mathematical integer representing whether the first member is less than, equal to, or greater than the second member.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 In highly dynamic, loop-based calculation scripts or custom allocation engines, administrators sometimes need to execute logic conditionally based on the alphabetical names of the dimension members. 
 For example, if a script processes a list of Projects (`"Proj_A"`, `"Proj_B"`, `"Proj_C"`), and you only want to execute the math for projects that come alphabetically *after* `"Proj_B"`, you need a way to mathematically compare text.

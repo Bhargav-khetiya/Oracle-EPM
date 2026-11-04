@@ -1,10 +1,10 @@
-# VAR
+﻿# VAR
 
 ## Overview
 
 `VAR` declares a **temporary variable** in Oracle EPM Cloud (PBCS/EPBCS) Calc Manager business rules. Variables store intermediate values — strings, numbers, member names, or function results — that can be reused throughout the calculation script. They make code cleaner, more readable, more maintainable, and often faster.
 
-### Why Does This Command Exist?
+### Why Does This Command Exist—
 
 Without variables, you'd have to repeat complex expressions everywhere they're used:
 - Repeating `@NAME(@CURRMBR("Entity"))` ten times in a script is error-prone and hard to read

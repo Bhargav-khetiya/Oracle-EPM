@@ -1,4 +1,4 @@
-# @IDESCENDANTS
+﻿# @IDESCENDANTS
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 *(The "I" stands for Inclusive).*
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When building robust EPM calculation scripts (like Aggregations, Clear Scripts, or targeted Allocations), it is nearly universal to execute logic on an entire branch of a hierarchy. For instance, an administrator might need to clear data for `"North_America"` and every single state and store beneath it before running a fresh data import.
 If they use the native `@DESCENDANTS("North_America")` function, Essbase returns all the underlying states and stores, but it specifically ignores the `"North_America"` parent block itself. To clear both the children and the parent, the administrator would be forced to write `"North_America", @DESCENDANTS("North_America")`. 

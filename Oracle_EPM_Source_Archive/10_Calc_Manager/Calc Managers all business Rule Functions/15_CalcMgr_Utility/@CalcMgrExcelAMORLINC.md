@@ -1,11 +1,11 @@
-# @CalcMgrExcelAMORLINC
+﻿# @CalcMgrExcelAMORLINC
 
 ## Overview
 
 `@CalcMgrExcelAMORLINC` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `AMORLINC` function directly inside an Essbase calculation script. 
 It calculates the depreciation (or amortization) for an asset for a specific accounting period using a **French Accounting System depreciation convention**. Unlike `AMORDEGRC` (which uses a declining balance), `AMORLINC` calculates depreciation using a strict **linear (straight-line)** method.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 While Essbase has native Straight-Line logic (and developers often just write `"Cost" / "Life"`), the French linear depreciation rules require highly specific, to-the-day proration for the first accounting period (Period 0). 
 If an asset is purchased in August, the depreciation for that first year must be prorated exactly based on the days remaining until the end of the first period, adhering to specific European day-count bases (like Actual/Actual or European 30/360). 

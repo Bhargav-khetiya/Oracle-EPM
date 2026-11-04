@@ -1,11 +1,11 @@
-# @CalcMgrExcelINTRATE
+﻿# @CalcMgrExcelINTRATE
 
 ## Overview
 
 `@CalcMgrExcelINTRATE` is a **custom Calc Manager financial math function** in Oracle EPM Cloud (PBCS/EPBCS). It perfectly replicates the behavior of the Microsoft Excel `INTRATE` function directly inside an Essbase calculation script. 
 It calculates the **Interest Rate** for a fully invested security, typically used for short-term discount bonds or promissory notes where a flat amount is invested upfront, and a larger flat amount is received at maturity, with no periodic coupon payments in between.
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
 When a company buys a zero-coupon bond or a short-term commercial paper, they don't receive an explicit "5% annual yield" quote. Instead, they are told: "If you pay us $9,500 today, we will pay you $10,000 in exactly 215 days." 
 To determine if this is a good investment, the Treasury department must mathematically convert that $500 profit over 215 days into an annualized interest rate. Doing this manually in Essbase requires the algebraic formula: `((Redemption - Investment) / Investment) * (YearBase / DaysBetween)`. While technically possible, configuring the `DaysBetween` to correctly adhere to NASD 30/360 or Actual/360 calendar rules using raw Essbase `IF` statements is incredibly brittle. 

@@ -1,4 +1,4 @@
-﻿# 🚀 Path 2: Create a New Application
+﻿﻿# 🚀 Path 2: Create a New Application
 ## Application Creation Wizard — Complete Overview
 
 > **Navigation:** `Planning Landing Page → START button`  
@@ -151,13 +151,13 @@ The wizard flows through these screens (exact order may vary by version):
 
 ---
 
-## ðŸ’¡ Frequently Asked & Twisted Questions (Q&A)
+## ðŸŽ¯ Frequently Asked & Twisted Questions (Q&A)
 
-### Q1: What happens if an administrator's browser session times out while configuring Step 4 of the wizard?
+### Q1: What happens if an administrator's browser session times out while configuring Step 4 of the wizard—
 **Answer:** The wizard state is kept purely in temporary browser session memory until the final **Create** button is clicked on Step 5. If the session times out (typically after 60 minutes of inactivity) or the browser is accidentally closed, all inputs are discarded and no changes are committed to the cloud database. The administrator must start over from Step 1.
 
-### Q2: Can core architectural prerequisites (such as Calendar distribution or Multi-Currency) be altered post-creation?
+### Q2: Can core architectural prerequisites (such as Calendar distribution or Multi-Currency) be altered post-creation—
 **Answer:** No. Parameters configured in Steps 1 through 4 (Application Name, Calendar First Month, Period Granularity, Multi-Currency support) are **permanently immutable**. If these prerequisites are incorrectly specified, the entire application must be deleted and rebuilt from scratch.
 
-### Q3: Does the wizard validate custom dimension names against Essbase reserved words before creation?
+### Q3: Does the wizard validate custom dimension names against Essbase reserved words before creation—
 **Answer:** The wizard checks basic naming rules (alphanumeric characters, length constraints), but it does not catch all reserved Essbase tokens (such as CALC, ALL, DEFAULT) until the final database initialization phase. Always ensure proposed dimension names avoid Essbase formula script keywords.

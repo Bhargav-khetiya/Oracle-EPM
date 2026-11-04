@@ -1,13 +1,13 @@
-# @EXPAND
+﻿# @EXPAND
 
 ## Overview
 
 `@EXPAND` is a **native Essbase member selection function** in Oracle EPM Cloud (PBCS/EPBCS). It takes a single parent member (or a list of members) and dynamically generates an array containing that member *and* all of its descendants (or children) down to a specified hierarchical level. 
 
-### Why Does This Function Exist?
+### Why Does This Function Exist—
 
-When building calculation scripts, it is common to target an entire branch of a hierarchy. You could write `@DESCENDANTS("Total_Expenses")`, which returns all the base accounts. But what if you want the descendants *plus* the `"Total_Expenses"` parent itself? You would have to write `"Total_Expenses", @DESCENDANTS("Total_Expenses")`. 
-While this is manageable for a single member, what if you have a variable or an attribute search that returns 5 different parent members, and you need to simultaneously select *all 5 parents and all of their respective descendants*? Stringing that together manually is impossible.
+When building calculation scripts, it is common to target an entire branch of a hierarchy. You could write `@DESCENDANTS("Total_Expenses")`, which returns all the base accounts. But what if you want the descendants *plus* the `"Total_Expenses"` parent itself— You would have to write `"Total_Expenses", @DESCENDANTS("Total_Expenses")`. 
+While this is manageable for a single member, what if you have a variable or an attribute search that returns 5 different parent members, and you need to simultaneously select *all 5 parents and all of their respective descendants*— Stringing that together manually is impossible.
 `@EXPAND` solves this by natively wrapping "Member + Descendants" into a single, cohesive array command. You pass it a member (or a list/UDA), tell it how deep to go, and it automatically builds the comprehensive array, ensuring both the targets and their children are included in the `FIX` statement or function block.
 
 ### When to Use It

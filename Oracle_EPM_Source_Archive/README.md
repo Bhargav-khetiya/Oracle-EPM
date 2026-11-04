@@ -136,3 +136,4 @@ Every single category folder contains an exhaustive, standardized `00_INDEX.md` 
 3. **The Hybrid Rollup Law:** Upper-level sparse parent members must be **Dynamic Calc (`~`)**. Never store parent blocks on disk in Hybrid BSO.
 4. **Least-Privilege Precedence:** In security conflicts across groups, **None** always overrides **Read**, and **Read** overrides **Write**.
 5. **Event-Driven Efficiency:** Replace monolithic Calc Manager business rules with **Groovy Micro-FIX** scripts scoped strictly to `operation.grid.dataCellIterator { it.edited }`.
+
